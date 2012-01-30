@@ -1,0 +1,5 @@
+costforms:
+  credentials: [["Cost Forms", "Cost Form Invoicing", "Cost Form Reports"]]
+
+administration:
+  credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]

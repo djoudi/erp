@@ -1,0 +1,4 @@
+all:
+  stylesheets:    [login.css]
+  has_layout:     true
+  layout:         layout_login

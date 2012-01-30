@@ -1,0 +1,186 @@
+sfGuardUser:
+  
+  aslanakguc:
+    first_name: Aslan
+    last_name: "Akgüç"
+    email_address: a.akguc@fmconsulting.info
+    username: aslana
+    password: aslan8776
+    Permissions: [cf]
+    
+    
+  burcugumus:
+    first_name: Burcu
+    last_name: "Gümüş"
+    email_address: b.gumus@fmconsulting.info
+    username: burcug
+    password: burcu8760
+    Permissions: [cf]
+    
+  ceyhankaraduman:
+    first_name: Ceyhan
+    last_name: Karaduman
+    email_address: c.karaduman@fmconsulting.info
+    username: ceyhank
+    password: ceyhan2315
+    Permissions: [cf]
+   
+  emineozcelik:
+    first_name: Emine
+    last_name: "Özçelik"
+    email_address: e.ozcelik@fmconsulting.info
+    username: emineo
+    password: emine5791
+    Permissions: [cf]
+    
+  emrahulku:
+    first_name: Emrah
+    last_name: "Ülkü"
+    email_address: e.ulku@fmconsulting.info
+    username: emrahu
+    password: emrah1773
+    Permissions: [cf]
+    
+  erengenc:
+    first_name: Eren
+    last_name: "Genç"
+    email_address: e.genc@fmconsulting.info
+    username: ereng
+    password: eren8190
+    Permissions: [cf]
+    
+  evrimalyaz:
+    first_name: Evrim
+    last_name: Alyaz
+    email_address: e.alyaz@fmconsulting.info
+    username: evrima
+    password: evrim8671
+    Permissions: [cf]
+    
+  filizdemiral:
+    first_name: Filiz
+    last_name: Demiral
+    email_address: f.demiral@fmconsulting.info
+    username: filizd
+    password: filiz6849
+    Permissions: [cf]
+    
+  gizemogsuz:
+    first_name: Gizem
+    last_name: "Öğsüz"
+    email_address: g.ogsuz@fmconsulting.info
+    username: gizemo
+    password: gizem3658
+    Permissions: [cf]
+
+  handebilgin:
+    first_name: Hande
+    last_name: Bilgin
+    email_address: h.bilgin@fmconsulting.info
+    username: handeb
+    password: hande7829
+    Permissions: [cf]
+    
+  melekmuderrisgil:
+    first_name: Melek
+    last_name: "Müderrisgil"
+    email_address: m.muderrisgil@fmconsulting.info
+    username: melekm
+    password: melek2357
+    Permissions: [cf]
+    
+  mugetas:
+    first_name: "Müge"
+    last_name: "Taş"
+    email_address: m.tas@fmconsulting.info
+    username: muget
+    password: muge2739
+    Permissions: [cf]
+    
+  nuraycoskun:
+    first_name: Nuray
+    last_name: "Coşkun"
+    email_address: n.coskun@fmconsulting.info
+    username: nurayc
+    password: nuray6737
+    Permissions: [cf]
+    
+  ozlemilica:
+    first_name: "Özlem"
+    last_name: "Ilıca"
+    email_address: o.ilica@fmconsulting.info
+    username: ozlemi
+    password: ozlem3458
+    Permissions: [cf]
+    
+  peterheidinger:
+    first_name: Peter
+    last_name: Heidinger
+    email_address: p.heidinger@fmconsulting.info
+    username: peterh
+    password: peter9759
+    Permissions: [cf]
+    
+  sevdasanlier:
+    first_name: Sevda
+    last_name: "Şanlıer"
+    email_address: s.sanlier@fmconsulting.info
+    username: sevdas
+    password: sevda3758
+    Permissions: [cf]
+    
+  sidikabilen:
+    first_name: "Sıdıka"
+    last_name: Bilen
+    email_address: s.bilen@fmconsulting.info
+    username: sidikab
+    password: sidika7394
+    Permissions: [cf]
+    
+  sultankahraman:
+    first_name: Sultan
+    last_name: Kahraman
+    email_address: s.kahraman@fmconsulting.info
+    username: sultank
+    password: sultan2737
+    Permissions: [cf]
+    
+  tulaytastan:
+    first_name: "Tülay"
+    last_name: "Taştan"
+    email_address: t.tastan@fmconsulting.info
+    username: tulayt
+    password: tulay3579
+    Permissions: [cf]
+    
+  ugurakkus:
+    first_name: "Uğur"
+    last_name: "Akkuş"
+    email_address: u.akkus@fmconsulting.info
+    username: ugura
+    password: ugur9873
+    Permissions: [cf]
+    
+  yaseminozturk:
+    first_name: Yasemin
+    last_name: "Öztürk"
+    email_address: y.ozturk@fmconsulting.info
+    username: yasemino
+    password: yasemin5737
+    Permissions: [cf]
+    
+  yesimtektasli:
+    first_name: "Yeşim"
+    last_name: "Tektaşlı"
+    email_address: y.tektasli@fmconsulting.info
+    username: yesimt
+    password: yesim5472
+    Permissions: [cf, cfi, cfr, cur, cust, emp, proj, vat]
+    
+  yasinaydin:
+    first_name: Yasin
+    last_name: "Aydın"
+    email_address: yasin@yasinaydin.net
+    username: yasin
+    password: 15313a
+    Permissions: [cf, cfi, cfr, cur, cust, emp, proj, vat]

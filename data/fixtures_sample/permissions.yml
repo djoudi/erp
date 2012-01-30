@@ -1,0 +1,10 @@
+sfGuardPermission:
+  cf: { name: "Cost Forms" }
+  cfi: { name: "Cost Form Invoicing" }
+  cfr: { name: "Cost Form Reports" }
+  
+  cur: { name: "Currency Management" }
+  cust: { name: "Customer Management" }
+  emp: { name: "Employee Management" }
+  proj: { name: "Project Management" }
+  vat: { name: "VAT Management" }

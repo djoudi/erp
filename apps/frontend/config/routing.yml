@@ -1,0 +1,30 @@
+# HOMEPAGE
+
+homepage:
+  url:   /
+  param: { module: homepage, action: index }
+
+
+# MAIN MODULES
+
+costforms:
+  url:  /home/costforms
+  param: { module: homepage, action: costforms }
+administration:
+  url: /home/administration
+  param: { module: homepage, action: administration }
+
+
+# SF GUARD AUTH
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }

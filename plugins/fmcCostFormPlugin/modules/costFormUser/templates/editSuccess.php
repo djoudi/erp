@@ -1,0 +1,40 @@
+<?php slot ('title', "Cost form information") ?>
+
+
+  <?php include_partial('costFormDetails', array('costForm' => $costForm, 'costFormStatus' => $costFormStatus)) ?>
+  
+  <?php include_partial('costFormItems', array('costItems' => $costItems, 'isSent' => $costForm->isSent )) ?>
+  
+  <br />
+
+  <?php if ( ! $costForm->isSent): ?>
+    <h4>Add new cost</h4>
+    <?php include_partial('costFormItemNew', array('form' => $form)) ?>
+  <?php endif; ?>
+  
+  <br />
+
+<div class="actions">
+
+  <?php if ( ! $costForm->isSent): ?>
+  
+    <a class="btn primary" onclick="
+      if (confirm('Warning! If you continue, you will NOT be able to change cost form contents and this form will be sent to Finance Department. Continue?')) 
+        window.location='<?php echo url_for('@costFormUser_send?id='.$costForm->id) ?>'
+    ">Finish &amp; Send</a>
+  
+    <a class="btn error" onclick="
+      if (confirm('If you delete this form, all your unsaved information will be lost. Do you really want to delete your cost form?'))
+        parent.location='<?php echo url_for('@costFormUser_deleteForm?id='.$costForm->id) ?>'
+    ">Delete Cost Form</a>
+    
+    <a class="btn success" href="<?php echo url_for('@costFormUser_list') ?>">Save</a>
+    
+  <?php else: ?>
+    
+    <a class="btn" href="<?php echo url_for('@costFormUser_list') ?>">Go Back</a>
+    <a class="btn info" href="<?php echo url_for('@costFormUser_report?id='.$costForm->id) ?>">Print Output</a>
+    
+  <?php endif; ?>
+
+</div>

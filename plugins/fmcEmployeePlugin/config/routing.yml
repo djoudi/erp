@@ -1,0 +1,12 @@
+
+employeeManagement:
+  url: /employee/managament
+  param: { module: employeeManagement, action: index }
+  
+employeeManagement_edit:
+  url: /employee/managament/edit/:id
+  param: { module: employeeManagement, action: edit }
+  
+employeeManagement_new:
+  url: /employee/managament/new
+  param: { module: employeeManagement, action: new }

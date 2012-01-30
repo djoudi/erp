@@ -1,0 +1,15 @@
+currencyManagement_index:
+  url: /currency/management
+  param: { module: currencyManagement, action: index }
+
+currencyManagement_makeDefault:
+  url: /currency/management/makedefault/:id
+  param: { module: currencyManagement, action: makeDefault }
+
+currencyManagement_disable:
+  url: /currency/management/disable/:id
+  param: { module: currencyManagement, action: disable }
+
+currencyManagement_enable:
+  url: /currency/management/enable/:id
+  param: { module: currencyManagement, action: enable }

@@ -1,0 +1,12 @@
+Project:
+  actAs:
+    SoftDelete: ~
+    Timestampable: ~
+  columns:
+    customer_id: { type: integer, notnull: true }
+    status: { type: enum, values: ['Active', 'Passive'], default: Active, notnull: true }
+    code: { type: string(20), unique: true, notnull: true }
+    title: { type: string(150) }
+    description: { type: string(250) }
+  relations:
+    Customers: { class: Customer, local: customer_id, foreign: id, foreignAlias: Projects, onDelete: CASCADE }

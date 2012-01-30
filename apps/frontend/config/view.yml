@@ -1,0 +1,24 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        FMC Data Management
+    language:     en
+  
+  stylesheets:
+     - jqueryui-flick/jquery-ui-1.8.16.custom.css
+     - bootstrap-1.4.0-min.css
+     - frontend.css
+  
+  javascripts: 
+    - jquery-1.7.1.min.js
+    - jquery-tablesorter-2.0.5.min.js
+    - jquery-ui-1.8.16.custom.min.js
+    - frontend.js
+  
+  has_layout:     true
+  layout:         layout_v2

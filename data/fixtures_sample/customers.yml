@@ -1,0 +1,32 @@
+Customer:
+
+  fmc: { name: "Foreign Market Consulting" }
+  
+  alls: { name: "Allsafe" }
+  blas: { name: "Blaser Swisslube" }
+  cloo: { name: "Cloos" }
+  denh: { name: "Den Hartogh" }
+  emug: { name: "Emuge" }
+  euro: { name: "Eurocentra" }
+  geze: { name: "Geze" }
+  gott: { name: "Gottlieb Binder" }
+  grol: { name: "Grolmann" }
+  ibcs: { name: "IBC Solar" }
+  hans: { name: "Hans Turck" }
+  humb: { name: "Humboldt" }
+  jumo: { name: "Jumo" }
+  leuz: { name: "Leuze" }
+  lgcs: { name: "LGC Systems" }
+  luen: { name: "Lüning" }
+  mage: { name: "Mage Solar" }
+  mart: { name: "Martin Engineering" }
+  mbte: { name: "MB Technologies" }
+  medi: { name: "Medipool" }
+  paul: { name: "Paul Hartmann" }
+  sund: { name: "S & S" }
+  seet: { name: "See Tech" }
+  smss: { name: "SMS" }
+  tala: { name: "Talaris" }
+  tech: { name: "Technoalpin" }
+  ubdi: { name: "UBD" }
+  wuen: { name: "Wünsche" }

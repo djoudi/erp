@@ -1,0 +1,13 @@
+Vat:
+  p0:
+    rate: 0
+    isDefault: false
+  p1:
+    rate: 1
+    isDefault: false
+  p8:
+    rate: 8
+    isDefault: false
+  p18:
+    rate: 18
+    isDefault: true

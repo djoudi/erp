@@ -1,0 +1,7 @@
+all:
+  costForm:
+    status: 
+      NotSent: 'Not Sent'
+      Sent: 'Sent for Invoicing'
+      Processing: 'Partially Invoiced'
+      Processed: 'Invoiced'

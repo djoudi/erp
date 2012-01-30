@@ -1,0 +1,53 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardGroup
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_group
+    with_doctrine_route:   true
+
+    config:
+    
+      actions:
+        _new:
+          label: "Create a new department"
+          credentials: ["Employee Management"]
+        _edit:
+          credentials: ["Employee Management"]
+        _delete:
+          credentials: ["Employee Management"]
+    
+      fields:
+        name:
+          label: Department Name
+        users_list:
+          label: Employees
+          help: "To select more than one, hold CTRL and select"
+    
+      list:
+        title: Department management
+        display: [=name]
+        sort:    [name]
+        max_per_page: 100
+        batch_actions: []
+        object_actions: { _edit: ~, _delete: ~ }
+           
+      filter:
+        class: false
+                
+      form:
+        display:
+          "Department information": [name, description]
+          "Department employees": [users_list]
+
+      edit:
+        title: Editing Department: %%name%%
+        actions: { _list: ~, _save: ~ }
+
+      new:
+        title: Create a new department
+        actions: { _list: ~, _save: ~ }

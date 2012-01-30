@@ -1,0 +1,15 @@
+vatManagement_index:
+  url: /vat/management
+  param: { module: vatManagement, action: index }
+
+vatManagement_makeDefault:
+  url: /vat/management/makedefault/:id
+  param: { module: vatManagement, action: makeDefault }
+
+vatManagement_disable:
+  url: /vat/management/disable/:id
+  param: { module: vatManagement, action: disable }
+
+vatManagement_enable:
+  url: /vat/management/enable/:id
+  param: { module: vatManagement, action: enable }

@@ -1,0 +1,6 @@
+Customer:
+  actAs:
+    SoftDelete: ~
+    Timestampable: ~
+  columns:
+    name: { type: string(50), unique: true, notnull: true }

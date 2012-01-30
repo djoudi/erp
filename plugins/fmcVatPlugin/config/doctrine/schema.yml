@@ -1,0 +1,8 @@
+Vat:
+  actAs:
+    Timestampable: ~
+  columns:
+    rate: { type: integer, notnull: true, unique: true }
+    isDefault: { type: boolean, default: false }
+    isActive: { type: boolean, default: true, notnull: true }
+    

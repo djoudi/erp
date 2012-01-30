@@ -1,0 +1,12 @@
+
+customerManagement:
+  url: /customer/management
+  param: { module: customerManagement, action: index }
+  
+customerManagement_edit:
+  url: /customer/management/edit/:id
+  param: { module: customerManagement, action: edit }
+  
+customerManagement_new:
+  url: /customer/management/new
+  param: { module: customerManagement, action: new }

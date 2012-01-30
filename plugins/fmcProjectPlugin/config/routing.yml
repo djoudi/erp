@@ -1,0 +1,12 @@
+
+projectManagement:
+  url: /project/management
+  param: { module: projectManagement, action: index }
+  
+projectManagement_edit:
+  url: /project/management/edit/:id
+  param: { module: projectManagement, action: edit }
+  
+projectManagement_new:
+  url: /project/management/new
+  param: { module: projectManagement, action: new }

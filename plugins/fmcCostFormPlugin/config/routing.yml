@@ -1,0 +1,90 @@
+# user
+
+costFormUser_new:
+  url: /costform/user/new
+  param: { module: costFormUser, action: new }
+
+costFormUser_edit:
+  url: /costform/user/edit/:id
+  param: { module: costFormUser, action: edit }
+
+costFormUser_deleteForm:
+  url: /costform/user/deleteform/:id
+  param: { module: costFormUser, action: deleteForm }
+
+costFormUser_deleteItem:
+  url: /costform/user/deleteitem/:id
+  param: { module: costFormUser, action: deleteItem }
+
+costFormUser_list:
+  url: /costform/user/list
+  param: { module: costFormUser, action: list }
+
+costFormUser_send:
+  url: /costform/user/send/:id
+  param: { module: costFormUser, action: send }
+
+costFormUser_report:
+  url: /costform/user/report/:id
+  param: { module: costFormUser, action: report }
+
+
+costFormUser_changepaidstatus:
+  url: /costform/user/changepaidstatus/:id
+  param: { module: costFormUser, action: changepaidstatus }
+
+# process
+
+costFormProcess_filter:
+  url: /costform/process/filter
+  param: { module: costFormProcess, action: filter }
+  
+costFormProcess_list:
+  url: /costform/process/list/:id
+  param: { module: costFormProcess, action: list }
+  
+costFormProcess_report:
+  url: /costform/process/report
+  param: { module: costFormProcess, action: report }
+
+costFormProcess_export:
+  url: /costform/process/export
+  param: { module: costFormProcess, action: export }
+
+
+#report
+
+costFormReport_index:
+  url: /costform/report/index
+  param: { module: costFormReport, action: index }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
