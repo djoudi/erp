@@ -1,0 +1,22 @@
+#
+#  Symfony temporary files
+#
+/cache/
+/log/
+/data/sql/
+#
+#  Symfony Configuration
+#
+/config/databases.yml
+/data/fixtures/
+#
+#  Editors
+#
+/.buildpath
+/.project
+/.settings
+#
+#  Other
+#
+.svn
+
