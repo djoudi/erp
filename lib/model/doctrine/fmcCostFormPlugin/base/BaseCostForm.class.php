@@ -7,7 +7,7 @@
  * 
  * @property integer $user_id
  * @property integer $project_id
- * @property integer $advanceRecieved
+ * @property decimal $advanceRecieved
  * @property integer $currency_id
  * @property boolean $isSent
  * @property sfGuardUser $Users
@@ -17,7 +17,7 @@
  * 
  * @method integer             getUserId()          Returns the current record's "user_id" value
  * @method integer             getProjectId()       Returns the current record's "project_id" value
- * @method integer             getAdvanceRecieved() Returns the current record's "advanceRecieved" value
+ * @method decimal             getAdvanceRecieved() Returns the current record's "advanceRecieved" value
  * @method integer             getCurrencyId()      Returns the current record's "currency_id" value
  * @method boolean             getIsSent()          Returns the current record's "isSent" value
  * @method sfGuardUser         getUsers()           Returns the current record's "Users" value
@@ -51,8 +51,8 @@ abstract class BaseCostForm extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('advanceRecieved', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('advanceRecieved', 'decimal', null, array(
+             'type' => 'decimal',
              ));
         $this->hasColumn('currency_id', 'integer', null, array(
              'type' => 'integer',

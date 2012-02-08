@@ -38,7 +38,7 @@ abstract class BaseCostFormItemForm extends BaseFormDoctrine
       'costForm_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CostForms'))),
       'cost_Date'    => new sfValidatorDate(),
       'description'  => new sfValidatorString(array('max_length' => 250)),
-      'amount'       => new sfValidatorInteger(),
+      'amount'       => new sfValidatorNumber(),
       'currency_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'))),
       'receipt_No'   => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'invoice_To'   => new sfValidatorChoice(array('choices' => array(0 => 'FMC', 1 => 'Customer'), 'required' => false)),

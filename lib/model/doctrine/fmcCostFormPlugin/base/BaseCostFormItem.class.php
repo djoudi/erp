@@ -8,7 +8,7 @@
  * @property integer $costForm_id
  * @property date $cost_Date
  * @property string $description
- * @property integer $amount
+ * @property decimal $amount
  * @property integer $currency_id
  * @property string $receipt_No
  * @property enum $invoice_To
@@ -24,7 +24,7 @@
  * @method integer      getCostFormId()   Returns the current record's "costForm_id" value
  * @method date         getCostDate()     Returns the current record's "cost_Date" value
  * @method string       getDescription()  Returns the current record's "description" value
- * @method integer      getAmount()       Returns the current record's "amount" value
+ * @method decimal      getAmount()       Returns the current record's "amount" value
  * @method integer      getCurrencyId()   Returns the current record's "currency_id" value
  * @method string       getReceiptNo()    Returns the current record's "receipt_No" value
  * @method enum         getInvoiceTo()    Returns the current record's "invoice_To" value
@@ -75,8 +75,8 @@ abstract class BaseCostFormItem extends sfDoctrineRecord
              'notnull' => true,
              'length' => 250,
              ));
-        $this->hasColumn('amount', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('amount', 'decimal', null, array(
+             'type' => 'decimal',
              'notnull' => true,
              ));
         $this->hasColumn('currency_id', 'integer', null, array(

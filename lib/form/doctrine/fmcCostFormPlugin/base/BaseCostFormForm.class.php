@@ -30,7 +30,7 @@ abstract class BaseCostFormForm extends BaseFormDoctrine
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'required' => false)),
       'project_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'))),
-      'advanceRecieved' => new sfValidatorInteger(array('required' => false)),
+      'advanceRecieved' => new sfValidatorNumber(array('required' => false)),
       'currency_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'))),
       'isSent'          => new sfValidatorBoolean(array('required' => false)),
       'deleted_at'      => new sfValidatorDateTime(array('required' => false)),

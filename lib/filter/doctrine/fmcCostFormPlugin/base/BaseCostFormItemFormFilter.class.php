@@ -34,7 +34,7 @@ abstract class BaseCostFormItemFormFilter extends BaseFormFilterDoctrine
       'costForm_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CostForms'), 'column' => 'id')),
       'cost_Date'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'description'  => new sfValidatorPass(array('required' => false)),
-      'amount'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'amount'       => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Currencies'), 'column' => 'id')),
       'receipt_No'   => new sfValidatorPass(array('required' => false)),
       'invoice_To'   => new sfValidatorChoice(array('required' => false, 'choices' => array('FMC' => 'FMC', 'Customer' => 'Customer'))),

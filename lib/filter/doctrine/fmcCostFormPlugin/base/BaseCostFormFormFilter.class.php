@@ -26,7 +26,7 @@ abstract class BaseCostFormFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Users'), 'column' => 'id')),
       'project_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Projects'), 'column' => 'id')),
-      'advanceRecieved' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'advanceRecieved' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Currencies'), 'column' => 'id')),
       'isSent'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'deleted_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
