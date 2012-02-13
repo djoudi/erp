@@ -40,6 +40,9 @@ class form_costFormUser_newItem extends CostFormItemForm
     $curDefault = Doctrine::getTable('Currency')->findOneByisDefault(true)->id;
     $this->setDefault('currency_id', $curDefault);
     
+    # setting others
+    unset($this['isPaid']);
+    $this->widgetSchema->setLabel('dontInvoice', "Don't Invoice");
     
   }
 }

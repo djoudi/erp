@@ -44,6 +44,7 @@ all:
       - costFormUser
       - costFormProcess
       - costFormReport
+      - costFormManage
       
       - currencyManagement
       - customerManagement

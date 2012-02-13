@@ -39,6 +39,8 @@ abstract class BasecostFormReportActions extends sfActions
       ->where('cf.issent = ?', true);
     $q = $this->initFilterForm($request, $_q);
     $this->costFormItems = $q->execute();
+    
+    #
   }
   
   

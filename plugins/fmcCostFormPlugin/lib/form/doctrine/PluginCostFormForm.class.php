@@ -15,6 +15,5 @@ abstract class PluginCostFormForm extends BaseCostFormForm
     # setting Currency
     $curDefault = Doctrine::getTable('Currency')->findOneByisDefault(true)->id;
     $this->setDefault('currency_id', $curDefault);
-    
   }
 }

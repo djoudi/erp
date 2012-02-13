@@ -10,5 +10,4 @@
  */
 abstract class PluginCostFormItemForm extends BaseCostFormItemForm
 {
-  
 }

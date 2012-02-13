@@ -58,33 +58,13 @@ costFormReport_index:
   url: /costform/report/index
   param: { module: costFormReport, action: index }
 
+#manage
 
+costFormManage_edit:
+  url: /costform/management/edit/:cost_id
+  param: { module: costFormManage, action: edit }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+costFormManage_delete:
+  url: /costform/management/delete/:cost_id
+  param: { module: costFormManage, action: delete }
+  

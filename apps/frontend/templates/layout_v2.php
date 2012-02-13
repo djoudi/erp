@@ -14,7 +14,7 @@
       //active mod detection
       $moduleName = $sf_context->getModuleName();
       $actionName = $sf_context->getActionName();
-      $mods_costform = array("costFormProcess", "costFormUser", "costFormReport");
+      $mods_costform = array("costFormProcess", "costFormUser", "costFormReport", "costFormManage");
       $mods_administration = array("currencyManagement", "customerManagement", "employeeManagement", "projectManagement", "vatManagement");
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
@@ -22,7 +22,7 @@
       else $mod = "homepage";
       
       //permission detection
-      $permlist_cost = array("Cost Forms", "Cost Form Invoicing", "Cost Form Reports");
+      $permlist_cost = array("Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management");
       $permlist_admin = array("Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management");
       $myPermList = $sf_user->getGuardUser()->getPermissionNames();
     ?>
