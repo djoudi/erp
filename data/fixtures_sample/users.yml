@@ -8,7 +8,6 @@ sfGuardUser:
     password: aslan8776
     Permissions: [cf]
     
-    
   burcugumus:
     first_name: Burcu
     last_name: "Gümüş"
@@ -183,4 +182,4 @@ sfGuardUser:
     email_address: yasin@yasinaydin.net
     username: yasin
     password: 15313a
-    Permissions: [cf, cfi, cfr, cur, cust, emp, proj, vat]
+    Permissions: [cf, cfi, cfr, cfe, cur, cust, emp, proj, vat]
