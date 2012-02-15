@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#cost_form_currency_id { width: 50px; }
+#cost_form_advanceRecieved { width: 50px; text-align: right; }
+
+#cost_form_item_cost_Date_day { width: 50px; }
+#cost_form_item_cost_Date_month { width: 50px; }
+#cost_form_item_cost_Date_year { width: 70px; }
+#cost_form_item_currency_id { width: 50px; }
+#cost_form_item_vat_id { width: 50px; }
+#cost_form_item_amount { width: 60px; text-align: right; }
+#cost_form_item_description { width: 150px; }
+#cost_form_item_receipt_No { width: 80px; }
+#cost_form_item_invoice_To { width: 90px; }
+
+#project_description { width: 400px; }
+
+#currency_code { width: 70px; }
+#currency_symbol { width: 70px; }
+
+#vat_rate { width: 70px; }

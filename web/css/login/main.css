@@ -1,4 +1,3 @@
-
 div#LoginWrapperOuter {
 	background: url('/images/login-bg.png') no-repeat;
 	height: 373px;
@@ -34,8 +33,7 @@ form#LoginForm input {
 	margin-top: 10px;
 	padding: 4px;
 }
+
 form#LoginForm input[type=submit] {
 	padding: 6px 14px;
 }
-
-

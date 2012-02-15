@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+
+/* ELEMENTS */
+
+* {
+  color: #333;
+  vertical-align: middle !important;
+}
+
+body {
+  background-color: #ccc;
+  font:12px/1.3em Arial,sans-serif;
+  margin: 0;
+}
+
+input, textarea, select, .uneditable-input {
+  color: #333;
+  height: 18px;
+  padding: 2px 0;
+}
+
+select, input[type="file"] {
+  height: auto;
+  line-height: auto;
+}
+
+select {
+  color: #333 !important;
+}
+
+table {
+  width: auto;
+}
+
+table th, table td {
+  padding: 5px;
+  line-height: 22px;
+}
+
+h1, h2, h3, h4, p {
+  cursor: default !important;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 15px;
+}
+
+h4 {
+  color: #411;
+}
+
+/* CLASSES */
+
+div.actions {
+  margin-top: 33px;
+}
+
+.btn.little {
+  padding: 3px 8px 4px;
+}
+
+.clear {
+  clear: both !important;
+  display: block !important;
+  height: 1px !important;
+  overflow: auto;
+  width: 100% !important;
+}
+
+.noborder {
+  border: none !important;
+}
+
+.alert-message a:hover {
+  cursor: pointer;
+}
+
+.alert-message.success * {
+  color: white;
+}
+
+.alert-message.error * {
+  color: white;
+}
+
+.label.success, .label.important {
+  text-transform: none;
+}
+
+.tablesorter th, .tablesorter td {
+  padding: 1px 3px;
+}
+
+.tablesorter label {
+  padding-top: inherit;
+}

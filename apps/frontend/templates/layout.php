@@ -44,25 +44,7 @@
       
       <div class="clear"></div>
       
-      <ul id="LayoutTopMenu" class="tabs">
-      
-        <li class="<?php if ($mod=="homepage"): ?>active<?php endif;?>">
-          <a href="<?php echo url_for("@homepage"); ?>">Home</a>
-        </li>
-        
-        <?php if (array_intersect($myPermList, $permlist_cost)): ?>
-          <li class="<?php if ($mod=="costForm"): ?>active<?php endif;?>">
-            <a href="<?php echo url_for("@costforms"); ?>">Cost Forms</a>
-          </li>
-        <?php endif; ?>
-        
-        <?php if (array_intersect($myPermList, $permlist_admin)): ?>
-          <li class="<?php if ($mod=="administration"): ?>active<?php endif;?>">
-            <a href="<?php echo url_for("@administration"); ?>">Administration</a>
-          </li>
-        <?php endif; ?>
-        
-      </ul>
+      <?php include_partial ("global/layout_topmenu"); ?>
       
       <div class="clear"></div>
       
@@ -70,9 +52,9 @@
       
       <div class="row">
       
-          <div class="span3">
-            <?php include_partial("homepage/".$mod); ?>
-          </div>
+        <div class="span3">
+          <?php include_partial("homepage/".$mod); ?>
+        </div>
         
         <div class="span15" id="LayoutMainContent">
         
@@ -117,18 +99,3 @@
   
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

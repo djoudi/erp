@@ -1,4 +1,6 @@
 all:
-  stylesheets:    [login.css]
+  stylesheets:
+    - login/main.css
+  
   has_layout:     true
   layout:         layout_login
