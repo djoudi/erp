@@ -1,7 +1,6 @@
 <?php slot ('title', "Employee List") ?>
 
-
-<table class="tablesorter zebra-striped bordered-table">
+<table class="tablesorter2a zebra-striped bordered-table">
   <thead>
     <tr>
       <th>Active</th>
@@ -23,4 +22,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
