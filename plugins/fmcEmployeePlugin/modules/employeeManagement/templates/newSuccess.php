@@ -1,5 +1,7 @@
 <?php slot ('title', "New Employee"); ?>
 
+<?php use_javascript('/sfFormExtraPlugin/js/double_list.js') ?>
+
 <form method="post" action="">
 
   <table class="bordered-table zebra-striped">

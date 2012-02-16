@@ -27,6 +27,12 @@ class form_plugin_sfguarduser_new extends sfGuardUserForm
       array('invalid' => 'The two passwords must be the same.'))
     );
     
+    $this->widgetSchema['permissions_list'] = new sfWidgetFormSelectDoubleList(array(
+      'choices' => $this->widgetSchema['permissions_list']->getChoices(), 
+      'label_associated' => 'Granted',
+      'label_unassociated' => 'Available'
+    ));
+    
     $this->widgetSchema['permissions_list']->setLabel('Permissions');
     $this->widgetSchema['password']->setLabel('Password');
     $this->widgetSchema['password_again']->setLabel('Password (again)');

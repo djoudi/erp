@@ -1,5 +1,6 @@
 <?php slot ('title', "Employee: ".$employee->__toString()); ?>
 
+<?php use_javascript('/sfFormExtraPlugin/js/double_list.js') ?>
 
 <form method="post" action="">
 
