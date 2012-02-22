@@ -1,38 +1,57 @@
-<?php if ( $sf_user->getGuardUser()->hasPermission("Customer Management") ): ?>
-  <h4>Customers</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@customerManagement"); ?>">Customer list</a></li>
-    <li><a href="<?php echo url_for("@customerManagement_new"); ?>">New customer</a></li>
+<?php
+  $module = $sf_context->getModuleName();
+  $action = $sf_context->getActionName();
+?>
+
+<div class="well" style="padding: 8px 0;">
+  <ul class="nav nav-list">
+
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Customer Management") ): ?>
+      <li class="nav-header">Customers</li>
+      <li <?php if($module=="customerManagement" and $action=="index"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Customer list', '@customerManagement'); ?>
+      </li>
+      <li <?php if($module=="customerManagement" and $action=="new"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('New customer', '@customerManagement_new'); ?>
+      </li>
+    <?php endif; ?>
+    
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Project Management") ): ?>
+      <li class="nav-header">Projects</li>
+      <li <?php if($module=="projectManagement" and $action=="index"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Project list', '@projectManagement'); ?>
+      </li>
+      <li <?php if($module=="projectManagement" and $action=="new"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('New project', '@projectManagement_new'); ?>
+      </li>
+    <?php endif; ?>
+        
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Employee Management") ): ?>
+      <li class="nav-header">Employees</li>
+      <li <?php if($module=="employeeManagement" and $action=="index"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Employee list', '@employeeManagement'); ?>
+      </li>
+      <li <?php if($module=="employeeManagement" and $action=="new"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('New employee', '@employeeManagement_new'); ?>
+      </li>
+    <?php endif; ?>
+    
+    <?php if (
+      $sf_user->getGuardUser()->hasPermission("VAT Management") or
+      $sf_user->getGuardUser()->hasPermission("Currency Management")
+    ): ?>
+      <li class="nav-header">Program Settings</li>
+      <?php if ( $sf_user->getGuardUser()->hasPermission("VAT Management") ): ?>
+        <li <?php if($module=="vatManagement" and $action=="index"): ?> class="active" <?php endif; ?>>
+          <?php echo link_to ('VAT', '@vatManagement_index'); ?>
+        </li>
+      <?php endif; ?>
+      <?php if ( $sf_user->getGuardUser()->hasPermission("Currency Management") ): ?>
+        <li <?php if($module=="currencyManagement" and $action=="index"): ?> class="active" <?php endif; ?>>
+          <?php echo link_to ('Currency', '@currencyManagement_index'); ?>
+        </li>
+      <?php endif; ?>
+    <?php endif; ?>
+    
   </ul>
-<?php endif; ?>
-
-
-<?php if ( $sf_user->getGuardUser()->hasPermission("Project Management") ): ?>
-  <h4>Projects</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@projectManagement"); ?>">Project list</a></li>
-    <li><a href="<?php echo url_for("@projectManagement_new"); ?>">New project</a></li>
-  </ul>
-<?php endif; ?>
-
-
-<?php if ( $sf_user->getGuardUser()->hasPermission("Employee Management") ): ?>
-  <h4>Employees</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@employeeManagement"); ?>">Employee list</a></li>
-    <li><a href="<?php echo url_for("@employeeManagement_new"); ?>">New employee</a></li>
-  </ul>
-<?php endif; ?>
-
-
-<?php if (
-  $sf_user->getGuardUser()->hasPermission("VAT Management") or
-  $sf_user->getGuardUser()->hasPermission("Currency Management")
-): ?>
-  <h4>Program Settings</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@currencyManagement_index"); ?>">Currency</a></li>  
-    <li><a href="<?php echo url_for("@vatManagement_index"); ?>">VAT</a></li>
-  </ul>
-<?php endif; ?>
-
+</div>

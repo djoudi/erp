@@ -4,7 +4,7 @@
 
 <form method="post" action="">
 
-  <table class="bordered-table zebra-striped">
+  <table class="table table-striped table-bordered table-condensed">
   
     <tr>
       <th>Status</th>
@@ -25,7 +25,7 @@
     
     <tr>
       <td></td>
-      <td><input class="btn info pull-right" type="submit" value="Select" /></td>
+      <td><input class="btn btn-info pull-right" type="submit" value="Select" /></td>
     </tr>
     
   </table>

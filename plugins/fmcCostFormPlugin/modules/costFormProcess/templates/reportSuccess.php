@@ -1,8 +1,6 @@
 <?php slot ('title', "Invoicing Report") ?>
 
-
-
-<table class="bordered-table">
+<table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>Company</th>
     <td><?php echo $project->Customers ?></td>
@@ -13,15 +11,13 @@
   </tr>
 </table>
 
-
-
 <h3>Costs selected to be invoiced</h3>
 
 <?php if (!count($invoiced)): ?>
   No costs selected to be invoiced.
 <?php else: ?>
 
-  <table class="tablesorter bordered-table zebra-striped">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>Date</th>
@@ -58,7 +54,7 @@
 <?php if (!count($notInvoiced)): ?>
   No costs selected NOT to be invoiced.
 <?php else: ?>
-  <table class="tablesorter bordered-table zebra-striped">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>Date</th>
@@ -88,8 +84,8 @@
   </table>
 <?php endif; ?>
 
-<div class="actions">
-  <a class="btn primary" href="<?php echo url_for("@costFormProcess_export"); ?>">Print to Excel</a>
+<div class="form-actions">
+  <a class="btn btn-primary" href="<?php echo url_for("@costFormProcess_export"); ?>">Print to Excel</a>
 </div>
 
 

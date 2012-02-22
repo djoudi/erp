@@ -3,11 +3,11 @@
 
   <?php if (!count($costFormItems)): ?>
     <p>No cost forms found in your selected criterias.</p>
-    <a class="btn info" href="<?php echo url_for("@costFormProcess_filter"); ?>">Go back</a>
+    <a class="btn btn-info" href="<?php echo url_for("@costFormProcess_filter"); ?>">Go back</a>
     
   <?php else: ?>
   
-    <table class="bordered-table">
+    <table class="table table-striped table-bordered table-condensed">
       <tr>
         <th>Company</th>
         <td><?php echo $project->Customers ?></td>
@@ -19,7 +19,7 @@
     </table>
     
     <form method="post" action="">
-      <table class="tablesorter bordered-table zebra-striped">
+      <table class="tablesorter table table-striped table-bordered table-condensed">
         <thead>
           <tr>
             <th>Date</th>
@@ -43,15 +43,15 @@
               <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
               <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
               <td><?php echo $cfi->invoice_To ?></td>
-              <td><label class="span3"><input class="tbi" type="checkbox" name="<?php echo $cfi->id ?>[toBeInvoiced]" value="dni" /> Don't Invoice</label></td>
-              <td><input class="span3" name="<?php echo $cfi->id ?>[invoice_No]" type="text" /></td>
+              <td><label class="w100"><input class="tbi inline" type="checkbox" name="<?php echo $cfi->id ?>[toBeInvoiced]" value="dni" /> Don't Invoice</label></td>
+              <td><input class="w100" name="<?php echo $cfi->id ?>[invoice_No]" type="text" /></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
       
-      <div class="actions">
-        <input class="btn success" type="submit" name="process" value="Process" />
+      <div class="form-actions">
+        <input class="btn btn-success" type="submit" name="process" value="Process" />
       </div>  
     </form>
   <?php endif; ?>

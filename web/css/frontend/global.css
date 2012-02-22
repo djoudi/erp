@@ -52,12 +52,8 @@ h4 {
 
 /* CLASSES */
 
-div.actions {
+div.form-actions {
   margin-top: 33px;
-}
-
-.btn.little {
-  padding: 3px 8px 4px;
 }
 
 .clear {
@@ -68,20 +64,20 @@ div.actions {
   width: 100% !important;
 }
 
+.w100 {
+  width: 100px !important;
+}
+
+.inline {
+  display: inline;
+}
+
 .noborder {
   border: none !important;
 }
 
-.alert-message a:hover {
-  cursor: pointer;
-}
-
-.alert-message.success * {
-  color: white;
-}
-
-.alert-message.error * {
-  color: white;
+.alert p {
+  margin-bottom: 0 !important;
 }
 
 .label.success, .label.important {
