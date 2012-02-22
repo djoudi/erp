@@ -7,7 +7,6 @@ div#LoginWrapperOuter {
 }
 
 div#LoginWrapperMiddle {
-  
 	height: 212px;
 	margin: 0 auto;
 	padding-top: 30px;
@@ -16,7 +15,6 @@ div#LoginWrapperMiddle {
 }
 
 div#LoginWrapperInner {
-
 	margin: 0 auto;
 	text-align: center;
 	width: 300px;
@@ -30,7 +28,7 @@ form#LoginForm {
 
 form#LoginForm input {
 	clear: both;
-	margin-top: 10px;
+	margin-top: 5px; /*bootstrap2*/
 	padding: 4px;
 }
 

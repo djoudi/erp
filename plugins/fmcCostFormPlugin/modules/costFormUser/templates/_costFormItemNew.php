@@ -1,6 +1,6 @@
 <form action="" method="post">
   <?php echo $form->renderHiddenFields() ?>
-  <table class="bordered-table zebra-striped">
+  <table class="table table-striped table-bordered table-condensed">
     <tr>
       <th>Date</th>
       <th>Description</th>
@@ -37,8 +37,8 @@
       <td><?php echo $form['receipt_No'] ?></td>
       <td><?php echo $form['invoice_To'] ?></td>
       <td>
-        <input class="btn little success " type="submit" value="Add" />&nbsp;
-        <input class="btn little" type="reset" value="Clear" />
+        <input class="btn btn-small btn-success" type="submit" value="Add" />&nbsp;
+        <input class="btn btn-small" type="reset" value="Clear" />
       </td>
     </tr>
   </table>

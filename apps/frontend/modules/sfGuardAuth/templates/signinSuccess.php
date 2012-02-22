@@ -15,7 +15,7 @@
         <?php echo $form->renderHiddenFields()."\n"; ?>
         <?php echo $form["username"]->render(array('placeholder' => 'Username'))."\n"; ?>
         <?php echo $form["password"]->render(array('placeholder' => 'Password'))."\n"; ?>
-        <input class="btn primary" type="submit" value="Login" />
+        <input class="btn" type="submit" value="Login" />
         
       </form>
       

@@ -1,4 +1,4 @@
-<table class="bordered-table">
+<table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>Cost Form Number</th>
     <td><?php echo $costForm->id ?></td>

@@ -1,13 +1,13 @@
 <?php slot ('title', "Cost Reports") ?>
 
 <form method="post" action="">
-  <table class="bordered-table zebra-striped">
+  <table class="table table-striped table-bordered table-condensed">
     <?php echo $filter; ?>
     <tr>
       <td></td>
       <td style="text-align: right;">
-        <input class="btn little" type="submit" name="_reset" value="Show All" />
-        <input class="btn little info" type="submit" value="Filter" />&nbsp;
+        <input class="btn" type="submit" name="_reset" value="Show All" />
+        <input class="btn btn-info" type="submit" value="Filter" />&nbsp;
       </td>
     </tr>
   </table>
@@ -19,7 +19,7 @@
   No costs found in your selected criterias.<br />
 <?php else: ?>
 
-  <table class="tablesorter zebra-striped bordered-table">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>Cost No</th>

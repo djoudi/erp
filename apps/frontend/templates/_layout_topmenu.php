@@ -1,5 +1,4 @@
-<?php
-
+<?php 
   //active mod detection
   $moduleName = $sf_context->getModuleName();
   $actionName = $sf_context->getActionName();
@@ -14,10 +13,9 @@
   $permlist_cost = array("Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management");
   $permlist_admin = array("Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management");
   $myPermList = $sf_user->getGuardUser()->getPermissionNames();
-  
 ?>
-
-<ul id="LayoutTopMenu" class="tabs">
+    
+<ul id="LayoutTopMenu" class="nav nav-tabs">
       
   <li class="<?php if ($mod=="homepage"): ?>active<?php endif;?>">
     <a href="<?php echo url_for("@homepage"); ?>">Home</a>
@@ -36,3 +34,5 @@
   <?php endif; ?>
   
 </ul>
+
+<div class="clear"></div>

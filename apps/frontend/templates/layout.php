@@ -27,26 +27,9 @@
       $myPermList = $sf_user->getGuardUser()->getPermissionNames();
     ?>
     
-    <div class="container span18" id="LayoutContainer">
-    
-      <div id="LayoutHeader">
-        <div class="pull-left">
-          <a href="<?php echo url_for("@homepage"); ?>"><img src="/images/logo.png" id="LayoutLogo"/></a>
-        </div>
-        <div class="pull-right" id="LayoutUserinfo">
-          <ul id="LayoutUsermenu">
-            <li>Welcome, <?php echo $sf_user->getGuardUser()->__toString(); ?></li>
-            <li><a href="<?php echo url_for("@homepage"); ?>">Homepage</a></li>
-            <li class="noborder"><a href="<?php echo url_for("@sf_guard_signout"); ?>">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="clear"></div>
-      
+    <div class="container" id="LayoutContainer">
+      <?php include_partial ("global/layout_header"); ?>
       <?php include_partial ("global/layout_topmenu"); ?>
-      
-      <div class="clear"></div>
       
       <br /><br />
       
@@ -56,37 +39,16 @@
           <?php include_partial("homepage/".$mod); ?>
         </div>
         
-        <div class="span15" id="LayoutMainContent">
+        <div class="span11" id="LayoutMainContent">
         
           <?php if (has_slot('title')): ?>
-            <div id="LayoutTitle">
-              <h1><?php echo get_slot('title') ?></h1>
+            <div id="LayoutTitle" class="alert alert-info">
+              <?php echo get_slot('title') ?>
             </div>
           <?php endif;?>
           
           <br />
-          
-          <?php if ($sf_user->hasFlash('success')): ?>
-            <div class="alert-message success">
-              <a class="close" onclick="$(this).parent().hide()">×</a>
-              <p><?php echo $sf_user->getFlash('success') ?></p>
-            </div>
-          <?php endif ?>
-          
-          <?php if ($sf_user->hasFlash('notice')): ?>
-            <div class="alert-message warning">
-              <a class="close" onclick="$(this).parent().hide()">×</a>
-              <p><?php echo $sf_user->getFlash('notice') ?></p>
-            </div>
-          <?php endif ?>
-          
-          <?php if ($sf_user->hasFlash('error')): ?>
-            <div class="alert-message error">
-              <a class="close" onclick="$(this).parent().hide()">×</a>
-              <p><?php echo $sf_user->getFlash('error') ?></p>
-            </div>
-          <?php endif ?>
-          
+          <?php include_partial ("global/layout_flashes"); ?>
           <br />
           
           <?php echo $sf_content ?>

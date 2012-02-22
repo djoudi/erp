@@ -2,7 +2,7 @@
   
   <h4>Added costs</h4>
   
-  <table class="tablesorter bordered-table zebra-striped">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>Cost Id</th>
@@ -38,7 +38,7 @@
           <td><?php echo $costItem['invoice_To'] ?></td>
           
           <?php if ( ! $isSent ): ?>
-            <td><a class="btn little error" href="<?php echo url_for('@costFormUser_deleteItem?&id='.$costItem['id']) ?>">Delete</a></td>
+            <td><a class="btn btn-mini btn-danger" href="<?php echo url_for('@costFormUser_deleteItem?&id='.$costItem['id']) ?>">Delete</a></td>
           <?php endif;?>
           
           <?php if ($isSent): ?>

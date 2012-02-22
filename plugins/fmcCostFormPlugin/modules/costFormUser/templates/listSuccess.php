@@ -1,26 +1,25 @@
 <?php slot ('title', "My Cost Forms") ?>
 
 <form method="post" action="">
-  <table class="zebra-striped bordered-table">
+  <table class="table table-striped table-bordered table-condensed">
     <?php echo $filterForm; ?>
     <tr>
       <td></td>
       <td>
-        <input class="btn info" type="submit" name="_reset" value="Show All" />
-        <input class="btn info" type="submit" value="Filter" />&nbsp;
+        <input class="btn btn-info" type="submit" name="_reset" value="Show All" />
+        <input class="btn btn-info" type="submit" value="Filter" />&nbsp;
       </td>
     </tr>
   </table>
 </form>
 
 <br />
-
     
 <?php if (!count($costForms)): ?>
   No cost forms found in your selected criterias.<br />
 <?php else: ?>
 
-  <table class="tablesorter zebra-striped bordered-table">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>CF No</th>
@@ -38,13 +37,9 @@
            <td><?php echo $cf->advanceRecieved ? $cf->advanceRecieved.' TL' : '-' ?></td>
            <td><?php echo date ("Y-m-d H:m", strtotime($cf->created_at)); ?></td>
            <td><?php echo $costFormStatus[$cf->totalStatus] ?></td>
-           
-           
         </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
   
 <?php endif; ?>
-
-

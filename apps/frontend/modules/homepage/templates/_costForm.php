@@ -1,25 +1,48 @@
+<?php
+  $module = $sf_context->getModuleName();
+  $action = $sf_context->getActionName();
+?>
 
-<?php if ( $sf_user->getGuardUser()->hasPermission("Cost Forms") ): ?>
-  <h4>My Costs</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@costFormUser_list"); ?>">List my costs</a></li>
-    <li><a href="<?php echo url_for("@costFormUser_new"); ?>">Create new cost form</a></li>
+<div class="well" style="padding: 8px 0;">
+  <ul class="nav nav-list">
+
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Cost Forms") ): ?>
+    
+      <li class="nav-header">My Costs</li>
+      
+      <li <?php if($module=="costFormUser" and $action=="list"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('List my costs', '@costFormUser_list'); ?>
+      </li>
+      
+      <li <?php if($module=="costFormUser" and $action=="new"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Create new cost form', '@costFormUser_new'); ?>
+      </li>
+      
+    <?php endif; ?>
+
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Cost Form Invoicing") ): ?>
+    
+      <li class="nav-header">Employee Costs</li>
+      
+      <li <?php if($module=="costFormProcess" and $action=="filter"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Start invoicing', '@costFormProcess_filter'); ?>
+      </li>
+      
+      <li <?php if($module=="costFormProcess" and $action=="report"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('My last invoicing', '@costFormProcess_report'); ?>
+      </li>
+      
+    <?php endif; ?>
+    
+    <?php if ( $sf_user->getGuardUser()->hasPermission("Cost Form Reports") ): ?>
+    
+      <li class="nav-header">Cost Reports</li>
+      
+      <li <?php if($module=="costFormReport" and $action=="index"): ?> class="active" <?php endif; ?>>
+        <?php echo link_to ('Cost Reports', '@costFormReport_index'); ?>
+      </li>
+    
+    <?php endif; ?>
+    
   </ul>
-<?php endif; ?>
-
-
-<?php if ( $sf_user->getGuardUser()->hasPermission("Cost Form Invoicing") ): ?>
-  <h4>Employee Costs</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@costFormProcess_filter"); ?>">Start invoicing</a></li>
-    <li><a href="<?php echo url_for("@costFormProcess_report"); ?>">My last invoicing</a></li>
-  </ul>
-<?php endif; ?>
-
-
-<?php if ( $sf_user->getGuardUser()->hasPermission("Cost Form Reports") ): ?>
-  <h4>Reports</h4>
-  <ul>
-    <li><a href="<?php echo url_for("@costFormReport_index"); ?>">Cost Reports</a></li>
-  </ul>
-<?php endif; ?>
+</div>
