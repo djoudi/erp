@@ -69,6 +69,9 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
+        $versionable0 = new Doctrine_Template_Versionable(array(
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($versionable0);
     }
 }

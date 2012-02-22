@@ -1,5 +1,7 @@
 sfGuardGroup:
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: []
+    Versionable: []
   columns:
     name:
       type: string(255)
@@ -51,7 +53,9 @@ sfGuardGroupPermission:
       onDelete: CASCADE
 
 sfGuardUser:
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: []
+    Versionable: []
   columns:
     first_name: { type: string(255), notnull: true }
     last_name: { type: string(255), notnull: true }

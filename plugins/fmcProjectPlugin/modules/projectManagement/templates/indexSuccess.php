@@ -1,6 +1,6 @@
 <?php slot ('title', "Project List") ?>
 
-<table class="tablesorter table table-striped table-bordered table-condensed">
+<table class="tablesorter4a table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>P. No</th>

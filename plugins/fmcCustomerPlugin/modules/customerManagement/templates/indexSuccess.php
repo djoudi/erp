@@ -1,6 +1,6 @@
 <?php slot ('title', "Customer List") ?>
 
-<table class="tablesorter table table-striped table-bordered table-condensed">
+<table class="tablesorter2a table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>No</th>

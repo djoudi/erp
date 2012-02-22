@@ -15,5 +15,6 @@ class BaseForm extends sfFormSymfony
     unset($this['created_at']);
     unset($this['updated_at']);
     unset($this['deleted_at']);
+    unset($this['version']);
   }
 }
