@@ -4,8 +4,7 @@
   <p>No currency defined on the system. Please add a currency value from below.</p>
 <?php else: ?>
 
-  <table class="tablesorter bordered-table zebra-striped">
-  
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>Code</th>
@@ -15,7 +14,6 @@
         <th>Actions</th>
       </tr>
     </thead>
-    
     <tbody>
       <?php foreach ($list as $currency): ?>
         <tr>
@@ -24,20 +22,19 @@
           <td><?php if ($currency->getIsDefault()): ?>Default<?php endif; ?></td>
           <td>
             <?php if ($currency->getIsActive()): ?>
-              <span class="label success">Enabled</span>
+              <span class="label label-success">Enabled</span>
             <?php else: ?>
-              <span class="label important">Disabled</span>
+              <span class="label label-important">Disabled</span>
             <?php endif; ?>
           </td>
           <td>
             <?php if ($currency->getIsActive()): ?>
-              <a class="btn little" href="<?php echo url_for('@currencyManagement_disable?id='.$currency->getId()); ?>">Disable</a>
+              <a class="btn btn-mini" href="<?php echo url_for('@currencyManagement_disable?id='.$currency->getId()); ?>">Disable</a>
             <?php else: ?>
-              <a class="btn little" href="<?php echo url_for('@currencyManagement_enable?id='.$currency->getId()); ?>">Enable</a>
+              <a class="btn btn-mini" href="<?php echo url_for('@currencyManagement_enable?id='.$currency->getId()); ?>">Enable</a>
             <?php endif; ?>
-            
             <?php if (!$currency->getIsDefault()): ?>
-              <a class="btn little success" href="<?php echo url_for('@currencyManagement_makeDefault?id='.$currency->getId()); ?>">Make Default</a>
+              <a class="btn btn-mini btn-success" href="<?php echo url_for('@currencyManagement_makeDefault?id='.$currency->getId()); ?>">Make Default</a>
             <?php endif; ?>
           </td>
         </tr>
@@ -49,10 +46,8 @@
 
 
 <form action="" method="post">
-  
   <?php echo $form->renderHiddenFields() ?>
-  
-  <div class="actions">
+  <div class="form-actions">
   
     <h4>Add new currency</h4>
     
@@ -60,7 +55,7 @@
     <?php echo $form["code"]; ?>&nbsp;
     Symbol&nbsp;
     <?php echo $form["symbol"]; ?>&nbsp;
-    <input class="btn primary" type="submit" value="Add" />
+    <input class="btn btn-primary" type="submit" value="Add" />
     
   </div>
   

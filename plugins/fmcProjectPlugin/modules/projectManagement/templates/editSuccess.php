@@ -2,13 +2,13 @@
 
 <form method="post" action="">
 
-  <table class="bordered-table zebra-striped">
+  <table class="table table-striped table-bordered table-condensed">
     <?php echo $form; ?>
   </table>
 
-  <div class="actions">
+  <div class="form-actions">
     <a class="btn" href="<?php echo url_for("@projectManagement"); ?>">Back to List</a>
-    <input class="btn success" type="submit" value="Save" />
+    <input class="btn btn-success" type="submit" value="Save" />
   </div>
 
 </form>

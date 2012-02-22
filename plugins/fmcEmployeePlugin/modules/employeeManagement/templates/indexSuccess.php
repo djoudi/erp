@@ -1,6 +1,6 @@
 <?php slot ('title', "Employee List") ?>
 
-<table class="tablesorter2a zebra-striped bordered-table">
+<table class="tablesorter2a table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>Active</th>

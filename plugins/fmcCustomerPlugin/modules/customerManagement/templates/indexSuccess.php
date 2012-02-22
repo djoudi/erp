@@ -1,12 +1,10 @@
 <?php slot ('title', "Customer List") ?>
 
-
-<table class="tablesorter zebra-striped bordered-table">
+<table class="tablesorter table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>No</th>
       <th>Name</th>
-      
     </tr>
   </thead>
   <tbody>
@@ -14,9 +12,7 @@
       <tr>
         <td><?php echo $customer->getId(); ?></td>
         <td><a href="<?php echo url_for("@customerManagement_edit?id=".$customer->getId()); ?>"><?php echo $customer->getName(); ?></a></td>
-        
       </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
-

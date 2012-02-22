@@ -1,7 +1,6 @@
 <?php slot ('title', "Project List") ?>
 
-
-<table class="tablesorter zebra-striped bordered-table">
+<table class="tablesorter table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>P. No</th>
@@ -9,7 +8,6 @@
       <th>Customer</th>
       <th>Project Code</th>
       <th>Project Title</th>
-      
     </tr>
   </thead>
   <tbody>
@@ -24,4 +22,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
