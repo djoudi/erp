@@ -17,7 +17,9 @@ abstract class BasevatManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->redirect($request->getReferer());
       }
     }
@@ -37,7 +39,9 @@ abstract class BasevatManagementActions extends sfActions
     else
     {
       $object->setIsActive(false);
+      $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $object->save();
+      
       $this->getUser()->setFlash("notice", sprintf("Vat rate %s is disabled!", $object->getRate()));
     }
     
@@ -52,6 +56,7 @@ abstract class BasevatManagementActions extends sfActions
     $this->forward404Unless ($object);
     
     $object->setIsActive(true);
+    $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
     $object->save();
     
     $this->getUser()->setFlash("notice", sprintf("Vat %s is enabled!", $object->getRate()));
@@ -77,6 +82,7 @@ abstract class BasevatManagementActions extends sfActions
         $oldDefault->save();
       }
       $object->setIsDefault(true);
+      $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $object->save();
       $this->getUser()->setFlash("notice", sprintf("VAT ratio %d is now default!", $object->getRate() ));
     }

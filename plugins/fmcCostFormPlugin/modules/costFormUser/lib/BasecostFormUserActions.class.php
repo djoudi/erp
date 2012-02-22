@@ -14,6 +14,7 @@ abstract class BasecostFormUserActions extends sfActions
       ->fetchOne();
     $this->forward404Unless ($cost);
     $cost->setIsPaid( ! $cost->getIsPaid() );
+    $cost->setUpdatedBy($this->getUser()->getGuardUser()->getId());
     $cost->save();
     $this->redirect ($request->getReferer());
   }
@@ -58,6 +59,8 @@ abstract class BasecostFormUserActions extends sfActions
       if ($this->form->isValid())
       {
         $savedForm = $this->form->save();
+        $savedForm->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $savedForm->save();
         $this->redirect($this->getController()->genUrl('@costFormUser_edit?id='.$savedForm->id));
       }
     }
@@ -83,7 +86,10 @@ abstract class BasecostFormUserActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
+        
         $this->redirect($request->getReferer());
       }
     }
@@ -103,7 +109,11 @@ abstract class BasecostFormUserActions extends sfActions
     else
     {
       $this->getUser()->setFlash("notice", sprintf("Cost form with id %d is deleted!", $form->id ));
+      
+      $form->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+      $object->save();
       $form->delete();
+      
       $this->redirect($this->getController()->genUrl('@costforms'));
     }
     
@@ -123,6 +133,8 @@ abstract class BasecostFormUserActions extends sfActions
     }
     else
     {
+      $item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+      $item->save();
       $item->delete();
     }
     
@@ -167,6 +179,7 @@ abstract class BasecostFormUserActions extends sfActions
     {
       $this->getUser()->setFlash("notice", sprintf("Cost form with id %d is sent for processing!", $item->id ));
       $item->isSent = true;
+      $item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $item->save();
     }
     
@@ -219,32 +232,3 @@ abstract class BasecostFormUserActions extends sfActions
   
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

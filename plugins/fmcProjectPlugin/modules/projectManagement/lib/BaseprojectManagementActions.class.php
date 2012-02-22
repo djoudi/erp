@@ -20,7 +20,9 @@ abstract class BaseprojectManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->getUser()->setFlash("success", "Project is saved.");
       }
       $this->redirect($request->getReferer());
@@ -37,7 +39,9 @@ abstract class BaseprojectManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->getUser()->setFlash("success", "Project is created.");
         $this->redirect($this->getController()->genUrl("@projectManagement"));
       }

@@ -17,7 +17,9 @@ abstract class BasecurrencyManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->redirect($request->getReferer());
       }
     }
@@ -37,6 +39,7 @@ abstract class BasecurrencyManagementActions extends sfActions
     else
     {
       $object->setIsActive(false);
+      $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $object->save();
       $this->getUser()->setFlash("notice", sprintf("Currency %s is disabled!", $object->getCode()));
     }
@@ -52,6 +55,7 @@ abstract class BasecurrencyManagementActions extends sfActions
     $this->forward404Unless ($object);
     
     $object->setIsActive(true);
+    $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
     $object->save();
     
     $this->getUser()->setFlash("notice", sprintf("Currency %s is enabled!", $object->getCode()));
@@ -77,6 +81,7 @@ abstract class BasecurrencyManagementActions extends sfActions
         $oldDefault->save();
       }
       $object->setIsDefault(true);
+      $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $object->save();
       $this->getUser()->setFlash("notice", sprintf("Currency %s is now default!", $object->getCode()));
     }

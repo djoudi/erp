@@ -20,7 +20,6 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'description'      => new sfWidgetFormTextarea(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'version'          => new sfWidgetFormInputText(),
       'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
     ));
@@ -31,7 +30,6 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'description'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
-      'version'          => new sfValidatorInteger(array('required' => false)),
       'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
     ));

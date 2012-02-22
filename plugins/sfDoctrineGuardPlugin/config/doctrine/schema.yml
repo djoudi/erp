@@ -1,7 +1,6 @@
 sfGuardGroup:
   actAs:
     Timestampable: ~
-    Versionable: ~
   columns:
     name:
       type: string(255)
@@ -24,7 +23,6 @@ sfGuardGroup:
 sfGuardPermission:
   actAs:
     Timestampable: ~
-    Versionable: ~
   columns:
     name:
       type: string(255)
@@ -38,7 +36,6 @@ sfGuardGroupPermission:
       filter: false
   actAs:
     Timestampable: ~
-    Versionable: ~
   columns:
     group_id:
       type: integer
@@ -147,7 +144,6 @@ sfGuardUserGroup:
       filter: false
   actAs:
     Timestampable: ~
-    Versionable: ~
   columns:
     user_id:
       type: integer

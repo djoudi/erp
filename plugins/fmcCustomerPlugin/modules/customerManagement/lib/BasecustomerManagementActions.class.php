@@ -21,7 +21,9 @@ abstract class BasecustomerManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->getUser()->setFlash("success", "Customer info is saved.");
       }
       $this->redirect($request->getReferer());
@@ -38,7 +40,9 @@ abstract class BasecustomerManagementActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
         $this->getUser()->setFlash("success", "Customer is created.");
         $this->redirect($this->getController()->genUrl("@customerManagement"));
       }

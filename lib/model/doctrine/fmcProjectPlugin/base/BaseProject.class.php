@@ -10,7 +10,11 @@
  * @property string $code
  * @property string $title
  * @property string $description
+ * @property integer $created_by
+ * @property integer $updated_by
  * @property Customer $Customers
+ * @property sfGuardUser $Creator
+ * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostForms
  * 
  * @method integer             getCustomerId()  Returns the current record's "customer_id" value
@@ -18,14 +22,22 @@
  * @method string              getCode()        Returns the current record's "code" value
  * @method string              getTitle()       Returns the current record's "title" value
  * @method string              getDescription() Returns the current record's "description" value
+ * @method integer             getCreatedBy()   Returns the current record's "created_by" value
+ * @method integer             getUpdatedBy()   Returns the current record's "updated_by" value
  * @method Customer            getCustomers()   Returns the current record's "Customers" value
+ * @method sfGuardUser         getCreator()     Returns the current record's "Creator" value
+ * @method sfGuardUser         getUpdater()     Returns the current record's "Updater" value
  * @method Doctrine_Collection getCostForms()   Returns the current record's "CostForms" collection
  * @method Project             setCustomerId()  Sets the current record's "customer_id" value
  * @method Project             setStatus()      Sets the current record's "status" value
  * @method Project             setCode()        Sets the current record's "code" value
  * @method Project             setTitle()       Sets the current record's "title" value
  * @method Project             setDescription() Sets the current record's "description" value
+ * @method Project             setCreatedBy()   Sets the current record's "created_by" value
+ * @method Project             setUpdatedBy()   Sets the current record's "updated_by" value
  * @method Project             setCustomers()   Sets the current record's "Customers" value
+ * @method Project             setCreator()     Sets the current record's "Creator" value
+ * @method Project             setUpdater()     Sets the current record's "Updater" value
  * @method Project             setCostForms()   Sets the current record's "CostForms" collection
  * 
  * @package    fmc
@@ -66,6 +78,12 @@ abstract class BaseProject extends sfDoctrineRecord
              'type' => 'string',
              'length' => 250,
              ));
+        $this->hasColumn('created_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('updated_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
     }
 
     public function setUp()
@@ -75,6 +93,14 @@ abstract class BaseProject extends sfDoctrineRecord
              'local' => 'customer_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('sfGuardUser as Creator', array(
+             'local' => 'created_by',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as Updater', array(
+             'local' => 'updated_by',
+             'foreign' => 'id'));
 
         $this->hasMany('CostForm as CostForms', array(
              'local' => 'id',

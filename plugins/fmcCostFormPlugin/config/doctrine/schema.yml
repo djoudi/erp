@@ -11,11 +11,14 @@ CostForm:
     advanceRecieved: decimal
     currency_id: { type: integer, notnull: true }
     isSent: { type: boolean, default: false, notnull: true }
+    created_by: integer
+    updated_by: integer
   relations:
     Users: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
     Projects: { class: Project, local: project_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
     Currencies: { class: Currency, local: currency_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
-    
+    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
 
 # COST FORM ITEMS
 
@@ -37,7 +40,11 @@ CostFormItem:
     invoice_No: { type: string(50) }
     dontInvoice: { type: boolean, notnull: false, default: null }
     isPaid: { type: boolean, notnull: false, default: false }
+    created_by: integer
+    updated_by: integer
   relations:
     CostForms: { class: CostForm, local: costForm_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
     Vats: { class: Vat, local: vat_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
     Currencies: { class: Currency, local: currency_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
+    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }
