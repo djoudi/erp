@@ -2,6 +2,7 @@ Project:
   actAs:
     SoftDelete: ~
     Timestampable: ~
+    Versionable: ~
   columns:
     customer_id: { type: integer, notnull: true }
     status: { type: enum, values: ['Active', 'Passive'], default: Active, notnull: true }

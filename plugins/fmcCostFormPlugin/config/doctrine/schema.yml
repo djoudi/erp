@@ -4,6 +4,7 @@ CostForm:
   actAs:
     SoftDelete: ~
     Timestampable: ~
+    Versionable: ~
   columns:
     user_id: integer
     project_id: { type: integer, notnull: true }
@@ -22,6 +23,7 @@ CostFormItem:
   actAs:
     SoftDelete: ~
     Timestampable: ~
+    Versionable: ~
   columns:
     costForm_id: { type: integer, notnull: true }
     cost_Date: { type: date, notnull: true }

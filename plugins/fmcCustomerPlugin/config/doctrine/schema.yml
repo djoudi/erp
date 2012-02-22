@@ -2,5 +2,6 @@ Customer:
   actAs:
     SoftDelete: ~
     Timestampable: ~
+    Versionable: ~
   columns:
     name: { type: string(50), unique: true, notnull: true }

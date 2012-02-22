@@ -1,6 +1,7 @@
 Currency:
   actAs:
     Timestampable: ~
+    Versionable: ~
   columns:
     code: { type: string(3), notnull: true, unique: true }
     symbol: { type: string(10), notnull: true, unique: true }

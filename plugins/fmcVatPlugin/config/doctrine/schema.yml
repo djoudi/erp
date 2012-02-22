@@ -1,6 +1,7 @@
 Vat:
   actAs:
     Timestampable: ~
+    Versionable: ~
   columns:
     rate: { type: integer, notnull: true, unique: true }
     isDefault: { type: boolean, default: false }

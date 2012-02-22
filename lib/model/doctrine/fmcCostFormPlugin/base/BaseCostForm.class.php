@@ -89,7 +89,9 @@ abstract class BaseCostForm extends sfDoctrineRecord
 
         $softdelete0 = new Doctrine_Template_SoftDelete();
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $versionable0 = new Doctrine_Template_Versionable();
         $this->actAs($softdelete0);
         $this->actAs($timestampable0);
+        $this->actAs($versionable0);
     }
 }

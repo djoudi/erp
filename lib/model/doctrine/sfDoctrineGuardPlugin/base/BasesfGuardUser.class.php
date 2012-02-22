@@ -16,8 +16,13 @@
  * @property boolean $is_active
  * @property boolean $is_super_admin
  * @property timestamp $last_login
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property sfGuardUser $Creator
+ * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $Permissions
+ * @property Doctrine_Collection $User
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
@@ -35,8 +40,13 @@
  * @method boolean               getIsActive()              Returns the current record's "is_active" value
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
+ * @method integer               getCreatedBy()             Returns the current record's "created_by" value
+ * @method integer               getUpdatedBy()             Returns the current record's "updated_by" value
+ * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
+ * @method sfGuardUser           getUpdater()               Returns the current record's "Updater" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection   getUser()                  Returns the current record's "User" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
@@ -53,8 +63,13 @@
  * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser           setCreatedBy()             Sets the current record's "created_by" value
+ * @method sfGuardUser           setUpdatedBy()             Sets the current record's "updated_by" value
+ * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
+ * @method sfGuardUser           setUpdater()               Sets the current record's "Updater" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setUser()                  Sets the current record's "User" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
@@ -122,6 +137,12 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('last_login', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
+        $this->hasColumn('created_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('updated_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
 
         $this->index('is_active_idx', array(
@@ -135,6 +156,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('sfGuardUser as Creator', array(
+             'local' => 'created_by',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as Updater', array(
+             'local' => 'updated_by',
+             'foreign' => 'id'));
+
         $this->hasMany('sfGuardGroup as Groups', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'user_id',
@@ -144,6 +173,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
+
+        $this->hasMany('sfGuardUser as User', array(
+             'local' => 'id',
+             'foreign' => 'created_by'));
 
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',
@@ -165,10 +198,8 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable(array(
-             ));
-        $versionable0 = new Doctrine_Template_Versionable(array(
-             ));
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $versionable0 = new Doctrine_Template_Versionable();
         $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }

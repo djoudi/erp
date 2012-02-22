@@ -21,6 +21,7 @@ abstract class BaseVatForm extends BaseFormDoctrine
       'isActive'   => new sfWidgetFormInputCheckbox(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
+      'version'    => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -30,6 +31,7 @@ abstract class BaseVatForm extends BaseFormDoctrine
       'isActive'   => new sfValidatorBoolean(array('required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
+      'version'    => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

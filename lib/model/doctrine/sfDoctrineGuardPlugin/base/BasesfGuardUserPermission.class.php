@@ -57,8 +57,9 @@ abstract class BasesfGuardUserPermission extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable(array(
-             ));
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $versionable0 = new Doctrine_Template_Versionable();
         $this->actAs($timestampable0);
+        $this->actAs($versionable0);
     }
 }

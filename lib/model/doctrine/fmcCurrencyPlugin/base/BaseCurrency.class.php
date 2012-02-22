@@ -70,6 +70,8 @@ abstract class BaseCurrency extends sfDoctrineRecord
              'foreign' => 'currency_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
+        $versionable0 = new Doctrine_Template_Versionable();
         $this->actAs($timestampable0);
+        $this->actAs($versionable0);
     }
 }

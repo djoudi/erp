@@ -1,7 +1,7 @@
 sfGuardGroup:
   actAs:
-    Timestampable: []
-    Versionable: []
+    Timestampable: ~
+    Versionable: ~
   columns:
     name:
       type: string(255)
@@ -22,7 +22,9 @@ sfGuardGroup:
       foreignAlias: Groups
 
 sfGuardPermission:
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: ~
+    Versionable: ~
   columns:
     name:
       type: string(255)
@@ -34,7 +36,9 @@ sfGuardGroupPermission:
     symfony:
       form:   false
       filter: false
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: ~
+    Versionable: ~
   columns:
     group_id:
       type: integer
@@ -54,8 +58,8 @@ sfGuardGroupPermission:
 
 sfGuardUser:
   actAs:
-    Timestampable: []
-    Versionable: []
+    Timestampable: ~
+    Versionable: ~
   columns:
     first_name: { type: string(255), notnull: true }
     last_name: { type: string(255), notnull: true }
@@ -82,10 +86,22 @@ sfGuardUser:
       default: false
     last_login:
       type: timestamp
+    created_by: integer
+    updated_by: integer
   indexes:
     is_active_idx:
       fields: [is_active]
   relations:
+    Creator:
+      class: sfGuardUser
+      local: created_by
+      foreign: id
+      foreignAlias: User
+    Updater:
+      class: sfGuardUser
+      local: updated_by
+      foreign: id
+      foreignAlias: Updater
     Groups:
       class: sfGuardGroup
       local: user_id
@@ -104,7 +120,9 @@ sfGuardUserPermission:
     symfony:
       form:   false
       filter: false
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: ~
+    Versionable: ~
   columns:
     user_id:
       type: integer
@@ -127,7 +145,9 @@ sfGuardUserGroup:
     symfony:
       form:   false
       filter: false
-  actAs: [Timestampable]
+  actAs:
+    Timestampable: ~
+    Versionable: ~
   columns:
     user_id:
       type: integer
