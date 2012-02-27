@@ -6,7 +6,7 @@
     <a class="btn btn-info" href="<?php echo url_for("@costFormProcess_filter"); ?>">Go back</a>
     
   <?php else: ?>
-  
+    
     <table class="table table-striped table-bordered table-condensed">
       <tr>
         <th>Company</th>
@@ -17,6 +17,8 @@
         <td><?php echo $project ?></td>
       </tr>
     </table>
+    
+    <p><strong><?php echo count($costFormItems); ?></strong> costs found.</p>
     
     <form method="post" action="">
       <table class="tablesorter table table-striped table-bordered table-condensed">

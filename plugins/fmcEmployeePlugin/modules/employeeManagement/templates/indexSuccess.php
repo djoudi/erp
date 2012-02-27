@@ -1,5 +1,7 @@
 <?php slot ('title', "Employee List") ?>
 
+<p><strong><?php echo count($employees); ?></strong> employees found.</p>
+
 <table class="tablesorter2a table table-striped table-bordered table-condensed">
   <thead>
     <tr>

@@ -1,5 +1,7 @@
 <?php slot ('title', "Customer List") ?>
 
+<p><strong><?php echo count($customers); ?></strong> customers found.</p>
+
 <table class="tablesorter2a table table-striped table-bordered table-condensed">
   <thead>
     <tr>

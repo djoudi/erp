@@ -1,5 +1,7 @@
 <?php slot ('title', "Project List") ?>
 
+<p><strong><?php echo count($projects); ?></strong> projects found.</p>
+
 <table class="tablesorter4a table table-striped table-bordered table-condensed">
   <thead>
     <tr>

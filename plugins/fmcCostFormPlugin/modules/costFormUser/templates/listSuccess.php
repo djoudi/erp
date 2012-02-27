@@ -5,9 +5,11 @@
 <?php endif; ?>
     
 <?php if (!count($costForms)): ?>
-  No cost forms found in your selected criterias.<br />
+  <p>No cost forms found in your selected criterias.</p>
 <?php else: ?>
 
+  <p><strong><?php echo count($costForms); ?></strong> cost forms found.</p>
+  
   <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
