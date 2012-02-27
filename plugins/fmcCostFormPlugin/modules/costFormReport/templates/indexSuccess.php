@@ -1,20 +1,11 @@
 <?php slot ('title', "Cost Reports") ?>
 
-<form method="post" action="">
-  <table class="table table-striped table-bordered table-condensed">
-    <?php echo $filter; ?>
-    <tr>
-      <td></td>
-      <td style="text-align: right;">
-        <input class="btn" type="submit" name="_reset" value="Show All" />
-        <input class="btn btn-info" type="submit" value="Filter" />&nbsp;
-      </td>
-    </tr>
-  </table>
-</form>
 
-<h3>Results</h3>  
-  
+<?php if (isset($filter)): ?>
+  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+<?php endif; ?>
+
+
 <?php if (!count($costFormItems)): ?>
   No costs found in your selected criterias.<br />
 <?php else: ?>

@@ -38,6 +38,8 @@ all:
       #- sfGuardUser
       #- sfGuardPermission
       
+      - fmcCore
+      
       - costFormUser
       - costFormProcess
       - costFormReport

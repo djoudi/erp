@@ -12,6 +12,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfFormExtraPlugin'); # forms
     $this->enablePlugins('sfTaskExtraPlugin'); # extra plugins
     
+    $this->enablePlugins('fmcCorePlugin');
     $this->enablePlugins('fmcCurrencyPlugin');
     $this->enablePlugins('fmcCostFormPlugin');
     $this->enablePlugins('fmcCustomerPlugin');
