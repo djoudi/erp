@@ -1,17 +1,8 @@
 <?php slot ('title', "My Cost Forms") ?>
 
-<form method="post" action="">
-  <table class="table table-striped table-bordered table-condensed">
-    <?php echo $filterForm; ?>
-    <tr>
-      <td></td>
-      <td>
-        <input class="btn btn-info" type="submit" name="_reset" value="Show All" />
-        <input class="btn btn-info" type="submit" value="Filter" />&nbsp;
-      </td>
-    </tr>
-  </table>
-</form>
+<?php if (isset($filterForm)): ?>
+  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filterForm, 'filtered'=>$filtered)); ?>
+<?php endif; ?>
 
 <br />
     

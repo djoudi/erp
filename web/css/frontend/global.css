@@ -91,3 +91,10 @@ div.form-actions {
 .tablesorter label {
   padding-top: inherit;
 }
+
+
+/* BOOTSTRAP OVERRIDE */
+
+input, textarea, select, .uneditable-input {
+  margin-bottom: 0px !important;
+}
