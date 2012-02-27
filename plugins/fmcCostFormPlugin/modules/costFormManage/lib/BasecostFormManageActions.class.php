@@ -14,7 +14,10 @@ abstract class BasecostFormManageActions extends sfActions
       $this->form->bind ($request->getParameter($this->form->getName()));
       if ($this->form->isValid())
       {
-        $this->form->save();
+        $object = $this->form->save();
+        $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+        $object->save();
+        
         $this->getUser()->setFlash("success", "Cost form is saved.");
         $this->redirect($request->getReferer());
       }

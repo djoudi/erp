@@ -4,6 +4,26 @@
 
   <table class="table table-striped table-bordered table-condensed">
     <?php echo $form; ?>
+    
+    <tr>
+      <td>Created</td>
+      <td>
+        <?php echo $customer->getCreatedAt(); ?>
+        <?php if ($customer->getCreator()->getId()): ?>
+           by <?php echo $customer->getCreator(); ?>
+        <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <td>Last Edited</td>
+      <td>
+        <?php echo $customer->getUpdatedAt(); ?>
+        <?php if ($customer->getUpdater()->getId()): ?>
+           by <?php echo $customer->getUpdater(); ?>
+        <?php endif; ?>
+      </td>
+    </tr>
+    
   </table>
 
   <div class="form-actions">

@@ -38,41 +38,6 @@ abstract class BasecostFormReportActions extends sfActions
       ->leftJoin('cfi.CostForms cf')
       ->where('cf.issent = ?', true);
     $q = $this->initFilterForm($request, $_q);
-    $this->costFormItems = $q->execute();
-    
-    #
+    $this->costFormItems = $q->execute();#
   }
-  
-  
-  
-  
-  
-  
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
