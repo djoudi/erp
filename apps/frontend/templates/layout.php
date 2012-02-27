@@ -6,7 +6,6 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
   </head>
   <body>
     
@@ -31,11 +30,10 @@
       <?php include_partial ("global/layout_header"); ?>
       <?php include_partial ("global/layout_topmenu"); ?>
       
-      <br /><br />
       
-      <div class="row">
+      <div class="row" style="margin-top: 10px;">
       
-        <div class="span3">
+        <div class="span2" style="width: 160px !important;">
           <?php include_partial("homepage/".$mod); ?>
         </div>
         
@@ -49,7 +47,7 @@
           
           <br />
           <?php include_partial ("global/layout_flashes"); ?>
-          <br />
+          
           
           <?php echo $sf_content ?>
           
@@ -58,6 +56,8 @@
       </div>
       
     </div>
+  
+  <?php include_javascripts() ?>
   
   </body>
 </html>

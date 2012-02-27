@@ -9,7 +9,7 @@
   border-bottom-left-radius: 10px;
 	background-color: white;  
 	min-height: 500px;
-  padding: 0px 15px 15px 15px;
+  padding: 0px 10px 15px 10px;
   width: 1100px;
 }
 
@@ -97,5 +97,6 @@
 }
 #LayoutMainContent {
 	margin-bottom: 50px;
-  
+  margin-left: 10px !important;
+  width: 925px !important;
 }

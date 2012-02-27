@@ -16,10 +16,11 @@ default:
     - frontend/forms.css
   
   javascripts:
-    - /bootstrap/js/bootstrap.min.js
     - jquery.js
     - jquery-tablesorter.js
     - jquery-ui.js
+    - /bootstrap/js/bootstrap.min.js
+    
     - frontend.js
   
   has_layout:     true

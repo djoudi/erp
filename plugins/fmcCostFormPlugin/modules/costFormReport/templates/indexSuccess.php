@@ -22,13 +22,12 @@
   <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
-        <th>Cost No</th>
-        <th>CF No</th>
+        <th>Date</th>
         <th>Employee</th>
         <th>Project</th>
         <th>Description</th>
         <th>VAT</th>
-        <th>Amount (inc Vat)</th>
+        <th>Amount</th>
         <th>Receipt No</th>
         <th>Invoice Status</th>
         <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
@@ -39,11 +38,23 @@
     <tbody>
       <?php foreach ($costFormItems as $cfi): ?>
         <tr>
-          <td><?php echo $cfi->getId(); ?></td>
-          <td><?php echo $cfi->getCostForms()->getId(); ?></td>
+          
+          
+          <td>
+            <?php echo $cfi->getCostDate(); ?>
+          </td>
+          
           <td><?php echo $cfi->getCostForms()->getUsers()->__toString(); ?></td>
           <td><?php echo $cfi->getCostForms()->getProjects()->getCode(); ?></td>
-          <td><?php echo $cfi->getDescription(); ?></td>
+          <td>
+            <?php if (strlen($cfi->getDescription()) < 20): ?>
+              <?php echo $cfi->getDescription(); ?>
+            <?php else: ?>
+              <a href="#" rel="tooltip" title="<?php echo $cfi->getDescription(); ?>" class="tooltips" >
+                <?php echo mb_substr($cfi->getDescription(), 0, 20, "UTF-8"); ?>...
+              </a>
+            <?php endif; ?>
+          </td>
           <td><?php echo $cfi->getVats()->getRate(); ?></td>
           <td><?php echo $cfi->getAmount()." ".$cfi->getCurrencies(); ?></td>
           <td><?php echo $cfi->getReceiptNo(); ?></td>
