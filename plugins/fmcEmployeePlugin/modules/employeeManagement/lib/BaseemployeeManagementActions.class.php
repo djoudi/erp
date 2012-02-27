@@ -25,7 +25,6 @@ abstract class BaseemployeeManagementActions extends sfActions
         $this->getUser()->setFlash("success", "Employee info is saved.");
         $this->redirect($request->getReferer());
       }
-      
     }
   }
   

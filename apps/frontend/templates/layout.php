@@ -45,7 +45,6 @@
             </div>
           <?php endif;?>
           
-          <br />
           <?php include_partial ("global/layout_flashes"); ?>
           
           

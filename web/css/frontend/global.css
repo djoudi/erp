@@ -56,6 +56,10 @@ div.form-actions {
   margin-top: 33px;
 }
 
+.FilterForm {
+  margin-bottom: 10px;
+}
+
 .clear {
   clear: both !important;
   display: block !important;

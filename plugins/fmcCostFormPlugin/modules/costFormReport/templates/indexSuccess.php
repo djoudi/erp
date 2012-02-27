@@ -7,8 +7,10 @@
 
 
 <?php if (!count($costFormItems)): ?>
-  No costs found in your selected criterias.<br />
+  <p>No costs found in your selected criterias.</p>
 <?php else: ?>
+
+  <p><strong><?php echo count($costFormItems); ?></strong> results found.</p>
 
   <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
@@ -17,7 +19,6 @@
         <th>Employee</th>
         <th>Project</th>
         <th>Description</th>
-        <th>VAT</th>
         <th>Amount</th>
         <th>Receipt No</th>
         <th>Invoice Status</th>
@@ -46,8 +47,9 @@
               </a>
             <?php endif; ?>
           </td>
-          <td><?php echo $cfi->getVats()->getRate(); ?></td>
-          <td><?php echo $cfi->getAmount()." ".$cfi->getCurrencies(); ?></td>
+          <td>
+            <?php echo $cfi->getAmount()." ".$cfi->getCurrencies(); ?>
+          </td>
           <td><?php echo $cfi->getReceiptNo(); ?></td>
           <td>
            <?php if (!$cfi->getIsProcessed()): ?>

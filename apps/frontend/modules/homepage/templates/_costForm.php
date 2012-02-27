@@ -12,7 +12,7 @@
         <?php echo link_to ('List my costs', '@costFormUser_list'); ?>
       </li>
       <li <?php if($module=="costFormUser" and $action=="new"): ?> class="active" <?php endif; ?>>
-        <?php echo link_to ('Create new cost form', '@costFormUser_new'); ?>
+        <?php echo link_to ('New cost form', '@costFormUser_new'); ?>
       </li>
     <?php endif; ?>
 
