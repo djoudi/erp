@@ -1,5 +1,7 @@
 <?php slot ('title', "Invoicing Report") ?>
 
+<a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Print to Excel</a>
+
 <table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>Company</th>
@@ -11,84 +13,37 @@
   </tr>
 </table>
 
-<h3>Costs selected to be invoiced</h3>
-
-<?php if (!count($invoiced)): ?>
-  No costs selected to be invoiced.
-<?php else: ?>
-
-  <table class="tablesorter table table-striped table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Project</th>
-        <th>Employee</th>
-        <th>Description</th>
-        <th>VAT</th>
-        <th>excl VAT</th>
-        <th>incl VAT</th>
-        <th>Invoice No</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($invoiced as $cfi): ?>
-        <tr>
-          <td><?php echo $cfi->cost_Date ?></td>
-          <td><?php echo $cfi->CostForms->Projects ?></td>
-          <td><?php echo $cfi->CostForms->Users ?></td>
-          <td><?php echo $cfi->description ?></td>
-          <td><?php echo $cfi->Vats ?></td>
-          <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
-          <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
-          <td><?php echo $cfi->invoice_No ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-<?php endif; ?>
-
-<p>&nbsp;</p>
-
-<h3>Costs selected not to be invoiced</h3>
-
-<?php if (!count($notInvoiced)): ?>
-  No costs selected NOT to be invoiced.
-<?php else: ?>
-  <table class="tablesorter table table-striped table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Project</th>
-        <th>Employee</th>
-        <th>Description</th>
-        <th>VAT</th>
-        <th>excl VAT</th>
-        <th>incl VAT</th>
-        <th>Invoice No</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($notInvoiced as $cfi): ?>
-        <tr>
-          <td><?php echo $cfi->cost_Date ?></td>
-          <td><?php echo $cfi->CostForms->Projects ?></td>
-          <td><?php echo $cfi->CostForms->Users ?></td>
-          <td><?php echo $cfi->description ?></td>
-          <td><?php echo $cfi->Vats ?></td>
-          <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
-          <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
-          <td>Don't Invoice</td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-<?php endif; ?>
-
-<div class="form-actions">
-  <a class="btn btn-primary" href="<?php echo url_for("@costFormProcess_export"); ?>">Print to Excel</a>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#invoiced" data-toggle="tab">To be invoiced</a></li>
+  <li><a href="#notInvoiced" data-toggle="tab">NOT to be invoiced</a></li>
+</ul>
+ 
+<div class="tab-content">
+  
+  <div class="tab-pane active" id="invoiced">
+    
+    <h3>Costs selected to be invoiced</h3>
+    
+    <?php if (!count($invoiced)): ?>
+      <p>No costs selected to be invoiced.</p>
+    <?php else: ?>
+      <p><strong><?php echo count($invoiced); ?></strong> costs selected to be invoiced.</p>
+      <?php include_partial ('reportlist', array('list'=>$invoiced)); ?>
+    <?php endif; ?>
+    
+  </div>
+  
+  <div class="tab-pane" id="notInvoiced">
+    
+    <h3>Costs selected not to be invoiced</h3>
+    
+    <?php if (!count($invoiced)): ?>
+      <p>No costs selected NOT to be invoiced.</p>
+    <?php else: ?>
+      <p><strong><?php echo count($invoiced); ?></strong> costs selected NOT to be invoiced.</p>
+      <?php include_partial ('reportlist', array('list'=>$notInvoiced)); ?>
+    <?php endif; ?>
+    
+  </div>
+  
 </div>
-
-
-
-
-

@@ -24,6 +24,7 @@ abstract class BasecostFormProcessActions extends sfActions
   {
     $this->invoiced = $this->getUser()->getAttribute('costFormProcess_invoiced');
     $this->notInvoiced = $this->getUser()->getAttribute('costFormProcess_notInvoiced');
+    
     $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
     if (!$projectid)
     {
@@ -86,7 +87,7 @@ abstract class BasecostFormProcessActions extends sfActions
   }
   
   ################################################################################################
-  
+  /*
   public function executeComplete (sfWebRequest $request)
   {
     $this->getUser()->setAttribute('costFormProcess_invoiced', NULL);
@@ -94,6 +95,7 @@ abstract class BasecostFormProcessActions extends sfActions
     $this->getUser()->setAttribute('costFormProcess_projectid', NULL);
     $this->redirect($this->getController()->genUrl("@costFormProcess_filter"));
   }
+  */
   
   ################################################################################################
   
@@ -134,7 +136,6 @@ abstract class BasecostFormProcessActions extends sfActions
           }
         }
       }
-      
       $this->getUser()->setAttribute('costFormProcess_invoiced', $this->invoiced);
       $this->getUser()->setAttribute('costFormProcess_notInvoiced', $this->notInvoiced);
       $this->getUser()->setAttribute('costFormProcess_projectid', $this->project->getId());
