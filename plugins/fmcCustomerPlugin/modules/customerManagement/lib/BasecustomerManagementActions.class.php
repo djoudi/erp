@@ -4,7 +4,7 @@ abstract class BasecustomerManagementActions extends sfActions
 {
   
   
-  public function executeIndex (sfWebRequest $request)
+  public function executeList (sfWebRequest $request)
   {
     // Edit these variables
     $_q = Doctrine_Query::create()
@@ -23,6 +23,7 @@ abstract class BasecustomerManagementActions extends sfActions
   {
     $this->customer = Doctrine::getTable('Customer')->findOneById ($request->getParameter("id"));
     $this->forward404Unless ($this->customer);
+    
     $this->form = new customerForm ($this->customer);
     
     if ($request->isMethod('post'))

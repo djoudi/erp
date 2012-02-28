@@ -1,7 +1,7 @@
 
 customerManagement:
   url: /customer/management
-  param: { module: customerManagement, action: index }
+  param: { module: customerManagement, action: list }
   
 customerManagement_edit:
   url: /customer/management/edit/:id
