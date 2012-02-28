@@ -3,6 +3,7 @@
 abstract class BasecostFormUserActions extends sfActions
 {
   
+  
   public function executeChangepaidstatus (sfWebRequest $request)
   {
     $cost = Doctrine::getTable('CostFormItem')
@@ -17,6 +18,8 @@ abstract class BasecostFormUserActions extends sfActions
     $cost->save();
     $this->redirect ($request->getReferer());
   }
+  
+  
   
   ################################################################################################
   
@@ -69,27 +72,14 @@ abstract class BasecostFormUserActions extends sfActions
   {
     $this->costFormStatus = sfConfig::get("app_costForm_status", array());
     
-    $cfi = Doctrine::getTable('costFormItem')->find($request->getParameter('cfi_id'));
-    
-    $isNew = true;
-    if ($cfi)
-    {
-      $this->form = new form_costFormUser_newItem ($cfi);
-      $cfi->delete();
-      $isNew = false;
-    }
-    
     $this->costForm = Doctrine::getTable('costForm')->find($request->getParameter('id'));
     $this->forward404Unless($this->costForm);
     $this->costItems = Doctrine::getTable('costFormItem')->findBycostForm_id($this->costForm->id);
     
-    if ($isNew)
-    {
-      $cfi = new CostFormItem($this->costForm);
-      $cfi->setCostDate(date('Y-m-d'));
-      $cfi->setCostformId($this->costForm->getId());
-      $this->form = new form_costFormUser_newItem ($cfi);
-    }
+    $cfi = new CostFormItem($this->costForm);
+    $cfi->setCostDate(date('Y-m-d'));
+    $cfi->setCostformId($this->costForm->getId());
+    $this->form = new form_costFormUser_newItem ($cfi);
     
     if ($request->isMethod('post'))
     {
