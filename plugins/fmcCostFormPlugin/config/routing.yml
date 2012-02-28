@@ -12,6 +12,16 @@ costFormUser_deleteForm:
   url: /costform/user/deleteform/:id
   param: { module: costFormUser, action: deleteForm }
 
+
+
+
+costFormUser_editItem:
+  url: /costform/user/edit/:id/:cfi_id
+  param: { module: costFormUser, action: edit }
+
+
+
+
 costFormUser_deleteItem:
   url: /costform/user/deleteitem/:id
   param: { module: costFormUser, action: deleteItem }

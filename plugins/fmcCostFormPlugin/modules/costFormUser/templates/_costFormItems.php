@@ -38,7 +38,14 @@
           <td><?php echo $costItem['invoice_To'] ?></td>
           
           <?php if ( ! $isSent ): ?>
-            <td><a class="btn btn-mini btn-danger" href="<?php echo url_for('@costFormUser_deleteItem?&id='.$costItem['id']) ?>">Delete</a></td>
+            <td>
+              <a class="btn btn-mini btn-warning" href="<?php echo url_for('@costFormUser_editItem?id='.$costItem->getCostForms()->getId().'&cfi_id='.$costItem['id']); ?>">
+                Edit
+              </a>
+              <a class="btn btn-mini btn-danger" href="<?php echo url_for('@costFormUser_deleteItem?id='.$costItem['id']) ?>">
+                Delete
+              </a>
+            </td>
           <?php endif;?>
           
           <?php if ($isSent): ?>
