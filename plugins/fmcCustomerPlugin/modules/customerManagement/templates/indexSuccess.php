@@ -1,5 +1,9 @@
 <?php slot ('title', "Customer List") ?>
 
+<?php if (isset($filter)): ?>
+  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+<?php endif; ?>
+
 <p><strong><?php echo count($customers); ?></strong> customers found.</p>
 
 <table class="tablesorter2a table table-striped table-bordered table-condensed">

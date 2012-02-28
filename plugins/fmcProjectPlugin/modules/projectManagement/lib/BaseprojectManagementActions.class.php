@@ -5,9 +5,17 @@ abstract class BaseprojectManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    $this->projects = Doctrine::getTable('Project')->findAll();
+    // Edit these variables
+    $_q = Doctrine_Query::create()
+      ->from('Project p');
+    $filterClass = new FmcFilter('ProjectFormFilter');
+    $this->projects = $filterClass->initFilterForm($request, $_q)->execute();
+    
+    // Do not touch here
+    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+    $this->filter = $filterClass->getFilter();
+    $this->filtered = $filterClass->getFiltered();
   }
-  
   
   public function executeEdit (sfWebRequest $request)
   {
@@ -29,7 +37,6 @@ abstract class BaseprojectManagementActions extends sfActions
     }
   }
   
-  
   public function executeNew (sfWebRequest $request)
   {
     $this->form = new projectForm();
@@ -47,6 +54,5 @@ abstract class BaseprojectManagementActions extends sfActions
       }
     }
   }
-  
   
 }

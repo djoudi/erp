@@ -5,7 +5,17 @@ abstract class BaseemployeeManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    $this->employees = Doctrine::getTable('sfGuardUser')->createQuery()->orderBy('id ASC')->execute();
+    // Edit these variables
+    $_q = Doctrine_Query::create()
+      ->from('sfGuardUser u')
+      ->orderBy('id ASC');
+    $filterClass = new FmcFilter('filterform_plugin_sfguarduser');
+    $this->employees = $filterClass->initFilterForm($request, $_q)->execute();
+    
+    // Do not touch here
+    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+    $this->filter = $filterClass->getFilter();
+    $this->filtered = $filterClass->getFiltered();
   }
   
   public function executeEdit (sfWebRequest $request)

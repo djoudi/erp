@@ -13,6 +13,7 @@
   <p><strong><?php echo count($costFormItems); ?></strong> results found.</p>
 
   <table class="tablesorter table table-striped table-bordered table-condensed">
+    
     <thead>
       <tr>
         <th>Date</th>
@@ -27,15 +28,13 @@
         <?php endif; ?>
       </tr>
     </thead>
+    
     <tbody>
       <?php foreach ($costFormItems as $cfi): ?>
         <tr>
-          
-          
           <td>
             <?php echo $cfi->getCostDate(); ?>
           </td>
-          
           <td><?php echo $cfi->getCostForms()->getUsers()->__toString(); ?></td>
           <td><?php echo $cfi->getCostForms()->getProjects()->getCode(); ?></td>
           <td>
@@ -74,6 +73,7 @@
         </tr>
       <?php endforeach; ?>
     </tbody>
+    
   </table>
   
 <?php endif; ?>

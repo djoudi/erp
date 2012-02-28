@@ -6,7 +6,16 @@ abstract class BasecustomerManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    $this->customers = Doctrine::getTable('Customer')->findAll();
+    // Edit these variables
+    $_q = Doctrine_Query::create()
+      ->from('Customer u');
+    $filterClass = new FmcFilter('CustomerFormFilter');
+    $this->customers = $filterClass->initFilterForm($request, $_q)->execute();
+    
+    // Do not touch here
+    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+    $this->filter = $filterClass->getFilter();
+    $this->filtered = $filterClass->getFiltered();
   }
   
   
