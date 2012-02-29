@@ -33,7 +33,7 @@
   <?php else: ?>
     
     <a class="btn" href="<?php echo url_for('@costFormUser_list') ?>">Go Back</a>
-    <a class="btn btn-info" href="<?php echo url_for('@costFormUser_report?id='.$costForm->id) ?>">Print Output</a>
+    <a class="btn btn-info" href="<?php echo url_for('@costFormUser_report?id='.$costForm->id) ?>">Download Cost Form</a>
     
   <?php endif; ?>
 

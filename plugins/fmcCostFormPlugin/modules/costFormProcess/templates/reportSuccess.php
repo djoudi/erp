@@ -1,6 +1,6 @@
 <?php slot ('title', "Invoicing Report") ?>
 
-<a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Print to Excel</a>
+<a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
 
 <table class="table table-striped table-bordered table-condensed">
   <tr>
