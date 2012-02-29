@@ -3,16 +3,16 @@
 abstract class BasecostFormUserActions extends sfActions
 {
   
-  
   public function executeChangepaidstatus (sfWebRequest $request)
   {
     $cost = Doctrine::getTable('CostFormItem')
       ->createQuery('cfi')
       ->leftJoin('cfi.CostForms cf')
-      ->where('cfi.id = ?', $request->getParameter('id'))
-      ->andWhere('cf.user_id = ?', $this->getUser()->getGuardUser()->getId())
+      ->addWhere('cfi.id = ?', $request->getParameter('id'))
+      ->addWhere('cf.user_id = ?', $this->getUser()->getGuardUser()->getId())
       ->fetchOne();
     $this->forward404Unless ($cost);
+    
     $cost->setIsPaid( ! $cost->getIsPaid() );
     $cost->setUpdatedBy($this->getUser()->getGuardUser()->getId());
     $cost->save();
@@ -177,7 +177,7 @@ abstract class BasecostFormUserActions extends sfActions
     }
     else
     {
-      $this->getUser()->setFlash("notice", sprintf("Cost form with id %d is sent for processing!", $item->id ));
+      $this->getUser()->setFlash("success", sprintf("Cost form with id %d is sent for processing!", $item->id ));
       $item->isSent = true;
       $item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $item->save();
@@ -225,8 +225,7 @@ abstract class BasecostFormUserActions extends sfActions
 
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
     $objWriter->save('php://output');
-
-    #$this->getUser()->setFlash("success", sprintf("This cost form id %d already sent!", $item->id ));
+    
     $this->$this->redirect($request->getReferer());
   }
   

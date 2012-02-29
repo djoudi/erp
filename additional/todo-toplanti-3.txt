@@ -23,6 +23,9 @@ cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin va
 
 ==============================   TO  DO   ========================
 
+cost form user - filter kısmını class la     ve edit kısmı da process form classla
+
+
 tablesorter currency ve date sort yanlış
 
 invoicing filter

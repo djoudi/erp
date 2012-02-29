@@ -24,7 +24,7 @@
         }
         else
         {
-          $this->user->setFlash("error", "Problem occured saving the record!");
+          $this->user->setFlash("error", "Problem occured saving the record! Please check your input.");
         }
       }
     }

@@ -29,6 +29,7 @@ select {
 }
 
 table {
+  margin-top: 20px !important;
   width: auto !important;
 }
 
@@ -48,16 +49,13 @@ ul {
 
 h4 {
   color: #411;
+  margin-bottom: 10px;
 }
 
 /* CLASSES */
 
-div.form-actions {
-  margin-top: 33px;
-}
-
-.FilterForm {
-  margin-bottom: 10px;
+.alert p {
+  margin-bottom: 0 !important;
 }
 
 .clear {
@@ -68,24 +66,33 @@ div.form-actions {
   width: 100% !important;
 }
 
-.w100 {
-  width: 100px !important;
+.error_list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.error_list * {
+  color: red !important;
+}
+
+.FilterForm {
+  margin-bottom: 10px;
+}
+
+.form-actions {
+  margin-top: 33px;
 }
 
 .inline {
   display: inline;
 }
 
-.noborder {
-  border: none !important;
-}
-
-.alert p {
-  margin-bottom: 0 !important;
-}
-
 .label.success, .label.important {
   text-transform: none;
+}
+
+.noborder {
+  border: none !important;
 }
 
 .tablesorter th, .tablesorter td {
@@ -96,6 +103,9 @@ div.form-actions {
   padding-top: inherit;
 }
 
+.w100 {
+  width: 100px !important;
+}
 
 /* BOOTSTRAP OVERRIDE */
 
