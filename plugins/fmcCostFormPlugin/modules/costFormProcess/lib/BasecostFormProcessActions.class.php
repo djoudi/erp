@@ -87,17 +87,6 @@ abstract class BasecostFormProcessActions extends sfActions
   }
   
   ################################################################################################
-  /*
-  public function executeComplete (sfWebRequest $request)
-  {
-    $this->getUser()->setAttribute('costFormProcess_invoiced', NULL);
-    $this->getUser()->setAttribute('costFormProcess_notInvoiced', NULL);
-    $this->getUser()->setAttribute('costFormProcess_projectid', NULL);
-    $this->redirect($this->getController()->genUrl("@costFormProcess_filter"));
-  }
-  */
-  
-  ################################################################################################
   
   public function executeList (sfWebRequest $request)
   {
@@ -114,25 +103,20 @@ abstract class BasecostFormProcessActions extends sfActions
       {
         if ( $input = $request->getParameter($cfi->id) )
         {
-          foreach ($input as $i)
+          if ($input['toBeInvoiced']=='dni') # if it is do not invoice
           {
-            if ($i=="dni") #donotinvoice  
-            {
-              array_push($this->notInvoiced, $cfi);
-              $cfi->dontInvoice = true;
-              $cfi->is_Processed = true;
-              $cfi->save();
-            }
-            else
-            {
-              if ($i)
-              {
-                array_push($this->invoiced, $cfi);
-                $cfi->invoice_No = $i;
-                $cfi->is_Processed = true;
-                $cfi->save();
-              }
-            }
+            array_push($this->notInvoiced, $cfi);
+            $cfi->dontInvoice = true;
+            $cfi->is_Processed = true;
+            $cfi->save();
+          }
+          elseif ($input['invoice_No'])
+          {
+            array_push($this->invoiced, $cfi);
+            $cfi->invoice_No = $input['invoice_No'];
+            $cfi->invoice_Date = $input['invoice_Date'];
+            $cfi->is_Processed = true;
+            $cfi->save();
           }
         }
       }

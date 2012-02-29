@@ -9,6 +9,7 @@ class filter_costFormItemReport_list extends PluginCostFormItemFormFilter
     unset ($this['vat_id']);
     unset ($this['cost_Date']);
     unset ($this['dontInvoice']);
+    unset ($this['invoice_Date']);
     
     $this->setWidget ('invoice_No', new sfWidgetFormFilterInput(array('with_empty' => false)));
     $this->setWidget ('receipt_No', new sfWidgetFormFilterInput(array('with_empty' => false)));

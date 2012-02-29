@@ -38,6 +38,7 @@ CostFormItem:
     vat_id: { type: integer, notnull: true }
     is_Processed: { type: boolean, default: false, notnull: true }
     invoice_No: { type: string(50) }
+    invoice_Date: { type: date }
     dontInvoice: { type: boolean, notnull: false, default: null }
     isPaid: { type: boolean, notnull: false, default: false }
     created_by: integer

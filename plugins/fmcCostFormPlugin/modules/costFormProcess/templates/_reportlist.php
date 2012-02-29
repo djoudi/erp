@@ -9,6 +9,7 @@
       <th>excl VAT</th>
       <th>incl VAT</th>
       <th>Invoice No</th>
+      <th>Invoice Date</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,7 @@
         <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
         <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
         <td><?php echo $cfi->invoice_No ?></td>
+        <td><?php echo $cfi->invoice_Date ?></td>
       </tr>
     <?php endforeach; ?>
   </tbody>
@@ -40,6 +42,7 @@
       <th>
         <?php echo $sumIncl; ?> <?php echo $cfi->Currencies ?>
       </th>
+      <td></td>
       <td></td>
     </tr>
   </tfoot>

@@ -50,6 +50,7 @@
             <?php echo $cfi->getAmount()." ".$cfi->getCurrencies(); ?>
           </td>
           <td><?php echo $cfi->getReceiptNo(); ?></td>
+          
           <td>
            <?php if (!$cfi->getIsProcessed()): ?>
              Not processed
@@ -58,9 +59,13 @@
                Don't invoice
              <?php else: ?>
                <?php echo $cfi->getInvoiceNo(); ?>
+               <?php if ($cfi->invoice_Date): ?>
+                 (<?php echo $cfi->invoice_Date; ?>)
+               <?php endif; ?>
              <?php endif; ?>
            <?php endif; ?>
           </td>
+          
           <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
             <td>
               <a href="<?php echo url_for('@costFormManage_edit?cost_id='.$cfi->getId()); ?>">Edit</a>&nbsp;&nbsp;

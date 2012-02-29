@@ -15,6 +15,7 @@
  * @property integer $vat_id
  * @property boolean $is_Processed
  * @property string $invoice_No
+ * @property date $invoice_Date
  * @property boolean $dontInvoice
  * @property boolean $isPaid
  * @property integer $created_by
@@ -35,6 +36,7 @@
  * @method integer      getVatId()        Returns the current record's "vat_id" value
  * @method boolean      getIsProcessed()  Returns the current record's "is_Processed" value
  * @method string       getInvoiceNo()    Returns the current record's "invoice_No" value
+ * @method date         getInvoiceDate()  Returns the current record's "invoice_Date" value
  * @method boolean      getDontInvoice()  Returns the current record's "dontInvoice" value
  * @method boolean      getIsPaid()       Returns the current record's "isPaid" value
  * @method integer      getCreatedBy()    Returns the current record's "created_by" value
@@ -54,6 +56,7 @@
  * @method CostFormItem setVatId()        Sets the current record's "vat_id" value
  * @method CostFormItem setIsProcessed()  Sets the current record's "is_Processed" value
  * @method CostFormItem setInvoiceNo()    Sets the current record's "invoice_No" value
+ * @method CostFormItem setInvoiceDate()  Sets the current record's "invoice_Date" value
  * @method CostFormItem setDontInvoice()  Sets the current record's "dontInvoice" value
  * @method CostFormItem setIsPaid()       Sets the current record's "isPaid" value
  * @method CostFormItem setCreatedBy()    Sets the current record's "created_by" value
@@ -121,6 +124,9 @@ abstract class BaseCostFormItem extends sfDoctrineRecord
         $this->hasColumn('invoice_No', 'string', 50, array(
              'type' => 'string',
              'length' => 50,
+             ));
+        $this->hasColumn('invoice_Date', 'date', null, array(
+             'type' => 'date',
              ));
         $this->hasColumn('dontInvoice', 'boolean', null, array(
              'type' => 'boolean',
