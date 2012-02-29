@@ -1,4 +1,4 @@
-<div class="FilterForm well">
+<div class="FilterForm well" style="padding: 10px !important;">
 
   <h4>
     <a class="btn info" onclick="$('#topFilterForm').toggle()">

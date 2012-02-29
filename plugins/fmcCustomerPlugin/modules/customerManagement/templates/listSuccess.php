@@ -17,7 +17,7 @@
     <?php foreach ($customers as $customer): ?>
       <tr>
         <td><?php echo $customer->getId(); ?></td>
-        <td><a href="<?php echo url_for('customerManagement_edit', $customer); ?>"><?php echo $customer->getName(); ?></a></td>
+        <td><a href="<?php echo url_for('customerManagement_edit', array('id'=>$customer->getId())); ?>"><?php echo $customer->getName(); ?></a></td>
       </tr>
     <?php endforeach; ?>
   </tbody>
