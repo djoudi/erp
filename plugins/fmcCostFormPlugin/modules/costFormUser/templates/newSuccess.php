@@ -17,7 +17,9 @@
       </td>
     </tr>
   </table>
-
+  
+  <span class="help-inline">Note: If you did not receive any advances, keep Received Advances blank.</span>
+  
   <div class="form-actions">
     <a class="btn" href="javascript:history.back(1)" >Cancel</a>
     <input type="submit" class="btn btn-success" value="Save and Continue"></input>
