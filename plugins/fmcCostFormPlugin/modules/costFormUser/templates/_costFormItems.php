@@ -17,7 +17,7 @@
         <?php endif; ?>
         
         <?php if ($isSent): ?>
-          <th>Payment Staus</th>
+          <th>Payment Status</th>
         <?php endif; ?>
         
       </tr>
@@ -46,11 +46,11 @@
           <?php if ($isSent): ?>
             <td>
               <?php if ($costItem->getIsPaid()): ?>
-                <span class="label success">Paid</span>
+                <span class="label label-success">Paid</span>
               <?php else: ?>
-                <span class="label">Unpaid</span>
+                <span class="label label-important">Unpaid</span>
               <?php endif; ?>
-              <a href="<?php echo url_for("@costFormUser_changepaidstatus?id=".$costItem->getId()); ?>">Change</a>
+              <a href="<?php echo url_for("@costFormUser_changepaidstatus?id=".$costItem->getId()); ?>"> (Change)</a>
           <?php endif; ?>
           
         </tr>
