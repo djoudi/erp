@@ -13,7 +13,7 @@ class filter_costFormItemReport_list extends PluginCostFormItemFormFilter
     
     $this->setWidget ('invoice_No', new sfWidgetFormFilterInput(array('with_empty' => false)));
     $this->setWidget ('receipt_No', new sfWidgetFormFilterInput(array('with_empty' => false)));
-    $this->setWidget ('is_Processed', new sfWidgetFormChoice(array('choices' => array('' => '', 1 => 'Processed', 0 => 'Not Processed'))) );
+    $this->setWidget ('is_Processed', new sfWidgetFormChoice(array('choices' => array('' => '', 1 => 'Invoiced', 0 => 'Not Invoiced'))) );
     $this->setWidget ('isPaid', new sfWidgetFormChoice(array('choices' => array('' => '', 1 => 'Paid', 0 => 'Not Paid'))));
     
     $this->setWidget('costForm_id', new sfWidgetFormFilterInput(array('with_empty' => false)));
@@ -42,7 +42,7 @@ class filter_costFormItemReport_list extends PluginCostFormItemFormFilter
     
     $this->widgetSchema->setLabel('costForm_id', 'Cost Form No');
     $this->widgetSchema->setLabel('isPaid', 'Payment Status');
-    $this->widgetSchema->setLabel('is_Processed', 'Processing Status');
+    $this->widgetSchema->setLabel('is_Processed', 'Invoicing Status');
     
   }
   

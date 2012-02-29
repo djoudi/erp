@@ -53,7 +53,7 @@
           
           <td>
            <?php if (!$cfi->getIsProcessed()): ?>
-             Not processed
+             Not invoiced
            <?php else: ?>
              <?php if ($cfi->getDontInvoice()): ?>
                Don't invoice
