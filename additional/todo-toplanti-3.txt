@@ -1,0 +1,37 @@
+tasarım görsel olarak değiştirildi
+
+kullanım kolaylığında değişiklikler yapıldı
+
+versionable eklendi
+
+daha fazla boşluk var
+
+created / updated by eklendi
+
+raporlama sayfasında descriptionlar daha kısa artık
+
+kayıt düzenlemede, create ve update tarih ve kişileri görünüyor
+
+tüm sonuç sayfalarında bulunan sonuç yazıyor
+
+tüm sonuç sayfalarında filtre var ( ve filtre artık her yerde kullanılabilir hale getirildi)
+
+cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
+
+
+
+
+==============================   TO  DO   ========================
+
+tablesorter currency ve date sort yanlış
+
+invoicing filter
+
+invoiced byalanı
+
+sf checklist
+
+hascredentials:
+
+
+
