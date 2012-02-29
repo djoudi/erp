@@ -17,6 +17,7 @@
         <?php endif; ?>
         
         <?php if ($isSent): ?>
+          <th>Invoice Status</th>
           <th>Payment Status</th>
         <?php endif; ?>
         
@@ -44,6 +45,19 @@
           <?php endif;?>
           
           <?php if ($isSent): ?>
+            <td>
+              <?php if ($costItem->dontInvoice): ?>
+                Don't Invoice
+              <?php elseif ($costItem->getInvoice_No()): ?>
+                <?php echo $costItem->getInvoice_No(); ?>
+                <?php if ($costItem->invoice_Date): ?>
+                   (<?php echo $costItem->invoice_Date; ?>)
+                <?php endif; ?>
+              <?php else: ?>
+                Not invoiced yet
+              <?php endif; ?>
+            </td>
+            
             <td>
               <?php if ($costItem->getIsPaid()): ?>
                 <span class="label label-success">Paid</span>
