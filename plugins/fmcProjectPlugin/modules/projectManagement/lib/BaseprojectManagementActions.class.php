@@ -21,38 +21,17 @@ abstract class BaseprojectManagementActions extends sfActions
   {
     $this->project = Doctrine::getTable('Project')->findOneById ($request->getParameter("id"));
     $this->forward404Unless ($this->project);
-    $this->form = new projectForm ($this->project);
     
-    if ($request->isMethod('post'))
-    {
-      $this->form->bind ($request->getParameter($this->form->getName()));
-      if ($this->form->isValid())
-      {
-        $object = $this->form->save();
-        $object->setUpdatedBy($this->getUser()->getGuardUser()->getId());
-        $object->save();
-        $this->getUser()->setFlash("success", "Project is saved.");
-      }
-      $this->redirect($request->getReferer());
-    }
+    $this->form = new projectForm ($this->project);
+    $processClass = new FmcProcessForm();
+    $processClass->ProcessForm($this->form, $request, "@projectManagement", false);
   }
   
   public function executeNew (sfWebRequest $request)
   {
     $this->form = new projectForm();
-    
-    if ($request->isMethod('post'))
-    {
-      $this->form->bind ($request->getParameter($this->form->getName()));
-      if ($this->form->isValid())
-      {
-        $object = $this->form->save();
-        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
-        $object->save();
-        $this->getUser()->setFlash("success", "Project is created.");
-        $this->redirect($this->getController()->genUrl("@projectManagement"));
-      }
-    }
+    $processClass = new FmcProcessForm();
+    $processClass->ProcessForm($this->form, $request, "@projectManagement", true);
   }
   
 }

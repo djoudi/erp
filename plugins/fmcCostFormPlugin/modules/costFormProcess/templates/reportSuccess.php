@@ -37,10 +37,10 @@
     
     <h3>Costs selected not to be invoiced</h3>
     
-    <?php if (!count($invoiced)): ?>
+    <?php if (!count($notInvoiced)): ?>
       <p>No costs selected NOT to be invoiced.</p>
     <?php else: ?>
-      <p><strong><?php echo count($invoiced); ?></strong> costs selected NOT to be invoiced.</p>
+      <p><strong><?php echo count($notInvoiced); ?></strong> costs selected NOT to be invoiced.</p>
       <?php include_partial ('reportlist', array('list'=>$notInvoiced)); ?>
     <?php endif; ?>
     
