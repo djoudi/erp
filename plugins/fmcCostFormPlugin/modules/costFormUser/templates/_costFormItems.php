@@ -5,7 +5,6 @@
   <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
-        <th>Cost Id</th>
         <th>Date</th>
         <th>Description</th>
         <th>Amount</th>
@@ -26,7 +25,6 @@
     <tbody>
       <?php foreach ($costItems as $index => $costItem): ?>
         <tr>
-          <td><?php echo $index+1 ?></td>
           <td><?php echo $costItem['cost_Date'] ?></td>
           <td><?php echo $costItem['description'] ?></td>
           <td>
@@ -39,9 +37,6 @@
           
           <?php if ( ! $isSent ): ?>
             <td>
-              <a class="btn btn-mini btn-warning" href="<?php echo url_for('@costFormUser_editItem?id='.$costItem->getCostForms()->getId().'&cfi_id='.$costItem['id']); ?>">
-                Edit
-              </a>
               <a class="btn btn-mini btn-danger" href="<?php echo url_for('@costFormUser_deleteItem?id='.$costItem['id']) ?>">
                 Delete
               </a>
