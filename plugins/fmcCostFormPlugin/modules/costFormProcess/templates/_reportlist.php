@@ -41,17 +41,10 @@
   </tbody>
   <tfoot>
     <tr>
-      <th colspan="5" style="text-align: right;">
-        Total
-      </th>
-      <th>
-        <?php echo $sumExcl; ?> <?php echo $cfi->Currencies ?>
-      </th>
-      <th>
-        <?php echo $sumIncl; ?> <?php echo $cfi->Currencies ?>
-      </th>
-      <td></td>
-      <td></td>
+      <th colspan="5" style="text-align: right;">Total</th>
+      <th><?php echo $sumExcl; ?> <?php echo $cfi->Currencies ?></th>
+      <th><?php echo $sumIncl; ?> <?php echo $cfi->Currencies ?></th>
+      <td colspan="2"></td>
     </tr>
   </tfoot>
 </table>

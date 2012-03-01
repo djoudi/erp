@@ -20,7 +20,7 @@ abstract class BasecostFormProcessActions extends sfActions
   
   ################################################################################################
   
-  public function executeReport (sfWebRequest $request)
+  private function getProcessVars (sfWebRequest $request)
   {
     // Checking if the processing exists in the session
       $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
@@ -53,6 +53,13 @@ abstract class BasecostFormProcessActions extends sfActions
     // Filling sub-arrays with related currency's cfi
       foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi->currency_id], $cfi);
       foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi->currency_id], $cfi);    
+  }
+  
+  ################################################################################################
+  
+  public function executeReport (sfWebRequest $request)
+  {
+    $this->getProcessVars($request);
     
     if (!$this->invoicedCount and !$this->notInvoicedCount)
     {
@@ -124,20 +131,26 @@ abstract class BasecostFormProcessActions extends sfActions
       {
         if ( $input = $request->getParameter($cfi->id) )
         {
-          if ($input['toBeInvoiced']=='dni') # if it is do not invoice
+          if (isset($input['toBeInvoiced']))
           {
-            array_push($this->notInvoiced, $cfi);
-            $cfi->dontInvoice = true;
-            $cfi->is_Processed = true;
-            $cfi->save();
+            if ($input['toBeInvoiced']=='dni') # if it is do not invoice
+            {
+              array_push($this->notInvoiced, $cfi);
+              $cfi->dontInvoice = true;
+              $cfi->is_Processed = true;
+              $cfi->save();
+            }
           }
-          elseif ($input['invoice_No'])
+          elseif (isset($input['invoice_No']))
           {
-            array_push($this->invoiced, $cfi);
-            $cfi->invoice_No = $input['invoice_No'];
-            $cfi->invoice_Date = $input['invoice_Date'];
-            $cfi->is_Processed = true;
-            $cfi->save();
+            if ($input['invoice_No'])
+            {
+              array_push($this->invoiced, $cfi);
+              $cfi->invoice_No = $input['invoice_No'];
+              $cfi->invoice_Date = $input['invoice_Date'];
+              $cfi->is_Processed = true;
+              $cfi->save();
+            }
           }
         }
       }
