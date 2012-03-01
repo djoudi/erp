@@ -22,18 +22,39 @@ abstract class BasecostFormProcessActions extends sfActions
   
   public function executeReport (sfWebRequest $request)
   {
-    $this->invoiced = $this->getUser()->getAttribute('costFormProcess_invoiced');
-    $this->notInvoiced = $this->getUser()->getAttribute('costFormProcess_notInvoiced');
+    // Checking if the processing exists in the session
+      $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
+      if (!$projectid)
+      {
+        $this->getUser()->setFlash('notice', 'Your last invoicing could not be found.');
+        $this->redirect($this->getController()->genUrl("@costforms"));
+      }
     
-    $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
-    if (!$projectid)
-    {
-      $this->getUser()->setFlash('notice', 'Your last invoicing could not be found.');
-      $this->redirect($this->getController()->genUrl("@costforms"));
-    }
-    $this->project = Doctrine::getTable('Project')->findOneById ($projectid); 
+    // Trying to fetch the project information
+      $this->project = Doctrine::getTable('Project')->findOneById ($projectid); 
+      $this->forward404Unless ($this->project);
     
-    if (!count($this->invoiced) and !count($this->notInvoiced))
+    // Fetching the cfi's from the session
+      $invoiced = $this->getUser()->getAttribute('costFormProcess_invoiced');
+      $notInvoiced = $this->getUser()->getAttribute('costFormProcess_notInvoiced');
+      $this->invoicedCount = count($invoiced);
+      $this->notInvoicedCount = count($notInvoiced);
+    
+    // Creating sub-array for each invoicing array
+      $this->invoiced = array();
+      $this->notInvoiced = array();
+      $currencies = Doctrine::getTable('Currency')->getActive();
+      foreach ($currencies as $currency)
+      {
+        $this->invoiced[$currency->id]= array();
+        $this->notInvoiced[$currency->id]= array();
+      }
+    
+    // Filling sub-arrays with related currency's cfi
+      foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi->currency_id], $cfi);
+      foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi->currency_id], $cfi);    
+    
+    if (!$this->invoicedCount and !$this->notInvoicedCount)
     {
       $this->getUser()->setFlash('notice', "No cost selected to be processed.");
       $this->redirect($request->getReferer());

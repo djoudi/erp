@@ -1,3 +1,7 @@
+TİCKET LARA DA BAK
+  ticket 12
+  
+
 tasarım görsel olarak değiştirildi
 
 kullanım kolaylığında değişiklikler yapıldı
@@ -36,7 +40,7 @@ sf checklist
 
 hascredentials:
 
-
+para birimleri boşluksuz mu olsa?
 
 ==========================    LATER     =========================
 
@@ -50,6 +54,7 @@ SONRA bir de departman bazlı raporlama olsun
 * ticket yönetimi olacak zaten nu yeşime söyle
 * cron -> email send
 * sssl bağlantısı
+
 * audit
 ** kayıt oluşturuldu diye bir audit olsun
 ** logon
@@ -57,8 +62,12 @@ SONRA bir de departman bazlı raporlama olsun
 ** password change
 ** ekran erişim
 ** kayıt değiştirme vs
+
 * email ile şifre hatırlatma / notification
 * email ile diğer şeyleri hatırlatma?
+
 * departman yönetimi
 ** bağlı olduğuı kişi ve departman bilgileri olsun?
 ** departman yönetimi olsjun, depğartman yöneticisi olsun
+
+* layout da <?php include_partial ("global/layout_topmenu"); ?> kısmı sadeleştirilsin, bu kadar bağımlı ve elle olmasın

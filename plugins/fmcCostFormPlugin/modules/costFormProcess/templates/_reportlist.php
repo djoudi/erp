@@ -8,8 +8,12 @@
       <th>VAT</th>
       <th>excl VAT</th>
       <th>incl VAT</th>
-      <th>Invoice No</th>
-      <th>Invoice Date</th>
+      <?php if ($isinvoiced): ?>
+        <th>Invoice No</th>
+        <th>Invoice Date</th>
+      <?php else: ?>
+        <th colspan="2">Invoice Status</th>
+      <?php endif; ?>
     </tr>
   </thead>
   <tbody>
@@ -26,8 +30,12 @@
         <td><?php echo $cfi->Vats ?></td>
         <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
         <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
-        <td><?php echo $cfi->invoice_No ?></td>
-        <td><?php echo $cfi->invoice_Date ?></td>
+        <?php if ($isinvoiced): ?>
+          <td><?php echo $cfi->invoice_No ?></td>
+          <td><?php echo $cfi->invoice_Date ?></td>
+        <?php else: ?>
+          <td colspan="2">Don't Invoice</td>
+        <?php endif; ?>
       </tr>
     <?php endforeach; ?>
   </tbody>

@@ -111,7 +111,7 @@ abstract class BasecostFormUserActions extends sfActions
       $this->getUser()->setFlash("notice", sprintf("Cost form with id %d is deleted!", $form->id ));
       
       $form->setUpdatedBy($this->getUser()->getGuardUser()->getId());
-      $object->save();
+      $form->save();
       $form->delete();
       
       $this->redirect($this->getController()->genUrl('@costforms'));

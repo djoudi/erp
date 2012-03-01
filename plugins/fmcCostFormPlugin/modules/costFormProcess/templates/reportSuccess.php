@@ -13,11 +13,13 @@
   </tr>
 </table>
 
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#invoiced" data-toggle="tab">To be invoiced</a></li>
   <li><a href="#notInvoiced" data-toggle="tab">NOT to be invoiced</a></li>
 </ul>
  
+
 <div class="tab-content">
   
   <div class="tab-pane active" id="invoiced">
@@ -27,8 +29,14 @@
     <?php if (!count($invoiced)): ?>
       <p>No costs selected to be invoiced.</p>
     <?php else: ?>
-      <p><strong><?php echo count($invoiced); ?></strong> costs selected to be invoiced.</p>
-      <?php include_partial ('reportlist', array('list'=>$invoiced)); ?>
+      <p><strong><?php echo $invoicedCount; ?></strong> costs selected to be invoiced.</p>
+      
+      <?php foreach ($invoiced as $currency_id=>$list): ?>
+        <?php if (count($list)>0): ?>
+          <?php include_partial ('reportlist', array('list'=>$list, 'isinvoiced'=>true)); ?>
+        <?php endif; ?>
+      <?php endforeach; ?>
+      
     <?php endif; ?>
     
   </div>
@@ -40,8 +48,14 @@
     <?php if (!count($notInvoiced)): ?>
       <p>No costs selected NOT to be invoiced.</p>
     <?php else: ?>
-      <p><strong><?php echo count($notInvoiced); ?></strong> costs selected NOT to be invoiced.</p>
-      <?php include_partial ('reportlist', array('list'=>$notInvoiced)); ?>
+      <p><strong><?php echo count($notInvoicedCount); ?></strong> costs selected NOT to be invoiced.</p>
+      
+      <?php foreach ($notInvoiced as $currency_id=>$list): ?>
+        <?php if (count($list)>0): ?>
+          <?php include_partial ('reportlist', array('list'=>$list, 'isinvoiced'=>false)); ?>
+        <?php endif; ?>
+      <?php endforeach; ?>
+      
     <?php endif; ?>
     
   </div>
