@@ -7,7 +7,8 @@ abstract class BaseprojectManagementActions extends sfActions
   {
     // Edit these variables
     $_q = Doctrine_Query::create()
-      ->from('Project p');
+      ->from('Project p')
+      ->orderBy('code ASC');
     $filterClass = new FmcFilter('ProjectFormFilter');
     $this->projects = $filterClass->initFilterForm($request, $_q)->execute();
     

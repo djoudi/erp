@@ -6,7 +6,8 @@ abstract class BasecustomerManagementActions extends sfActions
   {
     // Edit these variables
     $_q = Doctrine_Query::create()
-      ->from('Customer u');
+      ->from('Customer u')
+      ->orderBy('name ASC');
     $filterClass = new FmcFilter('CustomerFormFilter');
     $this->customers = $filterClass->initFilterForm($request, $_q)->execute();
     

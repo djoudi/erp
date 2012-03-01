@@ -8,7 +8,7 @@ abstract class BasevatManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    $this->list = Doctrine::getTable('Vat')->createQuery()->orderBy('rate')->execute();
+    $this->list = Doctrine::getTable('Vat')->createQuery()->orderBy('rate ASC')->execute();
     
     $this->form = new form_plugin_vat_add();
     

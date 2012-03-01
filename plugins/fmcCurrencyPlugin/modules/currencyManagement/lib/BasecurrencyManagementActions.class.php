@@ -8,7 +8,7 @@ abstract class BasecurrencyManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    $this->list = Doctrine::getTable('Currency')->findAll();
+    $this->list = Doctrine::getTable('Currency')->createQuery()->orderBy('code ASC')->execute();
     
     $this->form = new form_plugin_currency_add();
     
