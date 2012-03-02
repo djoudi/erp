@@ -5,47 +5,10 @@ abstract class BasecostFormUserActions extends sfActions
   
   public function executeChangepaidstatus (sfWebRequest $request)
   {
-    $cost = Doctrine::getTable('CostFormItem')
-      ->createQuery('cfi')
-      ->leftJoin('cfi.CostForms cf')
-      ->addWhere('cfi.id = ?', $request->getParameter('id'))
-      ->addWhere('cf.user_id = ?', $this->getUser()->getGuardUser()->getId())
-      ->fetchOne();
+    $cost = $this->getUser()->getMyCost($request->getParameter('id'));
     $this->forward404Unless ($cost);
-    
-    $cost->setIsPaid( ! $cost->getIsPaid() );
-    $cost->setUpdatedBy($this->getUser()->getGuardUser()->getId());
-    $cost->save();
+    $cost->changePaidStatus();
     $this->redirect ($request->getReferer());
-  }
-  
-  
-  
-  ################################################################################################
-  
-  private function getFilters() { return $this->getUser()->getAttribute('cf_filters', array()); }
-  private function setFilters($filters) { $this->getUser()->setAttribute('cf_filters', $filters); }
-  private function initFilterForm(sfWebRequest $request, Doctrine_Query $q)
-  {
-    $this->filterForm = $filterForm = new filter_costFormUser_list($this->getFilters()); #degistirilecek
-    $params = $request->getParameter($filterForm->getName());
-    if($request->isMethod('post'))
-    {
-      if($request->hasParameter('_reset'))
-      {
-        $this->setFilters(array());
-        $this->redirect($request->getReferer());
-      }
-      $filterForm->bind($params);
-      if($filterForm->isValid())
-      {
-        $this->setFilters($filterForm->getValues());
-        $this->redirect($request->getReferer());
-      }
-    }
-    $this->filtered = count($this->getFilters()) > 0;
-    $filterForm->setQuery($q);
-    return $filterForm->buildQuery($this->getFilters());
   }
   
   ################################################################################################
@@ -53,17 +16,8 @@ abstract class BasecostFormUserActions extends sfActions
   public function executeNew (sfWebRequest $request)
   {
     $this->form = new form_costFormUser_new();
-    if ($request->isMethod('post'))
-    {
-      $this->form->bind($request->getParameter($this->form->getName()));
-      if ($this->form->isValid())
-      {
-        $savedForm = $this->form->save();
-        $savedForm->setCreatedBy($this->getUser()->getGuardUser()->getId());
-        $savedForm->save();
-        $this->redirect($this->getController()->genUrl('@costFormUser_edit?id='.$savedForm->id));
-      }
-    }
+    $processClass = new FmcProcessForm();
+    $processClass->ProcessForm($this->form, $request, "@costFormUser_edit", true, true);
   }
   
   ################################################################################################
@@ -81,18 +35,8 @@ abstract class BasecostFormUserActions extends sfActions
     $cfi->setCostformId($this->costForm->getId());
     $this->form = new form_costFormUser_newItem ($cfi);
     
-    if ($request->isMethod('post'))
-    {
-      $this->form->bind ($request->getParameter($this->form->getName()));
-      if ($this->form->isValid())
-      {
-        $object = $this->form->save();
-        $object->setCreatedBy($this->getUser()->getGuardUser()->getId());
-        $object->save();
-        
-        $this->redirect($request->getReferer());
-      }
-    }
+    $processClass = new FmcProcessForm();
+    $processClass->ProcessForm($this->form, $request, "referer", false, false);
   }
   
   ################################################################################################
@@ -101,21 +45,9 @@ abstract class BasecostFormUserActions extends sfActions
   {
     $form = Doctrine::getTable('costForm')->find($request->getParameter('id'));
     $this->forward404Unless($form);
+    // BURASINDA KISININ KENDINE AIT FORMLARINI GETIRSIN SADECE
     
-    if ( $form->isSent )
-    {
-      $this->getUser()->setFlash("error", sprintf("Cost form with id %d cannot be deleted because it is active!", $form->id ));
-    }
-    else
-    {
-      $this->getUser()->setFlash("notice", sprintf("Cost form with id %d is deleted!", $form->id ));
-      
-      $form->setUpdatedBy($this->getUser()->getGuardUser()->getId());
-      $form->save();
-      $form->delete();
-      
-      $this->redirect($this->getController()->genUrl('@costforms'));
-    }
+    $form->deleteDraftForm();
     
     $this->redirect($request->getReferer());
   }
@@ -147,17 +79,20 @@ abstract class BasecostFormUserActions extends sfActions
   {
     $this->costFormStatus = sfConfig::get("app_costForm_status", array());
     
-    $userId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
-    
+    // Edit these variables
     $_q = Doctrine_Query::create()
       ->from('CostForm cf')
       ->leftJoin('cf.Projects p')
-      ->where('p.status = ?', 'Active')
-      ->andWhere('cf.user_id = ?', $userId);
+      ->addWhere('p.status = ?', 'Active')
+      ->addWhere('cf.user_id = ?', $this->getUser()->getGuardUser()->getId());
+      
+    $filterClass = new FmcFilter('filter_costFormUser_list');
+    $this->costForms = $filterClass->initFilterForm($request, $_q)->execute();
     
-    $q = $this->initFilterForm($request, $_q);
-    
-    $this->costForms = $q->execute();
+    // Do not touch here
+    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+    $this->filter = $filterClass->getFilter();
+    $this->filtered = $filterClass->getFiltered();
   }
   
   ################################################################################################

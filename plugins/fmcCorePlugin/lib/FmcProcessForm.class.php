@@ -7,7 +7,7 @@
       $this->user = sfContext::getInstance()->getUser();
     }
     
-    public function ProcessForm ($form, $request, $forwardurl, $isNew = false)
+    public function ProcessForm ($form, $request, $forwardurl, $isNew = false, $withid = false)
     {
       if ($request->isMethod('post'))
       {
@@ -20,7 +20,13 @@
           $object->save();
           
           $this->user->setFlash("success", "Record is saved!");
-          $this->controller->redirect($this->controller->genUrl($forwardurl));
+          
+          // For costform-user-new
+          if ($withid) $redirecturl = $this->controller->genUrl($forwardurl.'?id='.$object->id);
+          elseif ($forwardurl=="referer") $redirecturl = $request->getReferer();
+          else $redirecturl = $this->controller->genUrl($forwardurl);
+          
+          $this->controller->redirect($redirecturl);
         }
         else
         {

@@ -1,9 +1,9 @@
 <?php slot ('title', "My Cost Forms") ?>
 
-<?php if (isset($filterForm)): ?>
-  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filterForm, 'filtered'=>$filtered)); ?>
+<?php if (isset($filter)): ?>
+  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
 <?php endif; ?>
-    
+
 <?php if (!count($costForms)): ?>
   <p>No cost forms found in your selected criterias.</p>
 <?php else: ?>
