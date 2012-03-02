@@ -72,41 +72,53 @@ abstract class BasecostFormProcessActions extends sfActions
   
   public function executeExport (sfWebRequest $request)
   {
-    $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
-    $project = Doctrine::getTable('Project')->findOneById ($projectid);
-    $invoiced = $this->getUser()->getAttribute('costFormProcess_invoiced');
-    $notInvoiced = $this->getUser()->getAttribute('costFormProcess_notInvoiced');
+    $this->getProcessVars($request);
     
     $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/costform-invoicing.xls";
     $objReader = PHPExcel_IOFactory::createReader('Excel5');
     $objPHPExcel = $objReader->load($xfile);
     
     $objPHPExcel->setActiveSheetIndex(0)
-      ->setCellValue('B1', $project->getCustomers()->__toString())
-      ->setCellValue('B2', $project->getCode())
+      ->setCellValue('B1', $this->project->getCustomers()->__toString())
+      ->setCellValue('B2', $this->project->getCode())
       ->setCellValue('B3', $this->getUser()->getGuardUser()->__toString())
-      ->setCellValue('B4', date("d-m-Y H:m"))
-    ;
+      ->setCellValue('B4', date("d-m-Y H:m"));
     $row = 8;
-    foreach ($invoiced as $index => $item)
+    
+    foreach ($this->invoiced as $currency_id=>$list)
     {
-      $objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue("A$row", date ("d-m-Y", strtotime($item->cost_Date)) )
-        ->setCellValue("B$row", $item->getCostForms()->getUsers()->__toString())
-        ->setCellValue("C$row", $item->getDescription())
-        ->setCellValue("D$row", $item->getVats()->getRate())
-        ->setCellValue("E$row", $item->getWithoutVat()." ".$item->getCurrencies()->__toString())
-        ->setCellValue("F$row", $item->getAmount()." ".$item->getCurrencies()->__toString())
-        ->setCellValue("G$row", $item->getReceiptNo())
-        ->setCellValue("H$row", $item->getInvoiceTo())
-        ->setCellValue("I$row", $item->getInvoiceNo())
-      ;
-      $row++;
+      if (count($list)>0)
+      {
+        $sumexclvat = 0;
+        $suminclvat = 0;
+        foreach ($list as $index=>$item)
+        {
+          $sumexclvat += $item->withoutVat;
+          $suminclvat += $item->amount;
+          $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue("A$row", date ("d-m-Y", strtotime($item->cost_Date)) )
+            ->setCellValue("B$row", $item->getCostForms()->getUsers()->__toString())
+            ->setCellValue("C$row", $item->getDescription())
+            ->setCellValue("D$row", $item->getVats()->getRate())
+            ->setCellValue("E$row", $item->getWithoutVat()." ".$item->getCurrencies()->__toString())
+            ->setCellValue("F$row", $item->getAmount()." ".$item->getCurrencies()->__toString())
+            ->setCellValue("G$row", $item->getReceiptNo())
+            ->setCellValue("H$row", $item->getInvoiceTo())
+            ->setCellValue("I$row", $item->getInvoiceNo())
+            ->setCellValue("J$row", $item->getInvoiceDate());
+          $row++;
+        }
+        $objPHPExcel->setActiveSheetIndex(0)
+          ->setCellValue("C$row", "Total")
+          ->setCellValue("E$row", $sumexclvat." ".$item->getCurrencies()->__toString())
+          ->setCellValue("F$row", $suminclvat." ".$item->getCurrencies()->__toString());
+        $row++;$row++;$row++;
+      }
     }
     
     $objPHPExcel->getActiveSheet()->setTitle('Cost Invoicing');
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="costinvoicing-'.$project->getCode().'.xls"');
+    header('Content-Disposition: attachment;filename="costinvoicing-'.$this->project->getCode().'.xls"');
     header('Cache-Control: max-age=0');
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
     $objWriter->save('php://output');
@@ -158,7 +170,7 @@ abstract class BasecostFormProcessActions extends sfActions
       $this->getUser()->setAttribute('costFormProcess_notInvoiced', $this->notInvoiced);
       $this->getUser()->setAttribute('costFormProcess_projectid', $this->project->getId());
       
-      $this->getUser()->setFlash('notice', 'Cost forms you have selected has been processed.');
+      $this->getUser()->setFlash('success', 'Cost forms you have selected has been processed.');
       $this->redirect($this->getController()->genUrl("@costFormProcess_report"));
     }
   }
