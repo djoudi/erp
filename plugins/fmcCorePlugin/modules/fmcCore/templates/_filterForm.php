@@ -1,14 +1,11 @@
 <div class="FilterForm well" style="padding: 10px !important;">
 
-  <h4>
-    <a class="btn info" onclick="$('#topFilterForm').toggle()">
-      <i class="icon-search"></i>
-      Filter Results 
-    </a>
-  </h4>
+  <a class="btn info" onclick="$('#topFilterForm').toggle()">
+    <i class="icon-search"></i>
+    Filter Results 
+  </a>
 
   <form id="topFilterForm" action="" method="post" <?php if (!$filtered): ?>style="display:none"<?php endif; ?>>
-    <br />
     <table class="table table-striped table-bordered table-condensed">
       <?php echo $filter; ?>
       <tr>

@@ -201,32 +201,50 @@ abstract class BasecostFormUserActions extends sfActions
       ->setCellValue('E2', sfContext::getInstance()->getUser()->getGuardUser()->getName())
       ->setCellValue('E3', $form->Projects->code)
       ->setCellValue('L2', $form->id)
-      ->setCellValue('L3', $form->advanceRecieved)
-      ->setCellValue('G57', $form->TotalSum.' TL')
-      ->setCellValue('G59', $form->TotalSum-$form->advanceRecieved.' TL')
-    ;
-    foreach ($form->CostFormItems as $index=>$cfi)
+      ->setCellValue('L3', $form->advanceRecieved);
+      $row = 7;
+    
+    // Creating sub-array for each invoicing array
+      $costs = array();
+      $currencies = Doctrine::getTable('Currency')->getActive();
+      foreach ($currencies as $currency)
+      {
+        $costs[$currency->id]= array();
+      }
+      foreach ($form->CostFormItems as $cfi) array_push ($costs[$cfi->currency_id], $cfi);
+    
+    foreach ($costs as $currency_id=>$list)
     {
-      $rowNo = ($index*2)+7;
-      $objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue('B'.$rowNo, $cfi->cost_Date)
-        ->setCellValue('D'.$rowNo, $cfi->description)
-        ->setCellValue('G'.$rowNo, $cfi->amount.' TL')
-        ->setCellValue('I'.$rowNo, $cfi->receipt_No)
-        ->setCellValue('K'.$rowNo, $cfi->invoice_To)
-      ;
+      if (count($list)>0)
+      {
+        $sum = 0;      
+        foreach ($list as $index=>$cfi)
+        {
+          //$rowNo = ($index*2)+7;
+          $sum += $cfi->amount;
+          $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('B'.$row, $cfi->cost_Date)
+            ->setCellValue('D'.$row, $cfi->description)
+            ->setCellValue('G'.$row, $cfi->amount.' '.$cfi->getCurrencies()->__toString(). ' (%'.$cfi->getVats()->__toString().')')
+            ->setCellValue('I'.$row, $cfi->receipt_No)
+            ->setCellValue('K'.$row, $cfi->invoice_To);
+          $row +=2;
+        }
+        $objPHPExcel->setActiveSheetIndex(0)
+          ->setCellValue("D$row", "Total")
+          ->setCellValue("G$row", $sum." ".$cfi->getCurrencies()->__toString());
+        $row += 4;
+      }
     }
     
     $objPHPExcel->getActiveSheet()->setTitle('CostForm');
-
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment;filename="costform-'.$form->id.'.xls"');
     header('Cache-Control: max-age=0');
-
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
     $objWriter->save('php://output');
     
-    $this->$this->redirect($request->getReferer());
+    $this->redirect($request->getReferer());
   }
   
   

@@ -79,6 +79,14 @@ h4 {
   margin-bottom: 10px;
 }
 
+.FilterForm form#topFilterForm {
+  margin: 0;
+}
+
+.FilterForm form#topFilterForm table {
+  margin: 15px 0 5px 0 !important;
+}
+
 .form-actions {
   margin-top: 33px;
 }
