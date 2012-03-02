@@ -27,9 +27,6 @@ cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin va
 
 ==============================   TO  DO   ========================
 
-cost form user - filter kısmını class la     ve edit kısmı da process form classla
-  cost form user actions da filter kısmı class la olsun
-
 sadece cost formları da silebilsin
 
 tablesorter currency ve date sort yanlış
