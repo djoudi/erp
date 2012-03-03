@@ -4,15 +4,11 @@
   <?php include_partial('costFormDetails', array('costForm' => $costForm, 'costFormStatus' => $costFormStatus)) ?>
   
   <?php include_partial('costFormItems', array('costItems' => $costItems, 'isSent' => $costForm->isSent )) ?>
-  
-  <br />
 
   <?php if ( ! $costForm->isSent): ?>
     <h4>Add new cost</h4>
     <?php include_partial('costFormItemNew', array('form' => $form)) ?>
   <?php endif; ?>
-  
-  <br />
 
 <div class="form-actions">
 

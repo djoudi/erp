@@ -38,9 +38,15 @@
           
           <?php if ( ! $isSent ): ?>
             <td>
-              <a class="btn btn-mini btn-danger" href="<?php echo url_for('@costFormUser_deleteItem?id='.$costItem['id']) ?>">
-                Delete
-              </a>
+              <?php
+                $cf_id = $costItem->getCostForms()->getId();
+                $cfi_id = $costItem['id'];
+                $url = url_for('@costFormUser_editItem?id='.$cf_id.'&cfi_id='.$cfi_id);
+              ?>
+              <a class="btn btn-mini btn-info" href="<?php echo $url; ?>">Edit</a> 
+              
+              <?php $url = url_for('@costFormUser_deleteItem?id='.$costItem['id']); ?>
+              <a class="btn btn-mini btn-danger" href="<?php echo $url; ?>">Delete</a>
             </td>
           <?php endif;?>
           

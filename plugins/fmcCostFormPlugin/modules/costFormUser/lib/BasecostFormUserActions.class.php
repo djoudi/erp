@@ -24,16 +24,44 @@ abstract class BasecostFormUserActions extends sfActions
   
   public function executeEdit (sfWebRequest $request)
   {
-    $this->costFormStatus = sfConfig::get("app_costForm_status", array());
+    $cf_id = $request->getParameter('id');
+
+    if ($cfi_id = $request->getParameter('cfi_id'))
+    {      
+      $this->getUser()->setAttribute('cfi_id', $cfi_id);
+      $this->redirect($this->getController()->genUrl('@costFormUser_edit?id='.$cf_id));
+    }
+    elseif ($this->getUser()->getAttribute('cfi_id'))
+    {
+      $cfi_id = $this->getUser()->getAttribute('cfi_id');
+      $this->getUser()->getAttributeHolder()->remove('cfi_id');
+      
+      $cfi_old = Doctrine::getTable('CostFormItem')
+        ->createQuery ('cfi')
+        ->leftJoin ('cfi.CostForms cf')
+        ->addWhere ('id = ?', $cfi_id)
+        ->addWhere ('cf.user_id = ?', $this->getUser()->getGuardUser()->getId())
+        ->limit (1)
+        ->fetchOne();
+      $cfi = $cfi_old->copy();
+      $cfi_old->delete();
+      
+      $this->form = new form_costFormUser_newItem ($cfi);
+    }
     
-    $this->costForm = Doctrine::getTable('costForm')->find($request->getParameter('id'));
+    $this->costForm = Doctrine::getTable('costForm')->find($cf_id);
     $this->forward404Unless($this->costForm);
     $this->costItems = Doctrine::getTable('costFormItem')->findBycostForm_id($this->costForm->id);
     
-    $cfi = new CostFormItem($this->costForm);
-    $cfi->setCostDate(date('Y-m-d'));
-    $cfi->setCostformId($this->costForm->getId());
-    $this->form = new form_costFormUser_newItem ($cfi);
+    if (!$cfi_id)
+    {
+      $cfi = new CostFormItem($this->costForm);
+      $cfi->setCostDate(date('Y-m-d'));
+      $cfi->setCostformId($this->costForm->getId());
+      $this->form = new form_costFormUser_newItem ($cfi);
+    }
+    
+    $this->costFormStatus = sfConfig::get("app_costForm_status", array());
     
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "referer", false, false);

@@ -1,6 +1,5 @@
 TİCKET LARA DA BAK
   ticket 12
-  
 
 tasarım görsel olarak değiştirildi
 
@@ -44,10 +43,15 @@ para birimleri boşluksuz mu olsa?
 ==========================    LATER     =========================
 
 
+
+
 SONRA departmanlar ve head ler olsun employee lerde
 SONRA yani yöneticisi olsun
 SONRA bir üst yöneticisi
 SONRA bir de departman bazlı raporlama olsun
+
+
+* bir ara tüm modüllerin actionlarını kontrol et, kullanıcıların kendilerine ait olmayan verilere erişimi olabiliyor mu diye
 
 
 * ticket yönetimi olacak zaten nu yeşime söyle
