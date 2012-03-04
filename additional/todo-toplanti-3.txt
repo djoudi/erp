@@ -1,15 +1,18 @@
+cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
+
+
+
+
 TİCKET LARA DA BAK
-  ticket 12
+  ticket 12 - toplantı notları
 
 tasarım görsel olarak değiştirildi
+  daha fazla boşluk var
+  kullanım kolaylığında değişiklikler yapıldı
 
-kullanım kolaylığında değişiklikler yapıldı
+versionable desteği eklendi (arayüzde yok)
 
-versionable eklendi
-
-daha fazla boşluk var
-
-created / updated by eklendi
+created / updated by eklendi (arayüzde var)
 
 raporlama sayfasında descriptionlar daha kısa artık
 
@@ -19,7 +22,7 @@ tüm sonuç sayfalarında bulunan sonuç yazıyor
 
 tüm sonuç sayfalarında filtre var ( ve filtre artık her yerde kullanılabilir hale getirildi)
 
-cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
+
 
 
 
