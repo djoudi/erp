@@ -5,17 +5,17 @@ abstract class BaseprojectManagementActions extends sfActions
   
   public function executeIndex (sfWebRequest $request)
   {
-    // Edit these variables
-    $_q = Doctrine_Query::create()
-      ->from('Project p')
-      ->orderBy('code ASC');
-    $filterClass = new FmcFilter('ProjectFormFilter');
-    $this->projects = $filterClass->initFilterForm($request, $_q)->execute();
+    // Filter: Edit these variables
+      $_q = Doctrine_Query::create()
+        ->from('Project p')
+        ->orderBy('code ASC');
+      $filterClass = new FmcFilter('ProjectFormFilter');
+      $this->projects = $filterClass->initFilterForm($request, $_q)->execute();
     
-    // Do not touch here
-    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-    $this->filter = $filterClass->getFilter();
-    $this->filtered = $filterClass->getFiltered();
+    // Filter: Do not touch here
+      if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+      $this->filter = $filterClass->getFilter();
+      $this->filtered = $filterClass->getFiltered();
   }
   
   public function executeEdit (sfWebRequest $request)

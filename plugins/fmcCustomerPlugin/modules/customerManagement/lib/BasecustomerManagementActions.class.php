@@ -4,17 +4,17 @@ abstract class BasecustomerManagementActions extends sfActions
 {
   public function executeList (sfWebRequest $request)
   {
-    // Edit these variables
-    $_q = Doctrine_Query::create()
-      ->from('Customer u')
-      ->orderBy('name ASC');
-    $filterClass = new FmcFilter('CustomerFormFilter');
-    $this->customers = $filterClass->initFilterForm($request, $_q)->execute();
+    // Filter: Edit these variables
+      $_q = Doctrine_Query::create()
+        ->from('Customer u')
+        ->orderBy('name ASC');
+      $filterClass = new FmcFilter('CustomerFormFilter');
+      $this->customers = $filterClass->initFilterForm($request, $_q)->execute();
     
-    // Do not touch here
-    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-    $this->filter = $filterClass->getFilter();
-    $this->filtered = $filterClass->getFiltered();
+    // Filter: Do not touch here
+      if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+      $this->filter = $filterClass->getFilter();
+      $this->filtered = $filterClass->getFiltered();
   }
   
   

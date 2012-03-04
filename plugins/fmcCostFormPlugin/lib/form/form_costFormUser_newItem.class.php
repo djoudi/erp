@@ -19,6 +19,14 @@ class form_costFormUser_newItem extends CostFormItemForm
       )
     ));
     
+    # setting date
+    $this->setWidget('invoice_Date', new sfWidgetFormJQueryDate(
+      array(
+        'date_widget' => new sfWidgetFormDate(array('format'=>'%day%%month%%year%')),
+        'image' => '/images/calendar.png',
+        'config' => '{ changeMonth: true, changeYear: true, yearRange: "c-100:c" }'
+      )
+    ));
     
     # setting VAT
     $this->setWidget('vat_id', new sfWidgetFormDoctrineChoice(array(

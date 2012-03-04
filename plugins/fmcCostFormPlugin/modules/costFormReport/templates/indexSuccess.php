@@ -2,7 +2,19 @@
 
 
 <?php if (isset($filter)): ?>
-  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+  <?php include_partial ('fmcCore/filterForm', array(
+  'filter'=>$filter, 
+  'filtered'=>$filtered, 
+  'count'=>count($costFormItems)
+  )); ?>
+<?php endif; ?>
+
+
+<?php if ($resultslimited): ?>
+  <div class="alert">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    More than <strong><?php echo $resultlimit; ?></strong> results found, showing first <strong><?php echo $resultlimit; ?></strong> results. Please filter your result.
+  </div>
 <?php endif; ?>
 
 
@@ -10,9 +22,7 @@
   <p>No costs found in your selected criterias.</p>
 <?php else: ?>
 
-  <p><strong><?php echo count($costFormItems); ?></strong> results found.</p>
-
-  <table class="tablesorter table table-striped table-bordered table-condensed">
+  <table class="tablesorter1d tablesorterpager table table-striped table-bordered table-condensed">
     
     <thead>
       <tr>

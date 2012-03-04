@@ -1,12 +1,14 @@
 <?php slot ('title', "Employee List") ?>
 
 <?php if (isset($filter)): ?>
-  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+  <?php include_partial ('fmcCore/filterForm', array(
+  'filter'=>$filter, 
+  'filtered'=>$filtered, 
+  'count'=>count($employees)
+  )); ?>
 <?php endif; ?>
 
-<p><strong><?php echo count($employees); ?></strong> employees found.</p>
-
-<table class="tablesorter2a table table-striped table-bordered table-condensed">
+<table class="tablesorter2a tablesorterpager table table-striped table-bordered table-condensed">
   <thead>
     <tr>
       <th>Active</th>

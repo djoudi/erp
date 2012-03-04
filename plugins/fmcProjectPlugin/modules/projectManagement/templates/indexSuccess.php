@@ -1,15 +1,16 @@
 <?php slot ('title', "Project List") ?>
 
 <?php if (isset($filter)): ?>
-  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+  <?php include_partial ('fmcCore/filterForm', array(
+  'filter'=>$filter, 
+  'filtered'=>$filtered, 
+  'count'=>count($projects)
+  )); ?>
 <?php endif; ?>
 
-<p><strong><?php echo count($projects); ?></strong> projects found.</p>
-
-<table class="tablesorter4a table table-striped table-bordered table-condensed">
+<table class="tablesorter3a tablesorterpager table table-striped table-bordered table-condensed">
   <thead>
     <tr>
-      <th>P. No</th>
       <th>Status</th>
       <th>Customer</th>
       <th>Project Code</th>
@@ -19,7 +20,6 @@
   <tbody>
     <?php foreach ($projects as $project): ?>
       <tr>
-        <td><?php echo $project->getId(); ?></td>
         <td><?php echo $project->getStatus(); ?></td>
         <td><?php echo $project->getCustomers(); ?></td>
         <td><a href="<?php echo url_for("@projectManagement_edit?id=".$project->getId()); ?>"><?php echo $project->getCode(); ?></a></td>

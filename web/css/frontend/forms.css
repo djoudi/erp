@@ -3,15 +3,22 @@
 #cost_form_currency_id { width: 50px; }
 #cost_form_advanceRecieved { width: 50px; text-align: right; }
 
-#cost_form_item_cost_Date_day { width: 50px; }
-#cost_form_item_cost_Date_month { width: 50px; }
-#cost_form_item_cost_Date_year { width: 70px; }
-#cost_form_item_currency_id { width: 50px; }
-#cost_form_item_vat_id { width: 50px; }
-#cost_form_item_amount { width: 60px; text-align: right; }
-#cost_form_item_description { width: 150px; }
-#cost_form_item_receipt_No { width: 80px; }
-#cost_form_item_invoice_To { width: 90px; }
+#cost_form_item_cost_Date_day, 
+#cost_form_item_invoice_Date_day
+{
+  width: 50px;
+}
+#cost_form_item_cost_Date_month, 
+#cost_form_item_invoice_Date_month
+{
+  width: 50px;
+}
+
+#cost_form_item_cost_Date_year, 
+#cost_form_item_invoice_Date_year
+{
+  width: 70px;
+}
 
 #project_description { width: 400px; }
 
@@ -20,3 +27,9 @@
 
 #vat_rate { width: 70px; }
 
+#CostFormUser_NewCfi #cost_form_item_currency_id { width: 50px; }
+#CostFormUser_NewCfi #cost_form_item_vat_id { width: 50px; }
+#CostFormUser_NewCfi #cost_form_item_amount { width: 60px; text-align: right; }
+#CostFormUser_NewCfi #cost_form_item_description { width: 150px; }
+#CostFormUser_NewCfi #cost_form_item_receipt_No { width: 80px; }
+#CostFormUser_NewCfi #cost_form_item_invoice_To { width: 90px; }

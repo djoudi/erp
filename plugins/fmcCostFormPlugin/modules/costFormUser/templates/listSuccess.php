@@ -1,16 +1,18 @@
 <?php slot ('title', "My Cost Forms") ?>
 
 <?php if (isset($filter)): ?>
-  <?php include_partial ('fmcCore/filterForm', array('filter'=>$filter, 'filtered'=>$filtered)); ?>
+  <?php include_partial ('fmcCore/filterForm', array(
+  'filter'=>$filter, 
+  'filtered'=>$filtered, 
+  'count'=>count($costForms)
+  )); ?>
 <?php endif; ?>
 
 <?php if (!count($costForms)): ?>
   <p>No cost forms found in your selected criterias.</p>
 <?php else: ?>
-
-  <p><strong><?php echo count($costForms); ?></strong> cost forms found.</p>
   
-  <table class="tablesorter table table-striped table-bordered table-condensed">
+  <table class="tablesorter tablesorterpager table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>CF No</th>

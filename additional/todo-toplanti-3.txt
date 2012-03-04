@@ -1,3 +1,4 @@
+Zaten bilinen:
 cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
 
 
@@ -42,6 +43,11 @@ sf checklist
 hascredentials:
 
 para birimleri boşluksuz mu olsa?
+
+yeni sürüm bildirimleri
+  kullanıcılara açılışta modal çıksın
+  db de okunan son sürüm notları diye bir alan olsun
+  değişiklikler burada yazsın
 
 ==========================    LATER     =========================
 

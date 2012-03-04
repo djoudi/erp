@@ -1,6 +1,6 @@
 <form action="" method="post">
   <?php echo $form->renderHiddenFields() ?>
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-striped table-bordered table-condensed" id="CostFormUser_NewCfi">
     <tr>
       <th>Date</th>
       <th>Description</th>

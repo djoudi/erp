@@ -52,6 +52,7 @@ h4 {
   margin: 20px 0 10px 0 !important;
 }
 
+
 /* CLASSES */
 
 .alert p {
@@ -115,8 +116,26 @@ h4 {
   width: 100px !important;
 }
 
+
+/* TABLESORTER PAGER */
+
+.tablesorterpagerdiv form {
+  margin: 0 !important;
+}
+
+
 /* BOOTSTRAP OVERRIDE */
 
 input, textarea, select, .uneditable-input {
   margin-bottom: 0px !important;
 }
+
+.pagination {
+  height: auto !important;
+  margin: 10px 0 !important;
+}
+
+.pagination a {
+  line-height: 25px !important;
+}
+
