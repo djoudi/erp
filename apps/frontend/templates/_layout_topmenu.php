@@ -36,3 +36,5 @@
 </ul>
 
 <div class="clear"></div>
+
+<?php echo sfConfig::get('app_testes');
