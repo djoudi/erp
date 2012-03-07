@@ -6,15 +6,19 @@
 <div class="well" style="padding: 8px 0;">
   <ul class="nav nav-list">
 
-    <?php if ( $sf_user->getGuardUser()->hasPermission("Cost Forms") ): ?>
       <li class="nav-header">My Costs</li>
+      
+      <?php if ($sf_user->hasCredential('@costFormUser_list')): ?>
+        <li>asdadadas</li>
+      <?php endif; ?>
+      
       <li <?php if($module=="costFormUser" and $action=="list"): ?> class="active" <?php endif; ?>>
         <?php echo link_to ('List my costs', '@costFormUser_list'); ?>
       </li>
+      
       <li <?php if($module=="costFormUser" and $action=="new"): ?> class="active" <?php endif; ?>>
         <?php echo link_to ('New cost form', '@costFormUser_new'); ?>
       </li>
-    <?php endif; ?>
 
     <?php if ( $sf_user->getGuardUser()->hasPermission("Cost Form Invoicing") ): ?>
       <li class="nav-header">Employee Costs</li>

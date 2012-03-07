@@ -1,0 +1,9 @@
+all:
+  menus:
+    topmenu:
+      children:
+        3:
+          label: Working Hours
+          route: @workinghours
+          requires_auth: true
+          #credentials: [["A", "B"]]

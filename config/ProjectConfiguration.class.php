@@ -7,6 +7,8 @@ class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
   {
+    
+    $this->enablePlugins('ioMenuPlugin');
     $this->enablePlugins('sfDoctrinePlugin');
     $this->enablePlugins('sfDoctrineGuardPlugin'); # login, user, group, permission
     $this->enablePlugins('sfFormExtraPlugin'); # forms
@@ -19,6 +21,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('fmcEmployeePlugin');
     $this->enablePlugins('fmcProjectPlugin');
     $this->enablePlugins('fmcVatPlugin');
+    $this->enablePlugins('fmcWorkingHourPlugin');
     
   }
   

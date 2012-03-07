@@ -1,1 +1,32 @@
+#all:
+  #menus:
+    #admin_menu:
+      #name:     Admin menu
+      #children:
+        #signin:
+          #label:   Sign in
+          #route:   @sf_guard_signin
+          #requires_no_auth: true
+          #attributes: {class: signin }
+          #requires_auth: true
+          #credentials: [ManagePermissions]
+          #children:
+            #manage_users:
+              #label:   Manage Users
 
+all:
+  menus:
+    topmenu:
+      name: Top Menu
+      attributes: {id: LayoutTopMenu, class: "nav nav-tabs" }
+      children:
+        0:
+          label: Home
+          route: @homepage
+          requires_auth: true
+          is_first: true
+        99:
+          label: Administration
+          route: @administration
+          requires_auth: true
+          credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]

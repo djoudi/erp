@@ -14,4 +14,8 @@ class homePageActions extends sfActions
   {
   }
   
+  public function executeWorkinghours (sfWebRequest $request)
+  {
+  }
+  
 }

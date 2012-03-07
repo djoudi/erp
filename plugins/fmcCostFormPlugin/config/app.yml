@@ -5,3 +5,12 @@ all:
       Sent: 'Sent for Invoicing'
       Processing: 'Partially Invoiced'
       Processed: 'Invoiced'
+
+  menus:
+    topmenu:
+      children:
+        2:
+          label: Cost Forms
+          route: @costforms
+          requires_auth: true
+          credentials: [["Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management"]]

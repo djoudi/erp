@@ -13,6 +13,9 @@ costforms:
 administration:
   url: /home/administration
   param: { module: homepage, action: administration }
+workinghours:
+  url: /home/workinghours
+  param: { module: homepage, action: workinghours }
 
 
 # SF GUARD AUTH
