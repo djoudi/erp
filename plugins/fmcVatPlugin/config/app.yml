@@ -1,0 +1,9 @@
+all:
+  menus:
+    leftmenu_administration:
+      children:
+        01:
+          label: VAT
+          route: @vatManagement_index
+          requires_auth: true
+          credentials: ["VAT Management"]

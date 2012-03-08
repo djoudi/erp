@@ -1,0 +1,18 @@
+all:
+  menus:
+    leftmenu_administration:
+      children:
+        10:
+          label: Employees
+          attributes: { class: "nav-header" }
+          requires_auth: true      
+        11:
+          label: Employee list
+          route: @employeeManagement
+          requires_auth: true
+          credentials: ["Employee Management"]
+        12:
+          label: New employee
+          route: @employeeManagement_new
+          requires_auth: true
+          credentials: ["Employee Management"]

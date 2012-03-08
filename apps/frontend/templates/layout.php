@@ -16,9 +16,11 @@
       $actionName = $sf_context->getActionName();
       $mods_costform = array("costFormProcess", "costFormUser", "costFormReport", "costFormManage");
       $mods_administration = array("currencyManagement", "customerManagement", "employeeManagement", "projectManagement", "vatManagement");
+      $mods_workinghours = array();
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
       elseif (in_array($moduleName, $mods_administration) or $actionName=="administration") $mod = "administration";
+      elseif (in_array($moduleName, $mods_workinghours) or $actionName=="workinghours") $mod = "workinghours";
       else $mod = "homepage";
       
       //permission detection

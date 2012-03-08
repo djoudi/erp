@@ -19,7 +19,6 @@ all:
       name: Left Menu
       attributes: { class: "nav nav-list" }
       children:
-      
         01:
           label: My Costs
           attributes: { class: "nav-header" }

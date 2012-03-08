@@ -14,3 +14,12 @@ all:
           route: @administration
           requires_auth: true
           credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]
+    
+    leftmenu_administration:
+      name: Left Menu
+      attributes: { class: "nav nav-list" }
+      children:
+        00:
+          label: Program Settings
+          attributes: { class: "nav-header" }
+          requires_auth: true
