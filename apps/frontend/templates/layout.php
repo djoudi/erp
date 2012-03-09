@@ -16,7 +16,7 @@
       $actionName = $sf_context->getActionName();
       $mods_costform = array("costFormProcess", "costFormUser", "costFormReport", "costFormManage");
       $mods_administration = array("currencyManagement", "customerManagement", "employeeManagement", "projectManagement", "vatManagement");
-      $mods_workinghours = array();
+      $mods_workinghours = array('workingHourUser');
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
       elseif (in_array($moduleName, $mods_administration) or $actionName=="administration") $mod = "administration";

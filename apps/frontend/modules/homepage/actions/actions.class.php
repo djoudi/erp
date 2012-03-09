@@ -16,7 +16,6 @@ class homePageActions extends sfActions
   
   public function executeWorkinghours (sfWebRequest $request)
   {
-    $this->form = new WorkingHourForm_User();
   }
   
 }

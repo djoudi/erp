@@ -45,6 +45,8 @@ all:
       - costFormReport
       - costFormManage
       
+      - workingHourUser
+      
       - currencyManagement
       - customerManagement
       - employeeManagement

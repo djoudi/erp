@@ -1,2 +1,2 @@
 all:
-  enabled_modules: [employeeManagement]
+  enabled_modules: [employeeManagement, permissionManagement]

@@ -1,0 +1,3 @@
+workingHourUser_home:
+  url: /workinghours/user/home
+  param: { module: workingHourUser, action: home }

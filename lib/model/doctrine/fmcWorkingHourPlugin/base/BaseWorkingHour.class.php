@@ -15,8 +15,8 @@
  * @property time $time
  * @property integer $created_by
  * @property integer $updated_by
- * @property sfGuardUser $Users
- * @property Project $Projects
+ * @property sfGuardUser $User
+ * @property Project $Project
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * 
@@ -30,8 +30,8 @@
  * @method time        getTime()          Returns the current record's "time" value
  * @method integer     getCreatedBy()     Returns the current record's "created_by" value
  * @method integer     getUpdatedBy()     Returns the current record's "updated_by" value
- * @method sfGuardUser getUsers()         Returns the current record's "Users" value
- * @method Project     getProjects()      Returns the current record's "Projects" value
+ * @method sfGuardUser getUser()          Returns the current record's "User" value
+ * @method Project     getProject()       Returns the current record's "Project" value
  * @method sfGuardUser getCreator()       Returns the current record's "Creator" value
  * @method sfGuardUser getUpdater()       Returns the current record's "Updater" value
  * @method WorkingHour setUserId()        Sets the current record's "user_id" value
@@ -44,8 +44,8 @@
  * @method WorkingHour setTime()          Sets the current record's "time" value
  * @method WorkingHour setCreatedBy()     Sets the current record's "created_by" value
  * @method WorkingHour setUpdatedBy()     Sets the current record's "updated_by" value
- * @method WorkingHour setUsers()         Sets the current record's "Users" value
- * @method WorkingHour setProjects()      Sets the current record's "Projects" value
+ * @method WorkingHour setUser()          Sets the current record's "User" value
+ * @method WorkingHour setProject()       Sets the current record's "Project" value
  * @method WorkingHour setCreator()       Sets the current record's "Creator" value
  * @method WorkingHour setUpdater()       Sets the current record's "Updater" value
  * 
@@ -99,12 +99,12 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as Users', array(
+        $this->hasOne('sfGuardUser as User', array(
              'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Project as Projects', array(
+        $this->hasOne('Project', array(
              'local' => 'project_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
