@@ -1,0 +1,26 @@
+# Working hours will be entered here
+
+WorkingHour:
+  actAs:
+    SoftDelete: ~
+    Timestampable: ~
+    Versionable: ~
+  columns:
+    user_id: integer
+    date: date
+    project_id: { type: integer, notnull: true }
+    worktype: { type: integer, notnull: true }
+    comment: string(250)
+    time_started: { type: time, notnull: true }
+    time_finished: { type: time, notnull: true }
+    time: time
+    created_by: integer
+    updated_by: integer
+  relations:
+    Users: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
+    Projects: { class: Project, local: project_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
+    #Worktype: 
+    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
+#Worktype table

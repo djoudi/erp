@@ -7,3 +7,18 @@ all:
           route: @workinghours
           requires_auth: true
           #credentials: [["A", "B"]]
+
+    leftmenu_workinghours:
+      name: Left Menu
+      attributes: { class: "nav nav-list" }
+      children:
+        01:
+          label: My working hours
+          attributes: { class: "nav-header" }
+          requires_auth: true
+          credentials: ["Cost Forms"]
+        02:
+          label: List my costs
+          route: @costFormUser_list
+          requires_auth: true
+          credentials: ["Cost Forms"]
