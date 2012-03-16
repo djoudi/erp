@@ -27,6 +27,7 @@
         <?php endforeach; ?>
       </table>
     <?php endif; ?>
+    <a href="<?php echo url_for("@workingHourUser_today"); ?>">Go to today</a>
   </div>
 
   <div class="span2">
@@ -34,24 +35,3 @@
   </div>
 
 </div>
-
-<hr />
-
-<table class="table table-striped table-bordered table-condensed">
-  <tr>
-    <th>Employee</th>
-    <td><?php echo $item->getUser(); ?></td>
-  </tr>
-  <tr>
-    <th>Date</th>
-    <td><?php echo $item->getDate(); ?></td>
-  </tr>
-</table>
-
-
-<form action="" method="post">
-  <?php echo $form; ?>
-  <div class="form-actions">
-    <input class="btn btn-primary" type="submit" value="Save" />
-  </div>
-</form>

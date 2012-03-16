@@ -7,6 +7,12 @@ abstract class BaseworkingHourUserActions extends sfActions
     $user = $this->getUser()->getGuardUser();
     $this->todayItems = Doctrine::getTable('WorkingHour')->getUserHoursToday($user->getId());
     
+  }
+  
+  public function executeToday (sfWebRequest $request)
+  {
+    $user = $this->getUser()->getGuardUser();
+    $this->todayItems = Doctrine::getTable('WorkingHour')->getUserHoursToday($user->getId());
     
     $this->item = new WorkingHour();
     $this->item->setDate(date("Y-m-d"));
@@ -15,7 +21,6 @@ abstract class BaseworkingHourUserActions extends sfActions
     $this->form = new WorkingHourForm_User($this->item);
     
     $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@workingHourUser_home", true);
-    
+    $processClass->ProcessForm($this->form, $request, "@workingHourUser_today", true);
   }
 }

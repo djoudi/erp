@@ -10,17 +10,22 @@ default:
     - jqueryui-flick/jquery-ui.css
     - /bootstrap/css/bootstrap.min.css
     - frontend/tablesorter-extra.css
+    - timepicker/timepicker.css
+    
     - v3/layout.css
     - frontend/global.css
     - frontend/layout.css
     - frontend/forms.css
+    - frontend/override.css
   
   javascripts:
     - jquery.js
     - jquery-ui.js
     - jquery-tablesorter.js
     - jquery.tablesorter.pager.js
+    - jquery.timepicker.js
     - /bootstrap/js/bootstrap.min.js
+    
     - frontend.js
   
   has_layout:     true
