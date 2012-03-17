@@ -7,22 +7,34 @@
  * 
  * @property string $name
  * @property string $description
- * @property Doctrine_Collection $Users
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property sfGuardUser $Creator
+ * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $sfGuardGroupPermission
+ * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $sfGuardUserGroup
  * 
  * @method string              getName()                   Returns the current record's "name" value
  * @method string              getDescription()            Returns the current record's "description" value
- * @method Doctrine_Collection getUsers()                  Returns the current record's "Users" collection
+ * @method integer             getCreatedBy()              Returns the current record's "created_by" value
+ * @method integer             getUpdatedBy()              Returns the current record's "updated_by" value
+ * @method sfGuardUser         getCreator()                Returns the current record's "Creator" value
+ * @method sfGuardUser         getUpdater()                Returns the current record's "Updater" value
  * @method Doctrine_Collection getPermissions()            Returns the current record's "Permissions" collection
  * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
+ * @method Doctrine_Collection getUsers()                  Returns the current record's "Users" collection
  * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardGroup        setName()                   Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
- * @method sfGuardGroup        setUsers()                  Sets the current record's "Users" collection
+ * @method sfGuardGroup        setCreatedBy()              Sets the current record's "created_by" value
+ * @method sfGuardGroup        setUpdatedBy()              Sets the current record's "updated_by" value
+ * @method sfGuardGroup        setCreator()                Sets the current record's "Creator" value
+ * @method sfGuardGroup        setUpdater()                Sets the current record's "Updater" value
  * @method sfGuardGroup        setPermissions()            Sets the current record's "Permissions" collection
  * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
+ * @method sfGuardGroup        setUsers()                  Sets the current record's "Users" collection
  * @method sfGuardGroup        setSfGuardUserGroup()       Sets the current record's "sfGuardUserGroup" collection
  * 
  * @package    fmc
@@ -44,15 +56,24 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'type' => 'string',
              'length' => 1000,
              ));
+        $this->hasColumn('created_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('updated_by', 'integer', null, array(
+             'type' => 'integer',
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('sfGuardUser as Users', array(
-             'refClass' => 'sfGuardUserGroup',
-             'local' => 'group_id',
-             'foreign' => 'user_id'));
+        $this->hasOne('sfGuardUser as Creator', array(
+             'local' => 'created_by',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as Updater', array(
+             'local' => 'updated_by',
+             'foreign' => 'id'));
 
         $this->hasMany('sfGuardPermission as Permissions', array(
              'refClass' => 'sfGuardGroupPermission',
@@ -61,6 +82,11 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
 
         $this->hasMany('sfGuardGroupPermission', array(
              'local' => 'id',
+             'foreign' => 'group_id'));
+
+        $this->hasMany('sfGuardUser as Users', array(
+             'refClass' => 'sfGuardUserGroup',
+             'local' => 'sf_guard_group_id',
              'foreign' => 'group_id'));
 
         $this->hasMany('sfGuardUserGroup', array(

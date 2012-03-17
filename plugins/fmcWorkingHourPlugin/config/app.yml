@@ -16,9 +16,22 @@ all:
           label: My hours
           attributes: { class: "nav-header" }
           requires_auth: true
-          #credentials: ["Cost Forms"]
+          #credentials: [["A", "B"]]
         02:
           label: My working hours
           route: @workingHourUser_home
           requires_auth: true
-          #credentials: ["Cost Forms"]
+          #credentials: [["A", "B"]]
+
+    leftmenu_administration:
+      children:
+        40:
+          label: Working Hours
+          attributes: { class: "nav-header" }
+          requires_auth: true
+          #credentials: [["A", "B"]]
+        41:
+          label: Type of Work
+          route: @workingHourWorkType_list
+          requires_auth: true
+          #credentials: [["A", "B"]]

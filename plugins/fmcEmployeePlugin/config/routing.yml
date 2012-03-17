@@ -10,3 +10,16 @@ employeeManagement_edit:
 employeeManagement_new:
   url: /employee/managament/new
   param: { module: employeeManagement, action: new }
+
+
+departmentManagement_list:
+  url: /department/managament
+  param: { module: departmentManagement, action: list }
+  
+departmentManagement_edit:
+  url: /department/managament/edit/:id
+  param: { module: departmentManagement, action: edit }
+  
+departmentManagement_new:
+  url: /department/managament/new
+  param: { module: departmentManagement, action: new }

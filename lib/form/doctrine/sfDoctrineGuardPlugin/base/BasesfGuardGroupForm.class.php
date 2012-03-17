@@ -18,20 +18,24 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'id'               => new sfWidgetFormInputHidden(),
       'name'             => new sfWidgetFormInputText(),
       'description'      => new sfWidgetFormTextarea(),
+      'created_by'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'add_empty' => true)),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'created_by'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
+      'updated_by'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
-      'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -56,62 +60,24 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['users_list']))
-    {
-      $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
-    }
-
     if (isset($this->widgetSchema['permissions_list']))
     {
       $this->setDefault('permissions_list', $this->object->Permissions->getPrimaryKeys());
+    }
+
+    if (isset($this->widgetSchema['users_list']))
+    {
+      $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
     }
 
   }
 
   protected function doSave($con = null)
   {
-    $this->saveUsersList($con);
     $this->savePermissionsList($con);
+    $this->saveUsersList($con);
 
     parent::doSave($con);
-  }
-
-  public function saveUsersList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['users_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Users->getPrimaryKeys();
-    $values = $this->getValue('users_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Users', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Users', array_values($link));
-    }
   }
 
   public function savePermissionsList($con = null)
@@ -149,6 +115,44 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Permissions', array_values($link));
+    }
+  }
+
+  public function saveUsersList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['users_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Users->getPrimaryKeys();
+    $values = $this->getValue('users_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Users', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Users', array_values($link));
     }
   }
 

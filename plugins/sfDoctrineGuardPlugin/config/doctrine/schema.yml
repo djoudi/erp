@@ -1,18 +1,27 @@
 sfGuardGroup:
   actAs:
     Timestampable: ~
+    Versionable: ~
   columns:
     name:
       type: string(255)
       unique: true
     description: string(1000)
+    created_by:
+      type: integer
+    updated_by:
+      type: integer
   relations:
-    Users:
+    Creator:
       class: sfGuardUser
-      refClass: sfGuardUserGroup
-      local: group_id
-      foreign: user_id
-      foreignAlias: Groups
+      local: created_by
+      foreign: id
+      foreignAlias: User
+    Updater:
+      class: sfGuardUser
+      local: updated_by
+      foreign: id
+      foreignAlias: Updater
     Permissions:
       class: sfGuardPermission
       local: group_id
@@ -83,8 +92,12 @@ sfGuardUser:
       default: false
     last_login:
       type: timestamp
-    created_by: integer
-    updated_by: integer
+    group_id:
+      type: integer
+    created_by:
+      type: integer
+    updated_by:
+      type: integer
   indexes:
     is_active_idx:
       fields: [is_active]
@@ -101,8 +114,7 @@ sfGuardUser:
       foreignAlias: Updater
     Groups:
       class: sfGuardGroup
-      local: user_id
-      foreign: group_id
+      local: group_id
       refClass: sfGuardUserGroup
       foreignAlias: Users
     Permissions:

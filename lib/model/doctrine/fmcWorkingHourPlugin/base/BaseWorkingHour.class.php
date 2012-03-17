@@ -8,44 +8,44 @@
  * @property integer $user_id
  * @property date $date
  * @property integer $project_id
- * @property integer $worktype
+ * @property integer $worktype_id
  * @property string $comment
  * @property time $time_started
  * @property time $time_finished
- * @property time $time
  * @property integer $created_by
  * @property integer $updated_by
  * @property sfGuardUser $User
  * @property Project $Project
+ * @property WorkType $WorkType
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * 
  * @method integer     getUserId()        Returns the current record's "user_id" value
  * @method date        getDate()          Returns the current record's "date" value
  * @method integer     getProjectId()     Returns the current record's "project_id" value
- * @method integer     getWorktype()      Returns the current record's "worktype" value
+ * @method integer     getWorktypeId()    Returns the current record's "worktype_id" value
  * @method string      getComment()       Returns the current record's "comment" value
  * @method time        getTimeStarted()   Returns the current record's "time_started" value
  * @method time        getTimeFinished()  Returns the current record's "time_finished" value
- * @method time        getTime()          Returns the current record's "time" value
  * @method integer     getCreatedBy()     Returns the current record's "created_by" value
  * @method integer     getUpdatedBy()     Returns the current record's "updated_by" value
  * @method sfGuardUser getUser()          Returns the current record's "User" value
  * @method Project     getProject()       Returns the current record's "Project" value
+ * @method WorkType    getWorkType()      Returns the current record's "WorkType" value
  * @method sfGuardUser getCreator()       Returns the current record's "Creator" value
  * @method sfGuardUser getUpdater()       Returns the current record's "Updater" value
  * @method WorkingHour setUserId()        Sets the current record's "user_id" value
  * @method WorkingHour setDate()          Sets the current record's "date" value
  * @method WorkingHour setProjectId()     Sets the current record's "project_id" value
- * @method WorkingHour setWorktype()      Sets the current record's "worktype" value
+ * @method WorkingHour setWorktypeId()    Sets the current record's "worktype_id" value
  * @method WorkingHour setComment()       Sets the current record's "comment" value
  * @method WorkingHour setTimeStarted()   Sets the current record's "time_started" value
  * @method WorkingHour setTimeFinished()  Sets the current record's "time_finished" value
- * @method WorkingHour setTime()          Sets the current record's "time" value
  * @method WorkingHour setCreatedBy()     Sets the current record's "created_by" value
  * @method WorkingHour setUpdatedBy()     Sets the current record's "updated_by" value
  * @method WorkingHour setUser()          Sets the current record's "User" value
  * @method WorkingHour setProject()       Sets the current record's "Project" value
+ * @method WorkingHour setWorkType()      Sets the current record's "WorkType" value
  * @method WorkingHour setCreator()       Sets the current record's "Creator" value
  * @method WorkingHour setUpdater()       Sets the current record's "Updater" value
  * 
@@ -69,7 +69,7 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('worktype', 'integer', null, array(
+        $this->hasColumn('worktype_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              ));
@@ -84,9 +84,6 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
         $this->hasColumn('time_finished', 'time', null, array(
              'type' => 'time',
              'notnull' => true,
-             ));
-        $this->hasColumn('time', 'time', null, array(
-             'type' => 'time',
              ));
         $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',
@@ -108,6 +105,10 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
              'local' => 'project_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('WorkType', array(
+             'local' => 'worktype_id',
+             'foreign' => 'id'));
 
         $this->hasOne('sfGuardUser as Creator', array(
              'local' => 'created_by',

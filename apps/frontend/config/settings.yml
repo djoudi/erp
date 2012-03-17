@@ -46,9 +46,11 @@ all:
       - costFormManage
       
       - workingHourUser
+      - workingHourWorkType
       
       - currencyManagement
       - customerManagement
+      - departmentManagement
       - employeeManagement
       - projectManagement
       - vatManagement

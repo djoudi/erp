@@ -16,6 +16,7 @@
  * @property boolean $is_active
  * @property boolean $is_super_admin
  * @property timestamp $last_login
+ * @property integer $group_id
  * @property integer $created_by
  * @property integer $updated_by
  * @property sfGuardUser $Creator
@@ -40,6 +41,7 @@
  * @method boolean               getIsActive()              Returns the current record's "is_active" value
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
+ * @method integer               getGroupId()               Returns the current record's "group_id" value
  * @method integer               getCreatedBy()             Returns the current record's "created_by" value
  * @method integer               getUpdatedBy()             Returns the current record's "updated_by" value
  * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
@@ -63,6 +65,7 @@
  * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser           setGroupId()               Sets the current record's "group_id" value
  * @method sfGuardUser           setCreatedBy()             Sets the current record's "created_by" value
  * @method sfGuardUser           setUpdatedBy()             Sets the current record's "updated_by" value
  * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
@@ -137,6 +140,9 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('last_login', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
+        $this->hasColumn('group_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -166,15 +172,15 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
 
         $this->hasMany('sfGuardGroup as Groups', array(
              'refClass' => 'sfGuardUserGroup',
-             'local' => 'user_id',
-             'foreign' => 'group_id'));
+             'local' => 'group_id',
+             'foreign' => 'sf_guard_group_id'));
 
         $this->hasMany('sfGuardPermission as Permissions', array(
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
 
-        $this->hasMany('sfGuardUser as User', array(
+        $this->hasMany('sfGuardGroup as User', array(
              'local' => 'id',
              'foreign' => 'created_by'));
 

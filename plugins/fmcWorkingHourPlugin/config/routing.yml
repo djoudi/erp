@@ -5,3 +5,20 @@ workingHourUser_home:
 workingHourUser_today:
   url: /workinghours/user/today
   param: { module: workingHourUser, action: today }
+
+
+
+
+
+
+workingHourWorkType_list:
+  url: /workinghours/worktype/list
+  param: { module: workingHourWorkType, action: list }
+
+workingHourWorkType_new:
+  url: /workinghours/worktype/new
+  param: { module: workingHourWorkType, action: new }
+
+workingHourWorkType_edit:
+  url: /workinghours/worktype/edit/:id
+  param: { module: workingHourWorkType, action: edit }

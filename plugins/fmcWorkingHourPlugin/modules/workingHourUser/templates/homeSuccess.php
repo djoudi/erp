@@ -9,7 +9,7 @@
     <?php if (!count($todayItems)): ?>
       <p>You don't have any records for today.</p>
     <?php else: ?>
-      <table class="table table-striped table-bordered table-condensed">
+      <table class="table table-bordered table-condensed">
         <tr>
           <th>Project</th>
           <th>Time</th>
