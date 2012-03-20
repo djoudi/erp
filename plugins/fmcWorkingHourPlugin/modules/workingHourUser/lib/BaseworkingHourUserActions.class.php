@@ -20,6 +20,6 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     $this->form = new WorkingHourForm_User($this->item);
     $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@workingHourUser_today", true);
+    $processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
   }
 }

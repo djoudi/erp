@@ -9,7 +9,7 @@ workingHourWorkType_new:
   param: { module: workingHourWorkType, action: new }
 
 workingHourWorkType_edit:
-  url: /workinghours/worktype/edit/:id
+  url: /workinghours/worktype/edit/:date
   param: { module: workingHourWorkType, action: edit }
 
 

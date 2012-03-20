@@ -2,7 +2,7 @@
 
 <div class="row">
   
-  <div class="span9">
+  <div class="span8">
     
     <h4>Today</h4>
     

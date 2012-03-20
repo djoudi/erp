@@ -33,6 +33,7 @@ class form_plugin_sfguarduser_new extends sfGuardUserForm
       'label_unassociated' => 'Available'
     ));
     
+    $this->widgetSchema['group_id']->setLabel('Department');
     $this->widgetSchema['permissions_list']->setLabel('Permissions');
     $this->widgetSchema['password']->setLabel('Password');
     $this->widgetSchema['password_again']->setLabel('Password (again)');
