@@ -1,30 +1,36 @@
-Zaten bilinen:
-cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
+==============================   WHDB SORULAR   ========================
+
+- gelecek tarihlere kullanıcılar girebilsinler mi? (evetse ne zamana kadar?)
 
 
 
+==============================   CFDB YAPILAN   ========================
 
-TİCKET LARA DA BAK
-  ticket 12 - toplantı notları
+  Zaten bilinen:
+- cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
+- tutar kısımlarına küsürat girilebiliyor
 
-tasarım görsel olarak değiştirildi
-  daha fazla boşluk var
-  kullanım kolaylığında değişiklikler yapıldı
+  cfdb-ek:
+- toplam tutar
+  - ekranda ve excel çıktısında toplam tutar var
+  - para birimlerine göre bölüyor
+- cost formda cost itemleri düzenleme var
 
-versionable desteği eklendi (arayüzde yok)
-
-created / updated by eklendi (arayüzde var)
-
-raporlama sayfasında descriptionlar daha kısa artık
-
-kayıt düzenlemede, create ve update tarih ve kişileri görünüyor
-
-tüm sonuç sayfalarında bulunan sonuç yazıyor
-
-tüm sonuç sayfalarında filtre var ( ve filtre artık her yerde kullanılabilir hale getirildi)
-
-
-
+  Bilinmeyen:
+- tasarım görsel olarak değiştirildi
+  - daha fazla boşluk var
+  - kullanım kolaylığında değişiklikler yapıldı
+  - izin ve departman yönetiminde 2 column seçim kullanıldı
+- versionable desteği eklendi (arayüzde yok)
+- kayıt düzenlemede, create ve update tarih ve kişileri görünüyor
+  - created / updated by eklendi (arayüzde var)
+- tüm sonuç ekranları geliştirildi
+  - bulunan sonuç
+  - filtreleme, - aç kapama
+  - pagination
+  - sıralama kriterleri arttırıldı ve düzeltildi
+  
+---------
 
 
 
