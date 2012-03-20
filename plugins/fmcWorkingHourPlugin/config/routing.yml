@@ -1,15 +1,4 @@
-workingHourUser_home:
-  url: /workinghours/user/home
-  param: { module: workingHourUser, action: home }
-
-workingHourUser_today:
-  url: /workinghours/user/today
-  param: { module: workingHourUser, action: today }
-
-
-
-
-
+# WHDB Type Management
 
 workingHourWorkType_list:
   url: /workinghours/worktype/list
@@ -22,3 +11,14 @@ workingHourWorkType_new:
 workingHourWorkType_edit:
   url: /workinghours/worktype/edit/:id
   param: { module: workingHourWorkType, action: edit }
+
+
+# WHDB User
+
+workingHourUser_home:
+  url: /workinghours/user/home
+  param: { module: workingHourUser, action: home }
+
+workingHourUser_edit:
+  url: /workinghours/user/edit/:date
+  param: { module: workingHourUser, action: edit }

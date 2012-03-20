@@ -19,15 +19,17 @@
         <?php foreach($todayItems as $item): ?>
           <tr>
             <td><?php echo $item->getProject(); ?></td>
-            <td><?php echo $item->getTime(); ?></td>
-            <td><?php echo $item->getWorktype(); ?></td>
+            <td><?php #echo $item->getTime(); ?></td>
+            <td><?php echo $item->getWorkType(); ?></td>
             <td><?php echo $item->getComment(); ?></td>
           </tr>
         
         <?php endforeach; ?>
       </table>
     <?php endif; ?>
-    <a href="<?php echo url_for("@workingHourUser_today"); ?>">Go to today</a>
+    <a href="<?php echo url_for('workingHourUser_edit', array('date'=>date('Y-m-d'))); ?>">
+      Go to today
+    </a>
   </div>
 
   <div class="span2">
@@ -35,5 +37,3 @@
   </div>
 
 </div>
-
-<?php echo date("Y-m-d"); ?>

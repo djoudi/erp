@@ -1,4 +1,9 @@
-<?php slot ('title', "Today's Working Hours"); ?>
+<?php
+  $title = "Working Hours for ".$date;
+  if ($date == date('Y-m-d')) $title .= ' (Today)';
+?>
+
+<?php slot ('title', $title); ?>
 
 <table class="table table-condensed">
 
@@ -15,13 +20,13 @@
   </thead>
   
   <tbody>
-    <?php foreach($todayItems as $item): ?>
+    <?php foreach($items as $item): ?>
     <tr>
       <td><?php echo $item->getProject(); ?></td>
       <td><?php echo date("H:i", strtotime($item->getTimeStarted())); ?></td>
       <td><?php echo date("H:i", strtotime($item->getTimeFinished())); ?></td>
       <td><?php echo $item->getTimeDifference(); ?></td>
-      <td><?php echo $item->getWorkTypes(); ?></td>
+      <td><?php echo $item->getWorkType(); ?></td>
       <td><?php echo $item->getComment(); ?></td>
       <td></td>
     </tr>
