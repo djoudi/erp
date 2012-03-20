@@ -5,9 +5,7 @@ abstract class BaseworkingHourUserActions extends sfActions
   public function executeHome (sfWebRequest $request)
   {
     $user = $this->getUser()->getGuardUser();
-    #$this->todayItems = Doctrine::getTable('WorkingHour')->getUserHoursToday($user->getId());
     $this->todayItems = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), date('Y-m-d'));
-    
   }
   
   public function executeEdit (sfWebRequest $request)
