@@ -1,5 +1,9 @@
 <?php slot ('title', "Employee List") ?>
 
+<p>
+  <a class="btn btn-primary" href="<?php echo url_for('employeeManagement_new'); ?>">New employee</a>
+</p>
+
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
   'filter'=>$filter, 

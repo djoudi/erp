@@ -1,5 +1,9 @@
 <?php slot ('title', "Customer List") ?>
 
+<p>
+  <a class="btn btn-primary" href="<?php echo url_for('customerManagement_new'); ?>">New customer</a>
+</p>
+
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
   'filter'=>$filter, 

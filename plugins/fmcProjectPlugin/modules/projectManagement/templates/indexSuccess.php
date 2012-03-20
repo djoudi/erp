@@ -1,5 +1,9 @@
 <?php slot ('title', "Project List") ?>
 
+<p>
+  <a class="btn btn-primary" href="<?php echo url_for('projectManagement_new'); ?>">New project</a>
+</p>
+
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
   'filter'=>$filter, 

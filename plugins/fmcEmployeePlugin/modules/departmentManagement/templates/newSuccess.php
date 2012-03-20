@@ -4,7 +4,7 @@
 
 <form method="post" action="">
 
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-bordered table-condensed">
     <?php echo $form; ?>
   </table>
 

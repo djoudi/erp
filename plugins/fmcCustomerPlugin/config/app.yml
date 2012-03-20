@@ -7,12 +7,7 @@ all:
           attributes: { class: "nav-header" }
           requires_auth: true      
         21:
-          label: Customer list
+          label: Customers
           route: @customerManagement
-          requires_auth: true
-          credentials: ["Customer Management"]
-        22:
-          label: New customer
-          route: @customerManagement_new
           requires_auth: true
           credentials: ["Customer Management"]

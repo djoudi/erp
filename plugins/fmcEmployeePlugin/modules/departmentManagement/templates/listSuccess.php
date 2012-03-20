@@ -1,8 +1,8 @@
+<?php slot ('title', "Departments List") ?>
+
 <p>
   <a class="btn btn-primary" href="<?php echo url_for('departmentManagement_new'); ?>">New department</a>
 </p>
-
-<?php slot ('title', "Departments List") ?>
 
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
@@ -21,7 +21,11 @@
   <tbody>
     <?php foreach ($items as $item): ?>
       <tr>
-        <td><?php echo $item->getName(); ?></td>
+        <td>
+          <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item->getId())); ?>">
+            <?php echo $item->getName(); ?>
+          </a>
+        </td>
       </tr>
     <?php endforeach; ?>
   </tbody>
