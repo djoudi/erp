@@ -19,20 +19,17 @@ $(document).ready(function()
   
   // Bootstrap
   $('.tooltips').tooltip();
+  
+  
+  // jQueryUI Datepicker
   $('.datepick').datepicker({ dateFormat: "yy-mm-dd" });
-  
-  
-  
-$('#datepick_whdb').datepicker({
-  dateFormat: "yy-mm-dd", 
-  onSelect: function(dateText, inst) {
-    var url = $('#datepick_whdb_url').val() + dateText;
-    //location.href = ‘hxxp://forfruits.pl’;
-    window.location=url;
-    //alert(url);
-    
-  }
-});
+  $('#datepick_whdb').datepicker({
+    dateFormat: "yy-mm-dd", 
+    onSelect: function(dateText, inst) {
+      var url = $('#datepick_whdb_url').val() + dateText;
+      window.location=url;
+    }
+  });
   
   
   // Timepicker
