@@ -12,21 +12,25 @@
   )); ?>
 <?php endif; ?>
 
-<table class="tablesorter2a tablesorterpager table table-striped table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($items as $item): ?>
+<?php if (count($items)): ?>
+
+  <table class="tablesorter2a tablesorterpager table table-striped table-bordered table-condensed">
+    <thead>
       <tr>
-        <td>
-          <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item->getId())); ?>">
-            <?php echo $item->getName(); ?>
-          </a>
-        </td>
+        <th>Name</th>
       </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <?php foreach ($items as $item): ?>
+        <tr>
+          <td>
+            <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item->getId())); ?>">
+              <?php echo $item->getName(); ?>
+            </a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+
+<?php endif; ?>

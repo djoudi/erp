@@ -8,7 +8,7 @@ abstract class BasedepartmentManagementActions extends sfActions
     $_q = Doctrine_Query::create()
       ->from('sfGuardGroup g')
       ->orderBy('name ASC');
-    $filterClass = new FmcFilter('sfGuardGroupFormFilter');
+    $filterClass = new FmcFilter('filterform_department');
     
     // Do not touch here
     $this->items = $filterClass->initFilterForm($request, $_q)->execute();
