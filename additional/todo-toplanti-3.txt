@@ -1,8 +1,9 @@
-==============================   WHDB İZİNLER   ========================
+==============================   WHDB TODO   ========================
 
-- Working Hours Management > (whdb type management)
-- Working Hours > (user, edit vs my hours)
-Bunlar db ye eklendiği sürece başka bir sorun yok
+- Whdb izinler elle db ye girilecek
+  - Working Hours Management > (whdb type management)
+  - Working Hours > (user, edit vs my hours)
+  - Bunlar db ye eklendiği sürece başka bir sorun yok
 
 
 ==============================   WHDB YAPILAN    ========================
@@ -42,6 +43,10 @@ Bunlar db ye eklendiği sürece başka bir sorun yok
   - sıralama kriterleri arttırıldı ve düzeltildi
   
 ---------
+
+
+
+
 
 
 

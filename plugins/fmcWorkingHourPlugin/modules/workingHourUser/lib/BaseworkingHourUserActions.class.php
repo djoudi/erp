@@ -12,18 +12,46 @@ abstract class BaseworkingHourUserActions extends sfActions
   {
     $user = $this->getUser()->getGuardUser();
     $this->date = $request->getParameter('date');
+    
+    if ($item_id = $request->getParameter('item_id'))
+    {      
+      $this->getUser()->setAttribute('item_id', $item_id);
+      $this->redirect($this->getController()->genUrl('@workingHourUser_edit?date='.$this->date));
+    }
+    elseif ($this->getUser()->getAttribute('item_id'))
+    {
+      $item_id = $this->getUser()->getAttribute('item_id');
+      $this->getUser()->getAttributeHolder()->remove('item_id');
+      
+      $item_old = Doctrine::getTable('WorkingHour')
+        ->createQuery ('wh')
+        ->addWhere ('id = ?', $item_id)
+        ->addWhere ('wh.user_id = ?', $user->getId())
+        ->fetchOne();
+      $item = $item_old->copy();
+      $item_old->delete();
+      
+      $this->form = new WorkingHourForm_User ($item);
+    }
+    
+    $this->item = Doctrine::getTable('WorkingHour')->findOneByDate($this->date);
+    $this->forward404Unless($this->item);
     $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
     
-    $this->item = new WorkingHour();
-    $this->item->setDate(date("Y-m-d"));
-    $this->item->setUser($user);
-    
-    // Calculating last time of the last item of the day and setting new time starting from it
+    if (!$item_id)
+    {
+      $this->item = new WorkingHour ($this->costForm);
+
+      $this->item->setDate(date("Y-m-d"));
+      $this->item->setUser($user);
+      
       $time = strtotime($this->item->getNexthour($this->date));
       $this->item->setStart(date('H:i',$time));
       $this->item->setEnd(date('H:i',$time + 1800));
+      
+      $this->form = new WorkingHourForm_User ($this->item);
+    }
     
-    $this->form = new WorkingHourForm_User($this->item);
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
   }

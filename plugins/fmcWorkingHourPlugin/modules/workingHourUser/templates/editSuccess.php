@@ -35,7 +35,7 @@
         <?php
           $url = url_for('workingHourUser_edititem', array(
             'date' => $date,
-            'id' => $item->getId()
+            'item_id' => $item->getId()
           ));
         ?>
           <a href="<?php echo $url; ?>"><i class="icon-pencil"></i></a> 
