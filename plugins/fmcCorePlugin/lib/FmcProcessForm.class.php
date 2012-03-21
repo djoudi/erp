@@ -7,6 +7,24 @@
       $this->user = sfContext::getInstance()->getUser();
     }
     
+    
+    public function ProcessWorkingHourForm ($form, $request, $forwardurl)
+    {
+      if ($request->isMethod('post'))
+      {
+        $form->bind ($request->getParameter($form->getName()));
+        if ($form->isValid())
+        {
+          #$object = $form;
+          echo "<pre>";
+          var_dump($form->getValues());
+          echo "</pre>";
+          #echo $form->getStart();
+        }
+      }
+    }
+    
+    
     public function ProcessForm ($form, $request, $forwardurl, $isNew = false, $withid = false)
     {
       if ($request->isMethod('post'))

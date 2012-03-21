@@ -1,10 +1,36 @@
-==============================   WHDB TODO   ========================
+==============================   AKTARIM TODO   ========================
+
+- Datayı aktar, tüm fonksiyonları test et demo da
+- Sonra yedek alıp aktar, bir de orada test et (data değiştirmeden)
 
 - Whdb izinler elle db ye girilecek
   - Working Hours Management > (whdb type management)
   - Working Hours > (user, edit vs my hours)
   - Bunlar db ye eklendiği sürece başka bir sorun yok
 
+- Departmanları ekle
+
+Full Name	Bölüm
+Hande Bilgin	Accounting & Reporting Services
+Eren Genç	Accounting Services
+Emine Özçelik	Administration
+Sultan Kahraman	Administration
+Uğur Akkuş	Administration
+Ceyhan Karaduman	Company Formation & Payment Services
+Tülay Taştan	Company Formation & Payment Services
+Aslan Akgüç	Customer Services
+Sıdıka Bilen	Customer Services
+Yasemin Öztürk	Customer Services
+Burcu Gümüş	Market Research
+Emrah Ülkü	Market Research
+Filiz Demiral	Market Research
+Gizem Öğsüz	Market Research
+Melek Müderrisgil	Market Research
+Müge Taş	Recuitment Services
+Nuray Coskun	Recuitment Services
+Özlem Ilica	Sales
+Sevda	Accounting & Reporting Services
+Evrim Alyaz	Administration
 
 ==============================   WHDB YAPILAN    ========================
 

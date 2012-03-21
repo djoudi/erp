@@ -38,14 +38,13 @@ abstract class BaseworkingHourUserActions extends sfActions
     }
     
     $this->item = Doctrine::getTable('WorkingHour')->findOneByDate($this->date);
-    $this->forward404Unless($this->item);
     $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
     
     if (!$item_id)
     {
       $this->item = new WorkingHour ($this->costForm);
 
-      $this->item->setDate(date("Y-m-d"));
+      $this->item->setDate($this->date);
       $this->item->setUser($user);
       
       $time = strtotime($this->item->getNexthour($this->date));
@@ -56,7 +55,8 @@ abstract class BaseworkingHourUserActions extends sfActions
     }
     
     $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
+    $processClass->ProcessWorkingHourForm($this->form, $request, "@workingHourUser_edit?date=".$this->date);
+    #$processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
   }
   
   
