@@ -26,8 +26,8 @@
     <?php foreach($items as $item): ?>
     <tr>
       <td><?php echo $item->getProject(); ?></td>
-      <td><?php echo date("H:i", strtotime($item->getTimeStarted())); ?></td>
-      <td><?php echo date("H:i", strtotime($item->getTimeFinished())); ?></td>
+      <td><?php echo date("H:i", strtotime($item->getStart())); ?></td>
+      <td><?php echo date("H:i", strtotime($item->getEnd())); ?></td>
       <td><?php echo $item->getTimeDifference(); ?></td>
       <td><?php echo $item->getWorkType(); ?></td>
       <td><?php echo $item->getComment(); ?></td>
@@ -44,8 +44,8 @@
       <form action="" method="post">
         <?php echo $form->renderHiddenFields(); ?>
         <td><?php echo $form['project_id']; ?></td>
-        <td id="time3"><?php echo $form['time_started']; ?></td>
-        <td id="time4"><?php echo $form['time_finished']; ?></td>
+        <td id="time3"><?php echo $form['start']; ?></td>
+        <td id="time4"><?php echo $form['end']; ?></td>
         <td><span id="timetotal"></span></td>
         <td><?php echo $form['worktype_id']; ?></td>
         <td><?php echo $form['comment']; ?></td>

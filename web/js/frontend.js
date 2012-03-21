@@ -33,8 +33,8 @@ $(document).ready(function()
   
   
   // Timepicker
-  var a = "#working_hour_time_started";
-  var b = "#working_hour_time_finished";
+  var a = "#working_hour_start";
+  var b = "#working_hour_end";
   $(a).timePicker();
   $(b).timePicker();
   var oldTime = $.timePicker(a).getTime();

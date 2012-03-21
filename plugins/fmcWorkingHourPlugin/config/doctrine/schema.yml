@@ -9,8 +9,8 @@ WorkingHour:
     project_id: { type: integer, notnull: true }
     worktype_id: { type: integer, notnull: true }
     comment: string(250)
-    time_started: { type: time, notnull: true }
-    time_finished: { type: time, notnull: true }
+    start: { type: time, notnull: true }
+    end: { type: time, notnull: true }
     created_by: integer
     updated_by: integer
   relations:

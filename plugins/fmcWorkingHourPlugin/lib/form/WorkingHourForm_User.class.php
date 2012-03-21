@@ -9,8 +9,8 @@ class WorkingHourForm_User extends WorkingHourForm
     unset($this['time']);
     
     # new sfWidgetFormInputHidden(),
-    $this->setWidget('time_started', new sfWidgetFormInputText());
-    $this->setWidget('time_finished', new sfWidgetFormInputText());
+    $this->setWidget('start', new sfWidgetFormInputText());
+    $this->setWidget('end', new sfWidgetFormInputText());
   }
   
 }

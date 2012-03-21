@@ -10,8 +10,8 @@
  * @property integer $project_id
  * @property integer $worktype_id
  * @property string $comment
- * @property time $time_started
- * @property time $time_finished
+ * @property time $start
+ * @property time $end
  * @property integer $created_by
  * @property integer $updated_by
  * @property sfGuardUser $User
@@ -20,34 +20,34 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * 
- * @method integer     getUserId()        Returns the current record's "user_id" value
- * @method date        getDate()          Returns the current record's "date" value
- * @method integer     getProjectId()     Returns the current record's "project_id" value
- * @method integer     getWorktypeId()    Returns the current record's "worktype_id" value
- * @method string      getComment()       Returns the current record's "comment" value
- * @method time        getTimeStarted()   Returns the current record's "time_started" value
- * @method time        getTimeFinished()  Returns the current record's "time_finished" value
- * @method integer     getCreatedBy()     Returns the current record's "created_by" value
- * @method integer     getUpdatedBy()     Returns the current record's "updated_by" value
- * @method sfGuardUser getUser()          Returns the current record's "User" value
- * @method Project     getProject()       Returns the current record's "Project" value
- * @method WorkType    getWorkType()      Returns the current record's "WorkType" value
- * @method sfGuardUser getCreator()       Returns the current record's "Creator" value
- * @method sfGuardUser getUpdater()       Returns the current record's "Updater" value
- * @method WorkingHour setUserId()        Sets the current record's "user_id" value
- * @method WorkingHour setDate()          Sets the current record's "date" value
- * @method WorkingHour setProjectId()     Sets the current record's "project_id" value
- * @method WorkingHour setWorktypeId()    Sets the current record's "worktype_id" value
- * @method WorkingHour setComment()       Sets the current record's "comment" value
- * @method WorkingHour setTimeStarted()   Sets the current record's "time_started" value
- * @method WorkingHour setTimeFinished()  Sets the current record's "time_finished" value
- * @method WorkingHour setCreatedBy()     Sets the current record's "created_by" value
- * @method WorkingHour setUpdatedBy()     Sets the current record's "updated_by" value
- * @method WorkingHour setUser()          Sets the current record's "User" value
- * @method WorkingHour setProject()       Sets the current record's "Project" value
- * @method WorkingHour setWorkType()      Sets the current record's "WorkType" value
- * @method WorkingHour setCreator()       Sets the current record's "Creator" value
- * @method WorkingHour setUpdater()       Sets the current record's "Updater" value
+ * @method integer     getUserId()      Returns the current record's "user_id" value
+ * @method date        getDate()        Returns the current record's "date" value
+ * @method integer     getProjectId()   Returns the current record's "project_id" value
+ * @method integer     getWorktypeId()  Returns the current record's "worktype_id" value
+ * @method string      getComment()     Returns the current record's "comment" value
+ * @method time        getStart()       Returns the current record's "start" value
+ * @method time        getEnd()         Returns the current record's "end" value
+ * @method integer     getCreatedBy()   Returns the current record's "created_by" value
+ * @method integer     getUpdatedBy()   Returns the current record's "updated_by" value
+ * @method sfGuardUser getUser()        Returns the current record's "User" value
+ * @method Project     getProject()     Returns the current record's "Project" value
+ * @method WorkType    getWorkType()    Returns the current record's "WorkType" value
+ * @method sfGuardUser getCreator()     Returns the current record's "Creator" value
+ * @method sfGuardUser getUpdater()     Returns the current record's "Updater" value
+ * @method WorkingHour setUserId()      Sets the current record's "user_id" value
+ * @method WorkingHour setDate()        Sets the current record's "date" value
+ * @method WorkingHour setProjectId()   Sets the current record's "project_id" value
+ * @method WorkingHour setWorktypeId()  Sets the current record's "worktype_id" value
+ * @method WorkingHour setComment()     Sets the current record's "comment" value
+ * @method WorkingHour setStart()       Sets the current record's "start" value
+ * @method WorkingHour setEnd()         Sets the current record's "end" value
+ * @method WorkingHour setCreatedBy()   Sets the current record's "created_by" value
+ * @method WorkingHour setUpdatedBy()   Sets the current record's "updated_by" value
+ * @method WorkingHour setUser()        Sets the current record's "User" value
+ * @method WorkingHour setProject()     Sets the current record's "Project" value
+ * @method WorkingHour setWorkType()    Sets the current record's "WorkType" value
+ * @method WorkingHour setCreator()     Sets the current record's "Creator" value
+ * @method WorkingHour setUpdater()     Sets the current record's "Updater" value
  * 
  * @package    fmc
  * @subpackage model
@@ -77,11 +77,11 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
              'type' => 'string',
              'length' => 250,
              ));
-        $this->hasColumn('time_started', 'time', null, array(
+        $this->hasColumn('start', 'time', null, array(
              'type' => 'time',
              'notnull' => true,
              ));
-        $this->hasColumn('time_finished', 'time', null, array(
+        $this->hasColumn('end', 'time', null, array(
              'type' => 'time',
              'notnull' => true,
              ));

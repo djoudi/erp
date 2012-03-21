@@ -34,4 +34,4 @@
 #CostFormUser_NewCfi #cost_form_item_receipt_No { width: 80px; }
 #CostFormUser_NewCfi #cost_form_item_invoice_To { width: 90px; }
 
-#working_hour_time_started, #working_hour_time_finished { width: 50px; }
+#working_hour_start, #working_hour_end { width: 50px; }

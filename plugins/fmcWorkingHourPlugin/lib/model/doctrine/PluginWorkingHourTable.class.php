@@ -12,7 +12,7 @@ class PluginWorkingHourTable extends Doctrine_Table
     return $this->CreateQuery ('wh')
       ->addWhere ('wh.user_id = ?', $user_id)
       ->addWhere ('wh.date = ?', $date)
-      ->orderBy ('wh.time_started ASC')
+      ->orderBy ('wh.start ASC')
       ->execute();
   }
 }
