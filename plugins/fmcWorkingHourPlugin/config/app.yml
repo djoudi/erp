@@ -6,7 +6,7 @@ all:
           label: Working Hours
           route: @workinghours
           requires_auth: true
-          #credentials: [["A", "B"]]
+          credentials: ['Working Hours']
 
     leftmenu_workinghours:
       name: Left Menu
@@ -16,12 +16,12 @@ all:
           label: My hours
           attributes: { class: "nav-header" }
           requires_auth: true
-          #credentials: [["A", "B"]]
+          credentials: ['Working Hours']
         02:
           label: My working hours
           route: @workingHourUser_home
           requires_auth: true
-          #credentials: [["A", "B"]]
+          credentials: ['Working Hours']
 
     leftmenu_administration:
       children:
@@ -29,9 +29,9 @@ all:
           label: Working Hours
           attributes: { class: "nav-header" }
           requires_auth: true
-          #credentials: [["A", "B"]]
+          credentials: ['Working Hours Management']
         41:
           label: Type of Work
           route: @workingHourWorkType_list
           requires_auth: true
-          #credentials: [["A", "B"]]
+          credentials: ['Working Hours Management']

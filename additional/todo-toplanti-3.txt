@@ -1,8 +1,19 @@
+==============================   WHDB İZİNLER   ========================
+
+- Working Hours Management > (whdb type management)
+- Working Hours > (user, edit vs my hours)
+Bunlar db ye eklendiği sürece başka bir sorun yok
+
+
+==============================   WHDB YAPILAN    ========================
+
+- izinler ayarlandı
+- work type mgmt eklendi
+- my working hours eklendi
+
 ==============================   WHDB SORULAR   ========================
 
 - gelecek tarihlere kullanıcılar girebilsinler mi? (evetse ne zamana kadar?)
-
-
 
 ==============================   CFDB YAPILAN   ========================
 

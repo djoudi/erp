@@ -18,16 +18,10 @@ abstract class BaseworkingHourUserActions extends sfActions
     $this->item->setDate(date("Y-m-d"));
     $this->item->setUser($user);
     
-    
-    #$time = strtotime("09:00");
-    $time = strtotime($this->item->getNexthour());
-    
-    #print_r( $time->toArray());
-    #var_dump($time);
-    $this->item->setStart(date('H:i',$time));
-    $this->item->setEnd(date('H:i',$time + 1800));
-    
-    
+    // Calculating last time of the last item of the day and setting new time starting from it
+      $time = strtotime($this->item->getNexthour($this->date));
+      $this->item->setStart(date('H:i',$time));
+      $this->item->setEnd(date('H:i',$time + 1800));
     
     $this->form = new WorkingHourForm_User($this->item);
     $processClass = new FmcProcessForm();

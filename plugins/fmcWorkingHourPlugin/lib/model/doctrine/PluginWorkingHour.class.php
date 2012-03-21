@@ -11,16 +11,16 @@ abstract class PluginWorkingHour extends BaseWorkingHour
     return $hour."h ".$minute."m";
   }
   
-  public function getNexthour()
+  public function getNexthour($date)
   {
     $item = Doctrine::getTable('WorkingHour')
       ->createQuery('wh')
-      ->addWhere('wh.date = ?', $this->getDate())
+      ->addWhere('wh.date = ?', $date)
       ->orderBy('wh.end DESC')
       ->fetchOne()
     ;
-    if (!$item) echo "koooo";
-    return $item->getEnd();
-    
+    if ($item) $result = $item->getEnd();
+    else $result = '09:00';
+    return $result;
   }
 }

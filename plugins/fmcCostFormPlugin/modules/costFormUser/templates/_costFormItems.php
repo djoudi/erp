@@ -39,14 +39,14 @@
           <?php if ( ! $isSent ): ?>
             <td>
               <?php
-                $cf_id = $costItem->getCostForms()->getId();
-                $cfi_id = $costItem['id'];
-                $url = url_for('@costFormUser_editItem?id='.$cf_id.'&cfi_id='.$cfi_id);
+                $url = url_for('costFormUser_editItem', array(
+                  'id' => $costItem->getCostForms()->getId(), 
+                  'cfi_id' => $cfi_id = $costItem['id']
+                ));
               ?>
-              <a class="btn btn-mini btn-info" href="<?php echo $url; ?>">Edit</a> 
-              
+                <a href="<?php echo $url; ?>"><i class="icon-pencil"></i></a> 
               <?php $url = url_for('@costFormUser_deleteItem?id='.$costItem['id']); ?>
-              <a class="btn btn-mini btn-danger" href="<?php echo $url; ?>">Delete</a>
+                <a href="<?php echo $url; ?>"><i class="icon-trash"></i></a> 
             </td>
           <?php endif;?>
           

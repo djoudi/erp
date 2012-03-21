@@ -18,7 +18,7 @@
     </tr>
   </table>
   
-  <span class="help-inline">Note: If you did not receive any advances, keep Received Advances blank.</span>
+  <span class="help-inline">Note: If you did not receive any advances, you can keep "Received Advance" blank.</span>
   
   <div class="form-actions">
     <a class="btn" href="javascript:history.back(1)" >Cancel</a>

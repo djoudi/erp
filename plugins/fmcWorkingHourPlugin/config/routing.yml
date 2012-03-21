@@ -20,5 +20,13 @@ workingHourUser_home:
   param: { module: workingHourUser, action: home }
 
 workingHourUser_edit:
-  url: /workinghours/user/edit/:date
+  url: /workinghours/user/editday/:date/
   param: { module: workingHourUser, action: edit }
+
+workingHourUser_edititem:
+  url: /workinghours/user/editday/:date/edititem/:id
+  param: { module: workingHourUser, action: itemEdit }
+
+workingHourUser_deleteitem:
+  url: /workinghours/user/deleteitem/:id
+  param: { module: workingHourUser, action: itemDelete }
