@@ -31,7 +31,10 @@
       <td><?php echo $item->getTimeDifference(); ?></td>
       <td><?php echo $item->getWorkType(); ?></td>
       <td><?php echo $item->getComment(); ?></td>
-      <td></td>
+      <td>
+        <a href=""><i class="icon-pencil"></i></a>
+        <a href=""><i class="icon-trash"></i> </a>
+      </td>
     </tr>
     <?php endforeach; ?>
   </tbody>
@@ -46,7 +49,9 @@
         <td><span id="timetotal"></span></td>
         <td><?php echo $form['worktype_id']; ?></td>
         <td><?php echo $form['comment']; ?></td>
-        <td><input class="btn btn-mini" type="submit" value="Add" /></td>
+        <td>
+          <input class="btn btn-mini" type="submit" value="Add" />
+        </td>
       </form>
     </tr>
   </tfoot>
