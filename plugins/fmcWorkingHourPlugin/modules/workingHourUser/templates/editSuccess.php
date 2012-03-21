@@ -39,7 +39,7 @@
           ));
         ?>
           <a href="<?php echo $url; ?>"><i class="icon-pencil"></i></a> 
-        <?php $url = url_for('workingHourUser_deleteitem', array('id'=>$item->getId())); ?>
+        <?php $url = url_for('workingHourUser_deleteitem', array('item_id'=>$item->getId())); ?>
           <a href="<?php echo $url; ?>"><i class="icon-trash"></i></a>
         
       </td>

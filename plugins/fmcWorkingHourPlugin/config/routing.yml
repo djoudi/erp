@@ -28,5 +28,5 @@ workingHourUser_edititem:
   param: { module: workingHourUser, action: edit }
 
 workingHourUser_deleteitem:
-  url: /workinghours/user/deleteitem/:id
+  url: /workinghours/user/deleteitem/:item_id
   param: { module: workingHourUser, action: itemDelete }

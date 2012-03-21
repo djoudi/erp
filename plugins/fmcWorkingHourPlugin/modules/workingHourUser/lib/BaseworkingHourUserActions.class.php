@@ -2,11 +2,14 @@
 
 abstract class BaseworkingHourUserActions extends sfActions
 {
+  
+  
   public function executeHome (sfWebRequest $request)
   {
     $user = $this->getUser()->getGuardUser();
     $this->todayItems = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), date('Y-m-d'));
   }
+  
   
   public function executeEdit (sfWebRequest $request)
   {
@@ -55,4 +58,19 @@ abstract class BaseworkingHourUserActions extends sfActions
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
   }
+  
+  
+  public function executeItemDelete (sfWebRequest $request)
+  {
+    $item = Doctrine::getTable('WorkingHour')->find($request->getParameter('item_id'));
+    $this->forward404Unless ($item);
+    
+    $item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
+    $item->save();
+    $item->delete();
+    
+    $this->redirect($request->getReferer());
+  }
+  
+  
 }
