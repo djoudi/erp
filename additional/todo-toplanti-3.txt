@@ -10,7 +10,6 @@
 
 - Departmanları ekle
 
-Full Name	Bölüm
 Hande Bilgin	Accounting & Reporting Services
 Eren Genç	Accounting Services
 Emine Özçelik	Administration
@@ -37,6 +36,7 @@ Evrim Alyaz	Administration
 - izinler ayarlandı
 - work type mgmt eklendi
 - my working hours eklendi
+- departman desteği eklendi
 
 ==============================   WHDB SORULAR   ========================
 
