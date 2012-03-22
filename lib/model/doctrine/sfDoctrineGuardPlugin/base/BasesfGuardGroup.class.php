@@ -7,8 +7,10 @@
  * 
  * @property string $name
  * @property string $description
+ * @property integer $manager_id
  * @property integer $created_by
  * @property integer $updated_by
+ * @property sfGuardUser $Manager
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Permissions
@@ -18,8 +20,10 @@
  * 
  * @method string              getName()                   Returns the current record's "name" value
  * @method string              getDescription()            Returns the current record's "description" value
+ * @method integer             getManagerId()              Returns the current record's "manager_id" value
  * @method integer             getCreatedBy()              Returns the current record's "created_by" value
  * @method integer             getUpdatedBy()              Returns the current record's "updated_by" value
+ * @method sfGuardUser         getManager()                Returns the current record's "Manager" value
  * @method sfGuardUser         getCreator()                Returns the current record's "Creator" value
  * @method sfGuardUser         getUpdater()                Returns the current record's "Updater" value
  * @method Doctrine_Collection getPermissions()            Returns the current record's "Permissions" collection
@@ -28,8 +32,10 @@
  * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardGroup        setName()                   Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
+ * @method sfGuardGroup        setManagerId()              Sets the current record's "manager_id" value
  * @method sfGuardGroup        setCreatedBy()              Sets the current record's "created_by" value
  * @method sfGuardGroup        setUpdatedBy()              Sets the current record's "updated_by" value
+ * @method sfGuardGroup        setManager()                Sets the current record's "Manager" value
  * @method sfGuardGroup        setCreator()                Sets the current record's "Creator" value
  * @method sfGuardGroup        setUpdater()                Sets the current record's "Updater" value
  * @method sfGuardGroup        setPermissions()            Sets the current record's "Permissions" collection
@@ -56,6 +62,10 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'type' => 'string',
              'length' => 1000,
              ));
+        $this->hasColumn('manager_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
         $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -67,6 +77,10 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('sfGuardUser as Manager', array(
+             'local' => 'manager_id',
+             'foreign' => 'id'));
+
         $this->hasOne('sfGuardUser as Creator', array(
              'local' => 'created_by',
              'foreign' => 'id'));

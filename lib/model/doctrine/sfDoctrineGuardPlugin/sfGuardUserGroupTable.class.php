@@ -16,4 +16,10 @@ class sfGuardUserGroupTable extends PluginsfGuardUserGroupTable
     {
         return Doctrine_Core::getTable('sfGuardUserGroup');
     }
+  
+  public function __construct($name, Doctrine_Connection $conn, $initDefinition = false)
+  {
+    parent::__construct($name, $conn, $initDefinition);
+    $this->_options['orderBy'] = 'name ASC';
+  }
 }

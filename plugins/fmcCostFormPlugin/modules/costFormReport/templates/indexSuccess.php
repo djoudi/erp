@@ -34,7 +34,7 @@
         <th>Receipt No</th>
         <th>Invoice Status</th>
         <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
-          <th>Operations</th>
+          <th></th>
         <?php endif; ?>
       </tr>
     </thead>
@@ -78,11 +78,15 @@
           
           <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
             <td>
-              <a href="<?php echo url_for('@costFormManage_edit?cost_id='.$cfi->getId()); ?>">Edit</a>&nbsp;&nbsp;
-              <a onclick="
+              <?php
+                $editurl = url_for('@costFormManage_edit?cost_id='.$cfi->getId());
+                $deleteurl = url_for('@costFormManage_delete?cost_id='.$cfi->getId());
+              ?>
+              <a href="<?php echo $editurl; ?>"><i class="icon-pencil"></i></a> 
+              <a href="#" onclick="
                 if (confirm('Are you sure you want to delete this cost? Warning! You cannot undo this operation!'))
-                  parent.location='<?php echo url_for('@costFormManage_delete?cost_id='.$cfi->getId()); ?>'
-              ">Delete</a>
+                  parent.location='<?php echo $deleteurl; ?>'
+              "><i class="icon-trash"></i></a> 
             </td>
           <?php endif; ?>
         </tr>

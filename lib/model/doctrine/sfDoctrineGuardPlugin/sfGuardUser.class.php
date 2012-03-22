@@ -12,4 +12,13 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+  public function getDepartmentname()
+  {
+    $department = Doctrine::getTable('sfGuardGroup')
+      ->createQuery('wh')
+      ->addWhere('wh.id = ?', $this->group_id)
+      ->fetchOne();
+    
+    return $department;
+  }
 }

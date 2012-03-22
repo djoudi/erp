@@ -19,6 +19,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Title</th>
+      <th>Department</th>
       <th>Username</th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
         <td><a href="<?php echo url_for("@employeeManagement_edit?id=".$employee->getId()); ?>"><?php echo $employee->getName(); ?></a></td>
         <td><?php echo $employee->getEmailAddress(); ?></td>
         <td><?php echo $employee->getTitle(); ?></td>
+        <td><?php echo $employee->getDepartmentname(); ?></td>
         <td><?php echo $employee->getUsername(); ?></td>
       </tr>
     <?php endforeach; ?>

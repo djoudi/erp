@@ -5,7 +5,13 @@ class PluginProjectTable extends Doctrine_Table
   
   public static function getInstance()
   {
-      return Doctrine_Core::getTable('PluginProject');
+    return Doctrine_Core::getTable('PluginProject');
+  }
+  
+  public function __construct($name, Doctrine_Connection $conn, $initDefinition = false)
+  {
+    parent::__construct($name, $conn, $initDefinition);
+    $this->_options['orderBy'] = 'code ASC';
   }
   
   public function getAll()

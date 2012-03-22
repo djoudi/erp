@@ -7,11 +7,19 @@ sfGuardGroup:
       type: string(255)
       unique: true
     description: string(1000)
+    manager_id:
+      type: integer
+      notnull: true
     created_by:
       type: integer
     updated_by:
       type: integer
   relations:
+    Manager:
+      class: sfGuardUser
+      local: manager_id
+      foreign: id
+      foreignAlias: Department
     Creator:
       class: sfGuardUser
       local: created_by

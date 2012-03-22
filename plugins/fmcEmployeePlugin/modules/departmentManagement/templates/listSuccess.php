@@ -18,6 +18,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Manager</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,9 @@
             <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item->getId())); ?>">
               <?php echo $item->getName(); ?>
             </a>
+          </td>
+          <td>
+            <?php echo $item->getManager(); ?>
           </td>
         </tr>
       <?php endforeach; ?>

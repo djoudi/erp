@@ -14,5 +14,7 @@ class filterform_plugin_sfguarduser extends sfGuardUserFormFilter
       $this['salt'],
       $this['permissions_list']
     );
+    
+    $this->widgetSchema['group_id']->setLabel('Department');
   }
 }
