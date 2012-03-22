@@ -89,6 +89,7 @@ invoiced byalanı
 sf checklist
 
 hascredentials:
+  bunun için tüm security yml ler doğru olmalı hepsini kontrol et
 
 para birimleri boşluksuz mu olsa?
 

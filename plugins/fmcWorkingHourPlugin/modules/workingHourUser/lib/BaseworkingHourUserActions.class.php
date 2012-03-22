@@ -8,6 +8,9 @@ abstract class BaseworkingHourUserActions extends sfActions
   {
     $user = $this->getUser()->getGuardUser();
     $this->todayItems = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), date('Y-m-d'));
+    
+    $this->lastItems = Doctrine::getTable('WorkingHour')->getLastItems($user->getId(), 5);
+    #var_dump ($this->lastItems->toArray());
   }
   
   
@@ -56,7 +59,6 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     $processClass = new FmcProcessForm();
     $processClass->ProcessWorkingHourForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, $this->items);
-    #$processClass->ProcessForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, true);
   }
   
   
