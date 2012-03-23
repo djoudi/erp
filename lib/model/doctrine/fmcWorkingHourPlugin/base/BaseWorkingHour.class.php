@@ -64,13 +64,14 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
         $this->setTableName('working_hour');
         $this->hasColumn('type', 'enum', null, array(
              'type' => 'enum',
-             'notnull' => false,
              'values' => 
              array(
               0 => 'Work',
-              1 => 'IO',
+              1 => 'Enter',
+              2 => 'Exit',
              ),
              'default' => 'Work',
+             'notnull' => true,
              ));
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
@@ -80,11 +81,9 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
              ));
         $this->hasColumn('project_id', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => true,
              ));
         $this->hasColumn('worktype_id', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => true,
              ));
         $this->hasColumn('comment', 'string', 250, array(
              'type' => 'string',
@@ -92,11 +91,9 @@ abstract class BaseWorkingHour extends sfDoctrineRecord
              ));
         $this->hasColumn('start', 'time', null, array(
              'type' => 'time',
-             'notnull' => true,
              ));
         $this->hasColumn('end', 'time', null, array(
              'type' => 'time',
-             'notnull' => true,
              ));
         $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',

@@ -78,6 +78,9 @@ Evrim Alyaz	Administration
 
 ==============================   TO  DO   ========================
 
+user edit ve new da departman zorunlu
+
+
 sadece cost formları da silebilsin
 
 tablesorter currency ve date sort yanlış

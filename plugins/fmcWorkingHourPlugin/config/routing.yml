@@ -19,14 +19,37 @@ workingHourUser_home:
   url: /workinghours/user/home
   param: { module: workingHourUser, action: home }
 
-workingHourUser_edit:
+workingHourUser_editday:
   url: /workinghours/user/editday/:date
+  param: { module: workingHourUser, action: editday }
+workingHourUser_editday_enterance:
+  url: /workinghours/user/editday/:date/enterance
+  param: { module: workingHourUser, action: enterday }
+
+
+
+### atilacaklar
+
+workingHourUser_edit:
+  url: /workinghours/user/editday2/:date
   param: { module: workingHourUser, action: edit }
 
 workingHourUser_edititem:
-  url: /workinghours/user/editday/:date/:item_id
+  url: /workinghours/user/editday2/:date/:item_id
   param: { module: workingHourUser, action: edit }
 
 workingHourUser_deleteitem:
   url: /workinghours/user/deleteitem/:item_id
   param: { module: workingHourUser, action: itemDelete }
+
+workingHourUser_processio:
+  url: /workinghours/user/processio/:date
+  param: { module: workingHourUser, action: processio }
+
+
+
+
+
+
+
+
