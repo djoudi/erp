@@ -13,6 +13,7 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'IO' => 'IO'))),
       'user_id'     => new sfWidgetFormFilterInput(),
       'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'project_id'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -28,6 +29,7 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'IO' => 'IO'))),
       'user_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'project_id'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -60,6 +62,7 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
+      'type'        => 'Enum',
       'user_id'     => 'Number',
       'date'        => 'Date',
       'project_id'  => 'Number',

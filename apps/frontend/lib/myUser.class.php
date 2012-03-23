@@ -11,4 +11,15 @@ class myUser extends sfGuardSecurityUser
       ->addWhere('cf.user_id = ?', $this->getGuardUser()->getId())
       ->fetchOne();
   }
+  
+  public function checkNewDay ($date)
+  {
+    $records = Doctrine::getTable('WorkingHour')
+      ->createQuery ('wh')
+      ->addWhere ('wh.user_id = ?', $this->getGuardUser()->getId())
+      ->addWhere ('wh.date = ?', $date)
+      ->addWhere ('wh.type = ?', 'IO')
+      ->execute();
+    return count($records) ? false : true;
+  }
 }

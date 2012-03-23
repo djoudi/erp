@@ -16,6 +16,7 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
+      'type'        => new sfWidgetFormChoice(array('choices' => array('Work' => 'Work', 'IO' => 'IO'))),
       'user_id'     => new sfWidgetFormInputText(),
       'date'        => new sfWidgetFormDate(),
       'project_id'  => new sfWidgetFormInputText(),
@@ -33,6 +34,7 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'type'        => new sfValidatorChoice(array('choices' => array(0 => 'Work', 1 => 'IO'), 'required' => false)),
       'user_id'     => new sfValidatorInteger(array('required' => false)),
       'date'        => new sfValidatorDate(array('required' => false)),
       'project_id'  => new sfValidatorInteger(),

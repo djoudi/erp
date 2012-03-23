@@ -13,6 +13,7 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'IO' => 'IO'))),
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
       'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'project_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
@@ -29,6 +30,7 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'IO' => 'IO'))),
       'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
       'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'project_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),
@@ -62,6 +64,7 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
+      'type'        => 'Enum',
       'user_id'     => 'ForeignKey',
       'date'        => 'Date',
       'project_id'  => 'ForeignKey',

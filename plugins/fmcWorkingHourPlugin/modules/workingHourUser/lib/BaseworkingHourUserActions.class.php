@@ -8,9 +8,7 @@ abstract class BaseworkingHourUserActions extends sfActions
   {
     $user = $this->getUser()->getGuardUser();
     $this->todayItems = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), date('Y-m-d'));
-    
     $this->lastItems = Doctrine::getTable('WorkingHour')->getLastItems($user->getId(), 5);
-    #var_dump ($this->lastItems->toArray());
   }
   
   
@@ -18,6 +16,10 @@ abstract class BaseworkingHourUserActions extends sfActions
   {
     $user = $this->getUser()->getGuardUser();
     $this->date = $request->getParameter('date');
+    
+    $this->isnewday = $this->getUser()->checkNewDay ($this->date);
+    
+    
     
     if ($item_id = $request->getParameter('item_id'))
     {      
