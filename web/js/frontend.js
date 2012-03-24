@@ -25,6 +25,8 @@ $(document).ready(function()
   $('.datepick').datepicker({ dateFormat: "yy-mm-dd" });
   $('#datepick_whdb').datepicker({
     dateFormat: "yy-mm-dd", 
+    changeMonth: true,
+    changeYear: true,
     onSelect: function(dateText, inst) {
       var url = $('#datepick_whdb_url').val() + dateText;
       window.location=url;
