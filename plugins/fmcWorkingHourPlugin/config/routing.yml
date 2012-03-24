@@ -25,6 +25,11 @@ workingHourUser_editday:
 workingHourUser_editday_enterance:
   url: /workinghours/user/editday/:date/enterance
   param: { module: workingHourUser, action: enterday }
+workingHourUser_editday_exit:
+  url: /workinghours/user/editday/:date/exit
+  param: { module: workingHourUser, action: exitday }
+
+
 
 
 

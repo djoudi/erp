@@ -4,8 +4,6 @@ abstract class BaseworkingHourUserActions extends sfActions
 {
   
   
-  
-  
   public function executeHome (sfWebRequest $request)
   {
     $user = $this->getUser()->getGuardUser();
@@ -14,7 +12,30 @@ abstract class BaseworkingHourUserActions extends sfActions
   }
   
   
-  
+  public function executeExitday (sfWebRequest $request)
+  {
+    // fetching date and user
+      $this->date = $request->getParameter('date');
+      $user = $this->getUser()->getGuardUser();
+      $editurl = $this->getController()->genUrl('@workingHourUser_editday?date='.$this->date);
+    // checking if day has enterance already
+      $check = new FmcWhCheck();
+      if ($msg = $check->CanExit($this->date))
+      {
+        $this->getUser()->setFlash('notice', $msg);
+        $this->redirect($editurl);
+      }
+    // preparing form
+      $item = new WorkingHour();
+      $item->setDate($this->date);
+      $item->setUser($user);
+      $item->setType('Exit');
+      $item->setEnd('18:00');
+      $this->form = new WorkingHourForm_user_exit ($item);
+    // processing form    
+      $proc = new FmcWhProcess();
+      $proc->ProcessEnteranceExit ($this->form, $request, $editurl, 'Exit');
+  }
   
   
   public function executeEnterday (sfWebRequest $request)
@@ -23,28 +44,24 @@ abstract class BaseworkingHourUserActions extends sfActions
       $this->date = $request->getParameter('date');
       $user = $this->getUser()->getGuardUser();
       $editurl = $this->getController()->genUrl('@workingHourUser_editday?date='.$this->date);
-    
     // checking if day has enterance already
-      if (!$this->getUser()->wh_checknewday($this->date))
+      $check = new FmcWhCheck();
+      if ($msg = $check->CanEnter($this->date))
       {
-        $this->getUser()->setFlash('notice', 'To enter, you have to exit.');
+        $this->getUser()->setFlash('notice', $msg);
         $this->redirect($editurl);
       }
-    
     // preparing form
       $item = new WorkingHour();
-      $item->setType('Enter');
       $item->setDate($this->date);
       $item->setUser($user);
+      $item->setType('Enter');
       $item->setStart('09:00');
       $this->form = new WorkingHourForm_user_io ($item);
-    
     // processing form    
-      $proc = new FmcProcessWh();
-      $proc->ProcessEnterance ($this->form, $request, $editurl);
+      $proc = new FmcWhProcess();
+      $proc->ProcessEnteranceExit ($this->form, $request, $editurl, 'Enter');
   }
-  
-  
   
   
   public function executeEditday (sfWebRequest $request)
@@ -53,14 +70,13 @@ abstract class BaseworkingHourUserActions extends sfActions
       $this->date = $request->getParameter('date');
       $user = $this->getUser()->getGuardUser();
       $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
-    
     // checking if day has enterance
-      if ($this->getUser()->wh_checknewday($this->date))
+      $check = new FmcWhCheck();
+      if ($check->IsEnterRequired($this->date))
       {
         $this->getUser()->setFlash('notice', 'You should enter your enterance hour first.');
         $this->redirect($editurl);
       }
-    
     // fetching todays items
       $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
     
@@ -72,14 +88,20 @@ abstract class BaseworkingHourUserActions extends sfActions
       $this->item->setStart(date('H:i',$time));
       $this->item->setEnd(date('H:i',$time + 1800));
       $this->form = new WorkingHourForm_User ($this->item);
-    
     // processing form
       $processClass = new FmcProcessForm();
       $processClass->ProcessWorkingHourForm($this->form, $request, $editurl, $this->items);
-    
     # process kismi duzeltilecek - aktarilacak
     # edit item konacak    
   }
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

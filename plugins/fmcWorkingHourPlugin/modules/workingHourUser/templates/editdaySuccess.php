@@ -51,3 +51,9 @@
     <?php include_partial ("itemnew", array("form"=>$form)); ?>
   </tfoot>  
 </table>
+
+
+<a class="btn" href="<?php echo url_for('workingHourUser_editday_enterance', array('date'=>$date)); ?>">Add new enterance</a>
+<a class="btn" href="<?php echo url_for('workingHourUser_editday_exit', array('date'=>$date)); ?>">Add new exit</a>
+
+
