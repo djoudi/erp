@@ -183,7 +183,6 @@ abstract class BasecostFormUserActions extends sfActions
         $sum = 0;      
         foreach ($list as $index=>$cfi)
         {
-          //$rowNo = ($index*2)+7;
           $sum += $cfi->amount;
           $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('B'.$row, $cfi->cost_Date)

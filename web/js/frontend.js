@@ -1,7 +1,7 @@
 $(document).ready(function() 
 {
   
-  // Tablesorter
+  /* Tablesorter */
   $(".tablesorter").tablesorter( {sortList: [[0,0]]} );
   $(".tablesorter1d").tablesorter( {sortList: [[0,1]]} );
   $(".tablesorter2a").tablesorter( {sortList: [[1,0]]} );
@@ -9,7 +9,7 @@ $(document).ready(function()
   $(".tablesorter4a").tablesorter( {sortList: [[3,0]]} );
   
   
-  // Tablesorter pager
+  /* Tablesorter pager */
   $(".tablesorterpager").tablesorterPager({
     container: $(".tablesorterpagerdiv"), 
     positionFixed: false, 
@@ -17,11 +17,11 @@ $(document).ready(function()
   });
   
   
-  // Bootstrap
+  /* Bootstrap */
   $('.tooltips').tooltip();
   
   
-  // jQueryUI Datepicker
+  /* jQueryUI Datepicker */
   $('.datepick').datepicker({ dateFormat: "yy-mm-dd" });
   $('#datepick_whdb').datepicker({
     dateFormat: "yy-mm-dd", 
@@ -34,33 +34,34 @@ $(document).ready(function()
   });
   
   
-  // Timepicker
-  var a = "#working_hour_start";
-  var b = "#working_hour_end";
-  $(a).timePicker();
-  $(b).timePicker();
-  var oldTime = $.timePicker(a).getTime();
-  $(a).change(function()
+  /* Timepicker */
+  var startTag = "#working_hour_start";
+  var endTag = "#working_hour_end";
+  $(startTag).timePicker();
+  $(endTag).timePicker();
+  //var oldTimeVal = ($.timePicker(startTag).getTime());
+  $(startTag).change(function()
   {
-    if ($(b).val())
+    if ($(endTag).val())
     {
-      var duration = ($.timePicker(b).getTime() - oldTime);
-      var time = $.timePicker(a).getTime();
-      $.timePicker(b).setTime(new Date(new Date(time.getTime() + duration)));
-      oldTime = time;
+      var duration = ($.timePicker(endTag).getTime() - $.timePicker(startTag).getTime());
+      var time = $.timePicker(startTag).getTime();
+      $.timePicker(endTag).setTime(new Date(new Date(time.getTime() + duration)));
+      //oldTimeVal = time;
     }
   });
-  $(b).change(function()
+  
+  $(endTag).change(function()
   {
-    if($.timePicker(a).getTime() > $.timePicker(this).getTime()) {
+    if($.timePicker(startTag).getTime() > $.timePicker(this).getTime()) {
       $(this).addClass("timepicker-error");
       
     }
     else {
       $(this).removeClass("timepicker-error");
     }
-    var x = $.timePicker(a).getTime();
-    var y = $.timePicker(b).getTime();
+    var x = $.timePicker(startTag).getTime();
+    var y = $.timePicker(endTag).getTime();
     var z = ( y-x ) / 60000;
     var minute = z % 60;
     var hour = (z-minute) / 60;
