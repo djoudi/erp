@@ -16,9 +16,8 @@
     
     <select class="pagesize span1">
       
-      <option selected="25" value="25">25</option>
-      
-      <option value="50">50</option>
+      <option value="25">25</option>
+      <option selected="50" value="50">50</option>
       <option value="100">100</option>
       
     </select> results per page
