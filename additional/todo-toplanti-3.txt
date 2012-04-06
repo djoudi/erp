@@ -8,28 +8,6 @@
   - Working Hours > (user, edit vs my hours)
   - Bunlar db ye eklendiği sürece başka bir sorun yok
 
-- Departmanları ekle
-
-Hande Bilgin	Accounting & Reporting Services
-Eren Genç	Accounting Services
-Emine Özçelik	Administration
-Sultan Kahraman	Administration
-Uğur Akkuş	Administration
-Ceyhan Karaduman	Company Formation & Payment Services
-Tülay Taştan	Company Formation & Payment Services
-Aslan Akgüç	Customer Services
-Sıdıka Bilen	Customer Services
-Yasemin Öztürk	Customer Services
-Burcu Gümüş	Market Research
-Emrah Ülkü	Market Research
-Filiz Demiral	Market Research
-Gizem Öğsüz	Market Research
-Melek Müderrisgil	Market Research
-Müge Taş	Recuitment Services
-Nuray Coskun	Recuitment Services
-Özlem Ilica	Sales
-Sevda	Accounting & Reporting Services
-Evrim Alyaz	Administration
 
 ==============================   WHDB YAPILAN    ========================
 
@@ -43,33 +21,6 @@ Evrim Alyaz	Administration
 - gelecek tarihlere kullanıcılar girebilsinler mi? (evetse ne zamana kadar?)
 
 ==============================   CFDB YAPILAN   ========================
-
-  Zaten bilinen:
-- cost form rapor sayfasında cost formlar düzenlenebilir ve silinebilir (izin varsa)
-- tutar kısımlarına küsürat girilebiliyor
-
-  cfdb-ek:
-- toplam tutar
-  - ekranda ve excel çıktısında toplam tutar var
-  - para birimlerine göre bölüyor
-- cost formda cost itemleri düzenleme var
-
-  Bilinmeyen:
-- tasarım görsel olarak değiştirildi
-  - daha fazla boşluk var
-  - kullanım kolaylığında değişiklikler yapıldı
-  - izin ve departman yönetiminde 2 column seçim kullanıldı
-- versionable desteği eklendi (arayüzde yok)
-- kayıt düzenlemede, create ve update tarih ve kişileri görünüyor
-  - created / updated by eklendi (arayüzde var)
-- tüm sonuç ekranları geliştirildi
-  - bulunan sonuç
-  - filtreleme, - aç kapama
-  - pagination
-  - sıralama kriterleri arttırıldı ve düzeltildi
-  
----------
-
 
 
 
