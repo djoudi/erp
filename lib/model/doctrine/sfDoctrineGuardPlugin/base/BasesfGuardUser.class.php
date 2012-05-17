@@ -30,6 +30,8 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $CostForms
+ * @property Doctrine_Collection $WorkingHours
+ * @property Doctrine_Collection $WorkingHourLeave
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -56,6 +58,8 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCostForms()             Returns the current record's "CostForms" collection
+ * @method Doctrine_Collection   getWorkingHours()          Returns the current record's "WorkingHours" collection
+ * @method Doctrine_Collection   getWorkingHourLeave()      Returns the current record's "WorkingHourLeave" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setTitle()                 Sets the current record's "title" value
@@ -81,6 +85,8 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCostForms()             Sets the current record's "CostForms" collection
+ * @method sfGuardUser           setWorkingHours()          Sets the current record's "WorkingHours" collection
+ * @method sfGuardUser           setWorkingHourLeave()      Sets the current record's "WorkingHourLeave" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -208,6 +214,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('CostForm as CostForms', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('WorkingHour as WorkingHours', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('WorkingHourLeave', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

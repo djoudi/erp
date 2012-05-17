@@ -16,29 +16,32 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostForms
+ * @property Doctrine_Collection $WorkingHours
  * 
- * @method integer             getCustomerId()  Returns the current record's "customer_id" value
- * @method enum                getStatus()      Returns the current record's "status" value
- * @method string              getCode()        Returns the current record's "code" value
- * @method string              getTitle()       Returns the current record's "title" value
- * @method string              getDescription() Returns the current record's "description" value
- * @method integer             getCreatedBy()   Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()   Returns the current record's "updated_by" value
- * @method Customer            getCustomers()   Returns the current record's "Customers" value
- * @method sfGuardUser         getCreator()     Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()     Returns the current record's "Updater" value
- * @method Doctrine_Collection getCostForms()   Returns the current record's "CostForms" collection
- * @method Project             setCustomerId()  Sets the current record's "customer_id" value
- * @method Project             setStatus()      Sets the current record's "status" value
- * @method Project             setCode()        Sets the current record's "code" value
- * @method Project             setTitle()       Sets the current record's "title" value
- * @method Project             setDescription() Sets the current record's "description" value
- * @method Project             setCreatedBy()   Sets the current record's "created_by" value
- * @method Project             setUpdatedBy()   Sets the current record's "updated_by" value
- * @method Project             setCustomers()   Sets the current record's "Customers" value
- * @method Project             setCreator()     Sets the current record's "Creator" value
- * @method Project             setUpdater()     Sets the current record's "Updater" value
- * @method Project             setCostForms()   Sets the current record's "CostForms" collection
+ * @method integer             getCustomerId()   Returns the current record's "customer_id" value
+ * @method enum                getStatus()       Returns the current record's "status" value
+ * @method string              getCode()         Returns the current record's "code" value
+ * @method string              getTitle()        Returns the current record's "title" value
+ * @method string              getDescription()  Returns the current record's "description" value
+ * @method integer             getCreatedBy()    Returns the current record's "created_by" value
+ * @method integer             getUpdatedBy()    Returns the current record's "updated_by" value
+ * @method Customer            getCustomers()    Returns the current record's "Customers" value
+ * @method sfGuardUser         getCreator()      Returns the current record's "Creator" value
+ * @method sfGuardUser         getUpdater()      Returns the current record's "Updater" value
+ * @method Doctrine_Collection getCostForms()    Returns the current record's "CostForms" collection
+ * @method Doctrine_Collection getWorkingHours() Returns the current record's "WorkingHours" collection
+ * @method Project             setCustomerId()   Sets the current record's "customer_id" value
+ * @method Project             setStatus()       Sets the current record's "status" value
+ * @method Project             setCode()         Sets the current record's "code" value
+ * @method Project             setTitle()        Sets the current record's "title" value
+ * @method Project             setDescription()  Sets the current record's "description" value
+ * @method Project             setCreatedBy()    Sets the current record's "created_by" value
+ * @method Project             setUpdatedBy()    Sets the current record's "updated_by" value
+ * @method Project             setCustomers()    Sets the current record's "Customers" value
+ * @method Project             setCreator()      Sets the current record's "Creator" value
+ * @method Project             setUpdater()      Sets the current record's "Updater" value
+ * @method Project             setCostForms()    Sets the current record's "CostForms" collection
+ * @method Project             setWorkingHours() Sets the current record's "WorkingHours" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -103,6 +106,10 @@ abstract class BaseProject extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasMany('CostForm as CostForms', array(
+             'local' => 'id',
+             'foreign' => 'project_id'));
+
+        $this->hasMany('WorkingHour as WorkingHours', array(
              'local' => 'id',
              'foreign' => 'project_id'));
 

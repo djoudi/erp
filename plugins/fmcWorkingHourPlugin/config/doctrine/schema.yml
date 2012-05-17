@@ -32,8 +32,8 @@ WorkingHour:
     updated_by:
       type: integer
   relations:
-    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
-    Project: { class: Project, local: project_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
+    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
+    Project: { class: Project, local: project_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
     WorkType: { class: WorkType, local: worktype_id, foreign: id, foreignAlias: WorkTypes }
     Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
     Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
@@ -48,5 +48,38 @@ WorkType:
     created_by: integer
     updated_by: integer
   relations:
+    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
+WorkingHourLeave:
+  actAs:
+    SoftDelete: ~
+    Timestampable: ~
+    Versionable: ~
+  columns:
+    user_id:
+      type: integer
+      notnull: true
+    date:
+      type: date
+      notnull: true
+    type:
+      type: enum
+      values: ["RaporluHastalik", "RaporsuzHastalik", "UcretliIzin", "UcretsizIzin"]
+      notnull: true
+    status:
+      type: enum
+      values: ["Draft", "Approved", "Cancelled"]
+      notnull: true
+    status_user:
+      type: integer
+      notnull: true
+    created_by:
+      type: integer
+    updated_by:
+      type: integer
+  relations:
+    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
+    StatusUser: { class: sfGuardUser, local: status_user, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
     Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
     Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
