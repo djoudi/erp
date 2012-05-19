@@ -57,3 +57,25 @@
 <a class="btn" href="<?php echo url_for('workingHourUser_editday_exit', array('date'=>$date)); ?>">Add new exit</a>
 
 
+
+<br /><br />
+
+<a class="btn" href="<?php echo url_for('workingHourUser_leave_w_report'), array('date'=>$date)); ?>">Ücretli İzin</a>
+<a class="btn">Ücretsiz İzin</a>
+
+<br /><br />
+
+<a class="btn">Raporlu Hastalık izni</a>
+<a class="btn">Raporsuz Hastalık izni</a>
+
+
+
+
+
+
+
+
+
+
+
+

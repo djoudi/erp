@@ -17,8 +17,10 @@ abstract class BaseWorkingHourLeaveForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
-      'date'        => new sfWidgetFormDate(),
       'type'        => new sfWidgetFormChoice(array('choices' => array('RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfWidgetFormDate(),
+      'report_date' => new sfWidgetFormDate(),
+      'description' => new sfWidgetFormInputText(),
       'status'      => new sfWidgetFormChoice(array('choices' => array('Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StatusUser'), 'add_empty' => false)),
       'created_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -32,8 +34,10 @@ abstract class BaseWorkingHourLeaveForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
-      'date'        => new sfValidatorDate(),
       'type'        => new sfValidatorChoice(array('choices' => array(0 => 'RaporluHastalik', 1 => 'RaporsuzHastalik', 2 => 'UcretliIzin', 3 => 'UcretsizIzin'))),
+      'date'        => new sfValidatorDate(),
+      'report_date' => new sfValidatorDate(array('required' => false)),
+      'description' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'status'      => new sfValidatorChoice(array('choices' => array(0 => 'Draft', 1 => 'Approved', 2 => 'Cancelled'))),
       'status_user' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('StatusUser'))),
       'created_by'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),

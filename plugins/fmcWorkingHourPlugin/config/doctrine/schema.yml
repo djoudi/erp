@@ -60,13 +60,17 @@ WorkingHourLeave:
     user_id:
       type: integer
       notnull: true
-    date:
-      type: date
-      notnull: true
     type:
       type: enum
       values: ["RaporluHastalik", "RaporsuzHastalik", "UcretliIzin", "UcretsizIzin"]
       notnull: true
+    date:
+      type: date
+      notnull: true
+    report_date: # rapor tarihi
+      type: date
+    description: # rapor numarasi veya izin aciklamasi icin
+      type: string(50)  
     status:
       type: enum
       values: ["Draft", "Approved", "Cancelled"]

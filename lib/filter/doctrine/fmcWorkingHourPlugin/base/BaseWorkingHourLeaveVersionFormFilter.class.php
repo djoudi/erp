@@ -14,8 +14,10 @@ abstract class BaseWorkingHourLeaveVersionFormFilter extends BaseFormFilterDoctr
   {
     $this->setWidgets(array(
       'user_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'report_date' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'description' => new sfWidgetFormFilterInput(),
       'status'      => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_by'  => new sfWidgetFormFilterInput(),
@@ -27,8 +29,10 @@ abstract class BaseWorkingHourLeaveVersionFormFilter extends BaseFormFilterDoctr
 
     $this->setValidators(array(
       'user_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'report_date' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'description' => new sfValidatorPass(array('required' => false)),
       'status'      => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_by'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -57,8 +61,10 @@ abstract class BaseWorkingHourLeaveVersionFormFilter extends BaseFormFilterDoctr
     return array(
       'id'          => 'Number',
       'user_id'     => 'Number',
-      'date'        => 'Date',
       'type'        => 'Enum',
+      'date'        => 'Date',
+      'report_date' => 'Date',
+      'description' => 'Text',
       'status'      => 'Enum',
       'status_user' => 'Number',
       'created_by'  => 'Number',

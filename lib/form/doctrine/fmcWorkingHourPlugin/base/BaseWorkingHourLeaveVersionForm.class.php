@@ -17,8 +17,10 @@ abstract class BaseWorkingHourLeaveVersionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'user_id'     => new sfWidgetFormInputText(),
-      'date'        => new sfWidgetFormDate(),
       'type'        => new sfWidgetFormChoice(array('choices' => array('RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfWidgetFormDate(),
+      'report_date' => new sfWidgetFormDate(),
+      'description' => new sfWidgetFormInputText(),
       'status'      => new sfWidgetFormChoice(array('choices' => array('Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfWidgetFormInputText(),
       'created_by'  => new sfWidgetFormInputText(),
@@ -32,8 +34,10 @@ abstract class BaseWorkingHourLeaveVersionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'     => new sfValidatorInteger(),
-      'date'        => new sfValidatorDate(),
       'type'        => new sfValidatorChoice(array('choices' => array(0 => 'RaporluHastalik', 1 => 'RaporsuzHastalik', 2 => 'UcretliIzin', 3 => 'UcretsizIzin'))),
+      'date'        => new sfValidatorDate(),
+      'report_date' => new sfValidatorDate(array('required' => false)),
+      'description' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'status'      => new sfValidatorChoice(array('choices' => array(0 => 'Draft', 1 => 'Approved', 2 => 'Cancelled'))),
       'status_user' => new sfValidatorInteger(),
       'created_by'  => new sfValidatorInteger(array('required' => false)),

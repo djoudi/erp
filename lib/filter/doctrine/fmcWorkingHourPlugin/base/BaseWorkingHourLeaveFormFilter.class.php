@@ -14,8 +14,10 @@ abstract class BaseWorkingHourLeaveFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'report_date' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'description' => new sfWidgetFormFilterInput(),
       'status'      => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StatusUser'), 'add_empty' => true)),
       'created_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -28,8 +30,10 @@ abstract class BaseWorkingHourLeaveFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
-      'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'report_date' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'description' => new sfValidatorPass(array('required' => false)),
       'status'      => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Approved' => 'Approved', 'Cancelled' => 'Cancelled'))),
       'status_user' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StatusUser'), 'column' => 'id')),
       'created_by'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Creator'), 'column' => 'id')),
@@ -59,8 +63,10 @@ abstract class BaseWorkingHourLeaveFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'          => 'Number',
       'user_id'     => 'ForeignKey',
-      'date'        => 'Date',
       'type'        => 'Enum',
+      'date'        => 'Date',
+      'report_date' => 'Date',
+      'description' => 'Text',
       'status'      => 'Enum',
       'status_user' => 'ForeignKey',
       'created_by'  => 'ForeignKey',
