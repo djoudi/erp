@@ -4,18 +4,21 @@
 #cost_form_advanceRecieved { width: 50px; text-align: right; }
 
 #cost_form_item_cost_Date_day, 
-#cost_form_item_invoice_Date_day
+#cost_form_item_invoice_Date_day,
+#working_hour_leave_report_date_day
 {
   width: 50px;
 }
 #cost_form_item_cost_Date_month, 
-#cost_form_item_invoice_Date_month
+#cost_form_item_invoice_Date_month,
+#working_hour_leave_report_date_month
 {
   width: 50px;
 }
 
 #cost_form_item_cost_Date_year, 
-#cost_form_item_invoice_Date_year
+#cost_form_item_invoice_Date_year,
+#working_hour_leave_report_date_year
 {
   width: 70px;
 }

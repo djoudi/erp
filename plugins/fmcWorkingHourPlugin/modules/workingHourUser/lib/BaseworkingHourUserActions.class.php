@@ -2,7 +2,33 @@
 
 abstract class BaseworkingHourUserActions extends sfActions
 {
+  public function executeLeaverequest (sfWebRequest $request)
+  {
+    //preparing vars
+      $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+      $this->date = $request->getParameter('date');
+      $this->type = $request->getParameter('type');
+      $user = $this->getUser()->getGuardUser();
+      $forwardurl = $this->getController()->genUrl('@workingHourUser_editday?date='.$this->date);
+      
+    //preparing form
+      $formitem = new WorkingHourLeave();
+      
+      $formitem->setDate($this->date);
+      $formitem->setReportDate($this->date);
+      $formitem->setUser($user);
+      $formitem->setType($this->type);
+      $formitem->setStatus('Pending');
+      $formitem->setStatusUser($user);
+      
+      $this->form = new WorkingHourForm_leavewreport($formitem);
+    
+    //processing form
+      $processClass = new FmcProcessForm();
+      $processClass->ProcessLeaveForm($this->form, $request, $forwardurl);
+  }
   
+  /* ########################################################################################## */
   
   public function executeHome (sfWebRequest $request)
   {
@@ -11,72 +37,25 @@ abstract class BaseworkingHourUserActions extends sfActions
     $this->lastItems = Doctrine::getTable('WorkingHour')->getLastItems($user->getId(), 5);
   }
   
-  
-  public function executeExitday (sfWebRequest $request)
-  {
-    // fetching date and user
-      $this->date = $request->getParameter('date');
-      $user = $this->getUser()->getGuardUser();
-      $editurl = $this->getController()->genUrl('@workingHourUser_editday?date='.$this->date);
-    // checking if day has enterance already
-      $check = new FmcWhCheck();
-      if ($msg = $check->CanExit($this->date))
-      {
-        $this->getUser()->setFlash('notice', $msg);
-        $this->redirect($editurl);
-      }
-    // preparing form
-      $item = new WorkingHour();
-      $item->setDate($this->date);
-      $item->setUser($user);
-      $item->setType('Exit');
-      $item->setEnd('18:00');
-      $this->form = new WorkingHourForm_user_exit ($item);
-    // processing form    
-      $proc = new FmcWhProcess();
-      $proc->ProcessEnteranceExit ($this->form, $request, $editurl, 'Exit');
-  }
-  
-  
-  public function executeEnterday (sfWebRequest $request)
-  {
-    // fetching date and user
-      $this->date = $request->getParameter('date');
-      $user = $this->getUser()->getGuardUser();
-      $editurl = $this->getController()->genUrl('@workingHourUser_editday?date='.$this->date);
-    // checking if day has enterance already
-      $check = new FmcWhCheck();
-      if ($msg = $check->CanEnter($this->date))
-      {
-        $this->getUser()->setFlash('notice', $msg);
-        $this->redirect($editurl);
-      }
-    // preparing form
-      $item = new WorkingHour();
-      $item->setDate($this->date);
-      $item->setUser($user);
-      $item->setType('Enter');
-      $item->setStart('09:00');
-      $this->form = new WorkingHourForm_user_io ($item);
-    // processing form    
-      $proc = new FmcWhProcess();
-      $proc->ProcessEnteranceExit ($this->form, $request, $editurl, 'Enter');
-  }
-  
+  /* ########################################################################################## */
   
   public function executeEditday (sfWebRequest $request)
   {
-    // fetching date and user
+    #$this->x = $this->getUser()->getGuardUser()->getWorkingHourLeave()->toArray();
+    
+    $leaveClass = new FmcWhLeave();
+    
+    
+    // fetching vars
+      $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
       $this->date = $request->getParameter('date');
       $user = $this->getUser()->getGuardUser();
       $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
-    // checking if day has enterance
-      $check = new FmcWhCheck();
-      if ($check->IsEnterRequired($this->date))
-      {
-        $this->getUser()->setFlash('notice', 'You should enter your enterance hour first.');
-        $this->redirect($editurl);
-      }
+    
+    
+    $this->x = $leaveClass->getActiveLeaveForDate($this->date);
+    
+      
     // fetching todays items
       $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
     
@@ -88,92 +67,11 @@ abstract class BaseworkingHourUserActions extends sfActions
       $this->item->setStart(date('H:i',$time));
       $this->item->setEnd(date('H:i',$time + 1800));
       $this->form = new WorkingHourForm_User ($this->item);
+      
     // processing form
       $processClass = new FmcProcessForm();
       $processClass->ProcessWorkingHourForm($this->form, $request, $editurl, $this->items);
     # process kismi duzeltilecek - aktarilacak
-    # edit item konacak    
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  public function executeEdit (sfWebRequest $request)
-  {
-    $user = $this->getUser()->getGuardUser();
-    $this->date = $request->getParameter('date');
-    
-    $this->isnewday = $this->getUser()->checkNewDay ($this->date);
-    
-    
-    
-    
-    
-    if ($item_id = $request->getParameter('item_id'))
-    {      
-      $this->getUser()->setAttribute('item_id', $item_id);
-      $this->redirect($this->getController()->genUrl('@workingHourUser_edit?date='.$this->date));
-    }
-    elseif ($this->getUser()->getAttribute('item_id'))
-    {
-      $item_id = $this->getUser()->getAttribute('item_id');
-      $this->getUser()->getAttributeHolder()->remove('item_id');
-      
-      $item_old = Doctrine::getTable('WorkingHour')
-        ->createQuery ('wh')
-        ->addWhere ('id = ?', $item_id)
-        ->addWhere ('wh.user_id = ?', $user->getId())
-        ->fetchOne();
-      $item = $item_old->copy();
-      $item_old->delete();
-      
-      $this->form = new WorkingHourForm_User ($item);
-    }
-    
-    $this->item = Doctrine::getTable('WorkingHour')->findOneByDate($this->date);
-    
-    
-    $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
-    
-    if (!$item_id)
-    {
-      $this->item = new WorkingHour();
-      $this->item->setDate($this->date);
-      $this->item->setUser($user);
-      
-      $this->ioform = new WorkingHourForm_user_io ($this->item);
-      
-      $time = strtotime($this->item->getNexthour($this->date));
-      $this->item->setStart(date('H:i',$time));
-      $this->item->setEnd(date('H:i',$time + 1800));
-      $this->form = new WorkingHourForm_User ($this->item);
-      
-    }
-    
-    $processClass = new FmcProcessForm();
-    $processClass->ProcessWorkingHourForm($this->form, $request, "@workingHourUser_edit?date=".$this->date, $this->items);
-  }
-  
-  
-  public function executeItemDelete (sfWebRequest $request)
-  {
-    $item = Doctrine::getTable('WorkingHour')->find($request->getParameter('item_id'));
-    $this->forward404Unless ($item);
-    
-    $item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
-    $item->save();
-    $item->delete();
-    
-    $this->redirect($request->getReferer());
   }
   
   

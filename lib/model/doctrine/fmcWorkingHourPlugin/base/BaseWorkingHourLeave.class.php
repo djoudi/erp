@@ -64,10 +64,10 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              'type' => 'enum',
              'values' => 
              array(
-              0 => 'RaporluHastalik',
-              1 => 'RaporsuzHastalik',
-              2 => 'UcretliIzin',
-              3 => 'UcretsizIzin',
+              0 => 'IllnessWReport',
+              1 => 'IllnessWoReport',
+              2 => 'PaidVacation',
+              3 => 'UnpaidVacation',
              ),
              'notnull' => true,
              ));

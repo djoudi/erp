@@ -13,22 +13,6 @@ workingHourWorkType_edit:
   param: { module: workingHourWorkType, action: edit }
 
 
-
-
-# WHDB Onleave Forms
-
-workingHourUser_leave_w_report:
-  url: /workinghours/user/leave/withreport/:date
-  param: { module: workingHourUser, action: leavewreport }
-
-
-
-
-
-
-
-
-
 # WHDB User
 
 workingHourUser_home:
@@ -38,6 +22,22 @@ workingHourUser_home:
 workingHourUser_editday:
   url: /workinghours/user/editday/:date
   param: { module: workingHourUser, action: editday }
+
+workingHourUser_leaverequest:
+  url: /workinghours/user/leave/:type/:date
+  param: { module: workingHourUser, action: leaverequest }
+
+
+
+
+
+
+
+
+
+
+
+
 workingHourUser_editday_enterance:
   url: /workinghours/user/editday/:date/enterance
   param: { module: workingHourUser, action: enterday }

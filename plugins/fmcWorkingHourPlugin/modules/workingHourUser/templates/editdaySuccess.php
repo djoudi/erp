@@ -1,4 +1,4 @@
-<?php include_partial ('title', array('date'=>$date)); ?>
+<?php include_partial ('title', array('date'=>$date, 'text'=>'Working Hours')); ?>
 
 <table class="table table-condensed">  
   <thead>
@@ -52,27 +52,28 @@
   </tfoot>  
 </table>
 
+<pre>
+  <?php print_r($x->toArray()); ?>
+</pre>
 
-<a class="btn" href="<?php echo url_for('workingHourUser_editday_enterance', array('date'=>$date)); ?>">Add new enterance</a>
-<a class="btn" href="<?php echo url_for('workingHourUser_editday_exit', array('date'=>$date)); ?>">Add new exit</a>
-
-
-
-<br /><br />
-
-<a class="btn" href="<?php echo url_for('workingHourUser_leave_w_report'), array('date'=>$date)); ?>">Ücretli İzin</a>
-<a class="btn">Ücretsiz İzin</a>
-
-<br /><br />
-
-<a class="btn">Raporlu Hastalık izni</a>
-<a class="btn">Raporsuz Hastalık izni</a>
+<p>
+  <a class="btn" href="<?php echo url_for('workingHourUser_editday_enterance', array('date'=>$date)); ?>">Add new enterance</a>
+  <a class="btn" href="<?php echo url_for('workingHourUser_editday_exit', array('date'=>$date)); ?>">Add new exit</a>
+</p>
 
 
-
-
-
-
+<div class="well">
+  <strong>Create request for: </strong>
+  
+  <?php foreach ($leaveStatus as $type=>$text): ?>
+    <a class="btn" href="
+      <?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>
+    ">
+    <?php echo $text; ?>
+    </a>
+  <?php endforeach; ?>
+  
+</div>
 
 
 

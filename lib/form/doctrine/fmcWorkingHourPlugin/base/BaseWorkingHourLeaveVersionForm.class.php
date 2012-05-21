@@ -17,7 +17,7 @@ abstract class BaseWorkingHourLeaveVersionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'user_id'     => new sfWidgetFormInputText(),
-      'type'        => new sfWidgetFormChoice(array('choices' => array('RaporluHastalik' => 'RaporluHastalik', 'RaporsuzHastalik' => 'RaporsuzHastalik', 'UcretliIzin' => 'UcretliIzin', 'UcretsizIzin' => 'UcretsizIzin'))),
+      'type'        => new sfWidgetFormChoice(array('choices' => array('IllnessWReport' => 'IllnessWReport', 'IllnessWoReport' => 'IllnessWoReport', 'PaidVacation' => 'PaidVacation', 'UnpaidVacation' => 'UnpaidVacation'))),
       'date'        => new sfWidgetFormDate(),
       'report_date' => new sfWidgetFormDate(),
       'description' => new sfWidgetFormInputText(),
@@ -34,7 +34,7 @@ abstract class BaseWorkingHourLeaveVersionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'     => new sfValidatorInteger(),
-      'type'        => new sfValidatorChoice(array('choices' => array(0 => 'RaporluHastalik', 1 => 'RaporsuzHastalik', 2 => 'UcretliIzin', 3 => 'UcretsizIzin'))),
+      'type'        => new sfValidatorChoice(array('choices' => array(0 => 'IllnessWReport', 1 => 'IllnessWoReport', 2 => 'PaidVacation', 3 => 'UnpaidVacation'))),
       'date'        => new sfValidatorDate(),
       'report_date' => new sfValidatorDate(array('required' => false)),
       'description' => new sfValidatorString(array('max_length' => 50, 'required' => false)),

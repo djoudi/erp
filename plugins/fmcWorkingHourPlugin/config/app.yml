@@ -1,4 +1,12 @@
 all:
+
+  workingHour:
+    leaveStatus: 
+      IllnessWoReport : 'Illness (without Report)'
+      IllnessWReport : 'Illness (with Report)'
+      PaidVacation : 'Paid Vacation'
+      UnpaidVacation: 'Unpaid Vacation'
+      
   menus:
     topmenu:
       children:
