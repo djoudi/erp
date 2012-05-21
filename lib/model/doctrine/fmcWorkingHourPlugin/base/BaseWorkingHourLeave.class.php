@@ -86,9 +86,10 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              'type' => 'enum',
              'values' => 
              array(
-              0 => 'Draft',
+              0 => 'Pending',
               1 => 'Approved',
-              2 => 'Cancelled',
+              2 => 'Denied',
+              3 => 'Cancelled',
              ),
              'notnull' => true,
              ));

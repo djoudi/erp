@@ -41,20 +41,14 @@ abstract class BaseworkingHourUserActions extends sfActions
   
   public function executeEditday (sfWebRequest $request)
   {
-    #$this->x = $this->getUser()->getGuardUser()->getWorkingHourLeave()->toArray();
-    
-    $leaveClass = new FmcWhLeave();
-    
-    
     // fetching vars
       $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
       $this->date = $request->getParameter('date');
       $user = $this->getUser()->getGuardUser();
       $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
-    
-    
-    $this->x = $leaveClass->getActiveLeaveForDate($this->date);
-    
+      
+      $leaveClass = new FmcWhLeave();
+      $this->leaveRequest = $leaveClass->getActiveLeaveForDate($this->date);
       
     // fetching todays items
       $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);

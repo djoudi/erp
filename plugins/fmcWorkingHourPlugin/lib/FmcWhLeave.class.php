@@ -15,8 +15,9 @@ class FmcWhLeave
       ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
       ->addWhere ('whl.date = ?', $date)
       ->addWhere ('whl.status <> ?', 'Denied')
-      ->addWhere ('whl.status <> ?', 'Cancelled');
-    return $query->execute();
+      ->addWhere ('whl.status <> ?', 'Cancelled')
+      ->limit (1);
+    return $query->fetchOne();
   }
   
   

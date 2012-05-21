@@ -1,82 +1,37 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>'Working Hours')); ?>
 
-<table class="table table-condensed">  
-  <thead>
+
+<?php if (!$leaveRequest): ?>
+
+  <?php include_partial ('editdaylist', array('form'=>$form, 'items'=>$items, 'date'=>$date, 'leaveStatus'=>$leaveStatus)); ?>
+  
+<?php else: ?>
+
+  <div class="alert alert-block">
+    You already have an existing leave request. The details could be found below.
+  </div>
+
+  <table class="table table-bordered table-condensed">
     <tr>
-      <th>Project</th>
-      <th>From</th>
-      <th>To</th>
-      <th>Total</th>
-      <th>Type of Work</th>
-      <th>Comments</th>
-      <th></th>
+      <th>Leave Date</th>
+      <td><?php echo $leaveRequest->getDate(); ?></td>
     </tr>
-  </thead>
-  <tbody>
-    <?php foreach($items as $item): ?>
-      <?php $type = $item->getType(); ?>
-      <?php if ($type=='Enter' or $type=='Exit'): ?>
-        <tr>
-          <td></td>
-          <td><?php if ($type=='Enter'): ?><?php echo $item->getStart(); ?><?php endif; ?></td>
-          <td><?php if ($type=='Exit'): ?><?php echo $item->getEnd(); ?><?php endif; ?></td>
-          <td></td>
-          <td><?php echo $type; ?> Work</td>
-          <td></td>
-          <td></td>
-        </tr>
-      <?php else: ?>
-        <tr>
-          <td><?php echo $item->getProject(); ?></td>
-          <td><?php echo date("H:i", strtotime($item->getStart())); ?></td>
-          <td><?php echo date("H:i", strtotime($item->getEnd())); ?></td>
-          <td><?php echo $item->getTimeDifference(); ?></td>
-          <td><?php echo $item->getWorkType(); ?></td>
-          <td><?php echo $item->getComment(); ?></td>
-          <td>
-            <?php $editurl = url_for('workingHourUser_edititem', array('date' => $date,'item_id' => $item->getId())); ?>
-            <a href="<?php echo $editurl; ?>">
-              <i class="icon-pencil"></i>
-            </a> 
-            <?php $deleteurl = url_for('workingHourUser_deleteitem', array('item_id'=>$item->getId())); ?>
-            <a href="<?php echo $deleteurl; ?>">
-              <i class="icon-trash"></i>
-            </a>
-          </td>
-        </tr>
-      <?php endif; ?>
-    <?php endforeach; ?>
-  </tbody>
-  <tfoot>
-    <?php include_partial ("itemnew", array("form"=>$form)); ?>
-  </tfoot>  
-</table>
-
-<pre>
-  <?php print_r($x->toArray()); ?>
-</pre>
-
-<p>
-  <a class="btn" href="<?php echo url_for('workingHourUser_editday_enterance', array('date'=>$date)); ?>">Add new enterance</a>
-  <a class="btn" href="<?php echo url_for('workingHourUser_editday_exit', array('date'=>$date)); ?>">Add new exit</a>
-</p>
-
-
-<div class="well">
-  <strong>Create request for: </strong>
+    <tr>
+      <th>Type</th>
+      <td><?php echo $leaveStatus[$leaveRequest->getType()]; ?></td>
+    </tr>
+    <tr>
+      <th>Report Date</th>
+      <td><?php echo $leaveRequest->getReportDate(); ?></td>
+    </tr>
+    <tr>
+      <th>Current Status</th>
+      <td><?php echo $leaveRequest->getStatus(); ?></td>
+    </tr>
+    <tr>
+      <th>Last Updated By</th>
+      <td><?php echo $leaveRequest->getStatusUser(); ?></td>
+    </tr>
+  </table>
   
-  <?php foreach ($leaveStatus as $type=>$text): ?>
-    <a class="btn" href="
-      <?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>
-    ">
-    <?php echo $text; ?>
-    </a>
-  <?php endforeach; ?>
-  
-</div>
-
-
-
-
-
-
+<?php endif; ?>
