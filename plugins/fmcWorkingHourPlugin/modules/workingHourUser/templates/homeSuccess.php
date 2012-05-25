@@ -1,26 +1,20 @@
 <?php slot ('title', 'My working hours'); ?>
 
-<div class="row">
+  <div class="pull-left">
   
-  <div class="span8">
-    
-    <h4>Today</h4>
-    <?php include_partial ('itemlist', array('items'=>$todayItems)); ?>
-    <a href="<?php echo url_for('workingHourUser_editday', array('date'=>date('Y-m-d'))); ?>">
-      Go to today
-    </a>
-    
+  <h4>Today</h4>
+  <?php include_partial ('itemlist', array('items'=>$todayItems)); ?>
+  <a href="<?php echo url_for('workingHourUser_editday', array('date'=>date('Y-m-d'))); ?>">
+    Go to today
+  </a>
+  
+  </div>  
+  
+  <div class="pull-right">
+    <?php include_partial ('dateselector'); ?>
   </div>
 
-  <div class="span2">
-    
-    select date
-    <input id="datepick_whdb_url" type="hidden" value="<?php echo url_for('@workingHourUser_editday?date='); ?>" />
-    Date: <div id="datepick_whdb"></div>
-
-  </div>
-
-</div>
+<div class="clear"></div>
 
 <h4>My last items</h4>
 <?php include_partial ('itemlist', array('items'=>$lastItems)); ?>

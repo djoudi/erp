@@ -1,36 +1,14 @@
-==============================   AKTARIM TODO   ========================
-
-- Datayı aktar, tüm fonksiyonları test et demo da
-- Sonra yedek alıp aktar, bir de orada test et (data değiştirmeden)
-
-- Whdb izinler elle db ye girilecek
-  - Working Hours Management > (whdb type management)
-  - Working Hours > (user, edit vs my hours)
-  - Bunlar db ye eklendiği sürece başka bir sorun yok
-
-
 ==============================   WHDB YAPILAN    ========================
 
 - izinler ayarlandı
 - work type mgmt eklendi
 - my working hours eklendi
-- departman desteği eklendi
-
-==============================   WHDB SORULAR   ========================
-
-- gelecek tarihlere kullanıcılar girebilsinler mi? (evetse ne zamana kadar?)
-
-==============================   CFDB YAPILAN   ========================
-
-
-
-
+- departman desteği ve departman yöneticileri eklendi
+- izin sistemi 
+- menü sistemi iomenu ya geçirildi
 
 
 ==============================   TO  DO   ========================
-
-user edit ve new da departman zorunlu
-
 
 sadece cost formları da silebilsin
 
@@ -38,7 +16,7 @@ tablesorter currency ve date sort yanlış
 
 invoicing filter
 
-invoiced byalanı
+invoiced by alanı
 
 sf checklist
 
@@ -51,38 +29,3 @@ yeni sürüm bildirimleri
   kullanıcılara açılışta modal çıksın
   db de okunan son sürüm notları diye bir alan olsun
   değişiklikler burada yazsın
-
-==========================    LATER     =========================
-
-
-
-
-SONRA departmanlar ve head ler olsun employee lerde
-SONRA yani yöneticisi olsun
-SONRA bir üst yöneticisi
-SONRA bir de departman bazlı raporlama olsun
-
-
-* bir ara tüm modüllerin actionlarını kontrol et, kullanıcıların kendilerine ait olmayan verilere erişimi olabiliyor mu diye
-
-
-* ticket yönetimi olacak zaten nu yeşime söyle
-* cron -> email send
-* sssl bağlantısı
-
-* audit
-** kayıt oluşturuldu diye bir audit olsun
-** logon
-** logout
-** password change
-** ekran erişim
-** kayıt değiştirme vs
-
-* email ile şifre hatırlatma / notification
-* email ile diğer şeyleri hatırlatma?
-
-* departman yönetimi
-** bağlı olduğuı kişi ve departman bilgileri olsun?
-** departman yönetimi olsjun, depğartman yöneticisi olsun
-
-* layout da <?php include_partial ("global/layout_topmenu"); ?> kısmı sadeleştirilsin, bu kadar bağımlı ve elle olmasın
