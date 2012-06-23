@@ -13,14 +13,12 @@ abstract class BaseworkingHourUserActions extends sfActions
       
     //preparing form
       $formitem = new WorkingHourLeave();
-      
       $formitem->setDate($this->date);
       $formitem->setReportDate($this->date);
       $formitem->setUser($user);
       $formitem->setType($this->type);
       $formitem->setStatus('Pending');
       $formitem->setStatusUser($user);
-      
       $this->form = new WorkingHourForm_leavewreport($formitem);
     
     //processing form
@@ -41,12 +39,11 @@ abstract class BaseworkingHourUserActions extends sfActions
   
   public function executeEditday (sfWebRequest $request)
   {
-    // fetching vars
+    // this vars
+      $user = $this->getUser()->getGuardUser();
       $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
       $this->date = $request->getParameter('date');
-      $user = $this->getUser()->getGuardUser();
       $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
-      
       $leaveClass = new FmcWhLeave();
       $this->leaveRequest = $leaveClass->getActiveLeaveForDate($this->date);
       

@@ -33,7 +33,6 @@
   </tr>
 </table>
 
-
 <div class="clear"></div>
 
 <div class="form-actions">
