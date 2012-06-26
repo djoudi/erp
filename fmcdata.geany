@@ -17,5 +17,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=1215;PHP;0;16;0;1;0;/www/fmcdata/plugins/fmcWorkingHourPlugin/modules/workingHourUser/lib/BaseworkingHourUserActions.class.php;0;2
+current_page=1
+FILE_NAME_0=262;YAML;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcCostFormPlugin%2Fconfig%2Fdoctrine%2Fschema.yml;0;2
+FILE_NAME_1=1179;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcCostFormPlugin%2Fmodules%2FcostFormUser%2Flib%2FBasecostFormUserActions.class.php;0;2
+FILE_NAME_2=0;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcCostFormPlugin%2Flib%2Fmodel%2Fdoctrine%2FPluginCostForm.class.php;0;2
+FILE_NAME_3=0;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Flib%2Fmodel%2Fdoctrine%2FfmcCostFormPlugin%2FCostForm.class.php;0;2
+FILE_NAME_4=0;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Flib%2Fmodel%2Fdoctrine%2FfmcCostFormPlugin%2Fbase%2FBaseCostForm.class.php;0;2
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=false
+strip_trailing_spaces=false
+replace_tabs=false

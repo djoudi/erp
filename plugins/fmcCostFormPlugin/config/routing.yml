@@ -1,3 +1,12 @@
+##main screen
+
+costforms:
+
+  url:   /home/costforms
+  param: { module: homepage, action: costforms }
+
+
+
 # user
 
 costFormUser_new:

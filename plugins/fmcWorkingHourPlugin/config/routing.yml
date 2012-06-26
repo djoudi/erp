@@ -1,3 +1,13 @@
+# Homepage
+
+workinghours:
+
+  url: /home/workinghours
+  param: { module: homepage, action: workinghours }
+
+
+
+
 # WHDB Type Management
 
 workingHourWorkType_list:
