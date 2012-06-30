@@ -12,7 +12,6 @@ default:
     - frontend/tablesorter-extra.css
     - timepicker/timepicker.css
     
-    - v3/layout.css
     - frontend/global.css
     - frontend/layout.css
     - frontend/forms.css
