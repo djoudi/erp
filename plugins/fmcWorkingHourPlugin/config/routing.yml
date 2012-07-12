@@ -59,27 +59,6 @@ workingHourUser_editday_exit:
 
 
 
-### atilacaklar
-
-workingHourUser_edit:
-  url: /workinghours/user/editday2/:date
-  param: { module: workingHourUser, action: edit }
-
-workingHourUser_edititem:
-  url: /workinghours/user/editday2/:date/:item_id
-  param: { module: workingHourUser, action: edit }
-
-workingHourUser_deleteitem:
-  url: /workinghours/user/deleteitem/:item_id
-  param: { module: workingHourUser, action: itemDelete }
-
-workingHourUser_processio:
-  url: /workinghours/user/processio/:date
-  param: { module: workingHourUser, action: processio }
-
-
-
-
 
 
 
