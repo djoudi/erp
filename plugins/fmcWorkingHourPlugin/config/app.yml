@@ -27,7 +27,7 @@ all:
           credentials: ['Working Hours']
         02:
           label: My working hours
-          route: @workingHourUser_home
+          route: @workingHourUser_myhome
           requires_auth: true
           credentials: ['Working Hours']
 

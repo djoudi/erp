@@ -3,12 +3,17 @@
   class FmcProcessForm {
     
     
+      // Configuring globals
+    
       public function __construct () {
         
           $this->controller = sfContext::getInstance()->getController();
           $this->user = sfContext::getInstance()->getUser();
         
       }
+      
+      
+      // Processing WorkingHour Day Office Entrance Hour Form
       
       public function workingHour_DayEntrance ($form, $request, $redirectUrl) {
         

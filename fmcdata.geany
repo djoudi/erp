@@ -1,6 +1,6 @@
 
 [indentation]
-indent_width=2
+indent_width=4
 indent_type=0
 indent_hard_tab_width=8
 detect_indent=false
@@ -11,13 +11,19 @@ indent_mode=2
 name=fmcdata
 base_path=/www/fmcdata
 description=
+file_patterns=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=-1
+current_page=1
+FILE_NAME_0=507;YAML;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fconfig%2Frouting.yml;0;2
+FILE_NAME_1=447;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Flib%2FBaseworkingHourUserActions.class.php;0;2
+FILE_NAME_2=235;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Ftemplates%2FmyhomeSuccess.php;0;2
+FILE_NAME_3=143;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2F_x_workingHourUserx%2Ftemplates%2F_dateselector.php;0;2
+FILE_NAME_4=144;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Ftemplates%2F_dateselector.php;0;2
 
 [file_prefs]
 final_new_line=true

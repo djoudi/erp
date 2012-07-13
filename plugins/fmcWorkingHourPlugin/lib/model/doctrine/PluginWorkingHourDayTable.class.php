@@ -16,4 +16,19 @@ class PluginWorkingHourDayTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('PluginWorkingHourDay');
     }
+    
+    /* User defined functions below */
+    
+    
+    public function getEntranceForDate ($user_id, $date) {
+      
+      $result = Doctrine_Query::create()
+        ->from ('WorkingHourDay')
+        ->addWhere ('user_id = ?', $user_id)
+        ->addWhere ('date = ?', $date)
+        ->fetchOne();
+      
+      return $result;
+    }
+    
 }

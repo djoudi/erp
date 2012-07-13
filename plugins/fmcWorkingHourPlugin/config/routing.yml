@@ -22,6 +22,53 @@ workingHourWorkType_edit:
 
 
 
+workingHourUser_myhome:
+    url: /wh/home
+    param: { module: workingHourUser, action: myhome }
+
+workingHourUser_day:
+    url: /wh/day/:date
+    param: { module: workingHourUser, action: day }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ToDo: half check
+
+
+
+
+
+
+
+
+
+
 
 #ToDo: half check
 
@@ -48,8 +95,6 @@ workingHourUser_editday:
 workingHourUser_enterday:
   url: /workinghours/user/:date/enter
   param: {module: workingHourUser, action: enterday }
-
-
 
 
 
