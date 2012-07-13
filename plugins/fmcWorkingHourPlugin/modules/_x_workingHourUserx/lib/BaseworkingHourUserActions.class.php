@@ -110,7 +110,7 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     
     
-    
+    $this->items = Doctrine::getTable('WorkingHour')->getByuseranddate($user->getId(), $this->date);
     // Fetching configurations
       
       

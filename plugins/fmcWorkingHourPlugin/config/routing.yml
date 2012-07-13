@@ -23,16 +23,12 @@ workingHourWorkType_edit:
 
 
 workingHourUser_myhome:
-    url: /wh/home
+    url: /wh/user/home
     param: { module: workingHourUser, action: myhome }
 
 workingHourUser_day:
-    url: /wh/day/:date
+    url: /wh/user/day/:date
     param: { module: workingHourUser, action: day }
-
-
-
-
 
 
 
