@@ -35,8 +35,11 @@ abstract class BaseworkingHourUserActions extends sfActions
     $this->lastItems = Doctrine::getTable('WorkingHour')->getLastItems($user->getId(), 5);
   }
   
-  /* ########################################################################################## */
+  
+  
     
+    
+    /*##########################################################################################*/
     
     
     public function executeEnterday (sfWebRequest $request) {
@@ -54,7 +57,6 @@ abstract class BaseworkingHourUserActions extends sfActions
               $this->getUser()->setFlash("notice", "You already stated an entrance hour.");
               $redirectUrl = '@workingHourUser_editday?date='.$this->date;
               $this->redirect($this->getController()->genUrl($redirectUrl));
-            
           }
       
       // Preparing form
@@ -66,6 +68,9 @@ abstract class BaseworkingHourUserActions extends sfActions
           $this->form = new WorkingHourForm_enterday($formitem);
       
     }
+    
+    
+    /*##########################################################################################*/
     
     
     public function executeEditday (sfWebRequest $request) {
