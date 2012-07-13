@@ -54,7 +54,6 @@ abstract class BaseworkingHourUserActions extends sfActions
         
           if ($checkClass->hasEnter($this->date)) {
             
-              $this->getUser()->setFlash("notice", "You already stated an entrance hour.");
               $redirectUrl = '@workingHourUser_editday?date='.$this->date;
               $this->redirect($this->getController()->genUrl($redirectUrl));
           }
@@ -66,6 +65,12 @@ abstract class BaseworkingHourUserActions extends sfActions
           $formitem->setUser($this->getUser()->getGuardUser());
           $formitem->setDate($this->date);
           $this->form = new WorkingHourForm_enterday($formitem);
+      
+      // Processing form
+            
+          $processClass = new FmcProcessForm();
+          $redirectUrl = '@workingHourUser_enterday?date='.$this->date;
+          $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
       
     }
     

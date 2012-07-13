@@ -41,7 +41,7 @@ workingHourUser_leaverequest:
 #news
 
 workingHourUser_editday:
-  url: /workinghours/user/:date/edit
+  url: /workinghours/user/edit/:date
   param: { module: workingHourUser, action: editday }
 
 
