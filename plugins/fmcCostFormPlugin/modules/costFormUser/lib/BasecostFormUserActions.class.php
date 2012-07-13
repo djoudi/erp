@@ -37,7 +37,7 @@ abstract class BasecostFormUserActions extends sfActions
     $test->save();
     
     
-    elseif ($this->getUser()->getAttribute('cfi_id'))
+    if ($this->getUser()->getAttribute('cfi_id'))
     {
       $cfi_id = $this->getUser()->getAttribute('cfi_id');
       $this->getUser()->getAttributeHolder()->remove('cfi_id');

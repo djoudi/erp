@@ -1,4 +1,7 @@
 all:
 
+  stylesheets:
+    - /fmcWorkingHourPlugin/css/whdb.css
+
   javascripts:
     - /fmcWorkingHourPlugin/js/whdb.js
