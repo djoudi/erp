@@ -24,6 +24,12 @@ abstract class BaseworkingHourUserActions extends sfActions
             $formitem->setDate($this->date);
             $this->form = new WorkingHourForm_enterday($formitem);
             
+            $processClass = new FmcWhUser_Process();
+            $redirectUrl = '@workingHourUser_day?date='.$this->date;
+            $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
+            
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+            
         } else {
             
             $this->setTemplate('editday');
