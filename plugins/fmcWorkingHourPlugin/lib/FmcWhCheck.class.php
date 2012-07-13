@@ -1,12 +1,38 @@
 <?php
 
-class FmcWhCheck
-{
-  public function __construct ()
-  {
+class FmcWhCheck {
+  
+  public function __construct () {
+    
     $this->controller = sfContext::getInstance()->getController();
     $this->user = sfContext::getInstance()->getUser();
+    
   }
+  
+  public function hasEnter ($date) {
+    
+    $records = Doctrine::getTable('WorkingHourDay')
+      ->createQuery ('wh')
+      ->addWhere ('wh.user_id = ?', $this->user->getGuardUser()->getId())
+      ->addWhere ('wh.date = ?', $date)
+      ->addWhere ('wh.type = ?', 'Enter')
+      ->execute();
+    
+    $result = (count($records)) ? true : false;
+    
+    return $result;
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  // TODO: refactor below
+  
   
   public function getLastEnter ($date)
   {

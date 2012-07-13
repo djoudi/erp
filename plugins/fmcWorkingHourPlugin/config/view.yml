@@ -1,0 +1,4 @@
+all:
+
+  javascripts:
+    - /fmcWorkingHourPlugin/js/whdb.js

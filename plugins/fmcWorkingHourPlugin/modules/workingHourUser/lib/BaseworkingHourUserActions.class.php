@@ -36,14 +36,74 @@ abstract class BaseworkingHourUserActions extends sfActions
   }
   
   /* ########################################################################################## */
-  
-  public function executeEditday (sfWebRequest $request)
-  {
-    // this vars
-      $user = $this->getUser()->getGuardUser();
+    
+    
+    
+    public function executeEnterday (sfWebRequest $request) {
+      
+      // Fetching variables
+      
+          $this->date = $request->getParameter('date');
+        
+      // Checking if day has a enter record - already
+        
+          $checkClass = new FmcWhCheck();
+        
+          if ($checkClass->hasEnter($this->date)) {
+            
+              $this->getUser()->setFlash("notice", "You already stated an entrance hour.");
+              $redirectUrl = '@workingHourUser_editday?date='.$this->date;
+              $this->redirect($this->getController()->genUrl($redirectUrl));
+            
+          }
+      
+      // Preparing form
+      
+          $formitem = new WorkingHourDay();
+          $formitem->setType("Enter");
+          $formitem->setUser($this->getUser()->getGuardUser());
+          $formitem->setDate($this->date);
+          $this->form = new WorkingHourForm_enterday($formitem);
+      
+    }
+    
+    
+    public function executeEditday (sfWebRequest $request) {
+    
+        // Fetching variables
+      
+            $user = $this->getUser()->getGuardUser();
+            $this->date = $request->getParameter('date');
+      
+        // Checking if day has a enter record
+      
+            $checkClass = new FmcWhCheck();
+          
+            if (! $checkClass->hasEnter($this->date)) {
+                
+                $this->getUser()->setFlash("notice", "You should state an entrance hour first.");
+                $redirectUrl = '@workingHourUser_enterday?date='.$this->date;
+                $this->redirect($this->getController()->genUrl($redirectUrl));
+              
+            }
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Fetching configurations
+      
+      
+    
       $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
-      $this->date = $request->getParameter('date');
-      $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
+    #  $editurl = $this->getController()->genUrl('@workingHourUser_editday_enterance?date='.$this->date);
       $leaveClass = new FmcWhLeave();
       $this->leaveRequest = $leaveClass->getActiveLeaveForDate($this->date);
       
@@ -63,7 +123,7 @@ abstract class BaseworkingHourUserActions extends sfActions
       $processClass = new FmcProcessForm();
       $processClass->ProcessWorkingHourForm($this->form, $request, $editurl, $this->items);
     # process kismi duzeltilecek - aktarilacak
+    
+  
   }
-  
-  
 }

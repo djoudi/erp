@@ -6,8 +6,6 @@ workinghours:
   param: { module: homepage, action: workinghours }
 
 
-
-
 # WHDB Type Management
 
 workingHourWorkType_list:
@@ -23,15 +21,16 @@ workingHourWorkType_edit:
   param: { module: workingHourWorkType, action: edit }
 
 
+
+
+#ToDo: half check
+
 # WHDB User
 
 workingHourUser_home:
   url: /workinghours/user/home
   param: { module: workingHourUser, action: home }
 
-workingHourUser_editday:
-  url: /workinghours/user/editday/:date
-  param: { module: workingHourUser, action: editday }
 
 workingHourUser_leaverequest:
   url: /workinghours/user/leave/:type/:date
@@ -39,6 +38,16 @@ workingHourUser_leaverequest:
 
 
 
+#news
+
+workingHourUser_editday:
+  url: /workinghours/user/:date/edit
+  param: { module: workingHourUser, action: editday }
+
+
+workingHourUser_enterday:
+  url: /workinghours/user/:date/enter
+  param: {module: workingHourUser, action: enterday }
 
 
 
@@ -48,12 +57,7 @@ workingHourUser_leaverequest:
 
 
 
-workingHourUser_editday_enterance:
-  url: /workinghours/user/editday/:date/enterance
-  param: { module: workingHourUser, action: enterday }
-workingHourUser_editday_exit:
-  url: /workinghours/user/editday/:date/exit
-  param: { module: workingHourUser, action: exitday }
+
 
 
 

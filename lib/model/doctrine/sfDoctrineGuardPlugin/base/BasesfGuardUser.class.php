@@ -217,7 +217,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('WorkingHour as WorkingHours', array(
+        $this->hasMany('WorkingHourDay as WorkingHours', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

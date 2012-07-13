@@ -1,8 +1,48 @@
-WorkingHour:
+# Table for enter and exits of a working day
+
+WorkingHourDay:
+
   actAs:
     SoftDelete: ~
     Timestampable: ~
     Versionable: ~
+    
+  columns:
+    type:
+      type: enum
+      values: ["Enter", "Exit"]
+      default: "Enter"
+      notnull: true
+    user_id:
+      type: integer
+    date:
+      type: date
+    time:
+      type: time
+      notnull: true
+    created_by:
+      type: integer
+    updated_by:
+      type: integer
+      
+  relations:
+    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
+    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
+
+
+
+
+# TODO: refactor
+
+WorkingHour:
+
+  actAs:
+    SoftDelete: ~
+    Timestampable: ~
+    Versionable: ~
+    
   columns:
     type:
       type: enum
@@ -15,18 +55,14 @@ WorkingHour:
       type: date
     project_id:
       type: integer
-      #notnull: true
     worktype_id:
       type: integer
-      #notnull: true
     comment:
       type: string(250)
     start:
       type: time
-      #notnull: true
     end:
       type: time
-      #notnull: true
     created_by:
       type: integer
     updated_by:
@@ -37,6 +73,7 @@ WorkingHour:
     WorkType: { class: WorkType, local: worktype_id, foreign: id, foreignAlias: WorkTypes }
     Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
     Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
 
 WorkType:
   actAs:
