@@ -18,14 +18,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=6
-FILE_NAME_0=607;YAML;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fconfig%2Frouting.yml;0;4
-FILE_NAME_1=1066;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Flib%2FBaseworkingHourUserActions.class.php;0;4
-FILE_NAME_2=551;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2F_x_workingHourUserx%2Ftemplates%2FeditdaySuccess.php;0;4
-FILE_NAME_3=1766;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2F_x_workingHourUserx%2Ftemplates%2F_editdaylist.php;0;4
-FILE_NAME_4=1398;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Ftemplates%2FnewdaySuccess.php;0;4
-FILE_NAME_5=3789;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2F_x_workingHourUserx%2Flib%2FBaseworkingHourUserActions.class.php;0;4
-FILE_NAME_6=2854;None;0;16;0;1;0;%2Fhome%2Fyasin%2FDropbox%2Fbekle%2Fyazilar%20toparla%2FYasinAydin%2Feskimektup%2Faysunbozanta%2FUntitled.msg.mime;0;4
+current_page=2
+FILE_NAME_0=515;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fmodules%2FworkingHourUser%2Ftemplates%2FmyleaverequestsSuccess.php;0;4
+FILE_NAME_1=593;YAML;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Fconfig%2Frouting.yml;0;4
+FILE_NAME_2=533;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcWorkingHourPlugin%2Flib%2FFmcWhUser_Access.class.php;0;4
 
 [file_prefs]
 final_new_line=true
