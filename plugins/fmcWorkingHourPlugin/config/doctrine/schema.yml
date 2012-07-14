@@ -104,8 +104,6 @@ WorkingHourLeave:
     date:
       type: date
       notnull: true
-    report_date: # rapor tarihi
-      type: date
     description: # rapor numarasi veya izin aciklamasi icin
       type: string(50)  
     status:

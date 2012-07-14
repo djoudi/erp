@@ -8,7 +8,6 @@
  * @property integer $user_id
  * @property enum $type
  * @property date $date
- * @property date $report_date
  * @property string $description
  * @property enum $status
  * @property integer $status_user
@@ -22,7 +21,6 @@
  * @method integer          getUserId()      Returns the current record's "user_id" value
  * @method enum             getType()        Returns the current record's "type" value
  * @method date             getDate()        Returns the current record's "date" value
- * @method date             getReportDate()  Returns the current record's "report_date" value
  * @method string           getDescription() Returns the current record's "description" value
  * @method enum             getStatus()      Returns the current record's "status" value
  * @method integer          getStatusUser()  Returns the current record's "status_user" value
@@ -35,7 +33,6 @@
  * @method WorkingHourLeave setUserId()      Sets the current record's "user_id" value
  * @method WorkingHourLeave setType()        Sets the current record's "type" value
  * @method WorkingHourLeave setDate()        Sets the current record's "date" value
- * @method WorkingHourLeave setReportDate()  Sets the current record's "report_date" value
  * @method WorkingHourLeave setDescription() Sets the current record's "description" value
  * @method WorkingHourLeave setStatus()      Sets the current record's "status" value
  * @method WorkingHourLeave setStatusUser()  Sets the current record's "status_user" value
@@ -74,9 +71,6 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
         $this->hasColumn('date', 'date', null, array(
              'type' => 'date',
              'notnull' => true,
-             ));
-        $this->hasColumn('report_date', 'date', null, array(
-             'type' => 'date',
              ));
         $this->hasColumn('description', 'string', 50, array(
              'type' => 'string',
