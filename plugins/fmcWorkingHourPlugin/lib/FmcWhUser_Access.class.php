@@ -15,8 +15,7 @@ class FmcWhUser_Access {
             ->createQuery ('whl')
             ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
             ->addWhere ('whl.date = ?', $date)
-            ->addWhere ('whl.status <> ?', 'Denied')
-            ->addWhere ('whl.status <> ?', 'Cancelled')
+            ->addWhere ('whl.status = ?', 'Pending')
             ->fetchOne();
         
         if ($object) {
