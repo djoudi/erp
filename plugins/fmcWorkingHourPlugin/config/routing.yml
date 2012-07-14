@@ -2,22 +2,22 @@
 
 workinghours:
 
-  url: /home/workinghours
+  url: /home/wh
   param: { module: homepage, action: workinghours }
 
 
 # WHDB Type Management
 
 workingHourWorkType_list:
-  url: /workinghours/worktype/list
+  url: /wh/worktype/list
   param: { module: workingHourWorkType, action: list }
 
 workingHourWorkType_new:
-  url: /workinghours/worktype/new
+  url: /wh/worktype/new
   param: { module: workingHourWorkType, action: new }
 
 workingHourWorkType_edit:
-  url: /workinghours/worktype/edit/:id
+  url: /wh/worktype/edit/:id
   param: { module: workingHourWorkType, action: edit }
 
 
@@ -36,80 +36,6 @@ workingHourUser_leaverequest:
     url: /wh/user/day/:date/leave/:type
     param: { module: workingHourUser, action: leaverequest }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ToDo: half check
-
-
-
-
-
-
-
-
-
-
-
-#ToDo: half check
-
-# WHDB User
-
-workingHourUser_home:
-  url: /workinghours/user/home
-  param: { module: workingHourUser, action: home }
-
-
-workingHourUser_leaverequestx:
-  url: /workinghours/user/leave/:type/:date
-  param: { module: workingHourUser, action: leaverequest }
-
-
-
-#news
-
-workingHourUser_editday:
-  url: /workinghours/user/edit/:date
-  param: { module: workingHourUser, action: editday }
-
-
-workingHourUser_enterday:
-  url: /workinghours/user/:date/enter
-  param: {module: workingHourUser, action: enterday }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+workingHourUser_leaverequestcancel:
+    url: /wh/user/day/:date/cancelleave
+    param: { module: workingHourUser, action: leaverequestcancel }

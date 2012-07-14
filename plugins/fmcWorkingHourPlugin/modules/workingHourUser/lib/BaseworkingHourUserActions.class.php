@@ -7,6 +7,18 @@ abstract class BaseworkingHourUserActions extends sfActions
         
     }
     
+    public function executeLeaverequestcancel (sfWebRequest $request) {
+        
+        $date = $request->getParameter('date');
+        
+        $accessClass = new FmcWhUser_Access();
+        $accessClass->cancelDayLeave ($date);
+        
+        $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$date);
+        $this->redirect ($redirectUrl);
+        
+    }
+    
     public function executeLeaverequest (sfWebRequest $request) {
         
         $this->date = $request->getParameter('date');
@@ -63,11 +75,12 @@ abstract class BaseworkingHourUserActions extends sfActions
             
             $this->setTemplate('editday');
             
-            $getClass = new FmcWhUser_Get();
-            $this->leaveRequest = $getClass->getDayLeave($this->date);
+            $accessClass = new FmcWhUser_Access();
+            $this->leaveRequest = $accessClass->getDayLeave($this->date);
             
             if ($this->leaveRequest) {
                 
+                $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_leaverequestcancel?date='.$this->date);
                 $this->setTemplate('leaveinfo');
             
             } else {
