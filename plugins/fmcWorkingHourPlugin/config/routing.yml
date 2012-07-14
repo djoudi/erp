@@ -21,8 +21,7 @@ workingHourWorkType_edit:
   param: { module: workingHourWorkType, action: edit }
 
 
-
-# WHDB - new
+# WHDB - My Working Hours
 
 workingHourUser_myhome:
     url: /wh/user/home
@@ -39,3 +38,7 @@ workingHourUser_leaverequest:
 workingHourUser_leaverequestcancel:
     url: /wh/user/day/:date/cancelleave
     param: { module: workingHourUser, action: leaverequestcancel }
+
+workingHourUser_myleaverequests:
+    url: /wh/user/myleaverequests
+    param: { module: workingHourUser, action: myleaverequests }

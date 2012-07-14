@@ -30,6 +30,11 @@ all:
           route: @workingHourUser_myhome
           requires_auth: true
           credentials: ['Working Hours']
+        03:
+          label: My leave requests
+          route: @workingHourUser_myleaverequests
+          requires_auth: true
+          credentials: ['Working Hours']
 
     leftmenu_administration:
       children:

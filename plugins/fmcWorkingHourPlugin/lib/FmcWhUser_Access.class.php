@@ -9,6 +9,18 @@ class FmcWhUser_Access {
         
     }
     
+    public function getMyLeaveRequests () {
+        
+        $results = Doctrine::getTable ('WorkingHourLeave')
+            ->createQuery ('whl')
+            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+            ->leftJoin ('whl.StatusUser u')
+            ->orderBy ('whl.date DESC')
+            ->execute();
+        return $results;
+        
+    }
+    
     public function cancelDayLeave ($date) {
         
         $object = Doctrine::getTable ('WorkingHourLeave')
@@ -19,7 +31,6 @@ class FmcWhUser_Access {
             ->fetchOne();
         
         if ($object) {
-            
             $object->setStatus ('Cancelled');
             $object->setStatusUser ($this->user->getGuardUser());
             $object->save();
@@ -36,7 +47,6 @@ class FmcWhUser_Access {
             ->addWhere ('whl.status <> ?', 'Denied')
             ->addWhere ('whl.status <> ?', 'Cancelled')
             ->limit (1);
-            
         return $query->fetchOne();
     }
     

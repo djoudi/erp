@@ -7,6 +7,14 @@ abstract class BaseworkingHourUserActions extends sfActions
         
     }
     
+    public function executeMyleaverequests (sfWebRequest $request) {
+        
+        $accessClass = new FmcWhUser_Access();
+        $this->myLeaveRequests = $accessClass->getMyLeaveRequests()->toArray();
+        
+        $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+    }
+    
     public function executeLeaverequestcancel (sfWebRequest $request) {
         
         $date = $request->getParameter('date');
