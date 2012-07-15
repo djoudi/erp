@@ -1,6 +1,14 @@
 @CHARSET "UTF-8";
 
 #working_hour_day_time {
-  padding-left: 5px;
-  width: 50px;
+    padding-left: 5px;
+    width: 50px;
+}
+
+#working_hour_leave_filters_date_day, 
+#working_hour_leave_filters_date_month {
+    width: 45px;
+}
+#working_hour_leave_filters_date_year {
+    width: 55px;
 }

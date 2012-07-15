@@ -6,6 +6,7 @@ all:
       IllnessWReport : 'Illness (with Report)'
       PaidVacation : 'Paid Vacation'
       UnpaidVacation: 'Unpaid Vacation'
+        #note: these values exist but do not autoupdate on WorkingHourFilter_myleave.class.php
       
   menus:
     topmenu:

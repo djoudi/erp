@@ -9,16 +9,16 @@ class FmcWhUser_Access {
         
     }
     
-    public function getMyLeaveRequests () {
+    public function getMyLeaveRequestsFilterQuery ($limit=100) {
         
-        $results = Doctrine::getTable ('WorkingHourLeave')
-            ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+        $query = Doctrine_Query::create()
+            ->from ('WorkingHourLeave whl')
             ->leftJoin ('whl.StatusUser u')
+            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+            ->limit ($limit)
             ->orderBy ('whl.date DESC')
-            ->execute();
-        return $results;
-        
+        ;
+        return $query;
     }
     
     public function cancelDayLeave ($date) {

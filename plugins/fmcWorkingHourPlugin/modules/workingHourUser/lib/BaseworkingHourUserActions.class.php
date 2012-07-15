@@ -9,10 +9,28 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     public function executeMyleaverequests (sfWebRequest $request) {
         
-        $accessClass = new FmcWhUser_Access();
-        $this->myLeaveRequests = $accessClass->getMyLeaveRequests()->toArray();
-        
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        $this->resultlimit = 100;
+        
+        $accessClass = new FmcWhUser_Access();
+        $query = $accessClass->getMyLeaveRequestsFilterQuery($this->resultlimit);
+        
+        $filterClass = new FmcFilter('WorkingHourFilter_myleave');
+        $this->myLeaveRequests = $filterClass->initFilterForm ($request, $query)->execute()->toArray();
+        
+        // Filtering inherits
+        
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+        
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+        
+        $this->resultslimited = false;
+        if (count($this->myLeaveRequests) == $this->resultlimit)
+        $this->resultslimited = true;
+        
     }
     
     public function executeLeaverequestcancel (sfWebRequest $request) {
