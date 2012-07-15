@@ -8,6 +8,7 @@ class filterform_department extends sfGuardGroupFormFilter
       $this['description'],
       $this['salt'],
       $this['permissions_list'],
+      $this['worktypes_list'],
       $this['users_list']
     );
   }

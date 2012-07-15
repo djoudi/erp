@@ -1,17 +1,8 @@
 <?php
 
-class sfGuardDepartmentForm extends PluginsfGuardGroupForm {
-  public function setupInheritance()
-  {
-    parent::setupInheritance();
-
-    unset(
-      $this['users_list'],
-      $this['permissions_list'],
-      $this['description']
-    );
+class form_plugin_sfguardgroup extends sfGuardGroupForm {
     
-        
+    public function configure() {
         
         $this->setWidget('worktypes_list', new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('Worktypes'),
@@ -25,12 +16,7 @@ class sfGuardDepartmentForm extends PluginsfGuardGroupForm {
           'label_unassociated' => 'Available Worktypes'
         ));
         
-        $this->widgetSchema['worktypes_list']->setLabel('Worktypes');
+        $this->widgetSchema['worktypes_list']->setLabel('Department');
         
-    
-    
-  }
-  
-  
-  
+    }
 }

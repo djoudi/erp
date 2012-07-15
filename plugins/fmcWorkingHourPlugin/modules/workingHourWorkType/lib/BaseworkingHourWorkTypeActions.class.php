@@ -1,25 +1,30 @@
 <?php
 
-abstract class BaseworkingHourWorkTypeActions extends sfActions
-{
-  public function executeList (sfWebRequest $request)
-  {
-    // Filter: Edit these variables
-      $_q = Doctrine_Query::create()
-        ->from('WorkType wt')
-        ->orderBy('title ASC');
-      $filterClass = new FmcFilter('WorkTypeFormFilter');
+abstract class BaseworkingHourWorkTypeActions extends sfActions {
     
-    // Filter: Do not touch here
-      $this->items = $filterClass->initFilterForm($request, $_q)->execute();
-      if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-      $this->filter = $filterClass->getFilter();
-      $this->filtered = $filterClass->getFiltered();
-  }
+    public function executeList (sfWebRequest $request) {
+        
+        $query = Doctrine_Query::create()
+            ->from('WorkType wt')
+            ->orderBy('code ASC');
+      
+        $filterClass = new FmcFilter('WorkingHourFilter_worktype');
+        $this->items = $filterClass->initFilterForm($request, $query)->execute()->toArray();
+      
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+        
+    }
+  
+  
+  
+  
+  // refactor below
   
   public function executeNew (sfWebRequest $request)
   {
-    $this->form = new workTypeForm();
+    $this->form = new WorkingHourForm_worktype();
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "@workingHourWorkType_list", true);
   }
@@ -29,7 +34,7 @@ abstract class BaseworkingHourWorkTypeActions extends sfActions
     $this->item = Doctrine::getTable('WorkType')->findOneById ($request->getParameter("id"));
     $this->forward404Unless ($this->item);
     
-    $this->form = new workTypeForm ($this->item);
+    $this->form = new WorkingHourForm_worktype ($this->item);
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "@workingHourWorkType_list", false);
   }

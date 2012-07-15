@@ -37,9 +37,11 @@ WorkType:
     columns:
         code:
             type: string(5)
+            unique: true
             notnull: true
         title:
             type: string(250)
+            unique: true
             notnull: true
         created_by:
             type: integer
