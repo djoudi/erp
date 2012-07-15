@@ -15,25 +15,29 @@ abstract class BaseWorkTypeForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'title'      => new sfWidgetFormInputText(),
-      'created_by' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
-      'updated_by' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'add_empty' => true)),
-      'deleted_at' => new sfWidgetFormDateTime(),
-      'created_at' => new sfWidgetFormDateTime(),
-      'updated_at' => new sfWidgetFormDateTime(),
-      'version'    => new sfWidgetFormInputText(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'code'        => new sfWidgetFormInputText(),
+      'title'       => new sfWidgetFormInputText(),
+      'created_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
+      'updated_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'add_empty' => true)),
+      'deleted_at'  => new sfWidgetFormDateTime(),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
+      'version'     => new sfWidgetFormInputText(),
+      'groups_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'title'      => new sfValidatorString(array('max_length' => 250)),
-      'created_by' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
-      'updated_by' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'required' => false)),
-      'deleted_at' => new sfValidatorDateTime(array('required' => false)),
-      'created_at' => new sfValidatorDateTime(),
-      'updated_at' => new sfValidatorDateTime(),
-      'version'    => new sfValidatorInteger(array('required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'code'        => new sfValidatorString(array('max_length' => 5)),
+      'title'       => new sfValidatorString(array('max_length' => 250)),
+      'created_by'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
+      'updated_by'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'required' => false)),
+      'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
+      'version'     => new sfValidatorInteger(array('required' => false)),
+      'groups_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('work_type[%s]');
@@ -48,6 +52,62 @@ abstract class BaseWorkTypeForm extends BaseFormDoctrine
   public function getModelName()
   {
     return 'WorkType';
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (isset($this->widgetSchema['groups_list']))
+    {
+      $this->setDefault('groups_list', $this->object->Groups->getPrimaryKeys());
+    }
+
+  }
+
+  protected function doSave($con = null)
+  {
+    $this->saveGroupsList($con);
+
+    parent::doSave($con);
+  }
+
+  public function saveGroupsList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['groups_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Groups->getPrimaryKeys();
+    $values = $this->getValue('groups_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Groups', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Groups', array_values($link));
+    }
   }
 
 }

@@ -16,6 +16,7 @@ abstract class BaseWorkTypeVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
+      'code'       => new sfWidgetFormInputText(),
       'title'      => new sfWidgetFormInputText(),
       'created_by' => new sfWidgetFormInputText(),
       'updated_by' => new sfWidgetFormInputText(),
@@ -27,6 +28,7 @@ abstract class BaseWorkTypeVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'code'       => new sfValidatorString(array('max_length' => 5)),
       'title'      => new sfValidatorString(array('max_length' => 250)),
       'created_by' => new sfValidatorInteger(array('required' => false)),
       'updated_by' => new sfValidatorInteger(array('required' => false)),

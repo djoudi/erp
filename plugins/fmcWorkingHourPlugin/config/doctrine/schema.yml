@@ -1,124 +1,163 @@
-# Table for enter and exits of a working day
+##################################################################
 
 WorkingHourDay:
+    actAs:
+        SoftDelete: ~
+        Timestampable: ~
+        Versionable: ~
+    columns:
+        type:
+            type: enum
+            values: ["Enter", "Exit"]
+            default: "Enter"
+            notnull: true
+        user_id:
+            type: integer
+        date:
+            type: date
+        time:
+            type: time
+            notnull: true
+        created_by:
+            type: integer
+        updated_by:
+            type: integer
+    relations:
+        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
+        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
 
-  actAs:
-    SoftDelete: ~
-    Timestampable: ~
-    Versionable: ~
-    
-  columns:
-    type:
-      type: enum
-      values: ["Enter", "Exit"]
-      default: "Enter"
-      notnull: true
-    user_id:
-      type: integer
-    date:
-      type: date
-    time:
-      type: time
-      notnull: true
-    created_by:
-      type: integer
-    updated_by:
-      type: integer
-      
-  relations:
-    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
-
-
-
-
-
-# TODO: refactor
-
-WorkingHour:
-
-  actAs:
-    SoftDelete: ~
-    Timestampable: ~
-    Versionable: ~
-    
-  columns:
-    type:
-      type: enum
-      values: ["Work", "Enter", "Exit"]
-      default: "Work"
-      notnull: true
-    user_id:
-      type: integer
-    date:
-      type: date
-    project_id:
-      type: integer
-    worktype_id:
-      type: integer
-    comment:
-      type: string(250)
-    start:
-      type: time
-    end:
-      type: time
-    created_by:
-      type: integer
-    updated_by:
-      type: integer
-  relations:
-    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-    Project: { class: Project, local: project_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-    WorkType: { class: WorkType, local: worktype_id, foreign: id, foreignAlias: WorkTypes }
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
-
+##################################################################
 
 WorkType:
-  actAs:
-    SoftDelete: ~
-    Timestampable: ~
-    Versionable: ~
-  columns:
-    title: { type: string(250), notnull: true }
-    created_by: integer
-    updated_by: integer
-  relations:
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+    actAs:
+        SoftDelete: ~
+        Timestampable: ~
+        Versionable: ~
+    columns:
+        code:
+            type: string(5)
+            notnull: true
+        title:
+            type: string(250)
+            notnull: true
+        created_by:
+            type: integer
+        updated_by:
+            type: integer            
+    relations:
+        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
+##################################################################
+
+sfGuardGroupWorktype:
+    options:
+        symfony:
+            form:   false
+            filter: false
+    actAs:
+        Timestampable: ~
+        Versionable: ~
+    columns:
+        group_id:
+            type: integer
+            primary: true
+        worktype_id:
+            type: integer
+            primary: true
+    relations:
+        Group:
+            class: sfGuardGroup
+            local: group_id
+            onDelete: CASCADE
+        WorkType:
+            class: WorkType
+            local: worktype_id
+            onDelete: CASCADE
+
+##################################################################
+
+sfGuardGroup:
+    relations:
+        Worktypes:
+            class: WorkType
+            local: group_id
+            foreign: worktype_id
+            refClass: sfGuardGroupWorktype
+            foreignAlias: Groups
+
+##################################################################
 
 WorkingHourLeave:
-  actAs:
-    SoftDelete: ~
-    Timestampable: ~
-    Versionable: ~
-  columns:
-    user_id:
-      type: integer
-      notnull: true
-    type:
-      type: enum
-      values: ["IllnessWReport", "IllnessWoReport", "PaidVacation", "UnpaidVacation"]
-      notnull: true
-    date:
-      type: date
-      notnull: true
-    description: # rapor numarasi veya izin aciklamasi icin
-      type: string(50)  
-    status:
-      type: enum
-      values: ["Pending", "Approved", "Denied", "Cancelled"]
-      notnull: true
-    status_user:
-      type: integer
-      notnull: true
-    created_by:
-      type: integer
-    updated_by:
-      type: integer
-  relations:
-    User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
-    StatusUser: { class: sfGuardUser, local: status_user, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+    actAs:
+        SoftDelete: ~
+        Timestampable: ~
+        Versionable: ~
+    columns:
+        user_id:
+            type: integer
+            notnull: true
+        type:
+            type: enum
+            values: ["IllnessWReport", "IllnessWoReport", "PaidVacation", "UnpaidVacation"]
+            notnull: true
+        date:
+            type: date
+            notnull: true
+        description: # rapor numarasi veya izin aciklamasi icin
+            type: string(50)  
+        status:
+            type: enum
+            values: ["Pending", "Approved", "Denied", "Cancelled"]
+            notnull: true
+        status_user:
+            type: integer
+            notnull: true
+        created_by:
+            type: integer
+        updated_by:
+            type: integer
+    relations:
+        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
+        StatusUser: { class: sfGuardUser, local: status_user, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
+        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+
+##################################################################
+
+WorkingHour:
+    actAs:
+        SoftDelete: ~
+        Timestampable: ~
+        Versionable: ~
+    columns:
+        type:
+            type: enum
+            values: ["Work", "Enter", "Exit"]
+            default: "Work"
+            notnull: true
+        user_id:
+            type: integer
+        date:
+            type: date
+        project_id:
+            type: integer
+        worktype_id:
+            type: integer
+        comment:
+            type: string(250)
+        start:
+            type: time
+        end:
+            type: time
+        created_by:
+            type: integer
+        updated_by:
+            type: integer
+    relations:
+        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
+        Project: { class: Project, local: project_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
+        WorkType: { class: WorkType, local: worktype_id, foreign: id, foreignAlias: WorkTypes }
+        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
+        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    

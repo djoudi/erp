@@ -14,9 +14,11 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Permissions
+ * @property Doctrine_Collection $Worktypes
  * @property Doctrine_Collection $sfGuardGroupPermission
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $sfGuardUserGroup
+ * @property Doctrine_Collection $sfGuardGroupWorktype
  * 
  * @method string              getName()                   Returns the current record's "name" value
  * @method string              getDescription()            Returns the current record's "description" value
@@ -27,9 +29,11 @@
  * @method sfGuardUser         getCreator()                Returns the current record's "Creator" value
  * @method sfGuardUser         getUpdater()                Returns the current record's "Updater" value
  * @method Doctrine_Collection getPermissions()            Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection getWorktypes()              Returns the current record's "Worktypes" collection
  * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
  * @method Doctrine_Collection getUsers()                  Returns the current record's "Users" collection
  * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
+ * @method Doctrine_Collection getSfGuardGroupWorktype()   Returns the current record's "sfGuardGroupWorktype" collection
  * @method sfGuardGroup        setName()                   Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
  * @method sfGuardGroup        setManagerId()              Sets the current record's "manager_id" value
@@ -39,9 +43,11 @@
  * @method sfGuardGroup        setCreator()                Sets the current record's "Creator" value
  * @method sfGuardGroup        setUpdater()                Sets the current record's "Updater" value
  * @method sfGuardGroup        setPermissions()            Sets the current record's "Permissions" collection
+ * @method sfGuardGroup        setWorktypes()              Sets the current record's "Worktypes" collection
  * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
  * @method sfGuardGroup        setUsers()                  Sets the current record's "Users" collection
  * @method sfGuardGroup        setSfGuardUserGroup()       Sets the current record's "sfGuardUserGroup" collection
+ * @method sfGuardGroup        setSfGuardGroupWorktype()   Sets the current record's "sfGuardGroupWorktype" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -94,6 +100,11 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'local' => 'group_id',
              'foreign' => 'permission_id'));
 
+        $this->hasMany('WorkType as Worktypes', array(
+             'refClass' => 'sfGuardGroupWorktype',
+             'local' => 'group_id',
+             'foreign' => 'worktype_id'));
+
         $this->hasMany('sfGuardGroupPermission', array(
              'local' => 'id',
              'foreign' => 'group_id'));
@@ -104,6 +115,10 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'foreign' => 'group_id'));
 
         $this->hasMany('sfGuardUserGroup', array(
+             'local' => 'id',
+             'foreign' => 'group_id'));
+
+        $this->hasMany('sfGuardGroupWorktype', array(
              'local' => 'id',
              'foreign' => 'group_id'));
 

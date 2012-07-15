@@ -13,6 +13,7 @@ abstract class BaseWorkTypeVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'code'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'title'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_by' => new sfWidgetFormFilterInput(),
       'updated_by' => new sfWidgetFormFilterInput(),
@@ -22,6 +23,7 @@ abstract class BaseWorkTypeVersionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'code'       => new sfValidatorPass(array('required' => false)),
       'title'      => new sfValidatorPass(array('required' => false)),
       'created_by' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'updated_by' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -48,6 +50,7 @@ abstract class BaseWorkTypeVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'         => 'Number',
+      'code'       => 'Text',
       'title'      => 'Text',
       'created_by' => 'Number',
       'updated_by' => 'Number',

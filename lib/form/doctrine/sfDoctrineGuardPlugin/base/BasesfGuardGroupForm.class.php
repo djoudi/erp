@@ -25,6 +25,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'updated_at'       => new sfWidgetFormDateTime(),
       'version'          => new sfWidgetFormInputText(),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'worktypes_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkType')),
       'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
@@ -39,6 +40,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
       'version'          => new sfValidatorInteger(array('required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'worktypes_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkType', 'required' => false)),
       'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
@@ -69,6 +71,11 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       $this->setDefault('permissions_list', $this->object->Permissions->getPrimaryKeys());
     }
 
+    if (isset($this->widgetSchema['worktypes_list']))
+    {
+      $this->setDefault('worktypes_list', $this->object->Worktypes->getPrimaryKeys());
+    }
+
     if (isset($this->widgetSchema['users_list']))
     {
       $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
@@ -79,6 +86,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
   protected function doSave($con = null)
   {
     $this->savePermissionsList($con);
+    $this->saveWorktypesList($con);
     $this->saveUsersList($con);
 
     parent::doSave($con);
@@ -119,6 +127,44 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Permissions', array_values($link));
+    }
+  }
+
+  public function saveWorktypesList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['worktypes_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Worktypes->getPrimaryKeys();
+    $values = $this->getValue('worktypes_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Worktypes', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Worktypes', array_values($link));
     }
   }
 
