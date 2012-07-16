@@ -13,14 +13,13 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'project_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
       'worktype_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('WorkType'), 'add_empty' => true)),
       'comment'     => new sfWidgetFormFilterInput(),
-      'start'       => new sfWidgetFormFilterInput(),
-      'end'         => new sfWidgetFormFilterInput(),
+      'start'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'end'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
       'updated_by'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'add_empty' => true)),
       'deleted_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
@@ -30,7 +29,6 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
       'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
       'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'project_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),
@@ -64,7 +62,6 @@ abstract class BaseWorkingHourFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
-      'type'        => 'Enum',
       'user_id'     => 'ForeignKey',
       'date'        => 'Date',
       'project_id'  => 'ForeignKey',

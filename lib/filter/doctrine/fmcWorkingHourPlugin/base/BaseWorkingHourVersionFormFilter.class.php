@@ -13,14 +13,13 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'type'        => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
-      'user_id'     => new sfWidgetFormFilterInput(),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'project_id'  => new sfWidgetFormFilterInput(),
-      'worktype_id' => new sfWidgetFormFilterInput(),
+      'user_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'project_id'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'worktype_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'comment'     => new sfWidgetFormFilterInput(),
-      'start'       => new sfWidgetFormFilterInput(),
-      'end'         => new sfWidgetFormFilterInput(),
+      'start'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'end'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_by'  => new sfWidgetFormFilterInput(),
       'updated_by'  => new sfWidgetFormFilterInput(),
       'deleted_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
@@ -29,7 +28,6 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'type'        => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
       'user_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'project_id'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -62,7 +60,6 @@ abstract class BaseWorkingHourVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
-      'type'        => 'Enum',
       'user_id'     => 'Number',
       'date'        => 'Date',
       'project_id'  => 'Number',

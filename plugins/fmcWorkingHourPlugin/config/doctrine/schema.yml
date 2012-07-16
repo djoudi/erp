@@ -134,25 +134,26 @@ WorkingHour:
         Timestampable: ~
         Versionable: ~
     columns:
-        type:
-            type: enum
-            values: ["Work", "Enter", "Exit"]
-            default: "Work"
-            notnull: true
         user_id:
             type: integer
+            notnull: true
         date:
             type: date
+            notnull: true
         project_id:
             type: integer
+            notnull: true
         worktype_id:
             type: integer
+            notnull: true
         comment:
             type: string(250)
         start:
             type: time
+            notnull: true
         end:
             type: time
+            notnull: true
         created_by:
             type: integer
         updated_by:

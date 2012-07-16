@@ -16,7 +16,6 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'type'        => new sfWidgetFormChoice(array('choices' => array('Work' => 'Work', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
       'user_id'     => new sfWidgetFormInputText(),
       'date'        => new sfWidgetFormDate(),
       'project_id'  => new sfWidgetFormInputText(),
@@ -34,14 +33,13 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'type'        => new sfValidatorChoice(array('choices' => array(0 => 'Work', 1 => 'Enter', 2 => 'Exit'), 'required' => false)),
-      'user_id'     => new sfValidatorInteger(array('required' => false)),
-      'date'        => new sfValidatorDate(array('required' => false)),
-      'project_id'  => new sfValidatorInteger(array('required' => false)),
-      'worktype_id' => new sfValidatorInteger(array('required' => false)),
+      'user_id'     => new sfValidatorInteger(),
+      'date'        => new sfValidatorDate(),
+      'project_id'  => new sfValidatorInteger(),
+      'worktype_id' => new sfValidatorInteger(),
       'comment'     => new sfValidatorString(array('max_length' => 250, 'required' => false)),
-      'start'       => new sfValidatorTime(array('required' => false)),
-      'end'         => new sfValidatorTime(array('required' => false)),
+      'start'       => new sfValidatorTime(),
+      'end'         => new sfValidatorTime(),
       'created_by'  => new sfValidatorInteger(array('required' => false)),
       'updated_by'  => new sfValidatorInteger(array('required' => false)),
       'deleted_at'  => new sfValidatorDateTime(array('required' => false)),

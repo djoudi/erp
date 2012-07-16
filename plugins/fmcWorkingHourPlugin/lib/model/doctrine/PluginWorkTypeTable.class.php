@@ -23,4 +23,16 @@ class PluginWorkTypeTable extends Doctrine_Table {
         
     }
     
+    public function getOrderedUserRights() {
+        
+        $group_id = sfContext::getInstance()->getUser()->getGuardUser()->getGroupId();
+        $query = $this->CreateQuery ('worktype')
+            ->leftJoin ('worktype.Groups dpt')
+            ->addWhere ('dpt.id = ?', $group_id)
+            ->orderBy ('worktype.code ASC')
+            ->execute();
+        return $query;
+        
+    }
+    
 }

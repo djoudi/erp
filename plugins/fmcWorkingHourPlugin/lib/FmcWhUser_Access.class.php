@@ -9,6 +9,18 @@ class FmcWhUser_Access {
         
     }
     
+    public function getDayEntrance ($date) {
+        
+        $result = Doctrine::getTable ('WorkingHourDay')
+            ->createQuery ('whd')
+            ->addWhere ('whd.user_id = ?', $this->user->getGuardUser()->getId())
+            ->addWhere ('whd.date = ?', $date)
+            ->addWhere ('whd.type = ?', 'Enter')
+            ->fetchOne();
+        return $result->toArray();
+        
+    }
+    
     public function getMyLeaveRequestsFilterQuery ($limit=100) {
         
         $query = Doctrine_Query::create()

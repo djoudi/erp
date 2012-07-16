@@ -102,8 +102,8 @@ abstract class BaseworkingHourUserActions extends sfActions
             $this->setTemplate('editday');
             
             $accessClass = new FmcWhUser_Access();
-            $this->leaveRequest = $accessClass->getDayLeave($this->date);
             
+            $this->leaveRequest = $accessClass->getDayLeave($this->date);
             if ($this->leaveRequest) {
                 
                 $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_leaverequestcancel?date='.$this->date);
@@ -111,9 +111,26 @@ abstract class BaseworkingHourUserActions extends sfActions
             
             } else {
                 
-                echo "normal";
-                //normal
+                //Fetching day entrance hour
+                    $this->entranceHour = $accessClass->getDayEntrance($this->date);
                 
+                // Fetching current items
+                    $this->items = Doctrine::getTable('WorkingHour')
+                        ->getByuseranddate($user->getId(), $this->date);
+                
+                // Preparing new item form
+                    $this->item = new WorkingHour();
+                    $this->item->setDate($this->date);
+                    $this->item->setUser($user);
+                        #$time = strtotime($this->item->getNexthour($this->date));
+                        #$this->item->setStart(date('H:i',$time));
+                        #$this->item->setEnd(date('H:i',$time + 1800));
+                    $this->form = new WorkingHourForm_dayitemnew ($this->item);
+                
+                // Processing form
+                
+                    $processClass = new FmcProcessForm();
+                    $processClass->ProcessWorkingHourForm($this->form, $request, $editurl, $this->items);
             }
             
         }
@@ -121,23 +138,3 @@ abstract class BaseworkingHourUserActions extends sfActions
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
