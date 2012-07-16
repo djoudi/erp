@@ -7,7 +7,13 @@
     </tr>
 </table>    
 
-<p>Note: To change office entrance hour, you have to delete this day.</p>
+<p>
+    Note: To change office entrance hour, you have to delete this day.
+    <a class="btn btn-danger btn-small pull-right" onclick="
+          if (confirm('If you continue, all records for today will be DELETED. Are you sure?'))
+            parent.location='<?php echo $cancelUrl; ?>'
+    ">Delete all records</a>
+</p>
 
 <hr />
 

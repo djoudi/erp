@@ -33,12 +33,12 @@ abstract class BaseworkingHourUserActions extends sfActions
         
     }
     
-    public function executeLeaverequestcancel (sfWebRequest $request) {
+    public function executeDeleteday (sfWebRequest $request) {
         
-        $date = $request->getParameter('date');
+        $date = $request->getParameter ('date');
         
         $accessClass = new FmcWhUser_Access();
-        $accessClass->cancelDayLeave ($date);
+        $accessClass->deleteDay ($date);
         
         $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$date);
         $this->redirect ($redirectUrl);
@@ -79,10 +79,13 @@ abstract class BaseworkingHourUserActions extends sfActions
     public function executeDay (sfWebRequest $request) {
         
         $this->date = $request->getParameter('date');
+        
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        
         $user = $this->getUser()->getGuardUser();
         
         $checkClass = new FmcWhUser_Check();
+        
         if  ($checkClass->isDayEmpty($this->date)) {
             
             $this->setTemplate('newday');
@@ -101,17 +104,19 @@ abstract class BaseworkingHourUserActions extends sfActions
             
             $this->setTemplate('editday');
             
+            $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_deleteday?date='.$this->date);
+            
             $accessClass = new FmcWhUser_Access();
             
             $this->leaveRequest = $accessClass->getDayLeave($this->date);
             if ($this->leaveRequest) {
                 
-                $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_leaverequestcancel?date='.$this->date);
                 $this->setTemplate('leaveinfo');
             
             } else {
                 
-                //Fetching day entrance hour
+                
+                // Fetching day entrance hour
                     $this->entranceHour = $accessClass->getDayEntrance($this->date);
                 
                 // Fetching current items

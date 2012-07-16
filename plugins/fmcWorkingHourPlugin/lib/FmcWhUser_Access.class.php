@@ -5,7 +5,8 @@ class FmcWhUser_Access {
     public function __construct () {
 
         $this->controller = sfContext::getInstance()->getController();
-        $this->user = sfContext::getInstance()->getUser();
+        $this->user = sfContext::getInstance()->getUser()->getGuardUser();
+        $this->user_id = $this->user->getId();
         
     }
     
@@ -13,7 +14,7 @@ class FmcWhUser_Access {
         
         $result = Doctrine::getTable ('WorkingHourDay')
             ->createQuery ('whd')
-            ->addWhere ('whd.user_id = ?', $this->user->getGuardUser()->getId())
+            ->addWhere ('whd.user_id = ?', $this->user_id)
             ->addWhere ('whd.date = ?', $date)
             ->addWhere ('whd.type = ?', 'Enter')
             ->fetchOne();
@@ -26,25 +27,45 @@ class FmcWhUser_Access {
         $query = Doctrine_Query::create()
             ->from ('WorkingHourLeave whl')
             ->leftJoin ('whl.StatusUser u')
-            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+            ->addWhere ('whl.user_id = ?', $this->user_id)
             ->limit ($limit)
             ->orderBy ('whl.date DESC')
         ;
         return $query;
     }
     
+    public function deleteDay ($date) {
+        
+        $this->cancelDayLeave ($date);
+        
+        $items = Doctrine::getTable ('WorkingHour')
+            ->createQuery ('wh')
+            ->addWhere ('wh.user_id = ?', $this->user_id)
+            ->addWhere ('wh.date = ?', $date)
+            ->execute();
+        $items->delete();
+        
+        $entranceExit = Doctrine::getTable ('WorkingHourDay')
+            ->createQuery ('whd')
+            ->addWhere ('whd.user_id = ?', $this->user_id)
+            ->addWhere ('whd.date = ?', $date)
+            ->execute();
+        $entranceExit->delete();
+        
+    }
+    
     public function cancelDayLeave ($date) {
         
         $object = Doctrine::getTable ('WorkingHourLeave')
             ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+            ->addWhere ('whl.user_id = ?', $this->user_id)
             ->addWhere ('whl.date = ?', $date)
             ->addWhere ('whl.status = ?', 'Pending')
             ->fetchOne();
         
         if ($object) {
             $object->setStatus ('Cancelled');
-            $object->setStatusUser ($this->user->getGuardUser());
+            $object->setStatusUser ($this->user);
             $object->save();
         }
         
@@ -54,7 +75,7 @@ class FmcWhUser_Access {
         
         $query = Doctrine::getTable('WorkingHourLeave')
             ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user->getGuardUser()->getId())
+            ->addWhere ('whl.user_id = ?', $this->user_id)
             ->addWhere ('whl.date = ?', $date)
             ->addWhere ('whl.status <> ?', 'Denied')
             ->addWhere ('whl.status <> ?', 'Cancelled')

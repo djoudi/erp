@@ -35,9 +35,9 @@ workingHourUser_leaverequest:
     url: /wh/user/day/:date/leave/:type
     param: { module: workingHourUser, action: leaverequest }
 
-workingHourUser_leaverequestcancel:
-    url: /wh/user/day/:date/cancelleave
-    param: { module: workingHourUser, action: leaverequestcancel }
+workingHourUser_deleteday:
+    url: /wh/user/day/:date/delete
+    param: { module: workingHourUser, action: deleteday }
 
 workingHourUser_myleaverequests:
     url: /wh/user/myleaverequests
