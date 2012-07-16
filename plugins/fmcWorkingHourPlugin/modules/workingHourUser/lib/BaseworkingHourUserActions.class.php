@@ -120,15 +120,21 @@ abstract class BaseworkingHourUserActions extends sfActions
                 
                 // Preparing new item form
                     $this->item = new WorkingHour();
+                    
                     $this->item->setDate($this->date);
                     $this->item->setUser($user);
-                        #$time = strtotime($this->item->getNexthour($this->date));
-                        #$this->item->setStart(date('H:i',$time));
-                        #$this->item->setEnd(date('H:i',$time + 1800));
+                    
+                    if (!count($this->items))
+                        $time = strtotime ($this->entranceHour["time"]);
+                    else
+                        $time = strtotime ($this->item->getNextHour($this->date));
+                    
+                    $this->item->setStart(date('H:i',$time));
+                    $this->item->setEnd(date('H:i',$time + 1800));
+                    
                     $this->form = new WorkingHourForm_dayitemnew ($this->item);
                 
                 // Processing form
-                
                     $processClass = new FmcWhUser_Process();
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;
                     $processClass->workingHour_DayItems($this->form, $request, $redirectUrl, $this->items);
