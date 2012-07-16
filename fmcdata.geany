@@ -18,7 +18,8 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=-1
+current_page=0
+FILE_NAME_0=754;PHP;0;16;0;1;0;%2Fwww%2Ffmcdata%2Fplugins%2FfmcCostFormPlugin%2Fmodules%2FcostFormProcess%2Ftemplates%2FreportSuccess.php;0;4
 
 [file_prefs]
 final_new_line=true

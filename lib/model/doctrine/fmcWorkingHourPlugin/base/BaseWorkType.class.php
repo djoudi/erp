@@ -12,7 +12,7 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
- * @property Doctrine_Collection $sfGuardGroupWorktype
+ * @property Doctrine_Collection $sfGuardGroupWorkType
  * @property Doctrine_Collection $WorkTypes
  * 
  * @method string              getCode()                 Returns the current record's "code" value
@@ -22,7 +22,7 @@
  * @method sfGuardUser         getCreator()              Returns the current record's "Creator" value
  * @method sfGuardUser         getUpdater()              Returns the current record's "Updater" value
  * @method Doctrine_Collection getGroups()               Returns the current record's "Groups" collection
- * @method Doctrine_Collection getSfGuardGroupWorktype() Returns the current record's "sfGuardGroupWorktype" collection
+ * @method Doctrine_Collection getSfGuardGroupWorkType() Returns the current record's "sfGuardGroupWorkType" collection
  * @method Doctrine_Collection getWorkTypes()            Returns the current record's "WorkTypes" collection
  * @method WorkType            setCode()                 Sets the current record's "code" value
  * @method WorkType            setTitle()                Sets the current record's "title" value
@@ -31,7 +31,7 @@
  * @method WorkType            setCreator()              Sets the current record's "Creator" value
  * @method WorkType            setUpdater()              Sets the current record's "Updater" value
  * @method WorkType            setGroups()               Sets the current record's "Groups" collection
- * @method WorkType            setSfGuardGroupWorktype() Sets the current record's "sfGuardGroupWorktype" collection
+ * @method WorkType            setSfGuardGroupWorkType() Sets the current record's "sfGuardGroupWorkType" collection
  * @method WorkType            setWorkTypes()            Sets the current record's "WorkTypes" collection
  * 
  * @package    fmc
@@ -46,11 +46,13 @@ abstract class BaseWorkType extends sfDoctrineRecord
         $this->setTableName('work_type');
         $this->hasColumn('code', 'string', 5, array(
              'type' => 'string',
+             'unique' => true,
              'notnull' => true,
              'length' => 5,
              ));
         $this->hasColumn('title', 'string', 250, array(
              'type' => 'string',
+             'unique' => true,
              'notnull' => true,
              'length' => 250,
              ));
@@ -74,11 +76,11 @@ abstract class BaseWorkType extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasMany('sfGuardGroup as Groups', array(
-             'refClass' => 'sfGuardGroupWorktype',
+             'refClass' => 'sfGuardGroupWorkType',
              'local' => 'worktype_id',
              'foreign' => 'group_id'));
 
-        $this->hasMany('sfGuardGroupWorktype', array(
+        $this->hasMany('sfGuardGroupWorkType', array(
              'local' => 'id',
              'foreign' => 'worktype_id'));
 

@@ -15,7 +15,7 @@ class sfGuardDepartmentForm extends PluginsfGuardGroupForm {
         
         $this->setWidget('worktypes_list', new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('Worktypes'),
-          #'table_method' => 'getOrdered',
+          'table_method' => 'getOrdered',
           'add_empty' => false)
         ));
         

@@ -53,7 +53,7 @@ WorkType:
 
 ##################################################################
 
-sfGuardGroupWorktype:
+sfGuardGroupWorkType:
     options:
         symfony:
             form:   false
@@ -86,7 +86,7 @@ sfGuardGroup:
             class: WorkType
             local: group_id
             foreign: worktype_id
-            refClass: sfGuardGroupWorktype
+            refClass: sfGuardGroupWorkType
             foreignAlias: Groups
 
 ##################################################################

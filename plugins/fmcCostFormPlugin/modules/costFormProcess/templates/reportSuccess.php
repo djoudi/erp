@@ -1,27 +1,33 @@
 <?php slot ('title', "Invoicing Report") ?>
 
+
 <?php if ($invoicedCount): ?>
-  <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
+
+    <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
+    
 <?php endif; ?>
 
+
 <table class="table table-striped table-bordered table-condensed">
-  <tr>
-    <th>Company</th>
-    <td><?php echo $project->Customers ?></td>
-  </tr>
-  <tr>
-    <th>Project</th>
-    <td><?php echo $project ?></td>
-  </tr>
+    <tr>
+        <th>Company</th>
+        <td><?php echo $project->Customers ?></td>
+    </tr>
+    <tr>
+        <th>Project</th>
+        <td><?php echo $project ?></td>
+    </tr>
 </table>
 
+
 <ul class="nav nav-tabs">
-  <?php if ($invoicedCount and $notInvoicedCount): ?>
-    <li class="active"><a href="#invoiced" data-toggle="tab">To be invoiced</a></li>
-    <li><a href="#notInvoiced" data-toggle="tab">NOT to be invoiced</a></li>
-  <?php endif; ?>
+    <?php if ($invoicedCount and $notInvoicedCount): ?>
+        <li class="active"><a href="#invoiced" data-toggle="tab">To be invoiced</a></li>
+        <li><a href="#notInvoiced" data-toggle="tab">NOT to be invoiced</a></li>
+    <?php endif; ?>
 </ul>
- 
+
+
 <div class="tab-content">
   
   <?php if ($invoicedCount): ?>

@@ -40,6 +40,13 @@ abstract class BaseWorkTypeForm extends BaseFormDoctrine
       'groups_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'WorkType', 'column' => array('code'))),
+        new sfValidatorDoctrineUnique(array('model' => 'WorkType', 'column' => array('title'))),
+      ))
+    );
+
     $this->widgetSchema->setNameFormat('work_type[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

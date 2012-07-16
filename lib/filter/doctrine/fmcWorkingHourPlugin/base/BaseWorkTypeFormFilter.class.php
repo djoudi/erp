@@ -58,8 +58,8 @@ abstract class BaseWorkTypeFormFilter extends BaseFormFilterDoctrine
     }
 
     $query
-      ->leftJoin($query->getRootAlias().'.sfGuardGroupWorktype sfGuardGroupWorktype')
-      ->andWhereIn('sfGuardGroupWorktype.group_id', $values)
+      ->leftJoin($query->getRootAlias().'.sfGuardGroupWorkType sfGuardGroupWorkType')
+      ->andWhereIn('sfGuardGroupWorkType.group_id', $values)
     ;
   }
 

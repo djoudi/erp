@@ -18,7 +18,7 @@
  * @property Doctrine_Collection $sfGuardGroupPermission
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $sfGuardUserGroup
- * @property Doctrine_Collection $sfGuardGroupWorktype
+ * @property Doctrine_Collection $sfGuardGroupWorkType
  * 
  * @method string              getName()                   Returns the current record's "name" value
  * @method string              getDescription()            Returns the current record's "description" value
@@ -33,7 +33,7 @@
  * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
  * @method Doctrine_Collection getUsers()                  Returns the current record's "Users" collection
  * @method Doctrine_Collection getSfGuardUserGroup()       Returns the current record's "sfGuardUserGroup" collection
- * @method Doctrine_Collection getSfGuardGroupWorktype()   Returns the current record's "sfGuardGroupWorktype" collection
+ * @method Doctrine_Collection getSfGuardGroupWorkType()   Returns the current record's "sfGuardGroupWorkType" collection
  * @method sfGuardGroup        setName()                   Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
  * @method sfGuardGroup        setManagerId()              Sets the current record's "manager_id" value
@@ -47,7 +47,7 @@
  * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
  * @method sfGuardGroup        setUsers()                  Sets the current record's "Users" collection
  * @method sfGuardGroup        setSfGuardUserGroup()       Sets the current record's "sfGuardUserGroup" collection
- * @method sfGuardGroup        setSfGuardGroupWorktype()   Sets the current record's "sfGuardGroupWorktype" collection
+ * @method sfGuardGroup        setSfGuardGroupWorkType()   Sets the current record's "sfGuardGroupWorkType" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -101,7 +101,7 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'foreign' => 'permission_id'));
 
         $this->hasMany('WorkType as Worktypes', array(
-             'refClass' => 'sfGuardGroupWorktype',
+             'refClass' => 'sfGuardGroupWorkType',
              'local' => 'group_id',
              'foreign' => 'worktype_id'));
 
@@ -118,7 +118,7 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'group_id'));
 
-        $this->hasMany('sfGuardGroupWorktype', array(
+        $this->hasMany('sfGuardGroupWorkType', array(
              'local' => 'id',
              'foreign' => 'group_id'));
 
