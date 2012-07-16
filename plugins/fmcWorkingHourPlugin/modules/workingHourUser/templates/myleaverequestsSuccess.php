@@ -20,7 +20,7 @@
 
 <?php if (!count($myLeaveRequests)): ?>
 
-    <p>No costs found in your selected criterias.</p>
+    <p>No leave requests found in your selected criterias.</p>
     
 <?php else: ?>
 
