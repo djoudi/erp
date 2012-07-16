@@ -116,8 +116,11 @@ abstract class BaseworkingHourUserActions extends sfActions
             } else {
                 
                 
-                // Fetching day entrance hour
-                    $this->entranceHour = $accessClass->getDayEntrance($this->date);
+                // Fetching day entrance hourgetDayHours
+                    $this->entranceHour = Doctrine::getTable('WorkingHourDay')
+                        ->getDayHours($user->getId(), $this->date, "Enter");
+                    
+                    #$this->entranceHour = $accessClass->getDayEntrance($this->date);
                 
                 // Fetching current items
                     $this->items = Doctrine::getTable('WorkingHour')
@@ -138,7 +141,7 @@ abstract class BaseworkingHourUserActions extends sfActions
                     $this->item->setEnd(date('H:i',$time + 1800));
                     
                     $this->form = new WorkingHourForm_dayitemnew ($this->item);
-                
+                    
                 // Processing form
                     $processClass = new FmcWhUser_Process();
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;

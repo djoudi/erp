@@ -10,6 +10,8 @@ class FmcWhUser_Access {
         
     }
     
+    /* TODO: to be deleted and replaced with table class method */
+    /*
     public function getDayEntrance ($date) {
         
         $result = Doctrine::getTable ('WorkingHourDay')
@@ -21,6 +23,7 @@ class FmcWhUser_Access {
         return $result->toArray();
         
     }
+    */
     
     public function getMyLeaveRequestsFilterQuery ($limit=100) {
         

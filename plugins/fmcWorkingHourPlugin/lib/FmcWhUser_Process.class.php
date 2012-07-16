@@ -88,7 +88,7 @@ class FmcWhUser_Process {
                         // if any item is between entered values
                         if ( $item["start"] > $formValues["start"] and $item["end"] < $formValues["end"])
                             $wrong++;
-                            
+                        
                     }
                     
                     if ($wrong) $msg = "Your time values are interfering with an another interval.";
