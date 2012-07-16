@@ -56,10 +56,6 @@ class FmcWhUser_Process {
 
     }
     
-    
-    
-    
-    
     public function workingHour_DayItems ($form, $request, $forwardurl, $todayItems) {
         
         if ($request->isMethod('post')) {
@@ -68,13 +64,13 @@ class FmcWhUser_Process {
         
             if ($form->isValid()) {
                 
-                $temp = $form->getValues(); //fetching form values
+                $formValues = $form->getValues(); //fetching form values
                 $msg = ""; //clearing error message
           
-                if ($temp["start"]>$temp["end"])
+                if ($formValues["start"] > $formValues["end"])
                     $msg = "TO value cannot be smaller than FROM value.";
-          
-                elseif ($temp["start"]==$temp["end"])
+                
+                elseif ($formValues["start"] == $formValues["end"])
                     $msg = "The time values are the same.";
                 
                 //checking if overlaps 
@@ -82,12 +78,19 @@ class FmcWhUser_Process {
             
                     $wrong = 0;
                     foreach ($todayItems as $item) {
-                        if (
-                            ( $temp["start"] > $item["start"] and  $temp["start"] < $item["end"] ) or 
-                            ( $temp["end"] > $item["start"] and $temp["end"] < $item["end"] )
-                        )
-                        $wrong++;
+                        
+                        if ( $formValues["start"] > $item["start"] and  $formValues["start"] < $item["end"] )
+                            $wrong++;
+                        
+                        if ( $formValues["end"] > $item["start"] and $formValues["end"] < $item["end"] )
+                            $wrong++;
+                        
+                        // if any item is between entered values
+                        if ( $item["start"] > $formValues["start"] and $item["end"] < $formValues["end"])
+                            $wrong++;
+                            
                     }
+                    
                     if ($wrong) $msg = "Your time values are interfering with an another interval.";
                 }
           
@@ -104,7 +107,7 @@ class FmcWhUser_Process {
                     
                     $object->setUpdatedBy($this->user->getGuardUser()->getId());
                     
-                    if (!$temp["created_by"]) $object->setCreatedBy($this->user->getGuardUser()->getId());
+                    if (!$formValues["created_by"]) $object->setCreatedBy($this->user->getGuardUser()->getId());
                     $object->save();
                     
                     $this->user->setFlash("success", "Record is added!");
