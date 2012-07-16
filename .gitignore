@@ -10,6 +10,12 @@
 /config/databases.yml
 /data/fixtures/
 #
+#  Symfony Project Links
+#
+/web/fmcWorkingHourPlugin
+/web/sfDoctrinePlugin
+/web/sfFormExtraPlugin
+#
 #  Editors
 #
 /.buildpath
