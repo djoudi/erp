@@ -8,12 +8,12 @@
         <td><?php echo $item->getWorkType(); ?></td>
         <td><?php echo $item->getComment(); ?></td>
         <td>
-            <?php $editurl = url_for('workingHourUser_edititem', array('date' => $date,'item_id' => $item->getId())); ?>
+            <?php #$editurl = url_for('workingHourUser_edititem', array('date' => $date,'item_id' => $item->getId())); ?>
             <a href="<?php echo $editurl; ?>">
                 <i class="icon-pencil"></i>
             </a> 
             
-            <?php $deleteurl = url_for('workingHourUser_deleteitem', array('item_id'=>$item->getId())); ?>
+            <?php #$deleteurl = url_for('workingHourUser_deleteitem', array('item_id'=>$item->getId())); ?>
             <a href="<?php echo $deleteurl; ?>">
                 <i class="icon-trash"></i>
             </a>

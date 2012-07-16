@@ -129,8 +129,9 @@ abstract class BaseworkingHourUserActions extends sfActions
                 
                 // Processing form
                 
-                    $processClass = new FmcProcessForm();
-                    $processClass->ProcessWorkingHourForm($this->form, $request, $editurl, $this->items);
+                    $processClass = new FmcWhUser_Process();
+                    $redirectUrl = '@workingHourUser_day?date='.$this->date;
+                    $processClass->workingHour_DayItems($this->form, $request, $redirectUrl, $this->items);
             }
             
         }
