@@ -31,13 +31,13 @@ workingHourUser_day:
     url: /wh/user/day/:date
     param: { module: workingHourUser, action: day }
 
-workingHourUser_leaverequest:
-    url: /wh/user/day/:date/leave/:type
-    param: { module: workingHourUser, action: leaverequest }
-
 workingHourUser_deleteday:
     url: /wh/user/day/:date/delete
     param: { module: workingHourUser, action: deleteday }
+
+workingHourUser_leaverequest:
+    url: /wh/user/day/:date/leave/:type
+    param: { module: workingHourUser, action: leaverequest }
 
 workingHourUser_myleaverequests:
     url: /wh/user/myleaverequests
