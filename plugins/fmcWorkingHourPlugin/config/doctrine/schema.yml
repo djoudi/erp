@@ -1,6 +1,7 @@
 ##################################################################
 
 WorkingHourDay:
+
     actAs:
         SoftDelete: ~
         Timestampable: ~
@@ -13,8 +14,10 @@ WorkingHourDay:
             notnull: true
         user_id:
             type: integer
+            notnull: true
         date:
             type: date
+            notnull: true
         time:
             type: time
             notnull: true
@@ -23,13 +26,27 @@ WorkingHourDay:
         updated_by:
             type: integer
     relations:
-        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+        User:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: WorkingHours
+            onDelete: CASCADE
+        Creator:
+            class: sfGuardUser
+            local: created_by
+            foreign: id
+            foreignAlias: User
+        Updater:
+            class: sfGuardUser
+            local: updated_by
+            foreign: id
+            foreignAlias: Updater
 
 ##################################################################
 
 WorkType:
+
     actAs:
         SoftDelete: ~
         Timestampable: ~
@@ -48,12 +65,21 @@ WorkType:
         updated_by:
             type: integer            
     relations:
-        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+        Creator:
+            class: sfGuardUser
+            local: created_by
+            foreign: id
+            foreignAlias: User
+        Updater:
+            class: sfGuardUser
+            local: updated_by
+            foreign: id
+            foreignAlias: Updater
 
 ##################################################################
 
 sfGuardGroupWorkType:
+
     options:
         symfony:
             form:   false
@@ -81,6 +107,7 @@ sfGuardGroupWorkType:
 ##################################################################
 
 sfGuardGroup:
+
     relations:
         Worktypes:
             class: WorkType
@@ -92,6 +119,7 @@ sfGuardGroup:
 ##################################################################
 
 WorkingHourLeave:
+
     actAs:
         SoftDelete: ~
         Timestampable: ~
@@ -107,7 +135,7 @@ WorkingHourLeave:
         date:
             type: date
             notnull: true
-        description: # rapor numarasi veya izin aciklamasi icin
+        description:
             type: string(50)  
         status:
             type: enum
@@ -121,10 +149,28 @@ WorkingHourLeave:
         updated_by:
             type: integer
     relations:
-        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
-        StatusUser: { class: sfGuardUser, local: status_user, foreign: id, foreignAlias: WorkingHourLeave, onDelete: CASCADE }
-        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+        User:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: WorkingHourLeave
+            onDelete: CASCADE
+        StatusUser:
+            class: sfGuardUser
+            local: status_user
+            foreign: id
+            foreignAlias: WorkingHourLeave
+            onDelete: CASCADE
+        Creator:
+            class: sfGuardUser
+            local: created_by
+            foreign: id
+            foreignAlias: User
+        Updater:
+            class: sfGuardUser
+            local: updated_by
+            foreign: id
+            foreignAlias: Updater
 
 ##################################################################
 
@@ -159,8 +205,31 @@ WorkingHour:
         updated_by:
             type: integer
     relations:
-        User: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-        Project: { class: Project, local: project_id, foreign: id, foreignAlias: WorkingHours, onDelete: CASCADE }
-        WorkType: { class: WorkType, local: worktype_id, foreign: id, foreignAlias: WorkTypes }
-        Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-        Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }    
+        User:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: WorkingHours
+            onDelete: CASCADE
+        Project:
+            class: Project
+            local: project_id
+            foreign: id
+            foreignAlias: WorkingHours
+            onDelete: CASCADE
+        WorkType:
+            class: WorkType
+            local: worktype_id
+            foreign: id
+            foreignAlias: WorkTypes
+        Creator:
+            class: sfGuardUser
+            local: created_by
+            foreign: id
+            foreignAlias: User
+        Updater:
+            class: sfGuardUser
+            local: updated_by
+            foreign: id
+            foreignAlias: Updater
+

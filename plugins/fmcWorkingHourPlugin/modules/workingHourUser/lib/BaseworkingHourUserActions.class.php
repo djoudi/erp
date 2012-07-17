@@ -10,6 +10,7 @@ abstract class BaseworkingHourUserActions extends sfActions
     public function executeMyleaverequests (sfWebRequest $request) {
         
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        
         $this->resultlimit = 100;
         
         $accessClass = new FmcWhUser_Access();

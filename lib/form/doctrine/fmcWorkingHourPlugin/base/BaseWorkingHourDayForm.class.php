@@ -17,7 +17,7 @@ abstract class BaseWorkingHourDayForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'type'       => new sfWidgetFormChoice(array('choices' => array('Enter' => 'Enter', 'Exit' => 'Exit'))),
-      'user_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'user_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
       'date'       => new sfWidgetFormDate(),
       'time'       => new sfWidgetFormTime(),
       'created_by' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
@@ -31,8 +31,8 @@ abstract class BaseWorkingHourDayForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'type'       => new sfValidatorChoice(array('choices' => array(0 => 'Enter', 1 => 'Exit'), 'required' => false)),
-      'user_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
-      'date'       => new sfValidatorDate(array('required' => false)),
+      'user_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
+      'date'       => new sfValidatorDate(),
       'time'       => new sfValidatorTime(),
       'created_by' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
       'updated_by' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'required' => false)),

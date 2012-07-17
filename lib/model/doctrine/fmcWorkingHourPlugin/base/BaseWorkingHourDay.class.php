@@ -56,9 +56,11 @@ abstract class BaseWorkingHourDay extends sfDoctrineRecord
              ));
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('date', 'date', null, array(
              'type' => 'date',
+             'notnull' => true,
              ));
         $this->hasColumn('time', 'time', null, array(
              'type' => 'time',

@@ -31,8 +31,8 @@ abstract class BaseWorkingHourDayVersionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'type'       => new sfValidatorChoice(array('choices' => array(0 => 'Enter', 1 => 'Exit'), 'required' => false)),
-      'user_id'    => new sfValidatorInteger(array('required' => false)),
-      'date'       => new sfValidatorDate(array('required' => false)),
+      'user_id'    => new sfValidatorInteger(),
+      'date'       => new sfValidatorDate(),
       'time'       => new sfValidatorTime(),
       'created_by' => new sfValidatorInteger(array('required' => false)),
       'updated_by' => new sfValidatorInteger(array('required' => false)),

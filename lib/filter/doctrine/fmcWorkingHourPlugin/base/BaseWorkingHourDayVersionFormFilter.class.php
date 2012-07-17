@@ -14,8 +14,8 @@ abstract class BaseWorkingHourDayVersionFormFilter extends BaseFormFilterDoctrin
   {
     $this->setWidgets(array(
       'type'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Enter' => 'Enter', 'Exit' => 'Exit'))),
-      'user_id'    => new sfWidgetFormFilterInput(),
-      'date'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'user_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'date'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'time'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_by' => new sfWidgetFormFilterInput(),
       'updated_by' => new sfWidgetFormFilterInput(),
