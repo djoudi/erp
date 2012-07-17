@@ -1,4 +1,0 @@
-all:
-
-  javascripts:
-    - /sfFormExtraPlugin/js/double_list.js
