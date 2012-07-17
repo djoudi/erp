@@ -11,6 +11,7 @@ body {
   background-color: #ccc;
   font:12px/1.3em Arial,sans-serif;
   margin: 0;
+  scroll-y: visible !important; /* Refs:28 */
 }
 
 input, textarea, select, .uneditable-input {
@@ -138,4 +139,3 @@ input, textarea, select, .uneditable-input {
 .pagination a {
   line-height: 25px !important;
 }
-
