@@ -1,6 +1,6 @@
 <?php
 
-class WorkingHourForm_leavewreport extends WorkingHourLeaveForm {
+class WorkingHourForm_leaverequest extends WorkingHourLeaveForm {
     
     public function configure() {
     

@@ -11,26 +11,20 @@ class PluginWorkTypeTable extends Doctrine_Table {
     public function __construct($name, Doctrine_Connection $conn, $initDefinition = false) {
         
         parent::__construct($name, $conn, $initDefinition);
-        $this->_options['orderBy'] = 'title ASC';
-        
-    }
-  
-    public function getOrdered() {
-        
-        return $this->CreateQuery ('worktype')
-            ->orderBy ('worktype.code ASC')
-            ->execute();
+        $this->_options['orderBy'] = 'code ASC';
         
     }
     
     public function getOrderedUserRights() {
         
         $group_id = sfContext::getInstance()->getUser()->getGuardUser()->getGroupId();
-        $query = $this->CreateQuery ('worktype')
-            ->leftJoin ('worktype.Groups dpt')
+        
+        $query = $this->CreateQuery ('wt')
+            ->leftJoin ('wt.Groups dpt')
             ->addWhere ('dpt.id = ?', $group_id)
-            ->orderBy ('worktype.code ASC')
+            ->orderBy ('wt.code ASC')
             ->execute();
+        
         return $query;
         
     }

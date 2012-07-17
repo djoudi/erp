@@ -8,6 +8,9 @@ class WorkingHourFilter_myleave extends PluginWorkingHourLeaveFormFilter {
         unset ($this['status_user']);
         unset ($this['date']);
         
+        /*
+         * @TODO: TODO: These values should be fetched from app.yml automatically
+         */
         $this->setWidget('type', new sfWidgetFormChoice(
             array(
                 'choices' => array(

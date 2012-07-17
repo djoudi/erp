@@ -69,7 +69,7 @@ abstract class BaseworkingHourUserActions extends sfActions
         $formitem->setStatus('Pending');
         $formitem->setStatusUser($user);
         
-        $this->form = new WorkingHourForm_leavewreport($formitem);
+        $this->form = new WorkingHourForm_leaverequest($formitem);
         
         $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
         $processClass = new FmcWhUser_Process();
@@ -133,13 +133,9 @@ abstract class BaseworkingHourUserActions extends sfActions
                     $this->item->setDate($this->date);
                     $this->item->setUser($user);
                     
-                    if (!count($this->items))
-                        $time = strtotime ($this->entranceHour["time"]);
-                    else
-                        $time = strtotime ($this->item->getNextHour($this->date));
-                    
-                    $this->item->setStart(date('H:i',$time));
-                    $this->item->setEnd(date('H:i',$time + 1800));
+                    $lastTime = strtotime ($this->item->getNextHour($this->date, $user->getId()));
+                    $this->item->setStart(date('H:i',$lastTime));
+                    $this->item->setEnd(date('H:i',$lastTime + 1800));
                     
                     $this->form = new WorkingHourForm_dayitemnew ($this->item);
                     

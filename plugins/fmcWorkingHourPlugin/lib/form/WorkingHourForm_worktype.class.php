@@ -6,7 +6,6 @@ class WorkingHourForm_worktype extends PluginWorkTypeForm {
         
         $this->setWidget('groups_list', new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('Groups'),
-          'table_method' => 'getOrdered',
           'add_empty' => false)
         ));
     

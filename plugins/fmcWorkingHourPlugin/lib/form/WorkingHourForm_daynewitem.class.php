@@ -9,6 +9,7 @@ class WorkingHourForm_dayitemnew extends WorkingHourForm {
         unset($this['time']);
     
         $this->setWidget('start', new sfWidgetFormInputText());
+        
         $this->setWidget('end', new sfWidgetFormInputText());
         
         $this->setWidget('worktype_id', new sfWidgetFormDoctrineChoice(array(

@@ -4,8 +4,8 @@ abstract class PluginWorkingHour extends BaseWorkingHour {
     
     public function getTimeDifference() {
         
-        $start = strtotime($this->getStart());
-        $end = strtotime($this->getEnd());
+        $start = strtotime ($this->getStart());
+        $end = strtotime ($this->getEnd());
         
         $minute = ( ($end-$start) / 60 ) % 60;
         $hour = ( ( ($end-$start) / 60 ) - $minute ) / 60;
@@ -13,22 +13,26 @@ abstract class PluginWorkingHour extends BaseWorkingHour {
         return $hour."h ".$minute."m";
     }
     
-    public function getNexthour($date) {
+    public function getNexthour($date, $user_id) {
         
         $item = Doctrine::getTable('WorkingHour')
-            ->createQuery('wh')
-            ->addWhere('wh.date = ?', $date)
-            ->orderBy('wh.end DESC')
-            ->fetchOne() ;
+            ->createQuery ('wh')
+            ->addWhere ('wh.date = ?', $date)
+            ->addWhere ('wh.user_id = ?', $user_id)
+            ->orderBy ('wh.end DESC')
+            ->fetchOne () ;
         
-        if ($item) $result = $item->getEnd();
-            else $result = '09:00';
-        /*
-         * this is failsafe
-         * if no items found, entrance day should be calculated
-         */
+        if ($item) {
+            
+            $result = $item->getEnd();
+            
+        } else {
+            
+            $result = Doctrine::getTable('WorkingHourDay')->getDayHours ($user_id, $date, "Enter")->getTime();
+        }
         
         return $result;
+        
     }
     
 }
