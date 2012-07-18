@@ -9,6 +9,42 @@ class FmcWhUser_Process {
         
     }   
     
+    /*################################################################################*/
+    
+    public function workingHour_LeaveSetAll ($request, $redirectUrl) {
+        
+        if ($request->isMethod('post')) {
+            
+            $errorMsg = "";
+            $type = $request->getParameter("type");
+            $limit = intval ($request->getParameter("limit"));
+            
+            if ( !$type or !$limit)
+                $errorMsg = "Please fill all fields";
+            
+            elseif ( !is_int($limit))
+                $errorMsg = "Please enter an integer value";
+            
+            if ($errorMsg) {
+                
+                $this->user->setFlash("error", $errorMsg);
+                
+            } else {
+                
+                $q = Doctrine_Query::create()
+                    ->update('sfGuardUser u')
+                    ->set('u.'.$type.'Limit', $limit)
+                    ->execute();
+                $this->user->setFlash('success', 'Leave limits has been set successfully.');
+                $this->controller->redirect ($redirectUrl);
+            }
+            
+        }
+        
+    }
+    
+    /*################################################################################*/
+    
     public function workingHour_DayLeaveRequest ($form, $request, $redirectUrl) {
         
         if ($request->isMethod('post')) {
@@ -30,6 +66,8 @@ class FmcWhUser_Process {
             }
         }
     }
+    
+    /*################################################################################*/
     
     public function workingHour_DayEntrance ($form, $request, $redirectUrl) {
 
@@ -55,6 +93,8 @@ class FmcWhUser_Process {
       }
 
     }
+    
+    /*################################################################################*/
     
     public function workingHour_DayItems ($form, $request, $forwardurl, $todayItems) {
         

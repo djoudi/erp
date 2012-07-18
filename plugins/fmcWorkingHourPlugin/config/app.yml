@@ -1,53 +1,58 @@
 all:
 
-  workingHour:
-    leaveStatus: 
-      IllnessWoReport : 'Illness (without Report)'
-      IllnessWReport : 'Illness (with Report)'
-      PaidVacation : 'Paid Vacation'
-      UnpaidVacation: 'Unpaid Vacation'
-        #TODO: these values exist but do not autoupdate on:
-            #WorkingHourFilter_myleave.class
-            #form_plugin_sfguarduser.class
+    workingHour:
+        leaveStatus: 
+            IllnessWoReport : 'Illness (without Report)'
+            IllnessWReport : 'Illness (with Report)'
+            PaidVacation : 'Paid Vacation'
+            UnpaidVacation: 'Unpaid Vacation'
+                #TODO: these values exist but do not autoupdate on:
+                    #WorkingHourFilter_myleave.class
+                    #form_plugin_sfguarduser.class
       
-  menus:
-    topmenu:
-      children:
-        3:
-          label: Working Hours
-          route: @workinghours
-          requires_auth: true
-          credentials: ['Working Hours']
-
-    leftmenu_workinghours:
-      name: Left Menu
-      attributes: { class: "nav nav-list" }
-      children:
-        01:
-          label: My hours
-          attributes: { class: "nav-header" }
-          requires_auth: true
-          credentials: ['Working Hours']
-        02:
-          label: My working hours
-          route: @workingHourUser_myhome
-          requires_auth: true
-          credentials: ['Working Hours']
-        03:
-          label: My leave requests
-          route: @workingHourUser_myleaverequests
-          requires_auth: true
-          credentials: ['Working Hours']
-
-    leftmenu_administration:
-      children:
-        40:
-          label: Working Hours
-          attributes: { class: "nav-header" }
-          requires_auth: true
-          credentials: ['Working Hours Management']
-        41:
-          label: Type of Work
-          route: @workingHourWorkType_list
-          requires_auth: true
-          credentials: ['Working Hours Management']
+    menus:
+        topmenu:
+            children:
+                3:
+                    label: Working Hours
+                    route: @workinghours
+                    requires_auth: true
+                    credentials: ['Working Hours']
+                    
+        leftmenu_workinghours:
+            name: Left Menu
+            attributes: { class: "nav nav-list" }
+            children:
+                01:
+                    label: My hours
+                    attributes: { class: "nav-header" }
+                    requires_auth: true
+                    credentials: ['Working Hours']
+                02:
+                    label: My working hours
+                    route: @workingHourUser_myhome
+                    requires_auth: true
+                    credentials: ['Working Hours']
+                03:
+                    label: My leave requests
+                    route: @workingHourUser_myleaverequests
+                    requires_auth: true
+                    credentials: ['Working Hours']
+                    
+        leftmenu_administration:
+            children:
+                40:
+                    label: Working Hours
+                    attributes: { class: "nav-header" }
+                    requires_auth: true
+                    credentials: ['Working Hours Management']
+                41:
+                    label: Type of Work
+                    route: @workingHourWorkType_list
+                    requires_auth: true
+                    credentials: ['Working Hours Management']
+                42:
+                    label: Set leave requests
+                    route: @workingHourLeave_setall
+                    requires_auth: true
+                    credentials: ['Working Hours Management']

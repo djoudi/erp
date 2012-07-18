@@ -22,9 +22,12 @@
         'employeeManagement', 
         "projectManagement", 
         "vatManagement", 
-        'workingHourWorkType'
+        'workingHourWorkType',
+        "workingHourLeave"
       );
-      $mods_workinghours = array('workingHourUser');
+      $mods_workinghours = array(
+        'workingHourUser',
+      );
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
       elseif (in_array($moduleName, $mods_administration) or $actionName=="administration") $mod = "administration";

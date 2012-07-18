@@ -2,23 +2,29 @@
 
 workinghours:
 
-  url: /home/wh
-  param: { module: homepage, action: workinghours }
+    url: /home/wh
+    param: { module: homepage, action: workinghours }
 
 
 # WHDB Type Management
 
 workingHourWorkType_list:
-  url: /wh/worktype/list
-  param: { module: workingHourWorkType, action: list }
+    url: /wh/worktype/list
+    param: { module: workingHourWorkType, action: list }
 
 workingHourWorkType_new:
-  url: /wh/worktype/new
-  param: { module: workingHourWorkType, action: new }
+    url: /wh/worktype/new
+    param: { module: workingHourWorkType, action: new }
 
 workingHourWorkType_edit:
-  url: /wh/worktype/edit/:id
-  param: { module: workingHourWorkType, action: edit }
+    url: /wh/worktype/edit/:id
+    param: { module: workingHourWorkType, action: edit }
+
+# WHDB - Leave Requests management
+
+workingHourLeave_setall:
+    url: /wh/leave/setall
+    param: { module: workingHourLeave, action: setall }
 
 
 # WHDB - My Working Hours

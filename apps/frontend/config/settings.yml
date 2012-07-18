@@ -45,6 +45,7 @@ all:
       - costFormReport
       - costFormManage
       
+      - workingHourLeave
       - workingHourUser
       - workingHourWorkType
       
