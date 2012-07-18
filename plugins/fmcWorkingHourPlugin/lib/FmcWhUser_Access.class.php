@@ -10,6 +10,29 @@ class FmcWhUser_Access {
         
     }
     
+    public function getLeaveUsage () {
+        
+        $leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        
+        $LeaveUsageCount = array();
+        
+        foreach ($leaveStatus as $key=>$label) {
+            
+            $result = Doctrine::getTable ('WorkingHourLeave')
+                ->createQuery ('whl')
+                ->addWhere ('whl.user_id = ?', $this->user->getId())
+                ->addWhere ('type = ?', $key)
+                ->addWhere ('status = ?', "Approved")
+                ->count();
+            
+            $LeaveUsageCount[$key] = $result;
+        }
+        
+        return $LeaveUsageCount;
+        
+    }
+    
+    
     /* @TODO: to be deleted and replaced with table class method */
     public function getDayEntrance ($date) {
         

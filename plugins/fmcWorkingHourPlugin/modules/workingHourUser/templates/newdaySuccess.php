@@ -41,11 +41,15 @@
 	<div id="leaveday">
         
         <p>To create a leave request, please select leave type below.</p>
-            
+        
         <?php foreach ($leaveStatus as $type=>$text): ?>
-            <a class="btn" href="<?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>">
-                <?php echo $text; ?>
-            </a>
+            <?php $getLimit = "get".$type."Limit"; ?>
+            <p>
+                <a class="btn" href="<?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>">
+                    <?php echo $text; ?>
+                </a> 
+                 ( <?php echo $leaveUsageCount[$type]; ?> of <?php echo $user->$getLimit(); ?> used)
+            </p>
         <?php endforeach; ?>  
                 
 	</div>

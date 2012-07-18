@@ -79,25 +79,28 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     public function executeDay (sfWebRequest $request) {
         
+        $this->user = $this->getUser()->getGuardUser();
+        
         $this->date = $request->getParameter('date');
         
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
         
-        $user = $this->getUser()->getGuardUser();
-        
         $checkClass = new FmcWhUser_Check();
+        $accessClass = new FmcWhUser_Access();
+        $processClass = new FmcWhUser_Process();
         
         if  ($checkClass->isDayEmpty($this->date)) {
+            
+            $this->leaveUsageCount = $accessClass->getLeaveUsage();
             
             $this->setTemplate('newday');
             
             $formitem = new WorkingHourDay();
             $formitem->setType("Enter");
-            $formitem->setUser($user);
+            $formitem->setUser($this->user);
             $formitem->setDate($this->date);
             $this->form = new WorkingHourForm_enterday($formitem);
             
-            $processClass = new FmcWhUser_Process();
             $redirectUrl = '@workingHourUser_day?date='.$this->date;
             $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
             
@@ -107,40 +110,40 @@ abstract class BaseworkingHourUserActions extends sfActions
             
             $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_deleteday?date='.$this->date);
             
-            $accessClass = new FmcWhUser_Access();
-            
             $this->leaveRequest = $accessClass->getDayLeave($this->date);
+            
             if ($this->leaveRequest) {
                 
                 $this->setTemplate('leaveinfo');
+                
             
             } else {
                 
                 
                 // Fetching day entrance hourgetDayHours
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')
-                        ->getDayHours($user->getId(), $this->date, "Enter");
+                        ->getDayHours($this->user->getId(), $this->date, "Enter");
                     
                     #$this->entranceHour = $accessClass->getDayEntrance($this->date);
                 
                 // Fetching current items
                     $this->items = Doctrine::getTable('WorkingHour')
-                        ->getByuseranddate($user->getId(), $this->date);
+                        ->getByuseranddate($this->user->getId(), $this->date);
                 
                 // Preparing new item form
                     $this->item = new WorkingHour();
                     
                     $this->item->setDate($this->date);
-                    $this->item->setUser($user);
+                    $this->item->setUser($this->user);
                     
-                    $lastTime = strtotime ($this->item->getNextHour($this->date, $user->getId()));
+                    $lastTime = strtotime ($this->item->getNextHour($this->date, $this->user->getId()));
                     $this->item->setStart(date('H:i',$lastTime));
                     $this->item->setEnd(date('H:i',$lastTime + 1800));
                     
                     $this->form = new WorkingHourForm_dayitemnew ($this->item);
                     
                 // Processing form
-                    $processClass = new FmcWhUser_Process();
+                    
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;
                     $processClass->workingHour_DayItems($this->form, $request, $redirectUrl, $this->items);
             }
