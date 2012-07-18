@@ -106,6 +106,24 @@ sfGuardGroupWorkType:
 
 ##################################################################
 
+sfGuardUser:
+
+    columns:
+        IllnessWoReportLimit:
+            type: integer
+            default: 0
+        IllnessWReportLimit:
+            type: integer
+            default: 0
+        PaidVacationLimit:
+            type: integer
+            default: 0
+        UnpaidVacationLimit:
+            type: integer
+            default: 0
+
+##################################################################
+
 sfGuardGroup:
 
     relations:

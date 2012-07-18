@@ -19,6 +19,10 @@
  * @property integer $group_id
  * @property integer $created_by
  * @property integer $updated_by
+ * @property integer $IllnessWoReportLimit
+ * @property integer $IllnessWReportLimit
+ * @property integer $PaidVacationLimit
+ * @property integer $UnpaidVacationLimit
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
@@ -47,6 +51,10 @@
  * @method integer               getGroupId()               Returns the current record's "group_id" value
  * @method integer               getCreatedBy()             Returns the current record's "created_by" value
  * @method integer               getUpdatedBy()             Returns the current record's "updated_by" value
+ * @method integer               getIllnessWoReportLimit()  Returns the current record's "IllnessWoReportLimit" value
+ * @method integer               getIllnessWReportLimit()   Returns the current record's "IllnessWReportLimit" value
+ * @method integer               getPaidVacationLimit()     Returns the current record's "PaidVacationLimit" value
+ * @method integer               getUnpaidVacationLimit()   Returns the current record's "UnpaidVacationLimit" value
  * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
  * @method sfGuardUser           getUpdater()               Returns the current record's "Updater" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
@@ -74,6 +82,10 @@
  * @method sfGuardUser           setGroupId()               Sets the current record's "group_id" value
  * @method sfGuardUser           setCreatedBy()             Sets the current record's "created_by" value
  * @method sfGuardUser           setUpdatedBy()             Sets the current record's "updated_by" value
+ * @method sfGuardUser           setIllnessWoReportLimit()  Sets the current record's "IllnessWoReportLimit" value
+ * @method sfGuardUser           setIllnessWReportLimit()   Sets the current record's "IllnessWReportLimit" value
+ * @method sfGuardUser           setPaidVacationLimit()     Sets the current record's "PaidVacationLimit" value
+ * @method sfGuardUser           setUnpaidVacationLimit()   Sets the current record's "UnpaidVacationLimit" value
  * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
  * @method sfGuardUser           setUpdater()               Sets the current record's "Updater" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
@@ -157,6 +169,22 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              ));
         $this->hasColumn('updated_by', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('IllnessWoReportLimit', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('IllnessWReportLimit', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('PaidVacationLimit', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('UnpaidVacationLimit', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
              ));
 
 

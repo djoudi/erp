@@ -39,6 +39,11 @@ class form_plugin_sfguarduser extends sfGuardUserForm
       'label_unassociated' => 'Available Permissions'
     ));
     
+    $this->widgetSchema['IllnessWReportLimit']->setLabel('Illness (with Report) Limit');
+    $this->widgetSchema['IllnessWoReportLimit']->setLabel('Illness (without Report) Limit');
+    $this->widgetSchema['PaidVacationLimit']->setLabel('Paid Vacation Limit');
+    $this->widgetSchema['UnpaidVacationLimit']->setLabel('Unpaid Vacation Limit');
+    
     $this->widgetSchema['group_id']->setLabel('Department');
     $this->widgetSchema['permissions_list']->setLabel('Permissions');
     $this->widgetSchema['password']->setLabel('Change Password');

@@ -12,7 +12,11 @@ class filterform_plugin_sfguarduser extends sfGuardUserFormFilter
       $this['groups_list'],
       $this['password'],
       $this['salt'],
-      $this['permissions_list']
+      $this['permissions_list'],
+      $this['IllnessWoReport'],
+      $this['IllnessWReport'],
+      $this['PaidVacation'],
+      $this['UnpaidVacation']
     );
     
     $this->widgetSchema['group_id']->setLabel('Department');
