@@ -5,6 +5,36 @@ abstract class BaseworkingHourUserActions extends sfActions
   
     public function executeMyhome (sfWebRequest $request) {
         
+        $today = date ( "Y-m-d", mktime(0,0,0,date("m"),date("d"),date("Y")) );
+        
+        $this->todayUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$today);
+        
+        $user = $this->getUser()->getGuardUser();
+        
+        $checkClass = new FmcWhUser_Check();
+        $accessClass = new FmcWhUser_Access();
+        
+        // @TODO: burada check class da bir metod ile, gunun turu cekilebilir, hem home hem edit action u icin
+        
+        if ($checkClass->isDayEmpty($today)) {
+            
+            $this->todayType = "empty";
+            
+        } else if ( $this->leaveRequest = $accessClass->getDayLeave($today) ) {
+            
+            $this->todayType = "leave";
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+            
+        } else {
+            
+            $this->todayType = "normal";
+            $this->entranceHour = Doctrine::getTable('WorkingHourDay')
+                ->getDayHours($user->getId(), $today, "Enter");
+            $this->items = Doctrine::getTable('WorkingHour')
+                ->getByuseranddate($user->getId(), $today);
+            
+        }
+        
     }
     
     public function executeMyleaverequests (sfWebRequest $request) {
@@ -116,9 +146,7 @@ abstract class BaseworkingHourUserActions extends sfActions
                 
                 $this->setTemplate('leaveinfo');
                 
-            
             } else {
-                
                 
                 // Fetching day entrance hourgetDayHours
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')

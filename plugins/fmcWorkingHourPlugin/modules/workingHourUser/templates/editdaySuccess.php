@@ -32,7 +32,7 @@
     </thead>
     
     <tbody>
-        <?php include_partial ("dayitems_list", array("items"=>$items)); ?>
+        <?php include_partial ("dayitems_list", array("items"=>$items, "edit"=>true)); ?>
     </tbody>
     
     <tfoot>
