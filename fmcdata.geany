@@ -9,7 +9,7 @@ indent_mode=2
 
 [project]
 name=fmcdata
-base_path=/www/fmcdata
+base_path=//srv/fmcdata
 description=
 file_patterns=
 

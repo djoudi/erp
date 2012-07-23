@@ -2,6 +2,10 @@
 
 /* ELEMENTS */
 
+html {
+    overflow-y: scroll !important; /* #Refs 28 */
+}
+
 * {
   color: #333;
   vertical-align: middle !important;
@@ -11,7 +15,6 @@ body {
   background-color: #ccc;
   font:12px/1.3em Arial,sans-serif;
   margin: 0;
-  scroll-y: visible !important; /* Refs:28 */
 }
 
 input, textarea, select, .uneditable-input {
