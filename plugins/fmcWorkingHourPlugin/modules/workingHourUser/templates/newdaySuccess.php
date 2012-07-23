@@ -43,12 +43,18 @@
         <p>To create a leave request, please select leave type below.</p>
         
         <?php foreach ($leaveStatus as $type=>$text): ?>
-            <?php $getLimit = "get".$type."Limit"; ?>
+            <?php
+                $getLimit = "get".$type."Limit";
+                $userLimit = $user->$getLimit();
+            ?>
             <p>
-                <a class="btn" href="<?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>">
+                <a class="btn <?php if ( $userLimit <= $leaveUsageCount[$type] ): ?> disabled <?php endif; ?> "
+                <?php if ( $userLimit>$leaveUsageCount[$type] ): ?>
+                    href="<?php echo url_for('workingHourUser_leaverequest', array('date'=>$date, 'type'=>$type)); ?>"
+                <?php endif; ?>>
                     <?php echo $text; ?>
                 </a> 
-                 ( <?php echo $leaveUsageCount[$type]; ?> of <?php echo $user->$getLimit(); ?> used)
+                 ( <?php echo $leaveUsageCount[$type]; ?> of <?php echo $userLimit; ?> used)
             </p>
         <?php endforeach; ?>  
                 

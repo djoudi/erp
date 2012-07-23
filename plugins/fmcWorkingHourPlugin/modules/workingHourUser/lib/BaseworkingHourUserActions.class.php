@@ -82,18 +82,43 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     public function executeLeaverequest (sfWebRequest $request) {
         
-        $this->date = $request->getParameter('date');
+        // Loading check class
         
-        $checkClass = new FmcWhUser_Check();
-        if ( ! ($checkClass->isDayEmpty($this->date) ) ) {
-            
-            $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
-            $this->redirect ($redirectUrl);
-            
-        }
+            $checkClass = new FmcWhUser_Check();
         
-        $this->type = $request->getParameter('type');
+        // Fetching date
+        
+            $this->date = $request->getParameter('date');
+        
+        // Checking if day is empty and available
+        
+            if ( ! ($checkClass->isDayEmpty($this->date) ) ) {
+                
+                $this->getUser()->setFlash("error", "Day is not empty.");
+                
+                $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
+                $this->redirect ($redirectUrl);
+            }
+        
+        // Fetching leave type
+        
+            $this->type = $request->getParameter('type');
+        
+        // Checking if user has enough limits
+        
+            if ( ! ($checkClass->hasLeaveLimit ($this->type)) ) {
+                
+                $this->getUser()->setFlash("error", "You don't have available limits.");
+                
+                $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
+                $this->redirect ($redirectUrl);
+            }
+        
+        // refactor below
+        
+        
         $user = $this->getUser()->getGuardUser();
+        
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
         
         $formitem = new WorkingHourLeave();
@@ -156,8 +181,6 @@ abstract class BaseworkingHourUserActions extends sfActions
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')
                         ->getDayHours($this->user->getId(), $this->date, "Enter");
                     
-                    #$this->entranceHour = $accessClass->getDayEntrance($this->date);
-                
                 // Fetching current items
                     $this->items = Doctrine::getTable('WorkingHour')
                         ->getByuseranddate($this->user->getId(), $this->date);

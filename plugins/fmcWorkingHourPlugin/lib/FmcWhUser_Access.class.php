@@ -10,6 +10,20 @@ class FmcWhUser_Access {
         
     }
     
+    public function getLeaveUsageForType ($type) {
+        
+        $result = Doctrine::getTable ('WorkingHourLeave')
+            ->createQuery ('whl')
+            ->addWhere ('whl.user_id = ?', $this->user->getId())
+            ->addWhere ('type = ?', $type)
+            ->addWhere ('status = ?', "Approved")
+            ->count();
+        
+        return $result;
+        
+    }
+    
+    
     public function getLeaveUsage () {
         
         $leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
@@ -18,14 +32,7 @@ class FmcWhUser_Access {
         
         foreach ($leaveStatus as $key=>$label) {
             
-            $result = Doctrine::getTable ('WorkingHourLeave')
-                ->createQuery ('whl')
-                ->addWhere ('whl.user_id = ?', $this->user->getId())
-                ->addWhere ('type = ?', $key)
-                ->addWhere ('status = ?', "Approved")
-                ->count();
-            
-            $LeaveUsageCount[$key] = $result;
+            $LeaveUsageCount[$key] = $this->getLeaveUsageForType ($key);
         }
         
         return $LeaveUsageCount;

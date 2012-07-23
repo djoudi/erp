@@ -9,6 +9,19 @@ class FmcWhUser_Check {
         
     }
     
+    public function hasLeaveLimit ($type) {
+        
+        $accessClass = new FmcWhUser_Access();
+        
+        $usage = $accessClass->getLeaveUsageForType($type);
+        
+        $limitTemp = "get".$type."Limit";
+        $userLimit = $this->user->getGuardUser()->$limitTemp();
+        
+        return $userLimit > $usage;
+        
+    }
+    
     public function isDayEmpty ($date) {
         
         $entranceRecords = Doctrine::getTable('WorkingHourDay')
