@@ -6,11 +6,12 @@ abstract class BasedepartmentManagementActions extends sfActions {
         
         $query = Doctrine_Query::create()
             ->from('sfGuardGroup g')
+            ->leftJoin ('g.Manager m')
             ->orderBy('name ASC');
         
         $filterClass = new FmcFilter('filterform_department');
         
-        $this->items = $filterClass->initFilterForm($request, $query)->execute();
+        $this->items = $filterClass->initFilterForm($request, $query)->execute()->toArray();
         
         if ($request->hasParameter('_reset')) $filterClass->resetForm ();
         

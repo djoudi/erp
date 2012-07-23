@@ -26,8 +26,8 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
+ * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
- * @property Doctrine_Collection $Department
  * @property Doctrine_Collection $User
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
@@ -58,8 +58,8 @@
  * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
  * @method sfGuardUser           getUpdater()               Returns the current record's "Updater" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
+ * @method sfGuardGroup          getDepartment()            Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
- * @method Doctrine_Collection   getDepartment()            Returns the current record's "Department" collection
  * @method Doctrine_Collection   getUser()                  Returns the current record's "User" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
@@ -89,8 +89,8 @@
  * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
  * @method sfGuardUser           setUpdater()               Sets the current record's "Updater" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
+ * @method sfGuardUser           setDepartment()            Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
- * @method sfGuardUser           setDepartment()            Sets the current record's "Department" collection
  * @method sfGuardUser           setUser()                  Sets the current record's "User" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
@@ -212,14 +212,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'group_id',
              'foreign' => 'sf_guard_group_id'));
 
+        $this->hasOne('sfGuardGroup as Department', array(
+             'local' => 'group_id',
+             'foreign' => 'id'));
+
         $this->hasMany('sfGuardPermission as Permissions', array(
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
-
-        $this->hasMany('sfGuardGroup as Department', array(
-             'local' => 'id',
-             'foreign' => 'manager_id'));
 
         $this->hasMany('sfGuardGroup as User', array(
              'local' => 'id',

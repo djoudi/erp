@@ -125,6 +125,11 @@ sfGuardUser:
       local: group_id
       refClass: sfGuardUserGroup
       foreignAlias: Users
+    Department:
+      class: sfGuardGroup
+      local: group_id
+      foreign: id
+      foreignAlias: Users
     Permissions:
       class: sfGuardPermission
       local: user_id

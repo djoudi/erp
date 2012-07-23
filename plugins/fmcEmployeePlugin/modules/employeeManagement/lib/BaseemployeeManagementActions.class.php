@@ -8,9 +8,10 @@ abstract class BaseemployeeManagementActions extends sfActions
     // Edit these variables
     $_q = Doctrine_Query::create()
       ->from('sfGuardUser u')
+      ->innerJoin('u.Department d')
       ->orderBy('username ASC');
     $filterClass = new FmcFilter('filterform_plugin_sfguarduser');
-    $this->employees = $filterClass->initFilterForm($request, $_q)->execute();
+    $this->employees = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
     
     // Do not touch here
     if ($request->hasParameter('_reset')) $filterClass->resetForm ();

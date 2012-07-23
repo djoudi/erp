@@ -9,12 +9,15 @@ abstract class BasecostFormReportActions extends sfActions
     // Edit these variables
     $_q = Doctrine_Query::create()
       ->from ('CostFormItem cfi')
+      ->leftJoin ('cfi.Currencies cur')
       ->leftJoin ('cfi.CostForms cf')
+      ->leftJoin ('cf.Projects p')
+      ->leftJoin ('cf.Users u')
       ->limit ($this->resultlimit)
       ->orderBy ('cfi.created_at DESC')
       ->addWhere ('cf.issent = ?', true);
     $filterClass = new FmcFilter('filter_costFormItemReport_list');
-    $this->costFormItems = $filterClass->initFilterForm($request, $_q)->execute();
+    $this->costFormItems = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
     
     // Do not touch here
       if ($request->hasParameter('_reset')) $filterClass->resetForm ();

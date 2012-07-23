@@ -43,34 +43,42 @@
       <?php foreach ($costFormItems as $cfi): ?>
         <tr>
           <td>
-            <?php echo $cfi->getCostDate(); ?>
+            <?php echo $cfi["cost_Date"]; ?>
           </td>
-          <td><?php echo $cfi->getCostForms()->getUsers()->__toString(); ?></td>
-          <td><?php echo $cfi->getCostForms()->getProjects()->getCode(); ?></td>
+          
           <td>
-            <?php if (strlen($cfi->getDescription()) < 20): ?>
-              <?php echo $cfi->getDescription(); ?>
+              <?php echo $cfi["CostForms"]["Users"]["first_name"]; ?> 
+              <?php echo $cfi["CostForms"]["Users"]["last_name"]; ?>
+          </td>
+          
+            <td>
+                <?php echo $cfi["CostForms"]["Projects"]["code"]; ?>
+            </td>
+          
+          <td>
+            <?php if (strlen($cfi["description"]) < 20): ?>
+              <?php echo $cfi["description"]; ?>
             <?php else: ?>
-              <a href="#" rel="tooltip" title="<?php echo $cfi->getDescription(); ?>" class="tooltips" >
-                <?php echo mb_substr($cfi->getDescription(), 0, 20, "UTF-8"); ?>...
+              <a href="#" rel="tooltip" title="<?php echo $cfi["description"]; ?>" class="tooltips" >
+                <?php echo mb_substr($cfi["description"], 0, 20, "UTF-8"); ?>...
               </a>
             <?php endif; ?>
           </td>
           <td>
-            <?php echo $cfi->getAmount()." ".$cfi->getCurrencies(); ?>
+            <?php echo $cfi["amount"]." ".$cfi["Currencies"]["code"]; ?>
           </td>
-          <td><?php echo $cfi->getReceiptNo(); ?></td>
+          <td><?php echo $cfi["receipt_No"]; ?></td>
           
           <td>
-           <?php if (!$cfi->getIsProcessed()): ?>
+           <?php if (!$cfi["is_Processed"]): ?>
              Not invoiced
            <?php else: ?>
-             <?php if ($cfi->getDontInvoice()): ?>
+             <?php if ($cfi["dontInvoice"]): ?>
                Don't invoice
              <?php else: ?>
-               <?php echo $cfi->getInvoiceNo(); ?>
-               <?php if ($cfi->invoice_Date): ?>
-                 (<?php echo $cfi->invoice_Date; ?>)
+               <?php echo $cfi["invoice_No"]; ?>
+               <?php if ($cfi["invoice_Date"]): ?>
+                 (<?php echo $cfi["invoice_Date"]; ?>)
                <?php endif; ?>
              <?php endif; ?>
            <?php endif; ?>
@@ -79,8 +87,8 @@
           <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
             <td>
               <?php
-                $editurl = url_for('@costFormManage_edit?cost_id='.$cfi->getId());
-                $deleteurl = url_for('@costFormManage_delete?cost_id='.$cfi->getId());
+                $editurl = url_for('@costFormManage_edit?cost_id='.$cfi["id"]);
+                $deleteurl = url_for('@costFormManage_delete?cost_id='.$cfi["id"]);
               ?>
               <a href="<?php echo $editurl; ?>"><i class="icon-pencil"></i></a> 
               <a href="#" onclick="

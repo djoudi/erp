@@ -25,12 +25,12 @@
       <?php foreach ($items as $item): ?>
         <tr>
           <td>
-            <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item->getId())); ?>">
-              <?php echo $item->getName(); ?>
+            <a href="<?php echo url_for('departmentManagement_edit', array('id'=>$item["id"])); ?>">
+              <?php echo $item["name"]; ?>
             </a>
           </td>
           <td>
-            <?php echo $item->getManager(); ?>
+            <?php echo $item["Manager"]["first_name"]." ".$item["Manager"]["last_name"]; ?>
           </td>
         </tr>
       <?php endforeach; ?>
