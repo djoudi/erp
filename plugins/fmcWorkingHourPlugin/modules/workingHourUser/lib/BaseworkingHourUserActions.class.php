@@ -12,6 +12,7 @@ abstract class BaseworkingHourUserActions extends sfActions
         $user = $this->getUser()->getGuardUser();
         
         $checkClass = new FmcWhUser_Check();
+        
         $accessClass = new FmcWhUser_Access();
         
         // @TODO: burada check class da bir metod ile, gunun turu cekilebilir, hem home hem edit action u icin
@@ -23,13 +24,16 @@ abstract class BaseworkingHourUserActions extends sfActions
         } else if ( $this->leaveRequest = $accessClass->getDayLeave($today) ) {
             
             $this->todayType = "leave";
+            
             $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
             
         } else {
             
             $this->todayType = "normal";
+            
             $this->entranceHour = Doctrine::getTable('WorkingHourDay')
                 ->getDayHours($user->getId(), $today, "Enter");
+                
             $this->items = Doctrine::getTable('WorkingHour')
                 ->getByuseranddate($user->getId(), $today);
             
