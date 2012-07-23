@@ -23,6 +23,7 @@
  * @property integer $IllnessWReportLimit
  * @property integer $PaidVacationLimit
  * @property integer $UnpaidVacationLimit
+ * @property integer $Monthly_Working_Hours
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
@@ -55,6 +56,7 @@
  * @method integer               getIllnessWReportLimit()   Returns the current record's "IllnessWReportLimit" value
  * @method integer               getPaidVacationLimit()     Returns the current record's "PaidVacationLimit" value
  * @method integer               getUnpaidVacationLimit()   Returns the current record's "UnpaidVacationLimit" value
+ * @method integer               getMonthlyWorkingHours()   Returns the current record's "Monthly_Working_Hours" value
  * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
  * @method sfGuardUser           getUpdater()               Returns the current record's "Updater" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
@@ -86,6 +88,7 @@
  * @method sfGuardUser           setIllnessWReportLimit()   Sets the current record's "IllnessWReportLimit" value
  * @method sfGuardUser           setPaidVacationLimit()     Sets the current record's "PaidVacationLimit" value
  * @method sfGuardUser           setUnpaidVacationLimit()   Sets the current record's "UnpaidVacationLimit" value
+ * @method sfGuardUser           setMonthlyWorkingHours()   Sets the current record's "Monthly_Working_Hours" value
  * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
  * @method sfGuardUser           setUpdater()               Sets the current record's "Updater" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
@@ -183,6 +186,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'default' => 0,
              ));
         $this->hasColumn('UnpaidVacationLimit', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('Monthly_Working_Hours', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
              ));
