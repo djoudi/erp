@@ -20,11 +20,17 @@ workingHourWorkType_edit:
     url: /wh/worktype/edit/:id
     param: { module: workingHourWorkType, action: edit }
 
-# WHDB - Leave Requests management
 
-workingHourLeave_setall:
-    url: /wh/leave/setall
-    param: { module: workingHourLeave, action: setall }
+# WHDB - Admin
+
+workingHourAdmin_setLeaveForAll:
+    url: /wh/admin/setleaveforall
+    param: { module: workingHourAdmin, action: setleaveforall }
+
+workingHourAdmin_setMonthyHoursForAll:
+    url: /wh/admin/setmonthyhoursforall
+    param: { module: workingHourAdmin, action: setmonthlyhoursforall }
+
 
 
 # WHDB - My Working Hours

@@ -18,12 +18,12 @@
       $mods_administration = array(
         "currencyManagement", 
         "customerManagement", 
-        'departmentManagement', 
-        'employeeManagement', 
+        "departmentManagement", 
+        "employeeManagement", 
         "projectManagement", 
         "vatManagement", 
-        'workingHourWorkType',
-        "workingHourLeave"
+        "workingHourWorkType",
+        "workingHourAdmin"
       );
       $mods_workinghours = array(
         'workingHourUser',

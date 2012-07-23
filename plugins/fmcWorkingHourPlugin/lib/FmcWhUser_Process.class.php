@@ -11,6 +11,38 @@ class FmcWhUser_Process {
     
     /*################################################################################*/
     
+    public function workingHour_MonthyHourSetAll ($request, $redirectUrl) {
+    
+        if ($request->isMethod('post')) {
+            
+            $errorMsg = "";
+            $limit = intval ($request->getParameter("limit"));
+            
+            if ( !is_int($limit))
+                $errorMsg = "Please enter an integer value";
+            
+            elseif ($limit < 0)
+                $errorMsg = "Please enter a positive value";
+            
+            if ($errorMsg) {
+                
+                $this->user->setFlash("error", $errorMsg);
+                
+            } else {
+                
+                $q = Doctrine_Query::create()
+                    ->update('sfGuardUser u')
+                    ->set('u.Monthly_Working_Hours', $limit)
+                    ->execute();
+                $this->user->setFlash('success', 'Monthy working hours has been set successfully.');
+                $this->controller->redirect ($redirectUrl);
+            }
+        }
+    
+    }
+    
+    /*################################################################################*/
+    
     public function workingHour_LeaveSetAll ($request, $redirectUrl) {
         
         if ($request->isMethod('post')) {
@@ -24,6 +56,9 @@ class FmcWhUser_Process {
             
             elseif ( !is_int($limit))
                 $errorMsg = "Please enter an integer value";
+            
+            elseif ($limit < 0)
+                $errorMsg = "Please enter a positive value";
             
             if ($errorMsg) {
                 
