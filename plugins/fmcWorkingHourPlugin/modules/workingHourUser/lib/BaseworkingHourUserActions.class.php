@@ -161,21 +161,23 @@ abstract class BaseworkingHourUserActions extends sfActions
         // Checking day type
         
         if ( $dayType == 'empty' ) {
-        
-        
-            $this->leaveUsageCount = $accessClass->getLeaveUsage();
             
-            $this->setTemplate('newday');
+            // Setting template
+                $this->setTemplate('newday');
             
-            $formitem = new WorkingHourDay();
-            $formitem->setType("Enter");
-            $formitem->setUser($this->user);
-            $formitem->setDate($this->date);
-            $this->form = new WorkingHourForm_enterday($formitem);
+            // Fetching leave usage for leave screen
+                $this->leaveUsageCount = $accessClass->getLeaveUsage();
             
-            $redirectUrl = '@workingHourUser_day?date='.$this->date;
-            $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
+            // Preparing office entrance form
+                $formitem = new WorkingHourDay();
+                $formitem->setType("Enter");
+                $formitem->setUser($this->user);
+                $formitem->setDate($this->date);
+                $this->form = new WorkingHourForm_enterday($formitem);
             
+            // Processing form
+                $redirectUrl = '@workingHourUser_day?date='.$this->date;
+                $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
             
         } else {
             
@@ -187,40 +189,31 @@ abstract class BaseworkingHourUserActions extends sfActions
             if ($dayType == 'leave') {
              
                 // Fetching leave info
-             
                     $this->leaveRequest = $accessClass->getDayLeave($this->date);
                 
                 // Setting leave info template
-                
                     $this->setTemplate('leaveinfo');
                 
             } else {
                 
                 // Setting normal day template
-                
                     $this->setTemplate('editday');
                 
                 // Fetching day entrance hourgetDayHours
-                
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')
                         ->getDayHours($user_id, $this->date, "Enter");
                     
                 // Fetching current items
-                
                     $this->items = Doctrine::getTable('WorkingHour')
                         ->getByuseranddate($user_id, $this->date);
                 
                 // Preparing new item form
-                
                     $this->item = new WorkingHour();
-                    
                     $this->item->setDate($this->date);
                     $this->item->setUser($this->user);
-                    
                     $lastTime = strtotime ($this->item->getNextHour($this->date, $user_id));
                     $this->item->setStart(date('H:i',$lastTime));
                     $this->item->setEnd(date('H:i',$lastTime + 1800));
-                    
                     $this->form = new WorkingHourForm_dayitemnew ($this->item);
                     
                 // Processing form
