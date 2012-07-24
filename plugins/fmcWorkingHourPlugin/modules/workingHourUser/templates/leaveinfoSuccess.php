@@ -1,19 +1,16 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>'Showing leave request')); ?>
 
 
-<div class="well">
-    You have an existing leave request. The details could be found below.
-</div>
-
-
 <div class="pull-right">
     <?php include_partial ('dateselector'); ?>
 </div>
+
 
 <?php include_partial ('leaveinfo', array('leaveRequest'=>$leaveRequest, 'leaveStatus'=>$leaveStatus)); ?>
 
 
 <div class="clear"></div>
+
 
 <div class="form-actions">
     

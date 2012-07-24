@@ -148,8 +148,21 @@ abstract class BaseworkingHourUserActions extends sfActions
         $accessClass = new FmcWhUser_Access();
         $processClass = new FmcWhUser_Process();
         
-        if  ($checkClass->isDayEmpty($this->date)) {
-            
+        
+        
+        
+        // will be merged
+        $user_id = $this->user->getId();
+        
+        // Fetching day type
+        
+            $dayType = $checkClass->getDayType ($user_id, $this->date);
+        
+        // Checking day type
+        
+        if ( $dayType == 'empty' ) {
+        
+        
             $this->leaveUsageCount = $accessClass->getLeaveUsage();
             
             $this->setTemplate('newday');
@@ -163,35 +176,48 @@ abstract class BaseworkingHourUserActions extends sfActions
             $redirectUrl = '@workingHourUser_day?date='.$this->date;
             $processClass->workingHour_DayEntrance($this->form, $request, $redirectUrl);
             
+            
         } else {
             
-            $this->setTemplate('editday');
+            // Preparing day cancel url
             
-            $this->cancelUrl = $this->getController()->genUrl('@workingHourUser_deleteday?date='.$this->date);
+                $this->cancelUrl = $this->getController()
+                    ->genUrl('@workingHourUser_deleteday?date='.$this->date);
             
-            $this->leaveRequest = $accessClass->getDayLeave($this->date);
-            
-            if ($this->leaveRequest) {
+            if ($dayType == 'leave') {
+             
+                // Fetching leave info
+             
+                    $this->leaveRequest = $accessClass->getDayLeave($this->date);
                 
-                $this->setTemplate('leaveinfo');
+                // Setting leave info template
+                
+                    $this->setTemplate('leaveinfo');
                 
             } else {
                 
+                // Setting normal day template
+                
+                    $this->setTemplate('editday');
+                
                 // Fetching day entrance hourgetDayHours
+                
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')
-                        ->getDayHours($this->user->getId(), $this->date, "Enter");
+                        ->getDayHours($user_id, $this->date, "Enter");
                     
                 // Fetching current items
+                
                     $this->items = Doctrine::getTable('WorkingHour')
-                        ->getByuseranddate($this->user->getId(), $this->date);
+                        ->getByuseranddate($user_id, $this->date);
                 
                 // Preparing new item form
+                
                     $this->item = new WorkingHour();
                     
                     $this->item->setDate($this->date);
                     $this->item->setUser($this->user);
                     
-                    $lastTime = strtotime ($this->item->getNextHour($this->date, $this->user->getId()));
+                    $lastTime = strtotime ($this->item->getNextHour($this->date, $user_id));
                     $this->item->setStart(date('H:i',$lastTime));
                     $this->item->setEnd(date('H:i',$lastTime + 1800));
                     
@@ -200,7 +226,8 @@ abstract class BaseworkingHourUserActions extends sfActions
                 // Processing form
                     
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;
-                    $processClass->workingHour_DayItems($this->form, $request, $redirectUrl, $this->items);
+                    $processClass->workingHour_DayItems
+                        ($this->form, $request, $redirectUrl, $this->items);
             }
             
         }
