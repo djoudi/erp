@@ -24,6 +24,6 @@
         ">Cancel Request</a>
     <?php endif; ?>
   
-  <a class="btn btn-primary" href="">Print</a>
+    <div class="clear"></div>
   
 </div>
