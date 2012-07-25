@@ -2,12 +2,14 @@
 
 class PluginWorkTypeTable extends Doctrine_Table {
     
+    
     public static function getInstance() {
         
         return Doctrine_Core::getTable('PluginWorkType');
         
     }
-  
+    
+    
     public function __construct($name, Doctrine_Connection $conn, $initDefinition = false) {
         
         parent::__construct($name, $conn, $initDefinition);
@@ -15,6 +17,8 @@ class PluginWorkTypeTable extends Doctrine_Table {
         
     }
     
+    
+    //for current user
     public function getOrderedUserRights() {
         
         $group_id = sfContext::getInstance()->getUser()->getGuardUser()->getGroupId();
@@ -28,5 +32,6 @@ class PluginWorkTypeTable extends Doctrine_Table {
         return $query;
         
     }
+    
     
 }
