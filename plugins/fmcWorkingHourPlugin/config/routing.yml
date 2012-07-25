@@ -6,22 +6,22 @@ workinghours:
     param: { module: homepage, action: workinghours }
 
 
-# WHDB Type Management
+# WHDB Admin - Type Management
 
 workingHourWorkType_list:
-    url: /wh/worktype/list
-    param: { module: workingHourWorkType, action: list }
+    url: /wh/admin/worktype/list
+    param: { module: workingHourAdmin, action: WorkTypeList }
 
 workingHourWorkType_new:
-    url: /wh/worktype/new
-    param: { module: workingHourWorkType, action: new }
+    url: /wh/admin/worktype/new
+    param: { module: workingHourAdmin, action: WorkTypeNew }
 
 workingHourWorkType_edit:
-    url: /wh/worktype/edit/:id
-    param: { module: workingHourWorkType, action: edit }
+    url: /wh/admin/worktype/edit/:id
+    param: { module: workingHourAdmin, action: WorkTypeEdit }
 
 
-# WHDB - Admin
+# WHDB Admin - General
 
 workingHourAdmin_setLeaveForAll:
     url: /wh/admin/setleaveforall

@@ -47,7 +47,6 @@ all:
       
       - workingHourAdmin
       - workingHourUser
-      - workingHourWorkType
       
       - currencyManagement
       - customerManagement

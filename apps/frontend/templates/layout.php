@@ -11,23 +11,28 @@
   <body>
     
     <?php 
-      //active mod detection
-      $moduleName = $sf_context->getModuleName();
-      $actionName = $sf_context->getActionName();
-      $mods_costform = array("costFormProcess", "costFormUser", "costFormReport", "costFormManage");
-      $mods_administration = array(
-        "currencyManagement", 
-        "customerManagement", 
-        "departmentManagement", 
-        "employeeManagement", 
-        "projectManagement", 
-        "vatManagement", 
-        "workingHourWorkType",
-        "workingHourAdmin"
-      );
-      $mods_workinghours = array(
-        'workingHourUser',
-      );
+        //active mod detection
+        $moduleName = $sf_context->getModuleName();
+        $actionName = $sf_context->getActionName();
+        
+        $mods_costform = array(
+            'costFormProcess', 
+            'costFormUser', 
+            'costFormReport', 
+            'costFormManage'
+        );
+        $mods_administration = array(
+            'currencyManagement', 
+            'customerManagement', 
+            'departmentManagement', 
+            'employeeManagement', 
+            'projectManagement', 
+            'vatManagement', 
+            'workingHourAdmin'
+        );
+        $mods_workinghours = array(
+            'workingHourUser',
+        );
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
       elseif (in_array($moduleName, $mods_administration) or $actionName=="administration") $mod = "administration";
