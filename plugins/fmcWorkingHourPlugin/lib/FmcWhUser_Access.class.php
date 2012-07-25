@@ -34,39 +34,6 @@ class FmcWhUser_Access {
     /* ###################################################################### */
     
     
-    /* @TODO: to be deleted and replaced with table class method */
-    public function getDayEntrance ($date) {
-        
-        $result = Doctrine::getTable ('WorkingHourDay')
-            ->createQuery ('whd')
-            ->addWhere ('whd.user_id = ?', $this->user_id)
-            ->addWhere ('whd.date = ?', $date)
-            ->addWhere ('whd.type = ?', 'Enter')
-            ->fetchOne();
-        return $result->toArray();
-        
-    }
-    
-    
-    /* ###################################################################### */
-    
-    
-    public function getMyLeaveRequestsFilterQuery ($limit=100) {
-        
-        $query = Doctrine_Query::create()
-            ->from ('WorkingHourLeave whl')
-            ->leftJoin ('whl.StatusUser u')
-            ->addWhere ('whl.user_id = ?', $this->user_id)
-            ->limit ($limit)
-            ->orderBy ('whl.date DESC')
-        ;
-        return $query;
-    }
-    
-    
-    /* ###################################################################### */
-    
-    
     public function deleteDay ($date) {
         
         $leave = Doctrine::getTable ('WorkingHourLeave')

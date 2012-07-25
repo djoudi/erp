@@ -47,12 +47,19 @@ abstract class BaseworkingHourUserActions extends sfActions {
     
     public function executeMyleaverequests (sfWebRequest $request) {
         
-        $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        // Fetching config
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+            $user = $this->getUser()->getGuardUser();
         
-        $this->resultlimit = 100;
+        // Setting variables
+            $this->resultlimit = 100;
         
-        $accessClass = new FmcWhUser_Access();
-        $query = $accessClass->getMyLeaveRequestsFilterQuery($this->resultlimit);
+        // Preparing query
+            $query = Doctrine::getTable ('WorkingHourLeave')
+                ->PrepareFilterMyRequests ($user->getId(), $this->resultlimit);
+        
+        
+        // @TODO: refactor below:
         
         $filterClass = new FmcFilter('WorkingHourFilter_myleave');
         $this->myLeaveRequests = $filterClass->initFilterForm ($request, $query)->execute()->toArray();
