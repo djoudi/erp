@@ -14,11 +14,10 @@ abstract class BaseworkingHourUserActions extends sfActions {
             $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
             
         // Loading custom classes
-            $checkClass = new FmcWhUser_Check();
             $accessClass = new FmcWhUser_Access();
         
         // Getting day type
-            $dayType = $checkClass->getDayType ($user_id, $today);
+            $dayType = $accessClass->getDayType ($user_id, $today);
         
         // Checking day type
         
@@ -105,11 +104,11 @@ abstract class BaseworkingHourUserActions extends sfActions {
         
         // Loading check class
         
-            $checkClass = new FmcWhUser_Check();
+            $accessClass = new FmcWhUser_Access();
             
         // Checking if day is empty and available
             
-            $dayType = $checkClass->getDayType ($user_id, $this->date);
+            $dayType = $accessClass->getDayType ($user_id, $this->date);
             
             if ( ! $dayType == "empty" ) {
         
@@ -161,13 +160,12 @@ abstract class BaseworkingHourUserActions extends sfActions {
             $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
         
         // Loading required classes
-            $checkClass = new FmcWhUser_Check();
             $accessClass = new FmcWhUser_Access();
             $processClass = new FmcWhUser_Process();
         
         // Fetching day type
         
-            $dayType = $checkClass->getDayType ($user_id, $this->date);
+            $dayType = $accessClass->getDayType ($user_id, $this->date);
         
         // Checking day type
         
