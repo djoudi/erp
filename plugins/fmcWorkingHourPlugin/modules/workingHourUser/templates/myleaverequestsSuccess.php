@@ -13,7 +13,8 @@
 <?php if ($resultslimited): ?>
   <div class="alert">
     <a class="close" data-dismiss="alert" href="#">×</a>
-    More than <strong><?php echo $resultlimit; ?></strong> results found, showing first <strong><?php echo $resultlimit; ?></strong> results. Please filter your result.
+    More than <strong><?php echo count($myLeaveRequests); ?></strong> results found, 
+    showing first <strong><?php echo count($myLeaveRequests); ?></strong> results. Please filter your result.
   </div>
 <?php endif; ?>
 

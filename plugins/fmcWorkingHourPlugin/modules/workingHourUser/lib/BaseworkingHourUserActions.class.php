@@ -2,6 +2,10 @@
 
 abstract class BaseworkingHourUserActions extends sfActions {
     
+    
+    /* #################################################################################### */
+    
+    
     public function executeMyhome (sfWebRequest $request) {
         
         // Preparing variables
@@ -44,6 +48,9 @@ abstract class BaseworkingHourUserActions extends sfActions {
         
     }
     
+    /* #################################################################################### */
+    
+    
     public function executeMyleaverequests (sfWebRequest $request) {
         
         // Fetching config
@@ -51,32 +58,32 @@ abstract class BaseworkingHourUserActions extends sfActions {
             $user = $this->getUser()->getGuardUser();
         
         // Setting variables
-            $this->resultlimit = 100;
+            $resultlimit = 4;
         
-        // Preparing query
+        // Preparing filter query
             $query = Doctrine::getTable ('WorkingHourLeave')
-                ->PrepareFilterMyRequests ($user->getId(), $this->resultlimit);
+                ->PrepareFilterMyRequests ($user->getId(), $resultlimit);
         
+        // Preparing filter
+            $filterClass = new FmcFilter('WorkingHourFilter_myleave');
+            $this->myLeaveRequests = $filterClass
+                ->initFilterForm ($request, $query)
+                ->execute()
+                ->toArray();
         
-        // @TODO: refactor below:
+        // Filtering variables
+            if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+            $this->filter = $filterClass->getFilter();
+            $this->filtered = $filterClass->getFiltered();
         
-        $filterClass = new FmcFilter('WorkingHourFilter_myleave');
-        $this->myLeaveRequests = $filterClass->initFilterForm ($request, $query)->execute()->toArray();
-        
-        // Filtering inherits
-        
-        $this->filter = $filterClass->getFilter();
-        $this->filtered = $filterClass->getFiltered();
-        
-        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-        $this->filter = $filterClass->getFilter();
-        $this->filtered = $filterClass->getFiltered();
-        
-        $this->resultslimited = false;
-        if (count($this->myLeaveRequests) == $this->resultlimit)
-        $this->resultslimited = true;
-        
+        // Checking result overload
+            $this->resultslimited = count($this->myLeaveRequests) == $resultlimit ? true : false;
+            
     }
+    
+    
+    /* #################################################################################### */
+    
     
     public function executeDeleteday (sfWebRequest $request) {
         
