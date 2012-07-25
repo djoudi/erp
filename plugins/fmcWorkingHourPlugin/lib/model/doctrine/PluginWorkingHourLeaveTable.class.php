@@ -73,11 +73,20 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
         return $query;
         
     }
+    
+    
+    public function getAllLeaveUsageForUser ($user_id) {
         
+        $leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        
+        $leaveUsageCount = array();
+        
+        foreach ($leaveStatus as $key=>$label) {
+            $leaveUsageCount[$key] = $this->getUsedLeaveCount ($user_id, $key);
+        }
+        
+        return $leaveUsageCount;
+    }
+    
+    
 }
-
-
-
-
-
-

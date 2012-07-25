@@ -5,11 +5,11 @@
 
     <h4>Today</h4>
     
-    <?php if ($todayType == "empty"): ?>
+    <?php if ($dayType == "empty"): ?>
         
         <p>You haven't entered today yet.</p>
     
-    <?php elseif ($todayType == "leave"): ?>
+    <?php elseif ($dayType == "leave"): ?>
     
         <p>You have a leave request for today.</p>
         
