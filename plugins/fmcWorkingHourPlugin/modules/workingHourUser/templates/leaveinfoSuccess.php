@@ -14,7 +14,7 @@
 
 <div class="form-actions">
     
-    <?php if ($leaveRequest->getStatus()=='Pending'): ?>
+    <?php if ($leaveRequest ['status'] =='Pending'): ?>
         <a class="btn btn-danger pull-right" onclick="
           if (confirm('Are you sure you want to cancel this leave request?'))
             parent.location='<?php echo $cancelUrl; ?>'

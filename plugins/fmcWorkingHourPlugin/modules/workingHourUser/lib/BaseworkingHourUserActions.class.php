@@ -29,7 +29,9 @@ abstract class BaseworkingHourUserActions extends sfActions {
             } else if ($dayType == "leave") {
                 
                 $this->todayType = "leave";
-                $this->leaveRequest = $accessClass->getDayLeave($today);
+                
+                $this->leaveRequest = Doctrine::getTable ('WorkingHourLeave')
+                    ->getActiveByUserAndDate ($user_id, $today);
                 
             } else if ($dayType == "work") {
                 
@@ -113,8 +115,11 @@ abstract class BaseworkingHourUserActions extends sfActions {
             }
         
         // Checking if user has enough limits
-        
-            if ( ! ($checkClass->hasLeaveLimit ($this->type)) ) {
+            
+            $hasLimit =  Doctrine::getTable ('WorkingHourLeave')
+                ->hasLimit ($user, $this->type);
+            
+            if ( ! $hasLimit ) {
                 
                 $this->getUser()->setFlash("error", "You don't have available limits.");
                 
@@ -188,8 +193,9 @@ abstract class BaseworkingHourUserActions extends sfActions {
             if ($dayType == 'leave') {
              
                 // Fetching leave info
-                    $this->leaveRequest = $accessClass->getDayLeave($this->date);
-                
+                    $this->leaveRequest = Doctrine::getTable ('WorkingHourLeave')
+                        ->getActiveByUserAndDate ($user_id, $this->date);
+                    
                 // Setting leave info template
                     $this->setTemplate('leaveinfo');
                 

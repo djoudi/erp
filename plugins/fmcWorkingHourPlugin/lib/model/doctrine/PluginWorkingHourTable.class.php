@@ -38,4 +38,19 @@ class PluginWorkingHourTable extends Doctrine_Table {
         return $result;
     }
     
+    
+    
+    public function cancelItems ($user_id, $date) {
+        
+        $items = $this->CreateQuery ('wh')
+            ->addWhere ('wh.user_id = ?', $user_id)
+            ->addWhere ('wh.date = ?', $date)
+            ->execute();
+        if (count($items)) {
+            $items->delete();
+        }
+        
+    }
+    
+    
 }

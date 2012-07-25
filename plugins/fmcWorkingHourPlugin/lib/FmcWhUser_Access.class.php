@@ -10,18 +10,8 @@ class FmcWhUser_Access {
         
     }
     
-    public function getLeaveUsageForType ($type) {
-        
-        $result = Doctrine::getTable ('WorkingHourLeave')
-            ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user->getId())
-            ->addWhere ('type = ?', $type)
-            ->addWhere ('status = ?', "Approved")
-            ->count();
-        
-        return $result;
-        
-    }
+    
+    /* ###################################################################### */
     
     
     public function getLeaveUsage () {
@@ -32,12 +22,16 @@ class FmcWhUser_Access {
         
         foreach ($leaveStatus as $key=>$label) {
             
-            $LeaveUsageCount[$key] = $this->getLeaveUsageForType ($key);
+            $LeaveUsageCount[$key] = Doctrine::getTable ('WorkingHourLeave')
+                ->getUsedLeaveCount ($this->user_id, $key);
         }
         
         return $LeaveUsageCount;
         
     }
+    
+    
+    /* ###################################################################### */
     
     
     /* @TODO: to be deleted and replaced with table class method */
@@ -53,6 +47,10 @@ class FmcWhUser_Access {
         
     }
     
+    
+    /* ###################################################################### */
+    
+    
     public function getMyLeaveRequestsFilterQuery ($limit=100) {
         
         $query = Doctrine_Query::create()
@@ -65,53 +63,24 @@ class FmcWhUser_Access {
         return $query;
     }
     
+    
+    /* ###################################################################### */
+    
+    
     public function deleteDay ($date) {
         
-        $this->cancelDayLeave ($date);
+        $leave = Doctrine::getTable ('WorkingHourLeave')
+            ->cancelRequest ($this->user_id, $date);
         
         $items = Doctrine::getTable ('WorkingHour')
-            ->createQuery ('wh')
-            ->addWhere ('wh.user_id = ?', $this->user_id)
-            ->addWhere ('wh.date = ?', $date)
-            ->execute();
-        $items->delete();
+            ->cancelItems ($this->user_id, $date);
         
-        $entranceExit = Doctrine::getTable ('WorkingHourDay')
-            ->createQuery ('whd')
-            ->addWhere ('whd.user_id = ?', $this->user_id)
-            ->addWhere ('whd.date = ?', $date)
-            ->execute();
-        $entranceExit->delete();
+        $officeIo = Doctrine::getTable ('WorkingHourDay')
+            ->deleteIo ($this->user_id, $date);
         
     }
+        
     
-    public function cancelDayLeave ($date) {
-        
-        $object = Doctrine::getTable ('WorkingHourLeave')
-            ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user_id)
-            ->addWhere ('whl.date = ?', $date)
-            ->addWhere ('whl.status = ?', 'Pending')
-            ->fetchOne();
-        
-        if ($object) {
-            $object->setStatus ('Cancelled');
-            $object->setStatusUser ($this->user);
-            $object->save();
-        }
-        
-    }
-    
-    public function getDayLeave ($date) {
-        
-        $query = Doctrine::getTable('WorkingHourLeave')
-            ->createQuery ('whl')
-            ->addWhere ('whl.user_id = ?', $this->user_id)
-            ->addWhere ('whl.date = ?', $date)
-            ->addWhere ('whl.status <> ?', 'Denied')
-            ->addWhere ('whl.status <> ?', 'Cancelled')
-            ->limit (1);
-        return $query->fetchOne();
-    }
+    /* ###################################################################### */
     
 }

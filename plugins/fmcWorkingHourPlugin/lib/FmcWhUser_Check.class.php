@@ -13,23 +13,6 @@ class FmcWhUser_Check {
     /* ###################################################################### */
     
     
-    public function hasLeaveLimit ($type) {
-        
-        $accessClass = new FmcWhUser_Access();
-        
-        $usage = $accessClass->getLeaveUsageForType($type);
-        
-        $limitTemp = "get".$type."Limit";
-        $userLimit = $this->user->getGuardUser()->$limitTemp();
-        
-        return $userLimit > $usage;
-        
-    }
-    
-    
-    /* ###################################################################### */
-    
-    
     public function getDayType ($user_id, $date) {
         
         $entranceRecords = Doctrine::getTable('WorkingHourDay')
@@ -42,7 +25,7 @@ class FmcWhUser_Check {
             $leaveRecords = Doctrine::getTable('WorkingHourLeave')
                 ->getActiveByUserAndDate ($user_id, $date);
             
-            if (count($leaveRecords)) $type = 'leave';
+            if ($leaveRecords) $type = 'leave';
         
             else $type = 'empty';
         
