@@ -1,43 +1,45 @@
 <?php
 
-abstract class BaseworkingHourUserActions extends sfActions
-{
-  
+abstract class BaseworkingHourUserActions extends sfActions {
+    
     public function executeMyhome (sfWebRequest $request) {
         
-        $today = date ( "Y-m-d", mktime(0,0,0,date("m"),date("d"),date("Y")) );
+        // Preparing variables
+            $today = date ( "Y-m-d", mktime(0,0,0,date("m"),date("d"),date("Y")) );
+            $this->todayUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$today);
         
-        $this->todayUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$today);
-        
-        $user = $this->getUser()->getGuardUser();
-        
-        $checkClass = new FmcWhUser_Check();
-        
-        $accessClass = new FmcWhUser_Access();
-        
-        // @TODO: burada check class da bir metod ile, gunun turu cekilebilir, hem home hem edit action u icin
-        
-        if ($checkClass->isDayEmpty($today)) {
-            
-            $this->todayType = "empty";
-            
-        } else if ( $this->leaveRequest = $accessClass->getDayLeave($today) ) {
-            
-            $this->todayType = "leave";
-            
+        // Loading configuration
+            $user = $this->getUser()->getGuardUser();
+            $user_id = $user->getId();
             $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
             
-        } else {
-            
-            $this->todayType = "normal";
-            
-            $this->entranceHour = Doctrine::getTable('WorkingHourDay')
-                ->getDayHours($user->getId(), $today, "Enter");
+        // Loading custom classes
+            $checkClass = new FmcWhUser_Check();
+            $accessClass = new FmcWhUser_Access();
+        
+        // Getting day type
+            $dayType = $checkClass->getDayType ($user_id, $today);
+        
+        // Checking day type
+        
+            if ($dayType == "empty") {
                 
-            $this->items = Doctrine::getTable('WorkingHour')
-                ->getByuseranddate($user->getId(), $today);
+                $this->todayType = "empty";
             
-        }
+            } else if ($dayType == "leave") {
+                
+                $this->todayType = "leave";
+                $this->leaveRequest = $accessClass->getDayLeave($today);
+                
+            } else if ($dayType == "work") {
+                
+                $this->todayType = "normal";
+                $this->entranceHour = Doctrine::getTable('WorkingHourDay')
+                    ->getDayHours($user_id, $today, "Enter");
+                $this->items = Doctrine::getTable('WorkingHour')
+                    ->getByuseranddate($user_id, $today);
+                
+            }
         
     }
     
@@ -82,27 +84,33 @@ abstract class BaseworkingHourUserActions extends sfActions
     
     public function executeLeaverequest (sfWebRequest $request) {
         
+        // Fetching parameters
+        
+            $this->date = $request->getParameter('date');
+            $this->type = $request->getParameter('type');
+        
+        // Loading configuration
+            $user = $this->getUser()->getGuardUser();
+            $user_id = $user->getId();
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        
         // Loading check class
         
             $checkClass = new FmcWhUser_Check();
-        
-        // Fetching date
-        
-            $this->date = $request->getParameter('date');
-        
+            
         // Checking if day is empty and available
+            
+            $dayType = $checkClass->getDayType ($user_id, $this->date);
+            
+            if ( ! $dayType == "empty" ) {
         
-            if ( ! ($checkClass->isDayEmpty($this->date) ) ) {
+            //if ( ! ($checkClass->isDayEmpty($this->date) ) ) {
                 
                 $this->getUser()->setFlash("error", "Day is not empty.");
                 
                 $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
                 $this->redirect ($redirectUrl);
             }
-        
-        // Fetching leave type
-        
-            $this->type = $request->getParameter('type');
         
         // Checking if user has enough limits
         
@@ -114,45 +122,36 @@ abstract class BaseworkingHourUserActions extends sfActions
                 $this->redirect ($redirectUrl);
             }
         
-        // refactor below
+        // Preparing leave request form        
+            $formitem = new WorkingHourLeave();
+            $formitem->setDate($this->date);
+            $formitem->setUser($user);
+            $formitem->setType($this->type);
+            $formitem->setStatus('Pending');
+            $formitem->setStatusUser($user);
+            $this->form = new WorkingHourForm_leaverequest($formitem);
         
-        
-        $user = $this->getUser()->getGuardUser();
-        
-        $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
-        
-        $formitem = new WorkingHourLeave();
-        $formitem->setDate($this->date);
-        $formitem->setUser($user);
-        $formitem->setType($this->type);
-        $formitem->setStatus('Pending');
-        $formitem->setStatusUser($user);
-        
-        $this->form = new WorkingHourForm_leaverequest($formitem);
-        
-        $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
-        $processClass = new FmcWhUser_Process();
-        $processClass->workingHour_DayLeaveRequest($this->form, $request, $redirectUrl);
+        // Processing leave request form
+            $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
+            $processClass = new FmcWhUser_Process();
+            $processClass->workingHour_DayLeaveRequest($this->form, $request, $redirectUrl);
         
     }
     
     public function executeDay (sfWebRequest $request) {
         
-        $this->user = $this->getUser()->getGuardUser();
+        // Loading parameters
+            $this->date = $request->getParameter('date');
         
-        $this->date = $request->getParameter('date');
+        // Loading configuration
+            $this->user = $this->getUser()->getGuardUser();
+            $user_id = $this->user->getId();
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
         
-        $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
-        
-        $checkClass = new FmcWhUser_Check();
-        $accessClass = new FmcWhUser_Access();
-        $processClass = new FmcWhUser_Process();
-        
-        
-        
-        
-        // will be merged
-        $user_id = $this->user->getId();
+        // Loading required classes
+            $checkClass = new FmcWhUser_Check();
+            $accessClass = new FmcWhUser_Access();
+            $processClass = new FmcWhUser_Process();
         
         // Fetching day type
         
