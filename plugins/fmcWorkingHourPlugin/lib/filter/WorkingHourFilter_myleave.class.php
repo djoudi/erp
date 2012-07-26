@@ -3,11 +3,7 @@
 class WorkingHourFilter_myleave extends PluginWorkingHourLeaveFormFilter {
     
     public function configure() {
-        
-        unset ($this['user_id']);
-        unset ($this['status_user']);
-        unset ($this['date']);
-        
+                
         /*
          * @TODO: TODO: These values should be fetched from app.yml automatically
          */
@@ -23,5 +19,11 @@ class WorkingHourFilter_myleave extends PluginWorkingHourLeaveFormFilter {
             )
         ));
         
-  }
+        $this->useFields(array(
+            'type', 
+            'description', 
+            'status', 
+        ));
+                
+    }
 }
