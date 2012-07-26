@@ -47,6 +47,7 @@ all:
       
       - workingHourAdmin
       - workingHourUser
+      - wh_Process
       
       - currencyManagement
       - customerManagement

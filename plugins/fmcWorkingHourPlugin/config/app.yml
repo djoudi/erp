@@ -38,6 +38,16 @@ all:
                     route: @workingHourUser_myleaverequests
                     requires_auth: true
                     credentials: ['Working Hours']
+                10:
+                    label: User requests
+                    attributes: { class: "nav-header" }
+                    requires_auth: true
+                    credentials: ['Working Hours Management']
+                11:
+                    label: Leave requests
+                    route: @wh_process_leaverequests
+                    reuqires_auth: true
+                    credentials: ['Working Hours Management']
                     
         leftmenu_administration:
             children:

@@ -63,6 +63,17 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
     }
     
     
+    public function prepareFilterAllRequests ($limit = 100) {
+        
+        $query = $this->CreateQuery ('whl')
+            ->leftJoin ('whl.StatusUser u')
+            ->leftJoin ('whl.User user')
+            ->limit ($limit)
+            ->orderBy ('whl.date DESC');
+        return $query;
+    }
+    
+    
     public function prepareFilterMyRequests ($user_id, $limit = 100) {
         
         $query = $this->CreateQuery ('whl')
@@ -71,7 +82,6 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
             ->limit ($limit)
             ->orderBy ('whl.date DESC');
         return $query;
-        
     }
     
     
