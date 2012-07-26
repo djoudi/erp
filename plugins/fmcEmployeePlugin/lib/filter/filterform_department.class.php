@@ -1,15 +1,14 @@
 <?php
 
-class filterform_department extends sfGuardGroupFormFilter
-{
-  public function configure()
-  {
-    unset(
-      $this['description'],
-      $this['salt'],
-      $this['permissions_list'],
-      $this['worktypes_list'],
-      $this['users_list']
-    );
-  }
+class filterform_department extends sfGuardGroupFormFilter {
+    
+    public function configure() {
+        
+        $this->useFields(array(
+            'name', 
+            'manager_id', 
+        ));
+        
+    }
+    
 }
