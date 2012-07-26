@@ -19,11 +19,14 @@ class WorkingHourFilter_myleave extends PluginWorkingHourLeaveFormFilter {
             )
         ));
         
+        $this->setWidget('description', new sfWidgetFormFilterInput(array('with_empty' => false)));
+        $this->setValidator('description', new sfValidatorPass(array('required' => false)));
+        
         $this->useFields(array(
             'type', 
             'description', 
             'status', 
         ));
-                
+        
     }
 }

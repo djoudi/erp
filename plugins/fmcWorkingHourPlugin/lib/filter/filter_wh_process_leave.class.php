@@ -19,6 +19,9 @@ class filter_wh_process_leave extends PluginWorkingHourLeaveFormFilter {
             )
         ));
         
+        $this->setWidget('description', new sfWidgetFormFilterInput(array('with_empty' => false)));
+        $this->setValidator('description', new sfValidatorPass(array('required' => false)));
+        
         $this->useFields(array(
             'user_id', 
             'type', 
