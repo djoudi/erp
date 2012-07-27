@@ -48,6 +48,7 @@ all:
       - workingHourAdmin
       - workingHourUser
       - wh_Process
+      - wh_Reports
       
       - currencyManagement
       - customerManagement

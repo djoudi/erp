@@ -74,3 +74,10 @@ wh_process_leaverequests_approve:
 wh_process_leaverequests_deny:
     url: /wh/process/leave/:id/deny
     param: { module: wh_Process, action: deny }
+
+
+# WHDB Reports
+
+wh_reports_officeentrance:
+    url: /wh/reports/officeentrance
+    param: { module: wh_Reports, action: officeentrance }

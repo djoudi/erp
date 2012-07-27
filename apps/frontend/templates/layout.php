@@ -33,6 +33,7 @@
         $mods_workinghours = array(
             'workingHourUser',
             'wh_Process', 
+            'wh_Reports', 
         );
       
       if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
