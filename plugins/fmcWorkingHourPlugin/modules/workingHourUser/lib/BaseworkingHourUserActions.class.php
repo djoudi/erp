@@ -127,7 +127,7 @@ abstract class BaseworkingHourUserActions extends sfActions {
             
             $dayType = $accessClass->getDayType ($user_id, $this->date);
             
-            if ( ! $dayType == "empty" ) {
+            if ( $dayType != "empty" ) {
         
                 $this->getUser()->setFlash("error", "Day is not empty.");
                 

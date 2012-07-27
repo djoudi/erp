@@ -55,7 +55,22 @@ workingHourUser_myleaverequests:
     url: /wh/user/myleaverequests
     param: { module: workingHourUser, action: myleaverequests }
 
+
+
 # WHDB Admin - ProcessLeave
+
 wh_process_leaverequests:
     url: /wh/process/leave
     param: { module: wh_Process, action: leaverequests }
+    
+wh_process_leaverequests_process:
+    url: /wh/process/leave/:id
+    param: { module: wh_Process, action: process }
+    
+wh_process_leaverequests_approve:
+    url: /wh/process/leave/:id/approve
+    param: { module: wh_Process, action: approve }
+    
+wh_process_leaverequests_deny:
+    url: /wh/process/leave/:id/deny
+    param: { module: wh_Process, action: deny }

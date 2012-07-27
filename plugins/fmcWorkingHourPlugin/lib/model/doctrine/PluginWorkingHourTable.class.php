@@ -15,6 +15,22 @@ class PluginWorkingHourTable extends Doctrine_Table {
         
     }
     
+    public function createLeave ($user_id, $date) {
+        
+        $object = new WorkingHour();
+        $object->set('user_id', $user_id);
+        $object->set('date', $date);
+        $object->set('project_id', 38); //Fmconsulting Admin
+        $object->set('worktype_id', 1); //A0 general admin works
+        $object->set('start', '09:00');
+        $object->set('end', '18:00');
+        $object->set('created_by', $user_id);
+        $object->save();
+        
+    }
+    
+    
+    
     public function getByuseranddate ($user_id, $date) {
         
         $result = $this->CreateQuery ('wh')

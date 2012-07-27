@@ -2,6 +2,69 @@
 
 abstract class Basewh_ProcessActions extends sfActions {
     
+    
+    public function executeApprove (sfWebRequest $request) {
+        
+        // Getting object
+        
+            $id = $request->getParameter('id');
+            $object = Doctrine::getTable('WorkingHourLeave')->findOneById ($id);
+            $this->forward404Unless ($object);
+        
+        // Approving request
+            $user = $this->getUser()->getGuardUser();
+            $object->setStatus ("Approved");
+            $object->setStatusUser ($user);
+            $object->save();
+        
+        // Creating working Hours
+            Doctrine::getTable('WorkingHour')->createLeave ($object["user_id"], $object["date"]);
+        
+        // Redirecting
+        
+            $redirectUrl = $this->getController()->genUrl('@wh_process_leaverequests_process?id='.$id);
+            $this->redirect($redirectUrl);
+    }
+    
+    
+    public function executeDeny (sfWebRequest $request) {
+        
+        // Getting object
+        
+            $id = $request->getParameter('id');
+            $object = Doctrine::getTable('WorkingHourLeave')->findOneById ($id);
+            $this->forward404Unless ($object);
+        
+        // Denying request
+            $user = $this->getUser()->getGuardUser();
+            $object->setStatus ("Denied");
+            $object->setStatusUser ($user);
+            $object->save();
+        
+        // Redirecting
+        
+            $redirectUrl = $this->getController()->genUrl('@wh_process_leaverequests_process?id='.$id);
+            $this->redirect($redirectUrl);
+    }
+    
+    
+    public function executeProcess (sfWebRequest $request) {
+        
+        // Getting object
+        
+            $id = $request->getParameter('id');
+            $this->leave = Doctrine::getTable('WorkingHourLeave')->findOneById ($id);
+            $this->forward404Unless ($this->leave);
+            
+        // Fetching variables
+        
+            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+            $this->approveUrl = $this->getController()->genUrl('@wh_process_leaverequests_approve?id='.$id);
+            $this->denyUrl = $this->getController()->genUrl('@wh_process_leaverequests_deny?id='.$id);
+            
+    }
+    
+    
     public function executeLeaverequests (sfWebRequest $request) {
         
         // Fetching config
