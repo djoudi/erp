@@ -19,8 +19,6 @@ abstract class Basewh_ReportsActions extends sfActions {
                 
             }
         
-        #echo $this->date;
-        
     }
     
 }
