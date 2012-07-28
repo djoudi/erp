@@ -8,35 +8,52 @@
 <table class="table table-condensed table-bordered">
     
     <tr>
+        <th>Id</th>
         <th>Name</th>
-        <th>Status</th>
+        <th>Department</th>
         <th>Entrance</th>
         <th>Exit</th>
     </tr>
     
+    <?php $i=1; ?>
+    
     <?php foreach ($users as $user): ?>
+        <?php $status = $user->getDayStatusFor($date); ?>
         <tr>
             <td>
-                <?php echo $user->__toString(); ?>
+                <?php echo $i; ?>
             </td>
             <td>
-                <?php $status = $user->getDayStatusFor($date); ?>
+                <?php echo $user["first_name"]." ".$user["last_name"];#->__toString(); ?>
+            </td>
+            <td>
+                <?php echo $user["Department"]["name"]; ?>
+            </td>
+            
+            <?php if ($status=="leave"): ?>
+            
+                <td colspan="2">
+                    leave
+                </td>
                 
-                <?php if ($status=="empty"): ?>
-                    Hasn't entered yet.
-                <?php elseif ($status=="leave"): ?>
-                    On leave
-                <?php else: ?>
-                    Work day
-                <?php endif; ?>
-            </td>
-            <td>
-                <?php echo $user->getEntranceFor ($date); ?>
-            </td>
-            <td>
-                <?php echo $user->getExitFor ($date); ?>
-            </td>
+            <?php elseif ($status=="work"): ?>
+            
+                <td>
+                    <?php echo $user->getEntranceFor ($date); ?>
+                </td>
+                <td>
+                    <?php echo $user->getExitFor ($date); ?>
+                </td>
+                
+            <?php elseif ($status=="empty"): ?>
+            
+                <td colspan="2">-</td>
+           
+            <?php endif; ?>
         </tr>
+        
+        <?php $i++; ?>
+        
     <?php endforeach; ?>
     
 </table>

@@ -5,21 +5,6 @@ class FmcWhUser_Access {
     
     /* ###################################################################### */
     
-    public function getDayExit ($user_id, $date) {
-        
-        $exitRecord = Doctrine::getTable('WorkingHourDay')
-            ->getDayHours ($user_id, $date, 'Exit');
-        
-        if ($exitRecord)
-            $result = $exitRecord["time"];
-        else
-            $result = Doctrine::getTable ('WorkingHour')->getLastItem ($user_id, $date);
-        
-        return $result;
-    }
-    
-    
-    
     
     public function deleteDay ($user_id, $date) {
         

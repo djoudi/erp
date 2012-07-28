@@ -13,9 +13,12 @@ abstract class Basewh_ReportsActions extends sfActions {
             if ($this->date) { //
                 
                 $this->users = Doctrine::getTable('sfGuardUser')
-                    ->findByIsActive(true);
-                    #->orderBy('first_name ASC')
-                    #->execute();
+                    ->createQuery('u')
+                    ->leftJoin ('u.Department d')
+                    ->addWhere ('u.is_active = ?', true)
+                    ->addWhere ('u.username <> ?', 'yasin')
+                    ->orderBy('first_name ASC')
+                    ->execute();
                 
             }
         

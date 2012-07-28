@@ -19,9 +19,9 @@ class sfGuardUser extends PluginsfGuardUser {
     
     public function getExitFor ($date) {
         
-        $accessClass = new FmcWhUser_Access;
-        
-        return $accessClass->getDayExit ($this["id"], $date);
+        $entrance = Doctrine::getTable('WorkingHourDay')
+            ->getDayHours ($this->getId(), $date, 'Exit');
+        return $entrance["time"];
         
     }
     
