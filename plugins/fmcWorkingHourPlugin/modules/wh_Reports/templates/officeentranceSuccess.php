@@ -1,6 +1,14 @@
 <?php slot ('title', "Office entrance reports"); ?>
 
 
+<script>
+	$(function() {
+		$( "#wh_reports_entrance_selectdate" ).datepicker();
+        $( "#wh_reports_entrance_selectdate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	});
+</script>
+
+
 <form method="get">
     <p>
         Please select a day to list the records:
@@ -10,9 +18,8 @@
 </form>
 
 
-<script>
-	$(function() {
-		$( "#wh_reports_entrance_selectdate" ).datepicker();
-        $( "#wh_reports_entrance_selectdate" ).datepicker( "option", "dateFormat", "dd-mm-yy" );
-	});
-</script>
+<?php 
+    if ($date):
+        include_partial ('dailyreport', array('date'=>$date, 'users'=>$users));
+    endif;
+?>

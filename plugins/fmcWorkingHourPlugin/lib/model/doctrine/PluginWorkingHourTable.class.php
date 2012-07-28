@@ -42,16 +42,17 @@ class PluginWorkingHourTable extends Doctrine_Table {
         return $result;
     }
     
-    public function getLastItems ($user_id, $count = 5) {
+    #$result = Doctrine::getTable ('WorkingHour')->getLastItem ($user_id, $date);
+    
+    public function getLastItem ($user_id, $date) {
         
         $result = $this->CreateQuery ('wh')
             ->addWhere ('wh.user_id = ?', $user_id)
-            ->addWhere ('wh.created_by = ?', $user_id)
-            ->orderBy ('wh.updated_at DESC')
-            ->limit ($count)
-            ->execute();
+            ->addWhere ('wh.date = ?', $date)
+            ->orderBy ('wh.end DESC')
+            ->fetchOne();
         
-        return $result;
+        return $result["end"];
     }
     
     

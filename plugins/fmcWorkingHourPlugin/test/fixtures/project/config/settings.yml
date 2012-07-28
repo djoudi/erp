@@ -1,2 +1,2 @@
 all:
-  enabled_modules: [workingHourUser, workingHourWorkType, workingHourUser, workingHourLeave, workingHourAdmin, wh_Process, wh_Reports]
+  enabled_modules: [workingHourUser, workingHourWorkType, workingHourUser, workingHourLeave, workingHourAdmin, wh_Process, wh_Reports, wh_Core]
