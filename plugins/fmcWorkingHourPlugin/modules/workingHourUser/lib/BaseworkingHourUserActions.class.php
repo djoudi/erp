@@ -6,6 +6,45 @@ abstract class BaseworkingHourUserActions extends sfActions {
     /* #################################################################################### */
     
     
+    public function executeOfficeexit (sfWebRequest $request) {
+        
+        $this->date = $request->getParameter('date');
+        $user = $this->getUser()->getGuardUser();
+        $url = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
+        
+        $accessClass = new FmcWhUser_Access();
+        $dayType = $accessClass->getDayType ($user["id"], $this->date);
+        
+        if ( $dayType != "work" ) {
+            
+            $this->getUser()->setFlash("error", $msg);
+            $this->redirect ($url);
+        }
+        
+        else {
+            
+            if ( $object = $user->getExitFor($this->date, "object") ) {
+                
+            } else {
+                
+                $object = new WorkingHourDay();
+                $object->setUser($user);
+                $object->setType("Exit");
+                $object->setDate($this->date);
+            }
+            
+            $this->form = new form_wh_exitday ($object);
+            
+            $process = new FmcWhUser_Process();
+            $process->wh_user_dayexit($this->form, $request, $url);
+        }
+        
+    }
+    
+    
+    /* #################################################################################### */
+    
+    
     public function executeMyhome (sfWebRequest $request) {
         
         // Preparing variables
@@ -35,6 +74,9 @@ abstract class BaseworkingHourUserActions extends sfActions {
                 
                 $this->entranceHour = Doctrine::getTable('WorkingHourDay')
                     ->getDayHours($user_id, $today, "Enter");
+                
+                $this->exitHour = Doctrine::getTable('WorkingHourDay')
+                    ->getDayHours($user_id, $today, "Exit");
                     
                 $this->items = Doctrine::getTable('WorkingHour')
                     ->getByuseranddate($user_id, $today);
@@ -232,12 +274,16 @@ abstract class BaseworkingHourUserActions extends sfActions {
                 
             } else {
                 
+                $this->exitUrl = $this->getController()->genUrl('@wh_user_officeexit?date='.$this->date);
+                
                 // Setting normal day template
                     $this->setTemplate('editday');
                 
                 // Fetching day entrance hourgetDayHours
                     $this->entranceHour = Doctrine::getTable('WorkingHourDay')
                         ->getDayHours($user_id, $this->date, "Enter");
+                    $this->exitHour = Doctrine::getTable('WorkingHourDay')
+                    ->getDayHours($user_id, $this->date, "Exit");
                     
                 // Fetching current items
                     $this->items = Doctrine::getTable('WorkingHour')

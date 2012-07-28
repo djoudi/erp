@@ -6,6 +6,7 @@ class FmcWhUser_Process {
 
         $this->controller = sfContext::getInstance()->getController();
         $this->user = sfContext::getInstance()->getUser();
+        $this->user_id = $this->user->getGuardUser()->getId();
         
     }   
     
@@ -80,21 +81,54 @@ class FmcWhUser_Process {
     
     /*################################################################################*/
     
-    public function workingHour_DayLeaveRequest ($form, $request, $redirectUrl) {
+    public function wh_user_dayexit ($form, $request, $redirectUrl) {
         
         if ($request->isMethod('post')) {
           
             $form->bind ($request->getParameter($form->getName()));
             
             if ($form->isValid()) {
-
-                $object = $form->save();
-                $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                $object->setCreatedBy($this->user->getGuardUser()->getId());
-                $object->save();
                 
-                $this->user->setFlash('success', 'Leave request has been sent.');
-                $this->controller->redirect ($redirectUrl);
+                $values = $form->getValues(); //fetching form values
+                $date = $request->getParameter("date");
+                
+                $lastHour = Doctrine::getTable ('WorkingHour')
+                    ->getLastItem($this->user_id, $date);
+                
+                if ($lastHour) {
+                    
+                    if ($lastHour > $values["time"]) {
+                        $error = "Your exit hour cannot be earlier then your last record";
+                    }
+                    
+                } else {
+                    
+                    $entrance = Doctrine::getTable ('WorkingHourDay')
+                        ->getDayHours ($this->user_id, $date, "Enter");
+                    
+                    if ($entrance) {
+                        
+                        if ($entrance["time"] > $values["time"]) {
+                            $error = "Your exit hour cannot be earlier than your entrance";
+                        }
+                    }
+                    
+                }
+                
+                if (isset($error)) {
+                    
+                    $this->user->setFlash('error', $error);
+                    
+                } else {
+                    
+                    $object = $form->save();
+                    $object->setUpdatedBy($this->user_id);
+                    $object->setCreatedBy($this->user_id);
+                    $object->save();
+                    
+                    $this->user->setFlash('success', 'Office exit hour has been sent.');
+                    $this->controller->redirect ($redirectUrl);
+                }
                 
             } else {
                 $this->user->setFlash('error', 'Problem occured saving the record! Please check your input.');
@@ -103,6 +137,10 @@ class FmcWhUser_Process {
     }
     
     /*################################################################################*/
+    
+    
+    
+    
     
     public function workingHour_DayEntrance ($form, $request, $redirectUrl) {
 

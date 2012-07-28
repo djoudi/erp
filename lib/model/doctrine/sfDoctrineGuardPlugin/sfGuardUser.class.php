@@ -17,12 +17,17 @@ class sfGuardUser extends PluginsfGuardUser {
         
     }
     
-    public function getExitFor ($date) {
+    public function getExitFor ($date, $type="value") {
         
-        $entrance = Doctrine::getTable('WorkingHourDay')
+        $exit = Doctrine::getTable('WorkingHourDay')
             ->getDayHours ($this->getId(), $date, 'Exit');
-        return $entrance["time"];
+            
+        if ($type=="object")
+            $result = $exit;
+        else
+            $result = $exit["time"];
         
+        return $result;
     }
     
 }

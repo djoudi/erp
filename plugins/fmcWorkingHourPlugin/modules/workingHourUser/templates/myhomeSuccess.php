@@ -16,25 +16,32 @@
         <?php include_partial ('leaveinfo', array('leaveRequest'=>$leaveRequest, 'leaveStatus'=>$leaveStatus)); ?>
         
     <?php else: ?>
-    
-        <p>Office entrance: <?php echo $entranceHour["time"]; ?></p>
         
-        <table class="table table-condensed table-bordered">      
-            <thead>
-                <tr>
-                    <th>Project</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Total</th>
-                    <th>Type of Work</th>
-                    <th>Comments</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php include_partial ("dayitems_list", array("items"=>$items, "edit"=>false)); ?>
-            </tbody>
-        </table>
-    
+        <p>
+            <strong>Office entrance:</strong> <?php echo $entranceHour["time"]; ?><br />
+            <strong>Office exit:</strong> <?php echo $exitHour["time"]; ?>
+        </p>
+        
+        <?php if (count($items)): ?>
+            <table class="table table-condensed table-bordered">      
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Total</th>
+                        <th>Type of Work</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include_partial ("dayitems_list", array("items"=>$items, "edit"=>false)); ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No items found.</p>
+        <?php endif; ?>
+        
     <?php endif; ?>
     
     <p>

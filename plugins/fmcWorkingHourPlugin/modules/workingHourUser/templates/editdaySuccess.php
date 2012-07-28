@@ -1,19 +1,38 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>'Working Hours')); ?>
 
+
+<div class="pull-right">
+    
+    <p>Note: To change office entrance hour, you have to delete this day.</p>
+    
+    <a class="btn btn-danger btn-small pull-right" onclick="
+          if (confirm('If you continue, all records for today will be DELETED. Are you sure?'))
+            parent.location='<?php echo $cancelUrl; ?>'
+    ">
+        <i class="icon-remove icon-white"></i>
+        Delete Day
+    </a>
+    
+</div>
+
+
 <table class="table table-condensed table-bordered">
     <tr>
         <th>Office entrance</th>
         <td><?php echo $entranceHour["time"]; ?></td>
     </tr>
-</table>    
+    <tr>
+        <th>Office exit</th>
+        <td>
+            <?php echo $exitHour["time"]; ?>
+             <a href="<?php echo $exitUrl; ?>">(change)</a>
+        </td>
+    </tr>
+</table>
 
-<p>
-    Note: To change office entrance hour, you have to delete this day.
-    <a class="btn btn-danger btn-small pull-right" onclick="
-          if (confirm('If you continue, all records for today will be DELETED. Are you sure?'))
-            parent.location='<?php echo $cancelUrl; ?>'
-    ">Delete all records</a>
-</p>
+
+<div class="clear"></div>
+
 
 <hr />
 

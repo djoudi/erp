@@ -42,7 +42,6 @@ class PluginWorkingHourTable extends Doctrine_Table {
         return $result;
     }
     
-    #$result = Doctrine::getTable ('WorkingHour')->getLastItem ($user_id, $date);
     
     public function getLastItem ($user_id, $date) {
         
@@ -54,7 +53,6 @@ class PluginWorkingHourTable extends Doctrine_Table {
         
         return $result["end"];
     }
-    
     
     
     public function cancelItems ($user_id, $date) {

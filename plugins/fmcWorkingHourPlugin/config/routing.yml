@@ -51,6 +51,14 @@ workingHourUser_leaverequest:
     url: /wh/user/day/:date/leave/:type
     param: { module: workingHourUser, action: leaverequest }
 
+wh_user_officeexit:
+    url: /wh/user/day/:date/officeexit
+    param: { module: workingHourUser, action: officeexit }
+
+
+
+# WHDB - User - My Leave requests
+
 workingHourUser_myleaverequests:
     url: /wh/user/myleaverequests
     param: { module: workingHourUser, action: myleaverequests }
