@@ -11,6 +11,8 @@
  * @property string $description
  * @property enum $status
  * @property integer $status_user
+ * @property boolean $report_Received
+ * @property timestamp $report_Received_On
  * @property integer $created_by
  * @property integer $updated_by
  * @property sfGuardUser $User
@@ -18,30 +20,34 @@
  * @property sfGuardUser $Creator
  * @property sfGuardUser $Updater
  * 
- * @method integer          getUserId()      Returns the current record's "user_id" value
- * @method enum             getType()        Returns the current record's "type" value
- * @method date             getDate()        Returns the current record's "date" value
- * @method string           getDescription() Returns the current record's "description" value
- * @method enum             getStatus()      Returns the current record's "status" value
- * @method integer          getStatusUser()  Returns the current record's "status_user" value
- * @method integer          getCreatedBy()   Returns the current record's "created_by" value
- * @method integer          getUpdatedBy()   Returns the current record's "updated_by" value
- * @method sfGuardUser      getUser()        Returns the current record's "User" value
- * @method sfGuardUser      getStatusUser()  Returns the current record's "StatusUser" value
- * @method sfGuardUser      getCreator()     Returns the current record's "Creator" value
- * @method sfGuardUser      getUpdater()     Returns the current record's "Updater" value
- * @method WorkingHourLeave setUserId()      Sets the current record's "user_id" value
- * @method WorkingHourLeave setType()        Sets the current record's "type" value
- * @method WorkingHourLeave setDate()        Sets the current record's "date" value
- * @method WorkingHourLeave setDescription() Sets the current record's "description" value
- * @method WorkingHourLeave setStatus()      Sets the current record's "status" value
- * @method WorkingHourLeave setStatusUser()  Sets the current record's "status_user" value
- * @method WorkingHourLeave setCreatedBy()   Sets the current record's "created_by" value
- * @method WorkingHourLeave setUpdatedBy()   Sets the current record's "updated_by" value
- * @method WorkingHourLeave setUser()        Sets the current record's "User" value
- * @method WorkingHourLeave setStatusUser()  Sets the current record's "StatusUser" value
- * @method WorkingHourLeave setCreator()     Sets the current record's "Creator" value
- * @method WorkingHourLeave setUpdater()     Sets the current record's "Updater" value
+ * @method integer          getUserId()             Returns the current record's "user_id" value
+ * @method enum             getType()               Returns the current record's "type" value
+ * @method date             getDate()               Returns the current record's "date" value
+ * @method string           getDescription()        Returns the current record's "description" value
+ * @method enum             getStatus()             Returns the current record's "status" value
+ * @method integer          getStatusUser()         Returns the current record's "status_user" value
+ * @method boolean          getReportReceived()     Returns the current record's "report_Received" value
+ * @method timestamp        getReportReceivedOn()   Returns the current record's "report_Received_On" value
+ * @method integer          getCreatedBy()          Returns the current record's "created_by" value
+ * @method integer          getUpdatedBy()          Returns the current record's "updated_by" value
+ * @method sfGuardUser      getUser()               Returns the current record's "User" value
+ * @method sfGuardUser      getStatusUser()         Returns the current record's "StatusUser" value
+ * @method sfGuardUser      getCreator()            Returns the current record's "Creator" value
+ * @method sfGuardUser      getUpdater()            Returns the current record's "Updater" value
+ * @method WorkingHourLeave setUserId()             Sets the current record's "user_id" value
+ * @method WorkingHourLeave setType()               Sets the current record's "type" value
+ * @method WorkingHourLeave setDate()               Sets the current record's "date" value
+ * @method WorkingHourLeave setDescription()        Sets the current record's "description" value
+ * @method WorkingHourLeave setStatus()             Sets the current record's "status" value
+ * @method WorkingHourLeave setStatusUser()         Sets the current record's "status_user" value
+ * @method WorkingHourLeave setReportReceived()     Sets the current record's "report_Received" value
+ * @method WorkingHourLeave setReportReceivedOn()   Sets the current record's "report_Received_On" value
+ * @method WorkingHourLeave setCreatedBy()          Sets the current record's "created_by" value
+ * @method WorkingHourLeave setUpdatedBy()          Sets the current record's "updated_by" value
+ * @method WorkingHourLeave setUser()               Sets the current record's "User" value
+ * @method WorkingHourLeave setStatusUser()         Sets the current record's "StatusUser" value
+ * @method WorkingHourLeave setCreator()            Sets the current record's "Creator" value
+ * @method WorkingHourLeave setUpdater()            Sets the current record's "Updater" value
  * 
  * @package    fmc
  * @subpackage model
@@ -90,6 +96,15 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
         $this->hasColumn('status_user', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('report_Received', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             'notnull' => false,
+             ));
+        $this->hasColumn('report_Received_On', 'timestamp', null, array(
+             'type' => 'timestamp',
+             'notnull' => false,
              ));
         $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',
