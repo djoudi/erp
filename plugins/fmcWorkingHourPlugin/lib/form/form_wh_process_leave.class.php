@@ -5,9 +5,11 @@ class form_wh_process_leave extends PluginWorkingHourLeaveForm {
     public function configure() {
         
         unset($this['status_user']);
+        unset($this['status']);
+        unset($this['user_id']);
         
-        $this->widgetSchema->setLabel('user_id', "Employee");
         $this->widgetSchema->setLabel('type', "Leave Type");
+        $this->widgetSchema->setLabel('description', "Comment / Report Number");
         
         $this->setWidget('type', new sfWidgetFormChoice(
             array(
