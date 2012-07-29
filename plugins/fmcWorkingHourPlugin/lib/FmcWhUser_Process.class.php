@@ -141,6 +141,16 @@ class FmcWhUser_Process {
                     
                 }
                 
+                $items = Doctrine::getTable('WorkingHour')
+                    ->getByuseranddate($this->user_id, $date);
+                
+                $errCount = 0;
+                foreach ($items as $item) {
+                    if ( $item["end"] > $values["time"] ) $errCount++;
+                }
+                
+                if ($errCount) $error = "Your exit time should be after your work hours";
+                
                 if (isset($error)) {
                     
                     $this->user->setFlash('error', $error);
@@ -231,6 +241,27 @@ class FmcWhUser_Process {
                     }
                     
                     if ($wrong) $msg = "Your time values are interfering with an another interval.";
+                    
+                    
+                    
+                    $entrance = Doctrine::getTable ('WorkingHourDay')
+                        ->getDayHours ($this->user_id, $request->getParameter('date'), "Enter");
+                    if ($entrance["time"] > $formValues["start"]) {
+                        $msg = "Your start time cannot be earlier than your entrance";
+                    }
+                    
+                    $exit = Doctrine::getTable ('WorkingHourDay')
+                        ->getDayHours ($this->user_id, $request->getParameter('date'), "Exit");
+                    if ($exit) {
+                        
+                        if ( 
+                            ( $formValues["start"] > $exit["time"] ) or
+                            ( $formValues["end"] > $exit["time"] )
+                        ) {
+                            $msg = "Your time cannot be later than your exit";
+                        }
+                    }
+                    
                 }
           
                 //if error message set
