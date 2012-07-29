@@ -32,11 +32,6 @@ abstract class BasecostFormUserActions extends sfActions
       $this->redirect($this->getController()->genUrl('@costFormUser_edit?id='.$cf_id));
     }
     
-    $test = new $ogrenci();
-    $test->setName("asda");
-    $test->save();
-    
-    
     if ($this->getUser()->getAttribute('cfi_id'))
     {
       $cfi_id = $this->getUser()->getAttribute('cfi_id');

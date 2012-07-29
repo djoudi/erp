@@ -89,3 +89,7 @@ wh_process_leaverequests_deny:
 wh_reports_officeentrance:
     url: /wh/reports/officeentrance
     param: { module: wh_Reports, action: officeentrance }
+
+wh_reports_officeentrance_excel:
+    url: /wh/reports/officeentrance/:date/excel
+    param: { module: wh_Reports, action: oeexcel }

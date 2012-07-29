@@ -15,6 +15,7 @@ class PluginWorkingHourTable extends Doctrine_Table {
         
     }
     
+    
     public function createLeave ($user_id, $date) {
         
         $object = new WorkingHour();

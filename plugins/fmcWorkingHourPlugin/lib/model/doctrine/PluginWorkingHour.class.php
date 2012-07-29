@@ -4,13 +4,9 @@ abstract class PluginWorkingHour extends BaseWorkingHour {
     
     public function getTimeDifference() {
         
-        $start = strtotime ($this->getStart());
-        $end = strtotime ($this->getEnd());
+        $access = new FmcWhUser_Access;
         
-        $minute = ( ($end-$start) / 60 ) % 60;
-        $hour = ( ( ($end-$start) / 60 ) - $minute ) / 60;
-        
-        return $hour."h ".$minute."m";
+        return $access->calcTimeDif ($this->getStart(), $this->getEnd());
     }
     
     public function getNexthour($date, $user_id) {

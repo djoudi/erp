@@ -20,6 +20,10 @@
 
 <?php 
     if ($date):
-        include_partial ('dailyreport', array('date'=>$date, 'users'=>$users));
+        include_partial ('dailyreport', array(
+            'date'=>$date, 
+            'users'=>$users,
+            'leaveStatus'=>$leaveStatus
+        ));
     endif;
 ?>

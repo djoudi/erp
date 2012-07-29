@@ -6,6 +6,21 @@ class FmcWhUser_Access {
     /* ###################################################################### */
     
     
+    public function calcTimeDif ($start, $end) {
+        
+        $start = strtotime ($start);
+        $end = strtotime ($end);
+        
+        $minute = ( ($end-$start) / 60 ) % 60;
+        $hour = ( ( ($end-$start) / 60 ) - $minute ) / 60;
+        
+        return $hour."h ".$minute."m";    
+    }
+    
+    
+    /* ###################################################################### */
+    
+    
     public function deleteDay ($user_id, $date) {
         
         $leave = Doctrine::getTable ('WorkingHourLeave')
@@ -18,7 +33,7 @@ class FmcWhUser_Access {
             ->deleteIo ($user_id, $date);
         
     }
-        
+    
     
     /* ###################################################################### */
     
