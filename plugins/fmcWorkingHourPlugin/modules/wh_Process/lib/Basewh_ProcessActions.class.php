@@ -48,21 +48,27 @@ abstract class Basewh_ProcessActions extends sfActions {
     }
     
     
+    
     public function executeProcess (sfWebRequest $request) {
         
-        // Getting object
+        $id = $request->getParameter('id');
         
-            $id = $request->getParameter('id');
-            $this->leave = Doctrine::getTable('WorkingHourLeave')->findOneById ($id);
-            $this->forward404Unless ($this->leave);
-            
-        // Fetching variables
+        $this->leave = Doctrine::getTable('WorkingHourLeave')->findOneById ($id);
+        $this->forward404Unless ($this->leave);
         
-            $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
-            $this->approveUrl = $this->getController()->genUrl('@wh_process_leaverequests_approve?id='.$id);
-            $this->denyUrl = $this->getController()->genUrl('@wh_process_leaverequests_deny?id='.$id);
-            
+        $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
+        $this->approveUrl = $this->getController()->genUrl('@wh_process_leaverequests_approve?id='.$id);
+        $this->denyUrl = $this->getController()->genUrl('@wh_process_leaverequests_deny?id='.$id);
+        
+        $this->form = new form_wh_process_leave ($this->leave);
+        
+        $url = $request->getReferer();
+        
+        $process = new FmcWhUser_Process;
+        $process->workingHour_DayLeaveRequest ($this->form, $request, $url);
+        
     }
+    
     
     
     public function executeLeaverequests (sfWebRequest $request) {

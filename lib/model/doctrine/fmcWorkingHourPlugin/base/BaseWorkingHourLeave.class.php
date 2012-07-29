@@ -11,8 +11,9 @@
  * @property string $description
  * @property enum $status
  * @property integer $status_user
+ * @property date $report_Date
  * @property boolean $report_Received
- * @property timestamp $report_Received_On
+ * @property date $report_Received_On
  * @property integer $created_by
  * @property integer $updated_by
  * @property sfGuardUser $User
@@ -26,8 +27,9 @@
  * @method string           getDescription()        Returns the current record's "description" value
  * @method enum             getStatus()             Returns the current record's "status" value
  * @method integer          getStatusUser()         Returns the current record's "status_user" value
+ * @method date             getReportDate()         Returns the current record's "report_Date" value
  * @method boolean          getReportReceived()     Returns the current record's "report_Received" value
- * @method timestamp        getReportReceivedOn()   Returns the current record's "report_Received_On" value
+ * @method date             getReportReceivedOn()   Returns the current record's "report_Received_On" value
  * @method integer          getCreatedBy()          Returns the current record's "created_by" value
  * @method integer          getUpdatedBy()          Returns the current record's "updated_by" value
  * @method sfGuardUser      getUser()               Returns the current record's "User" value
@@ -40,6 +42,7 @@
  * @method WorkingHourLeave setDescription()        Sets the current record's "description" value
  * @method WorkingHourLeave setStatus()             Sets the current record's "status" value
  * @method WorkingHourLeave setStatusUser()         Sets the current record's "status_user" value
+ * @method WorkingHourLeave setReportDate()         Sets the current record's "report_Date" value
  * @method WorkingHourLeave setReportReceived()     Sets the current record's "report_Received" value
  * @method WorkingHourLeave setReportReceivedOn()   Sets the current record's "report_Received_On" value
  * @method WorkingHourLeave setCreatedBy()          Sets the current record's "created_by" value
@@ -97,13 +100,17 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
+        $this->hasColumn('report_Date', 'date', null, array(
+             'type' => 'date',
+             'notnull' => false,
+             ));
         $this->hasColumn('report_Received', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
              'notnull' => false,
              ));
-        $this->hasColumn('report_Received_On', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('report_Received_On', 'date', null, array(
+             'type' => 'date',
              'notnull' => false,
              ));
         $this->hasColumn('created_by', 'integer', null, array(

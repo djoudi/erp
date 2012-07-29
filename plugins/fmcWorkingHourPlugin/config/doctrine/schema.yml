@@ -166,12 +166,15 @@ WorkingHourLeave:
         status_user:
             type: integer
             notnull: true
+        report_Date:
+            type: date
+            notnull: false
         report_Received:
             type: boolean
             default: false
             notnull: false
         report_Received_On:
-            type: timestamp
+            type: date
             notnull: false
         created_by:
             type: integer

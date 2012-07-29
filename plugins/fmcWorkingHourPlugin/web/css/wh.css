@@ -5,10 +5,20 @@
     width: 50px;
 }
 
+#working_hour_leave_report_Received_On_day, 
+#working_hour_leave_report_Received_On_month,
+#working_hour_leave_report_Date_day, 
+#working_hour_leave_report_Date_month, 
+#working_hour_leave_date_day, 
+#working_hour_leave_date_month, 
 #working_hour_leave_filters_date_day, 
 #working_hour_leave_filters_date_month {
     width: 45px;
 }
+
+#working_hour_leave_report_Received_On_year, 
+#working_hour_leave_date_year, 
+#working_hour_leave_report_Date_year, 
 #working_hour_leave_filters_date_year {
     width: 55px;
 }
