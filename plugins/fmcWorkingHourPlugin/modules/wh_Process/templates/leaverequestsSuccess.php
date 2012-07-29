@@ -31,7 +31,7 @@
             <th>User</th>
             <th>Type</th>
             <th>Date</th>
-            <th>Description</th>
+            <th>Description / Report No</th>
             <th>Last Status</th>
             <th>Last Update</th>
         </tr>
