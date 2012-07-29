@@ -55,6 +55,9 @@ wh_user_officeexit:
     url: /wh/user/day/:date/officeexit
     param: { module: workingHourUser, action: officeexit }
 
+wh_user_deleteitem:
+    url: /wh/user/day/deleteitem/:id
+    param: { module: workingHourUser, action: deleteitem }
 
 
 # WHDB - User - My Leave requests

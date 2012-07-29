@@ -6,6 +6,20 @@ abstract class BaseworkingHourUserActions extends sfActions {
     /* #################################################################################### */
     
     
+    public function executeDeleteitem (sfWebRequest $request) {
+        
+        $id = $request->getParameter('id');
+        $item = Doctrine::getTable ('WorkingHour')->findOneById ($id);
+        $this->forward404Unless ($item);
+        
+        $item->delete();
+        
+        $url = $url = $request->getReferer();
+        $this->redirect ($url);
+    }
+    
+    
+    
     public function executeOfficeexit (sfWebRequest $request) {
         
         $this->date = $request->getParameter('date');

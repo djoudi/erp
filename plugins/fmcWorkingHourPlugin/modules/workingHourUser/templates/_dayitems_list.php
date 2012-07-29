@@ -27,11 +27,7 @@
         
         <?php if ($edit): ?>        
             <td>
-                <a href="<?php echo $editurl; ?>">
-                    <i class="icon-pencil"></i>
-                </a> 
-                
-                <a href="<?php echo $deleteurl; ?>">
+                <a href="<?php echo url_for('@wh_user_deleteitem?id='.$item["id"]); ?>">
                     <i class="icon-trash"></i>
                 </a>
             </td>
