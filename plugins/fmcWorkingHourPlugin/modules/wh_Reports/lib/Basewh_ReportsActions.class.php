@@ -55,12 +55,6 @@ abstract class Basewh_ReportsActions extends sfActions {
             
             $row++;
         }
-
-          #->setCellValue('XXXX', $form->Projects->code)
-          #->setCellValue('XXXXX', $form->id)
-          #->setCellValue('XXXX', $form->advanceRecieved);
-        #$objPHPExcel->getActiveSheet()->setTitle('Report');
-        
         
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="officereport-'.$date.'.xls"');
@@ -70,16 +64,10 @@ abstract class Basewh_ReportsActions extends sfActions {
 
         $this->redirect($request->getReferer());
         
-        
-        
     }
     
     public function executeOfficeentrance (sfWebRequest $request) {
-        /*
-         * echo "<pre>";
-        print_r(sfConfig::getAll());
-        echo "</pre>";
-        */
+        
         $this->date = $request->getParameter('date');
         $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
         
