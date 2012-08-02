@@ -1,6 +1,7 @@
 $(document).ready(function()  {
   
-  $("#working_hour_day_time").timePicker();  
+  /* Removing for Refs #45 */
+  /*$("#working_hour_day_time").timePicker();*/
   
 }
 );

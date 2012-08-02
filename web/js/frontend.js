@@ -33,8 +33,8 @@ $(document).ready(function()
     }
   });
   
-  
-  /* Timepicker */
+  /* //Fixing refs #45
+  // Timepicker
   var startTag = "#working_hour_start";
   var endTag = "#working_hour_end";
   $(startTag).timePicker();
@@ -67,7 +67,7 @@ $(document).ready(function()
     var hour = (z-minute) / 60;
     $('#timetotal').html(hour+"h "+minute+"m");
   });
-  
+  */
   
 }
 );
