@@ -1,39 +1,54 @@
 <?php
 
-abstract class BaseemployeeManagementActions extends sfActions
-{
-  
-  public function executeIndex (sfWebRequest $request)
-  {
-    // Edit these variables
-    $_q = Doctrine_Query::create()
-      ->from('sfGuardUser u')
-      ->innerJoin('u.Department d')
-      ->orderBy('username ASC');
-    $filterClass = new FmcFilter('filterform_plugin_sfguarduser');
-    $this->employees = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
+abstract class BaseemployeeManagementActions extends sfActions {
     
-    // Do not touch here
-    if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-    $this->filter = $filterClass->getFilter();
-    $this->filtered = $filterClass->getFiltered();
-  }
-  
-  public function executeEdit (sfWebRequest $request)
-  {
-    $this->employee = Doctrine::getTable('sfGuardUser')->findOneById ($request->getParameter("id"));
-    $this->forward404Unless ($this->employee);
     
-    $this->form = new form_plugin_sfguarduser ($this->employee);
-    $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@employeeManagement", false);
-  }
-  
-  public function executeNew (sfWebRequest $request)
-  {
-    $this->form = new form_plugin_sfguarduser_new();
-    $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@employeeManagement", true);
-  }
+    public function executeList (sfWebRequest $request) {
+        
+        $query = Doctrine_Query::create()
+            ->from('sfGuardUser u')
+            ->innerJoin('u.Department d')
+            ->orderBy('username ASC');
+        
+        $filterClass = new FmcFilter('filterform_plugin_sfguarduser');
+        
+        $this->items = $filterClass
+            ->initFilterForm($request, $query)
+            ->fetchArray();
+        
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+        
+    }
+    
+    
+    public function executeNew (sfWebRequest $request) {
+        
+        $this->form = new form_plugin_sfguarduser_new();
+        
+        $url = $this->getController()->genUrl('@employeeManagement');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
+        
+    }
+    
+    
+    public function executeEdit (sfWebRequest $request) {
+        
+        $this->item = Doctrine::getTable('sfGuardUser')->findOneById ($request->getParameter("id"));
+        $this->forward404Unless ($this->item);
+        
+        $this->form = new form_plugin_sfguarduser ($this->item);
+        
+        $url = $this->getController()->genUrl('@employeeManagement');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
+        
+    }
+    
     
 }

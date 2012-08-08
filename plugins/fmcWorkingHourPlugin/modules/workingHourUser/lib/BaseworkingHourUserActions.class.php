@@ -314,8 +314,10 @@ abstract class BaseworkingHourUserActions extends sfActions {
                 // Processing form
                     
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;
+                    
                     $processClass->workingHour_DayItems
                         ($this->form, $request, $redirectUrl, $this->items);
+                    
             }
             
         }

@@ -1,7 +1,7 @@
 
 employeeManagement:
   url: /employee/managament
-  param: { module: employeeManagement, action: index }
+  param: { module: employeeManagement, action: list }
   
 employeeManagement_edit:
   url: /employee/managament/edit/:id

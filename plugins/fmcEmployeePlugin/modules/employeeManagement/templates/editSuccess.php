@@ -1,4 +1,4 @@
-<?php slot ('title', "Employee: ".$employee->__toString()); ?>
+<?php slot ('title', "Employee: ".$item); ?>
 
 <?php use_javascript('/sfFormExtraPlugin/js/double_list.js') ?>
 

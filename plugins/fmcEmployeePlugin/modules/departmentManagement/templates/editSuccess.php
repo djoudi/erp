@@ -1,4 +1,4 @@
-<?php slot ('title', "Department: ".$item->__toString()); ?>
+<?php slot ('title', "Department: ".$item); ?>
 
 <form method="post" action="">
 

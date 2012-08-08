@@ -2,6 +2,7 @@
 
 abstract class BasedepartmentManagementActions extends sfActions {
     
+    
     public function executeList (sfWebRequest $request) {
         
         $query = Doctrine_Query::create()
@@ -11,7 +12,9 @@ abstract class BasedepartmentManagementActions extends sfActions {
         
         $filterClass = new FmcFilter('filterform_department');
         
-        $this->items = $filterClass->initFilterForm($request, $query)->execute()->toArray();
+        $this->items = $filterClass
+            ->initFilterForm($request, $query)
+            ->fetchArray();
         
         if ($request->hasParameter('_reset')) $filterClass->resetForm ();
         
@@ -19,16 +22,20 @@ abstract class BasedepartmentManagementActions extends sfActions {
         $this->filtered = $filterClass->getFiltered();
         
     }
-  
+    
+    
     public function executeNew (sfWebRequest $request) {
         
         $this->form = new sfGuardDepartmentForm();
         
-        $processClass = new FmcProcessForm();
-        $processClass->ProcessForm($this->form, $request, "@departmentManagement_list", true);
+        $url = $this->getController()->genUrl('@departmentManagement_list');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
         
     }
-  
+    
+    
     public function executeEdit (sfWebRequest $request) {
         
         $this->item = Doctrine::getTable('sfGuardGroup')->findOneById ($request->getParameter("id"));
@@ -36,9 +43,12 @@ abstract class BasedepartmentManagementActions extends sfActions {
     
         $this->form = new sfGuardDepartmentForm ($this->item);
         
-        $processClass = new FmcProcessForm();
-        $processClass->ProcessForm($this->form, $request, "@departmentManagement_list", false);
+        $url = $this->getController()->genUrl('@departmentManagement_list');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
         
     }
-  
+    
+    
 }
