@@ -1,38 +1,53 @@
 <?php
 
-abstract class BaseprojectManagementActions extends sfActions
-{
-  
-  public function executeIndex (sfWebRequest $request)
-  {
-    // Filter: Edit these variables
-      $_q = Doctrine_Query::create()
-        ->from('Project p')
-        ->orderBy('code ASC');
-      $filterClass = new FmcFilter('ProjectFormFilter');
-      $this->projects = $filterClass->initFilterForm($request, $_q)->execute();
+abstract class BaseprojectManagementActions extends sfActions {
     
-    // Filter: Do not touch here
-      if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-      $this->filter = $filterClass->getFilter();
-      $this->filtered = $filterClass->getFiltered();
-  }
-  
-  public function executeEdit (sfWebRequest $request)
-  {
-    $this->project = Doctrine::getTable('Project')->findOneById ($request->getParameter("id"));
-    $this->forward404Unless ($this->project);
     
-    $this->form = new projectForm ($this->project);
-    $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@projectManagement", false);
-  }
+    public function executeIndex (sfWebRequest $request) {
+        
+        $query = Doctrine_Query::create()
+            ->from ('Project p')
+            ->innerJoin ('p.Customers c')
+            ->orderBy('code ASC');
+            
+        $filterClass = new FmcFilter('ProjectFormFilter');
+      
+        $this->items = $filterClass
+            ->initFilterForm($request, $query)
+            ->execute();
+        
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+    }
   
-  public function executeNew (sfWebRequest $request)
-  {
-    $this->form = new projectForm();
-    $processClass = new FmcProcessForm();
-    $processClass->ProcessForm($this->form, $request, "@projectManagement", true);
-  }
-  
+    
+    public function executeNew (sfWebRequest $request) {
+        
+        $this->form = new projectForm();
+        
+        $url = $this->getController()->genUrl('@projectManagement');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
+        
+    }
+    
+    
+    public function executeEdit (sfWebRequest $request) {
+        
+        $this->item = Doctrine::getTable('Project')->findOneById ($request->getParameter("id"));
+        $this->forward404Unless ($this->item);
+        
+        $this->form = new projectForm ($this->item);
+        
+        $url = $this->getController()->genUrl('@projectManagement');
+        
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $url);
+        
+    }
+    
+    
 }

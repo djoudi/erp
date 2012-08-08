@@ -1,4 +1,4 @@
-<?php slot ('title', "Customer: ".$project->__toString()); ?>
+<?php slot ('title', "Customer: ".$item); ?>
 
 <form method="post" action="">
 
