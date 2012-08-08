@@ -30,7 +30,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardPermission extends sfDoctrineRecord
+abstract class BasesfGuardPermission extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -67,7 +67,11 @@ abstract class BasesfGuardPermission extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'permission_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
-        $this->actAs($timestampable0);
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
+        $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
+        $this->actAs($versionable0);
     }
 }

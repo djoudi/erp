@@ -18,8 +18,11 @@ abstract class BasesfGuardPermissionVersionForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'name'        => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
+      'creater_id'  => new sfWidgetFormInputText(),
+      'updater_id'  => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
+      'deleted_at'  => new sfWidgetFormDateTime(),
       'version'     => new sfWidgetFormInputHidden(),
     ));
 
@@ -27,8 +30,11 @@ abstract class BasesfGuardPermissionVersionForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description' => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'creater_id'  => new sfValidatorPass(),
+      'updater_id'  => new sfValidatorPass(),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
+      'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
       'version'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('version')), 'empty_value' => $this->getObject()->get('version'), 'required' => false)),
     ));
 

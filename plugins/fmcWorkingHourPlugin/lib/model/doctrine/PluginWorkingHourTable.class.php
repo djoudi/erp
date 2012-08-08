@@ -25,7 +25,6 @@ class PluginWorkingHourTable extends Doctrine_Table {
         $object->set('worktype_id', 1); //A0 general admin works
         $object->set('start', '09:00');
         $object->set('end', '18:00');
-        $object->set('created_by', $user_id);
         $object->save();
         
     }

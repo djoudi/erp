@@ -21,8 +21,6 @@ class FmcWhUser_Process {
             if ($form->isValid()) {
 
                 $object = $form->save();
-                $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                $object->setCreatedBy($this->user->getGuardUser()->getId());
                 $object->save();
                 
                 $this->user->setFlash('success', 'Leave request has been sent.');
@@ -158,8 +156,6 @@ class FmcWhUser_Process {
                 } else {
                     
                     $object = $form->save();
-                    $object->setUpdatedBy($this->user_id);
-                    $object->setCreatedBy($this->user_id);
                     $object->save();
                     
                     $this->user->setFlash('success', 'Office exit hour has been sent.');
@@ -187,8 +183,6 @@ class FmcWhUser_Process {
           if ($form->isValid()) {
             
               $object = $form->save();
-              $object->setUpdatedBy($this->user->getGuardUser()->getId());
-              $object->setCreatedBy($this->user->getGuardUser()->getId());
               $object->save();
             
               $this->user->setFlash('success', 'Office day entrance recorded.');
@@ -274,10 +268,6 @@ class FmcWhUser_Process {
                     //save form
                     
                     $object = $form->save();
-                    
-                    $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                    
-                    if (!$formValues["created_by"]) $object->setCreatedBy($this->user->getGuardUser()->getId());
                     $object->save();
                     
                     $this->user->setFlash("success", "Record is added!");

@@ -8,11 +8,7 @@
  * @property string $name
  * @property string $description
  * @property integer $manager_id
- * @property integer $created_by
- * @property integer $updated_by
  * @property sfGuardUser $Manager
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $Worktypes
  * @property Doctrine_Collection $sfGuardGroupPermission
@@ -23,11 +19,7 @@
  * @method string              getName()                   Returns the current record's "name" value
  * @method string              getDescription()            Returns the current record's "description" value
  * @method integer             getManagerId()              Returns the current record's "manager_id" value
- * @method integer             getCreatedBy()              Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()              Returns the current record's "updated_by" value
  * @method sfGuardUser         getManager()                Returns the current record's "Manager" value
- * @method sfGuardUser         getCreator()                Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()                Returns the current record's "Updater" value
  * @method Doctrine_Collection getPermissions()            Returns the current record's "Permissions" collection
  * @method Doctrine_Collection getWorktypes()              Returns the current record's "Worktypes" collection
  * @method Doctrine_Collection getSfGuardGroupPermission() Returns the current record's "sfGuardGroupPermission" collection
@@ -37,11 +29,7 @@
  * @method sfGuardGroup        setName()                   Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()            Sets the current record's "description" value
  * @method sfGuardGroup        setManagerId()              Sets the current record's "manager_id" value
- * @method sfGuardGroup        setCreatedBy()              Sets the current record's "created_by" value
- * @method sfGuardGroup        setUpdatedBy()              Sets the current record's "updated_by" value
  * @method sfGuardGroup        setManager()                Sets the current record's "Manager" value
- * @method sfGuardGroup        setCreator()                Sets the current record's "Creator" value
- * @method sfGuardGroup        setUpdater()                Sets the current record's "Updater" value
  * @method sfGuardGroup        setPermissions()            Sets the current record's "Permissions" collection
  * @method sfGuardGroup        setWorktypes()              Sets the current record's "Worktypes" collection
  * @method sfGuardGroup        setSfGuardGroupPermission() Sets the current record's "sfGuardGroupPermission" collection
@@ -54,7 +42,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardGroup extends sfDoctrineRecord
+abstract class BasesfGuardGroup extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -72,12 +60,6 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -85,14 +67,6 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('sfGuardUser as Manager', array(
              'local' => 'manager_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
              'foreign' => 'id'));
 
         $this->hasMany('sfGuardPermission as Permissions', array(
@@ -122,9 +96,11 @@ abstract class BasesfGuardGroup extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'group_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();
-        $this->actAs($timestampable0);
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
         $this->actAs($versionable0);
     }
 }

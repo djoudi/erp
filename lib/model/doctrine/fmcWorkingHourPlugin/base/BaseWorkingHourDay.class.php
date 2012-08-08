@@ -9,37 +9,25 @@
  * @property integer $user_id
  * @property date $date
  * @property time $time
- * @property integer $created_by
- * @property integer $updated_by
  * @property sfGuardUser $User
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * 
- * @method enum           getType()       Returns the current record's "type" value
- * @method integer        getUserId()     Returns the current record's "user_id" value
- * @method date           getDate()       Returns the current record's "date" value
- * @method time           getTime()       Returns the current record's "time" value
- * @method integer        getCreatedBy()  Returns the current record's "created_by" value
- * @method integer        getUpdatedBy()  Returns the current record's "updated_by" value
- * @method sfGuardUser    getUser()       Returns the current record's "User" value
- * @method sfGuardUser    getCreator()    Returns the current record's "Creator" value
- * @method sfGuardUser    getUpdater()    Returns the current record's "Updater" value
- * @method WorkingHourDay setType()       Sets the current record's "type" value
- * @method WorkingHourDay setUserId()     Sets the current record's "user_id" value
- * @method WorkingHourDay setDate()       Sets the current record's "date" value
- * @method WorkingHourDay setTime()       Sets the current record's "time" value
- * @method WorkingHourDay setCreatedBy()  Sets the current record's "created_by" value
- * @method WorkingHourDay setUpdatedBy()  Sets the current record's "updated_by" value
- * @method WorkingHourDay setUser()       Sets the current record's "User" value
- * @method WorkingHourDay setCreator()    Sets the current record's "Creator" value
- * @method WorkingHourDay setUpdater()    Sets the current record's "Updater" value
+ * @method enum           getType()    Returns the current record's "type" value
+ * @method integer        getUserId()  Returns the current record's "user_id" value
+ * @method date           getDate()    Returns the current record's "date" value
+ * @method time           getTime()    Returns the current record's "time" value
+ * @method sfGuardUser    getUser()    Returns the current record's "User" value
+ * @method WorkingHourDay setType()    Sets the current record's "type" value
+ * @method WorkingHourDay setUserId()  Sets the current record's "user_id" value
+ * @method WorkingHourDay setDate()    Sets the current record's "date" value
+ * @method WorkingHourDay setTime()    Sets the current record's "time" value
+ * @method WorkingHourDay setUser()    Sets the current record's "User" value
  * 
  * @package    fmc
  * @subpackage model
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseWorkingHourDay extends sfDoctrineRecord
+abstract class BaseWorkingHourDay extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -66,12 +54,6 @@ abstract class BaseWorkingHourDay extends sfDoctrineRecord
              'type' => 'time',
              'notnull' => true,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -82,19 +64,11 @@ abstract class BaseWorkingHourDay extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

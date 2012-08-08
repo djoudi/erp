@@ -47,7 +47,6 @@
                 <td><?php echo $request["status"]; ?></td>
                 <td>
                     <?php echo $request["updated_at"]; ?>
-                    by <?php echo $request["StatusUser"]["first_name"]." ".$request["StatusUser"]["last_name"]; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

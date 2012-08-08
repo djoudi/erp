@@ -8,27 +8,15 @@
  * @property integer $rate
  * @property boolean $isDefault
  * @property boolean $isActive
- * @property integer $created_by
- * @property integer $updated_by
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostFormItems
  * 
  * @method integer             getRate()          Returns the current record's "rate" value
  * @method boolean             getIsDefault()     Returns the current record's "isDefault" value
  * @method boolean             getIsActive()      Returns the current record's "isActive" value
- * @method integer             getCreatedBy()     Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()     Returns the current record's "updated_by" value
- * @method sfGuardUser         getCreator()       Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()       Returns the current record's "Updater" value
  * @method Doctrine_Collection getCostFormItems() Returns the current record's "CostFormItems" collection
  * @method Vat                 setRate()          Sets the current record's "rate" value
  * @method Vat                 setIsDefault()     Sets the current record's "isDefault" value
  * @method Vat                 setIsActive()      Sets the current record's "isActive" value
- * @method Vat                 setCreatedBy()     Sets the current record's "created_by" value
- * @method Vat                 setUpdatedBy()     Sets the current record's "updated_by" value
- * @method Vat                 setCreator()       Sets the current record's "Creator" value
- * @method Vat                 setUpdater()       Sets the current record's "Updater" value
  * @method Vat                 setCostFormItems() Sets the current record's "CostFormItems" collection
  * 
  * @package    fmc
@@ -36,7 +24,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseVat extends sfDoctrineRecord
+abstract class BaseVat extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -55,32 +43,20 @@ abstract class BaseVat extends sfDoctrineRecord
              'default' => true,
              'notnull' => true,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('CostFormItem as CostFormItems', array(
              'local' => 'id',
              'foreign' => 'vat_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();
-        $this->actAs($timestampable0);
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
         $this->actAs($versionable0);
     }
 }

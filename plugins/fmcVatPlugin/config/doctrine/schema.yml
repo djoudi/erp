@@ -1,15 +1,17 @@
 Vat:
-  actAs:
-    Timestampable: ~
-    Versionable: ~
-  
-  columns:
-    rate: { type: integer, notnull: true, unique: true }
-    isDefault: { type: boolean, default: false }
-    isActive: { type: boolean, default: true, notnull: true }
-    created_by: integer
-    updated_by: integer
-
-  relations:
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~   
+    columns:
+        rate:
+            type: integer
+            notnull: true
+            unique: true
+        isDefault:
+            type: boolean
+            default: false
+        isActive:
+            type: boolean
+            default: true
+            notnull: true
