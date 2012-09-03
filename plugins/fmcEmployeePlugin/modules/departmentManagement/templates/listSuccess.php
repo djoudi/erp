@@ -1,7 +1,7 @@
 <?php slot ('title', "Departments List") ?>
 
 <p>
-    <a class="btn btn-primary" href="<?php echo url_for('departmentManagement_new'); ?>">
+    <a class="btn btn-primary" href="<?php echo url_for('@departmentManagement_new'); ?>">
         New department
     </a>
 </p>
@@ -27,7 +27,7 @@
         <?php foreach ($items as $item): ?>
             <tr>
                 <td>
-                    <a href="<?php echo url_for('departmentManagement_edit?id='.$item["id"]); ?>">
+                    <a href="<?php echo url_for('@departmentManagement_edit?id='.$item["id"]); ?>">
                         <?php echo $item["name"]; ?>
                     </a>
                 </td>
