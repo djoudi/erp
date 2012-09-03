@@ -2,7 +2,7 @@ all:
   menus:
     leftmenu_administration:
       children:
-        01:
+        11:
           label: VAT
           route: @vatManagement_index
           requires_auth: true

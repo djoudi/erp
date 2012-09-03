@@ -2,12 +2,12 @@ all:
   menus:
     leftmenu_administration:
       children:
-        20:
+        30:
           label: Customers
           attributes: { class: "nav-header" }
           requires_auth: true
           credentials: ["Customer Management"]
-        21:
+        31:
           label: Customers
           route: @customerManagement
           requires_auth: true

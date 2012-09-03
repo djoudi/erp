@@ -66,23 +66,23 @@ all:
                 
         leftmenu_administration:
             children:
-                40:
+                50:
                     label: Working Hours
                     attributes: { class: "nav-header" }
                     requires_auth: true
                     credentials: ['Working Hours Management']
-                41:
+                51:
                     label: Type of Work
                     route: @workingHourWorkType_list
                     requires_auth: true
                     credentials: ['Working Hours Management']
-                42:
+                52:
                     label: Set leave requests
                     route: @workingHourAdmin_setLeaveForAll
                     requires_auth: true
                     credentials: ['Working Hours Management']
 
-                43:
+                53:
                     label: Set monthly hours
                     route: @workingHourAdmin_setMonthyHoursForAll
                     requires_auth: true

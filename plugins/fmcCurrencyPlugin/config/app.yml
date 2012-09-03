@@ -1,12 +1,8 @@
 all:
-
    menus:
-   
       leftmenu_administration:
-      
          children:
-         
-            02:
+            12:
                label: Currency
                route: @currencyManagement_index
                requires_auth: true
