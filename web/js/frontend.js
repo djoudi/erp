@@ -1,6 +1,13 @@
 $(document).ready(function() 
 {
   
+  $("li.dropdown a").addClass("dropdown-toggle");
+  $("li.dropdown a:first").attr("href", "#");
+  $("li.dropdown a").attr("data-toggle", "dropdown");
+  $("li.dropdown ul").addClass("dropdown-menu");
+
+  
+  
   /* Tablesorter */
   $(".tablesorter").tablesorter( {sortList: [[0,0]]} );
   $(".tablesorter1d").tablesorter( {sortList: [[0,1]]} );

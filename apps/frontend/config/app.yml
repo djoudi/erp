@@ -1,29 +1,42 @@
 all:
-   menus: #iOMenuPlugin
-   
-      topmenu: #defines top menu - tabs
-         name: Top Menu
-         attributes:
-            id: LayoutTopMenu
-            class: "nav nav-tabs"
-         children:
-            0:
-               label: Home
-               route: @homepage
-               requires_auth: true
-               is_first: true
-            #TODO: should be seperated plugins itself - Issue #26
-            99: 
-               label: Settings
-               route: @administration
-               requires_auth: true
-
-
-      leftmenu_administration:
-         name: Left Menu
-         attributes: { class: "nav nav-list" }
-         children:
-            10:
-               label: General Settings
-               attributes: { class: "nav-header" }
-               requires_auth: true
+    #iOMenuPlugin
+    menus:
+    
+        topmenu:
+            name: Top Menu
+            attributes:
+                id: LayoutTopMenu
+                class: "nav nav-tabs"
+            children:
+                0:
+                    label: Home
+                    route: @homepage
+                    requires_auth: true
+                    is_first: true
+                99: 
+                    label: Administration
+                    route: "#"
+                    requires_auth: true
+                    
+                    attributes:
+                        class: "dropdown"
+                    
+                    children:
+                        0_1:
+                            label: AAAA
+                            route: @homepage
+                        0_2:
+                            label: BBB
+                            route: @homepage                    
+                    
+                    
+        leftmenu_administration:
+            name: Left Menu
+            attributes:
+                class: "nav nav-list"
+            children:
+                10:
+                    label: General Settings
+                    attributes:
+                        class: "nav-header"
+                    requires_auth: true
