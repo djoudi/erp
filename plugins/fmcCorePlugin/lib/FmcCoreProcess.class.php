@@ -9,7 +9,10 @@ class FmcCoreProcess {
         
     }
     
-    public function form ($form, $request, $url) {
+    public static function form ($form, $request, $url) {
+        
+        $controller = sfContext::getInstance()->getController();
+        $user = sfContext::getInstance()->getUser();
         
         if ($request->isMethod('post')) {
             
@@ -18,12 +21,12 @@ class FmcCoreProcess {
             if ($form->isValid()) {
                 
                 $form->save();
-                $this->user->setFlash('success', 'Record is saved!');
-                $this->controller->redirect ($url);
+                $user->setFlash('success', 'Record is saved!');
+                $controller->redirect ($url);
             
             } else {
                 
-                $this->user->setFlash ('error', 'Error saving the record!');
+                $user->setFlash ('error', 'Error saving the record!');
                 
             }
         }

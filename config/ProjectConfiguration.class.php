@@ -38,7 +38,7 @@ class ProjectConfiguration extends sfProjectConfiguration
         sfConfig::set('doctrine_model_builder_options', $options);
         // user id that is used when no logged in user is present. This is required
         // to be able to load fixtures.
-        //sfConfig::set('default_updater_id',);
+        sfConfig::set('default_updater_id',1);
      
      // BURASI DA DEGISTIRILECEK
      

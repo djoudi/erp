@@ -23,10 +23,10 @@ all: #is valid for all applications
                
             99: #TODO: should be seperated plugins itself - Issue #26
             
-               label: Administration
+               label: Settings
                route: @administration
                requires_auth: true
-               credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]
+               
                
       leftmenu_administration: #initializes left menu in Admin pages
       

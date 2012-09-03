@@ -15,8 +15,8 @@ abstract class BasecurrencyManagementActions extends sfActions {
         
         $url = $request->getReferer();
         
-        $processClass = new FmcCoreProcess();
-        $processClass->form ($this->form, $request, $url);
+        FmcCoreProcess::form ($this->form, $request, $url);
+        
     }
     
     
