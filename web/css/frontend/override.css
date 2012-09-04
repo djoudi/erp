@@ -1,8 +1,17 @@
 /* Refs #55 - Submenu under Topmenu , ioPlugin with Bootstrap */
-/*
-    #LayoutTopMenu li.dropdown a {
-        color: #000000 !important;
+    #LayoutTopMenu li.dropdown a
+    {
+        color: #000000;
     }
+    li.dropdown ul a.dropdown-toggle:hover
+    {
+        color: #ffffff !important;
+    }
+    li.dropdown ul .nav-header
+    {
+        padding-left: 13px !important;
+    }
+    
     #LayoutTopMenu li.dropdown li a {
         font-weight: normal !important;
     }
@@ -12,16 +21,10 @@
     #LayoutTopMenu li.nav-header {
         color: #000000 !important;
     }
-
-.nav-tabs .open .dropdown-toggle,
-.nav-pills .open .dropdown-toggle,
-.nav > .open.active > a:hover
-{
-    background-color: #ffffff;
-}​
-
-
-*/
+    .nav-tabs .open .dropdown-toggle,
+    .nav-pills .open .dropdown-toggle {
+        background-color: #ffffff;
+    }​
 /* End of Refs #55 */
 
 

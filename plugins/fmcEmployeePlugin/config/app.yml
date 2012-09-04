@@ -6,7 +6,8 @@ all:
                     children:
                         20:
                             label: Employees
-                            attributes: { class: "nav-header" }
+                            attributes:
+                                class: "nav-header"
                             requires_auth: true
                             credentials: ["Employee Management"]
                         21:

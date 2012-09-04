@@ -6,6 +6,7 @@ $(document).ready(function()
         $("#LayoutTopMenu li.dropdown a:first").attr("href", "#");
         $("#LayoutTopMenu li.dropdown a:first").attr("data-toggle", "dropdown");
         $("#LayoutTopMenu li.dropdown ul").addClass("dropdown-menu");
+        $("#LayoutTopMenu li.dropdown ul li").addClass("active");
     /* End of Refs #55 */
 
 

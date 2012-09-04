@@ -20,11 +20,11 @@ long_line_column=72
 [files]
 current_page=5
 FILE_NAME_0=351;Javascript;0;16;0;1;0;/srv/fmcdata/web/js/frontend.js;0;4
-FILE_NAME_1=281;CSS;0;16;0;1;0;/srv/fmcdata/web/css/frontend/override.css;0;4
-FILE_NAME_2=178;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/app.yml;0;4
-FILE_NAME_3=51269;CSS;0;16;0;1;0;/srv/fmcdata/web/bootstrap/css/bootstrap.css;0;4
-FILE_NAME_4=207;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/view.yml;0;4
-FILE_NAME_5=0;None;0;0;0;1;0;/home/yasin/Torrent/Man.Som.Hatar.Kvinnor.2009.SWEDISH.DVDRip.XviD-Sabelma/Man.Som.Hatar.Kvinnor.SWEDISH.DVDRip.XviD-WtO.cd1.srt;0;4
+FILE_NAME_1=542;CSS;0;16;0;1;0;/srv/fmcdata/web/css/frontend/override.css;0;4
+FILE_NAME_2=51269;CSS;0;16;0;1;0;/srv/fmcdata/web/bootstrap/css/bootstrap.css;0;4
+FILE_NAME_3=207;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/view.yml;0;4
+FILE_NAME_4=0;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/app.yml;0;4
+FILE_NAME_5=855;YAML;0;16;0;1;0;/srv/fmcdata/plugins/fmcEmployeePlugin/config/app.yml;0;4
 
 [file_prefs]
 final_new_line=true

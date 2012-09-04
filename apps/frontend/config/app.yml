@@ -16,19 +16,10 @@ all:
                 99_settings: 
                     label: Settings
                     route: "#"
-                    requires_auth: true
-                    
+                    requires_auth: true                    
                     attributes:
                         class: "dropdown"
-                    
-                    children:
-                        0_1:
-                            label: AAAA
-                            route: @homepage
-                        0_2:
-                            label: BBB
-                            route: @homepage                    
-                    
+
                     
         leftmenu_administration:
             name: Left Menu
