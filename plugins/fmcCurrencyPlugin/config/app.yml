@@ -1,9 +1,11 @@
 all:
-   menus:
-      leftmenu_administration:
-         children:
-            12:
-               label: Currency
-               route: @currencyManagement_index
-               requires_auth: true
-               credentials: ["Currency Management"]
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        12:
+                           label: Currency
+                           route: @currencyManagement_index
+                           requires_auth: true
+                           credentials: ["Currency Management"]

@@ -15,9 +15,52 @@ all:
             children:
                 3:
                     label: Working Hours
-                    route: @workinghours
+                    route: "#"
                     requires_auth: true
-                    credentials: ['Working Hours']
+                    attributes:
+                        class: "dropdown"
+                    credentials: [['Working Hours', 'Working Hours Management', 'Working Hours Reports']]
+                    children:
+                        01:
+                            label: My hours
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        02:
+                            label: My working hours
+                            route: @workingHourUser_myhome
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        03:
+                            label: My leave requests
+                            route: @workingHourUser_myleaverequests
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        10:
+                            label: Process requests
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ['Working Hours Management']
+                        11:
+                            label: Leave requests
+                            route: @wh_process_leaverequests
+                            reuqires_auth: true
+                            credentials: ['Working Hours Management']
+                        20:
+                            label: Reports
+                            attributes: { class: "nav-header"}
+                            requires_auth: true
+                            credentials: ['Working Hours Reports']
+                        21:
+                            label: Office entrance
+                            route: @wh_reports_officeentrance
+                            requires_auth: true
+                            credentials: ['Working Hours Reports']
+                        
+
+
+
+
                 99_settings:
                     children:
                         50:
@@ -41,48 +84,3 @@ all:
                             route: @workingHourAdmin_setMonthyHoursForAll
                             requires_auth: true
                             credentials: ['Working Hours Management']
-                    
-        leftmenu_workinghours:
-            name: Left Menu
-            attributes: { class: "nav nav-list" }
-            children:
-                01:
-                    label: My hours
-                    attributes: { class: "nav-header" }
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                02:
-                    label: My working hours
-                    route: @workingHourUser_myhome
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                03:
-                    label: My leave requests
-                    route: @workingHourUser_myleaverequests
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                
-                
-                10:
-                    label: Process requests
-                    attributes: { class: "nav-header" }
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
-                11:
-                    label: Leave requests
-                    route: @wh_process_leaverequests
-                    reuqires_auth: true
-                    credentials: ['Working Hours Management']
-                
-                
-                20:
-                    label: Reports
-                    attributes: { class: "nav-header"}
-                    requires_auth: true
-                    credentials: ['Working Hours Reports']
-                21:
-                    label: Office entrance
-                    route: @wh_reports_officeentrance
-                    requires_auth: true
-                    credentials: ['Working Hours Reports']
-                

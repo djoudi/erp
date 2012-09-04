@@ -8,26 +8,14 @@ all:
                 id: LayoutTopMenu
                 class: "nav nav-tabs"
             children:
-                0:
-                    label: Home
-                    route: @homepage
-                    requires_auth: true
-                    is_first: true
+                #0:
+                    #label: Home
+                    #route: @homepage
+                    #requires_auth: true
+                    #is_first: true
                 99_settings: 
                     label: Settings
                     route: "#"
                     requires_auth: true                    
                     attributes:
                         class: "dropdown"
-
-                    
-        leftmenu_administration:
-            name: Left Menu
-            attributes:
-                class: "nav nav-list"
-            children:
-                10:
-                    label: General Settings
-                    attributes:
-                        class: "nav-header"
-                    requires_auth: true

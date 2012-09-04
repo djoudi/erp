@@ -11,7 +11,15 @@
     {
         padding-left: 13px !important;
     }
-    
+    ul.dropdown-menu li.nav-header
+    {
+        /*background-color: #f9f9f9 !important;
+        border-bottom: 1px solid #777777 !important;
+        border-top: 1px solid #777777 !important;
+        margin-bottom: 3px !important;*/
+        padding-left: 7px !important;
+        text-transform: none !important;
+    }
     #LayoutTopMenu li.dropdown li a {
         font-weight: normal !important;
     }

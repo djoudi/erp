@@ -1,9 +1,11 @@
 all:
-  menus:
-    leftmenu_administration:
-      children:
-        11:
-          label: VAT
-          route: @vatManagement_index
-          requires_auth: true
-          credentials: ["VAT Management"]
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        11:
+                            label: VAT
+                            route: @vatManagement_index
+                            requires_auth: true
+                            credentials: ["VAT Management"]
