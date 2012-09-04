@@ -12,10 +12,10 @@ default:
     - frontend/tablesorter-extra.css
     - timepicker/timepicker.css
     
-    - frontend/global.css
-    - frontend/layout.css
-    - frontend/forms.css
-    - frontend/override.css
+    #- frontend/global.css
+    #- frontend/layout.css
+    #- frontend/forms.css
+    #- frontend/override.css
   
   javascripts:
     - jquery.js

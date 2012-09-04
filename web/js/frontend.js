@@ -1,10 +1,13 @@
 $(document).ready(function() 
 {
-  
-  $("li.dropdown a").addClass("dropdown-toggle");
-  $("li.dropdown a:first").attr("href", "#");
-  $("li.dropdown a").attr("data-toggle", "dropdown");
-  $("li.dropdown ul").addClass("dropdown-menu");
+    
+    /* Refs #55 - Submenu under Topmenu , ioPlugin with Bootstrap */
+        $("#LayoutTopMenu li.dropdown a").addClass("dropdown-toggle");
+        $("#LayoutTopMenu li.dropdown a:first").attr("href", "#");
+        $("#LayoutTopMenu li.dropdown a:first").attr("data-toggle", "dropdown");
+        $("#LayoutTopMenu li.dropdown ul").addClass("dropdown-menu");
+    /* End of Refs #55 */
+
 
   
   

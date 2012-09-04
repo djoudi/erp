@@ -13,8 +13,8 @@ all:
                     route: @homepage
                     requires_auth: true
                     is_first: true
-                99: 
-                    label: Administration
+                99_settings: 
+                    label: Settings
                     route: "#"
                     requires_auth: true
                     
