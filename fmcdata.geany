@@ -18,13 +18,8 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
-FILE_NAME_0=438;Javascript;0;16;0;1;0;/srv/fmcdata/web/js/frontend.js;0;4
-FILE_NAME_1=690;CSS;0;16;0;1;0;/srv/fmcdata/web/css/frontend/override.css;0;4
-FILE_NAME_2=51269;CSS;0;16;0;1;0;/srv/fmcdata/web/bootstrap/css/bootstrap.css;0;4
-FILE_NAME_3=367;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/view.yml;0;4
-FILE_NAME_4=942;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/app.yml;0;4
-FILE_NAME_5=707;YAML;0;16;0;1;0;/srv/fmcdata/plugins/fmcWorkingHourPlugin/config/app.yml;0;4
+current_page=0
+FILE_NAME_0=663;YAML;0;16;0;1;0;/srv/fmcdata/plugins/fmcCostFormPlugin/config/app.yml;0;4
 
 [file_prefs]
 final_new_line=true
