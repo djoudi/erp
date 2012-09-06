@@ -6,6 +6,7 @@
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
+        <?php include_javascripts() ?>
     </head>
     <body>
     
@@ -17,7 +18,7 @@
             
             <div class="pull-right" id="layout_top_userinfo">
                 <i class="icon-user"></i>
-                <strong><?php echo $sf_user->getGuardUser()->__toString(); ?></strong> | 
+                <?php echo $sf_user->getGuardUser()->__toString(); ?> | 
                 <a href="<?php echo url_for("@sf_guard_signout"); ?>">
                     Logout <i class="icon-off"></i>
                 </a>
@@ -64,6 +65,5 @@
             
         </div>
         
-        <?php include_javascripts() ?>
     </body>
 </html>

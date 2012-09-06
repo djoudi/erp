@@ -1,5 +1,9 @@
 <?php slot ('title', "My Cost Forms") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
   'filter'=>$filter, 

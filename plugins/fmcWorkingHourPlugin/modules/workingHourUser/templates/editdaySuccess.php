@@ -1,5 +1,9 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>'Working Hours')); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <div class="pull-right">
     

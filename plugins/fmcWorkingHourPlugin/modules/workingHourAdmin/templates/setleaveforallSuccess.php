@@ -1,5 +1,10 @@
 <?php slot ('title', "Set leave limits for all users"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <form method="post">
     <table class="table table-bordered table-condensed">
         <tr>

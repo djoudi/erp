@@ -8,10 +8,13 @@ $(document).ready(function()
         $("ul#layout_top_menu > li.dropdown > ul").addClass("dropdown-menu");
         $("ul#layout_top_menu > li.dropdown > ul").attr("role", "menu");
         
+        /* Shows dropdown arrows */
+        $("ul#layout_top_menu > li > a").not(":first").append(' <b class="caret"></b>');
+        
     /* End of Refs #55 */
 
 
-
+        
 
 
 

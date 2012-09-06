@@ -1,5 +1,10 @@
 <?php slot ('title', "Set monthy hours for all users"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <form method="post">
     <table class="table table-bordered table-condensed">
         <tr>

@@ -1,5 +1,9 @@
 <?php slot ('title', "Work Types Management") ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
 
 <p>
     <a class="btn btn-primary" href="<?php echo url_for('@workingHourWorkType_new'); ?>">New Work Type</a>

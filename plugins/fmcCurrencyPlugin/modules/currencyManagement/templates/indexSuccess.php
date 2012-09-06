@@ -1,5 +1,10 @@
 <?php slot ('title', "Currency Management"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <?php if (!count ($list)): ?>
 
     <p>No currency defined on the system. Please add a currency value from below.</p>

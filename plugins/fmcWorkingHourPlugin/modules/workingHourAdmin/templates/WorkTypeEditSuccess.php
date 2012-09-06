@@ -1,5 +1,10 @@
 <?php slot ('title', "Work Type: ".$item->getTitle()); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <form method="post" action="">
 
     <table class="table table-bordered table-condensed">

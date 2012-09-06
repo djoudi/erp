@@ -1,5 +1,10 @@
 <?php slot ('title', "Customer List") ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <p>
   <a class="btn btn-primary" href="<?php echo url_for('customerManagement_new'); ?>">New customer</a>
 </p>

@@ -1,5 +1,9 @@
 <?php slot ('title', "Create new cost form") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
 <form action="" method="post">
 
   <?php echo $form->renderHiddenFields() ?>

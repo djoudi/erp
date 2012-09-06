@@ -1,5 +1,10 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>'New day entrance')); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
+
 <script>
 	$(function() {
 		$( "#tabs" ).tabs();

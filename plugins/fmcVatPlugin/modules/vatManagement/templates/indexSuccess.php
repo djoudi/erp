@@ -1,5 +1,10 @@
 <?php slot ('title', "VAT Management") ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <?php if (!count ($list)): ?>
 
     <p>No VAT rate defined on the system. Please add a VAT value from below.</p>

@@ -18,4 +18,5 @@ all:
                     route: "#"
                     requires_auth: true                    
                     attributes:
+                        id: topmenu_settings
                         class: "dropdown"

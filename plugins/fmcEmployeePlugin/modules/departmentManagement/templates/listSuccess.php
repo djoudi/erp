@@ -1,5 +1,10 @@
 <?php slot ('title', "Departments List") ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <p>
     <a class="btn btn-primary" href="<?php echo url_for('@departmentManagement_new'); ?>">
         New department

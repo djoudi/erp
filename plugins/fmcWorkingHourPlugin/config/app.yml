@@ -19,6 +19,7 @@ all:
                     requires_auth: true
                     attributes:
                         class: "dropdown"
+                        id: topmenu_workinghours
                     credentials: [['Working Hours', 'Working Hours Management', 'Working Hours Reports']]
                     children:
                         01:

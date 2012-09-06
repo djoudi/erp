@@ -1,5 +1,10 @@
 <?php slot ('title', "Project List") ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <p>
     <a class="btn btn-primary" href="<?php echo url_for('projectManagement_new'); ?>">New project</a>
 </p>

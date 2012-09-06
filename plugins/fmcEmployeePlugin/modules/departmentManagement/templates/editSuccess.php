@@ -1,5 +1,10 @@
 <?php slot ('title', "Department: ".$item); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <form method="post" action="">
 
     <table class="table table-bordered table-condensed">

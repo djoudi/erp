@@ -1,5 +1,10 @@
 <?php slot ('title', "New Employee"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <?php use_javascript('/sfFormExtraPlugin/js/double_list.js') ?>
 
 <form method="post" action="">

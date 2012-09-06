@@ -1,5 +1,10 @@
 <?php slot ('title', "Edit Cost") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
+
 <form action="" method="post">
 
     <table class="table table-striped table-bordered table-condensed">
