@@ -5,11 +5,14 @@ all:
                 99_settings:
                     children:
                         30:
+                            attributes:
+                                class: "divider"
+                        31:
                             label: Customers
                             attributes: { class: "nav-header" }
                             requires_auth: true
                             credentials: ["Customer Management"]
-                        31:
+                        32:
                             label: Customers
                             route: @customerManagement
                             requires_auth: true

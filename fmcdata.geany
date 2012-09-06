@@ -18,8 +18,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=663;YAML;0;16;0;1;0;/srv/fmcdata/plugins/fmcCostFormPlugin/config/app.yml;0;4
+current_page=1
+FILE_NAME_0=380;Javascript;0;16;0;1;0;/srv/fmcdata/web/js/frontend.js;0;4
+FILE_NAME_1=1720;CSS;0;16;0;1;0;/srv/fmcdata/web/css/frontend/override.css;0;4
+FILE_NAME_2=289;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/view.yml;0;4
+FILE_NAME_3=142;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/app.yml;0;4
+FILE_NAME_4=2439;PHP;0;16;0;1;0;/srv/fmcdata/apps/frontend/templates/layout.php;0;4
 
 [file_prefs]
 final_new_line=true

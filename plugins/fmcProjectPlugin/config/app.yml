@@ -5,12 +5,15 @@ all:
                 99_settings:
                     children:
                         40:
+                            attributes:
+                                class: "divider"
+                        41:
                           label: Projects
                           attributes:
                             class: "nav-header"
                           requires_auth: true
                           credentials: ["Project Management"]
-                        41:
+                        42:
                           label: Projects
                           route: @projectManagement
                           requires_auth: true

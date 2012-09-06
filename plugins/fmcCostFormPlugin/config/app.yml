@@ -34,7 +34,9 @@ all:
               route: @costFormUser_new
               requires_auth: true
               credentials: ["Cost Forms"]
-            
+            10:
+              attributes:
+                class: "divider"
             11:
               label: Employee Costs
               attributes: { class: "nav-header" }
@@ -50,7 +52,9 @@ all:
               route: @costFormProcess_report
               requires_auth: true
               credentials: ["Cost Form Invoicing"]
-            
+            20:
+              attributes:
+                class: "divider"
             21:
               label: Cost Reports
               attributes: { class: "nav-header" }

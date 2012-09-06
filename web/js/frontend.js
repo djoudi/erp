@@ -2,12 +2,17 @@ $(document).ready(function()
 {
     
     /* Refs #55 - Submenu under Topmenu , ioPlugin with Bootstrap */
-        $("#LayoutTopMenu li.dropdown a").addClass("dropdown-toggle");
+    
+        $("ul#layout_top_menu > li.dropdown > a").addClass("dropdown-toggle");
+        $("ul#layout_top_menu > li.dropdown > a").attr("data-toggle", "dropdown");
+        $("ul#layout_top_menu > li.dropdown > ul").addClass("dropdown-menu");
+        $("ul#layout_top_menu > li.dropdown > ul").attr("role", "menu");
         
-        $("#LayoutTopMenu li.dropdown > a").attr("data-toggle", "dropdown");
-        $("#LayoutTopMenu li.dropdown ul").addClass("dropdown-menu");
-        $("#LayoutTopMenu li.dropdown ul li").addClass("active");
     /* End of Refs #55 */
+
+
+
+
 
 
   
@@ -30,6 +35,8 @@ $(document).ready(function()
   
   /* Bootstrap */
   $('.tooltips').tooltip();
+  
+  
   
   
   /* jQueryUI Datepicker */

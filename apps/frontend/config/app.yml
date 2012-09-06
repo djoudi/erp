@@ -5,14 +5,14 @@ all:
         topmenu:
             name: Top Menu
             attributes:
-                id: LayoutTopMenu
+                id: layout_top_menu
                 class: "nav nav-tabs"
             children:
-                #0:
-                    #label: Home
-                    #route: @homepage
-                    #requires_auth: true
-                    #is_first: true
+                0:
+                    label: Home
+                    route: @homepage
+                    requires_auth: true
+                    is_first: true
                 99_settings: 
                     label: Settings
                     route: "#"
