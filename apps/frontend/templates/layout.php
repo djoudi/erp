@@ -63,35 +63,7 @@
             <?php echo $sf_content ?>
             
         </div>
-    
-    
-    <div class="container" id="LayoutContainer">
-
-      
-      <div class="row" style="margin-top: 10px;">
-      
-        <?php /*
-        <div class="span2" style="width: 160px !important;">
-          <?php include_partial("homepage/".$mod); ?>
-        </div>
-        */ ?>
         
-        <div class="span11" id="LayoutMainContent">
-        
-
-          <?php include_partial ("global/layout_flashes"); ?>
-          
-          
-          
-          
-        </div>
-        
-      </div>
-      
-    </div>
-
-
-
         <?php include_javascripts() ?>
     </body>
 </html>
