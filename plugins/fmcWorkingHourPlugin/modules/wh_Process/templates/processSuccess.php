@@ -1,5 +1,9 @@
 <?php slot ('title', "Processing leave request"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <form method="post">
     

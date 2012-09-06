@@ -9,7 +9,7 @@
         <?php include_javascripts() ?>
     </head>
     <body>
-    
+        
         <div class="container">
             
             <a class="pull-left" href="<?php echo url_for("@homepage"); ?>">

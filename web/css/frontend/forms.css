@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+/* not tested */
+/*
 #cost_form_currency_id { width: 50px; }
 #cost_form_advanceRecieved { width: 50px; text-align: right; }
 
@@ -38,3 +40,4 @@
 #CostFormUser_NewCfi #cost_form_item_invoice_To { width: 90px; }
 
 #working_hour_start, #working_hour_end { width: 50px; }
+*/

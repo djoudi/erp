@@ -1,104 +1,57 @@
 @CHARSET "UTF-8";
 
-#LayoutContainer {
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-bottom-left-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 10px;
-	border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-	background-color: white;  
-	min-height: 500px;
-  padding: 0px 8px 15px 8px;
-  width: 1100px;
+div#layout_top_userinfo {
+    background-color: #e5e5e5;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 3px;
+    padding: 7px 13px;
 }
 
-#LayoutHeader {
-  margin-top: 0px
+ul#layout_top_menu li.divider {
+    margin: 2px 1px;
 }
 
-#LayoutLogo {
-  margin-top: 7px;
+ul#layout_top_menu li.nav-header {
+    margin-top: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-#LayoutUserinfo {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-	background-color: #e5e5e5;
-  height: 18px;
-  margin-top: 7px;
-  padding: 5px;
+ul#layout_top_menu ul.dropdown-menu > li > a {
+    padding: 1px 15px !important;
 }
 
-#LayoutUsermenu li {
-  border-right: 1px solid black;
-  display: inline;
-  margin-right: 5px;
-  padding-right: 5px;
+ul#layout_top_menu {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #08C;/*#8b99a8;*/  
+    margin: 10px 0;
+    padding: 4px 4px 0 4px;
 }
 
-
-
-
-#LayoutTopMenu * {
-  color: white;
-  font-size: 13px;
-  font-weight: bold;
-  line-height: inherit;
+ul#layout_top_menu > li > a {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-#LayoutTopMenu {
-	-webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-	border-radius: 4px;
-	background-color: #08C;/*#8b99a8;*/  
-	padding: 4px 4px 0 4px;
-	margin: 0;
+ul#layout_top_menu > li > a, ul#layout_top_menu > li.active > a {
+    padding: 2px 10px 3px 10px;
 }
 
-#LayoutTopMenu li a {
-  padding: 4px 13px 6px 13px;
+ul#layout_top_menu > li > a:hover, ul#layout_top_menu > li.active > a {
+    color: #333;
 }
 
-#LayoutTopMenu li a:hover {
-  color: #333;
+ul#layout_top_menu > li.active.open > a, ul#layout_top_menu > li.open > a:hover {
+    color: #fff;
 }
 
-#LayoutTopMenu li.active a {
-  color: #333;
-  padding: 4px 13px 6px 13px;
-}
-
-#LayoutTitle {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  color: black;
-	font-size: 14px;
-  font-weight: bold;
-	line-height: 26px;
-	margin: 0 0 10px 0;
-	padding: 1px 0 0 15px;
-}
-
-#LayoutTitle h1 {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-	background-color: #747A89;
-	color: white;
-	font-size: 14px;
-	line-height: 26px;
-	margin: 0;
-	padding: 1px 0 0 15px;
-}
-#LayoutMainContent {
-	margin-bottom: 50px;
-  margin-left: 10px !important;
-  width: 930px !important;
-}
-
-#LayoutLeftMenu {
-  padding: 8px 0;
+div#layout_title {
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
 }

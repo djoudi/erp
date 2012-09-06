@@ -1,5 +1,9 @@
 <?php slot ('title', "Process leave requests"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
