@@ -26,15 +26,16 @@ all:
               requires_auth: true
               credentials: [Cost Forms]
             02:
-              label: List my costs
-              route: @costFormUser_list
-              requires_auth: true
-              credentials: ["Cost Forms"]
-            03:
               label: New cost form
               route: @costFormUser_new
               requires_auth: true
               credentials: ["Cost Forms"]
+            03:
+              label: List my costs
+              route: @costFormUser_list
+              requires_auth: true
+              credentials: ["Cost Forms"]
+
             10:
               attributes:
                 class: "divider"

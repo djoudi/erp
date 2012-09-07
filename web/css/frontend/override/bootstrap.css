@@ -2,7 +2,7 @@
 
 * {
     color: #333;
-    vertical-align: middle !important; /* Causes weird buttons and layout */
+    /*vertical-align: middle !important; /* Causes weird buttons and layout */
 }
 
 body {
@@ -30,7 +30,7 @@ table {
 
 
 /* NOT TESTED */
-/*
+
 table th, table td {
   padding: 5px;
   line-height: 22px;
@@ -51,7 +51,7 @@ h4 {
 }
 
 
-/* CLASSES 
+/* CLASSES */
 
 .alert p {
   margin-bottom: 0 !important;
@@ -121,7 +121,10 @@ input, textarea, select, .uneditable-input {
     padding: 2px 0;
 }
 
-select, input[type="file"] {
+select,
+input[type="file"],
+input[type="submit"]
+{
     height: auto;
     line-height: auto;
 }
@@ -144,4 +147,3 @@ input, textarea, select, .uneditable-input {
 .pagination a {
   line-height: 25px !important;
 }
-*/

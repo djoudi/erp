@@ -5,15 +5,13 @@
 </script>
 
 
-<p>
-    <a class="btn btn-primary" href="<?php echo url_for('employeeManagement_new'); ?>">New employee</a>
-</p>
-
 <?php if (isset($filter)): ?>
     <?php include_partial ('fmcCore/filterForm', array(
         'filter'=>$filter, 
         'filtered'=>$filtered, 
-        'count'=>count($items)
+        'count'=>count($items),
+        'new_url'=>url_for('employeeManagement_new'),
+        'new_text'=>"New Employee"
     )); ?>
 <?php endif; ?>
 

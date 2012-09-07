@@ -9,6 +9,15 @@ div#layout_top_userinfo {
     padding: 7px 13px;
 }
 
+ul#layout_top_menu {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #08C;/*#8b99a8;*/  
+    margin: 5px 0;
+    padding: 4px 4px 0 4px;
+}
+
 ul#layout_top_menu li.divider {
     margin: 2px 1px;
 }
@@ -21,15 +30,6 @@ ul#layout_top_menu li.nav-header {
 
 ul#layout_top_menu ul.dropdown-menu > li > a {
     padding: 1px 15px !important;
-}
-
-ul#layout_top_menu {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    background-color: #08C;/*#8b99a8;*/  
-    margin: 10px 0;
-    padding: 4px 4px 0 4px;
 }
 
 ul#layout_top_menu > li > a {
@@ -54,4 +54,6 @@ div#layout_title {
     color: #333;
     font-size: 13px;
     font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
