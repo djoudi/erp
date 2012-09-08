@@ -18,9 +18,8 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=0;YAML;0;16;0;1;0;/srv/fmcdata/apps/frontend/config/view.yml;0;4
-FILE_NAME_1=941;CSS;0;16;0;1;0;/srv/fmcdata/web/css/frontend/layout.css;0;4
+current_page=0
+FILE_NAME_0=1783;YAML;0;16;0;1;0;/srv/fmcdata/plugins/fmcCostFormPlugin/config/doctrine/schema.yml;0;4
 
 [file_prefs]
 final_new_line=true

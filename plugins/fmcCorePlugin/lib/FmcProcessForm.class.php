@@ -18,8 +18,8 @@ class FmcProcessForm {
             if ($form->isValid()) {
                 
                 $object = $form->save();
-                $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                if ($isNew) $object->setCreatedBy($this->user->getGuardUser()->getId());
+                #$object->setUpdatedBy($this->user->getGuardUser()->getId());
+                #if ($isNew) $object->setCreatedBy($this->user->getGuardUser()->getId());
                 $object->save();
       
                 $this->user->setFlash("success", "Record is saved!");
