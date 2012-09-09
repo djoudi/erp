@@ -14,7 +14,7 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
         
         $result = $this->CreateQuery ('whl')
             ->addWhere ('whl.user_id = ?', $user_id)
-            ->addWhere ('whl.date = ?', $date)
+            #->addWhere ('whl.date = ?', $date)
             ->addWhere ('whl.status <> ?', 'Denied')
             ->addWhere ('whl.status <> ?', 'Cancelled')
             ->fetchOne();

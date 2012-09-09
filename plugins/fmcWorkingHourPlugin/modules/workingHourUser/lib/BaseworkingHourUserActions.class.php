@@ -206,8 +206,8 @@ abstract class BaseworkingHourUserActions extends sfActions {
         
         // Preparing leave request form
             
-            $formitem = new WorkingHourLeave();
-            $formitem->setDate($this->date);
+            $formitem = new form_wh_leave_new();
+            #$formitem->setFromDate($this->date);
             $formitem->setUser($user);
             $formitem->setType($this->type);
             $formitem->setStatus('Pending');

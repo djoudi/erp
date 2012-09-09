@@ -7,7 +7,8 @@
  * 
  * @property integer $user_id
  * @property enum $type
- * @property date $date
+ * @property date $from_Date
+ * @property date $to_Date
  * @property string $description
  * @property enum $status
  * @property date $report_Date
@@ -17,7 +18,8 @@
  * 
  * @method integer          getUserId()             Returns the current record's "user_id" value
  * @method enum             getType()               Returns the current record's "type" value
- * @method date             getDate()               Returns the current record's "date" value
+ * @method date             getFromDate()           Returns the current record's "from_Date" value
+ * @method date             getToDate()             Returns the current record's "to_Date" value
  * @method string           getDescription()        Returns the current record's "description" value
  * @method enum             getStatus()             Returns the current record's "status" value
  * @method date             getReportDate()         Returns the current record's "report_Date" value
@@ -26,7 +28,8 @@
  * @method sfGuardUser      getUser()               Returns the current record's "User" value
  * @method WorkingHourLeave setUserId()             Sets the current record's "user_id" value
  * @method WorkingHourLeave setType()               Sets the current record's "type" value
- * @method WorkingHourLeave setDate()               Sets the current record's "date" value
+ * @method WorkingHourLeave setFromDate()           Sets the current record's "from_Date" value
+ * @method WorkingHourLeave setToDate()             Sets the current record's "to_Date" value
  * @method WorkingHourLeave setDescription()        Sets the current record's "description" value
  * @method WorkingHourLeave setStatus()             Sets the current record's "status" value
  * @method WorkingHourLeave setReportDate()         Sets the current record's "report_Date" value
@@ -59,7 +62,11 @@ abstract class BaseWorkingHourLeave extends MyDoctrineRecord
              ),
              'notnull' => true,
              ));
-        $this->hasColumn('date', 'date', null, array(
+        $this->hasColumn('from_Date', 'date', null, array(
+             'type' => 'date',
+             'notnull' => true,
+             ));
+        $this->hasColumn('to_Date', 'date', null, array(
              'type' => 'date',
              'notnull' => true,
              ));

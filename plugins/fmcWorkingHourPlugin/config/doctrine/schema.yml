@@ -126,7 +126,10 @@ WorkingHourLeave:
             type: enum
             values: ["IllnessWReport", "IllnessWoReport", "PaidVacation", "UnpaidVacation"]
             notnull: true
-        date:
+        from_Date:
+            type: date
+            notnull: true
+        to_Date:
             type: date
             notnull: true
         description:
