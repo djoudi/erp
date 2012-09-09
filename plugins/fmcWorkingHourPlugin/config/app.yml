@@ -40,6 +40,7 @@ all:
                         10:
                             attributes:
                                 class: "divider"
+                            credentials: ['Working Hours Management']
                         11:
                             label: Process requests
                             attributes: { class: "nav-header" }
@@ -53,6 +54,7 @@ all:
                         20:
                             attributes:
                                 class: "divider"
+                            credentials: ['Working Hours Reports']
                         21:
                             label: Reports
                             attributes: { class: "nav-header"}
@@ -73,6 +75,7 @@ all:
                         50:
                             attributes:
                                 class: "divider"
+                            credentials: ['Working Hours Management']
                         51:
                             label: Working Hours
                             attributes:

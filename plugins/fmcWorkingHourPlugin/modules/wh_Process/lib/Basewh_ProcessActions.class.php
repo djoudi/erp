@@ -14,7 +14,7 @@ abstract class Basewh_ProcessActions extends sfActions {
         // Approving request
             $user = $this->getUser()->getGuardUser();
             $object->setStatus ("Approved");
-            $object->setStatusUser ($user);
+            #$object->setStatusUser ($user);
             $object->save();
         
         // Creating working Hours

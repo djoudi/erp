@@ -5,19 +5,17 @@
 </script>
 
 
-<p>
-    <a class="btn btn-primary" href="<?php echo url_for('@departmentManagement_new'); ?>">
-        New department
-    </a>
-</p>
-
 <?php if (isset($filter)): ?>
     <?php include_partial ('fmcCore/filterForm', array(
-    'filter'=>$filter, 
-    'filtered'=>$filtered, 
-    'count'=>count($items)
+        'filter'=>$filter, 
+        'filtered'=>$filtered, 
+        'count'=>count($items),
+        'new_url'=>url_for('@departmentManagement_new'),
+        'new_text'=>"New Department"
     )); ?>
 <?php endif; ?>
+
+
 
 <?php if (count($items)): ?>
 

@@ -7,6 +7,7 @@ all:
                         30:
                             attributes:
                                 class: "divider"
+                            credentials: ["Customer Management"]
                         31:
                             label: Customers
                             attributes: { class: "nav-header" }

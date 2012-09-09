@@ -51,9 +51,10 @@ ul#layout_top_menu > li.active.open > a, ul#layout_top_menu > li.open > a:hover 
 }
 
 div#layout_title {
-    color: #333;
+    border-color: #999;
+    background-color: #777;
+    color: #eee;
     font-size: 13px;
     font-weight: bold;
     margin-bottom: 10px;
-    text-transform: uppercase;
 }

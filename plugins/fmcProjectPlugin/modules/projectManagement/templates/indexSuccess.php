@@ -1,21 +1,21 @@
 <?php slot ('title', "Project List") ?>
 
+
 <script type="text/javascript">
     $("#topmenu_settings").addClass("active");
 </script>
 
 
-<p>
-    <a class="btn btn-primary" href="<?php echo url_for('projectManagement_new'); ?>">New project</a>
-</p>
-
 <?php if (isset($filter)): ?>
     <?php include_partial ('fmcCore/filterForm', array(
-    'filter'=>$filter, 
-    'filtered'=>$filtered, 
-    'count'=>count($items)
+        'filter'=>$filter, 
+        'filtered'=>$filtered, 
+        'count'=>count($items),
+        'new_url'=>url_for('@projectManagement_new'),
+        'new_text'=>"New Project"
     )); ?>
 <?php endif; ?>
+
 
 <table class="tablesorter3a tablesorterpager table table-striped table-bordered table-condensed">
     <thead>
@@ -36,7 +36,7 @@
                     <?php echo $project->getCustomers(); ?>
                 </td>
                 <td>
-                    <a href="<?php echo url_for("@projectManagement_edit?id=".$project->getId()); ?>">
+                    <a href="<?php echo url_for("@projectManagement_edit?id=".$project['id']); ?>">
                         <?php echo $project->getCode(); ?>
                     </a>
                 </td>
@@ -47,4 +47,3 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
