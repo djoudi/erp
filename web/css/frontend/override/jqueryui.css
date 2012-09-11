@@ -24,3 +24,8 @@
 .ui-datepicker-trigger {
     margin-left: 5px !important;
 }
+
+table.ui-datepicker-calendar {
+    font-family: Helvetica, Arial, sans-serif !important;
+    font-size: 1.1em !important;
+}
