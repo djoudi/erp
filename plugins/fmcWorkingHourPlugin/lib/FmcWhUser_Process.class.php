@@ -28,10 +28,11 @@ class FmcWhUser_Process {
                 
                 if ($fromDate > $toDate) $errorMsg = "'From' date cannot be after 'To' date";
                 
-                
                 // burada gun bos mu kontrolu olacak
                 
-                // cumartesi vs kontrolu?
+                // gun sayisi sayaci - cts ile
+                
+                // limit kontrolu
                 
                 if ($errorMsg) {
                     

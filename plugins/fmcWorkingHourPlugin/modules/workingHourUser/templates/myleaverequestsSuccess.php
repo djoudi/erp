@@ -43,11 +43,13 @@
         <?php foreach ($myLeaveRequests as $request): ?>
             <tr>
                 <td>
-                    <?php /*
-                    <a href="<?php echo url_for('@workingHourUser_day?date='.$request['date']); ?>">
+                    <?php if ( $request['status']=='Pending' or $request['status']=='Approved'): ?>
+                        <a href="<?php echo url_for('@workingHourUser_day?date='.$request['from_Date']); ?>">
+                            <?php echo $leaveStatus[$request["type"]]; ?>
+                        </a>
+                    <?php else: ?>
                         <?php echo $leaveStatus[$request["type"]]; ?>
-                    </a>
-                    */ ?>
+                    <?php endif; ?>
                 </td>
                 <td><?php echo $request["from_Date"]; ?></td>
                 <td><?php echo $request["to_Date"]; ?></td>

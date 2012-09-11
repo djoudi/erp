@@ -16,16 +16,26 @@ class PluginWorkingHourTable extends Doctrine_Table {
     }
     
     
-    public function createLeave ($user_id, $date) {
+    public function createLeave ($user_id, $from_Date, $to_Date) {
         
-        $object = new WorkingHour();
-        $object->set('user_id', $user_id);
-        $object->set('date', $date);
-        $object->set('project_id', 38); //Fmconsulting Admin
-        $object->set('worktype_id', 1); //A0 general admin works
-        $object->set('start', '09:00');
-        $object->set('end', '18:00');
-        $object->save();
+        $start = new DateTime ($from_Date);
+        $end = new DateTime ($to_Date);
+        
+        do {
+            $date = $start->format('Y-m-d');
+            
+            $object = new WorkingHour();
+            $object->set('user_id', $user_id);
+            $object->set('date', $date);
+            $object->set('project_id', 38); //Fmconsulting Admin
+            $object->set('worktype_id', 1); //A0 general admin works
+            $object->set('start', '09:00');
+            $object->set('end', '18:00');
+            $object->save();
+            
+            $start->add (new DateInterval('P1D'));
+            
+        } while ($start != $end);
         
     }
     

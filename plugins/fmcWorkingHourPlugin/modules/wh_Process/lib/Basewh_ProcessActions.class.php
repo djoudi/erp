@@ -14,14 +14,18 @@ abstract class Basewh_ProcessActions extends sfActions {
         // Approving request
             $user = $this->getUser()->getGuardUser();
             $object->setStatus ("Approved");
-            #$object->setStatusUser ($user);
             $object->save();
         
         // Creating working Hours
-            Doctrine::getTable('WorkingHour')->createLeave ($object["user_id"], $object["date"]);
+            Doctrine::getTable('WorkingHour')->createLeave (
+                $object["user_id"], 
+                $object["from_Date"],
+                $object["to_Date"]
+            );
         
         // Redirecting
-        
+            $this->getUser()->setFlash('success', 'Leave request has been approved successfully.');
+            
             $redirectUrl = $this->getController()->genUrl('@wh_process_leaverequests_process?id='.$id);
             $this->redirect($redirectUrl);
     }
@@ -38,11 +42,11 @@ abstract class Basewh_ProcessActions extends sfActions {
         // Denying request
             $user = $this->getUser()->getGuardUser();
             $object->setStatus ("Denied");
-            $object->setStatusUser ($user);
             $object->save();
         
         // Redirecting
-        
+            $this->getUser()->setFlash('error', 'Leave request has been denied.');
+            
             $redirectUrl = $this->getController()->genUrl('@wh_process_leaverequests_process?id='.$id);
             $this->redirect($redirectUrl);
     }
