@@ -14,7 +14,8 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
         
         $result = $this->CreateQuery ('whl')
             ->addWhere ('whl.user_id = ?', $user_id)
-            #->addWhere ('whl.date = ?', $date)
+            ->addWhere ('whl.from_Date <= ?', $date)
+            ->addWhere ('whl.to_Date >= ?', $date)
             ->addWhere ('whl.status <> ?', 'Denied')
             ->addWhere ('whl.status <> ?', 'Cancelled')
             ->fetchOne();
@@ -26,13 +27,14 @@ class PluginWorkingHourLeaveTable extends Doctrine_Table {
         
         $object = $this->CreateQuery ('whl')
             ->addWhere ('whl.user_id = ?', $user_id)
-            ->addWhere ('whl.date = ?', $date)
+            ->addWhere ('whl.from_Date <= ?', $date)
+            ->addWhere ('whl.to_Date >= ?', $date)
             ->addWhere ('whl.status = ?', "Pending")
             ->fetchOne();
-        $statusUser = sfContext::getInstance()->getUser()->getGuardUser();
+        #$statusUser = sfContext::getInstance()->getUser()->getGuardUser();
         if ($object) {
             $object->setStatus ("Cancelled");
-            $object->setStatusUser ($statusUser);
+            #$object->setStatusUser ($statusUser);
             $object->save();
         }
         

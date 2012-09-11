@@ -1,10 +1,18 @@
 <table class="table table-bordered table-condensed">
     <tr>
         <th>
-            Leave Date
+            Leave Date From
         </th>
         <td>
-            <?php echo $leaveRequest->getDate(); ?>
+            <?php echo $leaveRequest['from_Date']; ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Leave Date To
+        </th>
+        <td>
+            <?php echo $leaveRequest['to_Date']; ?>
         </td>
     </tr>
     <tr>

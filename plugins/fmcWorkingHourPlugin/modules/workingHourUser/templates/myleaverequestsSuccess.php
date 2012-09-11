@@ -33,7 +33,8 @@
 
         <tr>
             <th>Type</th>
-            <th>Date</th>
+            <th>From Date</th>
+            <th>To Date</th>
             <th>Description</th>
             <th>Last Status</th>
             <th>Last Update</th>
@@ -42,11 +43,14 @@
         <?php foreach ($myLeaveRequests as $request): ?>
             <tr>
                 <td>
+                    <?php /*
                     <a href="<?php echo url_for('@workingHourUser_day?date='.$request['date']); ?>">
                         <?php echo $leaveStatus[$request["type"]]; ?>
                     </a>
+                    */ ?>
                 </td>
-                <td><?php echo $request["date"]; ?></td>
+                <td><?php echo $request["from_Date"]; ?></td>
+                <td><?php echo $request["to_Date"]; ?></td>
                 <td><?php echo $request["description"]; ?></td>
                 <td><?php echo $request["status"]; ?></td>
                 <td>

@@ -19,16 +19,35 @@ class FmcWhUser_Process {
             $form->bind ($request->getParameter($form->getName()));
             
             if ($form->isValid()) {
-
-                $object = $form->save();
-                $object->save();
                 
-                $this->user->setFlash('success', 'Leave request has been sent.');
-                $this->controller->redirect ($redirectUrl);
+                $values = $form->getValues();
+                $errorMsg = "";
+                
+                $fromDate = new DateTime ($values["from_Date"]);
+                $toDate = new DateTime ($values["to_Date"]);
+                
+                if ($fromDate > $toDate) $errorMsg = "'From' date cannot be after 'To' date";
+                
+                
+                // burada gun bos mu kontrolu olacak
+                
+                // cumartesi vs kontrolu?
+                
+                if ($errorMsg) {
+                    
+                    $this->user->setFlash("error", $errorMsg);
+                    
+                } else {
+                    
+                    $form->save();
+                    
+                    $this->user->setFlash('success', 'Leave request has been sent.');
+                    
+                    $this->controller->redirect ($redirectUrl);
+                }
                 
             } else {
                 $this->user->setFlash('error', 'Problem occured saving the record! Please check your input.');
-        
             }
         }
     }

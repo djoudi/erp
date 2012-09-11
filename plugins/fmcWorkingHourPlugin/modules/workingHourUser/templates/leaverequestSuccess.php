@@ -18,6 +18,14 @@
                 <?php echo $form['description']; ?>
             </td>
         </tr>
+        <tr>
+            <td>From</td>
+            <td><?php echo $form['from_Date']; ?></td>
+        </tr>
+        <tr>
+            <td>To</td>
+            <td><?php echo $form['to_Date']; ?></td>
+        </tr>
     </table>
 
     <div class="form-actions">
