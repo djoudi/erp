@@ -1,4 +1,3 @@
-
 [indentation]
 indent_width=4
 indent_type=0
@@ -25,3 +24,6 @@ final_new_line=true
 ensure_convert_new_lines=false
 strip_trailing_spaces=false
 replace_tabs=false
+
+[VTE]
+last_dir=/home/yasin
