@@ -1,5 +1,9 @@
 <?php slot ('title', "Invoicing Report") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
 
 <?php if ($invoicedCount): ?>
 

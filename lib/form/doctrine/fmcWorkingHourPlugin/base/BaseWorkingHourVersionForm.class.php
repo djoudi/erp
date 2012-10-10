@@ -23,11 +23,11 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
       'comment'     => new sfWidgetFormInputText(),
       'start'       => new sfWidgetFormTime(),
       'end'         => new sfWidgetFormTime(),
-      'created_by'  => new sfWidgetFormInputText(),
-      'updated_by'  => new sfWidgetFormInputText(),
-      'deleted_at'  => new sfWidgetFormDateTime(),
+      'creater_id'  => new sfWidgetFormInputText(),
+      'updater_id'  => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
+      'deleted_at'  => new sfWidgetFormDateTime(),
       'version'     => new sfWidgetFormInputHidden(),
     ));
 
@@ -40,11 +40,11 @@ abstract class BaseWorkingHourVersionForm extends BaseFormDoctrine
       'comment'     => new sfValidatorString(array('max_length' => 250, 'required' => false)),
       'start'       => new sfValidatorTime(),
       'end'         => new sfValidatorTime(),
-      'created_by'  => new sfValidatorInteger(array('required' => false)),
-      'updated_by'  => new sfValidatorInteger(array('required' => false)),
-      'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
+      'creater_id'  => new sfValidatorPass(),
+      'updater_id'  => new sfValidatorPass(),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
+      'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
       'version'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('version')), 'empty_value' => $this->getObject()->get('version'), 'required' => false)),
     ));
 

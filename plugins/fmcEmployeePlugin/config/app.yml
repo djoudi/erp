@@ -1,25 +1,26 @@
 all:
-
-   menus:
-   
-      leftmenu_administration:
-      
-         children:
-
-            10:
-               label: Employees
-               attributes: { class: "nav-header" }
-               requires_auth: true
-               credentials: ["Employee Management"]
-
-            11:
-               label: Employees
-               route: @employeeManagement
-               requires_auth: true
-               credentials: ["Employee Management"]
-
-            13:
-               label: Departments
-               route: @departmentManagement_list
-               requires_auth: true
-               credentials: ["Employee Management"]
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        20:
+                            attributes:
+                                class: "divider"
+                            credentials: ["Employee Management"]
+                        21:
+                            label: Employees
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Employee Management"]
+                        22:
+                            label: Employees
+                            route: @employeeManagement
+                            requires_auth: true
+                            credentials: ["Employee Management"]
+                        23:
+                            label: Departments
+                            route: @departmentManagement_list
+                            requires_auth: true
+                            credentials: ["Employee Management"]

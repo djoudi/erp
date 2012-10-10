@@ -1,36 +1,22 @@
-all: #is valid for all applications
-
-   menus: #defines iOMenuPlugin menu
-
-      topmenu: #defines top menu - tabs
-      
-         name: Top Menu
-         
-         attributes:
-         
-            id: LayoutTopMenu
-            class: "nav nav-tabs"
-               #Using bootstrap 2x
-          
-         children:
-         
-            0: #default homepage
-            
-               label: Home
-               route: @homepage
-               requires_auth: true
-               is_first: true
-               
-            99: #TODO: should be seperated plugins itself - Issue #26
-            
-               label: Administration
-               route: @administration
-               requires_auth: true
-               credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]
-               
-      leftmenu_administration: #initializes left menu in Admin pages
-      
-         name: Left Menu
-         
-         attributes: { class: "nav nav-list" }
-            #Using bootstrap 2x
+all:
+    #iOMenuPlugin
+    menus:
+    
+        topmenu:
+            name: Top Menu
+            attributes:
+                id: layout_top_menu
+                class: "nav nav-tabs"
+            children:
+                0:
+                    label: Home
+                    route: @homepage
+                    requires_auth: true
+                    is_first: true
+                99_settings: 
+                    label: Settings
+                    route: "#"
+                    requires_auth: true                    
+                    attributes:
+                        id: topmenu_settings
+                        class: "dropdown"

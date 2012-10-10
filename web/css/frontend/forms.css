@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+/* not tested */
+
 #cost_form_currency_id { width: 50px; }
 #cost_form_advanceRecieved { width: 50px; text-align: right; }
 

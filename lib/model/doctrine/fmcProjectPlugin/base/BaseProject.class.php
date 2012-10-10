@@ -10,11 +10,7 @@
  * @property string $code
  * @property string $title
  * @property string $description
- * @property integer $created_by
- * @property integer $updated_by
  * @property Customer $Customers
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $WorkingHours
  * 
@@ -23,11 +19,7 @@
  * @method string              getCode()         Returns the current record's "code" value
  * @method string              getTitle()        Returns the current record's "title" value
  * @method string              getDescription()  Returns the current record's "description" value
- * @method integer             getCreatedBy()    Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()    Returns the current record's "updated_by" value
  * @method Customer            getCustomers()    Returns the current record's "Customers" value
- * @method sfGuardUser         getCreator()      Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()      Returns the current record's "Updater" value
  * @method Doctrine_Collection getCostForms()    Returns the current record's "CostForms" collection
  * @method Doctrine_Collection getWorkingHours() Returns the current record's "WorkingHours" collection
  * @method Project             setCustomerId()   Sets the current record's "customer_id" value
@@ -35,11 +27,7 @@
  * @method Project             setCode()         Sets the current record's "code" value
  * @method Project             setTitle()        Sets the current record's "title" value
  * @method Project             setDescription()  Sets the current record's "description" value
- * @method Project             setCreatedBy()    Sets the current record's "created_by" value
- * @method Project             setUpdatedBy()    Sets the current record's "updated_by" value
  * @method Project             setCustomers()    Sets the current record's "Customers" value
- * @method Project             setCreator()      Sets the current record's "Creator" value
- * @method Project             setUpdater()      Sets the current record's "Updater" value
  * @method Project             setCostForms()    Sets the current record's "CostForms" collection
  * @method Project             setWorkingHours() Sets the current record's "WorkingHours" collection
  * 
@@ -48,7 +36,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseProject extends sfDoctrineRecord
+abstract class BaseProject extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -81,12 +69,6 @@ abstract class BaseProject extends sfDoctrineRecord
              'type' => 'string',
              'length' => 250,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -97,14 +79,6 @@ abstract class BaseProject extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('CostForm as CostForms', array(
              'local' => 'id',
              'foreign' => 'project_id'));
@@ -113,11 +87,11 @@ abstract class BaseProject extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'project_id'));
 
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

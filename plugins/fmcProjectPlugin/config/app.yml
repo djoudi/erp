@@ -1,13 +1,21 @@
 all:
-  menus:
-    leftmenu_administration:
-      children:
-        30:
-          label: Projects
-          attributes: { class: "nav-header" }
-          requires_auth: true      
-        31:
-          label: Projects
-          route: @projectManagement
-          requires_auth: true
-          credentials: ["Project Management"]
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        40:
+                            attributes:
+                                class: "divider"
+                            credentials: ["Project Management"]
+                        41:
+                            label: Projects
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Project Management"]
+                        42:
+                            label: Projects
+                            route: @projectManagement
+                            requires_auth: true
+                            credentials: ["Project Management"]

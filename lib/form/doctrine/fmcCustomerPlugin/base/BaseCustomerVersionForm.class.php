@@ -17,22 +17,22 @@ abstract class BaseCustomerVersionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'name'       => new sfWidgetFormInputText(),
-      'created_by' => new sfWidgetFormInputText(),
-      'updated_by' => new sfWidgetFormInputText(),
-      'deleted_at' => new sfWidgetFormDateTime(),
+      'creater_id' => new sfWidgetFormInputText(),
+      'updater_id' => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
+      'deleted_at' => new sfWidgetFormDateTime(),
       'version'    => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'       => new sfValidatorString(array('max_length' => 50)),
-      'created_by' => new sfValidatorInteger(array('required' => false)),
-      'updated_by' => new sfValidatorInteger(array('required' => false)),
-      'deleted_at' => new sfValidatorDateTime(array('required' => false)),
+      'creater_id' => new sfValidatorPass(),
+      'updater_id' => new sfValidatorPass(),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
+      'deleted_at' => new sfValidatorDateTime(array('required' => false)),
       'version'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('version')), 'empty_value' => $this->getObject()->get('version'), 'required' => false)),
     ));
 

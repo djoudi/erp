@@ -1,5 +1,10 @@
 <?php slot ('title', "Invoicing Employee Cost Forms") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
+
 <p>Please select a project to show the unprocessed costs</p>
 
 <form method="post" action="">

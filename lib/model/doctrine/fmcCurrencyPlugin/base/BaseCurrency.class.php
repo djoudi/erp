@@ -9,10 +9,6 @@
  * @property string $symbol
  * @property boolean $isDefault
  * @property boolean $isActive
- * @property integer $created_by
- * @property integer $updated_by
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $CostFormItems
  * 
@@ -20,20 +16,12 @@
  * @method string              getSymbol()        Returns the current record's "symbol" value
  * @method boolean             getIsDefault()     Returns the current record's "isDefault" value
  * @method boolean             getIsActive()      Returns the current record's "isActive" value
- * @method integer             getCreatedBy()     Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()     Returns the current record's "updated_by" value
- * @method sfGuardUser         getCreator()       Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()       Returns the current record's "Updater" value
  * @method Doctrine_Collection getCostForms()     Returns the current record's "CostForms" collection
  * @method Doctrine_Collection getCostFormItems() Returns the current record's "CostFormItems" collection
  * @method Currency            setCode()          Sets the current record's "code" value
  * @method Currency            setSymbol()        Sets the current record's "symbol" value
  * @method Currency            setIsDefault()     Sets the current record's "isDefault" value
  * @method Currency            setIsActive()      Sets the current record's "isActive" value
- * @method Currency            setCreatedBy()     Sets the current record's "created_by" value
- * @method Currency            setUpdatedBy()     Sets the current record's "updated_by" value
- * @method Currency            setCreator()       Sets the current record's "Creator" value
- * @method Currency            setUpdater()       Sets the current record's "Updater" value
  * @method Currency            setCostForms()     Sets the current record's "CostForms" collection
  * @method Currency            setCostFormItems() Sets the current record's "CostFormItems" collection
  * 
@@ -42,7 +30,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseCurrency extends sfDoctrineRecord
+abstract class BaseCurrency extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -68,25 +56,11 @@ abstract class BaseCurrency extends sfDoctrineRecord
              'default' => true,
              'notnull' => true,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('CostForm as CostForms', array(
              'local' => 'id',
              'foreign' => 'currency_id'));
@@ -95,9 +69,11 @@ abstract class BaseCurrency extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'currency_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();
-        $this->actAs($timestampable0);
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
         $this->actAs($versionable0);
     }
 }

@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+div.time-picker
+{
+    width: 6em !important;
+}
+
+.timepicker-error
+{
+    border:1px solid red;
+}

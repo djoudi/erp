@@ -1,5 +1,10 @@
 <?php slot ('title', "New Customer"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
+
+
 <form method="post" action="">
 
   <table class="table table-striped table-bordered table-condensed">

@@ -26,11 +26,11 @@ abstract class BaseCostFormItemVersionFormFilter extends BaseFormFilterDoctrine
       'invoice_Date' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'dontInvoice'  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'isPaid'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'created_by'   => new sfWidgetFormFilterInput(),
-      'updated_by'   => new sfWidgetFormFilterInput(),
-      'deleted_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'creater_id'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'updater_id'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'deleted_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
@@ -47,11 +47,11 @@ abstract class BaseCostFormItemVersionFormFilter extends BaseFormFilterDoctrine
       'invoice_Date' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'dontInvoice'  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'isPaid'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'created_by'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'updated_by'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'deleted_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'creater_id'   => new sfValidatorPass(array('required' => false)),
+      'updater_id'   => new sfValidatorPass(array('required' => false)),
       'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'deleted_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('cost_form_item_version_filters[%s]');
@@ -85,11 +85,11 @@ abstract class BaseCostFormItemVersionFormFilter extends BaseFormFilterDoctrine
       'invoice_Date' => 'Date',
       'dontInvoice'  => 'Boolean',
       'isPaid'       => 'Boolean',
-      'created_by'   => 'Number',
-      'updated_by'   => 'Number',
-      'deleted_at'   => 'Date',
+      'creater_id'   => 'Text',
+      'updater_id'   => 'Text',
       'created_at'   => 'Date',
       'updated_at'   => 'Date',
+      'deleted_at'   => 'Date',
       'version'      => 'Number',
     );
   }

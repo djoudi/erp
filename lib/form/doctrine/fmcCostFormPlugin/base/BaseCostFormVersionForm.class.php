@@ -21,11 +21,11 @@ abstract class BaseCostFormVersionForm extends BaseFormDoctrine
       'advanceRecieved' => new sfWidgetFormInputText(),
       'currency_id'     => new sfWidgetFormInputText(),
       'isSent'          => new sfWidgetFormInputCheckbox(),
-      'created_by'      => new sfWidgetFormInputText(),
-      'updated_by'      => new sfWidgetFormInputText(),
-      'deleted_at'      => new sfWidgetFormDateTime(),
+      'creater_id'      => new sfWidgetFormInputText(),
+      'updater_id'      => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
+      'deleted_at'      => new sfWidgetFormDateTime(),
       'version'         => new sfWidgetFormInputHidden(),
     ));
 
@@ -36,11 +36,11 @@ abstract class BaseCostFormVersionForm extends BaseFormDoctrine
       'advanceRecieved' => new sfValidatorNumber(array('required' => false)),
       'currency_id'     => new sfValidatorInteger(),
       'isSent'          => new sfValidatorBoolean(array('required' => false)),
-      'created_by'      => new sfValidatorInteger(array('required' => false)),
-      'updated_by'      => new sfValidatorInteger(array('required' => false)),
-      'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
+      'creater_id'      => new sfValidatorPass(),
+      'updater_id'      => new sfValidatorPass(),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
+      'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
       'version'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('version')), 'empty_value' => $this->getObject()->get('version'), 'required' => false)),
     ));
 

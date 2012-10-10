@@ -21,11 +21,11 @@ abstract class BaseCostFormForm extends BaseFormDoctrine
       'advanceRecieved' => new sfWidgetFormInputText(),
       'currency_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'), 'add_empty' => false)),
       'isSent'          => new sfWidgetFormInputCheckbox(),
-      'created_by'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'add_empty' => true)),
-      'updated_by'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'add_empty' => true)),
-      'deleted_at'      => new sfWidgetFormDateTime(),
+      'creater_id'      => new sfWidgetFormInputText(),
+      'updater_id'      => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
+      'deleted_at'      => new sfWidgetFormDateTime(),
       'version'         => new sfWidgetFormInputText(),
     ));
 
@@ -36,11 +36,11 @@ abstract class BaseCostFormForm extends BaseFormDoctrine
       'advanceRecieved' => new sfValidatorNumber(array('required' => false)),
       'currency_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'))),
       'isSent'          => new sfValidatorBoolean(array('required' => false)),
-      'created_by'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creator'), 'required' => false)),
-      'updated_by'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Updater'), 'required' => false)),
-      'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
+      'creater_id'      => new sfValidatorPass(),
+      'updater_id'      => new sfValidatorPass(),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
+      'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
       'version'         => new sfValidatorInteger(array('required' => false)),
     ));
 

@@ -25,15 +25,16 @@ abstract class BasesfGuardUserVersionFormFilter extends BaseFormFilterDoctrine
       'is_super_admin'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'last_login'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'group_id'              => new sfWidgetFormFilterInput(),
-      'created_by'            => new sfWidgetFormFilterInput(),
-      'updated_by'            => new sfWidgetFormFilterInput(),
       'IllnessWoReportLimit'  => new sfWidgetFormFilterInput(),
       'IllnessWReportLimit'   => new sfWidgetFormFilterInput(),
       'PaidVacationLimit'     => new sfWidgetFormFilterInput(),
       'UnpaidVacationLimit'   => new sfWidgetFormFilterInput(),
       'Monthly_Working_Hours' => new sfWidgetFormFilterInput(),
+      'creater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'updater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'deleted_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
@@ -49,15 +50,16 @@ abstract class BasesfGuardUserVersionFormFilter extends BaseFormFilterDoctrine
       'is_super_admin'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'last_login'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'group_id'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'created_by'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'updated_by'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'IllnessWoReportLimit'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'IllnessWReportLimit'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'PaidVacationLimit'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'UnpaidVacationLimit'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'Monthly_Working_Hours' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'creater_id'            => new sfValidatorPass(array('required' => false)),
+      'updater_id'            => new sfValidatorPass(array('required' => false)),
       'created_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'deleted_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_version_filters[%s]');
@@ -90,15 +92,16 @@ abstract class BasesfGuardUserVersionFormFilter extends BaseFormFilterDoctrine
       'is_super_admin'        => 'Boolean',
       'last_login'            => 'Date',
       'group_id'              => 'Number',
-      'created_by'            => 'Number',
-      'updated_by'            => 'Number',
       'IllnessWoReportLimit'  => 'Number',
       'IllnessWReportLimit'   => 'Number',
       'PaidVacationLimit'     => 'Number',
       'UnpaidVacationLimit'   => 'Number',
       'Monthly_Working_Hours' => 'Number',
+      'creater_id'            => 'Text',
+      'updater_id'            => 'Text',
       'created_at'            => 'Date',
       'updated_at'            => 'Date',
+      'deleted_at'            => 'Date',
       'version'               => 'Number',
     );
   }

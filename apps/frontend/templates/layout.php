@@ -1,81 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <?php include_http_metas() ?>
-    <?php include_metas() ?>
-    <?php include_title() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
-  </head>
-  <body>
-    
-    <?php 
-        //active mod detection
-        $moduleName = $sf_context->getModuleName();
-        $actionName = $sf_context->getActionName();
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php include_http_metas() ?>
+        <?php include_metas() ?>
+        <?php include_title() ?>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <?php include_stylesheets() ?>
+        <?php include_javascripts() ?>
+    </head>
+    <body>
         
-        $mods_costform = array(
-            'costFormProcess', 
-            'costFormUser', 
-            'costFormReport', 
-            'costFormManage'
-        );
-        $mods_administration = array(
-            'currencyManagement', 
-            'customerManagement', 
-            'departmentManagement', 
-            'employeeManagement', 
-            'projectManagement', 
-            'vatManagement', 
-            'workingHourAdmin'
-        );
-        $mods_workinghours = array(
-            'workingHourUser',
-            'wh_Process', 
-            'wh_Reports', 
-        );
-      
-      if (in_array($moduleName, $mods_costform) or $actionName=="costforms") $mod = "costForm";
-      elseif (in_array($moduleName, $mods_administration) or $actionName=="administration") $mod = "administration";
-      elseif (in_array($moduleName, $mods_workinghours) or $actionName=="workinghours") $mod = "workinghours";
-      else $mod = "homepage";
-      
-      //permission detection
-      $permlist_cost = array("Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management");
-      $permlist_admin = array("Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management");
-      $myPermList = $sf_user->getGuardUser()->getPermissionNames();
-    ?>
-    
-    <div class="container" id="LayoutContainer">
-      <?php include_partial ("global/layout_header"); ?>
-      <?php include_partial ("global/layout_topmenu"); ?>
-      
-      
-      <div class="row" style="margin-top: 10px;">
-      
-        <div class="span2" style="width: 160px !important;">
-          <?php include_partial("homepage/".$mod); ?>
-        </div>
-        
-        <div class="span11" id="LayoutMainContent">
-        
-          <?php if (has_slot('title')): ?>
-            <div id="LayoutTitle" class="alert alert-info">
-              <?php echo get_slot('title') ?>
+        <div class="container">
+            
+            <a class="pull-left" href="<?php echo url_for("@homepage"); ?>">
+                <img src="/images/logo.png" id="LayoutLogo"/>
+            </a>
+            
+            <div class="pull-right" id="layout_top_userinfo">
+                <i class="icon-user"></i>
+                <?php echo $sf_user->getGuardUser()->__toString(); ?> | 
+                <a href="<?php echo url_for("@sf_guard_signout"); ?>">
+                    Logout <i class="icon-off"></i>
+                </a>
             </div>
-          <?php endif;?>
-          
-          <?php include_partial ("global/layout_flashes"); ?>
-          
-          
-          <?php echo $sf_content ?>
-          
+            
+            <div class="clearfix"></div>
+            
+            <?php
+                $arr = sfConfig::get('app_menus_topmenu');
+                $menu = ioMenuItem::createFromArray($arr);
+                echo $menu->render();
+            ?>
+            
+            <div class="clearfix"></div>
+            
+            <?php if (has_slot('title')): ?>
+                <div id="layout_title" class="alert alert-info">
+                    <?php echo get_slot('title') ?>
+                </div>
+            <?php endif;?>
+            
+            <div class="clearfix"></div>
+            
+            <?php if ($sf_user->hasFlash('success')): ?>
+                <div class="alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $sf_user->getFlash('success') ?>
+                </div>
+            <?php endif ?>
+            <?php if ($sf_user->hasFlash('notice')): ?>
+                <div class="alert alert-info fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $sf_user->getFlash('notice') ?>
+                </div>
+            <?php endif ?>
+            <?php if ($sf_user->hasFlash('error')): ?>
+                <div class="alert alert-error  fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $sf_user->getFlash('error') ?>
+                </div>
+            <?php endif ?>
+            
+            <?php echo $sf_content ?>
+            
         </div>
         
-      </div>
-      
-    </div>
-  
-  </body>
+    </body>
 </html>

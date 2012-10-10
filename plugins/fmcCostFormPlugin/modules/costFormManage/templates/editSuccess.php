@@ -1,33 +1,16 @@
 <?php slot ('title', "Edit Cost") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
+
 <form action="" method="post">
 
     <table class="table table-striped table-bordered table-condensed">
         
         <?php echo $form; ?>
-    
-        <tr>
-            <td>Created</td>
-            <td>
-                <?php echo $cost->getCreatedAt(); ?>
-                
-                <?php if ($cost->getCreator()->getId()): ?>
-                    by <?php echo $cost->getCreator(); ?>
-                <?php endif; ?>
-            </td>
-        </tr>
         
-        <tr>
-            <td>Last Edited</td>
-            <td>
-                <?php echo $cost->getUpdatedAt(); ?>
-                
-                <?php if ($cost->getUpdater()->getId()): ?>
-                    by <?php echo $cost->getUpdater(); ?>
-                <?php endif; ?>
-            </td>
-        </tr>
-  
     </table>
   
     <div class="form-actions">

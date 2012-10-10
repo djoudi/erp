@@ -165,18 +165,14 @@ abstract class BaseworkingHourUserActions extends sfActions {
     public function executeLeaverequest (sfWebRequest $request) {
         
         // Fetching parameters
-        
             $this->date = $request->getParameter('date');
             $this->type = $request->getParameter('type');
-        
-        // Loading configuration
-        
+            
             $user = $this->getUser()->getGuardUser();
             $user_id = $user->getId();
+            
             $this->leaveStatus = sfConfig::get('app_workingHour_leaveStatus', array());
-        
-        // Loading check class
-        
+            
             $accessClass = new FmcWhUser_Access();
             
         // Checking if day is empty and available
@@ -207,17 +203,19 @@ abstract class BaseworkingHourUserActions extends sfActions {
         // Preparing leave request form
             
             $formitem = new WorkingHourLeave();
-            $formitem->setDate($this->date);
+            $formitem->setFromDate($this->date);
+            $formitem->setToDate($this->date);
             $formitem->setUser($user);
             $formitem->setType($this->type);
             $formitem->setStatus('Pending');
-            $formitem->setStatusUser($user);
             $this->form = new WorkingHourForm_leaverequest($formitem);
         
         // Processing leave request form
         
             $redirectUrl = $this->getController()->genUrl('@workingHourUser_day?date='.$this->date);
+            
             $processClass = new FmcWhUser_Process();
+            
             $processClass->workingHour_DayLeaveRequest($this->form, $request, $redirectUrl);
         
     }
@@ -315,8 +313,10 @@ abstract class BaseworkingHourUserActions extends sfActions {
                 // Processing form
                     
                     $redirectUrl = '@workingHourUser_day?date='.$this->date;
+                    
                     $processClass->workingHour_DayItems
                         ($this->form, $request, $redirectUrl, $this->items);
+                    
             }
             
         }

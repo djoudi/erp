@@ -17,19 +17,14 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
- * @property integer $created_by
- * @property integer $updated_by
  * @property integer $IllnessWoReportLimit
  * @property integer $IllnessWReportLimit
  * @property integer $PaidVacationLimit
  * @property integer $UnpaidVacationLimit
  * @property integer $Monthly_Working_Hours
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
- * @property Doctrine_Collection $User
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
@@ -50,19 +45,14 @@
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
  * @method integer               getGroupId()               Returns the current record's "group_id" value
- * @method integer               getCreatedBy()             Returns the current record's "created_by" value
- * @method integer               getUpdatedBy()             Returns the current record's "updated_by" value
  * @method integer               getIllnessWoReportLimit()  Returns the current record's "IllnessWoReportLimit" value
  * @method integer               getIllnessWReportLimit()   Returns the current record's "IllnessWReportLimit" value
  * @method integer               getPaidVacationLimit()     Returns the current record's "PaidVacationLimit" value
  * @method integer               getUnpaidVacationLimit()   Returns the current record's "UnpaidVacationLimit" value
  * @method integer               getMonthlyWorkingHours()   Returns the current record's "Monthly_Working_Hours" value
- * @method sfGuardUser           getCreator()               Returns the current record's "Creator" value
- * @method sfGuardUser           getUpdater()               Returns the current record's "Updater" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()            Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
- * @method Doctrine_Collection   getUser()                  Returns the current record's "User" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
@@ -82,19 +72,14 @@
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()               Sets the current record's "group_id" value
- * @method sfGuardUser           setCreatedBy()             Sets the current record's "created_by" value
- * @method sfGuardUser           setUpdatedBy()             Sets the current record's "updated_by" value
  * @method sfGuardUser           setIllnessWoReportLimit()  Sets the current record's "IllnessWoReportLimit" value
  * @method sfGuardUser           setIllnessWReportLimit()   Sets the current record's "IllnessWReportLimit" value
  * @method sfGuardUser           setPaidVacationLimit()     Sets the current record's "PaidVacationLimit" value
  * @method sfGuardUser           setUnpaidVacationLimit()   Sets the current record's "UnpaidVacationLimit" value
  * @method sfGuardUser           setMonthlyWorkingHours()   Sets the current record's "Monthly_Working_Hours" value
- * @method sfGuardUser           setCreator()               Sets the current record's "Creator" value
- * @method sfGuardUser           setUpdater()               Sets the current record's "Updater" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()            Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
- * @method sfGuardUser           setUser()                  Sets the current record's "User" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
@@ -108,7 +93,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardUser extends sfDoctrineRecord
+abstract class BasesfGuardUser extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -167,12 +152,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
         $this->hasColumn('IllnessWoReportLimit', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
@@ -206,14 +185,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('sfGuardGroup as Groups', array(
              'refClass' => 'sfGuardUserGroup',
              'local' => 'group_id',
@@ -227,10 +198,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
-
-        $this->hasMany('sfGuardGroup as User', array(
-             'local' => 'id',
-             'foreign' => 'created_by'));
 
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',
@@ -260,9 +227,11 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();
-        $this->actAs($timestampable0);
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
         $this->actAs($versionable0);
     }
 }

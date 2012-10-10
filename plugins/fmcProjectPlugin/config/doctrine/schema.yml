@@ -1,19 +1,29 @@
 Project:
-  actAs:
-    SoftDelete: ~
-    Timestampable: ~
-    Versionable: ~
-    
-  columns:
-    customer_id: { type: integer, notnull: true }
-    status: { type: enum, values: ['Active', 'Passive'], default: Active, notnull: true }
-    code: { type: string(20), unique: true, notnull: true }
-    title: { type: string(150) }
-    description: { type: string(250) }
-    created_by: integer
-    updated_by: integer
-    
-  relations:
-    Customers: { class: Customer, local: customer_id, foreign: id, foreignAlias: Projects, onDelete: CASCADE }
-    Creator: { class: sfGuardUser, local: created_by, foreign: id, foreignAlias: User }
-    Updater: { class: sfGuardUser, local: updated_by, foreign: id, foreignAlias: Updater }
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~ 
+    columns:
+        customer_id:
+            type: integer
+            notnull: true
+        status:
+            type: enum
+            values: ['Active', 'Passive']
+            default: Active
+            notnull: true
+        code:
+            type: string(20)
+            unique: true
+            notnull: true
+        title:
+            type: string(150)
+        description:
+            type: string(250)
+    relations:
+        Customers:
+            class: Customer
+            local: customer_id
+            foreign: id
+            foreignAlias: Projects
+            onDelete: CASCADE

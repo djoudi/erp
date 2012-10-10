@@ -6,13 +6,13 @@
             <strong><?php echo $count; ?></strong> results found. &nbsp;
         <?php endif; ?>
     
-        <img src="/css/tablesorter/first.png" class="first">
-        <img src="/css/tablesorter/prev.png" class="prev">
+        <img src="/addons/tablesorter/images/first.png" class="first">
+        <img src="/addons/tablesorter/images/prev.png" class="prev">
         
         <input type="text" class="pagedisplay span2" />
         
-        <img src="/css/tablesorter/next.png" class="next">
-        <img src="/css/tablesorter/last.png" class="last">
+        <img src="/addons/tablesorter/images/next.png" class="next">
+        <img src="/addons/tablesorter/images/last.png" class="last">
         
         <select class="pagesize span1">
             

@@ -1,13 +1,20 @@
 all:
-  menus:
-    leftmenu_administration:
-      children:
-        20:
-          label: Customers
-          attributes: { class: "nav-header" }
-          requires_auth: true      
-        21:
-          label: Customers
-          route: @customerManagement
-          requires_auth: true
-          credentials: ["Customer Management"]
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        30:
+                            attributes:
+                                class: "divider"
+                            credentials: ["Customer Management"]
+                        31:
+                            label: Customers
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ["Customer Management"]
+                        32:
+                            label: Customers
+                            route: @customerManagement
+                            requires_auth: true
+                            credentials: ["Customer Management"]

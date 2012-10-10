@@ -18,13 +18,9 @@
  * @property date $invoice_Date
  * @property boolean $dontInvoice
  * @property boolean $isPaid
- * @property integer $created_by
- * @property integer $updated_by
  * @property CostForm $CostForms
  * @property Vat $Vats
  * @property Currency $Currencies
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * 
  * @method integer      getCostFormId()   Returns the current record's "costForm_id" value
  * @method date         getCostDate()     Returns the current record's "cost_Date" value
@@ -39,13 +35,9 @@
  * @method date         getInvoiceDate()  Returns the current record's "invoice_Date" value
  * @method boolean      getDontInvoice()  Returns the current record's "dontInvoice" value
  * @method boolean      getIsPaid()       Returns the current record's "isPaid" value
- * @method integer      getCreatedBy()    Returns the current record's "created_by" value
- * @method integer      getUpdatedBy()    Returns the current record's "updated_by" value
  * @method CostForm     getCostForms()    Returns the current record's "CostForms" value
  * @method Vat          getVats()         Returns the current record's "Vats" value
  * @method Currency     getCurrencies()   Returns the current record's "Currencies" value
- * @method sfGuardUser  getCreator()      Returns the current record's "Creator" value
- * @method sfGuardUser  getUpdater()      Returns the current record's "Updater" value
  * @method CostFormItem setCostFormId()   Sets the current record's "costForm_id" value
  * @method CostFormItem setCostDate()     Sets the current record's "cost_Date" value
  * @method CostFormItem setDescription()  Sets the current record's "description" value
@@ -59,20 +51,16 @@
  * @method CostFormItem setInvoiceDate()  Sets the current record's "invoice_Date" value
  * @method CostFormItem setDontInvoice()  Sets the current record's "dontInvoice" value
  * @method CostFormItem setIsPaid()       Sets the current record's "isPaid" value
- * @method CostFormItem setCreatedBy()    Sets the current record's "created_by" value
- * @method CostFormItem setUpdatedBy()    Sets the current record's "updated_by" value
  * @method CostFormItem setCostForms()    Sets the current record's "CostForms" value
  * @method CostFormItem setVats()         Sets the current record's "Vats" value
  * @method CostFormItem setCurrencies()   Sets the current record's "Currencies" value
- * @method CostFormItem setCreator()      Sets the current record's "Creator" value
- * @method CostFormItem setUpdater()      Sets the current record's "Updater" value
  * 
  * @package    fmc
  * @subpackage model
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseCostFormItem extends sfDoctrineRecord
+abstract class BaseCostFormItem extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -137,12 +125,6 @@ abstract class BaseCostFormItem extends sfDoctrineRecord
              'notnull' => false,
              'default' => false,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -163,19 +145,11 @@ abstract class BaseCostFormItem extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

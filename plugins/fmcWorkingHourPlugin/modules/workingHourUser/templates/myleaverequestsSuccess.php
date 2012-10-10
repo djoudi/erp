@@ -1,5 +1,9 @@
 <?php slot ('title', "My leave requests"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <?php if (isset($filter)): ?>
   <?php include_partial ('fmcCore/filterForm', array(
@@ -29,7 +33,8 @@
 
         <tr>
             <th>Type</th>
-            <th>Date</th>
+            <th>From Date</th>
+            <th>To Date</th>
             <th>Description</th>
             <th>Last Status</th>
             <th>Last Update</th>
@@ -38,16 +43,20 @@
         <?php foreach ($myLeaveRequests as $request): ?>
             <tr>
                 <td>
-                    <a href="<?php echo url_for('@workingHourUser_day?date='.$request['date']); ?>">
+                    <?php if ( $request['status']=='Pending' or $request['status']=='Approved'): ?>
+                        <a href="<?php echo url_for('@workingHourUser_day?date='.$request['from_Date']); ?>">
+                            <?php echo $leaveStatus[$request["type"]]; ?>
+                        </a>
+                    <?php else: ?>
                         <?php echo $leaveStatus[$request["type"]]; ?>
-                    </a>
+                    <?php endif; ?>
                 </td>
-                <td><?php echo $request["date"]; ?></td>
+                <td><?php echo $request["from_Date"]; ?></td>
+                <td><?php echo $request["to_Date"]; ?></td>
                 <td><?php echo $request["description"]; ?></td>
                 <td><?php echo $request["status"]; ?></td>
                 <td>
                     <?php echo $request["updated_at"]; ?>
-                    by <?php echo $request["StatusUser"]["first_name"]." ".$request["StatusUser"]["last_name"]; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

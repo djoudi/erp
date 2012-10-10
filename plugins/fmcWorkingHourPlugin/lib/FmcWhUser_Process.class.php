@@ -19,18 +19,36 @@ class FmcWhUser_Process {
             $form->bind ($request->getParameter($form->getName()));
             
             if ($form->isValid()) {
-
-                $object = $form->save();
-                $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                $object->setCreatedBy($this->user->getGuardUser()->getId());
-                $object->save();
                 
-                $this->user->setFlash('success', 'Leave request has been sent.');
-                $this->controller->redirect ($redirectUrl);
+                $values = $form->getValues();
+                $errorMsg = "";
+                
+                $fromDate = new DateTime ($values["from_Date"]);
+                $toDate = new DateTime ($values["to_Date"]);
+                
+                if ($fromDate > $toDate) $errorMsg = "'From' date cannot be after 'To' date";
+                
+                // burada gun bos mu kontrolu olacak
+                
+                // gun sayisi sayaci - cts ile
+                
+                // limit kontrolu
+                
+                if ($errorMsg) {
+                    
+                    $this->user->setFlash("error", $errorMsg);
+                    
+                } else {
+                    
+                    $form->save();
+                    
+                    $this->user->setFlash('success', 'Leave request has been sent.');
+                    
+                    $this->controller->redirect ($redirectUrl);
+                }
                 
             } else {
                 $this->user->setFlash('error', 'Problem occured saving the record! Please check your input.');
-        
             }
         }
     }
@@ -158,8 +176,6 @@ class FmcWhUser_Process {
                 } else {
                     
                     $object = $form->save();
-                    $object->setUpdatedBy($this->user_id);
-                    $object->setCreatedBy($this->user_id);
                     $object->save();
                     
                     $this->user->setFlash('success', 'Office exit hour has been sent.');
@@ -187,8 +203,6 @@ class FmcWhUser_Process {
           if ($form->isValid()) {
             
               $object = $form->save();
-              $object->setUpdatedBy($this->user->getGuardUser()->getId());
-              $object->setCreatedBy($this->user->getGuardUser()->getId());
               $object->save();
             
               $this->user->setFlash('success', 'Office day entrance recorded.');
@@ -274,10 +288,6 @@ class FmcWhUser_Process {
                     //save form
                     
                     $object = $form->save();
-                    
-                    $object->setUpdatedBy($this->user->getGuardUser()->getId());
-                    
-                    if (!$formValues["created_by"]) $object->setCreatedBy($this->user->getGuardUser()->getId());
                     $object->save();
                     
                     $this->user->setFlash("success", "Record is added!");

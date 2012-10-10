@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+/* Refs #28 */
+html {
+    overflow-y: scroll !important;
+}

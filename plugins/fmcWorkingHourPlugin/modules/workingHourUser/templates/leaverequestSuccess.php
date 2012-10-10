@@ -1,5 +1,10 @@
 <?php include_partial ('title', array('date'=>$date, 'text'=>$leaveStatus[$type])); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
+
 <form method="post" action="">
 
     <?php echo $form->renderHiddenFields(); ?>
@@ -12,6 +17,14 @@
             <td>
                 <?php echo $form['description']; ?>
             </td>
+        </tr>
+        <tr>
+            <td>From</td>
+            <td><?php echo $form['from_Date']; ?></td>
+        </tr>
+        <tr>
+            <td>To</td>
+            <td><?php echo $form['to_Date']; ?></td>
         </tr>
     </table>
 

@@ -1,5 +1,9 @@
 <?php slot ('title', "Cost form information") ?>
 
+<script type="text/javascript">
+    $("#topmenu_costforms").addClass("active");
+</script>
+
 
   <?php include_partial('costFormDetails', array('costForm' => $costForm, 'costFormStatus' => $costFormStatus)) ?>
   

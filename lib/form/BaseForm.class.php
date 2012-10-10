@@ -1,22 +1,16 @@
 <?php
 
-/**
- * Base project form.
- * 
- * @package    cfdb
- * @subpackage form
- * @author     Your name here 
- * @version    SVN: $Id: BaseForm.class.php 20147 2009-07-13 11:46:57Z FabianLange $
- */
-class BaseForm extends sfFormSymfony
-{
-  public function setup()
-  {
-    unset($this['created_at']);
-    unset($this['updated_at']);
-    unset($this['deleted_at']);
-    unset($this['version']);
-    unset($this['created_by']);
-    unset($this['updated_by']);
-  }
+class BaseForm extends sfFormSymfony {
+    
+    public function setup() {
+        
+        unset($this['created_at']);
+        unset($this['updated_at']);
+        unset($this['deleted_at']);
+        unset($this['version']);
+        unset($this['creater_id']);
+        unset($this['updater_id']);
+        
+    }
+    
 }

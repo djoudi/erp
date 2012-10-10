@@ -1,22 +1,42 @@
 <table class="table table-bordered table-condensed">
     <tr>
-        <th>Leave Date</th>
-        <td><?php echo $leaveRequest->getDate(); ?></td>
+        <th>
+            Leave Date From
+        </th>
+        <td>
+            <?php echo $leaveRequest['from_Date']; ?>
+        </td>
     </tr>
     <tr>
-        <th>Type</th>
-        <td><?php echo $leaveStatus[$leaveRequest->getType()]; ?></td>
+        <th>
+            Leave Date To
+        </th>
+        <td>
+            <?php echo $leaveRequest['to_Date']; ?>
+        </td>
     </tr>
     <tr>
-        <th>Description / Report Number</th>
-        <td><?php echo $leaveRequest->getDescription(); ?></td>
+        <th>
+            Type
+        </th>
+        <td>
+            <?php echo $leaveStatus[$leaveRequest->getType()]; ?>
+        </td>
     </tr>
     <tr>
-        <th>Current Status</th>
-        <td><?php echo $leaveRequest->getStatus(); ?></td>
+        <th>
+            Description / Report Number
+        </th>
+        <td>
+            <?php echo $leaveRequest['description']; ?>
+        </td>
     </tr>
     <tr>
-        <th>Last Updated By</th>
-        <td><?php echo $leaveRequest->getStatusUser(); ?></td>
+        <th>
+            Current Status
+        </th>
+        <td>
+            <?php echo $leaveRequest['status']; ?>
+        </td>
     </tr>
 </table>

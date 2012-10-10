@@ -15,76 +15,85 @@ all:
             children:
                 3:
                     label: Working Hours
-                    route: @workinghours
+                    route: "#"
                     requires_auth: true
-                    credentials: ['Working Hours']
-                    
-        leftmenu_workinghours:
-            name: Left Menu
-            attributes: { class: "nav nav-list" }
-            children:
-                01:
-                    label: My hours
-                    attributes: { class: "nav-header" }
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                02:
-                    label: My working hours
-                    route: @workingHourUser_myhome
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                03:
-                    label: My leave requests
-                    route: @workingHourUser_myleaverequests
-                    requires_auth: true
-                    credentials: ['Working Hours']
-                
-                
-                10:
-                    label: Process requests
-                    attributes: { class: "nav-header" }
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
-                11:
-                    label: Leave requests
-                    route: @wh_process_leaverequests
-                    reuqires_auth: true
-                    credentials: ['Working Hours Management']
-                
-                
-                20:
-                    label: Reports
-                    attributes: { class: "nav-header"}
-                    requires_auth: true
-                    credentials: ['Working Hours Reports']
-                21:
-                    label: Office entrance
-                    route: @wh_reports_officeentrance
-                    requires_auth: true
-                    credentials: ['Working Hours Reports']
-                
-                
-        leftmenu_administration:
-            children:
-                40:
-                    label: Working Hours
-                    attributes: { class: "nav-header" }
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
-                41:
-                    label: Type of Work
-                    route: @workingHourWorkType_list
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
-                42:
-                    label: Set leave requests
-                    route: @workingHourAdmin_setLeaveForAll
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
+                    attributes:
+                        class: "dropdown"
+                        id: topmenu_workinghours
+                    credentials: [['Working Hours', 'Working Hours Management', 'Working Hours Reports']]
+                    children:
+                        01:
+                            label: My hours
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        02:
+                            label: My working hours
+                            route: @workingHourUser_myhome
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        03:
+                            label: My leave requests
+                            route: @workingHourUser_myleaverequests
+                            requires_auth: true
+                            credentials: ['Working Hours']
+                        10:
+                            attributes:
+                                class: "divider"
+                            credentials: ['Working Hours Management']
+                        11:
+                            label: Process requests
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ['Working Hours Management']
+                        12:
+                            label: Leave requests
+                            route: @wh_process_leaverequests
+                            reuqires_auth: true
+                            credentials: ['Working Hours Management']
+                        20:
+                            attributes:
+                                class: "divider"
+                            credentials: ['Working Hours Reports']
+                        21:
+                            label: Reports
+                            attributes: { class: "nav-header"}
+                            requires_auth: true
+                            credentials: ['Working Hours Reports']
+                        22:
+                            label: Office entrance
+                            route: @wh_reports_officeentrance
+                            requires_auth: true
+                            credentials: ['Working Hours Reports']
+                        
 
-                43:
-                    label: Set monthly hours
-                    route: @workingHourAdmin_setMonthyHoursForAll
-                    requires_auth: true
-                    credentials: ['Working Hours Management']
 
+
+
+                99_settings:
+                    children:
+                        50:
+                            attributes:
+                                class: "divider"
+                            credentials: ['Working Hours Management']
+                        51:
+                            label: Working Hours
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ['Working Hours Management']
+                        52:
+                            label: Type of Work
+                            route: @workingHourWorkType_list
+                            requires_auth: true
+                            credentials: ['Working Hours Management']
+                        53:
+                            label: Set leave requests
+                            route: @workingHourAdmin_setLeaveForAll
+                            requires_auth: true
+                            credentials: ['Working Hours Management']
+                        54:
+                            label: Set monthly hours
+                            route: @workingHourAdmin_setMonthyHoursForAll
+                            requires_auth: true
+                            credentials: ['Working Hours Management']

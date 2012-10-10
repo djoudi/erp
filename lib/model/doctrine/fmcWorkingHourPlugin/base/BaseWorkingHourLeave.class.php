@@ -7,57 +7,42 @@
  * 
  * @property integer $user_id
  * @property enum $type
- * @property date $date
+ * @property date $from_Date
+ * @property date $to_Date
  * @property string $description
  * @property enum $status
- * @property integer $status_user
  * @property date $report_Date
  * @property boolean $report_Received
  * @property date $report_Received_On
- * @property integer $created_by
- * @property integer $updated_by
  * @property sfGuardUser $User
- * @property sfGuardUser $StatusUser
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * 
  * @method integer          getUserId()             Returns the current record's "user_id" value
  * @method enum             getType()               Returns the current record's "type" value
- * @method date             getDate()               Returns the current record's "date" value
+ * @method date             getFromDate()           Returns the current record's "from_Date" value
+ * @method date             getToDate()             Returns the current record's "to_Date" value
  * @method string           getDescription()        Returns the current record's "description" value
  * @method enum             getStatus()             Returns the current record's "status" value
- * @method integer          getStatusUser()         Returns the current record's "status_user" value
  * @method date             getReportDate()         Returns the current record's "report_Date" value
  * @method boolean          getReportReceived()     Returns the current record's "report_Received" value
  * @method date             getReportReceivedOn()   Returns the current record's "report_Received_On" value
- * @method integer          getCreatedBy()          Returns the current record's "created_by" value
- * @method integer          getUpdatedBy()          Returns the current record's "updated_by" value
  * @method sfGuardUser      getUser()               Returns the current record's "User" value
- * @method sfGuardUser      getStatusUser()         Returns the current record's "StatusUser" value
- * @method sfGuardUser      getCreator()            Returns the current record's "Creator" value
- * @method sfGuardUser      getUpdater()            Returns the current record's "Updater" value
  * @method WorkingHourLeave setUserId()             Sets the current record's "user_id" value
  * @method WorkingHourLeave setType()               Sets the current record's "type" value
- * @method WorkingHourLeave setDate()               Sets the current record's "date" value
+ * @method WorkingHourLeave setFromDate()           Sets the current record's "from_Date" value
+ * @method WorkingHourLeave setToDate()             Sets the current record's "to_Date" value
  * @method WorkingHourLeave setDescription()        Sets the current record's "description" value
  * @method WorkingHourLeave setStatus()             Sets the current record's "status" value
- * @method WorkingHourLeave setStatusUser()         Sets the current record's "status_user" value
  * @method WorkingHourLeave setReportDate()         Sets the current record's "report_Date" value
  * @method WorkingHourLeave setReportReceived()     Sets the current record's "report_Received" value
  * @method WorkingHourLeave setReportReceivedOn()   Sets the current record's "report_Received_On" value
- * @method WorkingHourLeave setCreatedBy()          Sets the current record's "created_by" value
- * @method WorkingHourLeave setUpdatedBy()          Sets the current record's "updated_by" value
  * @method WorkingHourLeave setUser()               Sets the current record's "User" value
- * @method WorkingHourLeave setStatusUser()         Sets the current record's "StatusUser" value
- * @method WorkingHourLeave setCreator()            Sets the current record's "Creator" value
- * @method WorkingHourLeave setUpdater()            Sets the current record's "Updater" value
  * 
  * @package    fmc
  * @subpackage model
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseWorkingHourLeave extends sfDoctrineRecord
+abstract class BaseWorkingHourLeave extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -77,7 +62,11 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              ),
              'notnull' => true,
              ));
-        $this->hasColumn('date', 'date', null, array(
+        $this->hasColumn('from_Date', 'date', null, array(
+             'type' => 'date',
+             'notnull' => true,
+             ));
+        $this->hasColumn('to_Date', 'date', null, array(
              'type' => 'date',
              'notnull' => true,
              ));
@@ -96,10 +85,6 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              ),
              'notnull' => true,
              ));
-        $this->hasColumn('status_user', 'integer', null, array(
-             'type' => 'integer',
-             'notnull' => true,
-             ));
         $this->hasColumn('report_Date', 'date', null, array(
              'type' => 'date',
              'notnull' => false,
@@ -113,12 +98,6 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              'type' => 'date',
              'notnull' => false,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -129,24 +108,11 @@ abstract class BaseWorkingHourLeave extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as StatusUser', array(
-             'local' => 'status_user',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
-
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

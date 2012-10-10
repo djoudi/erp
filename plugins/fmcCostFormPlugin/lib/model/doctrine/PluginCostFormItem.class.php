@@ -18,7 +18,7 @@ abstract class PluginCostFormItem extends BaseCostFormItem {
         $user = sfContext::getInstance()->getUser();
         
         $this->setIsPaid ( ! $this->getIsPaid() );
-        $this->setUpdatedBy ($user->getGuardUser()->getId());
+        #$this->setUpdatedBy ($user->getGuardUser()->getId());
         $this->save();
         
     }

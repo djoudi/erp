@@ -1,5 +1,9 @@
 <?php slot ('title', "Office entrance reports"); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <script>
 	$(function() {

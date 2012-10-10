@@ -1,5 +1,9 @@
 <?php slot ('title', 'My working hours'); ?>
 
+<script type="text/javascript">
+    $("#topmenu_workinghours").addClass("active");
+</script>
+
 
 <div class="pull-left">
 

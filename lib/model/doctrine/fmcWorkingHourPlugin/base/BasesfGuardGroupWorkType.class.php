@@ -24,7 +24,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BasesfGuardGroupWorkType extends sfDoctrineRecord
+abstract class BasesfGuardGroupWorkType extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -57,9 +57,11 @@ abstract class BasesfGuardGroupWorkType extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable();
+        $auditable0 = new Doctrine_Template_Auditable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();
-        $this->actAs($timestampable0);
+        $this->actAs($auditable0);
+        $this->actAs($softdelete0);
         $this->actAs($versionable0);
     }
 }

@@ -10,13 +10,9 @@
  * @property decimal $advanceRecieved
  * @property integer $currency_id
  * @property boolean $isSent
- * @property integer $created_by
- * @property integer $updated_by
  * @property sfGuardUser $Users
  * @property Project $Projects
  * @property Currency $Currencies
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $CostFormItems
  * 
  * @method integer             getUserId()          Returns the current record's "user_id" value
@@ -24,26 +20,18 @@
  * @method decimal             getAdvanceRecieved() Returns the current record's "advanceRecieved" value
  * @method integer             getCurrencyId()      Returns the current record's "currency_id" value
  * @method boolean             getIsSent()          Returns the current record's "isSent" value
- * @method integer             getCreatedBy()       Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()       Returns the current record's "updated_by" value
  * @method sfGuardUser         getUsers()           Returns the current record's "Users" value
  * @method Project             getProjects()        Returns the current record's "Projects" value
  * @method Currency            getCurrencies()      Returns the current record's "Currencies" value
- * @method sfGuardUser         getCreator()         Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()         Returns the current record's "Updater" value
  * @method Doctrine_Collection getCostFormItems()   Returns the current record's "CostFormItems" collection
  * @method CostForm            setUserId()          Sets the current record's "user_id" value
  * @method CostForm            setProjectId()       Sets the current record's "project_id" value
  * @method CostForm            setAdvanceRecieved() Sets the current record's "advanceRecieved" value
  * @method CostForm            setCurrencyId()      Sets the current record's "currency_id" value
  * @method CostForm            setIsSent()          Sets the current record's "isSent" value
- * @method CostForm            setCreatedBy()       Sets the current record's "created_by" value
- * @method CostForm            setUpdatedBy()       Sets the current record's "updated_by" value
  * @method CostForm            setUsers()           Sets the current record's "Users" value
  * @method CostForm            setProjects()        Sets the current record's "Projects" value
  * @method CostForm            setCurrencies()      Sets the current record's "Currencies" value
- * @method CostForm            setCreator()         Sets the current record's "Creator" value
- * @method CostForm            setUpdater()         Sets the current record's "Updater" value
  * @method CostForm            setCostFormItems()   Sets the current record's "CostFormItems" collection
  * 
  * @package    fmc
@@ -51,7 +39,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseCostForm extends sfDoctrineRecord
+abstract class BaseCostForm extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -75,12 +63,6 @@ abstract class BaseCostForm extends sfDoctrineRecord
              'default' => false,
              'notnull' => true,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
@@ -101,23 +83,15 @@ abstract class BaseCostForm extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('CostFormItem as CostFormItems', array(
              'local' => 'id',
              'foreign' => 'costForm_id'));
 
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

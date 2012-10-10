@@ -7,29 +7,17 @@
  * 
  * @property string $code
  * @property string $title
- * @property integer $created_by
- * @property integer $updated_by
- * @property sfGuardUser $Creator
- * @property sfGuardUser $Updater
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $sfGuardGroupWorkType
  * @property Doctrine_Collection $WorkTypes
  * 
  * @method string              getCode()                 Returns the current record's "code" value
  * @method string              getTitle()                Returns the current record's "title" value
- * @method integer             getCreatedBy()            Returns the current record's "created_by" value
- * @method integer             getUpdatedBy()            Returns the current record's "updated_by" value
- * @method sfGuardUser         getCreator()              Returns the current record's "Creator" value
- * @method sfGuardUser         getUpdater()              Returns the current record's "Updater" value
  * @method Doctrine_Collection getGroups()               Returns the current record's "Groups" collection
  * @method Doctrine_Collection getSfGuardGroupWorkType() Returns the current record's "sfGuardGroupWorkType" collection
  * @method Doctrine_Collection getWorkTypes()            Returns the current record's "WorkTypes" collection
  * @method WorkType            setCode()                 Sets the current record's "code" value
  * @method WorkType            setTitle()                Sets the current record's "title" value
- * @method WorkType            setCreatedBy()            Sets the current record's "created_by" value
- * @method WorkType            setUpdatedBy()            Sets the current record's "updated_by" value
- * @method WorkType            setCreator()              Sets the current record's "Creator" value
- * @method WorkType            setUpdater()              Sets the current record's "Updater" value
  * @method WorkType            setGroups()               Sets the current record's "Groups" collection
  * @method WorkType            setSfGuardGroupWorkType() Sets the current record's "sfGuardGroupWorkType" collection
  * @method WorkType            setWorkTypes()            Sets the current record's "WorkTypes" collection
@@ -39,7 +27,7 @@
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-abstract class BaseWorkType extends sfDoctrineRecord
+abstract class BaseWorkType extends MyDoctrineRecord
 {
     public function setTableDefinition()
     {
@@ -56,25 +44,11 @@ abstract class BaseWorkType extends sfDoctrineRecord
              'notnull' => true,
              'length' => 250,
              ));
-        $this->hasColumn('created_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('updated_by', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('sfGuardUser as Creator', array(
-             'local' => 'created_by',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser as Updater', array(
-             'local' => 'updated_by',
-             'foreign' => 'id'));
-
         $this->hasMany('sfGuardGroup as Groups', array(
              'refClass' => 'sfGuardGroupWorkType',
              'local' => 'worktype_id',
@@ -88,11 +62,11 @@ abstract class BaseWorkType extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'worktype_id'));
 
+        $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
-        $timestampable0 = new Doctrine_Template_Timestampable();
         $versionable0 = new Doctrine_Template_Versionable();
+        $this->actAs($auditable0);
         $this->actAs($softdelete0);
-        $this->actAs($timestampable0);
         $this->actAs($versionable0);
     }
 }

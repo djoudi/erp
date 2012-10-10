@@ -1,16 +1,18 @@
 <?php slot ('title', "Work Types Management") ?>
 
 
-<p>
-    <a class="btn btn-primary" href="<?php echo url_for('@workingHourWorkType_new'); ?>">New Work Type</a>
-</p>
+<script type="text/javascript">
+    $("#topmenu_settings").addClass("active");
+</script>
 
 
 <?php if (isset($filter)): ?>
     <?php include_partial ('fmcCore/filterForm', array(
         'filter'=>$filter, 
         'filtered'=>$filtered, 
-        'count'=>count($items)
+        'count'=>count($items),
+        'new_url'=>url_for('@workingHourWorkType_new'),
+        'new_text'=>"New Work Type"
     )); ?>
 <?php endif; ?>
 

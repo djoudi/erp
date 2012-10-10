@@ -1,2 +1,0 @@
-all:
-  enabled_modules: [costFormUser, costFormProcess, info, costFormInfo, costFormReport, costFormEdit, costFormManage]

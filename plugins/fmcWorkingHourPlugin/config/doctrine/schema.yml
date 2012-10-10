@@ -3,8 +3,8 @@
 WorkingHourDay:
 
     actAs:
+        Auditable: ~
         SoftDelete: ~
-        Timestampable: ~
         Versionable: ~
     columns:
         type:
@@ -21,10 +21,6 @@ WorkingHourDay:
         time:
             type: time
             notnull: true
-        created_by:
-            type: integer
-        updated_by:
-            type: integer
     relations:
         User:
             class: sfGuardUser
@@ -32,24 +28,14 @@ WorkingHourDay:
             foreign: id
             foreignAlias: WorkingHours
             onDelete: CASCADE
-        Creator:
-            class: sfGuardUser
-            local: created_by
-            foreign: id
-            foreignAlias: User
-        Updater:
-            class: sfGuardUser
-            local: updated_by
-            foreign: id
-            foreignAlias: Updater
 
 ##################################################################
 
 WorkType:
 
     actAs:
+        Auditable: ~
         SoftDelete: ~
-        Timestampable: ~
         Versionable: ~
     columns:
         code:
@@ -60,21 +46,6 @@ WorkType:
             type: string(250)
             unique: true
             notnull: true
-        created_by:
-            type: integer
-        updated_by:
-            type: integer            
-    relations:
-        Creator:
-            class: sfGuardUser
-            local: created_by
-            foreign: id
-            foreignAlias: User
-        Updater:
-            class: sfGuardUser
-            local: updated_by
-            foreign: id
-            foreignAlias: Updater
 
 ##################################################################
 
@@ -85,7 +56,8 @@ sfGuardGroupWorkType:
             form:   false
             filter: false
     actAs:
-        Timestampable: ~
+        Auditable: ~
+        SoftDelete: ~
         Versionable: ~
     columns:
         group_id:
@@ -143,8 +115,8 @@ sfGuardGroup:
 WorkingHourLeave:
 
     actAs:
+        Auditable: ~
         SoftDelete: ~
-        Timestampable: ~
         Versionable: ~
     columns:
         user_id:
@@ -154,7 +126,10 @@ WorkingHourLeave:
             type: enum
             values: ["IllnessWReport", "IllnessWoReport", "PaidVacation", "UnpaidVacation"]
             notnull: true
-        date:
+        from_Date:
+            type: date
+            notnull: true
+        to_Date:
             type: date
             notnull: true
         description:
@@ -162,9 +137,6 @@ WorkingHourLeave:
         status:
             type: enum
             values: ["Pending", "Approved", "Denied", "Cancelled"]
-            notnull: true
-        status_user:
-            type: integer
             notnull: true
         report_Date:
             type: date
@@ -176,10 +148,6 @@ WorkingHourLeave:
         report_Received_On:
             type: date
             notnull: false
-        created_by:
-            type: integer
-        updated_by:
-            type: integer
     relations:
         User:
             class: sfGuardUser
@@ -187,29 +155,13 @@ WorkingHourLeave:
             foreign: id
             foreignAlias: WorkingHourLeave
             onDelete: CASCADE
-        StatusUser:
-            class: sfGuardUser
-            local: status_user
-            foreign: id
-            foreignAlias: WorkingHourLeave
-            onDelete: CASCADE
-        Creator:
-            class: sfGuardUser
-            local: created_by
-            foreign: id
-            foreignAlias: User
-        Updater:
-            class: sfGuardUser
-            local: updated_by
-            foreign: id
-            foreignAlias: Updater
 
 ##################################################################
 
 WorkingHour:
     actAs:
+        Auditable: ~
         SoftDelete: ~
-        Timestampable: ~
         Versionable: ~
     columns:
         user_id:
@@ -232,10 +184,6 @@ WorkingHour:
         end:
             type: time
             notnull: true
-        created_by:
-            type: integer
-        updated_by:
-            type: integer
     relations:
         User:
             class: sfGuardUser
@@ -254,14 +202,3 @@ WorkingHour:
             local: worktype_id
             foreign: id
             foreignAlias: WorkTypes
-        Creator:
-            class: sfGuardUser
-            local: created_by
-            foreign: id
-            foreignAlias: User
-        Updater:
-            class: sfGuardUser
-            local: updated_by
-            foreign: id
-            foreignAlias: Updater
-
