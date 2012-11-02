@@ -2,7 +2,11 @@
 
 * {
     color: #333;
+    cursor: default;
     /*vertical-align: middle !important; /* Causes weird buttons and layout */
+}
+a {
+    cursor: pointer;
 }
 
 body {
