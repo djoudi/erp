@@ -17,11 +17,6 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
- * @property integer $IllnessWoReportLimit
- * @property integer $IllnessWReportLimit
- * @property integer $PaidVacationLimit
- * @property integer $UnpaidVacationLimit
- * @property integer $Monthly_Working_Hours
  * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
@@ -30,8 +25,6 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $CostForms
- * @property Doctrine_Collection $WorkingHours
- * @property Doctrine_Collection $WorkingHourLeave
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -45,11 +38,6 @@
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
  * @method integer               getGroupId()               Returns the current record's "group_id" value
- * @method integer               getIllnessWoReportLimit()  Returns the current record's "IllnessWoReportLimit" value
- * @method integer               getIllnessWReportLimit()   Returns the current record's "IllnessWReportLimit" value
- * @method integer               getPaidVacationLimit()     Returns the current record's "PaidVacationLimit" value
- * @method integer               getUnpaidVacationLimit()   Returns the current record's "UnpaidVacationLimit" value
- * @method integer               getMonthlyWorkingHours()   Returns the current record's "Monthly_Working_Hours" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()            Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
@@ -58,8 +46,6 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCostForms()             Returns the current record's "CostForms" collection
- * @method Doctrine_Collection   getWorkingHours()          Returns the current record's "WorkingHours" collection
- * @method Doctrine_Collection   getWorkingHourLeave()      Returns the current record's "WorkingHourLeave" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setTitle()                 Sets the current record's "title" value
@@ -72,11 +58,6 @@
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()               Sets the current record's "group_id" value
- * @method sfGuardUser           setIllnessWoReportLimit()  Sets the current record's "IllnessWoReportLimit" value
- * @method sfGuardUser           setIllnessWReportLimit()   Sets the current record's "IllnessWReportLimit" value
- * @method sfGuardUser           setPaidVacationLimit()     Sets the current record's "PaidVacationLimit" value
- * @method sfGuardUser           setUnpaidVacationLimit()   Sets the current record's "UnpaidVacationLimit" value
- * @method sfGuardUser           setMonthlyWorkingHours()   Sets the current record's "Monthly_Working_Hours" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()            Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
@@ -85,8 +66,6 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCostForms()             Sets the current record's "CostForms" collection
- * @method sfGuardUser           setWorkingHours()          Sets the current record's "WorkingHours" collection
- * @method sfGuardUser           setWorkingHourLeave()      Sets the current record's "WorkingHourLeave" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -152,26 +131,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('IllnessWoReportLimit', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('IllnessWReportLimit', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('PaidVacationLimit', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('UnpaidVacationLimit', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('Monthly_Working_Hours', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
 
 
         $this->index('is_active_idx', array(
@@ -216,14 +175,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('CostForm as CostForms', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('WorkingHourDay as WorkingHours', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('WorkingHourLeave', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

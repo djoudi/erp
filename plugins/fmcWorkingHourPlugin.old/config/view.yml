@@ -1,9 +1,0 @@
-all:
-
-  stylesheets:
-    - /fmcWorkingHourPlugin/css/wh.css
-
-  javascripts:
-    - /fmcWorkingHourPlugin/js/wh.js
-    
-    - /sfFormExtraPlugin/js/double_list.js

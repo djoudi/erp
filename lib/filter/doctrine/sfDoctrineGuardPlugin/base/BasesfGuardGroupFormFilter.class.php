@@ -23,7 +23,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'deleted_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'version'          => new sfWidgetFormFilterInput(),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
-      'worktypes_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkType')),
       'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
@@ -38,7 +37,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'deleted_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'version'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
-      'worktypes_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkType', 'required' => false)),
       'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
@@ -66,24 +64,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
     $query
       ->leftJoin($query->getRootAlias().'.sfGuardGroupPermission sfGuardGroupPermission')
       ->andWhereIn('sfGuardGroupPermission.permission_id', $values)
-    ;
-  }
-
-  public function addWorktypesListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.sfGuardGroupWorkType sfGuardGroupWorkType')
-      ->andWhereIn('sfGuardGroupWorkType.worktype_id', $values)
     ;
   }
 
@@ -124,7 +104,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'deleted_at'       => 'Date',
       'version'          => 'Number',
       'permissions_list' => 'ManyKey',
-      'worktypes_list'   => 'ManyKey',
       'users_list'       => 'ManyKey',
     );
   }
