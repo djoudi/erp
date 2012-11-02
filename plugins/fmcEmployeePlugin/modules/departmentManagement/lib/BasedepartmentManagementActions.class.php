@@ -38,7 +38,8 @@ abstract class BasedepartmentManagementActions extends sfActions {
     
     public function executeEdit (sfWebRequest $request) {
         
-        $this->item = Doctrine::getTable('sfGuardGroup')->findOneById ($request->getParameter("id"));
+        $this->item = Doctrine::getTable('sfGuardGroup')
+            ->findOneById ($request->getParameter("id"));
         $this->forward404Unless ($this->item);
     
         $this->form = new sfGuardDepartmentForm ($this->item);
