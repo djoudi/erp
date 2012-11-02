@@ -1,8 +1,10 @@
 <?php if (count($costItems) ): ?>
   
-  <h4>Added costs</h4>
   
-  <table class="tablesorter table table-striped table-bordered table-condensed">
+  
+  
+  
+  <table class="tablesorter table table-striped table-bordered table-condensed pull-right">
     <thead>
       <tr>
         <th>Date</th>

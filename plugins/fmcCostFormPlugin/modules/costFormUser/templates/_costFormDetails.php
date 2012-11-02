@@ -1,9 +1,9 @@
-<table class="table table-striped table-bordered table-condensed">
-  <tr>
-    <th>Cost Form Number</th>
-    <td><?php echo $costForm->id ?></td>
-  </tr>
-  <tr>
+<table class="table table-striped table-bordered table-condensed pull-left">
+    <tr>
+        <th>Cost Form Number</th>
+        <td><?php echo $costForm->id ?></td>
+    </tr>
+    <tr>
     <th>Project</th>
     <td><?php echo $costForm->Projects ?></td>
   </tr>
