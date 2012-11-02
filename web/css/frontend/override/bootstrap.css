@@ -5,6 +5,7 @@
     cursor: default;
     /*vertical-align: middle !important; /* Causes weird buttons and layout */
 }
+
 a {
     cursor: pointer;
 }
