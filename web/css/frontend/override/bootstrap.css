@@ -6,7 +6,7 @@
     /*vertical-align: middle !important; /* Causes weird buttons and layout */
 }
 
-a {
+a, a * {
     cursor: pointer;
 }
 
@@ -127,9 +127,16 @@ input, textarea, select, .uneditable-input {
     padding: 2px 0;
 }
 
+input[type="text"] {
+    margin: 0;
+    padding: 2px;
+    height: auto;
+}
+
 select,
 input[type="file"],
-input[type="submit"]
+input[type="submit"],
+input.btn-mini
 {
     height: auto;
     line-height: auto;
