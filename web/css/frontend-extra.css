@@ -55,3 +55,8 @@
     .Layout_Headerbar h3 { margin: 0; }
     .Layout_Headerbar img { margin-bottom: 5px; }
 
+
+/* ADDITIONAL STYLING CLASSES */
+
+    .w100 { width: 100px; }
+
