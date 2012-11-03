@@ -1,4 +1,11 @@
-<?php slot ('title', "Employee: ".$item); ?>
+<?php
+    if ($form->isNew()) $title = "New Employee";
+    else $title = "Employee: ".$item;
+?>
+
+
+<?php slot ('title', $title); ?>
+
 
 <script type="text/javascript">
     $("#topmenu_settings").addClass("active");
@@ -16,7 +23,7 @@
 
     <div class="form-actions">
         <a class="btn" href="<?php echo url_for("@employeeManagement"); ?>">Back to List</a>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <input class="btn btn-primary" type="submit" value="Save" />
     </div>
 
 </form>
