@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form method="post" class="form-inline">
   <?php echo $form->renderHiddenFields() ?>
   <table class="table table-striped table-bordered table-condensed" id="CostFormUser_NewCfi">
     <thead>
