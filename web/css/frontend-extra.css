@@ -1,41 +1,44 @@
-/* BOOTSTRAP */
-table,
-.table
-{
-    width: auto;
-}
-body
-{
-    background-color: #CCC;
-    font-size: 13px;
-}
-#Layout_Container
-{
-    background-color: #fff;
-    -webkit-border-bottom-right-radius: 10px;
-    -webkit-border-bottom-left-radius: 10px;
-    -moz-border-radius-bottomright: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    margin-bottom: 50px;
-    padding: 10px;
-}
-.Layout_Headerbar h3
-{
-    font-size: 21px;
-}
+/* BOOTSTRAP: TABLE SIZE AUTO */
 
-/* Layout */
-#Layout_Toplogo
-{
-    margin: 10px 0 !important;
-}
+    table, .table { width: auto; }
 
 
-/* Refs #28 */
-html
-{
-    overflow-y: scroll !important;
-}
+/* #28 - ALWAYS SHOW SCROLLBAR */
+
+    html { overflow-y: scroll !important; }
+
+
+/* SMALLER FONTS */
+
+    html, body, .btn { font-size: 12px; }
+
+
+/* PAPER-LIKE VIEW */
+
+    body { background-color: #CCC; }
+    #Layout_Container {
+        background-color: #fff;
+        -webkit-border-bottom-right-radius: 10px;
+        -webkit-border-bottom-left-radius: 10px;
+        -moz-border-radius-bottomright: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin-bottom: 50px;
+        padding: 10px;
+    }
+
+
+/* SMALLER TOPNAV */
+
+    .Layout_Headerbar   { padding: 0 5px; }
+    .Layout_Headerbar h3   { font-size: 21px; }
+    .navbar .divider-vertical   { height: 36px; }
+    .navbar-inner   { min-height: 36px; }
+    .navbar .nav > li > a   { padding-bottom: 8px; padding-top: 8px; }
+
+
+/* FIXING TOPBAR SPACE */
+
+    .Layout_Headerbar h3 { margin: 0 0 5px 0; }
 

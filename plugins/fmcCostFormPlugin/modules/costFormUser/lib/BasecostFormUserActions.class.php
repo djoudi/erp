@@ -94,7 +94,6 @@ abstract class BasecostFormUserActions extends sfActions
     }
     else
     {
-      #$item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $item->save();
       $item->delete();
     }
@@ -143,7 +142,6 @@ abstract class BasecostFormUserActions extends sfActions
     {
       $this->getUser()->setFlash("success", sprintf("Cost form with id %d is sent for processing!", $item->id ));
       $item->isSent = true;
-      #$item->setUpdatedBy($this->getUser()->getGuardUser()->getId());
       $item->save();
     }
     

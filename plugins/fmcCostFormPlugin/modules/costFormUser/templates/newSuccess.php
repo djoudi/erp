@@ -23,7 +23,7 @@
   </table>
   
   <p class="muted">
-      <small>Note: If you did not receive any advances, you can keep "Received Advance" blank.</small>
+      Note: If you did not receive any advances, you can keep <strong>Received Advance</strong> field blank.
   </p>
   
   <div class="form-actions">

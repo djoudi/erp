@@ -46,7 +46,6 @@ abstract class PluginCostForm extends BaseCostForm {
         } else {
       
             $user->setFlash("notice", sprintf("Cost form with id %d is deleted!", $this->id ));
-            $this->setUpdatedBy($user->getGuardUser()->getId());
             $this->save();
             $this->delete();
             $controller->redirect($controller->genUrl('@costforms'));
