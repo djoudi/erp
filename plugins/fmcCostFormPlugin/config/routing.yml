@@ -1,13 +1,4 @@
-##main screen
-
-costforms:
-
-  url:   /home/costforms
-  param: { module: homepage, action: costforms }
-
-
-
-# user
+# user - cost form
 
 costFormUser_new:
   url: /costform/user/new
@@ -25,14 +16,11 @@ costFormUser_deleteItem:
   url: /costform/user/deleteitem/:id
   param: { module: costFormUser, action: deleteItem }
 
-
-
 costFormUser_editItem:
   url: /costform/user/edititem/:id/:cfi_id
   param: { module: costFormUser, action: edit }
 
-
-
+# user - my cost forms
 
 costFormUser_list:
   url: /costform/user/list
