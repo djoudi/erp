@@ -3,14 +3,20 @@
     table, .table { width: auto; }
 
 
+/* BOOTSTRAP: SMALLER FONTS */
+
+    html, body, .btn, select, textarea, input { font-size: 12px !important; }
+
+
+/* BOOTSTRAP: SMALLER INPUTS */
+
+    select, textarea, input { padding: 2px 3px !important; }
+    select, input[type="file"] { height: 26px; }
+
+
 /* #28 - ALWAYS SHOW SCROLLBAR */
 
     html { overflow-y: scroll !important; }
-
-
-/* SMALLER FONTS */
-
-    html, body, .btn { font-size: 12px; }
 
 
 /* PAPER-LIKE VIEW */
