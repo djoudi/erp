@@ -16,7 +16,7 @@ abstract class BaseFormFilterDoctrine extends sfFormFilterDoctrine
     unset($this['updated_at']);
     unset($this['deleted_at']);
     unset($this['version']);
-    unset($this['created_by']);
-    unset($this['updated_by']);
+    unset($this['creater_id']);
+    unset($this['updater_id']);
   }
 }

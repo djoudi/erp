@@ -1,3 +1,15 @@
+<?php if (isset($title)) slot ('title', $title); ?>
+
+
+<?php if (isset($activeClass)): ?>
+
+    <script type="text/javascript">
+        $("<?php echo $activeClass; ?>").addClass("active");
+    </script>
+
+<?php endif; ?>
+
+
 <form method="post" class="form-horizontal">
 
     <table class="table table-hover table-bordered table-condensed">

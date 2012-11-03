@@ -1,19 +1,6 @@
-<?php slot ('title', "New Project"); ?>
-
-<script type="text/javascript">
-    $("#topmenu_settings").addClass("active");
-</script>
-
-
-<form method="post" action="">
-
-  <table class="table table-striped table-bordered table-condensed">
-    <?php echo $form; ?>
-  </table>
-
-  <div class="form-actions">
-    <a class="btn" href="<?php echo url_for("@projectManagement"); ?>">Back to List</a>
-    <input class="btn btn-success" type="submit" value="Save" />
-  </div>
-
-</form>
+<?php include_partial('fmcCore/recordForm', array(
+    "form" => $form, 
+    "title" => "New Project", 
+    "activeClass" => "#topmenu_settings", 
+    "back_url" => url_for("@projectManagement")
+)); ?>

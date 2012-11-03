@@ -1,12 +1,6 @@
-<?php slot ('title', "Customer: ".$customer->getName()); ?>
-
-
-<script type="text/javascript">
-    $("#topmenu_settings").addClass("active");
-</script>
-
-
 <?php include_partial('fmcCore/recordForm', array(
-    'form' => $form,
-    'back_url' => url_for("@customerManagement")
+    "form" => $form, 
+    "title" => "Customer: ".$customer["name"], 
+    "activeClass" => "#topmenu_settings", 
+    "back_url" => url_for("@customerManagement")
 )); ?>
