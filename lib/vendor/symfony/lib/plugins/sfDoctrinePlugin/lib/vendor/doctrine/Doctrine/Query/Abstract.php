@@ -1149,7 +1149,9 @@ abstract class Doctrine_Query_Abstract
         $copy->free();
 
         if ($componentsBefore !== $componentsAfter) {
-            return array_diff($componentsAfter, $componentsBefore);
+            /* return array_diff($componentsAfter, $componentsBefore); */
+            /* Fixed with: https://github.com/fixe/doctrine1/commit/c28c6e8e461c5b4198cc029622386750da9121ff */
+            return array_diff_assoc($componentsAfter, $componentsBefore);
         } else {
             return $componentsAfter;
         }
