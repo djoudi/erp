@@ -72,7 +72,7 @@
     </div>
 <?php endif ?>
 <?php if ($sf_user->hasFlash('notice')): ?>
-    <div class="alert alert-info fade in">
+    <div class="alert fade in">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <?php echo $sf_user->getFlash('notice') ?>
     </div>
