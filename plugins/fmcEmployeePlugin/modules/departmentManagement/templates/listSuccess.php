@@ -1,5 +1,6 @@
 <?php slot ('title', "Departments List") ?>
 
+
 <script type="text/javascript">
     $("#topmenu_settings").addClass("active");
 </script>
@@ -16,10 +17,9 @@
 <?php endif; ?>
 
 
-
 <?php if (count($items)): ?>
 
-<table class="tablesorter2a tablesorterpager table table-striped table-bordered table-condensed">
+<table class="tablesorter tablesorterpager table table-hover table-bordered table-condensed">
     <thead>
         <tr>
             <th>Name</th>

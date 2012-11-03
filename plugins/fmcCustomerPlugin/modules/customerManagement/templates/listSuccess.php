@@ -17,7 +17,7 @@
 <?php endif; ?>
 
 
-<table class="tablesorter tablesorterpager table table-striped table-bordered table-condensed">
+<table class="tablesorter tablesorterpager table table-hover table-bordered table-condensed">
     <thead>
         <tr>
             <th>Name</th>

@@ -32,7 +32,6 @@ abstract class BasedepartmentManagementActions extends sfActions {
         
         $processClass = new FmcCoreProcess();
         $processClass->form ($this->form, $request, $url);
-        
     }
     
     
@@ -48,7 +47,6 @@ abstract class BasedepartmentManagementActions extends sfActions {
         
         $processClass = new FmcCoreProcess();
         $processClass->form ($this->form, $request, $url);
-        
     }
     
     
