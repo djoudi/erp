@@ -1,21 +1,29 @@
 <?php slot ('title', "My Cost Forms") ?>
 
+
 <script type="text/javascript">
     $("#topmenu_costforms").addClass("active");
 </script>
 
+
 <?php if (isset($filter)): ?>
-  <?php include_partial ('fmcCore/filterForm', array(
-  'filter'=>$filter, 
-  'filtered'=>$filtered, 
-  'count'=>count($costForms)
-  )); ?>
+    <?php include_partial ('fmcCore/filterForm', array(
+        'filter'=>$filter, 
+        'filtered'=>$filtered, 
+        'count'=>count($costForms),
+        'new_url'=>url_for('costFormUser_new'),
+        'new_text'=>"New Cost Form"
+    )); ?>
 <?php endif; ?>
 
+
 <?php if (!count($costForms)): ?>
-  <p>No cost forms found in your selected criterias.</p>
+
+    <p>No cost forms found in your selected criterias.</p>
+    
 <?php else: ?>
-  
+
+
   <table class="tablesorter tablesorterpager table table-striped table-bordered table-condensed">
     <thead>
       <tr>

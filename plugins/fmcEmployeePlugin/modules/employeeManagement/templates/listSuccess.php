@@ -1,5 +1,6 @@
 <?php slot ('title', "Employee List") ?>
 
+
 <script type="text/javascript">
     $("#topmenu_settings").addClass("active");
 </script>
@@ -14,6 +15,7 @@
         'new_text'=>"New Employee"
     )); ?>
 <?php endif; ?>
+
 
 <table class="tablesorter2a tablesorterpager table table-hover table-condensed">
     <thead>
