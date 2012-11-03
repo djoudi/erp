@@ -16,7 +16,7 @@
 
 
             
-<div class="Layout_Headerbar">
+<div class="Layout_Headerbar clearfix">
     <h3 class="pull-left">
         <?php echo get_slot('title', 'FMC') ?>
     </h3>
@@ -27,12 +27,11 @@
     >
         <img src="/images/logo.png" id="LayoutLogo"/>
     </a>
-    <div class="clearfix"></div>
 </div>
 
 
 
-<div class="navbar">
+<div class="navbar clearfix">
     <div class="navbar-inner">
         <div class="container">
             <div class="nav-collapse collapse navbar-responsive-collapse">

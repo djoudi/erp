@@ -6,29 +6,24 @@
 </script>
 
     
+<div class="clearfix">
 
-
-<?php include_partial('costFormDetails', array(
-    'costForm' => $costForm, 
-    'costFormStatus' => $costFormStatus
-)) ?>
-
-<div class="pull-right">
-
-    <h4 class="pull-right">Added costs</h4>
-
-    <div class="clearfix"></div>
-    
-    <?php include_partial('costFormItems', array(
-        'costItems' => $costItems, 
-        'isSent' => $costForm->isSent
+    <?php include_partial('costFormDetails', array(
+        'costForm' => $costForm, 
+        'costFormStatus' => $costFormStatus
     )) ?>
+
+    <div class="pull-right clearfix">
+        <h4 class="pull-right clearfix">Added costs</h4>
+        <?php include_partial('costFormItems', array(
+            'costItems' => $costItems, 
+            'isSent' => $costForm->isSent
+        )) ?>
+    </div>
 
 </div>
 
 
-    <div class="clearfix"></div>
-    
     
   <?php if ( ! $costForm->isSent): ?>
     <h4>Add new cost</h4>
