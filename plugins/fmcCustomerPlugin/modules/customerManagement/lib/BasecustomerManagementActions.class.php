@@ -20,10 +20,10 @@ abstract class BasecustomerManagementActions extends sfActions
   
   public function executeEdit (sfWebRequest $request)
   {
-    $this->customer = Doctrine::getTable('Customer')->findOneById ($request->getParameter("id"));
-    $this->forward404Unless ($this->customer);
+    $this->item = Doctrine::getTable('Customer')->findOneById ($request->getParameter("id"));
+    $this->forward404Unless ($this->item);
     
-    $this->form = new customerForm ($this->customer);
+    $this->form = new customerForm ($this->item);
     $processClass = new FmcProcessForm();
     $processClass->ProcessForm($this->form, $request, "@customerManagement", false);
   }
