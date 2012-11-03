@@ -27,7 +27,7 @@
     
     <p><strong><?php echo count($costFormItems); ?></strong> costs found.</p>
     
-    <form method="post">
+    <form method="post" class="form-inline">
         
         <table class="tablesorter table table-hover table-bordered table-condensed">
             <thead>
