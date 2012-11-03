@@ -9,7 +9,7 @@ all:
                 class: "nav"
             children:
                 0:
-                    label: Home
+                    label: Welcome
                     route: @homepage
                     requires_auth: true
                     is_first: true
