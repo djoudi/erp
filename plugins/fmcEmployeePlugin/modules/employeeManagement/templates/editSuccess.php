@@ -15,10 +15,8 @@
     </table>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
-        
         <a class="btn" href="<?php echo url_for("@employeeManagement"); ?>">Back to List</a>
-        <input class="btn btn-success" type="submit" value="Save" />
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 
 </form>
