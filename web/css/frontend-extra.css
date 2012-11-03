@@ -5,7 +5,7 @@
 
 /* BOOTSTRAP: SMALLER FONTS */
 
-    html, body, .btn, select, textarea, input { font-size: 12px !important; }
+    html, body, .btn, label, input, button, select, textarea { font-size: 12px !important; }
 
 
 /* BOOTSTRAP: SMALLER INPUTS */

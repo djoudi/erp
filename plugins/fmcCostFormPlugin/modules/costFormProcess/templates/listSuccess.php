@@ -1,5 +1,6 @@
 <?php slot ('title', "Invoicing Cost Forms") ?>
 
+
 <script type="text/javascript">
     $("#topmenu_costforms").addClass("active");
 </script>
@@ -12,7 +13,8 @@
 
 <?php else: ?>
 
-    <table class="table table-striped table-bordered table-condensed">
+
+    <table class="table table-bordered table-condensed">
         <tr>
             <th>Company</th>
             <td><?php echo $project->Customers ?></td>
@@ -25,9 +27,9 @@
     
     <p><strong><?php echo count($costFormItems); ?></strong> costs found.</p>
     
-    <form method="post" action="">
+    <form method="post">
         
-        <table class="tablesorter table table-striped table-bordered table-condensed">
+        <table class="tablesorter table table-hover table-bordered table-condensed">
             <thead>
                 <tr>
                     <th>Date</th>
