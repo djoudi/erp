@@ -1,9 +1,30 @@
 /* BOOTSTRAP */
-table
+table,
+.table
 {
-    width: auto !important;
+    width: auto;
 }
-
+body
+{
+    background-color: #CCC;
+    font-size: 13px;
+}
+#Layout_Container
+{
+    background-color: #fff;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-bottom: 50px;
+    padding: 10px;
+}
+.Layout_Headerbar h3
+{
+    font-size: 21px;
+}
 
 /* Layout */
 #Layout_Toplogo
