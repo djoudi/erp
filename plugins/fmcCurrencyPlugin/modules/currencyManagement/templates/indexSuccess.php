@@ -79,7 +79,7 @@
         <h4>Add new currency</h4>
         Code <?php echo $form["code"]; ?> 
         Symbol <?php echo $form["symbol"]; ?> 
-        <input class="btn btn-primary" type="submit" value="Add" />
+        <input class="btn btn-primary btn-mini" type="submit" value="Add" />
         
     </div>
     
