@@ -27,7 +27,7 @@ abstract class BasecostFormProcessActions extends sfActions {
         if (!$projectid) {
             
             $this->getUser()->setFlash('notice', 'Your last invoicing could not be found.');
-            $this->redirect($this->getController()->genUrl("@costforms"));
+            $this->redirect($request->getReferer());
         }
         
         // Trying to fetch the project information
