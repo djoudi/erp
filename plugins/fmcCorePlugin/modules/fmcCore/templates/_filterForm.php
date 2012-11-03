@@ -42,8 +42,8 @@
     
     <div style="clear: both;"></div>
     
-    <form id="topFilterForm" action="" method="post" style="display:none">
-        <table class="table table-striped table-bordered table-condensed">
+    <form id="topFilterForm" method="post" style="display:none" class="margintop10 marginbot0">
+        <table class="table table-hover table-bordered table-condensed marginbot0">
             <?php echo $filter; ?>
             <tr>
                 <td></td>

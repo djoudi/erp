@@ -68,5 +68,7 @@
 
 /* ADDITIONAL STYLING CLASSES */
 
+    .marginbot0 { margin-bottom: 0px }
+    .margintop10 { margin-top: 10px }
     .w100 { width: 100px; }
 
