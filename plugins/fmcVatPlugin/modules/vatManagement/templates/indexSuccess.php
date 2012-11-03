@@ -71,7 +71,7 @@
     
         <h4>Add new VAT</h4>
         Rate <?php echo $form['rate'] ?> 
-        <input class="btn btn-success" type="submit" value="Add" />
+        <input class="btn btn-mini btn-success" type="submit" value="Add" />
         
     </div>
     
