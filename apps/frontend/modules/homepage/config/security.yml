@@ -1,8 +1,0 @@
-costforms:
-    credentials: [["Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Managemnet"]]
-
-administration:
-#    credentials: [["Currency Management", "Customer Management", "Employee Management", "Project Management", "VAT Management"]]
-
-workinghours:
-    credentials: [["Working Hours", "Working Hours Management"]]

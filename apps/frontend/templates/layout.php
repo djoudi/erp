@@ -9,61 +9,90 @@
         <?php include_javascripts() ?>
     </head>
     <body>
-        
+
+
+
+<div class="container">
+
+
+            
+<div class="Layout_Headerbar">
+    <h3 class="pull-left">
+        <?php echo get_slot('title', 'FMC') ?>
+    </h3>
+    <a 
+        class="pull-right" 
+        id="Layout_Toplogo" 
+        href="<?php echo url_for("@homepage"); ?>"
+    >
+        <img src="/images/logo.png" id="LayoutLogo"/>
+    </a>
+    <div class="clearfix"></div>
+</div>
+
+
+
+<div class="navbar">
+    <div class="navbar-inner">
         <div class="container">
-            
-            <a class="pull-left" href="<?php echo url_for("@homepage"); ?>">
-                <img src="/images/logo.png" id="LayoutLogo"/>
-            </a>
-            
-            <div class="pull-right" id="layout_top_userinfo">
-                <i class="icon-user"></i>
-                <?php echo $sf_user->getGuardUser()->__toString(); ?> | 
-                <a href="<?php echo url_for("@sf_guard_signout"); ?>">
-                    Logout <i class="icon-off"></i>
-                </a>
-            </div>
-            
-            <div class="clearfix"></div>
-            
-            <?php
-                $arr = sfConfig::get('app_menus_topmenu');
-                $menu = ioMenuItem::createFromArray($arr);
-                echo $menu->render();
-            ?>
-            
-            <div class="clearfix"></div>
-            
-            <?php if (has_slot('title')): ?>
-                <div id="layout_title" class="alert alert-info">
-                    <?php echo get_slot('title') ?>
-                </div>
-            <?php endif;?>
-            
-            <div class="clearfix"></div>
-            
-            <?php if ($sf_user->hasFlash('success')): ?>
-                <div class="alert alert-success fade in">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <?php echo $sf_user->getFlash('success') ?>
-                </div>
-            <?php endif ?>
-            <?php if ($sf_user->hasFlash('notice')): ?>
-                <div class="alert alert-info fade in">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <?php echo $sf_user->getFlash('notice') ?>
-                </div>
-            <?php endif ?>
-            <?php if ($sf_user->hasFlash('error')): ?>
-                <div class="alert alert-error  fade in">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <?php echo $sf_user->getFlash('error') ?>
-                </div>
-            <?php endif ?>
-            
-            <?php echo $sf_content ?>
-            
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                <?php
+                    $arr = sfConfig::get('app_menus_topmenu');
+                    $menu = ioMenuItem::createFromArray($arr);
+                    echo $menu->render();
+                ?>
+                <ul class="nav pull-right">
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i>
+                            <?php echo $sf_user->getGuardUser()->__toString(); ?> 
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo url_for("@sf_guard_signout"); ?>">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.nav-collapse -->
         </div>
-        
+    </div><!-- /navbar-inner -->
+</div>
+
+
+
+<?php if ($sf_user->hasFlash('success')): ?>
+    <div class="alert alert-success fade in">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <?php echo $sf_user->getFlash('success') ?>
+    </div>
+<?php endif ?>
+<?php if ($sf_user->hasFlash('notice')): ?>
+    <div class="alert alert-info fade in">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <?php echo $sf_user->getFlash('notice') ?>
+    </div>
+<?php endif ?>
+<?php if ($sf_user->hasFlash('error')): ?>
+    <div class="alert alert-error  fade in">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <?php echo $sf_user->getFlash('error') ?>
+    </div>
+<?php endif ?>
+
+
+
+<?php echo $sf_content ?>
+
+
+
+</div><!-- /container -->
+
+
+
     </body>
 </html>

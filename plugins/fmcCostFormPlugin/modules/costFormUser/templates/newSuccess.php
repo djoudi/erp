@@ -4,7 +4,7 @@
     $("#topmenu_costforms").addClass("active");
 </script>
 
-<form action="" method="post">
+<form method="post" class="form-horizontal">
 
   <?php echo $form->renderHiddenFields() ?>
   
@@ -22,7 +22,9 @@
     </tr>
   </table>
   
-  <span class="help-inline">Note: If you did not receive any advances, you can keep "Received Advance" blank.</span>
+  <p class="muted">
+      <small>Note: If you did not receive any advances, you can keep "Received Advance" blank.</small>
+  </p>
   
   <div class="form-actions">
     <a class="btn" href="javascript:history.back(1)" >Cancel</a>

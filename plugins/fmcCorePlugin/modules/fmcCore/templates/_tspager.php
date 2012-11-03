@@ -1,6 +1,6 @@
 <div class="tablesorterpagerdiv pull-left">
   
-    <form>
+    <form class="form-inline" style="margin: 0px">
     
         <?php if (isset($count)): ?>
             <strong><?php echo $count; ?></strong> results found. &nbsp;

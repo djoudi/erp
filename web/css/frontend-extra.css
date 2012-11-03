@@ -1,0 +1,20 @@
+/* BOOTSTRAP */
+table
+{
+    width: auto !important;
+}
+
+
+/* Layout */
+#Layout_Toplogo
+{
+    margin: 10px 0 !important;
+}
+
+
+/* Refs #28 */
+html
+{
+    overflow-y: scroll !important;
+}
+

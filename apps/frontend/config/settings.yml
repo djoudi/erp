@@ -39,6 +39,7 @@ all:
       #- sfGuardPermission
       
       - fmcCore
+      - homepage
       
       - costFormUser
       - costFormProcess

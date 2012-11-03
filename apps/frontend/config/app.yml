@@ -6,7 +6,7 @@ all:
             name: Top Menu
             attributes:
                 id: layout_top_menu
-                class: "nav nav-tabs"
+                class: "nav"
             children:
                 0:
                     label: Home
