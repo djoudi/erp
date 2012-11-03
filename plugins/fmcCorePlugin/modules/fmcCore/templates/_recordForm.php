@@ -24,6 +24,8 @@
         
         <input class="btn btn-primary" type="submit" value="Save" />
         
+        <input class="btn pull-right" type="reset" value="Reset Values" />
+        
     </div>
 
 </form>

@@ -32,8 +32,6 @@ abstract class BaseemployeeManagementActions extends sfActions {
         
         $processClass = new FmcCoreProcess();
         $processClass->form ($this->form, $request, $url);
-        
-        $this->setTemplate('record');
     }
     
     
@@ -48,8 +46,6 @@ abstract class BaseemployeeManagementActions extends sfActions {
         
         $processClass = new FmcCoreProcess();
         $processClass->form ($this->form, $request, $url);
-        
-        $this->setTemplate('record');
     }
     
     
