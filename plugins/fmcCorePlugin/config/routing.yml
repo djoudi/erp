@@ -1,0 +1,5 @@
+# Update Lucane Search Indexes
+
+searchupdate:
+    url: /search/update/:tablename
+    param: { module: fmcCore, action: searchupdate }

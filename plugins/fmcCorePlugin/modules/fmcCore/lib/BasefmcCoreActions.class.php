@@ -1,13 +1,26 @@
 <?php
 
-/**
- * Base actions for the fmcCorePlugin fmcCore module.
- * 
- * @package     fmcCorePlugin
- * @subpackage  fmcCore
- * @author      Yasin Aydin (yasin@yasinaydin.net)
- * @version     SVN: $Id: BaseActions.class.php 12534 2008-11-01 13:38:27Z Kris.Wallsmith $
- */
 abstract class BasefmcCoreActions extends sfActions
 {
+    public function executeSearchupdate (sfWebRequest $request)
+    {
+        if ($tableName = $request->getParameter('tablename'))
+        {
+            $items = Doctrine::getTable('Customer')->findAll();
+            foreach ($items as $item)
+            {
+                $item->updateLuceneIndex();
+            }
+            $this->getUser()->setFlash('success', $tableName." search indexes built successfuly.");
+        }
+        else
+        {
+            $this->getUser()->setFlash('notice', 'Please specify a table name.');
+        }
+        
+        $url = $this->getController()->genUrl('@homepage');
+        $this->redirect ($url);
+        
+    }
+    
 }
