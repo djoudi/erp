@@ -25,4 +25,5 @@
 #  Other
 #
 .svn
+.lock.file
 
