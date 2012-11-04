@@ -37,6 +37,7 @@ default:
         - /plugins/bootstrap/js/bootstrap.min.js
         
         - frontend.js
+        - search.js
         
     has_layout:     true
     layout:         layout

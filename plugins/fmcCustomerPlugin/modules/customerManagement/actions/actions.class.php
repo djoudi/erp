@@ -2,14 +2,30 @@
 
 require_once dirname(__FILE__).'/../lib/BasecustomerManagementActions.class.php';
 
-/**
- * customerManagement actions.
- * 
- * @package    fmcCustomerPlugin
- * @subpackage customerManagement
- * @author     Yasin Aydin (yasin@yasinaydin.net)
- * @version    SVN: $Id: actions.class.php 12534 2008-11-01 13:38:27Z Kris.Wallsmith $
- */
 class customerManagementActions extends BasecustomerManagementActions
 {
+    
+    
+    public function executeSearch(sfWebRequest $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $query = $request->getParameter('query');
+            if ($query=="*")
+            {
+                $this->items = Doctrine::getTable('Customer')->findAll();
+            }
+            else
+            {
+                $this->items = Doctrine_Core::getTable('Customer')->getForLuceneQuery($query);
+            }
+            if (!$this->items)
+            {
+                return $this->renderText('No results.');
+            } 
+            return $this->renderPartial('customerManagement/items', array('items' => $this->items));
+        }
+    }
+    
+    
 }

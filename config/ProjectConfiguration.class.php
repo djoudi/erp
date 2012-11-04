@@ -5,6 +5,28 @@ sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
 {
+    
+    /* For Lucene Search */
+    
+    static protected $zendAutoloader = false;
+    static public function registerZend()
+    {
+        if (!self::$zendAutoloader) {
+            set_include_path(implode(
+                PATH_SEPARATOR, array(
+                sfConfig::get('sf_lib_dir') . '/vendor', 
+                get_include_path(),
+            )));
+            require_once 'Zend/Loader/Autoloader.php';
+            self::$zendAutoloader = 
+                Zend_Loader_Autoloader::getInstance();
+        }
+        return self::$zendAutoloader;
+    }
+            
+
+    
+    
   public function setup()
   {
     
