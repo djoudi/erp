@@ -46,11 +46,7 @@ all:
       - costFormReport
       - costFormManage
       
-      - workingHourAdmin
-      - workingHourUser
-      - wh_Core
-      - wh_Process
-      - wh_Reports
+      - WHParam_Holiday
       
       - currencyManagement
       - customerManagement

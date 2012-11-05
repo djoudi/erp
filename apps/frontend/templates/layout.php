@@ -84,9 +84,9 @@
 <?php endif ?>
 
 
-
-<?php echo $sf_content ?>
-
+<div id="Layout_MainContent" class="clearfix">
+    <?php echo $sf_content ?>
+</div>
 
 
 </div><!-- /container -->

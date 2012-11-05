@@ -72,3 +72,6 @@
     .margintop10 { margin-top: 10px }
     .w100 { width: 100px; }
 
+/* SFCONTENT MINIMUM HEIGHT */
+
+    #Layout_MainContent { min-height: 400px; }

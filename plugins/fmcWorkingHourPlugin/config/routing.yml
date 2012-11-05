@@ -1,0 +1,5 @@
+# Params - Holiday
+
+whparam_holiday_list:
+    url: /wh/params/holiday/list
+    param: { module: WHParam_Holiday, action: list }
