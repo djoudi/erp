@@ -27,57 +27,63 @@
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $LeaveRequestLimit
  * @property Doctrine_Collection $LeaveRequest
+ * @property Doctrine_Collection $WorkingHourWorkTypes
+ * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $WorkingHourQuota
  * @property Doctrine_Collection $WorkingHourDay
  * 
- * @method string                getFirstName()             Returns the current record's "first_name" value
- * @method string                getLastName()              Returns the current record's "last_name" value
- * @method string                getTitle()                 Returns the current record's "title" value
- * @method string                getEmailAddress()          Returns the current record's "email_address" value
- * @method string                getUsername()              Returns the current record's "username" value
- * @method string                getAlgorithm()             Returns the current record's "algorithm" value
- * @method string                getSalt()                  Returns the current record's "salt" value
- * @method string                getPassword()              Returns the current record's "password" value
- * @method boolean               getIsActive()              Returns the current record's "is_active" value
- * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
- * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
- * @method integer               getGroupId()               Returns the current record's "group_id" value
- * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
- * @method sfGuardGroup          getDepartment()            Returns the current record's "Department" value
- * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
- * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
- * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
- * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
- * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method Doctrine_Collection   getCostForms()             Returns the current record's "CostForms" collection
- * @method Doctrine_Collection   getLeaveRequestLimit()     Returns the current record's "LeaveRequestLimit" collection
- * @method Doctrine_Collection   getLeaveRequest()          Returns the current record's "LeaveRequest" collection
- * @method Doctrine_Collection   getWorkingHourQuota()      Returns the current record's "WorkingHourQuota" collection
- * @method Doctrine_Collection   getWorkingHourDay()        Returns the current record's "WorkingHourDay" collection
- * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
- * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
- * @method sfGuardUser           setTitle()                 Sets the current record's "title" value
- * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
- * @method sfGuardUser           setUsername()              Sets the current record's "username" value
- * @method sfGuardUser           setAlgorithm()             Sets the current record's "algorithm" value
- * @method sfGuardUser           setSalt()                  Sets the current record's "salt" value
- * @method sfGuardUser           setPassword()              Sets the current record's "password" value
- * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
- * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
- * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
- * @method sfGuardUser           setGroupId()               Sets the current record's "group_id" value
- * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
- * @method sfGuardUser           setDepartment()            Sets the current record's "Department" value
- * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
- * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
- * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
- * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
- * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setCostForms()             Sets the current record's "CostForms" collection
- * @method sfGuardUser           setLeaveRequestLimit()     Sets the current record's "LeaveRequestLimit" collection
- * @method sfGuardUser           setLeaveRequest()          Sets the current record's "LeaveRequest" collection
- * @method sfGuardUser           setWorkingHourQuota()      Sets the current record's "WorkingHourQuota" collection
- * @method sfGuardUser           setWorkingHourDay()        Sets the current record's "WorkingHourDay" collection
+ * @method string                getFirstName()               Returns the current record's "first_name" value
+ * @method string                getLastName()                Returns the current record's "last_name" value
+ * @method string                getTitle()                   Returns the current record's "title" value
+ * @method string                getEmailAddress()            Returns the current record's "email_address" value
+ * @method string                getUsername()                Returns the current record's "username" value
+ * @method string                getAlgorithm()               Returns the current record's "algorithm" value
+ * @method string                getSalt()                    Returns the current record's "salt" value
+ * @method string                getPassword()                Returns the current record's "password" value
+ * @method boolean               getIsActive()                Returns the current record's "is_active" value
+ * @method boolean               getIsSuperAdmin()            Returns the current record's "is_super_admin" value
+ * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
+ * @method integer               getGroupId()                 Returns the current record's "group_id" value
+ * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
+ * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
+ * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection   getSfGuardUserPermission()   Returns the current record's "sfGuardUserPermission" collection
+ * @method Doctrine_Collection   getSfGuardUserGroup()        Returns the current record's "sfGuardUserGroup" collection
+ * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
+ * @method sfGuardForgotPassword getForgotPassword()          Returns the current record's "ForgotPassword" value
+ * @method Doctrine_Collection   getCostForms()               Returns the current record's "CostForms" collection
+ * @method Doctrine_Collection   getLeaveRequestLimit()       Returns the current record's "LeaveRequestLimit" collection
+ * @method Doctrine_Collection   getLeaveRequest()            Returns the current record's "LeaveRequest" collection
+ * @method Doctrine_Collection   getWorkingHourWorkTypes()    Returns the current record's "WorkingHourWorkTypes" collection
+ * @method Doctrine_Collection   getWorkingHourWorkTypeUser() Returns the current record's "WorkingHourWorkTypeUser" collection
+ * @method Doctrine_Collection   getWorkingHourQuota()        Returns the current record's "WorkingHourQuota" collection
+ * @method Doctrine_Collection   getWorkingHourDay()          Returns the current record's "WorkingHourDay" collection
+ * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
+ * @method sfGuardUser           setLastName()                Sets the current record's "last_name" value
+ * @method sfGuardUser           setTitle()                   Sets the current record's "title" value
+ * @method sfGuardUser           setEmailAddress()            Sets the current record's "email_address" value
+ * @method sfGuardUser           setUsername()                Sets the current record's "username" value
+ * @method sfGuardUser           setAlgorithm()               Sets the current record's "algorithm" value
+ * @method sfGuardUser           setSalt()                    Sets the current record's "salt" value
+ * @method sfGuardUser           setPassword()                Sets the current record's "password" value
+ * @method sfGuardUser           setIsActive()                Sets the current record's "is_active" value
+ * @method sfGuardUser           setIsSuperAdmin()            Sets the current record's "is_super_admin" value
+ * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
+ * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
+ * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
+ * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
+ * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setSfGuardUserPermission()   Sets the current record's "sfGuardUserPermission" collection
+ * @method sfGuardUser           setSfGuardUserGroup()        Sets the current record's "sfGuardUserGroup" collection
+ * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
+ * @method sfGuardUser           setForgotPassword()          Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setCostForms()               Sets the current record's "CostForms" collection
+ * @method sfGuardUser           setLeaveRequestLimit()       Sets the current record's "LeaveRequestLimit" collection
+ * @method sfGuardUser           setLeaveRequest()            Sets the current record's "LeaveRequest" collection
+ * @method sfGuardUser           setWorkingHourWorkTypes()    Sets the current record's "WorkingHourWorkTypes" collection
+ * @method sfGuardUser           setWorkingHourWorkTypeUser() Sets the current record's "WorkingHourWorkTypeUser" collection
+ * @method sfGuardUser           setWorkingHourQuota()        Sets the current record's "WorkingHourQuota" collection
+ * @method sfGuardUser           setWorkingHourDay()          Sets the current record's "WorkingHourDay" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -195,6 +201,15 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('LeaveRequest', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('WorkingHourWorkType as WorkingHourWorkTypes', array(
+             'refClass' => 'WorkingHourWorkTypeUser',
+             'local' => 'user_id',
+             'foreign' => 'worktype_id'));
+
+        $this->hasMany('WorkingHourWorkTypeUser', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 
