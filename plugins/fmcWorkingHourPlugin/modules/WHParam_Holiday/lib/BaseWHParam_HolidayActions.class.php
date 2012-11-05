@@ -4,13 +4,10 @@ abstract class BaseWHParam_HolidayActions extends sfActions
 {
     public function executeList (sfWebRequest $request)
     {
-        /* TODO: sor: mevcut tarihten sonrakileri göster sadece? */
-        
         $this->items = Doctrine::getTable ('Holiday')
             ->createQuery ('q')
-            ->orderBy('day ASC')
+            #->orderBy('day asc') // not working?
             ->execute();
-        
     }
     
     public function executeNew (sfWebRequest $request)

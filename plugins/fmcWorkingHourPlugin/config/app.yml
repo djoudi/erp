@@ -12,7 +12,7 @@ all:
                     credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
                     children:
                         90:
-                            label: Parameters
+                            label: Settings
                             attributes:
                                 class: "nav-header"
                             requires_auth: true
