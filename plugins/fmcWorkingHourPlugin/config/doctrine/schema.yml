@@ -264,8 +264,8 @@ WorkingHourDay:
             notnull: true
         leave_id:
             type: integer
-            notnull: true
-            default: 0
+            notnull: false
+            default: NULL
         date:
             type: date
             notnull: true
@@ -334,10 +334,10 @@ WorkingHourWork:
             type: integer
             notnull: true
         start:
-            type: type
+            type: time
             notnull: true
         end:
-            type: type
+            type: time
             notnull: true
         comment:
             type: string(50)
