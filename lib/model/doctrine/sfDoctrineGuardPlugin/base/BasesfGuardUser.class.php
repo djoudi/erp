@@ -17,6 +17,7 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
+ * @property integer $monthly_Working_Hours
  * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
@@ -29,7 +30,6 @@
  * @property Doctrine_Collection $LeaveRequest
  * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
- * @property Doctrine_Collection $WorkingHourQuota
  * @property Doctrine_Collection $WorkingHourDay
  * 
  * @method string                getFirstName()               Returns the current record's "first_name" value
@@ -44,6 +44,7 @@
  * @method boolean               getIsSuperAdmin()            Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
  * @method integer               getGroupId()                 Returns the current record's "group_id" value
+ * @method integer               getMonthlyWorkingHours()     Returns the current record's "monthly_Working_Hours" value
  * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
@@ -56,7 +57,6 @@
  * @method Doctrine_Collection   getLeaveRequest()            Returns the current record's "LeaveRequest" collection
  * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getWorkingHourWorkTypeUser() Returns the current record's "WorkingHourWorkTypeUser" collection
- * @method Doctrine_Collection   getWorkingHourQuota()        Returns the current record's "WorkingHourQuota" collection
  * @method Doctrine_Collection   getWorkingHourDay()          Returns the current record's "WorkingHourDay" collection
  * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()                Sets the current record's "last_name" value
@@ -70,6 +70,7 @@
  * @method sfGuardUser           setIsSuperAdmin()            Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
+ * @method sfGuardUser           setMonthlyWorkingHours()     Sets the current record's "monthly_Working_Hours" value
  * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
@@ -82,7 +83,6 @@
  * @method sfGuardUser           setLeaveRequest()            Sets the current record's "LeaveRequest" collection
  * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setWorkingHourWorkTypeUser() Sets the current record's "WorkingHourWorkTypeUser" collection
- * @method sfGuardUser           setWorkingHourQuota()        Sets the current record's "WorkingHourQuota" collection
  * @method sfGuardUser           setWorkingHourDay()          Sets the current record's "WorkingHourDay" collection
  * 
  * @package    fmc
@@ -149,6 +149,11 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('monthly_Working_Hours', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             ));
 
 
         $this->index('is_active_idx', array(
@@ -210,10 +215,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'foreign' => 'worktype_id'));
 
         $this->hasMany('WorkingHourWorkTypeUser', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('WorkingHourQuota', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

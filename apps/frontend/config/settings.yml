@@ -47,6 +47,7 @@ all:
       - costFormManage
       
       - WHParam_Holiday
+      - WHParam_LeaveLimit
       - WHParam_LeaveType
       - WHParam_Settings
       - WHParam_WorkType

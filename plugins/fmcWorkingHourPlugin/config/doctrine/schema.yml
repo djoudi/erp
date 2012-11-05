@@ -226,28 +226,12 @@ WorkingHourWorkTypeGroup:
 
 ######################################################
 
-WorkingHourQuota:
-    options:
-        symfony:
-            filter: false
-    actAs:
-        Auditable: ~
-        SoftDelete: ~
-        Versionable: ~
+sfGuardUser:
     columns:
-        user_id:
+        monthly_Working_Hours:
             type: integer
             notnull: true
-        quota:
-            type: integer
-            notnull: true
-    relations:
-        Employee:
-            class: sfGuardUser
-            local: user_id
-            foreign: id
-            foreignAlias: WorkingHourQuota
-            onDelete: CASCADE
+            default: 0
 
 ######################################################
 
