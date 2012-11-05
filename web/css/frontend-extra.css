@@ -35,6 +35,11 @@
     .ui-datepicker-trigger { margin-left: 3px; }
 
 
+/* FIX: BOOTSTRAP TOP NAVBAR SELECTED ITEM COLOR */
+
+    .dropdown-menu .active > a, .dropdown-menu .active > a:hover { color: #fff; }
+
+
 /* PAPER-LIKE VIEW */
 
     body { background-color: #CCC; }
@@ -75,3 +80,5 @@
 /* SFCONTENT MINIMUM HEIGHT */
 
     #Layout_MainContent { min-height: 400px; }
+
+
