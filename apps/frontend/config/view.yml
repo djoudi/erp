@@ -31,8 +31,10 @@ default:
         - /addons/tablesorter/js/jquery-tablesorter.js
         - /addons/tablesorter/js/jquery.tablesorter.pager.js
         - /addons/timepicker/js/jquery.timepicker.js
+        
         #- /addons/bootstrap-2.1.1/js/bootstrap.min.js
         
+        - /sfFormExtraPlugin/js/double_list.js
         
         - /plugins/bootstrap/js/bootstrap.min.js
         
