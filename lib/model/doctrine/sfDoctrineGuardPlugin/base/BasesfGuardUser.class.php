@@ -27,7 +27,7 @@
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $LeaveRequestLimit
  * @property Doctrine_Collection $LeaveRequest
- * @property Doctrine_Collection $WorkingHourWorkTypes
+ * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $WorkingHourQuota
  * @property Doctrine_Collection $WorkingHourDay
@@ -54,7 +54,7 @@
  * @method Doctrine_Collection   getCostForms()               Returns the current record's "CostForms" collection
  * @method Doctrine_Collection   getLeaveRequestLimit()       Returns the current record's "LeaveRequestLimit" collection
  * @method Doctrine_Collection   getLeaveRequest()            Returns the current record's "LeaveRequest" collection
- * @method Doctrine_Collection   getWorkingHourWorkTypes()    Returns the current record's "WorkingHourWorkTypes" collection
+ * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getWorkingHourWorkTypeUser() Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection   getWorkingHourQuota()        Returns the current record's "WorkingHourQuota" collection
  * @method Doctrine_Collection   getWorkingHourDay()          Returns the current record's "WorkingHourDay" collection
@@ -80,7 +80,7 @@
  * @method sfGuardUser           setCostForms()               Sets the current record's "CostForms" collection
  * @method sfGuardUser           setLeaveRequestLimit()       Sets the current record's "LeaveRequestLimit" collection
  * @method sfGuardUser           setLeaveRequest()            Sets the current record's "LeaveRequest" collection
- * @method sfGuardUser           setWorkingHourWorkTypes()    Sets the current record's "WorkingHourWorkTypes" collection
+ * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setWorkingHourWorkTypeUser() Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method sfGuardUser           setWorkingHourQuota()        Sets the current record's "WorkingHourQuota" collection
  * @method sfGuardUser           setWorkingHourDay()          Sets the current record's "WorkingHourDay" collection
@@ -204,7 +204,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('WorkingHourWorkType as WorkingHourWorkTypes', array(
+        $this->hasMany('WorkingHourWorkType as WorkTypes', array(
              'refClass' => 'WorkingHourWorkTypeUser',
              'local' => 'user_id',
              'foreign' => 'worktype_id'));

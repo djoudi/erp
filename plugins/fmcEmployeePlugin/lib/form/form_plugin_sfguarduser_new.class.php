@@ -43,6 +43,13 @@ class form_plugin_sfguarduser_new extends sfGuardUserForm
       'label_associated' => 'Granted',
       'label_unassociated' => 'Available'
     ));
+        
+        
+        $this->widgetSchema['work_types_list'] = new sfWidgetFormSelectDoubleList(array(
+            'choices' => $this->widgetSchema['work_types_list']->getChoices(), 
+            'label_associated' => 'Selected',
+            'label_unassociated' => 'Available'
+        ));
     
     
     $this->widgetSchema['group_id']->setLabel('Department');

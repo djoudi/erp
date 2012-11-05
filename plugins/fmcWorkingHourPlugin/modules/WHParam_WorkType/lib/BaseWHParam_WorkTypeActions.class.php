@@ -12,7 +12,7 @@ abstract class BaseWHParam_WorkTypeActions extends sfActions
     
     public function executeNew (sfWebRequest $request)
     {
-        $this->form = new WorkingHourWorkTypeForm ();
+        $this->form = new WorkingHourWorkType_CustomForm ();
         
         $returnUrl = $this->getController()->genUrl('@whparam_worktype_list');
         $processClass = new FmcCoreProcess();
@@ -25,7 +25,7 @@ abstract class BaseWHParam_WorkTypeActions extends sfActions
             ->findOneById($request->getParameter('id'));
         $this->forward404Unless ($this->object);
         
-        $this->form = new WorkingHourWorkTypeForm ($this->object);
+        $this->form = new WorkingHourWorkType_CustomForm ($this->object);
         
         $returnUrl = $this->getController()->genUrl('@whparam_worktype_list');
         $processClass = new FmcCoreProcess();

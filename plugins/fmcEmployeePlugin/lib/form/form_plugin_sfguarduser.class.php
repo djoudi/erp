@@ -52,6 +52,13 @@ class form_plugin_sfguarduser extends sfGuardUserForm
       'label_unassociated' => 'Available Permissions'
     ));
     
+    
+        $this->widgetSchema['work_types_list'] = new sfWidgetFormSelectDoubleList(array(
+            'choices' => $this->widgetSchema['work_types_list']->getChoices(), 
+            'label_associated' => 'Selected',
+            'label_unassociated' => 'Available'
+        ));
+    
     $this->widgetSchema['group_id']->setLabel('Department');
     $this->widgetSchema['permissions_list']->setLabel('Permissions');
     $this->widgetSchema['password']->setLabel('Change Password');

@@ -15,35 +15,35 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                           => new sfWidgetFormInputHidden(),
-      'name'                         => new sfWidgetFormInputText(),
-      'description'                  => new sfWidgetFormTextarea(),
-      'manager_id'                   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Manager'), 'add_empty' => false)),
-      'creater_id'                   => new sfWidgetFormInputText(),
-      'updater_id'                   => new sfWidgetFormInputText(),
-      'created_at'                   => new sfWidgetFormDateTime(),
-      'updated_at'                   => new sfWidgetFormDateTime(),
-      'deleted_at'                   => new sfWidgetFormDateTime(),
-      'version'                      => new sfWidgetFormInputText(),
-      'permissions_list'             => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
-      'users_list'                   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
-      'working_hour_work_types_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType')),
+      'id'               => new sfWidgetFormInputHidden(),
+      'name'             => new sfWidgetFormInputText(),
+      'description'      => new sfWidgetFormTextarea(),
+      'manager_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Manager'), 'add_empty' => false)),
+      'creater_id'       => new sfWidgetFormInputText(),
+      'updater_id'       => new sfWidgetFormInputText(),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
+      'deleted_at'       => new sfWidgetFormDateTime(),
+      'version'          => new sfWidgetFormInputText(),
+      'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'users_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
+      'work_types_list'  => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType')),
     ));
 
     $this->setValidators(array(
-      'id'                           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'                         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'description'                  => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
-      'manager_id'                   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Manager'))),
-      'creater_id'                   => new sfValidatorPass(),
-      'updater_id'                   => new sfValidatorPass(),
-      'created_at'                   => new sfValidatorDateTime(),
-      'updated_at'                   => new sfValidatorDateTime(),
-      'deleted_at'                   => new sfValidatorDateTime(array('required' => false)),
-      'version'                      => new sfValidatorInteger(array('required' => false)),
-      'permissions_list'             => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
-      'users_list'                   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
-      'working_hour_work_types_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType', 'required' => false)),
+      'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'description'      => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'manager_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Manager'))),
+      'creater_id'       => new sfValidatorPass(),
+      'updater_id'       => new sfValidatorPass(),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
+      'deleted_at'       => new sfValidatorDateTime(array('required' => false)),
+      'version'          => new sfValidatorInteger(array('required' => false)),
+      'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'users_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
+      'work_types_list'  => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -78,9 +78,9 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['working_hour_work_types_list']))
+    if (isset($this->widgetSchema['work_types_list']))
     {
-      $this->setDefault('working_hour_work_types_list', $this->object->WorkingHourWorkTypes->getPrimaryKeys());
+      $this->setDefault('work_types_list', $this->object->WorkTypes->getPrimaryKeys());
     }
 
   }
@@ -89,7 +89,7 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
   {
     $this->savePermissionsList($con);
     $this->saveUsersList($con);
-    $this->saveWorkingHourWorkTypesList($con);
+    $this->saveWorkTypesList($con);
 
     parent::doSave($con);
   }
@@ -170,14 +170,14 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     }
   }
 
-  public function saveWorkingHourWorkTypesList($con = null)
+  public function saveWorkTypesList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['working_hour_work_types_list']))
+    if (!isset($this->widgetSchema['work_types_list']))
     {
       // somebody has unset this widget
       return;
@@ -188,8 +188,8 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->WorkingHourWorkTypes->getPrimaryKeys();
-    $values = $this->getValue('working_hour_work_types_list');
+    $existing = $this->object->WorkTypes->getPrimaryKeys();
+    $values = $this->getValue('work_types_list');
     if (!is_array($values))
     {
       $values = array();
@@ -198,13 +198,13 @@ abstract class BasesfGuardGroupForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('WorkingHourWorkTypes', array_values($unlink));
+      $this->object->unlink('WorkTypes', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('WorkingHourWorkTypes', array_values($link));
+      $this->object->link('WorkTypes', array_values($link));
     }
   }
 
