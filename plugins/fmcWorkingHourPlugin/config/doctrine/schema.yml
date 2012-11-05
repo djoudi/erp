@@ -13,12 +13,10 @@ Holiday:
             type: Date
             notnull: true
             unique: true
-            primary: true
         name:
             type: string(50)
             notnull: true
             unique: true
-            primary: true
 
 ######################################################
 

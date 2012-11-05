@@ -6,7 +6,7 @@
 </script>
 -->
 
-<a class="pull-right btn btn-success" href="">New Holiday</a>
+<a class="pull-right btn btn-success" href="<?php echo url_for('@whparam_holiday_new'); ?>">New Holiday</a>
 
 <!-- new button -->
 

@@ -3,3 +3,11 @@
 whparam_holiday_list:
     url: /wh/params/holiday/list
     param: { module: WHParam_Holiday, action: list }
+
+whparam_holiday_new:
+    url: /wh/params/holiday/new
+    param: { module: WHParam_Holiday, action: new }
+
+whparam_holiday_edit:
+    url: /wh/params/holiday/edit
+    param: { module: WHParam_Holiday, action: edit }

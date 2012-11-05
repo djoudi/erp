@@ -25,13 +25,13 @@ abstract class BaseHoliday extends MyDoctrineRecord
         $this->setTableName('holiday');
         $this->hasColumn('date', 'Date', null, array(
              'type' => 'Date',
+             'notnull' => true,
              'unique' => true,
-             'primary' => true,
              ));
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'unique' => true,
-             'primary' => true,
              'length' => 50,
              ));
 

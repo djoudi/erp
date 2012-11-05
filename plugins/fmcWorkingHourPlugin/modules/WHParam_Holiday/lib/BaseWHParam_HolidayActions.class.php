@@ -12,4 +12,16 @@ abstract class BaseWHParam_HolidayActions extends sfActions
             ->execute();
         
     }
+    
+    public function executeNew (sfWebRequest $request)
+    {
+        $this->form = new HolidayForm();
+        
+        $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
+        
+        $processClass = new FmcCoreProcess();
+        
+        $processClass->form ($this->form, $request, $returnUrl);
+        
+    }
 }
