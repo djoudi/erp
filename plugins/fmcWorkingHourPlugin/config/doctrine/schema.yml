@@ -1,0 +1,150 @@
+Holiday:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        date:   { type: Date , notnull: true }
+        name:   { type: string(50) , notnull: true }
+
+
+LeaveRequestType:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        name:       { type: string(50) }
+        has_Report: { type: boolean, notnull: true, default: false }
+
+
+LeaveRequestLimit:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:                { type: integer, notnull: true }
+        type_id:                { type: integer, notnull: true }
+        leaveLimit:             { type: integer, notnull: true }
+    relations:
+        Employee:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: LeaveRequestLimit
+            onDelete: CASCADE
+        LeaveType:
+            class: LeaveRequestType
+            local: type_id
+            foreign: id
+            foreignAlias: LeaveRequestLimit
+            onDelete: CASCADE
+
+
+LeaveRequest:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:    { type: integer, notnull: true }
+        type_id:    { type: integer, notnull: true }
+        status:     { type: enum, values: ['Accepted', 'Denied', 'Pending', 'Cancelled'], default: 'Pending', notnull: true }
+        start_Date: { type: date, notnull: true }
+        end_Date:   { type: date, notnull: true }
+        day_Count:  { type: integer, notnull: true, default: 0 }
+        report_Comment:     { type: string(50), notnull: false }
+        report_Date:        { type: date, notnull: false }
+        report_Received:    { type: date, notnull: false }
+    relations:
+        Employee:   { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: LeaveRequest, onDelete: CASCADE }
+        LeaveType:  { class: LeaveRequestType, local: type_id, foreign: id, foreignAlias: LeaveRequest, onDelete: CASCADE }
+
+
+WorkingHourParameter:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        param:          { type: string(50), notnull: true }
+        value:          { type: string(50), notnull: true }
+        description:    { type: string(50), notnull: true }
+
+
+WorkingHourWorkType:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        name:   { type: string(50), notnull: true }
+
+
+WorkingHourQuota:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:    { type: integer, notnull: true }
+        quota:      { type: integer, notnull: true }
+    relations:
+        Employee:   { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourQuota, onDelete: CASCADE }
+
+
+WorkingHourDay:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:    { type: integer, notnull: true }
+        leave_id:   { type: integer, notnull: true, default: 0 }
+        date:       { type: date, notnull: true }
+        status:     { type: enum, values: ['Accepted', 'Denied', 'Pending', 'Cancelled'], default: 'Pending', notnull: true }
+        multiplier: { type: decimal, notnull: true, default: 1 }
+    relations:
+        Employee:       { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: WorkingHourDay, onDelete: CASCADE }
+        LeaveRequest:   { class: LeaveRequest, local: leave_id, foreign: id, foreignAlias: WorkingHourDay, onDelete: CASCADE }
+
+
+WorkingHourEntranceExit:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        day_id:     { type: integer, notnull: true }
+        type:       { type: enum, values: ['Entrance', 'Exit'], default: 'Entrance', notnull: true }
+        time:       { type: time, notnull: true }
+    relations:
+        Day:    { class: WorkingHourDay, local: day_id, foreign: id, foreignAlias: WorkingHourEntranceExit, onDelete: CASCADE }
+
+
+WorkingHourWork:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        day_id:     { type: integer, notnull: true }
+        type_id:    { type: integer, notnull: true }
+        start:      { type: time, notnull: true }
+        end:        { type: time, notnull: true }
+        comment:    { type: string(50), notnull: true }
+    relations:
+        Day:
+            class: WorkingHourDay
+            local: day_id
+            foreign: id
+            foreignAlias: WorkingHourWork
+            onDelete: CASCADE
+        WorkType:
+            class: WorkingHourWorkType
+            local: type_id
+            foreign: id
+            foreignAlias: WorkingHourWork
+            onDelete: CASCADE
+

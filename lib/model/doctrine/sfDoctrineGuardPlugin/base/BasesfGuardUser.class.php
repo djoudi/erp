@@ -25,6 +25,10 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $CostForms
+ * @property Doctrine_Collection $LeaveRequestLimit
+ * @property Doctrine_Collection $LeaveRequest
+ * @property Doctrine_Collection $WorkingHourQuota
+ * @property Doctrine_Collection $WorkingHourDay
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -46,6 +50,10 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCostForms()             Returns the current record's "CostForms" collection
+ * @method Doctrine_Collection   getLeaveRequestLimit()     Returns the current record's "LeaveRequestLimit" collection
+ * @method Doctrine_Collection   getLeaveRequest()          Returns the current record's "LeaveRequest" collection
+ * @method Doctrine_Collection   getWorkingHourQuota()      Returns the current record's "WorkingHourQuota" collection
+ * @method Doctrine_Collection   getWorkingHourDay()        Returns the current record's "WorkingHourDay" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setTitle()                 Sets the current record's "title" value
@@ -66,6 +74,10 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCostForms()             Sets the current record's "CostForms" collection
+ * @method sfGuardUser           setLeaveRequestLimit()     Sets the current record's "LeaveRequestLimit" collection
+ * @method sfGuardUser           setLeaveRequest()          Sets the current record's "LeaveRequest" collection
+ * @method sfGuardUser           setWorkingHourQuota()      Sets the current record's "WorkingHourQuota" collection
+ * @method sfGuardUser           setWorkingHourDay()        Sets the current record's "WorkingHourDay" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -175,6 +187,22 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('CostForm as CostForms', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('LeaveRequestLimit', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('LeaveRequest', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('WorkingHourQuota', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('WorkingHourDay', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 
