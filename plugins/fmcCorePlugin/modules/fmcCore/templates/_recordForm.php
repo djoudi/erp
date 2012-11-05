@@ -25,7 +25,7 @@
         <input class="btn btn-primary" type="submit" value="Save" />
         
         <?php if (!$form->isNew()): ?>
-            <input class="btn pull-right" type="reset" value="Reset Values" />
+            <input class="btn pull-right" type="reset" value="Revert Changes" />
         <?php endif; ?>
         
     </div>

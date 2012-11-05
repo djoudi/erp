@@ -9,8 +9,8 @@ Holiday:
         SoftDelete: ~
         Versionable: ~
     columns:
-        date:
-            type: Date
+        day:
+            type: date
             notnull: true
             unique: true
         name:

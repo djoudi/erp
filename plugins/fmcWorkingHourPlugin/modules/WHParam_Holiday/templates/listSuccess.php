@@ -1,14 +1,10 @@
 <?php slot ('title', "Holiday List") ?>
 
-<!--
 <script type="text/javascript">
-    $("#topmenu_settings").addClass("active");
+    $("#topmenu_workinghours").addClass("active");
 </script>
--->
 
 <a class="pull-right btn btn-success" href="<?php echo url_for('@whparam_holiday_new'); ?>">New Holiday</a>
-
-<!-- new button -->
 
 <?php if (!count($items)): ?>
 
@@ -16,10 +12,10 @@
 
 <?php else: ?>
 
-    <table class="pull-left tablesorter tablesorterpager table table-hover table-condensed table-bordered">
+    <table class="pull-left tablesorter table table-hover table-condensed table-bordered">
         <thead>
             <tr>
-                <th>Date</th>
+                <th>Day</th>
                 <th>Name</th>
             </tr>
         </thead>
@@ -27,10 +23,12 @@
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td>
-                        <?php echo $item['date']; ?>
+                        <?php echo $item['day']; ?>
                     </td>
                     <td>
-                        <?php echo $item['name']; ?>
+                        <a href="<?php echo url_for('@whparam_holiday_edit?id='.$item['id']); ?>">
+                            <?php echo $item['name']; ?>
+                        </a>
                     </td>                
                 </tr>
             <?php endforeach; ?>

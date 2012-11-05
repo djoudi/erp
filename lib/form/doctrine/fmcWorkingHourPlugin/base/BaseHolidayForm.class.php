@@ -16,7 +16,7 @@ abstract class BaseHolidayForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'date'       => new sfWidgetFormInputText(),
+      'day'        => new sfWidgetFormDate(),
       'name'       => new sfWidgetFormInputText(),
       'creater_id' => new sfWidgetFormInputText(),
       'updater_id' => new sfWidgetFormInputText(),
@@ -28,7 +28,7 @@ abstract class BaseHolidayForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'date'       => new sfValidatorPass(),
+      'day'        => new sfValidatorDate(),
       'name'       => new sfValidatorString(array('max_length' => 50)),
       'creater_id' => new sfValidatorPass(),
       'updater_id' => new sfValidatorPass(),
@@ -40,7 +40,7 @@ abstract class BaseHolidayForm extends BaseFormDoctrine
 
     $this->validatorSchema->setPostValidator(
       new sfValidatorAnd(array(
-        new sfValidatorDoctrineUnique(array('model' => 'Holiday', 'column' => array('date'))),
+        new sfValidatorDoctrineUnique(array('model' => 'Holiday', 'column' => array('day'))),
         new sfValidatorDoctrineUnique(array('model' => 'Holiday', 'column' => array('name'))),
       ))
     );

@@ -1,0 +1,11 @@
+/* HOLIDAY FORMS */
+
+#holiday_day_day,
+#holiday_day_month
+{
+    width: 50px;
+}
+#holiday_day_year
+{
+    width: 70px;
+}

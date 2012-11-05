@@ -8,20 +8,32 @@ abstract class BaseWHParam_HolidayActions extends sfActions
         
         $this->items = Doctrine::getTable ('Holiday')
             ->createQuery ('q')
-            ->orderBy('date ASC')
+            ->orderBy('day ASC')
             ->execute();
         
     }
     
     public function executeNew (sfWebRequest $request)
     {
-        $this->form = new HolidayForm();
+        $object = new Holiday();
+        $object->setDay(date('Y-m-d'));
+        $this->form = new HolidayFormRecord ($object);
         
         $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
-        
         $processClass = new FmcCoreProcess();
-        
         $processClass->form ($this->form, $request, $returnUrl);
-        
     }
+    
+    public function executeEdit (sfWebRequest $request)
+    {
+        $this->object = Doctrine::getTable('Holiday')->findOneById($request->getParameter('id'));
+        $this->forward404Unless ($this->object);
+        
+        $this->form = new HolidayFormRecord ($this->object);
+        
+        $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
+        $processClass = new FmcCoreProcess();
+        $processClass->form ($this->form, $request, $returnUrl);
+    }
+    
 }
