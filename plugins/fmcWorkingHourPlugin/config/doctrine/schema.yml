@@ -161,11 +161,11 @@ WorkingHourWorkType:
             foreign: user_id
             refClass: WorkingHourWorkTypeUser
             foreignAlias: WorkingHourWorkTypes
-        Users:
-            class: sfGuardUser
+        Departments:
+            class: sfGuardGroup
             local: worktype_id
-            foreign: user_id
-            refClass: WorkingHourWorkTypeUser
+            foreign: group_id
+            refClass: WorkingHourWorkTypeGroup
             foreignAlias: WorkingHourWorkTypes
 
 ######################################################

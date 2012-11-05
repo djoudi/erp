@@ -15,29 +15,29 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
-      'name'           => new sfWidgetFormInputText(),
-      'creater_id'     => new sfWidgetFormInputText(),
-      'updater_id'     => new sfWidgetFormInputText(),
-      'created_at'     => new sfWidgetFormDateTime(),
-      'updated_at'     => new sfWidgetFormDateTime(),
-      'deleted_at'     => new sfWidgetFormDateTime(),
-      'version'        => new sfWidgetFormInputText(),
-      'employees_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
-      'users_list'     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
+      'id'               => new sfWidgetFormInputHidden(),
+      'name'             => new sfWidgetFormInputText(),
+      'creater_id'       => new sfWidgetFormInputText(),
+      'updater_id'       => new sfWidgetFormInputText(),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
+      'deleted_at'       => new sfWidgetFormDateTime(),
+      'version'          => new sfWidgetFormInputText(),
+      'employees_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
+      'departments_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
     ));
 
     $this->setValidators(array(
-      'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'           => new sfValidatorString(array('max_length' => 50)),
-      'creater_id'     => new sfValidatorPass(),
-      'updater_id'     => new sfValidatorPass(),
-      'created_at'     => new sfValidatorDateTime(),
-      'updated_at'     => new sfValidatorDateTime(),
-      'deleted_at'     => new sfValidatorDateTime(array('required' => false)),
-      'version'        => new sfValidatorInteger(array('required' => false)),
-      'employees_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
-      'users_list'     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
+      'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'             => new sfValidatorString(array('max_length' => 50)),
+      'creater_id'       => new sfValidatorPass(),
+      'updater_id'       => new sfValidatorPass(),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
+      'deleted_at'       => new sfValidatorDateTime(array('required' => false)),
+      'version'          => new sfValidatorInteger(array('required' => false)),
+      'employees_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
+      'departments_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -67,9 +67,9 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
       $this->setDefault('employees_list', $this->object->Employees->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['users_list']))
+    if (isset($this->widgetSchema['departments_list']))
     {
-      $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
+      $this->setDefault('departments_list', $this->object->Departments->getPrimaryKeys());
     }
 
   }
@@ -77,7 +77,7 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
   protected function doSave($con = null)
   {
     $this->saveEmployeesList($con);
-    $this->saveUsersList($con);
+    $this->saveDepartmentsList($con);
 
     parent::doSave($con);
   }
@@ -120,14 +120,14 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
     }
   }
 
-  public function saveUsersList($con = null)
+  public function saveDepartmentsList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['users_list']))
+    if (!isset($this->widgetSchema['departments_list']))
     {
       // somebody has unset this widget
       return;
@@ -138,8 +138,8 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->Users->getPrimaryKeys();
-    $values = $this->getValue('users_list');
+    $existing = $this->object->Departments->getPrimaryKeys();
+    $values = $this->getValue('departments_list');
     if (!is_array($values))
     {
       $values = array();
@@ -148,13 +148,13 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('Users', array_values($unlink));
+      $this->object->unlink('Departments', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('Users', array_values($link));
+      $this->object->link('Departments', array_values($link));
     }
   }
 

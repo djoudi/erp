@@ -39,3 +39,17 @@ whparam_settings_new:
 whparam_settings_edit:
     url: /wh/settings/params/edit/:id
     param: { module: WHParam_Settings, action: edit }
+
+# Params - Work Type
+
+whparam_worktype_list:
+    url: /wh/settings/worktype/list
+    param: { module: WHParam_WorkType, action: list }
+
+whparam_worktype_new:
+    url: /wh/settings/worktype/new
+    param: { module: WHParam_WorkType, action: new }
+
+whparam_worktype_edit:
+    url: /wh/settings/worktype/edit/:id
+    param: { module: WHParam_WorkType, action: edit }

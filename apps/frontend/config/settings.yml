@@ -49,6 +49,7 @@ all:
       - WHParam_Holiday
       - WHParam_LeaveType
       - WHParam_Settings
+      - WHParam_WorkType
       
       - currencyManagement
       - customerManagement

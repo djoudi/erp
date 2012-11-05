@@ -27,6 +27,11 @@ all:
                             route: @whparam_leavetype_list
                             requires_auth: true
                             credentials: ["Working Hours Settings"]
+                        93:
+                            label: Work Types
+                            route: @whparam_worktype_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
                         99:
                             label: Other Parameters
                             route: @whparam_settings_list
