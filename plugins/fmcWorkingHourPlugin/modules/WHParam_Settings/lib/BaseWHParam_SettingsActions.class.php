@@ -11,6 +11,10 @@ abstract class BaseWHParam_SettingsActions extends sfActions
     
     public function executeNew (sfWebRequest $request)
     {
+        // not used if not necessary
+        $this->redirect($this->getController()->genUrl('@homepage'));
+        
+        
         $this->form = new WorkingHourParameterForm ();
         
         $returnUrl = $this->getController()->genUrl('@whparam_settings_list');
