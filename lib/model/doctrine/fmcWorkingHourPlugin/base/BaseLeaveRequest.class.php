@@ -15,7 +15,7 @@
  * @property date $report_Date
  * @property date $report_Received
  * @property sfGuardUser $Employee
- * @property LeaveRequestType $LeaveType
+ * @property LeaveType $LeaveType
  * @property Doctrine_Collection $WorkingHourDay
  * 
  * @method integer             getUserId()          Returns the current record's "user_id" value
@@ -28,7 +28,7 @@
  * @method date                getReportDate()      Returns the current record's "report_Date" value
  * @method date                getReportReceived()  Returns the current record's "report_Received" value
  * @method sfGuardUser         getEmployee()        Returns the current record's "Employee" value
- * @method LeaveRequestType    getLeaveType()       Returns the current record's "LeaveType" value
+ * @method LeaveType           getLeaveType()       Returns the current record's "LeaveType" value
  * @method Doctrine_Collection getWorkingHourDay()  Returns the current record's "WorkingHourDay" collection
  * @method LeaveRequest        setUserId()          Sets the current record's "user_id" value
  * @method LeaveRequest        setTypeId()          Sets the current record's "type_id" value
@@ -109,7 +109,7 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('LeaveRequestType as LeaveType', array(
+        $this->hasOne('LeaveType', array(
              'local' => 'type_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

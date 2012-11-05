@@ -1,16 +1,16 @@
 <?php
 
 /**
- * LeaveRequestType form base class.
+ * LeaveTypeVersion form base class.
  *
- * @method LeaveRequestType getObject() Returns the current form's model object
+ * @method LeaveTypeVersion getObject() Returns the current form's model object
  *
  * @package    fmc
  * @subpackage form
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseLeaveRequestTypeForm extends BaseFormDoctrine
+abstract class BaseLeaveTypeVersionForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -23,7 +23,7 @@ abstract class BaseLeaveRequestTypeForm extends BaseFormDoctrine
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
       'deleted_at' => new sfWidgetFormDateTime(),
-      'version'    => new sfWidgetFormInputText(),
+      'version'    => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
@@ -35,14 +35,10 @@ abstract class BaseLeaveRequestTypeForm extends BaseFormDoctrine
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
       'deleted_at' => new sfValidatorDateTime(array('required' => false)),
-      'version'    => new sfValidatorInteger(array('required' => false)),
+      'version'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('version')), 'empty_value' => $this->getObject()->get('version'), 'required' => false)),
     ));
 
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'LeaveRequestType', 'column' => array('name')))
-    );
-
-    $this->widgetSchema->setNameFormat('leave_request_type[%s]');
+    $this->widgetSchema->setNameFormat('leave_type_version[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -53,7 +49,7 @@ abstract class BaseLeaveRequestTypeForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'LeaveRequestType';
+    return 'LeaveTypeVersion';
   }
 
 }

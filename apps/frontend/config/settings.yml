@@ -47,6 +47,8 @@ all:
       - costFormManage
       
       - WHParam_Holiday
+      - WHParam_LeaveType
+      - WHParam_Settings
       
       - currencyManagement
       - customerManagement

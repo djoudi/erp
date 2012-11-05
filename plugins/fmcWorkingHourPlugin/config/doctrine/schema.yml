@@ -20,7 +20,7 @@ Holiday:
 
 ######################################################
 
-LeaveRequestType:
+LeaveType:
     options:
         symfony:
             filter: false
@@ -63,7 +63,7 @@ LeaveRequestLimit:
             foreignAlias: LeaveRequestLimit
             onDelete: CASCADE
         LeaveType:
-            class: LeaveRequestType
+            class: LeaveType
             local: type_id
             foreign: id
             foreignAlias: LeaveRequestLimit
@@ -115,7 +115,7 @@ LeaveRequest:
             foreignAlias: LeaveRequest
             onDelete: CASCADE
         LeaveType:
-            class: LeaveRequestType
+            class: LeaveType
             local: type_id
             foreign: id
             foreignAlias: LeaveRequest

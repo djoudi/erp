@@ -22,3 +22,13 @@ all:
                             route: @whparam_holiday_list
                             requires_auth: true
                             credentials: ["Working Hours Settings"]
+                        92:
+                            label: Leave Types
+                            route: @whparam_leavetype_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
+                        99:
+                            label: Other Parameters
+                            route: @whparam_settings_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]

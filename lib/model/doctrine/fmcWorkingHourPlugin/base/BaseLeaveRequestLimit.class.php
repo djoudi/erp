@@ -9,13 +9,13 @@
  * @property integer $type_id
  * @property integer $leaveLimit
  * @property sfGuardUser $Employee
- * @property LeaveRequestType $LeaveType
+ * @property LeaveType $LeaveType
  * 
  * @method integer           getUserId()     Returns the current record's "user_id" value
  * @method integer           getTypeId()     Returns the current record's "type_id" value
  * @method integer           getLeaveLimit() Returns the current record's "leaveLimit" value
  * @method sfGuardUser       getEmployee()   Returns the current record's "Employee" value
- * @method LeaveRequestType  getLeaveType()  Returns the current record's "LeaveType" value
+ * @method LeaveType         getLeaveType()  Returns the current record's "LeaveType" value
  * @method LeaveRequestLimit setUserId()     Sets the current record's "user_id" value
  * @method LeaveRequestLimit setTypeId()     Sets the current record's "type_id" value
  * @method LeaveRequestLimit setLeaveLimit() Sets the current record's "leaveLimit" value
@@ -54,7 +54,7 @@ abstract class BaseLeaveRequestLimit extends MyDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('LeaveRequestType as LeaveType', array(
+        $this->hasOne('LeaveType', array(
              'local' => 'type_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

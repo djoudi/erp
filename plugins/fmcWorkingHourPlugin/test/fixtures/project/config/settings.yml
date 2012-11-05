@@ -1,2 +1,2 @@
 all:
-  enabled_modules: [WHParam_Holiday]
+  enabled_modules: [WHParam_Holiday, WHParam_LeaveType, WHParam_Settings]
