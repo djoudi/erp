@@ -4,47 +4,39 @@
     $("#topmenu_workinghours").addClass("active");
 </script>
 
-<?php if (!count($employees)): ?>
+<p>
+    You can see the <strong>default limits for each leave types</strong> below. 
+    Click on the name of the leave type to change its default settings.
+</p>
 
-    <p>No users found.</p>
+<?php if (!count($leaveTypes)): ?>
+
+    <p>No leave types found.</p>
 
 <?php else: ?>
-
+    
     <table class="table table-bordered table-condensed table-hover">
-        <thead>
+        <?php foreach ($leaveTypes as $type): ?>
             <tr>
-                <th>Employee</th>
-                <?php foreach ($leavetypes as $type): ?>
-                    <th>
+                <td>
+                    <a href="<?php echo url_for('@whparam_leavetype_edit?id='.$type['id']); ?>">
                         <?php echo $type['name']; ?>
-                    </th>
-                <?php endforeach; ?>
+                    </a>
+                </th>
+                <td class="w100">
+                    <?php echo $type['default_Limit']; ?>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($employees as $employee): ?>
-                <tr>
-                    <td>
-                        <?php echo $employee['first_name']." ".$employee['last_name']; ?>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+        <?php endforeach; ?>
     </table>
-
-
-
 
 <?php endif; ?>
 
+<p>
+    To set leave limits <strong>per employee</strong>, please click the employee's name you want to set leave limits of:
+</p>
 
-<?php /*
-
-<p>To set leave limits per employee, please click the employee's name you want to set leave limits of:</p>
-
-<?php if (!count($items)): ?>
+<?php if (!count($employees)): ?>
 
     <p>No users found.</p>
 
@@ -55,10 +47,10 @@
             
             <?php $col = 6; ?>
             
-            <?php for ($i=0; $i<count($items); $i++): ?>
+            <?php for ($i=0; $i<count($employees); $i++): ?>
                 <td>
-                    <a href="<?php echo $edit_url.$items[$i]['id']; ?>">
-                        <?php echo $items[$i]["name"]; ?>
+                    <a href="<?php echo url_for('@whparam_leavelimit_edituser?id=').$employees[$i]['id']; ?>">
+                        <?php echo $employees[$i]["name"]; ?>
                     </a>
                 </td>
                 
@@ -80,61 +72,3 @@
     </table>
 
 <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-<?php slot ('title', "Leave Type List") ?>
-
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
-
-<a class="pull-right btn btn-success" href="<?php echo url_for('@whparam_leavetype_new'); ?>">New Leave Type</a>
-
-<?php if (!count($items)): ?>
-
-    <p>No records found.</p>
-
-<?php else: ?>
-
-    <table class="pull-left tablesorter table table-hover table-condensed table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Has Report</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($items as $item): ?>
-                <tr>
-                    <td>
-                        <a href="<?php echo url_for('@whparam_leavetype_edit?id='.$item['id']); ?>">
-                            <?php echo $item['name']; ?>
-                        </a>
-                    </td>                
-                    <td>
-                        <?php if ($item['has_Report']): ?>
-                            <i class="icon-ok"></i>
-                        <?php else: ?>
-                            <i class="icon-remove"></i>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
-<?php endif; ?>
-
-<div class="clearfix"></div>
-
-
-*/ ?>

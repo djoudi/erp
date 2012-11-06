@@ -17,6 +17,7 @@
             <tr>
                 <th>Name</th>
                 <th>Has Report</th>
+                <th>Default Limit</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,9 @@
                         <?php else: ?>
                             <i class="icon-remove"></i>
                         <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php echo $item['default_Limit']; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

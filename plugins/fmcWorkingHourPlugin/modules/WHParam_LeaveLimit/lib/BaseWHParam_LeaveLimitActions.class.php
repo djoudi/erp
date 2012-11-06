@@ -8,45 +8,48 @@ abstract class BaseWHParam_LeaveLimitActions extends sfActions
             ->createQuery ('q')
             ->orderBy ('first_name, last_name ASC')
             ->execute();
-        
-        $this->leavetypes = Doctrine::getTable ('LeaveType')
+            
+        $this->leaveTypes = Doctrine::getTable ('LeaveType')
             ->createQuery ('q')
             ->orderBy ('name ASC')
-            ->execute();
+            ->fetchArray();
+    }
+    
+    public function executeEdituser (sfWebRequest $request)
+    {
+        $this->employee = Doctrine::getTable('sfGuardUser')->findOneById($request->getParameter('id'));
+        $this->forward404Unless ($this->employee);
+        
+        $this->limits = $this->employee->getLeaveRequestLimit()->toArray();
+        $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll()->toArray();
+        
+        if ($request->isMethod('post'))
+        {
+            foreach ($this->leaveTypes as $type)
+            {
+                $currentRecord = Doctrine::getTable ('LeaveRequestLimit')
+                    ->createQuery ('q')
+                    ->addWhere ('user_id = ?', $this->employee->getId())
+                    ->addWhere ('type_id = ?', $type['id'])
+                    ->fetchOne();
+                if ($currentRecord['id'])
+                {
+                    $currentRecord->setLeaveLimit($request->getParameter($type['id']));
+                    $currentRecord->save();
+                }
+                elseif ($request->getParameter($type['id']))
+                {
+                    $newRecord = new LeaveRequestLimit();
+                    $newRecord->setUserId ($this->employee->getId());
+                    $newRecord->setTypeId ($type['id']);
+                    $newRecord->setLeaveLimit ($request->getParameter($type['id']));
+                    $newRecord->save();
+                }
+            }
+            
+            $this->getUser()->setFlash('success', 'Changes saved successfully.');
+            $this->redirect($this->getController()->genUrl("@whparam_leavelimit_edituser?id=".$this->employee->getId()));
+            
+        }
     }
 }
-
-
-/*
-<?php
-
-abstract class BaseWHParam_HolidayActions extends sfActions
-{
-    
-    
-    public function executeNew (sfWebRequest $request)
-    {
-        $object = new Holiday();
-        $object->setDay(date('Y-m-d'));
-        $this->form = new HolidayFormRecord ($object);
-        
-        $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
-        $processClass = new FmcCoreProcess();
-        $processClass->form ($this->form, $request, $returnUrl);
-    }
-    
-    public function executeEdit (sfWebRequest $request)
-    {
-        $this->object = Doctrine::getTable('Holiday')->findOneById($request->getParameter('id'));
-        $this->forward404Unless ($this->object);
-        
-        $this->form = new HolidayFormRecord ($this->object);
-        
-        $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
-        $processClass = new FmcCoreProcess();
-        $processClass->form ($this->form, $request, $returnUrl);
-    }
-    
-}
-
-*/

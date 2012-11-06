@@ -26,7 +26,8 @@ abstract class BaseWHParam_LeaveTypeActions extends sfActions
         
         $this->form = new LeaveTypeForm ($this->object);
         
-        $returnUrl = $this->getController()->genUrl('@whparam_leavetype_list');
+        $returnUrl = $request->getReferer();
+        
         $processClass = new FmcCoreProcess();
         $processClass->form ($this->form, $request, $returnUrl);
     }

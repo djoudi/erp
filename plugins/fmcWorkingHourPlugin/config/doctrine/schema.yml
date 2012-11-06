@@ -33,6 +33,10 @@ LeaveType:
             type: string(50)
             notnull: true
             unique: true
+        default_Limit:
+            type: integer
+            notnull: true
+            default: 0
         has_Report:
             type: boolean
             notnull: true
