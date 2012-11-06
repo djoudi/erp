@@ -8,11 +8,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 
-DELETE FROM `fmc`.`sf_guard_permission` WHERE `sf_guard_permission`.`id` = 10;
-DELETE FROM `fmc`.`sf_guard_permission` WHERE `sf_guard_permission`.`id` = 11;
-DELETE FROM `fmc`.`sf_guard_permission` WHERE `sf_guard_permission`.`id` = 12;
-DELETE FROM `fmc`.`sf_guard_permission` WHERE `sf_guard_permission`.`id` = 13;
-DELETE FROM `fmc`.`sf_guard_permission` WHERE `sf_guard_permission`.`id` = 14;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 10;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 11;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 12;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 13;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 14;
 
 
 INSERT IGNORE INTO `sf_guard_permission` (`id`, `name`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
