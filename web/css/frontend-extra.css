@@ -85,6 +85,13 @@
 
     #topbar { margin-bottom: 12px; }
     
-/* SMALLER TABLES */
+/* SMALLER: TABLE LINES */
 
     .table-condensed th, .table-condensed td { padding: 3px 5px; }
+
+/* USABILITY: NON-CLICK TEXTS */
+
+    /*h1, h2, h3, h4, h5, p, th { cursor: default; }*/
+    * { cursor: default }
+    a, select { cursor: pointer !important; }
+    input, textarea { cursor: text !important; }
