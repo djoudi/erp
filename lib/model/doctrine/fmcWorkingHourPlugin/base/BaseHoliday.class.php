@@ -35,6 +35,7 @@ abstract class BaseHoliday extends MyDoctrineRecord
              'length' => 50,
              ));
 
+        $this->option('orderBy', 'date ASC');
         $this->option('symfony', array(
              'filter' => false,
              ));

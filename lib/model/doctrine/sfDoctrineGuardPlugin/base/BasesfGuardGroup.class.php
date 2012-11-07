@@ -71,6 +71,8 @@ abstract class BasesfGuardGroup extends MyDoctrineRecord
              'notnull' => true,
              'default' => 40,
              ));
+
+        $this->option('orderBy', 'name ASC');
     }
 
     public function setUp()

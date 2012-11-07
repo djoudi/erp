@@ -42,6 +42,7 @@ abstract class BaseWorkingHourParameter extends MyDoctrineRecord
              'length' => 50,
              ));
 
+        $this->option('orderBy', 'param ASC');
         $this->option('symfony', array(
              'filter' => false,
              ));

@@ -162,6 +162,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
               0 => 'is_active',
              ),
              ));
+        $this->option('orderBy', 'first_name ASC, last_name ASC');
     }
 
     public function setUp()

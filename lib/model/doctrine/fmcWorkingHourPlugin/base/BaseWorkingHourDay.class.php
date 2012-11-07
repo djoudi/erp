@@ -73,6 +73,8 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              'notnull' => true,
              'default' => 1,
              ));
+
+        $this->option('orderBy', 'date ASC');
     }
 
     public function setUp()

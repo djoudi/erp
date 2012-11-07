@@ -87,6 +87,8 @@ abstract class BaseWorkingHourWorkType extends MyDoctrineRecord
              'unique' => true,
              'length' => 50,
              ));
+
+        $this->option('orderBy', 'code ASC');
     }
 
     public function setUp()

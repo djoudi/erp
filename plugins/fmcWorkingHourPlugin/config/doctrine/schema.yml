@@ -2,6 +2,7 @@
 
 Holiday:
     options:
+        orderBy: date ASC
         symfony:
             filter: false
     actAs:
@@ -22,6 +23,7 @@ Holiday:
 
 LeaveType:
     options:
+        orderBy: name ASC
         symfony:
             filter: false
     actAs:
@@ -80,6 +82,8 @@ LeaveRequest:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: start_Date ASC
     columns:
         user_id:
             type: integer
@@ -129,6 +133,7 @@ LeaveRequest:
 
 WorkingHourParameter:
     options:
+        orderBy: param ASC
         symfony:
             filter: false
     actAs:
@@ -153,6 +158,8 @@ WorkingHourWorkType:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: code ASC
     columns:
         code:
             type: string(5)
@@ -235,6 +242,8 @@ WorkingHourWorkTypeGroup:
 ######################################################
 
 sfGuardUser:
+    options:
+        orderBy: first_name ASC, last_name ASC
     columns:
         monthly_Working_Hours:
             type: integer
@@ -244,6 +253,8 @@ sfGuardUser:
 ######################################################
 
 sfGuardGroup:
+    options:
+        orderBy: name ASC
     columns:
         default_Worktype_id:
             type: integer
@@ -265,6 +276,8 @@ WorkingHourDay:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: date ASC
     columns:
         user_id:
             type: integer

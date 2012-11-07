@@ -60,6 +60,7 @@ abstract class BaseLeaveType extends MyDoctrineRecord
              'default' => false,
              ));
 
+        $this->option('orderBy', 'name ASC');
         $this->option('symfony', array(
              'filter' => false,
              ));

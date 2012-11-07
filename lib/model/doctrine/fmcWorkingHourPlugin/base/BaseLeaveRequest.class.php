@@ -99,6 +99,8 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
              'type' => 'date',
              'notnull' => false,
              ));
+
+        $this->option('orderBy', 'start_Date ASC');
     }
 
     public function setUp()
