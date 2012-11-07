@@ -243,6 +243,23 @@ sfGuardUser:
 
 ######################################################
 
+sfGuardGroup:
+    columns:
+        default_Worktype_id:
+            type: integer
+            notnull: true
+            default: 40
+    relations:
+        Default_Work_Type:
+            class: WorkingHourWorkType
+            local: default_Worktype_id
+            foreign: id
+            foreignAlias: Department
+            onDelete: CASCADE
+
+
+######################################################
+
 WorkingHourDay:
     actAs:
         Auditable: ~

@@ -9,12 +9,14 @@
  * @property string $name
  * @property Doctrine_Collection $Employees
  * @property Doctrine_Collection $Departments
+ * @property Doctrine_Collection $Department
  * @property Doctrine_Collection $WorkingHourWork
  * 
  * @method string              getCode()                     Returns the current record's "code" value
  * @method string              getName()                     Returns the current record's "name" value
  * @method Doctrine_Collection getEmployees()                Returns the current record's "Employees" collection
  * @method Doctrine_Collection getDepartments()              Returns the current record's "Departments" collection
+ * @method Doctrine_Collection getDepartment()               Returns the current record's "Department" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeUser()  Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
  * @method Doctrine_Collection getWorkingHourWork()          Returns the current record's "WorkingHourWork" collection
@@ -22,6 +24,7 @@
  * @method WorkingHourWorkType setName()                     Sets the current record's "name" value
  * @method WorkingHourWorkType setEmployees()                Sets the current record's "Employees" collection
  * @method WorkingHourWorkType setDepartments()              Sets the current record's "Departments" collection
+ * @method WorkingHourWorkType setDepartment()               Sets the current record's "Department" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeUser()  Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
  * @method WorkingHourWorkType setWorkingHourWork()          Sets the current record's "WorkingHourWork" collectionTypeUser
@@ -31,6 +34,7 @@
  * @method string              getName()                     Returns the current record's "name" value
  * @method Doctrine_Collection getEmployees()                Returns the current record's "Employees" collection
  * @method Doctrine_Collection getDepartments()              Returns the current record's "Departments" collection
+ * @method Doctrine_Collection getDepartment()               Returns the current record's "Department" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeUser()  Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
  * @method Doctrine_Collection getWorkingHourWork()          Returns the current record's "WorkingHourWork" collection
@@ -38,6 +42,7 @@
  * @method WorkingHourWorkType setName()                     Sets the current record's "name" value
  * @method WorkingHourWorkType setEmployees()                Sets the current record's "Employees" collection
  * @method WorkingHourWorkType setDepartments()              Sets the current record's "Departments" collection
+ * @method WorkingHourWorkType setDepartment()               Sets the current record's "Department" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeUser()  Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
  * @method WorkingHourWorkType setWorkingHourWork()          Sets the current record's "WorkingHourWork" collectionTypeGroup
@@ -47,6 +52,7 @@
  * @method string              getName()                     Returns the current record's "name" value
  * @method Doctrine_Collection getEmployees()                Returns the current record's "Employees" collection
  * @method Doctrine_Collection getDepartments()              Returns the current record's "Departments" collection
+ * @method Doctrine_Collection getDepartment()               Returns the current record's "Department" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeUser()  Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
  * @method Doctrine_Collection getWorkingHourWork()          Returns the current record's "WorkingHourWork" collection
@@ -54,6 +60,7 @@
  * @method WorkingHourWorkType setName()                     Sets the current record's "name" value
  * @method WorkingHourWorkType setEmployees()                Sets the current record's "Employees" collection
  * @method WorkingHourWorkType setDepartments()              Sets the current record's "Departments" collection
+ * @method WorkingHourWorkType setDepartment()               Sets the current record's "Department" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeUser()  Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
  * @method WorkingHourWorkType setWorkingHourWork()          Sets the current record's "WorkingHourWork" collection
@@ -94,6 +101,10 @@ abstract class BaseWorkingHourWorkType extends MyDoctrineRecord
              'refClass' => 'WorkingHourWorkTypeGroup',
              'local' => 'worktype_id',
              'foreign' => 'group_id'));
+
+        $this->hasMany('sfGuardGroup as Department', array(
+             'local' => 'id',
+             'foreign' => 'default_Worktype_id'));
 
         $this->hasMany('WorkingHourWorkTypeUser', array(
              'local' => 'id',
