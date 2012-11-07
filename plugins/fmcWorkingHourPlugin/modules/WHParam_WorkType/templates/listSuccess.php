@@ -23,7 +23,7 @@
                         
                         <?php for ($i=0; $i<count($items); $i++): ?>
                         
-                            <?php $tmp = $items[$i]['code']; $curLetter = $tmp[0]; ?>
+                            <?php $tmp = $items[$i]['name']; $curLetter = $tmp[0]; ?>
                 
                             <?php if ( ($prevLetter!=$curLetter) && ($prevLetter!="") ): ?>
                                 </ul>
@@ -33,7 +33,6 @@
                             <?php endif; ?>
                         
                             <li>
-                                <?php echo $items[$i]['code']; ?> - 
                                 <a href="<?php echo url_for('@whparam_worktype_edit?id='.$items[$i]['id']); ?>">
                                     <?php echo $items[$i]['name']; ?>
                                 </a>

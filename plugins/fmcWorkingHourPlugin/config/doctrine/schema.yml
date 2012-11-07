@@ -159,12 +159,8 @@ WorkingHourWorkType:
         SoftDelete: ~
         Versionable: ~
     options:
-        orderBy: code ASC
+        orderBy: name ASC
     columns:
-        code:
-            type: string(5)
-            notnull: true
-            unique: true
         name:
             type: string(50)
             notnull: true

@@ -4,10 +4,7 @@ abstract class BaseWHParam_WorkTypeActions extends sfActions
 {
     public function executeList (sfWebRequest $request)
     {
-        $this->items = Doctrine::getTable ('WorkingHourWorkType')
-            ->createQuery ('q')
-            ->orderBy('code ASC')
-            ->execute();
+        $this->items = Doctrine::getTable ('WorkingHourWorkType')->findAll();
     }
     
     public function executeNew (sfWebRequest $request)

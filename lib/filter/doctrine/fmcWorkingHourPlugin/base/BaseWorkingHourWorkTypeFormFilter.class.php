@@ -13,7 +13,6 @@ abstract class BaseWorkingHourWorkTypeFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'code'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'name'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'creater_id'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'updater_id'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -26,7 +25,6 @@ abstract class BaseWorkingHourWorkTypeFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'code'             => new sfValidatorPass(array('required' => false)),
       'name'             => new sfValidatorPass(array('required' => false)),
       'creater_id'       => new sfValidatorPass(array('required' => false)),
       'updater_id'       => new sfValidatorPass(array('required' => false)),
@@ -92,7 +90,6 @@ abstract class BaseWorkingHourWorkTypeFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'               => 'Number',
-      'code'             => 'Text',
       'name'             => 'Text',
       'creater_id'       => 'Text',
       'updater_id'       => 'Text',
