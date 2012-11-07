@@ -15,6 +15,7 @@
 
     <div class="pull-right clearfix">
         <h4 class="pull-right clearfix">Added costs</h4>
+        <div class="clearfix"></div>
         <?php include_partial('costFormItems', array(
             'costItems' => $costItems, 
             'isSent' => $costForm->isSent
