@@ -25,13 +25,13 @@
         id="Layout_Toplogo" 
         href="<?php echo url_for("@homepage"); ?>"
     >
-        <img src="/images/logo.png" id="LayoutLogo"/>
+        <img src="/images/logo.png" />
     </a>
 </div>
 
 
 
-<div class="navbar clearfix">
+<div class="navbar clearfix" id="topbar">
     <div class="navbar-inner">
         <div class="container">
             <div class="nav-collapse collapse navbar-responsive-collapse">

@@ -52,7 +52,7 @@
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
         margin-bottom: 50px;
-        padding: 10px;
+        padding: 5px 10px 10px 10px; 
     }
 
 
@@ -68,7 +68,7 @@
 /* FIXING TOPBAR SPACE */
 
     .Layout_Headerbar h3 { margin: 0; }
-    .Layout_Headerbar img { margin-bottom: 5px; }
+    .Layout_Headerbar img { margin-bottom: 1px; }
 
 
 /* ADDITIONAL STYLING CLASSES */
@@ -81,4 +81,10 @@
 
     #Layout_MainContent { min-height: 400px; }
 
+/* SMALLER TOPBAR */
 
+    #topbar { margin-bottom: 12px; }
+    
+/* SMALLER TABLES */
+
+    .table-condensed th, .table-condensed td { padding: 3px 5px; }
