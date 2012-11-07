@@ -2,7 +2,7 @@
 
 Holiday:
     options:
-        orderBy: date ASC
+        orderBy: day ASC
         symfony:
             filter: false
     actAs:

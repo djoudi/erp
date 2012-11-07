@@ -93,5 +93,12 @@
 
     /*h1, h2, h3, h4, h5, p, th { cursor: default; }*/
     * { cursor: default }
-    a, select { cursor: pointer !important; }
-    input, textarea { cursor: text !important; }
+    a, select { cursor: pointer; }
+    textarea, input[type="text"], input[type="password"], 
+    input[type="datetime"], input[type="datetime-local"], 
+    input[type="date"], input[type="month"], input[type="time"], 
+    input[type="week"], input[type="number"], input[type="email"], 
+    input[type="url"], input[type="search"], input[type="tel"], 
+    input[type="color"] {
+        cursor: text;
+    }
