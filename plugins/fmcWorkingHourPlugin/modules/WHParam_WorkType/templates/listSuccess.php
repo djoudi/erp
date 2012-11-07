@@ -24,6 +24,7 @@
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td>
+                        <?php echo $item['code']; ?> - 
                         <a href="<?php echo url_for('@whparam_worktype_edit?id='.$item['id']); ?>">
                             <?php echo $item['name']; ?>
                         </a>
