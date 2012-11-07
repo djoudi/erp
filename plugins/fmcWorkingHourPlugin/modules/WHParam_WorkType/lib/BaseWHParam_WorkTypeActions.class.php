@@ -6,7 +6,7 @@ abstract class BaseWHParam_WorkTypeActions extends sfActions
     {
         $this->items = Doctrine::getTable ('WorkingHourWorkType')
             ->createQuery ('q')
-            #->leftJoin('q.Employees e')
+            ->orderBy('code ASC')
             ->execute();
     }
     

@@ -14,26 +14,39 @@
 
 <?php else: ?>
 
-    <table class="pull-left tablesorter table table-hover table-condensed table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($items as $item): ?>
-                <tr>
-                    <td>
-                        <?php echo $item['code']; ?> - 
-                        <a href="<?php echo url_for('@whparam_worktype_edit?id='.$item['id']); ?>">
-                            <?php echo $item['name']; ?>
-                        </a>
-                    </td>                
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="span10">
+            <div class="row">
+                <div class="span3">
+                    <ul>
+                        <?php $prevLetter = ""; ?>
+                        
+                        <?php for ($i=0; $i<count($items); $i++): ?>
+                        
+                            <?php $tmp = $items[$i]['code']; $curLetter = $tmp[0]; ?>
+                
+                            <?php if ( ($prevLetter!=$curLetter) && ($prevLetter!="") ): ?>
+                                </ul>
+                                </div>
+                                <div class="span3">
+                                <ul>
+                            <?php endif; ?>
+                        
+                            <li>
+                                <?php echo $items[$i]['code']; ?> - 
+                                <a href="<?php echo url_for('@whparam_worktype_edit?id='.$items[$i]['id']); ?>">
+                                    <?php echo $items[$i]['name']; ?>
+                                </a>
+                            </li>
+                            
+                            <?php $prevLetter = $curLetter; ?>
+                            
+                        <?php endfor; ?>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php endif; ?>
-
-<div class="clearfix"></div>
