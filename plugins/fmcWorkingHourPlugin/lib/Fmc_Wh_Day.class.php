@@ -2,6 +2,8 @@
 
 class Fmc_Wh_Day
 {
+    
+    
     public static function getGoodDate ($date)
     {
         $output = date('Y-m-d, l', strtotime($date));
@@ -27,6 +29,15 @@ class Fmc_Wh_Day
             ->count();
         return $count;
     }
+    
+    
+    public static function getHasEnoughLeaveLimit ($type_id, $user_id)
+    {
+        $used = Fmc_Wh_Day::getUserLeaveUsage($type_id, $user_id);
+        $available = Fmc_Wh_Day::getLeaveLimit($type_id, $user_id);
+        return $available > $used;
+    }
+    
     
     
     public static function getMyLeaveUsage ($type_id)

@@ -10,9 +10,10 @@
  * @property enum $status
  * @property date $start_Date
  * @property date $end_Date
+ * @property string $comment
  * @property integer $day_Count
- * @property string $report_Comment
  * @property date $report_Date
+ * @property string $report_Number
  * @property date $report_Received
  * @property sfGuardUser $Employee
  * @property LeaveType $LeaveType
@@ -23,9 +24,10 @@
  * @method enum                getStatus()          Returns the current record's "status" value
  * @method date                getStartDate()       Returns the current record's "start_Date" value
  * @method date                getEndDate()         Returns the current record's "end_Date" value
+ * @method string              getComment()         Returns the current record's "comment" value
  * @method integer             getDayCount()        Returns the current record's "day_Count" value
- * @method string              getReportComment()   Returns the current record's "report_Comment" value
  * @method date                getReportDate()      Returns the current record's "report_Date" value
+ * @method string              getReportNumber()    Returns the current record's "report_Number" value
  * @method date                getReportReceived()  Returns the current record's "report_Received" value
  * @method sfGuardUser         getEmployee()        Returns the current record's "Employee" value
  * @method LeaveType           getLeaveType()       Returns the current record's "LeaveType" value
@@ -35,9 +37,10 @@
  * @method LeaveRequest        setStatus()          Sets the current record's "status" value
  * @method LeaveRequest        setStartDate()       Sets the current record's "start_Date" value
  * @method LeaveRequest        setEndDate()         Sets the current record's "end_Date" value
+ * @method LeaveRequest        setComment()         Sets the current record's "comment" value
  * @method LeaveRequest        setDayCount()        Sets the current record's "day_Count" value
- * @method LeaveRequest        setReportComment()   Sets the current record's "report_Comment" value
  * @method LeaveRequest        setReportDate()      Sets the current record's "report_Date" value
+ * @method LeaveRequest        setReportNumber()    Sets the current record's "report_Number" value
  * @method LeaveRequest        setReportReceived()  Sets the current record's "report_Received" value
  * @method LeaveRequest        setEmployee()        Sets the current record's "Employee" value
  * @method LeaveRequest        setLeaveType()       Sets the current record's "LeaveType" value
@@ -82,19 +85,24 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
              'type' => 'date',
              'notnull' => true,
              ));
+        $this->hasColumn('comment', 'string', 250, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 250,
+             ));
         $this->hasColumn('day_Count', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
              ));
-        $this->hasColumn('report_Comment', 'string', 50, array(
-             'type' => 'string',
-             'notnull' => false,
-             'length' => 50,
-             ));
         $this->hasColumn('report_Date', 'date', null, array(
              'type' => 'date',
              'notnull' => false,
+             ));
+        $this->hasColumn('report_Number', 'string', 50, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 50,
              ));
         $this->hasColumn('report_Received', 'date', null, array(
              'type' => 'date',

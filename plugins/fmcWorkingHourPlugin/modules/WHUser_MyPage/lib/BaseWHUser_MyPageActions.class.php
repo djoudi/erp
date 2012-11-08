@@ -15,7 +15,14 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         $myuser_id = $this->getUser()->getGuardUser()->getId();
         $this->date = $request->getParameter ('date');
         
-        // yeterli hakki var mi kontrol
+        if ( ! Fmc_Wh_Day::getHasEnoughLeaveLimit ($type_id, $myuser_id) )
+        {
+            $this->getUser()->setFlash('error', "You don't have enough limits for this leave type.");
+            $url = $this->getController()->genUrl("@whuser_day?date=".$this->date);
+            $this->getController()->redirect ($url);
+        }
+        
+        $this->leaveType = Doctrine::getTable('LeaveType')->findOneById($type_id);
         
         $leaveObject = new LeaveRequest();
         $leaveObject->setUserId ($myuser_id);
@@ -24,9 +31,12 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         $leaveObject->setStartDate ($this->date);
         $leaveObject->setEndDate ($this->date);
         
-        $this->form = new LeaveRequestForm ($leaveObject);
-        // report varligina gore formu getir
+        if ($this->leaveType['has_Report'])
+            $this->form = new Form_WHLeave_w_report ($leaveObject);
+        else
+            $this->form = new Form_WHLeave_wo_report ($leaveObject);
         
+        // process
     }
     
     
@@ -73,8 +83,8 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                     $entrance->setTime ($values["time"]);
                     $entrance->save();
                     
-                    $this->user->setFlash('success', 'Office day entrance saved.');
-                    $this->controller->redirect ($request->getReferer());
+                    $this->getUser()->setFlash('success', 'Office day entrance saved.');
+                    $this->getController()->redirect ($request->getReferer());
                 }
                 else
                 {
