@@ -65,12 +65,13 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
              'type' => 'enum',
              'values' => 
              array(
-              0 => 'Accepted',
-              1 => 'Denied',
-              2 => 'Pending',
-              3 => 'Cancelled',
+              0 => 'Draft',
+              1 => 'Pending',
+              2 => 'Accepted',
+              3 => 'Denied',
+              4 => 'Cancelled',
              ),
-             'default' => 'Pending',
+             'default' => 'Draft',
              'notnull' => true,
              ));
         $this->hasColumn('start_Date', 'date', null, array(

@@ -14,6 +14,8 @@
         
         <h4><?php include_partial('fmcCore/goodDate', array('date'=>$date)); ?></h4>
         
+        
+        
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#normal" data-toggle="tab">New Work Day</a></li>
             <li class=""><a href="#leave" data-toggle="tab">New Leave</a></li>

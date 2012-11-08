@@ -15,7 +15,7 @@ abstract class BaseLeaveRequestFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'), 'add_empty' => true)),
       'type_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'), 'add_empty' => true)),
-      'status'          => new sfWidgetFormChoice(array('choices' => array('' => '', 'Accepted' => 'Accepted', 'Denied' => 'Denied', 'Pending' => 'Pending', 'Cancelled' => 'Cancelled'))),
+      'status'          => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied', 'Cancelled' => 'Cancelled'))),
       'start_Date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'end_Date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'day_Count'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -33,7 +33,7 @@ abstract class BaseLeaveRequestFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Employee'), 'column' => 'id')),
       'type_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('LeaveType'), 'column' => 'id')),
-      'status'          => new sfValidatorChoice(array('required' => false, 'choices' => array('Accepted' => 'Accepted', 'Denied' => 'Denied', 'Pending' => 'Pending', 'Cancelled' => 'Cancelled'))),
+      'status'          => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied', 'Cancelled' => 'Cancelled'))),
       'start_Date'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'end_Date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'day_Count'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),

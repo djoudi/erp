@@ -39,8 +39,11 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 if ($this->form->isValid())
                 {
                     $day = new WorkingHourDay();
-                    $day->setDate($this->date());
-                    $day->setUserId($this->getUser()->getGuardUser()->getId());
+                    $day->setUserId ($this->getUser()->getGuardUser()->getId());
+                    $day->setDate ($this->date);
+                    $day->setStatus ("Draft");
+                    #$day->setMultiplier (
+                    
                     #$day->set
                     //create new day
                     //create new enter record

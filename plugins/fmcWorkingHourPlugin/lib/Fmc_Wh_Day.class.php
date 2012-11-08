@@ -2,9 +2,42 @@
 
 class Fmc_Wh_Day
 {
+    public static function getMultiplier ($date)
+    {
+        $timestamp = strtotime($date);
+        $dayoftheweek = date ("N", $timestamp);
+        
+        if ($dayoftheweek > 5) // if weekend
+        {
+            $holiday = 1;
+        }
+        elseif (Doctrine::getTable('Holiday')->findOneByDay($date))
+        {
+            $holiday = 1;
+        }
+        else $holiday = 0;
+        
+        if ($holiday)
+        {
+            $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('WeekendMultiplier');
+            $multiplier = $param['value'];
+        }
+        else $multiplier = 1;
+        
+        return $multiplier;
+    }
+    
     
     public static function getStatus ($date)
     {
+        
+        #$stamp = strtotime($date);
+        #echo date("N", $stamp);
+        echo Fmc_Wh_Day::getMultiplier($date);
+        
+        
+        
+        
         $user = sfContext::getInstance()->getUser();
         $user_id = $user->getGuardUser()->getId();
         
