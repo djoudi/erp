@@ -39,7 +39,9 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 if ($this->form->isValid())
                 {
                     $day = new WorkingHourDay();
-                    $day->set
+                    $day->setDate($this->date());
+                    $day->setUserId($this->getUser()->getGuardUser()->getId());
+                    #$day->set
                     //create new day
                     //create new enter record
                     //$this->user->setFlash('success', 'Office day entrance recorded.');
