@@ -35,8 +35,6 @@ $(document).ready(function()
     
     
     /* jQueryUI Datepicker */
-        //alert($("#datepick_whdb_url").attr("defaultdate"));
-        
         
         $('.datepick').datepicker({ dateFormat: "yy-mm-dd" });
         

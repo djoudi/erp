@@ -4,17 +4,19 @@
     
     <div class="span3" style="padding: 10px 15px 0 0;">
         
-        <?php include_partial ('datepicker', array('date'=>$date)); ?>
         <p>Select a date above to go to a day.</p>
+        
+        <?php include_partial ('datepicker', array('date'=>$date)); ?>
+        
     </div>
         
     <div class="span8">
         
-        <h4>Selected date: <?php include_partial('fmcCore/goodDate', array('date'=>$date)); ?></h4>
+        <h4><?php include_partial('fmcCore/goodDate', array('date'=>$date)); ?></h4>
         
         <ul id="myTab" class="nav nav-tabs">
-            <li class="active"><a href="#normal" data-toggle="tab">Start normal day</a></li>
-            <li class=""><a href="#leave" data-toggle="tab">Create leave request</a></li>
+            <li class="active"><a href="#normal" data-toggle="tab">New Work Day</a></li>
+            <li class=""><a href="#leave" data-toggle="tab">New Leave</a></li>
         </ul>
     
         <div class="tab-content">
@@ -24,14 +26,16 @@
                 <p>To start a new day, please enter your <strong>office entrance</strong> date.</p>
                 
                 <form class="form-horizontal" method="post">
+                    
                     <table class="table table-bordered table-hover table-condensed">
                         <?php echo $form; ?>
                     </table>
-                </form>
                 
-                <div class="form-actions">
-                    <input type="submit" class="btn btn-primary" value="Continue" />
-                </div>
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" value="Continue" />
+                    </div>
+                
+                </form>
                 
             </div>
             
