@@ -1,3 +1,14 @@
+# User - MyPage
+
+whuser_mypage:
+    url: /wh/user/mypage
+    param: { module: WHUser_MyPage, action: index }
+
+whuser_day:
+    url: /wh/user/day/:date
+    param: { module: WHUser_MyPage, action: day }
+
+
 # Params - Holiday
 
 whparam_holiday_list:

@@ -9,9 +9,20 @@ all:
                     attributes:
                         class: "dropdown"
                         id: topmenu_workinghours
-                    #credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
-                    credentials: [["Working Hours Settings"]]
+                    #credentials: [["Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
+                    credentials: [["Working Hours", "Working Hours Settings"]]
                     children:
+                        10:
+                            label: My Working Hours
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Working Hours"]
+                        11:
+                            label: Edit My Days
+                            route: @whuser_mypage
+                            requires_auth: true
+                            credentials: ["Working Hours"]
                         90:
                             label: Settings
                             attributes:
