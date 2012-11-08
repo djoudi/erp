@@ -8,6 +8,11 @@ whuser_day:
     url: /wh/user/day/:date
     param: { module: WHUser_MyPage, action: day }
 
+whuser_newleaverequest:
+    url: /wh/user/day/:date/newleaverequest/:type
+    param: { module: WHUser_MyPage, action: newleave }
+
+
 
 # Params - Holiday
 
@@ -23,6 +28,8 @@ whparam_holiday_edit:
     url: /wh/settings/holiday/edit/:id
     param: { module: WHParam_Holiday, action: edit }
 
+
+
 # Params - Leave Type
 
 whparam_leavetype_list:
@@ -36,6 +43,8 @@ whparam_leavetype_new:
 whparam_leavetype_edit:
     url: /wh/settings/leavetype/edit/:id
     param: { module: WHParam_LeaveType, action: edit }
+
+
 
 # Params - Working Hour Settings
 
@@ -51,6 +60,8 @@ whparam_settings_edit:
     url: /wh/settings/params/edit/:id
     param: { module: WHParam_Settings, action: edit }
 
+
+
 # Params - Work Type
 
 whparam_worktype_list:
@@ -64,6 +75,8 @@ whparam_worktype_new:
 whparam_worktype_edit:
     url: /wh/settings/worktype/edit/:id
     param: { module: WHParam_WorkType, action: edit }
+
+
 
 # Params - Leave Limits
 

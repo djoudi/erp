@@ -2,6 +2,65 @@
 
 class Fmc_Wh_Day
 {
+    public static function getGoodDate ($date)
+    {
+        $output = date('Y-m-d, l', strtotime($date));
+        if ($date == date('Y-m-d'))
+            $output .= ' (Today)';
+        elseif ($date == date('Y-m-d', strtotime('yesterday'))) 
+            $output .= ' (Yesterday)';
+        elseif ($date == date('Y-m-d', strtotime('tomorrow')))
+            $output .= ' (Tomorrow)';
+        return $output;
+    }
+    
+    
+    public static function getUserLeaveUsage ($type_id, $user_id)
+    {
+        $count = Doctrine::getTable('WorkingHourDay')
+            ->createQuery ('q')
+            ->leftJoin ('q.LeaveRequest l')
+            ->addWhere ('l.type_id = ?', $type_id)
+            ->addWhere ('q.user_id = ?', $user_id)
+            ->addWhere ('q.leave_id IS NOT NULL')
+            ->addWhere ('q.status = ?', 'Accepted')
+            ->count();
+        return $count;
+    }
+    
+    
+    public static function getMyLeaveUsage ($type_id)
+    {
+        $myUserId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        return Fmc_Wh_Day::getUserLeaveUsage ($type_id, $myUserId);
+    }
+    
+    
+    public static function getLeaveLimit ($type_id, $user_id)
+    {
+        $mylimits = Doctrine::getTable('LeaveRequestLimit')
+            ->createQuery ('q')
+            ->addWhere ('q.user_id = ?', $user_id)
+            ->addWhere ('q.type_id = ?', $type_id)
+            ->fetchOne();
+        if ($mylimits)
+        {
+            $limit = $mylimits['leaveLimit'];
+        } else {
+            $type = Doctrine::getTable('LeaveType')->findOneById($type_id);
+            $limit = $type['default_Limit'];
+        }
+        return $limit;
+    }
+    
+    
+    public static function getMyLeaveLimit ($type_id)
+    {
+        $myUserId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        return Fmc_Wh_Day::getLeaveLimit ($type_id, $myUserId);
+    }
+    
+    
     public static function getMultiplier ($date)
     {
         $timestamp = strtotime($date);
@@ -30,14 +89,6 @@ class Fmc_Wh_Day
     
     public static function getStatus ($date)
     {
-        
-        #$stamp = strtotime($date);
-        #echo date("N", $stamp);
-        echo Fmc_Wh_Day::getMultiplier($date);
-        
-        
-        
-        
         $user = sfContext::getInstance()->getUser();
         $user_id = $user->getGuardUser()->getId();
         
@@ -58,78 +109,3 @@ class Fmc_Wh_Day
 
 
 }
-?>
-<?php
-/*
-    
-class FmcFilter {
-    
-    private $formName;
-    private $user;
-    private $filter;
-    private $filtered;
-    private $controller;
-
-    public function __construct($formname) {
-  
-        $this->formName = $formname;
-        $this->user = sfContext::getInstance()->getUser();
-        $this->controller = sfContext::getInstance()->getController();
-        
-    }
-    
-    public function getFilter() {
-    
-        return ($this->filter);
-    }
-    
-    public function getFiltered() {
-  
-        return ($this->filtered);
-        
-    }
-    
-    public function resetForm() {
-    
-        $this->setFilters (array());
-        $this->controller->redirect($request->getReferer());
-        
-    }
-    
-    public function initFilterForm (sfWebRequest $request, Doctrine_Query $q) {
-    
-        $this->filter = new $this->formName ($this->getFilters());
-  
-        if($request->isMethod('post')) {
-    
-            if($request->hasParameter('_reset')) {
-                $this->setFilters (array());
-                $this->controller->redirect($request->getReferer());  
-            }
-    
-            $this->filter->bind ( $request->getParameter ($this->filter->getName()) );
-    
-            if($this->filter->isValid()) {
-                $this->setFilters($this->filter->getValues());
-                $this->controller->redirect($request->getReferer());
-            }
-        }
-        
-        $this->filtered = count($this->getFilters()) > 0;
-        $this->filter->setQuery($q);
-  
-        return $this->filter->buildQuery($this->getFilters());
-    }
-    
-    public function getFilters() {
-        
-        return $this->user->getAttribute('cf_filters', array());
-    }
-    
-    public function setFilters($filters) {
-  
-        $this->user->setAttribute('cf_filters', $filters);
-    }
-
-}
-*/
