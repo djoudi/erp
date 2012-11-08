@@ -1,2 +1,19 @@
 saat çarpanı haftasonu için mi olaacaksadece, yoksa akşam fazla mesailerde de olacak mı?
 
+
+---------------
+ekstra öneri:
+---------------
+kullanıcıların kendi bilgilerini değiştirebilecekleri bir ekran olsun mu? (edit my user)
+
+bir kullanıcı bir işi girerken gelecek default worktype, departman varsayılanı mı olsun, yoksa son iş mi?
+ya da bunlardan birini seçebilsin mi kullanıcı?
+
+---------------
+tekliften
+---------------
+- yöneticiler neden kullanıcı ekranlarına girip değişiklik yapabilsinler?
+
+- veri yetkisi, ağaç hiyerarşisine göre tanımlanacak? bunu zaten izinler yapmıyor mu?
+
+- 
