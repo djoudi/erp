@@ -41,8 +41,9 @@ $(document).ready(function()
         $('#datepick_whdb').datepicker({
             dateFormat: "yy-mm-dd", 
             defaultDate: $("#datepick_whdb_url").attr("defaultdate"), 
-            changeMonth: true,
-            changeYear: true,
+            changeMonth: true, 
+            firstDay: 1, 
+            changeYear: true, 
             onSelect: function(dateText, inst) {
                 var url = $('#datepick_whdb_url').val() + dateText;
                 window.location=url;
