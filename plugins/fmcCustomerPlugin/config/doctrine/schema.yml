@@ -3,6 +3,8 @@ Customer:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~   
+    options:
+        orderBy: name ASC
     columns:
         name:
             type: string(50)

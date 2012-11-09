@@ -2,9 +2,22 @@ Currency:
     actAs:
         Auditable: ~
         SoftDelete: ~
-        Versionable: ~    
+        Versionable: ~
+    options:
+        orderBy: code ASC
     columns:
-        code: { type: string(3), notnull: true, unique: true }
-        symbol: { type: string(10), notnull: true, unique: true }
-        isDefault: { type: boolean, default: false }
-        isActive: { type: boolean, default: true, notnull: true }
+        code:
+            type: string(3)
+            notnull: true
+            unique: true
+        symbol:
+            type: string(10)
+            notnull: true
+            unique: true
+        isDefault
+            type: boolean
+            default: false
+        isActive:
+            type: boolean
+            default: true
+            notnull: true

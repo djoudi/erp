@@ -3,6 +3,8 @@ Project:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~ 
+    options:
+        orderBy: code ASC
     columns:
         customer_id:
             type: integer

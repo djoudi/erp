@@ -2,7 +2,9 @@ Vat:
     actAs:
         Auditable: ~
         SoftDelete: ~
-        Versionable: ~   
+        Versionable: ~
+    options:
+        orderBy: rate ASC
     columns:
         rate:
             type: integer
