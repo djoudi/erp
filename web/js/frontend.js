@@ -43,6 +43,7 @@ $(document).ready(function()
             defaultDate: $("#datepick_whdb_url").attr("defaultdate"), 
             changeMonth: true, 
             firstDay: 1, 
+            numberOfMonths: 1, 
             changeYear: true, 
             onSelect: function(dateText, inst) {
                 var url = $('#datepick_whdb_url').val() + dateText;
