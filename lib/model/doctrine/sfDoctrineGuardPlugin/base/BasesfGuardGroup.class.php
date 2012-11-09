@@ -11,11 +11,11 @@
  * @property integer $default_Worktype_id
  * @property sfGuardUser $Manager
  * @property Doctrine_Collection $Permissions
+ * @property Doctrine_Collection $WorkTypes
  * @property WorkingHourWorkType $Default_Work_Type
  * @property Doctrine_Collection $sfGuardGroupPermission
  * @property Doctrine_Collection $Users
  * @property Doctrine_Collection $sfGuardUserGroup
- * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $WorkingHourWorkTypeGroup
  * 
  * @method string              getName()                     Returns the current record's "name" value
@@ -24,11 +24,11 @@
  * @method integer             getDefaultWorktypeId()        Returns the current record's "default_Worktype_id" value
  * @method sfGuardUser         getManager()                  Returns the current record's "Manager" value
  * @method Doctrine_Collection getPermissions()              Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection getWorkTypes()                Returns the current record's "WorkTypes" collection
  * @method WorkingHourWorkType getDefaultWorkType()          Returns the current record's "Default_Work_Type" value
  * @method Doctrine_Collection getSfGuardGroupPermission()   Returns the current record's "sfGuardGroupPermission" collection
  * @method Doctrine_Collection getUsers()                    Returns the current record's "Users" collection
  * @method Doctrine_Collection getSfGuardUserGroup()         Returns the current record's "sfGuardUserGroup" collection
- * @method Doctrine_Collection getWorkTypes()                Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
  * @method sfGuardGroup        setName()                     Sets the current record's "name" value
  * @method sfGuardGroup        setDescription()              Sets the current record's "description" value
@@ -36,11 +36,11 @@
  * @method sfGuardGroup        setDefaultWorktypeId()        Sets the current record's "default_Worktype_id" value
  * @method sfGuardGroup        setManager()                  Sets the current record's "Manager" value
  * @method sfGuardGroup        setPermissions()              Sets the current record's "Permissions" collection
+ * @method sfGuardGroup        setWorkTypes()                Sets the current record's "WorkTypes" collection
  * @method sfGuardGroup        setDefaultWorkType()          Sets the current record's "Default_Work_Type" value
  * @method sfGuardGroup        setSfGuardGroupPermission()   Sets the current record's "sfGuardGroupPermission" collection
  * @method sfGuardGroup        setUsers()                    Sets the current record's "Users" collection
  * @method sfGuardGroup        setSfGuardUserGroup()         Sets the current record's "sfGuardUserGroup" collection
- * @method sfGuardGroup        setWorkTypes()                Sets the current record's "WorkTypes" collection
  * @method sfGuardGroup        setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
  * 
  * @package    fmc
@@ -87,6 +87,11 @@ abstract class BasesfGuardGroup extends MyDoctrineRecord
              'local' => 'group_id',
              'foreign' => 'permission_id'));
 
+        $this->hasMany('WorkingHourWorkType as WorkTypes', array(
+             'refClass' => 'WorkingHourWorkTypeGroup',
+             'local' => 'group_id',
+             'foreign' => 'worktype_id'));
+
         $this->hasOne('WorkingHourWorkType as Default_Work_Type', array(
              'local' => 'default_Worktype_id',
              'foreign' => 'id',
@@ -104,11 +109,6 @@ abstract class BasesfGuardGroup extends MyDoctrineRecord
         $this->hasMany('sfGuardUserGroup', array(
              'local' => 'id',
              'foreign' => 'group_id'));
-
-        $this->hasMany('WorkingHourWorkType as WorkTypes', array(
-             'refClass' => 'WorkingHourWorkTypeGroup',
-             'local' => 'group_id',
-             'foreign' => 'worktype_id'));
 
         $this->hasMany('WorkingHourWorkTypeGroup', array(
              'local' => 'id',

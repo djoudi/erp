@@ -248,6 +248,13 @@ sfGuardUser:
             type: integer
             notnull: true
             default: 0
+    relations:
+        WorkTypes:
+            class: WorkingHourWorkType
+            local: user_id
+            foreign: worktype_id
+            refClass: WorkingHourWorkTypeUser
+            foreignAlias: Employees
 
 ######################################################
 
@@ -260,6 +267,12 @@ sfGuardGroup:
             notnull: true
             default: 40
     relations:
+        WorkTypes:
+            class: WorkingHourWorkType
+            local: group_id
+            foreign: worktype_id
+            refClass: WorkingHourWorkTypeGroup
+            foreignAlias: Departments
         Default_Work_Type:
             class: WorkingHourWorkType
             local: default_Worktype_id

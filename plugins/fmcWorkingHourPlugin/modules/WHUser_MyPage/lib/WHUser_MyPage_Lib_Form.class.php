@@ -2,6 +2,27 @@
 
 class WHUser_MyPage_Lib_Form
 {
+    public static function ProcessMyWork ($request, $form)
+    {
+        $controller = sfContext::getInstance()->getController();
+        $user = sfContext::getInstance()->getUser();
+        
+        if ($request->isMethod('post'))
+        {
+            $form->bind ($request->getParameter($form->getName()));
+            if ($form->isValid())
+            {
+                $form->save();
+                #$values = $form->getValues();
+                #echo $values['day_id'];
+                $user->setFlash('success', 'Work record saved.');
+                $controller->redirect ($request->getReferer());
+            }
+        }
+        
+    }
+    
+    
     public static function ProcessMyNewDay ($request, $form, $date)
     {
         $controller = sfContext::getInstance()->getController();

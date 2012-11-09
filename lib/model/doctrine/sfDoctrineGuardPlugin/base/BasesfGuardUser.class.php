@@ -21,6 +21,7 @@
  * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
+ * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
@@ -28,7 +29,6 @@
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $LeaveRequestLimit
  * @property Doctrine_Collection $LeaveRequest
- * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $WorkingHourDay
  * 
@@ -48,6 +48,7 @@
  * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
+ * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getSfGuardUserPermission()   Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection   getSfGuardUserGroup()        Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
@@ -55,7 +56,6 @@
  * @method Doctrine_Collection   getCostForms()               Returns the current record's "CostForms" collection
  * @method Doctrine_Collection   getLeaveRequestLimit()       Returns the current record's "LeaveRequestLimit" collection
  * @method Doctrine_Collection   getLeaveRequest()            Returns the current record's "LeaveRequest" collection
- * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getWorkingHourWorkTypeUser() Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection   getWorkingHourDay()          Returns the current record's "WorkingHourDay" collection
  * @method sfGuardUser           setFirstName()               Sets the current record's "first_name" value
@@ -74,6 +74,7 @@
  * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setSfGuardUserPermission()   Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setSfGuardUserGroup()        Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
@@ -81,7 +82,6 @@
  * @method sfGuardUser           setCostForms()               Sets the current record's "CostForms" collection
  * @method sfGuardUser           setLeaveRequestLimit()       Sets the current record's "LeaveRequestLimit" collection
  * @method sfGuardUser           setLeaveRequest()            Sets the current record's "LeaveRequest" collection
- * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setWorkingHourWorkTypeUser() Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method sfGuardUser           setWorkingHourDay()          Sets the current record's "WorkingHourDay" collection
  * 
@@ -182,6 +182,11 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'local' => 'user_id',
              'foreign' => 'permission_id'));
 
+        $this->hasMany('WorkingHourWorkType as WorkTypes', array(
+             'refClass' => 'WorkingHourWorkTypeUser',
+             'local' => 'user_id',
+             'foreign' => 'worktype_id'));
+
         $this->hasMany('sfGuardUserPermission', array(
              'local' => 'id',
              'foreign' => 'user_id'));
@@ -209,11 +214,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasMany('LeaveRequest', array(
              'local' => 'id',
              'foreign' => 'user_id'));
-
-        $this->hasMany('WorkingHourWorkType as WorkTypes', array(
-             'refClass' => 'WorkingHourWorkTypeUser',
-             'local' => 'user_id',
-             'foreign' => 'worktype_id'));
 
         $this->hasMany('WorkingHourWorkTypeUser', array(
              'local' => 'id',

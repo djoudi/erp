@@ -46,7 +46,9 @@
         <tr>
             <form class="form-inline" method="post">
                 <?php echo $form->renderHiddenFields(); ?>
-                <td></td>
+                <td>
+                    <?php echo $form['project_id']; ?>
+                </td>
                 <td>
                     <?php echo $form['type_id']; ?>
                 </td>
@@ -66,14 +68,6 @@
         </tr>
     </tfoot>
 </table>
-
-
-    
-    <?php echo $form; ?>
-    
-    
-
-</form>
 
 
 

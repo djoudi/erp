@@ -62,12 +62,19 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         {
             $this->setTemplate ("dayinfo");
             
-            $user_id = $this->getUser()->getGuardUser()->getId();
+            $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
             
-            $day = $whday = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id, $this->date);
+            $object = new WorkingHourWork();
+            $object->setDayId ($day['id']);
+            $this->form = new Form_WHUser_newdaywork($object);
+            
+            
+            
+            
             $this->dayIOrecords = $day->getActiveIORecords();
+            //day work records
             
-            $this->form = new Form_WHUser_newdaywork();
+            WHUser_MyPage_Lib_Form::ProcessMyWork ($request, $this->form);
         }
         
         if ($status == "empty")
