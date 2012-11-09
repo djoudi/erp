@@ -93,7 +93,7 @@ LeaveRequest:
             notnull: true
         status:
             type: enum
-            values: ['Draft', 'Pending', 'Accepted', 'Denied', 'Cancelled']
+            values: ['Draft', 'Pending', 'Accepted', 'Denied']
             default: 'Draft'
             notnull: true
         start_Date:
@@ -303,7 +303,7 @@ WorkingHourDay:
             notnull: true
         status:
             type: enum
-            values: ['Draft', 'Pending', 'Accepted', 'Denied', 'Cancelled']
+            values: ['Draft', 'Pending', 'Accepted', 'Denied']
             default: 'Draft'
             notnull: true
         multiplier:

@@ -14,8 +14,21 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     {
         $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
     }
-       
+    
+    
+    public function executeDeleteday (sfWebRequest $request)
+    {
+        $day = Doctrine::getTable('WorkingHourDay')->findOneById($request->getParameter('day_id'));
+        $this->forward404Unless ($day);
         
+        #$day->get
+        $day->delete();
+        
+        $this->getUser()->setFlash('notice', "Day records deleted.");
+        $this->getController()->redirect ($request->getReferer());
+    }
+    
+    
     public function executeLeaverequestedit (sfWebRequest $request)
     {
         $type_id = $request->getParameter ('type_id');
@@ -63,6 +76,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             $this->setTemplate ("dayinfo");
             
             $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
+            $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
             
             $object = new WorkingHourWork("test");
             $object->setDayId ($day['id']);

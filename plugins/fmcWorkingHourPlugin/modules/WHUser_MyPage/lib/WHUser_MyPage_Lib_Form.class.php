@@ -2,6 +2,7 @@
 
 class WHUser_MyPage_Lib_Form
 {
+    
     public static function ProcessMyWork ($request, $form)
     {
         $controller = sfContext::getInstance()->getController();
@@ -13,13 +14,14 @@ class WHUser_MyPage_Lib_Form
             if ($form->isValid())
             {
                 $form->save();
-                #$values = $form->getValues();
-                #echo $values['day_id'];
                 $user->setFlash('success', 'Work record saved.');
                 $controller->redirect ($request->getReferer());
             }
+            else
+            {
+                $user->setFlash('error', 'Problem occured saving the record! Please check your input.');
+            }
         }
-        
     }
     
     

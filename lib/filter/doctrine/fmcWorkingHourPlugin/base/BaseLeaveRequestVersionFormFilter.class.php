@@ -15,7 +15,7 @@ abstract class BaseLeaveRequestVersionFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'type_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'status'          => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied', 'Cancelled' => 'Cancelled'))),
+      'status'          => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'end_Date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'comment'         => new sfWidgetFormFilterInput(),
@@ -33,7 +33,7 @@ abstract class BaseLeaveRequestVersionFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'type_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'status'          => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied', 'Cancelled' => 'Cancelled'))),
+      'status'          => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'end_Date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'comment'         => new sfValidatorPass(array('required' => false)),

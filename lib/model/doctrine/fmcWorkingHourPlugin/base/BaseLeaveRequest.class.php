@@ -72,7 +72,6 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
               1 => 'Pending',
               2 => 'Accepted',
               3 => 'Denied',
-              4 => 'Cancelled',
              ),
              'default' => 'Draft',
              'notnull' => true,

@@ -18,7 +18,6 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         $q = $this->createQuery ('whd')
             ->addWhere ('whd.user_id = ?', $user_id)
             ->addWhere ('whd.date = ?', $date)
-            ->addWhere ('status <> ?', 'Cancelled')
             ->addWhere ('status <> ?', 'Denied');
         return $q->fetchOne();
     }
