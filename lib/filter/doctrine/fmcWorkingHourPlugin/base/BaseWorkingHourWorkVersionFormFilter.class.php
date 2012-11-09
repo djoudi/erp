@@ -14,6 +14,7 @@ abstract class BaseWorkingHourWorkVersionFormFilter extends BaseFormFilterDoctri
   {
     $this->setWidgets(array(
       'day_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'project_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'type_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'start'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'end'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -27,6 +28,7 @@ abstract class BaseWorkingHourWorkVersionFormFilter extends BaseFormFilterDoctri
 
     $this->setValidators(array(
       'day_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'project_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'type_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'start'      => new sfValidatorPass(array('required' => false)),
       'end'        => new sfValidatorPass(array('required' => false)),
@@ -57,6 +59,7 @@ abstract class BaseWorkingHourWorkVersionFormFilter extends BaseFormFilterDoctri
     return array(
       'id'         => 'Number',
       'day_id'     => 'Number',
+      'project_id' => 'Number',
       'type_id'    => 'Number',
       'start'      => 'Text',
       'end'        => 'Text',

@@ -43,6 +43,8 @@ abstract class BaseVat extends MyDoctrineRecord
              'default' => true,
              'notnull' => true,
              ));
+
+        $this->option('orderBy', 'rate ASC');
     }
 
     public function setUp()

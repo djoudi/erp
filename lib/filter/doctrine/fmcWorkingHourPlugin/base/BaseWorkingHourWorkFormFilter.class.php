@@ -14,6 +14,7 @@ abstract class BaseWorkingHourWorkFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'day_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Day'), 'add_empty' => true)),
+      'project_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
       'type_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('WorkType'), 'add_empty' => true)),
       'start'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'end'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -28,6 +29,7 @@ abstract class BaseWorkingHourWorkFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'day_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Day'), 'column' => 'id')),
+      'project_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),
       'type_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('WorkType'), 'column' => 'id')),
       'start'      => new sfValidatorPass(array('required' => false)),
       'end'        => new sfValidatorPass(array('required' => false)),
@@ -59,6 +61,7 @@ abstract class BaseWorkingHourWorkFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'         => 'Number',
       'day_id'     => 'ForeignKey',
+      'project_id' => 'ForeignKey',
       'type_id'    => 'ForeignKey',
       'start'      => 'Text',
       'end'        => 'Text',

@@ -56,6 +56,8 @@ abstract class BaseCurrency extends MyDoctrineRecord
              'default' => true,
              'notnull' => true,
              ));
+
+        $this->option('orderBy', 'code ASC');
     }
 
     public function setUp()

@@ -17,6 +17,7 @@ abstract class BaseWorkingHourWorkForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'day_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Day'), 'add_empty' => false)),
+      'project_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
       'type_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('WorkType'), 'add_empty' => false)),
       'start'      => new sfWidgetFormTime(),
       'end'        => new sfWidgetFormTime(),
@@ -32,6 +33,7 @@ abstract class BaseWorkingHourWorkForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'day_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Day'))),
+      'project_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
       'type_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('WorkType'))),
       'start'      => new sfValidatorTime(),
       'end'        => new sfValidatorTime(),

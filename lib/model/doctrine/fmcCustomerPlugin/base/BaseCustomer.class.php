@@ -29,6 +29,8 @@ abstract class BaseCustomer extends MyDoctrineRecord
              'notnull' => true,
              'length' => 50,
              ));
+
+        $this->option('orderBy', 'name ASC');
     }
 
     public function setUp()

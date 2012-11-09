@@ -14,7 +14,7 @@ Currency:
             type: string(10)
             notnull: true
             unique: true
-        isDefault
+        isDefault:
             type: boolean
             default: false
         isActive:
