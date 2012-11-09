@@ -9,7 +9,9 @@
 #leave_request_report_Date_day,
 #leave_request_report_Date_month,
 #leave_request_report_Received_day,
-#leave_request_report_Received_month
+#leave_request_report_Received_month,
+#working_hour_work_start,
+#working_hour_work_end
 {
     width: 50px;
 }

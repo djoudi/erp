@@ -349,6 +349,9 @@ WorkingHourWork:
         day_id:
             type: integer
             notnull: true
+        project_id:
+            type: integer
+            notnull: true
         type_id:
             type: integer
             notnull: true
@@ -365,6 +368,12 @@ WorkingHourWork:
         Day:
             class: WorkingHourDay
             local: day_id
+            foreign: id
+            foreignAlias: WorkingHourWork
+            onDelete: CASCADE
+        Project:
+            class: Project
+            local: project_id
             foreign: id
             foreignAlias: WorkingHourWork
             onDelete: CASCADE

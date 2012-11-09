@@ -3,10 +3,9 @@
 class Fmc_Wh_Day
 {
     
-    
     public static function getGoodDate ($date)
     {
-        $output = date('Y-m-d, l', strtotime($date));
+        $output = date('Y-m-d, D', strtotime($date));
         if ($date == date('Y-m-d'))
             $output .= ' (Today)';
         elseif ($date == date('Y-m-d', strtotime('yesterday'))) 
