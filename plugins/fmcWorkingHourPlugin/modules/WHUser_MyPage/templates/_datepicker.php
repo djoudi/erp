@@ -12,7 +12,7 @@
         defaultdate="<?php echo $date; ?>"
         value="<?php echo url_for('@whuser_day?date='); ?>" 
     />
-
+    
     <div id="datepick_whdb"></div>
 
 </div>

@@ -2,6 +2,7 @@
 
 abstract class BaseWHUser_MyPageActions extends sfActions
 {
+    
     public function executeIndex (sfWebRequest $request)
     {
         $date = date("Y-m-d");
