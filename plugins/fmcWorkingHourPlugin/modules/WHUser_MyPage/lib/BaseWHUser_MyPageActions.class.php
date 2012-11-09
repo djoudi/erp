@@ -9,9 +9,15 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     }
     
     
-    public function executeNewleave (sfWebRequest $request)
+    public function executeLeaverequestlist (sfWebRequest $request)
     {
-        $type_id = $request->getParameter ('type');
+        $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
+    }
+       
+        
+    public function executeLeaverequestedit (sfWebRequest $request)
+    {
+        $type_id = $request->getParameter ('type_id');
         $myuser_id = $this->getUser()->getGuardUser()->getId();
         $this->date = $request->getParameter ('date');
         
@@ -35,6 +41,8 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             $this->form = new Form_WHLeave_w_report ($leaveObject);
         else
             $this->form = new Form_WHLeave_wo_report ($leaveObject);
+        
+        $this->setTemplate('newleave');
         
         // process
     }

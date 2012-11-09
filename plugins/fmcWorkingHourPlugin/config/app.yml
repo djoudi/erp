@@ -23,6 +23,11 @@ all:
                             route: @whuser_mypage
                             requires_auth: true
                             credentials: ["Working Hours"]
+                        12:
+                            label: New Leave Request
+                            route: @whuser_day_leaverequest_list
+                            requires_auth: true
+                            credentials: ["Working Hours"]
                         90:
                             label: Settings
                             attributes:

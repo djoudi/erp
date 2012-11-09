@@ -8,9 +8,13 @@ whuser_day:
     url: /wh/user/day/:date
     param: { module: WHUser_MyPage, action: day }
 
-whuser_newleaverequest:
-    url: /wh/user/day/:date/newleaverequest/:type
-    param: { module: WHUser_MyPage, action: newleave }
+whuser_day_leaverequest_list:
+    url: /wh/user/day/leaverequest/list
+    param: { module: WHUser_MyPage, action: leaverequestlist }
+
+whuser_day_leaverequest_edit:
+    url: /wh/user/day/leaverequest/edit/:type_id
+    param: { module: WHUser_MyPage, action: leaverequestedit }
 
 
 

@@ -18,8 +18,6 @@
             </table>
             
             <div class="form-actions">
-                
-                <!-- back ? -->
                 <a class="btn" href="<?php echo url_for('@whuser_day?date='.$date); ?>">Go Back</a>
                 <input class="btn btn-primary" type="submit" value="Create Request" />
             </div>

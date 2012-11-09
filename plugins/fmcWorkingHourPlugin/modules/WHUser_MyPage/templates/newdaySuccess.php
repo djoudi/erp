@@ -39,28 +39,11 @@
             
             <div class="tab-pane fade" id="leave">
                 
-                <p>To create a <strong>Leave Request</strong>, please select desired leave type below.</p>
-                
-                <?php foreach ($leaveTypes as $type): ?>
-                    <p class="text-info">
-                        
-                        <?php
-                            $used = Fmc_Wh_Day::getMyLeaveUsage($type['id']);
-                            $available = Fmc_Wh_Day::getMyLeaveLimit($type['id']);
-                            $isDisabled = $available > $used ? "btn-success" : "disabled";
-                            $url = url_for('@whuser_newleaverequest?date='.$date.'&type='.$type['id']);
-                            $href = $available > $used ? $url : "#";
-                        ?>
-                        
-                        <a href="<?php echo $href; ?>" class="btn <?php echo $isDisabled; ?>">
-                            <?php echo $type; ?>
-                        </a>    
-                        
-                        ( <?php echo $used; ?> of 
-                        <?php echo $available; ?> used. )
-                    </p>
-                <?php endforeach; ?>
-                                
+                <?php include_partial ('leaveoptions', array(
+                    'leaveTypes'=>$leaveTypes,
+                    'date'=>$date
+                )); ?>
+                                                
             </div><!-- #leave -->
             
         </div><!-- .tab-content -->
