@@ -4,6 +4,10 @@
     $("#topmenu_workinghours").addClass("active");
 </script>
 
+en üstte sol ve sağa günler gidecek, ortada da tarih yazacak ve takvim çıkacak bir yerdwe? (rollon vs gibi)
+
+
+
 <p class="pull-left">Note: To change office entrance hour, you have to delete this day.</p>
 
 <a class="btn btn-danger btn-small pull-right" onclick="
@@ -26,6 +30,8 @@
 </table>
 
 
+
+
 <table class="table table-bordered table-hover table-condensed">
     <thead>
         <tr>
@@ -38,32 +44,27 @@
         </tr>
     </thead>
     <tbody>
-        
+        <?php foreach ($dayWorkRecords as $work): ?>
+            <tr>
+                <td><?php echo $work->getProject(); ?></td>
+                <td><?php echo $work->getWorkType(); ?></td>
+                <td><?php echo $work->getStart(); ?></td>
+                <td><?php echo $work->getEnd(); ?></td>
+                <td><?php echo $work->getComment(); ?></td>
+                <td></td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
-    
-    
     <tfoot>
         <tr>
             <form class="form-inline" method="post">
                 <?php echo $form->renderHiddenFields(); ?>
-                <td>
-                    <?php echo $form['project_id']; ?>
-                </td>
-                <td>
-                    <?php echo $form['type_id']; ?>
-                </td>
-                <td>
-                    <?php echo $form['start']; ?>
-                </td>
-                <td>
-                    <?php echo $form['end']; ?>
-                </td>
-                <td>
-                    <?php echo $form['comment']; ?>
-                </td>
-                <td>
-                    <input class="btn btn-mini" type="submit" value="Add"/>
-                </td>
+                <td><?php echo $form['project_id']; ?></td>
+                <td><?php echo $form['type_id']; ?></td>
+                <td><?php echo $form['start']; ?></td>
+                <td><?php echo $form['end']; ?></td>
+                <td><?php echo $form['comment']; ?></td>
+                <td><input class="btn btn-mini" type="submit" value="Add"/></td>
             </form>
         </tr>
     </tfoot>
@@ -74,3 +75,4 @@
 <pre>
 <?php print_r($dayIOrecords->toArray()); ?>
 </pre>
+

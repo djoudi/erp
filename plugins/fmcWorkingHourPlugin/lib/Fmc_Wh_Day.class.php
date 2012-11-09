@@ -16,20 +16,6 @@ class Fmc_Wh_Day
     }
     
     
-    public static function getUserLeaveUsage ($type_id, $user_id)
-    {
-        $count = Doctrine::getTable('WorkingHourDay')
-            ->createQuery ('q')
-            ->leftJoin ('q.LeaveRequest l')
-            ->addWhere ('l.type_id = ?', $type_id)
-            ->addWhere ('q.user_id = ?', $user_id)
-            ->addWhere ('q.leave_id IS NOT NULL')
-            ->addWhere ('q.status = ?', 'Accepted')
-            ->count();
-        return $count;
-    }
-    
-    
     public static function getHasEnoughLeaveLimit ($type_id, $user_id)
     {
         $used = Fmc_Wh_Day::getUserLeaveUsage($type_id, $user_id);
@@ -38,6 +24,11 @@ class Fmc_Wh_Day
     }
     
     
+    public static function getUserLeaveUsage ($type_id, $user_id)
+    {
+        return Doctrine::getTable('WorkingHourDay')->getUsedLeaveCount($type_id, $user_id);
+    }
+    
     
     public static function getMyLeaveUsage ($type_id)
     {
@@ -45,7 +36,7 @@ class Fmc_Wh_Day
         return Fmc_Wh_Day::getUserLeaveUsage ($type_id, $myUserId);
     }
     
-    
+        
     public static function getLeaveLimit ($type_id, $user_id)
     {
         $mylimits = Doctrine::getTable('LeaveRequestLimit')
@@ -80,11 +71,11 @@ class Fmc_Wh_Day
         {
             $holiday = 1;
         }
-        elseif (Doctrine::getTable('Holiday')->findOneByDay($date))
+        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
         {
             $holiday = 1;
         }
-        else $holiday = 0;
+        else $holiday = 0; // not holiday
         
         if ($holiday)
         {
@@ -99,12 +90,7 @@ class Fmc_Wh_Day
     
     public static function getStatus ($date)
     {
-        $user = sfContext::getInstance()->getUser();
-        $user_id = $user->getGuardUser()->getId();
-        
-        $whday = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id, $date);
-        
-        if ($whday) 
+        if ($whday = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($date))
         {
             if ($whday['leave_id']) $status = "leave";
             else $status = "workday";
@@ -113,7 +99,6 @@ class Fmc_Wh_Day
         {
             $status = "empty";
         }
-        
         return $status;
     }
 

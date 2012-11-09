@@ -64,15 +64,12 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
             $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
             
-            $object = new WorkingHourWork();
+            $object = new WorkingHourWork("test");
             $object->setDayId ($day['id']);
             $this->form = new Form_WHUser_newdaywork($object);
             
-            
-            
-            
             $this->dayIOrecords = $day->getActiveIORecords();
-            //day work records
+            $this->dayWorkRecords = $day->getActiveWorkRecords();
             
             WHUser_MyPage_Lib_Form::ProcessMyWork ($request, $this->form);
         }
