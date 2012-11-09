@@ -19,7 +19,7 @@ all:
                             requires_auth: true
                             credentials: ["Working Hours"]
                         11:
-                            label: My day
+                            label: My Days
                             route: @whuser_mypage
                             requires_auth: true
                             credentials: ["Working Hours"]
