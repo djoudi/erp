@@ -6,7 +6,6 @@
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
-        <?php include_javascripts() ?>
     </head>
     <body>
 
@@ -55,12 +54,12 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                </ul>
+                    </li><!-- /dropdown -->
+                </ul><!-- /nav -->
             </div><!-- /.nav-collapse -->
-        </div>
+        </div><!-- /container -->
     </div><!-- /navbar-inner -->
-</div>
+</div><!-- /navbar -->
 
 
 
@@ -92,6 +91,6 @@
 </div><!-- /container -->
 
 
-
+        <?php include_javascripts() ?>
     </body>
 </html>
