@@ -1,8 +1,6 @@
 <?php slot ('title', "Edit leave limits for: ".$employee) ?>
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <form class="form form-horizontal" method="post">
 

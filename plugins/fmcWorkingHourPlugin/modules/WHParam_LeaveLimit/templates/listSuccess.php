@@ -1,8 +1,6 @@
-<?php slot ('title', "Leave Limits List") ?>
+<?php slot ('title', "Leave Limits List"); ?>
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <p>
     You can see the <strong>default limits for each leave types</strong> below. 

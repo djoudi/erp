@@ -1,8 +1,6 @@
 <?php slot ('title', "Other Parameters") ?>
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <?php //only if necessary
 /*

@@ -11,11 +11,7 @@
 
 
 
-<?php if (has_slot('activeClass')): ?>
-    <script type="text/javascript">
-        $("<?php echo get_slot('activeClass'); ?>").addClass("active");
-    </script>
-<?php endif; ?>
+
 
 
 
@@ -96,9 +92,22 @@
 </div>
 
 
+
 </div><!-- /container -->
 
 
-        <?php include_javascripts() ?>
+
+<?php include_javascripts() ?>
+
+
+
+<?php if (has_slot('activeClass')): ?>
+    <script type="text/javascript">
+        $("<?php echo get_slot('activeClass'); ?>").addClass("active");
+    </script>
+<?php endif; ?>
+
+        
+        
     </body>
 </html>

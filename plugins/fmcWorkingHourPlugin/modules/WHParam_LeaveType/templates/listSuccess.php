@@ -1,8 +1,6 @@
 <?php slot ('title', "Leave Type List") ?>
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <a class="pull-right btn btn-success" href="<?php echo url_for('@whparam_leavetype_new'); ?>">New Leave Type</a>
 
