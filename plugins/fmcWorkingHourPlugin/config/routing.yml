@@ -8,6 +8,13 @@ whuser_day:
     url: /wh/user/day/:date
     param: { module: WHUser_MyPage, action: day }
 
+
+whuser_day_processform:
+    url: /wh/user/day/:date/form_id/:form_id
+    param: { module: WHUser_MyPage, action: day }
+
+
+
 whuser_day_leaverequest_list:
     url: /wh/user/day/leaverequest/list
     param: { module: WHUser_MyPage, action: leaverequestlist }
@@ -19,6 +26,8 @@ whuser_day_leaverequest_edit:
 whuser_day_delete:
     url: /wh/user/day/:day_id/delete
     param: { module: WHUser_MyPage, action: deleteday }
+
+
 
 
 # Params - Holiday

@@ -10,10 +10,12 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     }
     
     
+    
     public function executeLeaverequestlist (sfWebRequest $request)
     {
         $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
     }
+    
     
     
     public function executeDeleteday (sfWebRequest $request)
@@ -21,12 +23,13 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         $day = Doctrine::getTable('WorkingHourDay')->findOneById($request->getParameter('day_id'));
         $this->forward404Unless ($day);
         
-        #$day->get
+        /* @TODO ogüne bagli olabilecekdiger tum kayitlari (leave, workhours, entrance) sil */
         $day->delete();
         
         $this->getUser()->setFlash('notice', "Day records deleted.");
         $this->getController()->redirect ($request->getReferer());
     }
+    
     
     
     public function executeLeaverequestedit (sfWebRequest $request)
@@ -62,6 +65,38 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     }
     
     
+    
+    public function prepare_WorkForm ($day_id)
+    {
+        $workObject = new WorkingHourWork();
+        $workObject->setDayId ($day_id);
+        return new Form_WHUser_newdaywork($workObject);
+    }
+    
+    
+    
+    public function prepare_IOForm ($day_id, $type)
+    {
+        $ioObject = new WorkingHourEntranceExit();
+        $ioObject->setDayId ($day_id);
+        $ioObject->setType ($type);
+        return new Form_WHUser_newdayio($ioObject);
+    }
+    
+    
+    
+    public function executeProcessWorkform (sfWebRequest $request)
+    {
+        $form = new WorkingHourWorkForm();
+        $url = $this->getController()->genUrl("@whuser_day?date=".$request->getParameter('date'));
+        FmcCoreProcess::form ($form, $request, $url, $url);
+    }
+    
+    
+    
+    
+    
+    
     public function executeDay (sfWebRequest $request)
     {
         if ( ! $this->date = $request->getParameter('date') )
@@ -78,14 +113,24 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
             $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
             
-            $object = new WorkingHourWork("test");
-            $object->setDayId ($day['id']);
-            $this->form = new Form_WHUser_newdaywork($object);
+            
+            /* @TODO: getlasttype fonksiyonu yazılacak*/
+            $this->ioTypeCurrent = "Exit";
+            
+            $this->workForm = $this->prepare_WorkForm ($day['id']);
+            $this->ioForm = $this->prepare_IOForm ($day['id'], $this->ioTypeCurrent);
             
             $this->dayIOrecords = $day->getActiveIORecords();
             $this->dayWorkRecords = $day->getActiveWorkRecords();
             
-            WHUser_MyPage_Lib_Form::ProcessMyWork ($request, $this->form);
+            $form_id = $request->getParameter('form_id');
+            $url = $this->getController()->genUrl('@whuser_day?date='.$this->date);
+            
+            if ($form_id == 1) 
+                FmcCoreProcess::form ($this->workForm, $request, $url);
+            elseif ($form_id == 2)
+                FmcCoreProcess::form ($this->ioForm, $request, $url);
+            
         }
         
         if ($status == "empty")

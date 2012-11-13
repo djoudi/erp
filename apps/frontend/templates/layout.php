@@ -11,6 +11,14 @@
 
 
 
+<?php if (has_slot('activeClass')): ?>
+    <script type="text/javascript">
+        $("<?php echo get_slot('activeClass'); ?>").addClass("active");
+    </script>
+<?php endif; ?>
+
+
+
 <div class="container" id="Layout_Container">
 
 
