@@ -11,7 +11,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     
     
-    public function executeLeaverequestlist (sfWebRequest $request)
+    public function executeLeaverequestselect (sfWebRequest $request)
     {
         $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
     }

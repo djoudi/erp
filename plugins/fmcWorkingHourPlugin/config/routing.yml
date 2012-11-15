@@ -13,8 +13,8 @@ whuser_day_processform:
     param: { module: WHUser_MyPage, action: day }
 
 whuser_day_leaverequest_list:
-    url: /wh/user/day/leaverequest/list
-    param: { module: WHUser_MyPage, action: leaverequestlist }
+    url: /wh/user/day/leaverequest/new/choosetype
+    param: { module: WHUser_MyPage, action: leaverequestselect }
 
 whuser_day_leaverequest_edit:
     url: /wh/user/day/leaverequest/edit/:type_id
