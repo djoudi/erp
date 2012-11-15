@@ -69,25 +69,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     
     
-    public function prepare_WorkForm ($day_id)
-    {
-        $workObject = new WorkingHourWork();
-        $workObject->setDayId ($day_id);
-        return new Form_WHUser_newdaywork($workObject);
-    }
-    
-    
-    
-    public function prepare_IOForm ($day_id, $type)
-    {
-        $ioObject = new WorkingHourEntranceExit();
-        $ioObject->setDayId ($day_id);
-        $ioObject->setType ($type);
-        return new Form_WHUser_newdayio($ioObject);
-    }
-    
-    
-    
     public function executeDay (sfWebRequest $request)
     {
         if ( ! $this->date = $request->getParameter('date') )
@@ -113,13 +94,24 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
             
             
-            
+            /*
+             * $workObject = new WorkingHourWork();
+        $workObject->setDayId ($day_id);
+        return new Form_WHUser_newdaywork($workObject);
+        */
             
         $workObject = new WorkingHourWork();
         $workObject->setDayId ($day['id']);
         $this->workForm = new Form_WHUser_newdaywork($workObject);
             
             
+            
+            /*
+             *         $ioObject = new WorkingHourEntranceExit();
+        $ioObject->setDayId ($day_id);
+        $ioObject->setType ($type);
+        return new Form_WHUser_newdayio($ioObject);
+        */
             
             $ioObject = new WorkingHourEntranceExit();
             $ioObject->setDayId ($day['id']);
@@ -163,5 +155,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             WHUser_MyPage_Lib_Form::ProcessMyNewDay ($request, $this->form, $this->date);
         }
     }
+    
     
 }
