@@ -14,8 +14,8 @@
             'dayWorkRecords'=>$dayWorkRecords, 
             'dayDeleteUrl'=>$dayDeleteUrl, 
             'workForm'=>$workForm, 
-            'ioTypeCurrent'=>$ioTypeCurrent,
-            'ioForm'=>$ioForm 
+            'entranceForm'=>$entranceForm,
+            'exitForm'=>$exitForm
         )); ?>
     
     </div>

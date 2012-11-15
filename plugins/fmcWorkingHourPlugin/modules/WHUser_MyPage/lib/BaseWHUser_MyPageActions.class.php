@@ -76,7 +76,28 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             $this->date = date ("Y-m-d");
         }
         
+        
         $status = Fmc_Wh_Day::getStatus($this->date);
+        
+        
+        if ($status == "empty")
+        {
+        	$this->setTemplate('newday');
+            
+            $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
+            
+        	$formitem = new WorkingHourEntranceExit();
+        	$formitem->setType("Enter");
+        	$formitem->setDayId(0);
+        	$this->form = new Form_WHEntranceExit_newday($formitem);
+            
+            WHUser_MyPage_Lib_Form::ProcessMyNewDay ($request, $this->form, $this->date);
+        }
+        
+        
+        
+        
+        
         
         if ($status == "workday")
         {
@@ -106,18 +127,18 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
             
             
-            /*
-             *         $ioObject = new WorkingHourEntranceExit();
-        $ioObject->setDayId ($day_id);
-        $ioObject->setType ($type);
-        return new Form_WHUser_newdayio($ioObject);
-        */
+            $entranceObject = new WorkingHourEntranceExit();
+            $entranceObject->setDayId ($day['id']);
+            $entranceObject->setType ('Entrance');
+            $this->entranceForm = new Form_WHUser_newdayio($entranceObject);
             
-            $ioObject = new WorkingHourEntranceExit();
-            $ioObject->setDayId ($day['id']);
-            $ioObject->setType ($this->ioTypeCurrent);
-            $this->ioForm = new Form_WHUser_newdayio($ioObject);
-                    
+            
+            $exitObject = new WorkingHourEntranceExit();
+            $exitObject->setDayId ($day['id']);
+            $exitObject->setType ('Exit');
+            $this->exitForm = new Form_WHUser_newdayio($exitObject);
+            
+            
             
             
             $this->dayIOrecords = $day->getActiveIORecords();
@@ -137,23 +158,15 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             }
             elseif ($form_id == 2)
             {
-                FmcCoreProcess::form ($this->ioForm, $request, $url);
+                FmcCoreProcess::form ($this->entranceForm, $request, $url);
+            }
+            elseif ($form_id == 3)
+            {
+                FmcCoreProcess::form ($this->exitForm, $request, $url);
             }
         }
         
-        if ($status == "empty")
-        {
-        	$this->setTemplate('newday');
-            
-            $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
-            
-        	$formitem = new WorkingHourEntranceExit();
-        	$formitem->setType("Enter");
-        	$formitem->setDayId(0);
-        	$this->form = new Form_WHEntranceExit_newday($formitem);
-            
-            WHUser_MyPage_Lib_Form::ProcessMyNewDay ($request, $this->form, $this->date);
-        }
+
     }
     
     
