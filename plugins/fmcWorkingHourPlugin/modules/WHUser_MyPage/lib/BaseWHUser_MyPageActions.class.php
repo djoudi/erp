@@ -22,8 +22,11 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     {
         $day = Doctrine::getTable('WorkingHourDay')->findOneById($request->getParameter('day_id'));
         $this->forward404Unless ($day);
+        $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$date);
         
-        /* @TODO ogüne bagli olabilecekdiger tum kayitlari (leave, workhours, entrance) sil */
+        if ($day['leave_id']) $day->getLeaveRequest()->delete();
+        $day->getWorkingHourEntranceExit()->delete();
+        $day->getWorkingHourWork()->delete();
         $day->delete();
         
         $this->getUser()->setFlash('notice', "Day records deleted.");
