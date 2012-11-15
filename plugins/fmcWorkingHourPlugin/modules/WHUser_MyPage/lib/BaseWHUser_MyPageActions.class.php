@@ -85,18 +85,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     
     
-    public function executeProcessWorkform (sfWebRequest $request)
-    {
-        $form = new WorkingHourWorkForm();
-        $url = $this->getController()->genUrl("@whuser_day?date=".$request->getParameter('date'));
-        FmcCoreProcess::form ($form, $request, $url, $url);
-    }
-    
-    
-    
-    
-    
-    
     public function executeDay (sfWebRequest $request)
     {
         if ( ! $this->date = $request->getParameter('date') )
@@ -117,20 +105,45 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             /* @TODO: getlasttype fonksiyonu yazılacak*/
             $this->ioTypeCurrent = "Exit";
             
-            $this->workForm = $this->prepare_WorkForm ($day['id']);
-            $this->ioForm = $this->prepare_IOForm ($day['id'], $this->ioTypeCurrent);
+            
+            /* Preparing Forms */
+            
+            
+            
+            
+            
+        $workObject = new WorkingHourWork();
+        $workObject->setDayId ($day['id']);
+        $this->workForm = new Form_WHUser_newdaywork($workObject);
+            
+            
+            
+            $ioObject = new WorkingHourEntranceExit();
+            $ioObject->setDayId ($day['id']);
+            $ioObject->setType ($this->ioTypeCurrent);
+            $this->ioForm = new Form_WHUser_newdayio($ioObject);
+                    
+            
             
             $this->dayIOrecords = $day->getActiveIORecords();
+            
             $this->dayWorkRecords = $day->getActiveWorkRecords();
             
+            
+            /* Processing Forms */
+            
             $form_id = $request->getParameter('form_id');
+            
             $url = $this->getController()->genUrl('@whuser_day?date='.$this->date);
             
-            if ($form_id == 1) 
+            if ($form_id == 1)
+            {
                 FmcCoreProcess::form ($this->workForm, $request, $url);
+            }
             elseif ($form_id == 2)
+            {
                 FmcCoreProcess::form ($this->ioForm, $request, $url);
-            
+            }
         }
         
         if ($status == "empty")

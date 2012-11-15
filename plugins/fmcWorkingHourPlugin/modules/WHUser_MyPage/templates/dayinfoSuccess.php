@@ -1,8 +1,6 @@
 <?php slot('title', 'Edit Work Day' ); ?>
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <div class="row" >
     

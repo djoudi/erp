@@ -1,10 +1,6 @@
 <?php slot('title', 'New leave request: '.$leaveType ); ?>
 
-
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
-
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 <div class="row">
     

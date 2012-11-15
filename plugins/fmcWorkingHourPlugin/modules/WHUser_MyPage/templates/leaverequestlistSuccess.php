@@ -1,5 +1,7 @@
 <?php slot('title', 'Create new leave request'); ?>
 
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
+
 <div class="row">
     
     <?php include_partial ('datepicker'); ?>
