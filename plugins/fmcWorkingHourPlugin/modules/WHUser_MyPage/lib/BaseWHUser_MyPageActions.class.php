@@ -69,6 +69,10 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     
     
+    
+    
+    
+    
     public function executeDay (sfWebRequest $request)
     {
         if ( ! $this->date = $request->getParameter('date') )
@@ -95,75 +99,57 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         }
         
         
-        
-        
-        
-        
         if ($status == "workday")
         {
+            /* Setting template */
+            
             $this->setTemplate ("dayinfo");
             
+            /* Fetching day object */
+            
             $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
+            $this->forward404Unless ($day);
+            
+            /* Preparing delete url */
+            
             $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
             
+            /* Preparing Work form */
             
-            /* @TODO: getlasttype fonksiyonu yazılacak*/
-            $this->ioTypeCurrent = "Exit";
+            $workObject = new WorkingHourWork();
+            $workObject->setDayId ($day['id']);
+            $this->workForm = new Form_WHUser_newdaywork($workObject);
             
-            
-            /* Preparing Forms */
-            
-            
-            
-            /*
-             * $workObject = new WorkingHourWork();
-        $workObject->setDayId ($day_id);
-        return new Form_WHUser_newdaywork($workObject);
-        */
-            
-        $workObject = new WorkingHourWork();
-        $workObject->setDayId ($day['id']);
-        $this->workForm = new Form_WHUser_newdaywork($workObject);
-            
-            
+            /* Preparing Entrance form */
             
             $entranceObject = new WorkingHourEntranceExit();
             $entranceObject->setDayId ($day['id']);
             $entranceObject->setType ('Entrance');
             $this->entranceForm = new Form_WHUser_newdayio($entranceObject);
             
+            /* Preparing Exit form */
             
             $exitObject = new WorkingHourEntranceExit();
             $exitObject->setDayId ($day['id']);
             $exitObject->setType ('Exit');
             $this->exitForm = new Form_WHUser_newdayio($exitObject);
             
-            
-            
+            /* Fetching day records */
             
             $this->dayIOrecords = $day->getActiveIORecords();
-            
             $this->dayWorkRecords = $day->getActiveWorkRecords();
             
+            
+            
+            /* @TODO - these process classes should be checked for inconsistency */
             
             /* Processing Forms */
             
             $form_id = $request->getParameter('form_id');
-            
             $url = $this->getController()->genUrl('@whuser_day?date='.$this->date);
-            
-            if ($form_id == 1)
-            {
-                FmcCoreProcess::form ($this->workForm, $request, $url);
-            }
-            elseif ($form_id == 2)
-            {
-                FmcCoreProcess::form ($this->entranceForm, $request, $url);
-            }
-            elseif ($form_id == 3)
-            {
-                FmcCoreProcess::form ($this->exitForm, $request, $url);
-            }
+            if ($form_id == 1) FmcCoreProcess::form ($this->workForm, $request, $url);
+            elseif ($form_id == 2) FmcCoreProcess::form ($this->entranceForm, $request, $url);
+            elseif ($form_id == 3) FmcCoreProcess::form ($this->exitForm, $request, $url);
         }
         
 
