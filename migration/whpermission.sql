@@ -23,6 +23,14 @@ INSERT IGNORE INTO `sf_guard_permission` (`id`, `name`, `description`, `creater_
 (14, 'Working Hours Settings', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL);
 
 
+INSERT IGNORE INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+(23, 10, 0, 0, '2012-04-16 17:23:07', '2012-04-16 17:23:07', NULL, 1),
+(23, 11, 23, 23, '2012-11-08 17:01:14', '2012-11-08 17:01:14', NULL, 1),
+(23, 12, 0, 0, '2012-04-16 17:23:07', '2012-04-16 17:23:07', NULL, 1),
+(23, 13, 23, 23, '2012-11-08 17:01:14', '2012-11-08 17:01:14', NULL, 1),
+(23, 14, 23, 23, '2012-11-08 17:01:15', '2012-11-08 17:01:15', NULL, 1);
+
+
 INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
 (1, 'WeekendMultiplier', '1.5', 'Multiplier for weekend works', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 5);
 
@@ -35,7 +43,7 @@ INSERT IGNORE INTO `leave_type` (`id`, `name`, `default_limit`, `has_report`, `c
 
 
 INSERT IGNORE INTO `holiday` (`id`, `day`, `name`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-(1, '2012-09-29', 'Cumhuriyet Bayramı', 23, 23, '2012-11-06 10:04:13', '2012-11-06 10:04:13', NULL, 1),
+(1, '2012-10-29', 'Cumhuriyet Bayramı', 23, 23, '2012-11-06 10:04:13', '2012-11-06 10:04:13', NULL, 1),
 (2, '2012-01-01', 'New Year', 23, 23, '2012-11-06 10:04:51', '2012-11-06 10:04:51', NULL, 1),
 (3, '2012-04-23', 'Ulusal Egemenlik ve Çocuk Bayramı', 23, 23, '2012-11-06 10:05:28', '2012-11-06 10:05:28', NULL, 1),
 (4, '2012-05-01', 'Emek ve Dayanışma Bayramı', 23, 23, '2012-11-06 10:05:43', '2012-11-06 10:05:43', NULL, 1),

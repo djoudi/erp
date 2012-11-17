@@ -1,3 +1,6 @@
+<?php slot('title', 'Edit Work Day' ); ?>
+
+
 <a class="btn btn-danger btn-small pull-right" onclick="
       if (confirm('If you continue, all records for today will be DELETED. Are you sure?'))
         parent.location='<?php echo $dayDeleteUrl; ?>'
