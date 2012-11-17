@@ -110,8 +110,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             $this->status = Fmc_Wh_Day::getStatus($this->date);
         
         
-        /* If a new day */
-        
         if ($this->status == "empty")
         {
             /* Fetching all leave types */
