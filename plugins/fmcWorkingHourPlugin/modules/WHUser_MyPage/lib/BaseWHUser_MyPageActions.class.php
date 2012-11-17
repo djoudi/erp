@@ -143,6 +143,12 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
                 $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
             
+            /* Fetching day records */
+            
+                $this->dayIOrecords = $day->getActiveIORecords();
+            
+                $this->dayWorkRecords = $day->getActiveWorkRecords();
+            
             /* Preparing Work form */
             
                 $workObject = new WorkingHourWork();
@@ -170,12 +176,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 $exitObject->setType ('Exit');
                 
                 $this->exitForm = new Form_WHUser_newdayio($exitObject);
-            
-            /* Fetching day records */
-            
-                $this->dayIOrecords = $day->getActiveIORecords();
-            
-                $this->dayWorkRecords = $day->getActiveWorkRecords();
             
             /* @TODO - these process classes should be checked for inconsistency */
             
