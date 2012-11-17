@@ -5,6 +5,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     public function executeIndex (sfWebRequest $request)
     {
+        
         $date = date("Y-m-d");
         $this->redirect ($this->getController()->genUrl("@whuser_day?date=".$date));
     }
@@ -75,25 +76,34 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     public function executeDay (sfWebRequest $request)
     {
-        if ( ! $this->date = $request->getParameter('date') )
-        {
-            $this->date = date ("Y-m-d");
-        }
+        /* Fetching date or setting today */
         
+        if ( ! $this->date = $request->getParameter('date') ) $this->date = date ("Y-m-d");
+        
+        
+        /* Fetching date status */
         
         $status = Fmc_Wh_Day::getStatus($this->date);
         
         
         if ($status == "empty")
         {
+            /* Setting template */
+            
         	$this->setTemplate('newday');
             
+            /* Fetching all leave types */
+            
             $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll();
+            
+            /* Preparing entrance form */
             
         	$formitem = new WorkingHourEntranceExit();
         	$formitem->setType("Enter");
         	$formitem->setDayId(0);
         	$this->form = new Form_WHEntranceExit_newday($formitem);
+            
+            /* Processing entrance form */
             
             WHUser_MyPage_Lib_Form::ProcessMyNewDay ($request, $this->form, $this->date);
         }
@@ -138,8 +148,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
             $this->dayIOrecords = $day->getActiveIORecords();
             $this->dayWorkRecords = $day->getActiveWorkRecords();
-            
-            
             
             /* @TODO - these process classes should be checked for inconsistency */
             

@@ -23,7 +23,7 @@
         
         <?php include_partial ('ioline', array('record'=>$dayIOrecords[0]) ); ?>
         
-        <?php $j=1; foreach ($dayWorkRecords as $work): ?>
+        <?php /*$j=1; foreach ($dayWorkRecords as $work): ?>
             
             <?php while ( ($dayIOrecords[$j]["time"] < $work["start"] ) && (count($dayIOrecords)>($j)) ): ?>
                 <?php include_partial ('ioline', array('record'=>$dayIOrecords[$j]) ); ?>
@@ -43,7 +43,7 @@
         <?php while ( count($dayIOrecords)>$j ): ?>
             <?php include_partial ('ioline', array('record'=>$dayIOrecords[$j]) ); ?>
             <?php $j++; ?>
-        <?php endwhile; ?>
+        <?php endwhile; */?>
         
     </tbody>
 
