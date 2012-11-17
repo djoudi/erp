@@ -139,8 +139,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
                 $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
             
-                $this->forward404Unless ($day);
-            
             /* Preparing delete url */
             
                 $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
