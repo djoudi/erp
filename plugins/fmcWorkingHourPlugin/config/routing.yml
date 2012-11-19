@@ -36,6 +36,17 @@ wh_user_day_deleteday:
         module: WHUser_MyPage
         action: deleteday
 
+wh_user_day_deleteio:
+    url: /wh/user/day/:date/deleteio/:id
+    param:
+        module: WHUser_MyPage
+        action: deleteio
+
+wh_user_day_deletework:
+    url: /wh/user/day/:date/deletework/:id
+    param:
+        module: WHUser_MyPage
+        action: deletework
 
 
 

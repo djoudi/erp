@@ -24,6 +24,24 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     
     
+    public function executeDeleteio (sfWebRequest $request)
+    {
+        Fmc_Wh_User::DeleteMyIo ($request->getParameter('date'), $request->getParameter('id'));
+        $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$request->getParameter('date'));
+        $this->getController()->redirect ($forwardUrl);
+    }
+    
+    
+    
+    public function executeDeletework (sfWebRequest $request)
+    {
+        Fmc_Wh_User::DeleteMyWork ($request->getParameter('date'), $request->getParameter('id'));
+        $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$request->getParameter('date'));
+        $this->getController()->redirect ($forwardUrl);
+    }
+    
+    
+    
     public function executeDeleteday (sfWebRequest $request)
     {
         /* Deleting day */
