@@ -18,7 +18,6 @@
                 'date'=>$date, 
                 'dayIOrecords'=>$dayIOrecords, 
                 'dayWorkRecords'=>$dayWorkRecords, 
-                'dayDeleteUrl'=>$dayDeleteUrl, 
                 'workForm'=>$workForm, 
                 'entranceForm'=>$entranceForm,
                 'exitForm'=>$exitForm

@@ -26,37 +26,15 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     public function executeDeleteday (sfWebRequest $request)
     {
-        /* Fetch day record */
         
-            $day = Doctrine::getTable('WorkingHourDay')->findOneById($request->getParameter('day_id'));
+        WHUser_MyPage_Lib_Form::DeleteMyDay ($request->getParameter('date'));
         
-        /* Forward if day not exist */
+        $this->getUser()->setFlash('notice', "Day records deleted.");
         
-            $this->forward404Unless ($day);
+        $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$request->getParameter('date'));
         
-        /* Generate forward url for this day after this action */
+        $this->getController()->redirect ($forwardUrl);
         
-            $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$date);
-        
-        /* Delete sub-records for the day */
-        
-            #$day->getLeaveRequest()->delete(); /* @TODO : FIX THIS */
-            
-            $day->getWorkingHourEntranceExit()->delete();
-        
-            $day->getWorkingHourWork()->delete();
-        
-        /* Delete day */
-        
-            $day->delete();
-        
-        /* Set flash */
-        
-            $this->getUser()->setFlash('notice', "Day records deleted.");
-        
-        /* Redirect */
-        
-            $this->getController()->redirect ($request->getReferer());
     }
     
     
@@ -102,7 +80,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     public function executeDay (sfWebRequest $request)
     {
         /* Fetching date or setting today */
-        
+            
             if ( ! $this->date = $request->getParameter('date') ) $this->date = date ("Y-m-d");
         
         /* Fetching date status */
@@ -136,10 +114,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             /* Fetching day object */
             
                 $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
-            
-            /* Preparing delete url */
-            
-                $this->dayDeleteUrl = $this->getController()->genUrl('@whuser_day_delete?day_id='.$day['id']);
             
             /* Fetching day records */
             
