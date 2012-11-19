@@ -81,7 +81,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     {
         /* Fetching date or setting today */
             
-            if ( ! $this->date = $request->getParameter('date') ) $this->date = date ("Y-m-d");
+            $this->date = $request->getParameter('date');
         
         /* Fetching date status */
         
@@ -108,7 +108,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         }
         
         
-        if ($this->status == "workday")
+        elseif ($this->status == "workday")
         {
             
             /* Fetching day object */

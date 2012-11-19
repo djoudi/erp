@@ -2,7 +2,7 @@
 
 <div class="row">
     
-    <?php include_partial ('datepicker'); ?>
+    <?php include_partial ('datepicker', array('date'=>$date)); ?>
         
     <div class="span8" style="padding-top: 40px">
         
