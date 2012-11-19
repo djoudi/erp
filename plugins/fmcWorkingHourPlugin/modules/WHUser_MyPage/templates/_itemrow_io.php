@@ -13,16 +13,9 @@
     </td>
     
     <td>
-        
-        <?php $deleteUrl = url_for ('wh_user_day_deleteio', array('date'=>$date, 'id'=>$record['id'])); ?>
-        
-        <a onclick="
-            if (confirm('Are you sure you want to delete this record?'))
-                parent.location='<?php echo $deleteUrl; ?>'
-        ">
-            Delete
-        </a>
-        
+        <?php include_partial ('fmcCore/deleteConfirm', array(
+            'url' => url_for ('wh_user_day_deleteio', array('date'=>$date, 'id'=>$record['id']))
+        )); ?>
     </td>
     
 </tr>

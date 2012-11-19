@@ -1,13 +1,10 @@
 <?php slot('title', 'Edit Work Day' ); ?>
 
 
-<a class="btn btn-danger btn-small pull-right" onclick="
-      if (confirm('If you continue, all records for today will be DELETED. Are you sure?'))
-        parent.location='<?php echo url_for('@wh_user_day_deleteday?date='.$date); ?>'
-">
-    <i class="icon-remove icon-white"></i>
-    Delete Day
-</a>
+<?php include_partial ('fmcCore/deleteConfirm', array(
+    'class' => 'btn btn-danger btn-small pull-right',
+    'url' => url_for('@wh_user_day_deleteday?date='.$date)
+)); ?>
 
 
 <table class="table table-bordered table-hover table-condensed pull-left">
@@ -128,6 +125,16 @@
             </div>
         </form>
 
+    </div>
+    
+    <div class="tab-pane fade" id="tab4">
+    
+        Delete day?
+        
+        Send for approval
+        
+        
+    
     </div>
     
 </div>
