@@ -26,14 +26,19 @@ abstract class BaseWHUser_MyPageActions extends sfActions
     
     public function executeDeleteday (sfWebRequest $request)
     {
+        /* Deleting day */
         
-        WHUser_MyPage_Lib_Form::DeleteMyDay ($request->getParameter('date'));
+            Fmc_Wh_User::DeleteMyDay ($request->getParameter('date'));
         
-        $this->getUser()->setFlash('notice', "Day records deleted.");
+        /* Setting flash */
         
-        $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$request->getParameter('date'));
+            $this->getUser()->setFlash('notice', "Day records deleted.");
         
-        $this->getController()->redirect ($forwardUrl);
+        /* Forwarding */
+        
+            $forwardUrl = $this->getController()->genUrl('@whuser_day?date='.$request->getParameter('date'));
+            
+            $this->getController()->redirect ($forwardUrl);
         
     }
     
