@@ -21,6 +21,7 @@
     <li class="active"><a href="#tab1" data-toggle="tab">New Work Record</a></li>
     <li class=""><a href="#tab2" data-toggle="tab">Office Entrance</a></li>
     <li class=""><a href="#tab3" data-toggle="tab">Office Exit</a></li>
+    <li class=""><a href="#tab4" data-toggle="tab">Operations</a></li>
 </ul>
 
 

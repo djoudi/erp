@@ -3,6 +3,76 @@
 class WHUser_MyPage_Lib_Form
 {
     
+    public static function MyDay_AddIo ($form, $request, $type, $url=NULL)
+    {
+        $controller = sfContext::getInstance()->getController();
+        $user = sfContext::getInstance()->getUser();
+        $user_id = $user->getGuardUser()->getId();
+        if (!$url) $url = $request->getReferer();
+        
+        $date = $request->getParameter('date');
+        
+        if ($request->isMethod('post'))
+        {
+            $err = "";
+            
+            $form->bind ($request->getParameter($form->getName()));
+            if ($form->isValid())
+            {
+                $values = $form->getValues();
+                
+                $day = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id,$date);
+                
+                if ($day)
+                {
+                    $dayIOrecords = $day->getActiveIORecords();
+                    
+                    $dayWorkRecords = $day->getActiveWorkRecords();
+                    
+                    foreach ($dayIOrecords as $io)
+                    {
+                        if ($values['time']==$io['time'])
+                        {
+                            $err = "Duplicate entrance/exit time";
+                            break;
+                        }
+                    }
+                    if (!$err)
+                    {
+                        foreach ($dayWorkRecords as $w)
+                        {
+                            if ( ($values['time']>$w['start']) && ($values['time']<$w['end']))
+                            {
+                                $err = "Entrance/exit cannot be inside work times.";
+                                break;
+                            }
+                        }
+                    }
+                    if (!$err)
+                    {
+                        $object = new WorkingHourEntranceExit();
+                        $object->setDayId ($day['id']);
+                        $object->setType ($type);
+                        $object->setTime ($values['time']);
+                        $object->save();
+                        
+                        $user->setFlash('success', 'Record saved.');
+                        $controller->redirect ($url);
+                    }
+                }
+                else $err = "Day not found. Please check date.";
+            }
+            else $err = "Form is not valid. Please check your input";
+            
+            if ($err)
+            {
+                $user->setFlash('error', $err);
+            }
+        }
+    }
+    
+    
+    
     public static function ProcessMyNewDay ($request, $form, $date)
     {
         $controller = sfContext::getInstance()->getController();

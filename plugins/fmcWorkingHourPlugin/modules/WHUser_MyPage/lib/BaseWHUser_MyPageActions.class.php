@@ -180,10 +180,10 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 
                 if ($form_id == 1) FmcCoreProcess::form ($this->workForm, $request, $url);
                 
-                elseif ($form_id == 2) FmcCoreProcess::form ($this->entranceForm, $request, $url);
+                elseif ($form_id == 2) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->entranceForm, $request, "Entrance", $url);
                 
-                elseif ($form_id == 3) FmcCoreProcess::form ($this->exitForm, $request, $url);
-        
+                elseif ($form_id == 3) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->exitForm, $request, "Exit", $url);
+                
         }
         
     }
