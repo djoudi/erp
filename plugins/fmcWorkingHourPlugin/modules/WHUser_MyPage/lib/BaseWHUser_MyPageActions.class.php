@@ -170,8 +170,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 
                 $this->exitForm = new Form_WHUser_newdayio($exitObject);
                 
-            /* @TODO - these process classes should be checked for inconsistency */
-                
             /* Processing Forms */
                 
                 $form_id = $request->getParameter('form_id');
