@@ -82,7 +82,7 @@
 
 <div class="tab-content">
     
-    <div class="tab-pane fade active in" id="tab1">
+    <div class="tab-pane active in" id="tab1">
         
         <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>1)); ?>
         
@@ -97,7 +97,7 @@
         
     </div>
     
-    <div class="tab-pane fade" id="tab2">
+    <div class="tab-pane" id="tab2">
         
         <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>2)); ?>
         
@@ -112,7 +112,7 @@
 
     </div>
     
-    <div class="tab-pane fade" id="tab3">
+    <div class="tab-pane" id="tab3">
         
         <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>3)); ?>
         
@@ -127,7 +127,7 @@
 
     </div>
     
-    <div class="tab-pane fade" id="tab4">
+    <div class="tab-pane" id="tab4">
     
         Delete day?
         

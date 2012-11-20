@@ -2,9 +2,13 @@
 
 <div class="row">
     
-    <?php include_partial ('datepicker', array('date'=>$date)); ?>
-        
-    <div class="span8" style="padding-top: 40px">
+    <div class="span3" style="padding: 0 20px 0 0;">
+    
+        <?php include_partial ('datepicker', array('date'=>$date)); ?>
+    
+    </div>    
+    
+    <div class="span8" style="padding-top: 20px">
         
         <?php
         if ($status=="empty") {
