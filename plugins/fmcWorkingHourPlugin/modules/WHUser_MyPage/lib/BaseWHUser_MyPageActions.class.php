@@ -134,60 +134,58 @@ abstract class BaseWHUser_MyPageActions extends sfActions
         elseif ($this->status == "workday")
         {
             
-            /* Fetching day object */
+            /* Fetching day */
             
                 $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
-            
-            /* Fetching day records */
-            
+                
                 $this->dayIOrecords = $day->getActiveIORecords();
-            
+                
                 $this->dayWorkRecords = $day->getActiveWorkRecords();
             
             /* Preparing Work form */
-            
+                
                 $workObject = new WorkingHourWork();
-            
+                
                 $workObject->setDayId ($day['id']);
-            
+                
                 $this->workForm = new Form_WHUser_newdaywork($workObject);
-            
+                
             /* Preparing Entrance form */
-            
+                
                 $entranceObject = new WorkingHourEntranceExit();
-            
+                
                 $entranceObject->setDayId ($day['id']);
-            
+                
                 $entranceObject->setType ('Entrance');
-            
+                
                 $this->entranceForm = new Form_WHUser_newdayio($entranceObject);
-            
+                
             /* Preparing Exit form */
-            
+                
                 $exitObject = new WorkingHourEntranceExit();
                 
                 $exitObject->setDayId ($day['id']);
-            
+                
                 $exitObject->setType ('Exit');
                 
                 $this->exitForm = new Form_WHUser_newdayio($exitObject);
-            
+                
             /* @TODO - these process classes should be checked for inconsistency */
-            
+                
             /* Processing Forms */
-            
+                
                 $form_id = $request->getParameter('form_id');
-            
+                
                 $url = $this->getController()->genUrl('@whuser_day?date='.$this->date);
-            
+                
                 if ($form_id == 1) FmcCoreProcess::form ($this->workForm, $request, $url);
-            
+                
                 elseif ($form_id == 2) FmcCoreProcess::form ($this->entranceForm, $request, $url);
                 
                 elseif ($form_id == 3) FmcCoreProcess::form ($this->exitForm, $request, $url);
+        
         }
         
-
     }
     
     
