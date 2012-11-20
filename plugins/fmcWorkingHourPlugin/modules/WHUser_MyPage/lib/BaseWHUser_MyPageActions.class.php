@@ -136,17 +136,17 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
             /* Fetching day */
             
-                $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
+                $this->day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
                 
-                $this->dayIOrecords = $day->getActiveIORecords();
+                #$this->dayIOrecords = $day->getActiveIORecords();
                 
-                $this->dayWorkRecords = $day->getActiveWorkRecords();
+                #$this->dayWorkRecords = $day->getActiveWorkRecords();
             
             /* Preparing Work form */
                 
                 $workObject = new WorkingHourWork();
                 
-                $workObject->setDayId ($day['id']);
+                $workObject->setDayId ($this->day->getId());
                 
                 $this->workForm = new Form_WHUser_newdaywork($workObject);
                 
@@ -154,7 +154,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 
                 $entranceObject = new WorkingHourEntranceExit();
                 
-                $entranceObject->setDayId ($day['id']);
+                $entranceObject->setDayId ($this->day->getId());
                 
                 $entranceObject->setType ('Entrance');
                 
@@ -164,7 +164,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 
                 $exitObject = new WorkingHourEntranceExit();
                 
-                $exitObject->setDayId ($day['id']);
+                $exitObject->setDayId ($this->day->getId());
                 
                 $exitObject->setType ('Exit');
                 

@@ -3,14 +3,12 @@
 
 <?php include_partial ('fmcCore/deleteConfirm', array(
     'class' => 'btn btn-danger btn-small pull-right',
-    'url' => url_for('@wh_user_day_deleteday?date='.$date)
+    'url' => url_for('@wh_user_day_deleteday?date='.$day['date'])
 )); ?>
 
 
 <?php include_partial ('itemlist', array(
-    'dayIOrecords'=>$dayIOrecords,
-    'dayWorkRecords'=>$dayWorkRecords,
-    'date'=>$date
+    'day'=>$day
 )); ?>
 
 
@@ -29,7 +27,7 @@
     
     <div class="tab-pane active in" id="tab1">
         
-        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>1)); ?>
+        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$day['date'],'form_id'=>1)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
             <table class="table table-condensed table-bordered table-hover">
@@ -37,7 +35,7 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>
@@ -47,7 +45,7 @@
     
     <div class="tab-pane" id="tab2">
         
-        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>2)); ?>
+        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$day['date'],'form_id'=>2)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
             <table class="table table-condensed table-bordered table-hover">
@@ -55,7 +53,7 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>
@@ -65,7 +63,7 @@
     
     <div class="tab-pane" id="tab3">
         
-        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$date,'form_id'=>3)); ?>
+        <?php $actionUrl=url_for('whuser_day_processform',array('date'=>$day['date'],'form_id'=>3)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
             <table class="table table-condensed table-bordered table-hover">
@@ -73,7 +71,7 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>

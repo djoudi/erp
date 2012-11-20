@@ -19,12 +19,13 @@
             ));
         } elseif ($status=="workday") {
             include_partial ('day_workday', array(
-                'date'=>$date, 
-                'dayIOrecords'=>$dayIOrecords, 
-                'dayWorkRecords'=>$dayWorkRecords, 
-                'workForm'=>$workForm, 
-                'entranceForm'=>$entranceForm,
-                'exitForm'=>$exitForm
+                #'date'=>$date, 
+                #'dayIOrecords'=>$dayIOrecords, 
+                #'dayWorkRecords'=>$dayWorkRecords, 
+                'day' => $day, 
+                'workForm' => $workForm, 
+                'entranceForm' => $entranceForm,
+                'exitForm' => $exitForm
             ));
         }
         ?>
