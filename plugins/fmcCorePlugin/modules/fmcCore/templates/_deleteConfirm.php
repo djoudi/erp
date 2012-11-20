@@ -8,7 +8,7 @@
 
 <?php if (!$url): ?>
 
-    E_MissingUrl
+    E_DeleteButton_MissingUrl
     
 <?php else: ?>
 

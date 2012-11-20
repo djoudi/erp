@@ -30,6 +30,8 @@ whuser_day_leaverequest_edit:
         module: WHUser_MyPage
         action: leaverequestedit
 
+# Delete
+
 wh_user_day_deleteday:
     url: /wh/user/day/:date/deleteday
     param:
@@ -47,6 +49,8 @@ wh_user_day_deletework:
     param:
         module: WHUser_MyPage
         action: deletework
+
+
 
 
 
