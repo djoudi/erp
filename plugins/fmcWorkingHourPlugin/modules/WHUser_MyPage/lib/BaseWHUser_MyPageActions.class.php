@@ -138,10 +138,6 @@ abstract class BaseWHUser_MyPageActions extends sfActions
             
                 $this->day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
                 
-                #$this->dayIOrecords = $day->getActiveIORecords();
-                
-                #$this->dayWorkRecords = $day->getActiveWorkRecords();
-            
             /* Preparing Work form */
                 
                 $workObject = new WorkingHourWork();
