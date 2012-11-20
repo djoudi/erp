@@ -178,7 +178,7 @@ abstract class BaseWHUser_MyPageActions extends sfActions
                 
                 $url = $this->getController()->genUrl('@whuser_day?date='.$this->date);
                 
-                if ($form_id == 1) FmcCoreProcess::form ($this->workForm, $request, $url);
+                if ($form_id == 1) WHUser_MyPage_Lib_Form::MyDay_AddWork ($this->workForm, $request, $url);
                 
                 elseif ($form_id == 2) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->entranceForm, $request, "Entrance", $url);
                 

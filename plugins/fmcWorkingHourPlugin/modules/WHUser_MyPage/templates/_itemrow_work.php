@@ -1,4 +1,10 @@
-<tr>
+<?php if ($sf_user->hasFlash('errorRowWork')): ?>
+    <?php if ($sf_user->getFlash('errorRowWork') == $record['id']) $class="error"; ?>    
+<?php endif ?>
+
+<?php if (!isset($class)) $class=""; ?>
+
+<tr class="<?php echo $class; ?>">
     
     <td>
         <?php echo $record->getProject(); ?>

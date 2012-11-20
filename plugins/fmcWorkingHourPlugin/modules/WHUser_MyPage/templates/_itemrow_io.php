@@ -1,12 +1,22 @@
-<tr style="background-color: #efefff;">
+<?php if ($sf_user->hasFlash('errorRowIO')): ?>
+    <?php if ($sf_user->getFlash('errorRowIO') == $record['id']) $class="error"; ?>    
+<?php endif ?>
+
+<?php if (!isset($class)) $class=""; ?>
+
+<tr class="<?php echo $class; ?>">
     
-    <th colspan="2" style="text-align: center;">
-        <?php echo $record["type"]; ?>
-    </th>
+    <td colspan="2" style="text-align: center;">
+        <strong>
+            <?php echo $record["type"]; ?>
+        </strong>
+    </td>
     
-    <th>
-        <?php echo $record["time"]; ?>
-    </th>
+    <td>
+        <strong>
+            <?php echo $record["time"]; ?>
+        </strong>
+    </td>
     
     <td colspan="2">
         

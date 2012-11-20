@@ -74,12 +74,14 @@
         <?php echo $sf_user->getFlash('success') ?>
     </div>
 <?php endif*/ ?>
+
 <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="alert fade in">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <?php echo $sf_user->getFlash('notice') ?>
     </div>
 <?php endif ?>
+
 <?php if ($sf_user->hasFlash('error')): ?>
     <div class="alert alert-error  fade in">
         <button type="button" class="close" data-dismiss="alert">×</button>

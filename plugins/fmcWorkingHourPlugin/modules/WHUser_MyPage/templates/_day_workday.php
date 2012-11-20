@@ -37,6 +37,9 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                    Revert Changes
+                </a>
             </div>
         </form>
         
@@ -52,6 +55,9 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                    Revert Changes
+                </a>
             </div>
         </form>
 
@@ -67,6 +73,9 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
+                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$date)); ?>">
+                    Revert Changes
+                </a>
             </div>
         </form>
 
