@@ -13,21 +13,23 @@
     
     <tbody>
         
-<?php
-    $dayIOrecords = $day->getActiveIORecords();
-    $dayWorkRecords = $day->getActiveWorkRecords();
-    $ioCounter = 0;
-    $wCounter = 0;
-    $done = 0;
-    $loopProtect = 0;
-    $last = false;
-?>
+        <?php
+            $dayIOrecords = $day->getActiveIORecords();
+            $dayWorkRecords = $day->getActiveWorkRecords();
+            $ioCounter = 0;
+            $wCounter = 0;
+            $done = 0;
+            $loopProtect = 0;
+            $last = false;
+        ?>
 
         <?php while (($done < 3) && $loopProtect<100 ): ?>
             
-            <?php if ($ioCounter >= count($dayIOrecords)) $a=1; else $a=0;?>
-            <?php if ($wCounter >= count($dayWorkRecords)) $b=2; else $b=0; ?>
-            <?php $done = $a+$b; ?>
+            <?php
+                $a = ($ioCounter >= count($dayIOrecords)) ? 1 : 0;
+                $b = ($wCounter >= count($dayWorkRecords)) ? 2 : 0;
+                $done = $a + $b;
+            ?>
             
             <?php $last=(($ioCounter+$wCounter+1)==(count($dayWorkRecords)+count($dayIOrecords)))?true:false;?>
             
@@ -77,12 +79,13 @@
                 
             <?php endif; ?>
             
-            
-            <?php if ($ioCounter >= count($dayIOrecords)) $a=1; else $a=0;?>
-            <?php if ($wCounter >= count($dayWorkRecords)) $b=2; else $b=0; ?>
-            <?php $done = $a+$b; ?>
-            
-            <?php $loopProtect++; ?>
+            <?php
+                $a = ($ioCounter >= count($dayIOrecords)) ? 1 : 0;
+                $b = ($wCounter >= count($dayWorkRecords)) ? 2 : 0;
+                $done = $a + $b;
+                
+                $loopProtect++;
+            ?>
             
         <?php endwhile;?>
         
