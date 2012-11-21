@@ -17,68 +17,94 @@ class WHUser_MyPage_Lib_Form
             $form->bind ($request->getParameter($form->getName()));
             if ($form->isValid())
             {
+                // Get values
+                
                 $values = $form->getValues();
+                
+                // Check if start < end
                 
                 if ($values['end']<=$values['start'])
                 {
                     $err = "End time should be later than start time.";
                 }
                 
-                if (!$err)
+                // Check if day exists
+                
+                if (!$err) 
                 {
                     $day = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id,$date);
-                    
-                    if ($day)
+                    if (!$day) $err = "Day not found!";
+                }
+                
+                // Check if before entrance
+                
+                if ($values['start']<$day['office_Entrance']) $err = "Record is before your office entrance";
+                
+                // Check if after exit
+                
+                if ($day['office_Exit'] && ($values['end']>$day['office_Exit'])) $err = "Record is after your office exit";
+                
+                // Get day records
+                
+                if (!$err)
+                {
+                    $dayIOrecords = $day->getActiveIORecords();
+                    $dayWorkRecords = $day->getActiveWorkRecords();
+                }
+                
+                // Check with IO records
+                
+                if (!$err)
+                {
+                    foreach ($dayIOrecords as $io)
                     {
-                        $dayIOrecords = $day->getActiveIORecords();
-                        $dayWorkRecords = $day->getActiveWorkRecords();
-                        
-                        foreach ($dayIOrecords as $io)
+                        if ( ($io['time']>$values['start']) && ($io['time']<$values['end']) )
                         {
-                            if ( ($io['time']>$values['start']) && ($io['time']<$values['end']) )
-                            {
-                                $err = "Overlapping with an entrance/exit record.";
-                                $user->setFlash('errorRowIO', $io['id']);
-                                break;
-                            }
-                        }
-                        
-                        if (!$err)
-                        {
-                            foreach ($dayWorkRecords as $w)
-                            {
-                                if ( ($values['start']>$w['start']) && ($values['start']<$w['end']) )
-                                {
-                                    $err = "Start time is overlapping with another work time.";
-                                    $user->setFlash('errorRowWork', $w['id']);
-                                    break;
-                                }
-                                elseif ( ($values['end']>$w['start']) && ($values['end']<$w['end']) )
-                                {
-                                    $err = "End time is overlapping with another work time.";
-                                    $user->setFlash('errorRowWork', $w['id']);
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        if (!$err)
-                        {
-                            $object = new WorkingHourWork();
-                            $object->setDayId ($day['id']);
-                            $object->setProjectId ($values['project_id']);
-                            $object->setTypeId ($values['type_id']);
-                            $object->setStart ($values['start']);
-                            $object->setEnd ($values['end']);
-                            $object->setComment ($values['comment']);
-                            $object->save();
-                            
-                            $user->setFlash('success', 'Record saved.');
-                            $controller->redirect ($url);
+                            $err = "Overlapping with an entrance/exit record.";
+                            $user->setFlash('errorRowIO', $io['id']);
+                            break;
                         }
                     }
-                    else $err = "Day not found. Please check date.";
                 }
+                
+                // Check with Work records
+                
+                if (!$err)
+                {
+                    foreach ($dayWorkRecords as $w)
+                    {
+                        if ( ($values['start']>$w['start']) && ($values['start']<$w['end']) )
+                        {
+                            $err = "Start time is overlapping with another work time.";
+                            $user->setFlash('errorRowWork', $w['id']);
+                            break;
+                        }
+                        elseif ( ($values['end']>$w['start']) && ($values['end']<$w['end']) )
+                        {
+                            $err = "End time is overlapping with another work time.";
+                            $user->setFlash('errorRowWork', $w['id']);
+                            break;
+                        }
+                    }
+                }
+                
+                // Save if no errors
+                
+                if (!$err)
+                {
+                    $object = new WorkingHourWork();
+                    $object->setDayId ($day['id']);
+                    $object->setProjectId ($values['project_id']);
+                    $object->setTypeId ($values['type_id']);
+                    $object->setStart ($values['start']);
+                    $object->setEnd ($values['end']);
+                    $object->setComment ($values['comment']);
+                    $object->save();
+                    
+                    $user->setFlash('success', 'Record saved.');
+                    $controller->redirect ($url);
+                }
+                
             }
             else $err = "Form is not valid. Please check your input";
             
@@ -105,15 +131,35 @@ class WHUser_MyPage_Lib_Form
             $form->bind ($request->getParameter($form->getName()));
             if ($form->isValid())
             {
+                // Get values
+                
                 $values = $form->getValues();
                 
-                $day = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id,$date);
+                // Check if day exists
                 
-                if ($day)
+                $day = Doctrine::getTable('WorkingHourDay')->getActiveForUserDate($user_id,$date);
+                if (!$day) $err = "Day not found!";
+                
+                // Check if between office first entrance / last exit
+                
+                if (!$err)
+                {
+                    if ( ($values['time']<=$day['office_Entrance']) || ($values['time']>=$day['office_Exit']) )
+                        $err = "Should be between office first entrance / last exit.";
+                }
+                
+                // Get day records
+                
+                if (!$err)
                 {
                     $dayIOrecords = $day->getActiveIORecords();
                     $dayWorkRecords = $day->getActiveWorkRecords();
-                    
+                }
+                
+                // Check with IO records
+                
+                if (!$err)
+                {
                     foreach ($dayIOrecords as $io)
                     {
                         if ($values['time']==$io['time'])
@@ -123,31 +169,37 @@ class WHUser_MyPage_Lib_Form
                             break;
                         }
                     }
-                    if (!$err)
+                }
+                
+                // Check with Work records
+                
+                if (!$err)
+                {
+                    foreach ($dayWorkRecords as $w)
                     {
-                        foreach ($dayWorkRecords as $w)
+                        if ( ($values['time']>$w['start']) && ($values['time']<$w['end']) )
                         {
-                            if ( ($values['time']>$w['start']) && ($values['time']<$w['end']) )
-                            {
-                                $err = "Entrance/exit cannot be inside work times.";
-                                $user->setFlash('errorRowWork', $w['id']);
-                                break;
-                            }
+                            $err = "Entrance/exit cannot be inside work times.";
+                            $user->setFlash('errorRowWork', $w['id']);
+                            break;
                         }
                     }
-                    if (!$err)
-                    {
-                        $object = new WorkingHourEntranceExit();
-                        $object->setDayId ($day['id']);
-                        $object->setType ($type);
-                        $object->setTime ($values['time']);
-                        $object->save();
-                        
-                        $user->setFlash('success', 'Record saved.');
-                        $controller->redirect ($url);
-                    }
                 }
-                else $err = "Day not found. Please check date.";
+                
+                // Save if NO errors
+                
+                if (!$err)
+                {
+                    $object = new WorkingHourEntranceExit();
+                    $object->setDayId ($day['id']);
+                    $object->setType ($type);
+                    $object->setTime ($values['time']);
+                    $object->save();
+                    
+                    $user->setFlash('success', 'Record saved.');
+                    $controller->redirect ($url);
+                }
+                
             }
             else $err = "Form is not valid. Please check your input";
             
