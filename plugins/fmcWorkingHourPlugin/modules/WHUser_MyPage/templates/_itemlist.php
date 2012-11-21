@@ -1,3 +1,18 @@
+<?php
+    $dayIOrecords = $day->getActiveIORecords();
+    $dayWorkRecords = $day->getActiveWorkRecords();
+    $ioCounter = 0;
+    $wCounter = 0;
+    $done = 0;
+    $loopProtect = 0;
+?>
+
+
+<?php if (!(count($dayIOrecords)+count($dayWorkRecords))): ?>
+    <p>No records so far.</p>
+<?php else: ?>
+
+
 <table class="table table-bordered table-hover table-condensed pull-left">
     
     <thead>
@@ -6,23 +21,13 @@
             <th>Type of Work</th>
             <th>From</th>
             <th>To</th>
-            <th>Comments</th>
+            <th>Comment</th>
             <th>Action</th>
         </tr>
     </thead>
     
     <tbody>
         
-        <?php
-            $dayIOrecords = $day->getActiveIORecords();
-            $dayWorkRecords = $day->getActiveWorkRecords();
-            $ioCounter = 0;
-            $wCounter = 0;
-            $done = 0;
-            $loopProtect = 0;
-            $last = false;
-        ?>
-
         <?php while (($done < 3) && $loopProtect<100 ): ?>
             
             <?php
@@ -31,8 +36,6 @@
                 $done = $a + $b;
             ?>
             
-            <?php $last=(($ioCounter+$wCounter+1)==(count($dayWorkRecords)+count($dayIOrecords)))?true:false;?>
-            
             <?php if ($done==0): /* If both records exist */ ?>
             
                 <?php if ($dayIOrecords[$ioCounter]['time'] <= $dayWorkRecords[$wCounter]['start']): ?>
@@ -40,7 +43,6 @@
                     <?php include_partial ('itemrow_io', array(
                         'record'=>$dayIOrecords[$ioCounter], 
                         'date'=>$day['date'], 
-                        'last'=>$last
                     ) ); ?>
                     
                     <?php $ioCounter++; ?>
@@ -50,7 +52,6 @@
                     <?php include_partial ('itemrow_work', array(
                         'record'=>$dayWorkRecords[$wCounter], 
                         'date'=>$day['date'], 
-                        'last'=>$last
                     ) ); ?>
                     
                     <?php $wCounter++; ?>
@@ -62,7 +63,6 @@
                 <?php include_partial ('itemrow_work', array(
                     'record'=>$dayWorkRecords[$wCounter], 
                     'date'=>$day['date'], 
-                    'last'=>$last
                 ) ); ?>
                 
                 <?php $wCounter++; ?>
@@ -72,7 +72,6 @@
                 <?php include_partial ('itemrow_io', array(
                     'record'=>$dayIOrecords[$ioCounter], 
                     'date'=>$day['date'], 
-                    'last'=>$last
                 ) ); ?>
                 
                 <?php $ioCounter++; ?>
@@ -92,3 +91,6 @@
     </tbody>
 
 </table>
+
+
+<?php endif; ?>

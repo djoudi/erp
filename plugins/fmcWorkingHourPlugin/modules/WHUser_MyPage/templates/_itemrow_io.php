@@ -23,11 +23,9 @@
     </td>
     
     <td>
-        <?php if ($last): ?>
-            <?php include_partial ('fmcCore/deleteConfirm', array(
-                'url' => url_for ('wh_user_day_deleteio', array('date'=>$date, 'id'=>$record['id']))
-            )); ?>
-        <?php endif; ?>
+        <?php include_partial ('fmcCore/deleteConfirm', array(
+            'url' => url_for ('wh_my_day_deleteio', array('date'=>$date, 'id'=>$record['id']))
+        )); ?>
     </td>
     
 </tr>

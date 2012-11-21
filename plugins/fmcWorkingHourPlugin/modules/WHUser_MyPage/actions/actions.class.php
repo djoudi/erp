@@ -3,11 +3,13 @@
 class WHUser_MyPageActions extends sfActions
 {
     
+    
     public function executeHome (sfWebRequest $request)
     {
         $date = date("Y-m-d");
         $this->redirect ($this->getController()->genUrl('@wh_my_day?date='.$date));
     }
+    
     
     
     public function executeDay (sfWebRequest $request)

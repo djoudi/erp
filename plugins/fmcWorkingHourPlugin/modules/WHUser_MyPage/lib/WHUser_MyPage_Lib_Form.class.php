@@ -144,7 +144,9 @@ class WHUser_MyPage_Lib_Form
                 
                 if (!$err)
                 {
-                    if ( ($values['time']<=$day['office_Entrance']) || ($values['time']>=$day['office_Exit']) )
+                    if ( ($values['time']<=$day['office_Entrance']) || 
+                        ($values['time']>=$day['office_Exit'] && $day['office_Exit']) 
+                    )
                         $err = "Should be between office first entrance / last exit.";
                 }
                 
