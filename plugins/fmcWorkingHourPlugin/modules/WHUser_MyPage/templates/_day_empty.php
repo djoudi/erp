@@ -35,10 +35,7 @@
     
     <div class="tab-pane fade" id="leave">
         
-        <?php include_partial ('leaveoptions', array(
-            'leaveTypes'=>$leaveTypes,
-            'date'=>$date
-        )); ?>
+        <?php include_component ('WHUser_MyPage', 'newLeaveRequest', array('date'=>$date)); ?>
                                         
     </div><!-- #leave -->
     

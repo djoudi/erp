@@ -1,16 +1,24 @@
 # User - MyPage
 
-whuser_mypage:
-    url: /wh/user/mypage
+wh_my_home:
+    url: /wh/my/home
     param:
         module: WHUser_MyPage
-        action: index
+        action: home
 
-whuser_day:
-    url: /wh/user/day/:date
+wh_my_day:
+    url: /wh/my/day/:date
     param:
         module: WHUser_MyPage
         action: day
+
+wh_my_day_deleteday:
+    url: /wh/my/day/:date/deleteday
+    param:
+        module: WHUser_MyPage
+        action: deleteday
+
+
 
 whuser_day_processform:
     url: /wh/user/day/:date/form_id/:form_id
@@ -32,11 +40,6 @@ whuser_day_leaverequest_edit:
 
 # Delete
 
-wh_user_day_deleteday:
-    url: /wh/user/day/:date/deleteday
-    param:
-        module: WHUser_MyPage
-        action: deleteday
 
 wh_user_day_deleteio:
     url: /wh/user/day/:date/deleteio/:id

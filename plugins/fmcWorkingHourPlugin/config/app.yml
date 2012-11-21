@@ -20,7 +20,7 @@ all:
                             credentials: ["Working Hours"]
                         11:
                             label: My Days
-                            route: @whuser_mypage
+                            route: @wh_my_home
                             requires_auth: true
                             credentials: ["Working Hours"]
                         12:

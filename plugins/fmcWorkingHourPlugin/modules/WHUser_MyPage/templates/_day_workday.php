@@ -1,10 +1,6 @@
 <?php slot('title', 'Edit Work Day' ); ?>
 
 
-<?php include_partial ('fmcCore/deleteConfirm', array(
-    'class' => 'btn btn-danger btn-small pull-right',
-    'url' => url_for('@wh_user_day_deleteday?date='.$day['date'])
-)); ?>
 
 
 <?php include_partial ('itemlist', array(
@@ -19,7 +15,6 @@
     <li class="active"><a href="#tab1" data-toggle="tab">New Work Record</a></li>
     <li class=""><a href="#tab2" data-toggle="tab">Office Entrance</a></li>
     <li class=""><a href="#tab3" data-toggle="tab">Office Exit</a></li>
-    <li class=""><a href="#tab4" data-toggle="tab">Operations</a></li>
 </ul>
 
 
@@ -35,7 +30,7 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
+                <a class="btn" href="<?php echo url_for('wh_my_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>
@@ -53,7 +48,7 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
+                <a class="btn" href="<?php echo url_for('wh_my_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>
@@ -71,22 +66,12 @@
             </table>
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
-                <a class="btn" href="<?php echo url_for('whuser_day',array('date'=>$day['date'])); ?>">
+                <a class="btn" href="<?php echo url_for('wh_my_day',array('date'=>$day['date'])); ?>">
                     Revert Changes
                 </a>
             </div>
         </form>
 
     </div>
-    
-    <div class="tab-pane" id="tab4">
-    
-        Delete day?
         
-        Send for approval
-        
-        
-    
-    </div>
-    
 </div>

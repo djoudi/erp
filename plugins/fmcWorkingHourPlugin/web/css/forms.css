@@ -23,3 +23,8 @@
 {
     width: 70px;
 }
+
+
+
+/* NON-FORM : DATEPICKER */
+.ui-datepicker { width: 16em !important; }

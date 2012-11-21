@@ -7,12 +7,16 @@
     <p class="text-info">
         
         <?php
-            $used = Fmc_Wh_Day::getMyLeaveUsage($type['id']);
-            $available = Fmc_Wh_Day::getMyLeaveLimit($type['id']);
+            $used = Fmc_Wh_Day::getMyLeaveUsage ($type['id']);
+            $available = Fmc_Wh_Day::getMyLeaveLimit ($type['id']);
             $isDisabled = $available > $used ? "btn-success" : "disabled";
             
             #$url = url_for('@whuser_newleaverequest_day?date='.$date.'&type='.$type['id']);
-            $url = url_for('@whuser_day_leaverequest_edit?type_id='.$type['id'].'&date='.$date);
+            #$url = url_for('@whuser_day_leaverequest_edit?type_id='.$type['id'].'&date='.$date);
+            $url = url_for ('whuser_day_leaverequest_edit', array(
+                'type_id' => $type['id'],
+                'date' => $date
+            ));
             
             $href = $available > $used ? $url : "#";
         ?>
