@@ -8,7 +8,7 @@
         
         <?php if ($status == 'workday'): ?>
             
-            <?php include_partial ('workday_options', array('day'=>$day)); ?>
+            <?php include_partial ('day_workday_options', array('day'=>$day)); ?>
             
         <?php endif; ?>
         

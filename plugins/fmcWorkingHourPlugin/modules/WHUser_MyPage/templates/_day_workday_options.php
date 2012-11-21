@@ -1,3 +1,5 @@
+<hr />
+
 <h4>Day actions</h4>
 
 <table class="table table-bordered table-condensed table-hover">
