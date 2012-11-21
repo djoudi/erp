@@ -294,10 +294,6 @@ WorkingHourDay:
         user_id:
             type: integer
             notnull: true
-        leave_id:
-            type: integer
-            notnull: false
-            default: NULL
         date:
             type: date
             notnull: true
@@ -306,6 +302,18 @@ WorkingHourDay:
             values: ['Draft', 'Pending', 'Accepted', 'Denied']
             default: 'Draft'
             notnull: true
+        leave_id:
+            type: integer
+            notnull: false
+            default: NULL
+        office_Entrance:
+            type: time
+            notnull: false
+            default: NULL
+        office_Exit:
+            type: time
+            notnull: false
+            default: NULL
         multiplier:
             type: decimal
             notnull: true
