@@ -27,7 +27,8 @@
                 'day' => $day, 
                 'workForm' => $workForm, 
                 'entranceForm' => $entranceForm,
-                'exitForm' => $exitForm
+                'exitForm' => $exitForm,
+                'dayForm' => $dayForm
             ));
         }
         ?>

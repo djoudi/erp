@@ -52,7 +52,11 @@ class WHUser_MyPageActions extends sfActions
                 $exitObject->setDay ($this->day);
                 $exitObject->setType ('Exit');
                 $this->exitForm = new Form_WHUser_newdayio($exitObject);
-                
+            
+            // Day edit form
+            
+                $this->dayForm = new Form_WH_NewDay ($this->day);
+            
             // Processing Forms
                 
                 $form_id = $request->getParameter('form_id');
@@ -60,7 +64,10 @@ class WHUser_MyPageActions extends sfActions
                 
                 if ($form_id == 1) WHUser_MyPage_Lib_Form::MyDay_AddWork ($this->workForm, $request, $url);
                 elseif ($form_id == 2) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->entranceForm, $request, "Entrance", $url);
-                elseif ($form_id == 3) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->exitForm, $request, "Exit", $url);   
+                elseif ($form_id == 3) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->exitForm, $request, "Exit", $url);
+                elseif ($form_id == 4) Fmc_Core_Form::Process ($this->dayForm, $request);
+                
+                
         }
     }
     

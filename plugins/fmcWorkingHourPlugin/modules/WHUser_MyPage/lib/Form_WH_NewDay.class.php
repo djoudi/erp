@@ -14,6 +14,8 @@ class Form_WH_NewDay extends WorkingHourDayForm
         $this->setWidget('office_Entrance', new sfWidgetFormInputText());
         $this->setWidget('office_Exit', new sfWidgetFormInputText());
         
+        $this->setValidator('office_Entrance', new sfValidatorString(array('required'=>true)));
+        
         $this->setDefault('office_Entrance', "09:00");
     }
 }
