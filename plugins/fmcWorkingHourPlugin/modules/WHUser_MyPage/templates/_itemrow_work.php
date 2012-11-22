@@ -27,7 +27,7 @@
     </td>
     
     <td>
-        <?php include_partial ('fmcCore/deleteConfirm', array(
+        <?php include_partial ('fmcCore/confirmButton', array(
             'url' => url_for ('wh_my_day_deletework', array('date'=>$date, 'id'=>$record['id']))
         )); ?>
     </td>

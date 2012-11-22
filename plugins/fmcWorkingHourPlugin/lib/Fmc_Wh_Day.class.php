@@ -16,6 +16,8 @@ class Fmc_Wh_Day
     }
     
     
+    // @TODO : Move these to Fmc_Wh_DayLeave class
+    
     public static function getHasEnoughLeaveLimit ($type_id, $user_id)
     {
         $used = Fmc_Wh_Day::getUserLeaveUsage($type_id, $user_id);
@@ -24,10 +26,12 @@ class Fmc_Wh_Day
     }
     
     
+    
     public static function getUserLeaveUsage ($type_id, $user_id)
     {
         return Doctrine::getTable('WorkingHourDay')->getUsedLeaveCount($type_id, $user_id);
     }
+    
     
     
     public static function getMyLeaveUsage ($type_id)
@@ -35,6 +39,7 @@ class Fmc_Wh_Day
         $myUserId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         return Fmc_Wh_Day::getUserLeaveUsage ($type_id, $myUserId);
     }
+    
     
         
     public static function getLeaveLimit ($type_id, $user_id)
@@ -55,12 +60,16 @@ class Fmc_Wh_Day
     }
     
     
+    
     public static function getMyLeaveLimit ($type_id)
     {
         $myUserId = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         return Fmc_Wh_Day::getLeaveLimit ($type_id, $myUserId);
     }
     
+    
+    
+    // @TODO : take this to model class
     
     public static function getMultiplier ($date)
     {
@@ -86,6 +95,7 @@ class Fmc_Wh_Day
         
         return $multiplier;
     }
+    
     
     
     public static function getStatus ($date)

@@ -104,4 +104,27 @@ class WHUser_MyPageActions extends sfActions
         $this->getController()->redirect ($forwardUrl);
     }
     
+    
+    
+    public function executeSendapprove (sfWebRequest $request)
+    {
+        $date = $request->getParameter('date');
+        $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($date);
+        
+        $this->forward404Unless ($day);
+        
+        $result = $day->verifyOrder();
+        
+        if ($result['status']!="OK")
+        {
+            $this->getUser()->setFlash('notice', $result['status']);
+            $this->getUser()->setFlash($result['errType'], $result['errId']);
+        }
+        
+        //else record baby
+        
+        
+        $this->getController()->redirect($request->getReferer());
+    }
+    
 }

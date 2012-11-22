@@ -36,8 +36,11 @@ wh_my_day_deletework:
         module: WHUser_MyPage
         action: deletework
 
-
-
+wh_my_day_sendapprove:
+    url: /wh/my/day/:date/sendapprove
+    param:
+        module: WHUser_MyPage
+        action: sendapprove
 
 
 # will be completed with leave part completion
