@@ -1,6 +1,7 @@
 <?php
     $dayIOrecords = $day->getActiveIORecords();
     $dayWorkRecords = $day->getActiveWorkRecords();
+    $isDraft = $day['status'] == "Draft" ? true : false;
     $ioCounter = 0;
     $wCounter = 0;
     $done = 0;
@@ -21,8 +22,11 @@
             <th>Type of Work</th>
             <th>From</th>
             <th>To</th>
+            
             <th>Comment</th>
-            <th>Action</th>
+            <?php if ($isDraft): ?>
+                <th>Action</th>
+            <?php endif; ?>
         </tr>
     </thead>
     
@@ -43,6 +47,7 @@
                     <?php include_partial ('itemrow_io', array(
                         'record'=>$dayIOrecords[$ioCounter], 
                         'date'=>$day['date'], 
+                        'isDraft'=>$isDraft, 
                     ) ); ?>
                     
                     <?php $ioCounter++; ?>
@@ -52,6 +57,7 @@
                     <?php include_partial ('itemrow_work', array(
                         'record'=>$dayWorkRecords[$wCounter], 
                         'date'=>$day['date'], 
+                        'isDraft'=>$isDraft, 
                     ) ); ?>
                     
                     <?php $wCounter++; ?>
@@ -63,6 +69,7 @@
                 <?php include_partial ('itemrow_work', array(
                     'record'=>$dayWorkRecords[$wCounter], 
                     'date'=>$day['date'], 
+                    'isDraft'=>$isDraft, 
                 ) ); ?>
                 
                 <?php $wCounter++; ?>
@@ -72,6 +79,7 @@
                 <?php include_partial ('itemrow_io', array(
                     'record'=>$dayIOrecords[$ioCounter], 
                     'date'=>$day['date'], 
+                    'isDraft'=>$isDraft, 
                 ) ); ?>
                 
                 <?php $ioCounter++; ?>

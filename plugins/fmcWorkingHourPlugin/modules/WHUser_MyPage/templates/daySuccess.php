@@ -12,17 +12,26 @@
             
         <?php endif; ?>
         
-    </div>    
+    </div>
     
     <div class="span9" style="padding-top: 20px">
         
         <?php
-        if ($status=="empty") {
+        if ($status=="empty")
+        {
             include_partial ('day_empty', array(
                 'date' => $date,
                 'form' => $form,
             ));
-        } elseif ($status=="workday") {
+        }
+        elseif ($status=="workday" && $day['status']!="Draft")
+        {
+            include_partial ('itemlist', array(
+                'day'=>$day
+            ));
+        }
+        elseif ($status=="workday")
+        {
             include_partial ('day_workday', array(
                 'day' => $day, 
                 'workForm' => $workForm, 

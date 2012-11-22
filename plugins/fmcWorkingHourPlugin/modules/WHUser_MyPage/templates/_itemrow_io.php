@@ -22,10 +22,12 @@
         
     </td>
     
-    <td>
-        <?php include_partial ('fmcCore/confirmButton', array(
-            'url' => url_for ('wh_my_day_deleteio', array('date'=>$date, 'id'=>$record['id']))
-        )); ?>
-    </td>
+    <?php if ($isDraft): ?>
+        <td>
+            <?php include_partial ('fmcCore/confirmButton', array(
+                'url' => url_for ('wh_my_day_deleteio', array('date'=>$date, 'id'=>$record['id']))
+            )); ?>
+        </td>
+    <?php endif; ?>
     
 </tr>
