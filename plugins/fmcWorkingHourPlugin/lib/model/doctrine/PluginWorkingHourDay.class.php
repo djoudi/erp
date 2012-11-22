@@ -12,6 +12,8 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         return $q->execute();
     }
     
+    
+    
     public function getActiveWorkRecords()
     {
         $q = Doctrine::getTable ('WorkingHourWork')
@@ -23,7 +25,36 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         return $q->execute();
     }
     
-    public function verifyOrder()
+    
+    
+    public function calculateMultiplier()
+    {
+        $timestamp = strtotime($this->getDate());
+        $dayoftheweek = date ("N", $timestamp);
+        
+        if ($dayoftheweek > 5) // if weekend
+        {
+            $holiday = 1;
+        }
+        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
+        {
+            $holiday = 1;
+        }
+        else $holiday = 0; // not holiday
+        
+        if ($holiday)
+        {
+            $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('WeekendMultiplier');
+            $multiplier = $param['value'];
+        }
+        else $multiplier = 1;
+        
+        return $multiplier;
+    }
+    
+    
+    
+    public function verifyRecords()
     {
         $user = sfContext::getInstance()->getUser();
         $err = "";        
@@ -31,7 +62,7 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         if (!$err)
         {
             if (!$this->getOfficeEntrance() || !$this->getOfficeExit())
-                $err = "You should enter office enter and exit times.";
+                $err = "You should enter office enter and exit hours.";
         }
         
         if (!$err)
@@ -72,7 +103,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         }
         
         // If Work records are between Entrance/Exit
-        
         if (!$err)
         {
             foreach ($w as $work)
@@ -81,42 +111,40 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
                 {
                     if ($io[$i]['time']>$work['start']) break;
                 }
-                if ($io[$i-1]['type']=='Exit')
+                if ($i>0)
                 {
-                    $err = "You cannot work after exiting office.";
-                    $type = "errorRowWork";
-                    $id = $work['id'];
-                    break;
+                    if ($io[$i-1]['type']=='Exit')
+                    {
+                        $err = "You cannot work after exiting office.";
+                        $type = "errorRowWork";
+                        $id = $work['id'];
+                        break;
+                    }
                 }
             }
         }
         
         // If employee worked enough for the day
-        
         if (!$err)
         {
-            $entrance = $this->coco ($this->getOfficeEntrance());
-            $exit = $this->coco ($this->getOfficeExit());
-            
+            $entrance = Fmc_Core_Time::TimeToStamp ($this->getOfficeEntrance());
+            $exit = Fmc_Core_Time::TimeToStamp ($this->getOfficeExit());
             
             foreach ($io as $ee)
-            {
                 if ($ee['type']=="Entrance")
-                {
-                    $entrance += $this->coco ($ee['time']);
-                }
-            }
+                    $entrance += Fmc_Core_Time::TimeToStamp ($ee['time']);
+            
             foreach ($io as $ee)
-            {
                 if ($ee['type']=="Exit")
-                {
-                    $exit += $this->coco ($ee['time']);
-                }
+                    $exit += Fmc_Core_Time::TimeToStamp ($ee['time']);
+            
+            foreach ($w as $work)
+            {
+                $exit += Fmc_Core_Time::TimeToStamp ($work['start']);
+                $entrance += Fmc_Core_Time::TimeToStamp ($work['end']);
             }
             
-            $err = $exit-$entrance;
-            $err = $err / 3600;
-            
+            if ($exit-$entrance !=0) $err = "Your work hours and entrance/exit does not sum up.";
         }
         
         $status = $err ? $err : "OK";
@@ -124,14 +152,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         return $result;
     }
     
-    private function coco ($time)
-    {
-        $oldtz = date_default_timezone_get();
-        date_default_timezone_set('UTC');
-        $arr = explode(':', $time);
-        $epoch = mktime($arr[0], $arr[1], $arr[2], "01", "01", "1970");
-        date_default_timezone_set($oldtz);
-        return $epoch;
-    }
+    
     
 }

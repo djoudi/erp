@@ -109,20 +109,24 @@ class WHUser_MyPageActions extends sfActions
     public function executeSendapprove (sfWebRequest $request)
     {
         $date = $request->getParameter('date');
-        $day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($date);
+        $day = Doctrine::getTable('WorkingHourDay')->getMyDraftForDate($date);
         
         $this->forward404Unless ($day);
         
-        $result = $day->verifyOrder();
+        $result = $day->verifyRecords();
         
         if ($result['status']!="OK")
         {
             $this->getUser()->setFlash('notice', $result['status']);
             $this->getUser()->setFlash($result['errType'], $result['errId']);
         }
-        
-        //else record baby
-        
+        else //record baby
+        {
+            $this->getUser()->setFlash('notice', "all ok");
+            $day->setMultiplier ($day->calculateMultiplier());
+            $day->setStatus ('Pending');
+            $day->save();
+        }
         
         $this->getController()->redirect($request->getReferer());
     }

@@ -7,6 +7,21 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginWorkingHourDay');
     }
     
+    public function getDraftForUserDate ($user_id, $date)
+    {
+        $q = $this->createQuery ('whd')
+            ->addWhere ('whd.user_id = ?', $user_id)
+            ->addWhere ('whd.date = ?', $date)
+            ->addWhere ('status = ?', 'Draft');
+        return $q->fetchOne();
+    }
+    
+    public function getMyDraftForDate ($date)
+    {
+        $user = sfContext::getInstance()->getUser()->getGuardUser();
+        return $this->getDraftForUserDate ($user['id'], $date);
+    }
+    
     public function getMyActiveForDate ($date)
     {
         $user = sfContext::getInstance()->getUser()->getGuardUser();

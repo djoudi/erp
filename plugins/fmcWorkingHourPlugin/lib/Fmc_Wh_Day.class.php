@@ -68,36 +68,7 @@ class Fmc_Wh_Day
     }
     
     
-    
-    // @TODO : take this to model class
-    
-    public static function getMultiplier ($date)
-    {
-        $timestamp = strtotime($date);
-        $dayoftheweek = date ("N", $timestamp);
-        
-        if ($dayoftheweek > 5) // if weekend
-        {
-            $holiday = 1;
-        }
-        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
-        {
-            $holiday = 1;
-        }
-        else $holiday = 0; // not holiday
-        
-        if ($holiday)
-        {
-            $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('WeekendMultiplier');
-            $multiplier = $param['value'];
-        }
-        else $multiplier = 1;
-        
-        return $multiplier;
-    }
-    
-    
-    
+    /* MOVE THIS TO MODEL */
     public static function getStatus ($date)
     {
         if ($whday = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($date))
