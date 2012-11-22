@@ -69,7 +69,7 @@ class Fmc_Wh_Day
     
     
     /* MOVE THIS TO MODEL */
-    public static function getStatus ($date)
+    public static function getDateType ($date)
     {
         if ($whday = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($date))
         {

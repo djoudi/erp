@@ -15,7 +15,7 @@ class WHUser_MyPageActions extends sfActions
     public function executeDay (sfWebRequest $request)
     {
         $this->date = $request->getParameter('date');
-        $this->status = Fmc_Wh_Day::getStatus($this->date);
+        $this->status = Fmc_Wh_Day::getDateType($this->date);
         
         if ($this->status == "empty")
         {
@@ -110,19 +110,17 @@ class WHUser_MyPageActions extends sfActions
     {
         $date = $request->getParameter('date');
         $day = Doctrine::getTable('WorkingHourDay')->getMyDraftForDate($date);
-        
         $this->forward404Unless ($day);
         
         $result = $day->verifyRecords();
-        
         if ($result['status']!="OK")
-        {
-            $this->getUser()->setFlash('notice', $result['status']);
+        {   
+            $this->getUser()->setFlash('error', $result['status']);
             $this->getUser()->setFlash($result['errType'], $result['errId']);
         }
-        else //record baby
+        else
         {
-            $this->getUser()->setFlash('notice', "all ok");
+            //$this->getUser()->setFlash('notice', "all ok");
             $day->setMultiplier ($day->calculateMultiplier());
             $day->setStatus ('Pending');
             $day->save();
