@@ -36,7 +36,7 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         {
             $holiday = 1;
         }
-        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
+        elseif (Doctrine::getTable('Holiday')->findOneByDay($this->getDate())) // if holiday
         {
             $holiday = 1;
         }

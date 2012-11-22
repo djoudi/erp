@@ -3,12 +3,20 @@
 <div class="row">
     
     <div class="span3" style="padding: 0 0px 0 0;">
-    
+        
+        <h5><?php echo Fmc_Wh_Day::getGoodDate ($date); ?></h5>
+        
         <?php include_partial ('datepicker', array('date'=>$date)); ?>
         
-        <?php if ($status == 'workday'): ?>
+        <?php if (isset($day)): ?>
+        
+            <hr />
             
-            <?php include_partial ('day_workday_options', array('day'=>$day)); ?>
+            <?php include_partial ('day_info_general', array('day'=>$day)); ?>
+            
+            <?php if ($day['status']=="Draft"): ?>
+                <?php include_partial ('day_draft_options', array('day'=>$day)); ?>
+            <?php endif; ?>
             
         <?php endif; ?>
         
@@ -19,10 +27,11 @@
         <?php
         if ($status=="empty")
         {
-            include_partial ('day_empty', array(
-                'date' => $date,
-                'form' => $form,
+            include_component ('WHUser_MyPage', 'newDay', array(
+                'date'=>$date, 
+                'form'=>$form, 
             ));
+            
         }
         elseif ($status=="workday" && $day['status']!="Draft")
         {
