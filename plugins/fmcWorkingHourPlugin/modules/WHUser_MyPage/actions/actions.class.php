@@ -24,7 +24,7 @@ class WHUser_MyPageActions extends sfActions
             $object->setDate ($this->date);
             $this->form = new Form_WH_NewDay($object);
             
-            WHUser_MyPage_Forms::processNewDayForm ($this->form, $request, $this->date);
+            Fmc_Wh_Forms::processNewDayForm ($this->form, $request, $this->date);
             
             #Fmc_Core_Form::Process ($this->form, $request);
         }
@@ -68,8 +68,7 @@ class WHUser_MyPageActions extends sfActions
                 if ($form_id == 1) WHUser_MyPage_Lib_Form::MyDay_AddWork ($this->workForm, $request, $url);
                 elseif ($form_id == 2) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->entranceForm, $request, "Entrance", $url);
                 elseif ($form_id == 3) WHUser_MyPage_Lib_Form::MyDay_AddIo ($this->exitForm, $request, "Exit", $url);
-                elseif ($form_id == 4) Fmc_Core_Form::Process ($this->dayForm, $request);
-                
+                elseif ($form_id == 4) Fmc_Wh_Forms::processNewDayForm ($this->dayForm, $request, $this->date);
                 
         }
     }

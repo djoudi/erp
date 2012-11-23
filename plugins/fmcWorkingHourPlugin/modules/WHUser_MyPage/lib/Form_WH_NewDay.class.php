@@ -16,6 +16,5 @@ class Form_WH_NewDay extends WorkingHourDayForm
         
         $this->setValidator('office_Entrance', new sfValidatorString(array('required'=>true)));
         
-        $this->setDefault('office_Entrance', "09:00");
     }
 }
