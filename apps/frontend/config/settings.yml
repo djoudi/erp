@@ -47,8 +47,8 @@ all:
       - costFormManage
       
       - WH_Homepage
-      - WH_MyLeave
-      - WHUser_MyPage
+      - WHUser_Day
+      - WHUser_Leave
       - WHParam_Holiday
       - WHParam_LeaveLimit
       - WHParam_LeaveType

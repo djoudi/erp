@@ -13,37 +13,37 @@ wh_my_home:
 wh_my_day:
     url: /wh/my/day/:date
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: day
 
 wh_my_day_processforms:
     url: /wh/my/day/:date/form_id/:form_id
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: day
 
 wh_my_day_deleteday:
     url: /wh/my/day/:date/deleteday
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: deleteday
 
 wh_my_day_deleteio:
     url: /wh/my/day/:date/deleteio/:id
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: deleteio
 
 wh_my_day_deletework:
     url: /wh/my/day/:date/deletework/:id
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: deletework
 
 wh_my_day_sendapprove:
     url: /wh/my/day/:date/sendapprove
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: sendapprove
 
 
@@ -54,12 +54,12 @@ wh_my_day_sendapprove:
 whuser_day_leaverequest_list:
     url: /wh/user/day/leaverequest/new/choosetype
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: leaverequestselect
 whuser_day_leaverequest_edit:
     url: /wh/user/day/leaverequest/edit/:type_id
     param:
-        module: WHUser_MyPage
+        module: WHUser_Day
         action: leaverequestedit
 
 

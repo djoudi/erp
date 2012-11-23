@@ -1,6 +1,6 @@
 <?php
 
-class WHUser_MyPageActions extends sfActions
+class WHUser_DayActions extends sfActions
 {
     
     public function executeDay (sfWebRequest $request)

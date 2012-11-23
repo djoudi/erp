@@ -1,6 +1,6 @@
 <?php
 
-class WHUser_MyPageComponents extends sfComponents
+class WHUser_DayComponents extends sfComponents
 {
     
     public function executeNewLeaveRequest()
