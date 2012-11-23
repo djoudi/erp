@@ -1,10 +1,14 @@
-# User - MyPage
+# User - Homepage
 
 wh_my_home:
     url: /wh/my/home
     param:
-        module: WHUser_MyPage
-        action: home
+        module: WH_Homepage
+        action: index
+
+
+
+# User - MyPage
 
 wh_my_day:
     url: /wh/my/day/:date

@@ -19,7 +19,7 @@
     input[type="color"], .uneditable-input {
         font-size: 12px;
         margin-bottom: 0;
-        padding: 2px 3px;
+        padding: 1px 3px;
     }
     select, input[type="file"] { height: 26px; }
     select, textarea, input { margin-bottom: 0px;  }
