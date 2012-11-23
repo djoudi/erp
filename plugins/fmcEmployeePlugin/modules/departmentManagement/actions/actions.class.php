@@ -25,8 +25,6 @@ class departmentManagementActions extends sfActions
     {
         $q = Doctrine::getTable('sfGuardGroup')
             ->createQuery ('g')
-            ->leftJoin ('g.Manager m')
-            ->leftJoin ('g.Default_Work_Type dwt')
             ->addWhere ('g.id = ?', $request->getParameter("id"));
         
         $this->item = $q->fetchOne();
