@@ -12,9 +12,11 @@ default:
         - /addons/tablesorter/css/tablesorter-extra.css
         - /addons/timepicker/css/timepicker.css
         
+        
         - /plugins/bootstrap/css/bootstrap.min.css
         - frontend-extra.css
         - frontend-forms.css
+        
         
         #- frontend/layout.css
         #- frontend/fixes.css

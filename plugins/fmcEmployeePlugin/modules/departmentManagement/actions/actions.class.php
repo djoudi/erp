@@ -1,15 +1,43 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/BasedepartmentManagementActions.class.php';
-
-/**
- * departmentManagement actions.
- * 
- * @package    fmcEmployeePlugin
- * @subpackage departmentManagement
- * @author     Yasin Aydin (yasin@yasinaydin.net)
- * @version    SVN: $Id: actions.class.php 12534 2008-11-01 13:38:27Z Kris.Wallsmith $
- */
-class departmentManagementActions extends BasedepartmentManagementActions
+class departmentManagementActions extends sfActions
 {
+    
+    public function executeList (sfWebRequest $request)
+    {
+        $q = Doctrine::getTable ('sfGuardGroup')
+            ->createQuery ('g')
+            ->leftJoin ('g.Manager m');
+        
+        $this->items = $q->execute();
+    }
+    
+    public function executeNew (sfWebRequest $request)
+    {
+        $this->form = new sfGuardDepartmentForm();
+        
+        $returnUrl = $this->getController()->genUrl('@departmentManagement_list');
+        
+        Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
+    }
+    
+    public function executeEdit (sfWebRequest $request)
+    {
+        $q = Doctrine::getTable('sfGuardGroup')
+            ->createQuery ('g')
+            ->leftJoin ('g.Manager m')
+            ->leftJoin ('g.Default_Work_Type dwt')
+            ->addWhere ('g.id = ?', $request->getParameter("id"));
+        
+        $this->item = $q->fetchOne();
+        
+        $this->forward404Unless ($this->item);
+        
+        $this->form = new sfGuardDepartmentForm ($this->item);
+        
+        $returnUrl = $this->getController()->genUrl('@departmentManagement_list');
+        
+        Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
+    }
+    
 }
