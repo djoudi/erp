@@ -1,59 +1,56 @@
 <?php slot ('title', "Employee List") ?>
 
+<?php slot ('activeClass', "#topmenu_settings"); ?>
 
-<script type="text/javascript">
-    $("#topmenu_settings").addClass("active");
-</script>
+<a class="btn btn-primary pull-right" href="<?php echo url_for('employeeManagement_new'); ?>">
+    New Employee
+</a>
 
+<?php if (!count($items)): ?>
 
-<?php if (isset($filter)): ?>
-    <?php include_partial ('fmcCore/filterForm', array(
-        'filter'=>$filter, 
-        'filtered'=>$filtered, 
-        'count'=>count($items),
-        'new_url'=>url_for('employeeManagement_new'),
-        'new_text'=>"New Employee"
-    )); ?>
-<?php endif; ?>
+    <p>No records found.</p>
 
+<?php else: ?>
 
-<table class="tablesorter2a tablesorterpager table table-hover table-condensed table-bordered">
-    <thead>
-        <tr>
-            <th>Active</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Title</th>
-            <th>Department</th>
-            <th>Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($items as $employee): ?>
+    <table class="tablesorter2a table table-hover table-condensed table-bordered">
+        <thead>
             <tr>
-                <td>
-                    <?php if ($employee["is_active"]): ?>
-                        <img src="/images/tick.png" />
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <a href="<?php echo url_for("@employeeManagement_edit?id=".$employee["id"]); ?>">
-                        <?php echo $employee["first_name"]; ?> <?php echo $employee["last_name"]; ?>
-                    </a>
-                </td>
-                <td>
-                    <?php echo $employee["email_address"]; ?>
-                </td>
-                <td>
-                    <?php echo $employee["title"]; ?>
-                </td>
-                <td>
-                    <?php echo $employee["Department"]["name"]; ?>
-                </td>
-                <td>
-                    <?php echo $employee["username"]; ?>
-                </td>
+                <th>Active</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Username</th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($items as $employee): ?>
+                <tr>
+                    <td>
+                        <?php if ($employee["is_active"]): ?>
+                            <img src="/images/tick.png" />
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo url_for("@employeeManagement_edit?id=".$employee["id"]); ?>">
+                            <?php echo $employee["first_name"]; ?> <?php echo $employee["last_name"]; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <?php echo $employee["email_address"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $employee["title"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $employee["Department"]["name"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $employee["username"]; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+<?php endif; ?>
