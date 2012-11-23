@@ -23,7 +23,10 @@ class WHUser_MyPageActions extends sfActions
             $object->setEmployee ($this->getUser()->getGuardUser());
             $object->setDate ($this->date);
             $this->form = new Form_WH_NewDay($object);
-            Fmc_Core_Form::Process ($this->form, $request);
+            
+            WHUser_MyPage_Forms::processNewDayForm ($this->form, $request, $this->date);
+            
+            #Fmc_Core_Form::Process ($this->form, $request);
         }
         else
         if ($this->status == "workday")
