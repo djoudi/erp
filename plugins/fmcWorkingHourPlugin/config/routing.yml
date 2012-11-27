@@ -18,7 +18,6 @@ workingHourLeaveType_edit:
         module: workingHourLeaveType
         action: edit
 
-
 # workingHourWorkType
 
 workingHourWorkType_list:
@@ -37,4 +36,18 @@ workingHourWorkType_edit:
     url: /wh/worktypes/edit/:id
     param:
         module: workingHourWorkType
+        action: edit
+
+# workingHourParameter
+
+workingHourParameter_list:
+    url: /wh/parameters/list
+    param:
+        module: workingHourParameter
+        action: list
+
+workingHourParameter_edit:
+    url: /wh/parameters/edit/:id
+    param:
+        module: workingHourParameter
         action: edit

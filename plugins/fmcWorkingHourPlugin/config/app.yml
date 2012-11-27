@@ -44,12 +44,12 @@ all:
                             requires_auth: true
                             credentials: ["Working Hours Settings"]
                         93:
+                            label: Parameters
+                            route: @workingHourParameter_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
+                        94:
                             label: Work Types
                             route: @workingHourWorkType_list
                             requires_auth: true
                             credentials: ["Working Hours Settings"]
-#                        94:
-#                            label: Parameters
-#                            route: @whparam_settings_list
-#                            requires_auth: true
-#                            credentials: ["Working Hours Settings"]

@@ -53,6 +53,7 @@ all:
       - vatManagement
       
       - workingHourLeaveType
+      - workingHourParameter
       - workingHourWorkType
 
   # For Login  
