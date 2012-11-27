@@ -72,6 +72,8 @@ sfGuardGroupPermission:
 ######################################################
 
 sfGuardUser:
+    options:
+        orderBy: first_name, last_name ASC
     actAs:
         Auditable: ~
         SoftDelete: ~

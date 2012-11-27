@@ -6,9 +6,11 @@ workingHourLeaveLimit_list:
         module: workingHourLeaveLimit
         action: list
 
-
-
-
+workingHourLeaveLimit_edit:
+    url: /wh/leavelimits/edit/:id
+    param:
+        module: workingHourLeaveLimit
+        action: edit
 
 # workingHourLeaveType
 
