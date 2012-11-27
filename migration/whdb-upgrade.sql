@@ -13,6 +13,7 @@ DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 11;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 12;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 13;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 14;
+DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 15;
 
 
 INSERT IGNORE INTO `sf_guard_permission` (`id`, `name`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
@@ -20,7 +21,8 @@ INSERT IGNORE INTO `sf_guard_permission` (`id`, `name`, `description`, `creater_
 (11, 'Working Hours Leave Approve', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL),
 (12, 'Working Hours Day Approve', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL),
 (13, 'Working Hours Reports', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL),
-(14, 'Working Hours Settings', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL);
+(14, 'Working Hours Settings', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL),
+(15, 'Admin: Holiday Management', NULL, 23, 23, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL);
 
 
 INSERT IGNORE INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
@@ -28,7 +30,8 @@ INSERT IGNORE INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `crea
 (23, 11, 23, 23, '2012-11-08 17:01:14', '2012-11-08 17:01:14', NULL, 1),
 (23, 12, 0, 0, '2012-04-16 17:23:07', '2012-04-16 17:23:07', NULL, 1),
 (23, 13, 23, 23, '2012-11-08 17:01:14', '2012-11-08 17:01:14', NULL, 1),
-(23, 14, 23, 23, '2012-11-08 17:01:15', '2012-11-08 17:01:15', NULL, 1);
+(23, 14, 23, 23, '2012-11-08 17:01:15', '2012-11-08 17:01:15', NULL, 1),
+(23, 15, 23, 23, '2012-11-08 17:01:15', '2012-11-08 17:01:15', NULL, 1);
 
 
 INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
