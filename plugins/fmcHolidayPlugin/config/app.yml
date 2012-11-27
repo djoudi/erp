@@ -1,0 +1,11 @@
+all:
+    menus:
+        topmenu:
+            children:
+                99_settings:
+                    children:
+                        13:
+                            label: Holidays
+                            route: @holidayManagement_list
+                            requires_auth: true
+                            credentials: ["Admin: Holiday Management"]

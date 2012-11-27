@@ -1,0 +1,17 @@
+holidayManagement_list:
+    url: /admin/settings/holidays/list
+    param:
+        module: holidayManagement
+        action: list
+
+holidayManagement_edit:
+    url: /admin/settings/holidays/edit/:id
+    param:
+        module: holidayManagement
+        action: edit
+
+holidayManagement_new:
+    url: /admin/settings/holidays/new
+    param:
+        module: holidayManagement
+        action: new
