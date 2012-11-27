@@ -33,34 +33,7 @@ class WHUser_DayActions extends sfActions
         if ($this->status == "workday")
         {
             
-            // Fetching day
-            
-                $this->day = Doctrine::getTable('WorkingHourDay')->getMyActiveForDate($this->date);
-                
-            // Work form
-                
-                $workObject = new WorkingHourWork();
-                $workObject->setDay ($this->day);
-                $this->workForm = new Form_WHUser_newdaywork($workObject);
-                
-            // Entrance form
-                
-                $entranceObject = new WorkingHourEntranceExit();
-                $entranceObject->setDay ($this->day);
-                $entranceObject->setType ('Entrance');
-                $this->entranceForm = new Form_WHUser_newdayio($entranceObject);
-                
-            // Exit form
-                
-                $exitObject = new WorkingHourEntranceExit();
-                $exitObject->setDay ($this->day);
-                $exitObject->setType ('Exit');
-                $this->exitForm = new Form_WHUser_newdayio($exitObject);
-            
-            // Day edit form
-            
-                $this->dayForm = new Form_WH_NewDay ($this->day);
-            
+
             // Processing Forms
                 
                 $form_id = $request->getParameter('form_id');
