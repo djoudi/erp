@@ -1,0 +1,28 @@
+/* DATEPICKER */
+
+.ui-datepicker { width: 15em !important; }
+
+
+/* FORMS */
+
+#holiday_day_day,
+#holiday_day_month,
+#leave_request_start_Date_day,
+#leave_request_start_Date_month,
+#leave_request_end_Date_day,
+#leave_request_end_Date_month,
+#leave_request_report_Date_day,
+#leave_request_report_Date_month,
+#leave_request_report_Received_day,
+#leave_request_report_Received_month
+{
+    width: 50px;
+}
+#holiday_day_year,
+#leave_request_start_Date_year,
+#leave_request_end_Date_year,
+#leave_request_report_Date_year,
+#leave_request_report_Received_year
+{
+    width: 70px;
+}
