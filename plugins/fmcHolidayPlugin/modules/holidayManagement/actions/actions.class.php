@@ -14,9 +14,9 @@ class holidayManagementActions extends sfActions
         
         $object->setDay(date('Y-m-d'));
         
-        $this->form = new HolidayFormRecord ($object);
+        $this->form = new Form_Holiday ($object);
         
-        $returnUrl = $this->getController()->genUrl('@whparam_holiday_list');
+        $returnUrl = $this->getController()->genUrl('@holidayManagement_list');
         
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
@@ -27,9 +27,9 @@ class holidayManagementActions extends sfActions
         
         $this->forward404Unless ($this->object);
         
-        $this->form = new HolidayFormRecord ($this->object);
+        $this->form = new Form_Holiday ($this->object);
         
-        Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
+        Fmc_Core_Form::Process ($this->form, $request);
     }
     
 }

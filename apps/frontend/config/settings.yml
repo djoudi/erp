@@ -48,6 +48,7 @@ all:
       - customerManagement
       - departmentManagement
       - employeeManagement
+      - holidayManagement
       - projectManagement
       - vatManagement
 
