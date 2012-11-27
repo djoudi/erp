@@ -51,6 +51,8 @@ all:
       - holidayManagement
       - projectManagement
       - vatManagement
+      
+      - workingHourLeaveType
 
   # For Login  
   .actions:
