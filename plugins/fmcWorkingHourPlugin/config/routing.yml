@@ -1,0 +1,19 @@
+# workingHourLeaveType
+
+workingHourLeaveType_list:
+    url: /wh/leavetypes/list
+    param:
+        module: workingHourLeaveType
+        action: list
+
+workingHourLeaveType_edit:
+    url: /wh/leavetypes/edit/:id
+    param:
+        module: workingHourLeaveType
+        action: edit
+
+workingHourLeaveType_new:
+    url: /wh/leavetypes/new
+    param:
+        module: workingHourLeaveType
+        action: new

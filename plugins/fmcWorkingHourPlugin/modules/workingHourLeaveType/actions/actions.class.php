@@ -1,15 +1,31 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/BaseworkingHourLeaveTypeActions.class.php';
-
-/**
- * workingHourLeaveType actions.
- * 
- * @package    fmcWorkingHourPlugin
- * @subpackage workingHourLeaveType
- * @author     Yasin Aydin (yasin@yasinaydin.net)
- * @version    SVN: $Id: actions.class.php 12534 2008-11-01 13:38:27Z Kris.Wallsmith $
- */
-class workingHourLeaveTypeActions extends BaseworkingHourLeaveTypeActions
+class workingHourLeaveTypeActions extends sfActions
 {
+    
+    public function executeList (sfWebRequest $request)
+    {
+        $this->items = Doctrine::getTable ('LeaveType')->findAll();
+    }
+    
+    public function executeNew (sfWebRequest $request)
+    {
+        $this->form = new LeaveTypeForm ();
+        
+        $returnUrl = $this->getController()->genUrl('@workingHourLeaveType_list');
+        
+        Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
+    }
+    
+    public function executeEdit (sfWebRequest $request)
+    {
+        $this->object = Doctrine::getTable('LeaveType')->findOneById($request->getParameter('id'));
+        
+        $this->forward404Unless ($this->object);
+        
+        $this->form = new LeaveTypeForm ($this->object);
+        
+        Fmc_Core_Form::Process ($this->form, $request);
+    }
+    
 }

@@ -1,0 +1,55 @@
+all:
+    menus:
+        topmenu:
+            children:
+                3:
+                    label: Working Hours
+                    route: "#"
+                    requires_auth: true
+                    attributes:
+                        class: "dropdown"
+                        id: topmenu_workinghours
+                    credentials: [["Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
+                    children:
+#                        10:
+#                            label: My Working Hours
+#                            attributes:
+#                                class: "nav-header"
+#                            requires_auth: true
+#                            credentials: ["Working Hours"]
+#                        11:
+#                            label: Go to today
+#                            route: @wh_myday_check
+#                            requires_auth: true
+#                            credentials: ["Working Hours"]
+#                        12:
+#                            label: New Leave Request
+#                            route: @whuser_day_leaverequest_list
+#                            requires_auth: true
+#                            credentials: ["Working Hours"]
+                        90:
+                            label: Settings
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
+#                        91:
+#                            label: Leave Limits
+#                            route: @whparam_leavelimit_list
+#                            requires_auth: true
+#                            credentials: ["Working Hours Settings"]
+                        92:
+                            label: Leave Types
+                            route: @workingHourLeaveType_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
+#                        93:
+#                            label: Work Types
+#                            route: @whparam_worktype_list
+#                            requires_auth: true
+#                            credentials: ["Working Hours Settings"]
+#                        94:
+#                            label: Parameters
+#                            route: @whparam_settings_list
+#                            requires_auth: true
+#                            credentials: ["Working Hours Settings"]
