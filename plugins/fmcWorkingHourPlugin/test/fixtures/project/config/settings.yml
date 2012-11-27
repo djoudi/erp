@@ -1,2 +1,0 @@
-all:
-  enabled_modules: [WHParam_Holiday, WHParam_LeaveType, WHParam_Settings, WHParam_WorkType, WHParam_LeaveLimit, WHUser_MyPage, WH_Homepage, WHUser_Leave, workingHourMyDay, WorkingHourMyDay]

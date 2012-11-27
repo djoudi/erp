@@ -35,8 +35,6 @@ all:
     enabled_modules:
       - default
       - sfGuardAuth
-      #- sfGuardUser
-      #- sfGuardPermission
       
       - fmcCore
       - homepage
@@ -45,16 +43,6 @@ all:
       - costFormProcess
       - costFormReport
       - costFormManage
-      
-      - WH_Homepage
-      - WHUser_Day
-      - WHUser_Leave
-      - WHParam_Holiday
-      - WHParam_LeaveLimit
-      - WHParam_LeaveType
-      - WHParam_Settings
-      - WHParam_WorkType
-      - WorkingHourMyDay
       
       - currencyManagement
       - customerManagement

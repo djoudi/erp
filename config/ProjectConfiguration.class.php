@@ -43,7 +43,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('fmcEmployeePlugin');
     $this->enablePlugins('fmcProjectPlugin');
     $this->enablePlugins('fmcVatPlugin');
-    $this->enablePlugins('fmcWorkingHourPlugin');
     
   }
   
