@@ -3,7 +3,7 @@
 class Fmc_Core_Form
 {
     
-    public static function Process ($form, $request, $redirectUrl=NULL, $errorUrl = NULL)
+    public static function Process ($form, $request, $redirectUrl = NULL, $errorUrl = NULL)
     {
         $controller = sfContext::getInstance()->getController();
         
