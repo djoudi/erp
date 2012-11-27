@@ -6,14 +6,35 @@ workingHourLeaveType_list:
         module: workingHourLeaveType
         action: list
 
+workingHourLeaveType_new:
+    url: /wh/leavetypes/new
+    param:
+        module: workingHourLeaveType
+        action: new
+
 workingHourLeaveType_edit:
     url: /wh/leavetypes/edit/:id
     param:
         module: workingHourLeaveType
         action: edit
 
-workingHourLeaveType_new:
-    url: /wh/leavetypes/new
+
+# workingHourWorkType
+
+workingHourWorkType_list:
+    url: /wh/worktypes/list
     param:
-        module: workingHourLeaveType
+        module: workingHourWorkType
+        action: list
+
+workingHourWorkType_new:
+    url: /wh/worktypes/new
+    param:
+        module: workingHourWorkType
         action: new
+
+workingHourWorkType_edit:
+    url: /wh/worktypes/edit/:id
+    param:
+        module: workingHourWorkType
+        action: edit

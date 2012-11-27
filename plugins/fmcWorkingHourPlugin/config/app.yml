@@ -43,11 +43,11 @@ all:
                             route: @workingHourLeaveType_list
                             requires_auth: true
                             credentials: ["Working Hours Settings"]
-#                        93:
-#                            label: Work Types
-#                            route: @whparam_worktype_list
-#                            requires_auth: true
-#                            credentials: ["Working Hours Settings"]
+                        93:
+                            label: Work Types
+                            route: @workingHourWorkType_list
+                            requires_auth: true
+                            credentials: ["Working Hours Settings"]
 #                        94:
 #                            label: Parameters
 #                            route: @whparam_settings_list
