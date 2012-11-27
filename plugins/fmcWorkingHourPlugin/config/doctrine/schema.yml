@@ -1,0 +1,237 @@
+# Holiday
+# LeaveType
+# LeaveRequestLimit
+# WorkingHourParameter
+# WorkingHourWorkType
+# WorkingHourWorkTypeUser
+# WorkingHourWorkTypeGroup
+# sfGuardUser
+# sfGuardGroup
+
+######################################################
+
+Holiday:
+    options:
+        orderBy: day ASC
+        symfony:
+            filter: false
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        day:
+            type: date
+            notnull: true
+            unique: true
+        name:
+            type: string(50)
+            notnull: true
+            unique: true
+
+######################################################
+
+LeaveType:
+    options:
+        orderBy: name ASC
+        symfony:
+            filter: false
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        name:
+            type: string(50)
+            notnull: true
+            unique: true
+        default_Limit:
+            type: integer
+            notnull: true
+            default: 0
+        has_Report:
+            type: boolean
+            notnull: true
+            default: false
+
+######################################################
+
+LeaveRequestLimit:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:
+            type: integer
+            notnull: true
+        type_id:
+            type: integer
+            notnull: true
+        leaveLimit:
+            type: integer
+            notnull: true
+    relations:
+        Employee:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: LeaveRequestLimit
+            onDelete: CASCADE
+        LeaveType:
+            class: LeaveType
+            local: type_id
+            foreign: id
+            foreignAlias: LeaveRequestLimit
+            onDelete: CASCADE
+
+######################################################
+
+WorkingHourParameter:
+    options:
+        orderBy: param ASC
+        symfony:
+            filter: false
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        param:
+            type: string(50)
+            notnull: true
+        value:
+            type: string(50)
+            notnull: true
+        description:
+            type: string(50)
+            notnull: true
+
+######################################################
+
+WorkingHourWorkType:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    options:
+        orderBy: name ASC
+    columns:
+        name:
+            type: string(50)
+            notnull: true
+            unique: true
+    relations:
+        Employees:
+            class: sfGuardUser
+            local: worktype_id
+            foreign: user_id
+            refClass: WorkingHourWorkTypeUser
+            foreignAlias: WorkTypes
+        Departments:
+            class: sfGuardGroup
+            local: worktype_id
+            foreign: group_id
+            refClass: WorkingHourWorkTypeGroup
+            foreignAlias: WorkTypes
+
+######################################################
+
+WorkingHourWorkTypeUser:
+    options:
+        symfony:
+            form:   false
+            filter: false
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        worktype_id:
+            type: integer
+            primary: true
+        user_id:
+            type: integer
+            primary: true
+    relations:
+        WorkingHourWorkType:
+            class: WorkingHourWorkType
+            local: worktype_id
+            onDelete: CASCADE
+        Employee:
+            class: sfGuardUser
+            local: user_id
+            onDelete: CASCADE
+
+######################################################
+
+WorkingHourWorkTypeGroup:
+    options:
+        symfony:
+            form:   false
+            filter: false
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        worktype_id:
+            type: integer
+            primary: true
+        group_id:
+            type: integer
+            primary: true
+    relations:
+        WorkingHourWorkType:
+            class: WorkingHourWorkType
+            local: worktype_id
+            onDelete: CASCADE
+        Department:
+            class: sfGuardGroup
+            local: group_id
+            onDelete: CASCADE
+
+######################################################
+
+sfGuardUser:
+    options:
+        orderBy: first_name ASC, last_name ASC
+    columns:
+        monthly_Working_Hours:
+            type: integer
+            notnull: true
+            default: 0
+    relations:
+        WorkTypes:
+            class: WorkingHourWorkType
+            local: user_id
+            foreign: worktype_id
+            refClass: WorkingHourWorkTypeUser
+            foreignAlias: Employees
+
+######################################################
+
+sfGuardGroup:
+    options:
+        orderBy: name ASC
+    columns:
+        default_Worktype_id:
+            type: integer
+            notnull: true
+            default: 40
+    relations:
+        WorkTypes:
+            class: WorkingHourWorkType
+            local: group_id
+            foreign: worktype_id
+            refClass: WorkingHourWorkTypeGroup
+            foreignAlias: Departments
+        Default_Work_Type:
+            class: WorkingHourWorkType
+            local: default_Worktype_id
+            foreign: id
+            foreignAlias: Department
+            onDelete: CASCADE
+
+
+######################################################
