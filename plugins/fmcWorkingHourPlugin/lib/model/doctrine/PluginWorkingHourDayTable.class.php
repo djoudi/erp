@@ -2,10 +2,12 @@
 
 class PluginWorkingHourDayTable extends Doctrine_Table
 {
+    
     public static function getInstance()
     {
         return Doctrine_Core::getTable('PluginWorkingHourDay');
     }
+    
     
     public function getDraftForUserDate ($user_id, $date)
     {
@@ -16,17 +18,39 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         return $q->fetchOne();
     }
     
+    
+    /* DELETING MY CLASSES
     public function getMyDraftForDate ($date)
     {
         $user = sfContext::getInstance()->getUser()->getGuardUser();
         return $this->getDraftForUserDate ($user['id'], $date);
     }
+    */
     
+    
+    /* DELETING MY CLASSES
     public function getMyActiveForDate ($date)
     {
         $user = sfContext::getInstance()->getUser()->getGuardUser();
         return $this->getActiveForUserDate ($user['id'], $date);
     }
+    */
+    
+    
+    public function getTypeForUserDate ($user_id, $date)
+    {
+        if ( $whday = $this->getActiveForUserDate ($user_id, $date) )
+        {
+            if ($whday['leave_id']) $status = "Leave";
+            else $status = "Work";
+        }
+        else
+        {
+            $status = "Empty";
+        }
+        return $status;
+    }
+    
     
     public function getActiveForUserDate ($user_id, $date)
     {
@@ -36,6 +60,7 @@ class PluginWorkingHourDayTable extends Doctrine_Table
             ->addWhere ('status <> ?', 'Denied');
         return $q->fetchOne();
     }
+    
     
     public function getUsedLeaveCount ($type_id, $user_id)
     {
@@ -47,4 +72,5 @@ class PluginWorkingHourDayTable extends Doctrine_Table
             ->addWhere ('q.status = ?', 'Accepted');
         return $q->count();
     }
+    
 }

@@ -54,6 +54,7 @@ all:
       - WHParam_LeaveType
       - WHParam_Settings
       - WHParam_WorkType
+      - WorkingHourMyDay
       
       - currencyManagement
       - customerManagement

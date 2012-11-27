@@ -10,6 +10,30 @@ wh_my_home:
 
 # User - MyPage
 
+
+wh_myday_check:
+    url: /wh/myday/check
+    param:
+        module: WorkingHourMyDay
+        action: checkday
+
+wh_myday_new:
+    url: /wh/myday/:date/new
+    param:
+        module: WorkingHourMyDay
+        action: newday
+
+wh_myday_work:
+    url: /wh/myday/:date/work
+    param:
+        module: WorkingHourMyDay
+        action: workday
+
+
+
+
+
+
 wh_my_day:
     url: /wh/my/day/:date
     param:

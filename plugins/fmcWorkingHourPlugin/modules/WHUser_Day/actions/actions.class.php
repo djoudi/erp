@@ -3,6 +3,16 @@
 class WHUser_DayActions extends sfActions
 {
     
+    public function executeNewDay (sfWebRequest $request)
+    {
+        $this->date = $request->getParameter ('date');
+        Fmc_Wh_Routing::CheckDay ($date, "New");
+        
+    }
+    
+    
+    
+    
     public function executeDay (sfWebRequest $request)
     {
         $this->date = $request->getParameter('date');

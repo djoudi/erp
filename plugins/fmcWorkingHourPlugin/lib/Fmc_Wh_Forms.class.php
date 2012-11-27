@@ -29,7 +29,8 @@ class Fmc_Wh_Forms
                 
                 if (!$err)
                 {
-                    $day = Doctrine::getTable('WorkingHourDay')->getMyDraftForDate($date);
+                    $day = Doctrine::getTable('WorkingHourDay')
+                        ->getDraftForUserDate($user->getGuardUser()->getId(), $date);
                 }
                 
                 // Check with current IO records
@@ -69,7 +70,8 @@ class Fmc_Wh_Forms
                 if (!$err)
                 {
                     $form->save();
-                    if (!$day) $day = Doctrine::getTable('WorkingHourDay')->getMyDraftForDate($date);
+                    if (!$day) $day = Doctrine::getTable('WorkingHourDay')
+                        ->getDraftForUserDate($user->getGuardUser()->getId(), $date);
                     $day->setMultiplier ($day->calculateMultiplier());
                     $day->save();
                     $controller->redirect ($request->getReferer());

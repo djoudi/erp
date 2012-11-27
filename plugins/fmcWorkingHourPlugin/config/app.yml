@@ -19,8 +19,8 @@ all:
                             requires_auth: true
                             credentials: ["Working Hours"]
                         11:
-                            label: My Days
-                            route: @wh_my_home
+                            label: Go to today
+                            route: @wh_myday_check
                             requires_auth: true
                             credentials: ["Working Hours"]
                         12:
