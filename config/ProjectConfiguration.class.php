@@ -40,6 +40,7 @@ class ProjectConfiguration extends sfProjectConfiguration
         $this->enablePlugins('fmcCostFormPlugin');
         $this->enablePlugins('fmcCustomerPlugin');
         $this->enablePlugins('fmcEmployeePlugin');
+        $this->enablePlugins('fmcHolidayPlugin');
         $this->enablePlugins('fmcProjectPlugin');
         $this->enablePlugins('fmcVatPlugin');
         $this->enablePlugins('fmcWorkingHourPlugin');
