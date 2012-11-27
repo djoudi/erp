@@ -1,4 +1,3 @@
-# Holiday
 # LeaveType
 # LeaveRequestLimit
 # WorkingHourParameter
@@ -7,27 +6,6 @@
 # WorkingHourWorkTypeGroup
 # sfGuardUser
 # sfGuardGroup
-
-######################################################
-
-Holiday:
-    options:
-        orderBy: day ASC
-        symfony:
-            filter: false
-    actAs:
-        Auditable: ~
-        SoftDelete: ~
-        Versionable: ~
-    columns:
-        day:
-            type: date
-            notnull: true
-            unique: true
-        name:
-            type: string(50)
-            notnull: true
-            unique: true
 
 ######################################################
 
