@@ -2,7 +2,7 @@
 
 <?php slot ('activeClass', "#topmenu_settings"); ?>
 
-<a class="pull-right btn btn-success" href="<?php echo url_for('@holidayManagement_new'); ?>">New Holiday</a>
+<a class="pull-right btn btn-primary" href="<?php echo url_for('@holidayManagement_new'); ?>">New Holiday</a>
 
 <?php if (!count($items)): ?>
 

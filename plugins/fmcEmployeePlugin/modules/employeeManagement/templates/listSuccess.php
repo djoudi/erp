@@ -28,7 +28,7 @@
                 <tr>
                     <td>
                         <?php if ($employee["is_active"]): ?>
-                            <img src="/images/tick.png" />
+                            <i class="icon-ok"></i>
                         <?php endif; ?>
                     </td>
                     <td>

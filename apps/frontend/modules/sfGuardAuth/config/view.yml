@@ -1,6 +1,6 @@
 all:
   stylesheets:
-    - login/main.css
+    - frontend-login.css
   
   has_layout:     true
   layout:         layout_login

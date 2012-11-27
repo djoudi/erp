@@ -1,4 +1,5 @@
 default:
+
     http_metas:
         content-type: text/html
     
@@ -7,41 +8,24 @@ default:
         language:     en
     
     stylesheets:
-        - /addons/jquery-ui-1.8.23/css/flick/jquery-ui-1.8.23.custom.css
-        #- /addons/bootstrap-2.1.1/css/bootstrap.min.css
-        - /addons/tablesorter/css/tablesorter-extra.css
-        - /addons/timepicker/css/timepicker.css
+    
+        - jquery-ui-1.9.2.custom.min.css
+        - tablesorter-extra.css
+        - bootstrap.min.css
         
-        
-        - /plugins/bootstrap/css/bootstrap.min.css
         - frontend-extra.css
         - frontend-forms.css
         
-        
-        #- frontend/layout.css
-        #- frontend/fixes.css
-        #- frontend/forms.css
-        #- frontend/override/bootstrap.css
-        #- frontend/override/jqueryui.css
-        #- frontend/override/timepicker.css
-        #- frontend/override/tablesorter.css
-        
-        
     javascripts:
-        - /addons/jquery-ui-1.8.23/js/jquery-1.8.0.min.js
-        - /addons/jquery-ui-1.8.23/js/jquery-ui-1.8.23.custom.min.js
-        - /addons/tablesorter/js/jquery-tablesorter.js
-        - /addons/tablesorter/js/jquery.tablesorter.pager.js
-        - /addons/timepicker/js/jquery.timepicker.js
-        
-        #- /addons/bootstrap-2.1.1/js/bootstrap.min.js
-        
+    
+        - jquery-1.8.3.min.js
+        - jquery-ui-1.9.2.custom.min.js
+        - jquery-tablesorter.js
+        - jquery.tablesorter.pager.js
+        - bootstrap.min.js
         - /sfFormExtraPlugin/js/double_list.js
         
-        - /plugins/bootstrap/js/bootstrap.min.js
-        
         - frontend.js
-        - search.js
         
     has_layout:     true
     layout:         layout

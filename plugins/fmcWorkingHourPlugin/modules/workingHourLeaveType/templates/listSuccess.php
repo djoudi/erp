@@ -2,7 +2,7 @@
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
-<a class="pull-right btn btn-success" href="<?php echo url_for('@workingHourLeaveType_new'); ?>">New Leave Type</a>
+<a class="pull-right btn btn-primary" href="<?php echo url_for('@workingHourLeaveType_new'); ?>">New Leave Type</a>
 
 <?php if (!count($items)): ?>
 

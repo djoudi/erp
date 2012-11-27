@@ -29,7 +29,7 @@
         id="Layout_Toplogo" 
         href="<?php echo url_for("@homepage"); ?>"
     >
-        <img src="/images/logo.png" />
+        <img src="/img/logo.png" />
     </a>
 </div>
 

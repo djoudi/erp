@@ -1,7 +1,6 @@
 $(document).ready(function() 
 {
     
-    
     /* Refs #55 - Submenu under Topmenu , ioPlugin with Bootstrap */
         $("ul#layout_top_menu > li.dropdown > a").addClass("dropdown-toggle");
         $("ul#layout_top_menu > li.dropdown > a").attr("data-toggle", "dropdown");
@@ -26,11 +25,6 @@ $(document).ready(function()
             positionFixed: false, 
             size: 50
         });
-    /* End */
-    
-    
-    /* Bootstrap */
-        $('.tooltips').tooltip();
     /* End */
     
     

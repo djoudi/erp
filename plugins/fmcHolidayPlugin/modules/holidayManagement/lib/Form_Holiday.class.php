@@ -7,7 +7,7 @@ class Form_Holiday extends HolidayForm
     {
         $this->setWidget('day', new sfWidgetFormJQueryDate(array(
             'date_widget' => new sfWidgetFormDate(array('format'=>'%year%%month%%day%')),
-            'image' => '/images/calendar.png',
+            'image' => '/img/calendar.png',
             'config' => '{ changeMonth: true, changeYear: true, yearRange: "c-100:c" }'
         )));
     }

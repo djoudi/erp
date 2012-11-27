@@ -3,7 +3,7 @@
       <div id="LoginWrapperMiddle">
         <div id="LoginWrapperInner">
           
-          <img id="LoginLogo" src="/images/logo.png"/>
+          <img id="LoginLogo" src="/img/logo.png"/>
           
           <div style="margin-top: 20px;text-align: left;">
             <h2>Error!</h2>
