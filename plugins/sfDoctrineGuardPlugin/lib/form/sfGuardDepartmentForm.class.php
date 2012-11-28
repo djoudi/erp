@@ -15,9 +15,7 @@ class sfGuardDepartmentForm extends PluginsfGuardGroupForm
         );
         
         $this->widgetSchema['work_types_list'] = new sfWidgetFormSelectDoubleList(array(
-            'choices' => $this->widgetSchema['work_types_list']->getChoices(), 
-            'label_associated' => 'Selected',
-            'label_unassociated' => 'Available'
+            'choices' => $this->widgetSchema['work_types_list']->getChoices()
         ));
         
     }

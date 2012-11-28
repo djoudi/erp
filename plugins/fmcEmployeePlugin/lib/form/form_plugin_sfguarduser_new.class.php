@@ -39,16 +39,12 @@ class form_plugin_sfguarduser_new extends sfGuardUserForm
     
     
     $this->widgetSchema['permissions_list'] = new sfWidgetFormSelectDoubleList(array(
-      'choices' => $this->widgetSchema['permissions_list']->getChoices(), 
-      'label_associated' => 'Granted',
-      'label_unassociated' => 'Available'
+      'choices' => $this->widgetSchema['permissions_list']->getChoices()
     ));
         
         
         $this->widgetSchema['work_types_list'] = new sfWidgetFormSelectDoubleList(array(
-            'choices' => $this->widgetSchema['work_types_list']->getChoices(), 
-            'label_associated' => 'Selected',
-            'label_unassociated' => 'Available'
+            'choices' => $this->widgetSchema['work_types_list']->getChoices()
         ));
     
     

@@ -8,15 +8,11 @@ class Form_WorkType extends WorkingHourWorkTypeForm
         parent::configure();
         
         $this->widgetSchema['employees_list'] = new sfWidgetFormSelectDoubleList(array(
-            'choices' => $this->widgetSchema['employees_list']->getChoices(), 
-            'label_associated' => 'Selected',
-            'label_unassociated' => 'Available'
+            'choices' => $this->widgetSchema['employees_list']->getChoices()
         ));
         
         $this->widgetSchema['departments_list'] = new sfWidgetFormSelectDoubleList(array(
-            'choices' => $this->widgetSchema['departments_list']->getChoices(), 
-            'label_associated' => 'Selected',
-            'label_unassociated' => 'Available'
+            'choices' => $this->widgetSchema['departments_list']->getChoices()
         ));
     }
     
