@@ -11,6 +11,7 @@
  * @property Doctrine_Collection $Department
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $WorkingHourWorkTypeGroup
+ * @property Doctrine_Collection $WorkingHourRecords
  * 
  * @method string              getName()                     Returns the current record's "name" value
  * @method Doctrine_Collection getEmployees()                Returns the current record's "Employees" collection
@@ -18,12 +19,14 @@
  * @method Doctrine_Collection getDepartment()               Returns the current record's "Department" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeUser()  Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
+ * @method Doctrine_Collection getWorkingHourRecords()       Returns the current record's "WorkingHourRecords" collection
  * @method WorkingHourWorkType setName()                     Sets the current record's "name" value
  * @method WorkingHourWorkType setEmployees()                Sets the current record's "Employees" collection
  * @method WorkingHourWorkType setDepartments()              Sets the current record's "Departments" collection
  * @method WorkingHourWorkType setDepartment()               Sets the current record's "Department" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeUser()  Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
+ * @method WorkingHourWorkType setWorkingHourRecords()       Sets the current record's "WorkingHourRecords" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -69,6 +72,10 @@ abstract class BaseWorkingHourWorkType extends MyDoctrineRecord
         $this->hasMany('WorkingHourWorkTypeGroup', array(
              'local' => 'id',
              'foreign' => 'worktype_id'));
+
+        $this->hasMany('WorkingHourRecord as WorkingHourRecords', array(
+             'local' => 'id',
+             'foreign' => 'work_Type_id'));
 
         $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();

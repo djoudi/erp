@@ -12,21 +12,24 @@
  * @property string $description
  * @property Customer $Customers
  * @property Doctrine_Collection $CostForms
+ * @property Doctrine_Collection $WorkingHourRecords
  * 
- * @method integer             getCustomerId()  Returns the current record's "customer_id" value
- * @method enum                getStatus()      Returns the current record's "status" value
- * @method string              getCode()        Returns the current record's "code" value
- * @method string              getTitle()       Returns the current record's "title" value
- * @method string              getDescription() Returns the current record's "description" value
- * @method Customer            getCustomers()   Returns the current record's "Customers" value
- * @method Doctrine_Collection getCostForms()   Returns the current record's "CostForms" collection
- * @method Project             setCustomerId()  Sets the current record's "customer_id" value
- * @method Project             setStatus()      Sets the current record's "status" value
- * @method Project             setCode()        Sets the current record's "code" value
- * @method Project             setTitle()       Sets the current record's "title" value
- * @method Project             setDescription() Sets the current record's "description" value
- * @method Project             setCustomers()   Sets the current record's "Customers" value
- * @method Project             setCostForms()   Sets the current record's "CostForms" collection
+ * @method integer             getCustomerId()         Returns the current record's "customer_id" value
+ * @method enum                getStatus()             Returns the current record's "status" value
+ * @method string              getCode()               Returns the current record's "code" value
+ * @method string              getTitle()              Returns the current record's "title" value
+ * @method string              getDescription()        Returns the current record's "description" value
+ * @method Customer            getCustomers()          Returns the current record's "Customers" value
+ * @method Doctrine_Collection getCostForms()          Returns the current record's "CostForms" collection
+ * @method Doctrine_Collection getWorkingHourRecords() Returns the current record's "WorkingHourRecords" collection
+ * @method Project             setCustomerId()         Sets the current record's "customer_id" value
+ * @method Project             setStatus()             Sets the current record's "status" value
+ * @method Project             setCode()               Sets the current record's "code" value
+ * @method Project             setTitle()              Sets the current record's "title" value
+ * @method Project             setDescription()        Sets the current record's "description" value
+ * @method Project             setCustomers()          Sets the current record's "Customers" value
+ * @method Project             setCostForms()          Sets the current record's "CostForms" collection
+ * @method Project             setWorkingHourRecords() Sets the current record's "WorkingHourRecords" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -79,6 +82,10 @@ abstract class BaseProject extends MyDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('CostForm as CostForms', array(
+             'local' => 'id',
+             'foreign' => 'project_id'));
+
+        $this->hasMany('WorkingHourRecord as WorkingHourRecords', array(
              'local' => 'id',
              'foreign' => 'project_id'));
 

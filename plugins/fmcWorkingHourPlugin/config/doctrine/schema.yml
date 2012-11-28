@@ -6,6 +6,9 @@
 # WorkingHourWorkTypeGroup
 # sfGuardUser
 # sfGuardGroup
+# LeaveRequest
+# WorkingHourDay
+# WorkingHourRecord
 
 ######################################################
 
@@ -213,3 +216,154 @@ sfGuardGroup:
 
 
 ######################################################
+
+LeaveRequest:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    options:
+        orderBy: start_Date ASC
+    columns:
+        user_id:
+            type: integer
+            notnull: true
+        type_id:
+            type: integer
+            notnull: true
+        status:
+            type: enum
+            values: ['Draft', 'Pending', 'Accepted', 'Denied']
+            default: 'Draft'
+            notnull: true
+        start_Date:
+            type: date
+            notnull: true
+        end_Date:
+            type: date
+            notnull: true
+        comment:
+            type: string(250)
+            notnull: false
+        day_Count:
+            type: integer
+            notnull: true
+            default: 0
+        report_Date:
+            type: date
+            notnull: false
+        report_Number:
+            type: string(50)
+            notnull: false
+        report_Received:
+            type: date
+            notnull: false
+    relations:
+        Employee:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: LeaveRequest
+            onDelete: CASCADE
+        LeaveType:
+            class: LeaveType
+            local: type_id
+            foreign: id
+            foreignAlias: LeaveRequest
+            onDelete: CASCADE
+
+######################################################
+
+WorkingHourDay:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    options:
+        orderBy: date ASC
+    columns:
+        user_id:
+            type: integer
+            notnull: true
+        date:
+            type: date
+            notnull: true
+        status:
+            type: enum
+            values: ['Draft', 'Pending', 'Accepted', 'Denied']
+            default: 'Draft'
+            notnull: true
+        leave_id:
+            type: integer
+            notnull: false
+            default: NULL
+        multiplier:
+            type: decimal
+            notnull: true
+            default: 1
+    relations:
+        Employee:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: WorkingHourDay
+            onDelete: CASCADE
+        LeaveRequest:
+            class: LeaveRequest
+            local: leave_id
+            foreign: id
+            foreignAlias: WorkingHourDay
+            onDelete: CASCADE
+
+######################################################
+
+WorkingHourRecord:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    options:
+        orderBy: day_id, start_Time, end_Time  ASC
+    columns:
+        day_id:
+            type: integer
+            notnull: true
+        recordType:
+            type: enum
+            values: ['Work', 'Entrance', 'Exit']
+            default: 'Work'
+            notnull: true
+        start_Time:
+            type: time
+            notnull: true
+        end_Time:
+            type: time
+            notnull: false
+        project_id:
+            type: integer
+            notnull: false
+        work_Type_id:
+            type: integer
+            notnull: false
+        comment:
+            type: string(50)
+            notnull: false
+    relations:
+        Day:
+            class: WorkingHourDay
+            local: day_id
+            foreign: id
+            foreignAlias: WorkingHourRecords
+            onDelete: CASCADE
+        Project:
+            class: Project
+            local: project_id
+            foreign: id
+            foreignAlias: WorkingHourRecords
+            onDelete: CASCADE
+        WorkType:
+            class: WorkingHourWorkType
+            local: work_Type_id
+            foreign: id
+            foreignAlias: WorkingHourRecords
+            onDelete: CASCADE
