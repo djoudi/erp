@@ -10,7 +10,8 @@ class PluginWorkingHourDayTable extends Doctrine_Table
     
     public function getActiveDate ($date, $user_id = NULL)
     {
-        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser();
+        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        
         $q = $this->createQuery ('whd')
             ->addWhere ('whd.user_id = ?', $user_id)
             ->addWhere ('whd.date = ?', $date)
@@ -22,6 +23,7 @@ class PluginWorkingHourDayTable extends Doctrine_Table
     {
         if ( $whday = $this->getActiveDate ($date, $user_id) )
         {
+            
             if ($whday['leave_id']) $status = "Leave";
             else $status = "Work";
         }

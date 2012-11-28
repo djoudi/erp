@@ -8,10 +8,21 @@ class workingHourDayActions extends sfActions
         $date = $request->getParameter ('date');
         if (!$date) $date = date ('Y-m-d');
         
-        workingHourStatus::routeDay ($date);
+        whDayInfo::routeDay ($date);
     }
     
     public function executeNew (sfWebRequest $request)
+    {
+        $this->date = $request->getParameter ('date');
+        
+        whDayInfo::routeDay ($this->date, "New");
+        
+        $this->form = new whForm_newDay ();
+        
+        whDayForm::processNewday ($this->form, $request, $this->date);
+    }
+    
+    public function executeWork (sfWebRequest $request)
     {
         
     }

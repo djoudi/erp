@@ -22,7 +22,7 @@
             
 <div class="Layout_Headerbar clearfix">
     <h3 class="pull-left">
-        <?php echo get_slot('title', 'FMC') ?>
+        <?php echo get_slot('title', '') ?>
     </h3>
     <a 
         class="pull-right" 

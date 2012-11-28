@@ -1,8 +1,20 @@
 <?php
 
-class workingHourStatus
+class whDayInfo
 {
-        
+    
+    public static function getGoodDate ($date)
+    {
+        $output = date('Y-m-d, D', strtotime($date));
+        if ($date == date('Y-m-d'))
+            $output .= ' (Today)';
+        elseif ($date == date('Y-m-d', strtotime('yesterday'))) 
+            $output .= ' (Yesterday)';
+        elseif ($date == date('Y-m-d', strtotime('tomorrow')))
+            $output .= ' (Tomorrow)';
+        return $output;
+    }
+    
     public static function routeDay ($date, $currentType = NULL, $user_id = NULL)
     {
         $controller = sfContext::getInstance()->getController();
