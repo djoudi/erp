@@ -11,17 +11,17 @@ all:
                         id: topmenu_workinghours
                     credentials: [["Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
                     children:
-#                        10:
-#                            label: My Working Hours
-#                            attributes:
-#                                class: "nav-header"
-#                            requires_auth: true
-#                            credentials: ["Working Hours"]
-#                        11:
-#                            label: Go to today
-#                            route: @wh_myday_check
-#                            requires_auth: true
-#                            credentials: ["Working Hours"]
+                        10:
+                            label: My Working Hours
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Working Hours"]
+                        11:
+                            label: Go to today
+                            route: @workingHourDay_check
+                            requires_auth: true
+                            credentials: ["Working Hours"]
 #                        12:
 #                            label: New Leave Request
 #                            route: @whuser_day_leaverequest_list

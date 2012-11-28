@@ -1,3 +1,25 @@
+# workingHourDay
+
+workingHourDay_check:
+    url: /wh/day/check
+    param:
+        module: workingHourDay
+        action: check
+
+workingHourDay_new:
+    url: /wh/day/:date/new
+    param:
+        module: workingHourDay
+        action: new
+
+workingHourDay_work:
+    url: /wh/day/:date/work
+    param:
+        module: workingHourDay
+        action: work
+
+
+
 # workingHourLeaveLimit
 
 workingHourLeaveLimit_list:

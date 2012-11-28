@@ -52,6 +52,7 @@ all:
       - projectManagement
       - vatManagement
       
+      - workingHourDay
       - workingHourLeaveLimit
       - workingHourLeaveType
       - workingHourParameter
