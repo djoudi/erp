@@ -64,17 +64,20 @@
     </div>
     
     <div class="span9" style="padding-top: 20px">
-        <?php /*
+        
         <?php include_partial ('dayitems', array('day'=>$day)); ?>
         
-        <?php include_partial ('dayforms', array(
-            'day' => $day, 
-            'workForm' => $workForm, 
-            'entranceForm' => $entranceForm,
-            'exitForm' => $exitForm,
-            'dayForm' => $dayForm
-        )); ?>
-        */ ?>
+        <div class="clearfix"></div>
+        
+        <?php if ($day['status']=="Draft"): ?>
+            <?php include_partial ('dayforms', array(
+                'day' => $day, 
+                #'workForm' => $workForm, 
+                #'entranceForm' => $entranceForm,
+                #'exitForm' => $exitForm,
+            )); ?>
+        <?php endif; ?>
+        
     </div><!-- .span8 -->
     
 </div><!-- .row -->

@@ -18,6 +18,12 @@ workingHourDay_work:
         module: workingHourDay
         action: work
 
+workingHourDay_process:
+    url: /wh/day/:date/process
+    param:
+        module: workingHourDay
+        action: processs
+
 
 
 # workingHourLeaveLimit
