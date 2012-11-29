@@ -23,8 +23,12 @@ class whDayForm
             if (!$err)
             {
                 $values = $form->getValues();
-                $start = $values['start_Time'] ? Fmc_Core_Time::TimeToStamp ($values['start_Time']) : 0;
-                $end = $values['start_Time'] ? Fmc_Core_Time::TimeToStamp ($values['end_Time']) : 0;
+                $start = Fmc_Core_Time::TimeToStamp ($values['start_Time']);
+                $end = 0;
+                
+                #if (isset($values['end_Time']))
+                    if ($values['end_Time'])
+                        $end = Fmc_Core_Time::TimeToStamp ($values['end_Time']);
                 
                 $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
                 if (!$day) $err = "Day not found!";
@@ -34,12 +38,14 @@ class whDayForm
             {
                 foreach ($day->getWorkingHourRecords() as $record)
                 {
-                    $recordStart = $record['start_Time'] ? Fmc_Core_Time::TimeToStamp ($record['start_Time']) : 0;
-                    $recordEnd = $record['end_Time'] ? Fmc_Core_Time::TimeToStamp ($record['end_Time']) : 0;
+                    $recordStart = Fmc_Core_Time::TimeToStamp ($record['start_Time']);
+                    $recordEnd = $record['end_Time'] ? Fmc_Core_Time::TimeToStamp ($record['end_Time']) : $recordStart;
                     if
                     (
                         ( ($recordStart > $start) && ($recordStart < $end) ) ||
-                        ( ($recordEnd > $start) && ($recordEnd > $end) ) ||
+                        ( ($recordEnd > $start) && ($recordEnd < $end) ) || 
+                        ( ($start > $recordStart) && ($start < $recordEnd) ) ||
+                        ( ($end > $recordStart) && ($end < $recordEnd) ) ||
                         ( ($recordStart==$start) && ($recordEnd==$end) )
                     )
                     {

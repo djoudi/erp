@@ -71,12 +71,15 @@ class workingHourDayActions extends sfActions
         
         Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
         
-        #Fmc_Wh_User::DeleteMyIo ($request->getParameter('date'), $request->getParameter('id'));
-        
-        $forwardUrl = $this->getController()->genUrl('@workingHourDay_check?date='.$date);
-        
-        $this->getController()->redirect ($forwardUrl);
+        $this->redirect ($this->getController()->genUrl('@workingHourDay_check?date='.$date));
 
+    }
+    
+    public function executeDeleteDay (sfWebRequest $request)
+    {
+        $date = $request->getParameter ('date');
+        
+        #$this->getController()
     }
     
 }

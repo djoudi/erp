@@ -1,3 +1,9 @@
+<?php if (!count($day->getWorkingHourRecords())): ?>
+
+    <p><strong>No records found.</strong></p>
+    
+<?php else: ?>
+
 <table class="table table-bordered table-hover table-condensed pull-left">
     
     <thead>
@@ -45,3 +51,5 @@
     </tbody>
 
 </table>
+
+<?php endif; ?>
