@@ -53,7 +53,7 @@
                 <p>
                     <?php include_partial ('fmcCore/confirmButton', array(
                         'class' => 'btn btn-danger btn-small',
-                        'url' => url_for('homepage',array('date'=>$day['date'])),
+                        'url' => url_for('workingHourDay_deleteday',array('date'=>$day['date'])),
                         'label' => 'Cancel Day',
                         "iconClass" => 'icon-remove icon-white'
                     )); ?>

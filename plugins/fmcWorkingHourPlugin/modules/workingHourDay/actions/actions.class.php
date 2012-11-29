@@ -77,9 +77,16 @@ class workingHourDayActions extends sfActions
     
     public function executeDeleteDay (sfWebRequest $request)
     {
-        $date = $request->getParameter ('date');
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
         
-        #$this->getController()
+        if ($day)
+        {
+            $day->getWorkingHourRecords()->delete();
+            $day->delete();
+            $this->getUser()->setFlash('notice','Day deleted.');
+        }
+        
+        $this->redirect ($request->getReferer());
     }
     
 }

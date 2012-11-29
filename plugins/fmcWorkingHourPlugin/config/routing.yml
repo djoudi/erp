@@ -30,6 +30,12 @@ workingHourDay_deleteitem:
         module: workingHourDay
         action: deleteItem
 
+workingHourDay_deleteday:
+    url: /wh/day/:date/deleteday
+    param:
+        module: workingHourDay
+        action: deleteDay
+
 
 
 
