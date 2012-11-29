@@ -73,8 +73,8 @@
             <?php include_partial ('dayforms', array(
                 'day' => $day, 
                 'workForm' => $workForm, 
-                #'entranceForm' => $entranceForm,
-                #'exitForm' => $exitForm,
+                'entranceForm' => $entranceForm,
+                'exitForm' => $exitForm
             )); ?>
         <?php endif; ?>
         

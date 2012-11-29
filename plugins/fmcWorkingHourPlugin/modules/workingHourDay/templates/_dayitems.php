@@ -17,18 +17,29 @@
     
     <tbody>
         <?php foreach ($day->getWorkingHourRecords() as $record): ?>
-            <tr>
+        
+            <?php $class = ($sf_user->getFlash('errorRow')==$record['id']) ? "error" : ""; ?>
+            
+            <tr class="<?php echo $class; ?>">
                 <td><?php echo $record['recordType']; ?></td>
                 <td><?php echo $record['start_Time']; ?></td>
                 <td><?php echo $record['end_Time']; ?></td>
                 <td><?php echo $record->getProject(); ?></td>
                 <td><?php echo $record->getWorkType(); ?></td>
                 <td><?php echo $record['comment']; ?></td>
+                
                 <td>
                     <?php if ($day['status']=="Draft"): ?>
-                        Delete (partial)
+                        <?php include_partial ('fmcCore/confirmButton', array(
+                            'url' => url_for('workingHourDay_deleteitem',array(
+                                'date'=>$day['date'],
+                                'id'=>$record['id']
+                            )),
+                            'label' => 'Delete',
+                        )); ?>
                     <?php endif; ?>
                 </td>
+                
             </tr>
         <?php endforeach; ?>
     </tbody>

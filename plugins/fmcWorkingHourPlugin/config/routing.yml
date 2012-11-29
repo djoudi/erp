@@ -24,6 +24,14 @@ workingHourDay_work:
         module: workingHourDay
         action: work
 
+workingHourDay_deleteitem:
+    url: /wh/day/:date/deleteitem/:id
+    param:
+        module: workingHourDay
+        action: deleteItem
+
+
+
 
 
 # workingHourLeaveLimit

@@ -8,6 +8,19 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginWorkingHourDay');
     }
     
+    
+    public function getDraftDate ($date, $user_id = NULL)
+    {
+        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        
+        $q = $this->createQuery ('whd')
+            ->addWhere ('whd.user_id = ?', $user_id)
+            ->addWhere ('whd.date = ?', $date)
+            ->addWhere ('status = ?', 'Draft');
+        return $q->fetchOne();
+    }
+    
+    
     public function getActiveDate ($date, $user_id = NULL)
     {
         if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
@@ -18,6 +31,7 @@ class PluginWorkingHourDayTable extends Doctrine_Table
             ->addWhere ('status <> ?', 'Denied');
         return $q->fetchOne();
     }
+    
     
     public function getDateType ($date, $user_id = NULL)
     {
