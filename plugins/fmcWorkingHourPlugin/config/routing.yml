@@ -6,6 +6,12 @@ workingHourDay_check:
         module: workingHourDay
         action: check
 
+workingHourDay_date:
+    url: /wh/day/:date
+    param:
+        module: workingHourDay
+        action: check
+
 workingHourDay_new:
     url: /wh/day/:date/new
     param:
@@ -17,12 +23,6 @@ workingHourDay_work:
     param:
         module: workingHourDay
         action: work
-
-workingHourDay_process:
-    url: /wh/day/:date/process
-    param:
-        module: workingHourDay
-        action: processs
 
 
 

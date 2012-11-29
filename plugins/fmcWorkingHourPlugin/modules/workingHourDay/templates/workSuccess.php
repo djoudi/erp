@@ -72,7 +72,7 @@
         <?php if ($day['status']=="Draft"): ?>
             <?php include_partial ('dayforms', array(
                 'day' => $day, 
-                #'workForm' => $workForm, 
+                'workForm' => $workForm, 
                 #'entranceForm' => $entranceForm,
                 #'exitForm' => $exitForm,
             )); ?>

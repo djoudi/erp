@@ -9,7 +9,7 @@
     
     <div class="tab-pane active in" id="tab1">
         
-        <?php $actionUrl=url_for('workingHourDay_process',array('date'=>$day['date'],'form_id'=>1)); ?>
+        <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>1)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
         
@@ -27,7 +27,7 @@
     
     <div class="tab-pane" id="tab2">
         
-        <?php $actionUrl=url_for('workingHourDay_process',array('date'=>$day['date'],'form_id'=>3)); ?>
+        <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>2)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
         
@@ -45,7 +45,7 @@
     
     <div class="tab-pane" id="tab3">
         
-        <?php $actionUrl=url_for('workingHourDay_process',array('date'=>$day['date'],'form_id'=>2)); ?>
+        <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>3)); ?>
         
         <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
         
