@@ -8,26 +8,30 @@ class whDayForm
         $controller = sfContext::getInstance()->getController();
         $user = sfContext::getInstance()->getUser();
         
-        if ($request->isMethod('post') && $date)
+        if ($request->isMethod('post'))
         {
+            $err = "";
             $form->bind ($request->getParameter($form->getName()));
-            if ($form->isValid())
+            if ($form->isValid() && $date)
             {
                 $values = $form->getValues();
                 $enter = Fmc_Core_Time::TimeToStamp ($values['entrance']);
                 $exit = Fmc_Core_Time::TimeToStamp ($values['exit']);
-                $err = "";
                 
-                if ($enter >= $exit)
+                if ($exit)
                 {
-                    $user->setFlash('error', "Your entrance should be before exit.");
+                    if ($enter >= $exit)
+                    {
+                        $err = "Your entrance should be before exit.";
+                    }
                 }
-                else
+                
+                if (!$err)
                 {
                     $dayObject = new WorkingHourDay ();
                     $dayObject->setEmployee ($user->getGuardUser());
                     $dayObject->setDate ($date);
-                    /* SET MULTIPLIER */
+                    $dayObject->setMultiplier ($dayObject->calculateMultiplier());
                     $dayObject->save();
                     
                     $enterObject = new WorkingHourRecord ();
@@ -36,82 +40,24 @@ class whDayForm
                     $enterObject->setStartTime ($values['entrance']);
                     $enterObject->save();
                     
-                    $exitObject = new WorkingHourRecord ();
-                    $exitObject->setDay ($dayObject);
-                    $exitObject->setRecordType ("Exitt");
-                    $exitObject->setStartTime ($values['exit']);
-                    $exitObject->save();
+                    if ($exit)
+                    {
+                        $exitObject = new WorkingHourRecord ();
+                        $exitObject->setDay ($dayObject);
+                        $exitObject->setRecordType ("Exit");
+                        $exitObject->setStartTime ($values['exit']);
+                        $exitObject->save();
+                    }
                     
                     $controller->redirect ($request->getReferer());
                 }
             }
             else
             {
-                $user->setFlash('error', "You have a problem with your values.");
+                $err = "You have a problem with your values.";
             }
+            $user->setFlash('error', $err);
         }
     }
-            
-                /*
-                
-                // Get if existing day
-                
-                if (!$err)
-                {
-                    $day = Doctrine::getTable('WorkingHourDay')
-                        ->getDraftForUserDate($user->getGuardUser()->getId(), $date);
-                }
-                
-                // Check with current IO records
-                
-                if (!$err && $day)
-                {
-                    $ioS = $day->getActiveIORecords();
-                    foreach ($ioS as $io)
-                    {
-                        if ( ( Fmc_Core_Time::TimeToStamp ($io['time']) == $ent) || 
-                            ( Fmc_Core_Time::TimeToStamp ($io['time']) == $exit ) )
-                        {
-                            $err = "Cannot be same with your entrance/exit values";
-                            $user->setFlash('errorRowIO', $io['id']);
-                            break;
-                        }
-                    }
-                }
-                
-                // Check with current work records
-                
-                if(!$err && $day)
-                {
-                    $wS = $day->getActiveWorkRecords();
-                    foreach ($wS as $w)
-                    {
-                        if ( ( Fmc_Core_Time::TimeToStamp ($w['start']) < $ent) || 
-                            ( Fmc_Core_Time::TimeToStamp ($w['end']) > $exit ) )
-                        {
-                            $err = "Entrance/Exit records conflict with your work records.";
-                            $user->setFlash('errorRowWork', $w['id']);
-                            break;
-                        }
-                    }
-                }
-                
-                if (!$err)
-                {
-                    $form->save();
-                    if (!$day) $day = Doctrine::getTable('WorkingHourDay')
-                        ->getDraftForUserDate($user->getGuardUser()->getId(), $date);
-                    $day->setMultiplier ($day->calculateMultiplier());
-                    $day->save();
-                    $controller->redirect ($request->getReferer());
-                }
-            }
-            else $err = "You have a problem with your values.";
-            
-            if ($err)
-            {
-                $user->setFlash('error', $err);
-            }
-            */
-
+    
 }

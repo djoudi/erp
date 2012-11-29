@@ -24,7 +24,11 @@ class workingHourDayActions extends sfActions
     
     public function executeWork (sfWebRequest $request)
     {
+        $this->date = $request->getParameter ('date');
         
+        whDayInfo::routeDay ($this->date, "Work");
+        
+        $this->day = Doctrine::getTable('WorkingHourDay')->getActiveDate($this->date);
     }
     
 }

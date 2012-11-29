@@ -6,10 +6,14 @@ class Fmc_Core_Time
     {
         $oldtz = date_default_timezone_get();
         date_default_timezone_set('UTC');
+        
         $arr = explode(':', $time);
-        if (count($arr)==2) $arr[2]="00";
+        if (count($arr)<3) $arr[2]="00";
+        if (count($arr)<2) $arr[1]="00";
         $epoch = mktime($arr[0], $arr[1], $arr[2], "01", "01", "1970");
+        
         date_default_timezone_set($oldtz);
+        
         return $epoch;
     }
     
