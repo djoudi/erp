@@ -26,10 +26,16 @@ class whDayForm
                 $start = Fmc_Core_Time::TimeToStamp ($values['start_Time']);
                 $end = 0;
                 
-                #if (isset($values['end_Time']))
+                #if (isset($values['end_Time'])) // @TODO : check what's this
                     if ($values['end_Time'])
                         $end = Fmc_Core_Time::TimeToStamp ($values['end_Time']);
                 
+                if ($end && ($start>=$end))
+                    $err = "Start time should be before end.";
+                
+            }
+            if (!$err)
+            {
                 $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
                 if (!$day) $err = "Day not found!";
             }

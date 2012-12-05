@@ -5,7 +5,7 @@ class whForm_newDay extends BaseForm
     
     public function setup()
     {
-        parent::configure();
+        parent::setup();
         
         $this->setWidgets(array(
             'entrance'   => new sfWidgetFormInputText(),

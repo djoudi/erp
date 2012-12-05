@@ -15,8 +15,6 @@ class whForm_exitRecord extends WorkingHourRecordForm
             $this['work_Type_id']
         );
         
-        $this->widgetSchema['start_Time'] = new sfWidgetFormInputText();
-        
         $this->widgetSchema['start_Time']->setLabel('Office Exit');
     }
     
