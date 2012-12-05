@@ -2,7 +2,7 @@
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
-<form class="form form-horizontal" method="post">
+<form method="post">
 
     <table class="table table-condensed table-bordered table-hover">
         <?php foreach ($leaveTypes as $type): ?>

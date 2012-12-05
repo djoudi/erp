@@ -31,7 +31,7 @@
                 
                 <p>To start a new day, please enter your <strong>office entrance</strong> date.</p>
                 
-                <form class="form-horizontal" method="post">
+                <form method="post">
                     <table class="table table-bordered table-hover table-condensed">
                         <?php echo $form; ?>
                     </table>

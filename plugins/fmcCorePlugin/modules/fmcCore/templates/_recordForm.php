@@ -4,7 +4,7 @@
 <?php if (isset($activeClass)) slot('activeClass', $activeClass); ?>
 
 
-<form method="post" class="form-horizontal">
+<form method="post">
 
     <table class="table table-hover table-bordered table-condensed">
         

@@ -11,7 +11,7 @@
         
         <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>1)); ?>
         
-        <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
+        <form method="post" action="<?php echo $actionUrl; ?>">
         
             <table class="table table-condensed table-bordered table-hover">
                 <?php echo $workForm; ?>
@@ -29,7 +29,7 @@
         
         <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>2)); ?>
         
-        <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
+        <form method="post" action="<?php echo $actionUrl; ?>">
         
             <table class="table table-condensed table-bordered table-hover">
                 <?php echo $exitForm; ?>
@@ -47,7 +47,7 @@
         
         <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>3)); ?>
         
-        <form class="form-horizontal" method="post" action="<?php echo $actionUrl; ?>">
+        <form method="post" action="<?php echo $actionUrl; ?>">
         
             <table class="table table-condensed table-bordered table-hover">
                 <?php echo $entranceForm; ?>

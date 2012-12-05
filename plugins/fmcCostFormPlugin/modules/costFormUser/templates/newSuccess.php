@@ -4,7 +4,7 @@
     $("#topmenu_costforms").addClass("active");
 </script>
 
-<form method="post" class="form-horizontal">
+<form method="post">
 
   <?php echo $form->renderHiddenFields() ?>
   
