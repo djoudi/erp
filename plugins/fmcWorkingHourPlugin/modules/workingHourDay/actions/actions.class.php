@@ -6,6 +6,7 @@ class workingHourDayActions extends sfActions
     public function executeCheck (sfWebRequest $request)
     {
         $date = $request->getParameter ('date');
+        
         if (!$date) $date = date ('Y-m-d');
         
         whDayInfo::routeDay ($date);
@@ -60,7 +61,9 @@ class workingHourDayActions extends sfActions
         $url = $this->getController()->genUrl('@workingHourDay_work?date='.$this->date);
         
         if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, $url);
+        
         elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
+        
         elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
     }
     
@@ -68,6 +71,7 @@ class workingHourDayActions extends sfActions
     public function executeDeleteItem (sfWebRequest $request)
     {
         $date = $request->getParameter ('date');
+        
         $id = $request->getParameter ('id');
         
         Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
@@ -80,12 +84,15 @@ class workingHourDayActions extends sfActions
     public function executeDeleteDay (sfWebRequest $request)
     {
         $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        
         $this->forward404Unless ($day);
         
         $day->getWorkingHourRecords()->delete();
+        
         $day->delete();
         
         $this->getUser()->setFlash('notice','Day deleted.');
+        
         $this->redirect ($request->getReferer());
     }
     
@@ -93,6 +100,7 @@ class workingHourDayActions extends sfActions
     public function executeApproveDay (sfWebRequest $request)
     {
         $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        
         $this->forward404Unless ($day);
         
         if ($error = $day->verifyRecords())
@@ -102,12 +110,16 @@ class workingHourDayActions extends sfActions
         else
         {
             $day->setStatus ("Pending");
+            
+            $day->setMultiplier ($day->calculateMultiplier());
+            
             $day->save();
+            
             $this->getUser()->setFlash('warning', "Your day is sent for approval.");
-            // release from draft
         }
                 
         $this->redirect ($request->getReferer());
     }
     
 }
+s
