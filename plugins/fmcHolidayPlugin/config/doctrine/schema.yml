@@ -1,12 +1,12 @@
 Holiday:
-    options:
-        orderBy: day ASC
-        symfony:
-            filter: false
     actAs:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: day ASC
+        symfony:
+            filter: false
     columns:
         day:
             type: date

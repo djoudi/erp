@@ -1,43 +1,112 @@
 # COST FORMS
 
 CostForm:
-  actAs:
-    Auditable: ~
-    SoftDelete: ~
-    Versionable: ~
-  columns:
-    user_id: integer
-    project_id: { type: integer, notnull: true }
-    advanceRecieved: decimal
-    currency_id: { type: integer, notnull: true }
-    isSent: { type: boolean, default: false, notnull: true }
-  relations:
-    Users: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
-    Projects: { class: Project, local: project_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
-    Currencies: { class: Currency, local: currency_id, foreign: id, foreignAlias: CostForms, onDelete: CASCADE }
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        user_id:
+            type: integer
+        project_id:
+            type: integer
+            notnull: true
+        advanceRecieved:
+            type: decimal
+        currency_id:
+            type: integer
+            notnull: true
+        isSent:
+            type: boolean
+            default: false
+            notnull: true
+    relations:
+        Users:
+            class: sfGuardUser
+            local: user_id
+            foreign: id
+            foreignAlias: CostForms
+            onDelete: CASCADE
+        Projects:
+            class: Project
+            local: project_id
+            foreign: id
+            foreignAlias: CostForms
+            onDelete: CASCADE
+        Currencies:
+            class: Currency
+            local: currency_id
+            foreign: id
+            foreignAlias: CostForms
+            onDelete: CASCADE
 
 # COST FORM ITEMS
 
 CostFormItem:
-  actAs:
-    Auditable: ~
-    SoftDelete: ~
-    Versionable: ~
-  columns:
-    costForm_id: { type: integer, notnull: true }
-    cost_Date: { type: date, notnull: true }
-    description: { type: string(250), notnull: true }
-    amount: { type: decimal, notnull: true }
-    currency_id: { type: integer, notnull: true }
-    receipt_No: string (50)
-    invoice_To: { type: enum, values: ['FMC', 'Customer'], default: 'Customer', notnull: true }
-    vat_id: { type: integer, notnull: true }
-    is_Processed: { type: boolean, default: false, notnull: true }
-    invoice_No: { type: string(50) }
-    invoice_Date: { type: date }
-    dontInvoice: { type: boolean, notnull: false, default: null }
-    isPaid: { type: boolean, notnull: false, default: false }
-  relations:
-    CostForms: { class: CostForm, local: costForm_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
-    Vats: { class: Vat, local: vat_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
-    Currencies: { class: Currency, local: currency_id, foreign: id, foreignAlias: CostFormItems, onDelete: CASCADE }
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    options:
+        orderBy: costForm_id, cost_Date, currency_id ASC
+    columns:
+        costForm_id:
+            type: integer
+            notnull: true
+        cost_Date:
+            type: date
+            notnull: true
+        description:
+            type: string(250)
+            notnull: true
+        amount:
+            type: decimal
+            notnull: true
+        currency_id:
+            type: integer
+            notnull: true
+        receipt_No:
+            type: string (50)
+        invoice_To:
+            type: enum
+            values: ['FMC', 'Customer']
+            default: 'Customer'
+            notnull: true
+        vat_id:
+            type: integer
+            notnull: true
+        is_Processed:
+            type: boolean
+            default: false
+            notnull: true
+        invoice_No:
+            type: string(50)
+        invoice_Date:
+            type: date
+        dontInvoice:
+            type: boolean
+            notnull: false
+            default: null
+        isPaid:
+            type: boolean
+            notnull: false
+            default: false
+    relations:
+        CostForms:
+            class: CostForm
+            local: costForm_id
+            foreign: id
+            foreignAlias: CostFormItems
+            onDelete: CASCADE
+        Vats:
+            class: Vat
+            local: vat_id
+            foreign: id
+            foreignAlias: CostFormItems
+            onDelete: CASCADE
+        Currencies:
+            class: Currency
+            local: currency_id
+            foreign: id
+            foreignAlias: CostFormItems
+            onDelete: CASCADE

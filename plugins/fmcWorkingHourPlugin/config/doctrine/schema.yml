@@ -69,14 +69,14 @@ LeaveRequestLimit:
 ######################################################
 
 WorkingHourParameter:
-    options:
-        orderBy: param ASC
-        symfony:
-            filter: false
     actAs:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: param ASC
+        symfony:
+            filter: false
     columns:
         param:
             type: string(50)
@@ -119,14 +119,14 @@ WorkingHourWorkType:
 ######################################################
 
 WorkingHourWorkTypeUser:
-    options:
-        symfony:
-            form:   false
-            filter: false
     actAs:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        symfony:
+            form:   false
+            filter: false
     columns:
         worktype_id:
             type: integer
@@ -147,14 +147,14 @@ WorkingHourWorkTypeUser:
 ######################################################
 
 WorkingHourWorkTypeGroup:
-    options:
-        symfony:
-            form:   false
-            filter: false
     actAs:
         Auditable: ~
         SoftDelete: ~
         Versionable: ~
+    options:
+        symfony:
+            form:   false
+            filter: false
     columns:
         worktype_id:
             type: integer
