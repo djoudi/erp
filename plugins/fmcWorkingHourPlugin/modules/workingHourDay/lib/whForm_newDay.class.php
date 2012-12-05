@@ -11,6 +11,7 @@ class whForm_newDay extends BaseForm
             'entrance'   => new sfWidgetFormInputText(),
             'exit'     => new sfWidgetFormInputText(),
         ));
+        
         $this->setValidators(array(
             'entrance'   => new sfValidatorTime(),
             'exit'     => new sfValidatorTime(array('required' => false)),

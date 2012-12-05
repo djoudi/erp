@@ -15,9 +15,7 @@ class workingHourDayActions extends sfActions
     
     public function executeNew (sfWebRequest $request)
     {
-        $this->date = $request->getParameter ('date');
-        
-        whDayInfo::routeDay ($this->date, "New");
+        whDayInfo::routeDay ($this->date = $request->getParameter ('date'), "New");
         
         $this->form = new whForm_newDay ();
         
@@ -46,11 +44,9 @@ class workingHourDayActions extends sfActions
     
     public function executeWork (sfWebRequest $request)
     {
-        $this->date = $request->getParameter ('date');
+        whDayInfo::routeDay ($this->date = $request->getParameter ('date'), "Work");
         
-        whDayInfo::routeDay ($this->date, "Work");
-        
-        $this->day = Doctrine::getTable('WorkingHourDay')->getActiveDate($this->date);
+        $this->forward404Unless ($this->day = Doctrine::getTable ('WorkingHourDay')->getActiveDate($this->date));
         
         $this->prepareWorkForms ($this->day);
         
@@ -70,22 +66,21 @@ class workingHourDayActions extends sfActions
     
     public function executeDeleteItem (sfWebRequest $request)
     {
-        $date = $request->getParameter ('date');
-        
+        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
+                
         $id = $request->getParameter ('id');
         
         Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
         
         $this->redirect ($this->getController()->genUrl('@workingHourDay_check?date='.$date));
-
     }
     
     
     public function executeDeleteDay (sfWebRequest $request)
     {
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
         
-        $this->forward404Unless ($day);
+        $this->forward404Unless ($day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date));
         
         $day->getWorkingHourRecords()->delete();
         
@@ -99,10 +94,10 @@ class workingHourDayActions extends sfActions
     
     public function executeApproveDay (sfWebRequest $request)
     {
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
         
-        $this->forward404Unless ($day);
-        
+        $this->forward404Unless ($day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date));
+                
         if ($error = $day->verifyRecords())
         {
             $this->getUser()->setFlash('error', $error);
