@@ -64,6 +64,7 @@ class workingHourDayActions extends sfActions
         elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
     }
     
+    
     public function executeDeleteItem (sfWebRequest $request)
     {
         $date = $request->getParameter ('date');
@@ -75,17 +76,37 @@ class workingHourDayActions extends sfActions
 
     }
     
+    
     public function executeDeleteDay (sfWebRequest $request)
     {
         $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        $this->forward404Unless ($day);
         
-        if ($day)
+        $day->getWorkingHourRecords()->delete();
+        $day->delete();
+        
+        $this->getUser()->setFlash('notice','Day deleted.');
+        $this->redirect ($request->getReferer());
+    }
+    
+    
+    public function executeApproveDay (sfWebRequest $request)
+    {
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($request->getParameter ('date'));
+        $this->forward404Unless ($day);
+        
+        if ($error = $day->verifyRecords())
         {
-            $day->getWorkingHourRecords()->delete();
-            $day->delete();
-            $this->getUser()->setFlash('notice','Day deleted.');
+            $this->getUser()->setFlash('error', $error);
         }
-        
+        else
+        {
+            $day->setStatus ("Pending");
+            $day->save();
+            $this->getUser()->setFlash('warning', "Your day is sent for approval.");
+            // release from draft
+        }
+                
         $this->redirect ($request->getReferer());
     }
     

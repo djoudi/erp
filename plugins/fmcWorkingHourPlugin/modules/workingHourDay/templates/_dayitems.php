@@ -34,8 +34,8 @@
                 <td><?php echo $record->getWorkType(); ?></td>
                 <td><?php echo $record['comment']; ?></td>
                 
-                <td>
-                    <?php if ($day['status']=="Draft"): ?>
+                <?php if ($day['status']=="Draft"): ?>
+                    <td>
                         <?php include_partial ('fmcCore/confirmButton', array(
                             'url' => url_for('workingHourDay_deleteitem',array(
                                 'date'=>$day['date'],
@@ -43,8 +43,8 @@
                             )),
                             'label' => 'Delete',
                         )); ?>
-                    <?php endif; ?>
-                </td>
+                    </td>
+                <?php endif; ?>
                 
             </tr>
         <?php endforeach; ?>

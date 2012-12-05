@@ -36,7 +36,11 @@ workingHourDay_deleteday:
         module: workingHourDay
         action: deleteDay
 
-
+workingHourDay_approveday:
+    url: /wh/day/:date/approve
+    param:
+        module: workingHourDay
+        action: approveDay
 
 
 
