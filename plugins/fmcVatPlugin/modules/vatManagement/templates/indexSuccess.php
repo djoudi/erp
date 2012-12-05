@@ -11,7 +11,7 @@
     
 <?php else: ?>
 
-<table class="tablesorter table table-striped table-bordered table-condensed">
+<table class="tablesorter table table-hover table-bordered table-condensed">
     <thead>
         <tr>
             <th>Rate</th>
@@ -63,7 +63,7 @@
 <?php endif; ?>
 
 
-<form action="" method="post">
+<form action="" class="form-inline" method="post">
     
     <?php echo $form->renderHiddenFields() ?>
     

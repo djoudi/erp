@@ -3,7 +3,7 @@
 class Fmc_Core_Form
 {
     
-    public static function Process ($form, $request, $redirectUrl = NULL, $errorUrl = NULL)
+    public static function Process ($form, $request, $redirectUrl = NULL, $errorUrl = NULL, $hasId = false)
     {
         $controller = sfContext::getInstance()->getController();
         
@@ -17,9 +17,11 @@ class Fmc_Core_Form
             
             if ($form->isValid())
             {
-                $form->save();
+                $object = $form->save();
                 
                 $user->setFlash('success', 'Record is saved!');
+                
+                if ($hasId) $redirectUrl = $controller->genUrl($redirectUrl.'?id='.$object->getId());
                 
                 $controller->redirect ($redirectUrl);
             }

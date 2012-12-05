@@ -1,31 +1,47 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/BasecustomerManagementActions.class.php';
-
-class customerManagementActions extends BasecustomerManagementActions
+class customerManagementActions extends sfActions
 {
     
-    
-    public function executeSearch(sfWebRequest $request)
+    public function executeList (sfWebRequest $request)
     {
-        if ($request->isXmlHttpRequest())
-        {
-            $query = $request->getParameter('query');
-            if ($query=="*")
-            {
-                $this->items = Doctrine::getTable('Customer')->findAll();
-            }
-            else
-            {
-                $this->items = Doctrine_Core::getTable('Customer')->getForLuceneQuery($query);
-            }
-            if (!$this->items)
-            {
-                return $this->renderText('No results.');
-            } 
-            return $this->renderPartial('customerManagement/items', array('items' => $this->items));
-        }
+        // Filter: Edit these variables
+        
+        $_q = Doctrine_Query::create()->from('Customer u');
+        
+        $filterClass = new FmcFilter('CustomerFormFilter');
+        
+        $this->customers = $filterClass->initFilterForm($request, $_q)->execute();
+    
+        // Filter: Do not touch here
+        
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        
+        $this->filtered = $filterClass->getFiltered();
     }
     
+    
+    public function executeEdit (sfWebRequest $request)
+    {
+        $this->item = Doctrine::getTable('Customer')->findOneById ($request->getParameter("id"));
+        
+        $this->forward404Unless ($this->item);
+        
+        $this->form = new customerForm ($this->item);
+        
+        Fmc_Core_Form::Process ($this->form, $request);
+    }
+    
+    
+    public function executeNew (sfWebRequest $request)
+    {
+        $this->form = new customerForm();
+        
+        $url = $this->getController()->genUrl('@customerManagement');
+        
+        Fmc_Core_Form::Process ($this->form, $request, $url);
+    }
     
 }
