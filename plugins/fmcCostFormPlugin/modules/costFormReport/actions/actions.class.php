@@ -1,15 +1,39 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/BasecostFormReportActions.class.php';
-
-/**
- * costFormReport actions.
- * 
- * @package    fmcCostFormPlugin
- * @subpackage costFormReport
- * @author     Yasin Aydin (yasin@yasinaydin.net)
- * @version    SVN: $Id: actions.class.php 12534 2008-11-01 13:38:27Z Kris.Wallsmith $
- */
-class costFormReportActions extends BasecostFormReportActions
+class costFormReportActions extends sfActions
 {
+    
+    public function executeIndex (sfWebRequest $request)
+    {
+        $this->resultlimit = 250;
+        
+        // Edit these variables
+    
+        $_q = Doctrine_Query::create()
+            ->from ('CostFormItem cfi')
+            ->leftJoin ('cfi.Currencies cur')
+            ->leftJoin ('cfi.CostForms cf')
+            ->leftJoin ('cf.Projects p')
+            ->leftJoin ('cf.Users u')
+            ->limit ($this->resultlimit)
+            ->orderBy ('cfi.created_at DESC')
+            ->addWhere ('cf.issent = ?', true);
+        
+        $filterClass = new FmcFilter('filter_costFormItemReport_list');
+    
+        $this->costFormItems = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
+        
+        // Do not touch here
+      
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        
+        $this->filtered = $filterClass->getFiltered();
+        
+        $this->resultslimited = false;
+    
+        if (count($this->costFormItems) == $this->resultlimit) $this->resultslimited = true;
+    }
+    
 }
