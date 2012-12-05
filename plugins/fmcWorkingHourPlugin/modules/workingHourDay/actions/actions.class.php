@@ -122,4 +122,3 @@ class workingHourDayActions extends sfActions
     }
     
 }
-s
