@@ -1,25 +1,25 @@
 
 employeeManagement:
-  url: /employee/managament
+  url: /employee/management/list
   param: { module: employeeManagement, action: list }
   
 employeeManagement_edit:
-  url: /employee/managament/edit/:id
+  url: /employee/management/edit/:id
   param: { module: employeeManagement, action: edit }
   
 employeeManagement_new:
-  url: /employee/managament/new
+  url: /employee/management/new
   param: { module: employeeManagement, action: new }
 
 
 departmentManagement_list:
-  url: /department/managament
+  url: /department/management/list
   param: { module: departmentManagement, action: list }
   
 departmentManagement_edit:
-  url: /department/managament/edit/:id
+  url: /department/management/edit/:id
   param: { module: departmentManagement, action: edit }
   
 departmentManagement_new:
-  url: /department/managament/new
+  url: /department/management/new
   param: { module: departmentManagement, action: new }
