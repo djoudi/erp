@@ -4,6 +4,9 @@ class form_costFormUser_newItem extends CostFormItemForm
 {
   public function configure()
   {
+  	
+  	parent::configure();
+  	
     # disabling process status
     unset($this['is_Processed']);
   

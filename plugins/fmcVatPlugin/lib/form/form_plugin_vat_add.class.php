@@ -12,6 +12,9 @@ class form_plugin_vat_add   extends PluginVatForm
 {
   public function configure()
   {
+  	
+  	parent::configure();
+  	
     $this->widgetSchema['rate'] = new sfWidgetFormInputText();
     $this->validatorSchema['rate'] = new sfValidatorInteger();
     unset($this['isDefault']);

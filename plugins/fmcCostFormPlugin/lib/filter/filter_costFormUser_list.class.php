@@ -4,6 +4,8 @@ class filter_costFormUser_list extends PluginCostFormFormFilter {
     
     public function configure() {
         
+    	parent::configure();
+    	
         $this->useFields(array(
             'project_id', 
         ));

@@ -4,6 +4,8 @@ class filterform_plugin_sfguarduser extends sfGuardUserFormFilter {
     
     public function configure() {
         
+    	parent::configure();
+    	
         $this->useFields(array(
             'first_name', 
             'last_name', 

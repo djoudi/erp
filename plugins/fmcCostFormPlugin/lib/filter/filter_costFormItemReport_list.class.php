@@ -5,7 +5,8 @@ class filter_costFormItemReport_list extends PluginCostFormItemFormFilter {
     
     public function configure() {
         
-        
+    	parent::configure();
+    	
         $this->setWidget('id', new sfWidgetFormFilterInput(array('with_empty' => false)));
         $this->setValidator('id', new sfValidatorPass(array('required' => false)));
         $this->widgetSchema->moveField ('id', sfWidgetFormSchema::BEFORE, 'costForm_id');

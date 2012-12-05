@@ -5,6 +5,8 @@ class form_plugin_sfguarduser_new extends sfGuardUserForm
   public function configure()
   {
     
+  	parent::configure();
+  	
     unset(
       $this['algorithm'],
       $this['salt'],

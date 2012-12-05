@@ -4,6 +4,8 @@ class form_costFormUser_new extends PluginCostFormForm {
     
     public function configure() {
         
+    	parent::configure();
+    	
         unset($this['isSent']);
         
         $uid = sfContext::getInstance()->getUser()->getGuardUser()->getId();
