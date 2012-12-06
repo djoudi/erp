@@ -23,7 +23,7 @@ $(document).ready(function()
         $(".tablesorterpager").tablesorterPager({
             container: $(".tablesorterpagerdiv"), 
             positionFixed: false, 
-            size: 50
+            size: 250
         });
     /* End */
     
