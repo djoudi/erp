@@ -1,17 +1,29 @@
-
-    <div id="LoginWrapperOuter">
-      <div id="LoginWrapperMiddle">
-        <div id="LoginWrapperInner">
-          
-          <img id="LoginLogo" src="/img/logo.png"/>
-          
-          <div style="margin-top: 20px;text-align: left;">
-            <h2>Error!</h2>
-            <br />
-            <p>Your account does not have proper credentials to view this page.</p>
-            <p><a href="<?php echo url_for("@homepage"); ?>">Click here to to homepage.</a></p>
-          </div>
-          
+<div class="container">
+    
+    <form class="form-signin" id="LoginForm">
+        
+        <div class="logo-wrapper">
+            <img id="LoginLogo" src="/img/logo.png"/>
         </div>
-      </div>
-    </div>
+        
+        <h4>Error!</h4>
+        
+        <p>
+            Your account does not have proper credentials to view this page.
+        </p>
+        <p>
+            If you think you have received this message by mistake, please logout and login again. 
+        </p>
+        <p>
+            If problem still exists, please contact your system administrator.
+        </p>
+        
+        <a class="btn btn-primary" href="<?php echo url_for("@homepage"); ?>">
+            Go back to homepage
+        </a>
+        
+        <div class="clearfix"></div>
+        
+    </form>
+
+</div>
