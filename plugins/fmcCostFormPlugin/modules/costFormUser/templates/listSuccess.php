@@ -24,7 +24,7 @@
 <?php else: ?>
 
 
-  <table class="tablesorter tablesorterpager table table-striped table-bordered table-condensed">
+  <table class="tablesorter table table-striped table-bordered table-condensed">
     <thead>
       <tr>
         <th>CF No</th>

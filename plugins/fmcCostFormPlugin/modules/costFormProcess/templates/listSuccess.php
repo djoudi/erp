@@ -6,6 +6,11 @@
 </script>
 
 
+<a class="btn btn-primary pull-right" href="<?php echo url_for('costFormProcess_filter'); ?>">
+    Back to filter screen
+</a>
+
+
 <?php if (!count($costFormItems)): ?>
 
     <p>No cost forms found in your selected criterias.</p>
@@ -74,10 +79,10 @@
                             </label>
                         </td>
                         <td>
-                            <input class="w100" name="<?php echo $cfi->id ?>[invoice_No]" type="text" />
+                            <input class="w75" name="<?php echo $cfi->id ?>[invoice_No]" type="text" />
                         </td>
                         <td>
-                            <input class="w100 datepick" name="<?php echo $cfi->getId(); ?>[invoice_Date]" type="text" />
+                            <input class="w75 datepick" name="<?php echo $cfi->getId(); ?>[invoice_Date]" type="text" />
                         </td>
                     
                     </tr>

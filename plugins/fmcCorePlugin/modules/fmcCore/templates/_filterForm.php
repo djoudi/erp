@@ -28,8 +28,13 @@
     </div>
     
     
+    <?php if ($count): ?>
+        <strong><?php echo $count; ?></strong> results found. &nbsp;
+    <?php endif; ?>
+    
+    
     <?php if(isset($count)): ?>
-        <?php include_partial ('fmcCore/tspager', array('count'=>$count)); ?>
+        <?php #include_partial ('fmcCore/tspager', array('count'=>$count)); ?>
     <?php endif; ?>
     
     

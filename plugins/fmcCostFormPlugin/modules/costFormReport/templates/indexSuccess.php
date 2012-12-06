@@ -26,7 +26,7 @@
   <p>No costs found in your selected criterias.</p>
 <?php else: ?>
 
-  <table class="tablesorter1d tablesorterpager table table-striped table-bordered table-condensed">
+  <table class="tablesorter1d table table-hover table-bordered table-condensed">
     
     <thead>
       <tr>
@@ -45,34 +45,34 @@
     
     <tbody>
       <?php foreach ($costFormItems as $cfi): ?>
+      
         <tr>
-          <td>
-            <?php echo $cfi["cost_Date"]; ?>
-          </td>
-          
-          <td>
-              <?php echo $cfi["CostForms"]["Users"]["first_name"]; ?> 
-              <?php echo $cfi["CostForms"]["Users"]["last_name"]; ?>
-          </td>
-          
+            
+            <td>
+                <?php echo $cfi["cost_Date"]; ?>
+            </td>
+            
+            <td>
+                <?php echo $cfi["CostForms"]["Users"]["first_name"]; ?> 
+                <?php echo $cfi["CostForms"]["Users"]["last_name"]; ?>
+            </td>
+            
             <td>
                 <?php echo $cfi["CostForms"]["Projects"]["code"]; ?>
             </td>
-          
-          <td>
-            <?php if (strlen($cfi["description"]) < 20): ?>
-              <?php echo $cfi["description"]; ?>
-            <?php else: ?>
-              <a href="#" rel="tooltip" title="<?php echo $cfi["description"]; ?>" class="tooltips" >
-                <?php echo mb_substr($cfi["description"], 0, 20, "UTF-8"); ?>...
-              </a>
-            <?php endif; ?>
-          </td>
-          <td>
-            <?php echo $cfi["amount"]." ".$cfi["Currencies"]["code"]; ?>
-          </td>
-          <td><?php echo $cfi["receipt_No"]; ?></td>
-          
+            
+            <td class="w250">
+                <?php echo $cfi["description"]; ?>
+            </td>
+            
+            <td>
+                <?php echo $cfi["amount"]." ".$cfi["Currencies"]["code"]; ?>
+            </td>
+            
+            <td>
+                <?php echo $cfi["receipt_No"]; ?>
+            </td>
+            
           <td>
            <?php if (!$cfi["is_Processed"]): ?>
              Not invoiced
