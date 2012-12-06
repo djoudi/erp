@@ -9,7 +9,7 @@ class projectManagementActions extends sfActions
             ->from ('Project p')
             ->innerJoin ('p.Customers c');
             
-        $filterClass = new FmcFilter('ProjectFormFilter');
+        $filterClass = new FmcFilter('projectFilter_list');
       
         $this->items = $filterClass
             ->initFilterForm($request, $query)
