@@ -42,13 +42,6 @@ class form_plugin_sfguarduser extends sfGuardUserForm
         
         /* End of Refs #51 */
         
-        
-        $this->setWidget('permissions_list', new sfWidgetFormDoctrineChoice(array(
-            'model' => $this->getRelatedModelName('Permissions'),
-            'table_method' => 'getOrdered',
-            'add_empty' => false)
-        ));
-        
         $this->widgetSchema['permissions_list'] = new sfWidgetFormSelectDoubleList(array(
             'choices' => $this->widgetSchema['permissions_list']->getChoices()
         ));

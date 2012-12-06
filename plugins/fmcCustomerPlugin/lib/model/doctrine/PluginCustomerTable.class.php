@@ -49,13 +49,4 @@ class PluginCustomerTable extends Doctrine_Table
     
     
     
-    
-
-  
-  
-  public function getOrdered()
-  {
-    return $this->CreateQuery('cfi')
-      ->execute();
-  }
 }

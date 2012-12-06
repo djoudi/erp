@@ -8,11 +8,6 @@ class ProjectForm extends PluginProjectForm
     $this->widgetSchema->setLabel('title', 'Project Title');
     
     
-    $this->setWidget('customer_id', new sfWidgetFormDoctrineChoice(array(
-      'model' => $this->getRelatedModelName('Customers'),
-      'table_method' => 'getOrdered',
-      'add_empty' => false)
-    ));
     
   }
 }
