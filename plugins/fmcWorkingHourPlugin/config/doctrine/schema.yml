@@ -6,6 +6,7 @@
 # WorkingHourWorkTypeGroup
 # sfGuardUser
 # sfGuardGroup
+# sfGuardPermission
 # LeaveRequest
 # WorkingHourDay
 # WorkingHourRecord
@@ -214,6 +215,11 @@ sfGuardGroup:
             foreignAlias: Department
             onDelete: CASCADE
 
+######################################################
+
+sfGuardPermission:
+    options:
+        orderBy: name ASC
 
 ######################################################
 

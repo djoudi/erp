@@ -44,6 +44,8 @@ abstract class BasesfGuardPermission extends MyDoctrineRecord
              'type' => 'string',
              'length' => 1000,
              ));
+
+        $this->option('orderBy', 'name ASC');
     }
 
     public function setUp()
