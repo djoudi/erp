@@ -1,12 +1,15 @@
 <?php
 
-class form_costFormUser_new extends PluginCostFormForm {
+class form_costFormUser_new extends PluginCostFormForm
+{
     
-    public function configure() {
-        
+    public function configure()
+    {
     	parent::configure();
     	
-        unset($this['isSent']);
+        unset(
+            $this['isSent']
+        );
         
         $uid = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
@@ -25,8 +28,8 @@ class form_costFormUser_new extends PluginCostFormForm {
         ));
         
         $curDefault = Doctrine::getTable('Currency')->findOneByisDefault(true)->id;
-        $this->setDefault('currency_id', $curDefault);
         
+        $this->setDefault('currency_id', $curDefault);
     }
     
 }

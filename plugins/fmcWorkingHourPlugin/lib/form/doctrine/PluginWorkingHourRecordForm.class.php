@@ -7,6 +7,11 @@ abstract class PluginWorkingHourRecordForm extends BaseWorkingHourRecordForm
     {
         parent::setup();
         
+        unset(
+            $this['day_id'],
+            $this['recordType']
+        );
+        
         $this->widgetSchema['start_Time'] = new sfWidgetFormInputText();
         
         $this->widgetSchema['end_Time'] = new sfWidgetFormInputText();

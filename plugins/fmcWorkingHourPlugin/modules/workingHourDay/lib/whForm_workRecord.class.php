@@ -7,11 +7,6 @@ class whForm_workRecord extends WorkingHourRecordForm
     {
         parent::configure();
         
-        unset(
-            $this['day_id'],
-            $this['recordType']
-        );
-        
         $this->validatorSchema ['end_Time'] = new sfValidatorTime(array('required' => true));
     }
     
