@@ -1,7 +1,3 @@
-customer_search:
-  url:   /customer/search
-  param: { module: customerManagement, action: search }
-
 customerManagement:
   url: /customer/management
   param: { module: customerManagement, action: list }
