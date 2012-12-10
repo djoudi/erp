@@ -3,6 +3,26 @@
 class whDayInfo
 {
     
+    public static function isHoliday ($date)
+    {
+        $timestamp = strtotime($date);
+        $dayoftheweek = date ("N", $timestamp);
+        $result = true;
+        
+        if ($dayoftheweek > 5) // if weekend
+        {
+            $result = true;
+        }
+        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
+        {
+            $result = true;
+        }
+        else $result = false; // not holiday
+        
+        return $result;
+    }
+    
+    
     public static function getGoodDate ($date)
     {
         $output = date('Y-m-d, D', strtotime($date));
@@ -27,7 +47,11 @@ class whDayInfo
         
         if ($dayType == "Leave")
         {
-            if ($currentType != "Leave") $redirectUrl = $controller->genUrl('@homepage?date='.$date);
+            if ($currentType != "Leave") 
+            {
+                $day = Doctrine::getTable('WorkingHourDay')->getActiveDate ($date, $user_id);
+                $redirectUrl = $controller->genUrl('@workingHourLeave_info?leave_id='.$day['leave_id']);
+            }
         }
         elseif ($dayType == "Work")
         {

@@ -32,6 +32,10 @@ class whForm_newLeaveWReport extends LeaveRequestForm
             'image' => '/img/calendar.png',
             'config' => '{ changeMonth: true, changeYear: true, yearRange: "c-100:c" }'
         )));
+        
+        $this->setValidator('report_Date', new sfValidatorDate(array('required' => true)));
+        
+        $this->setValidator('report_Number', new sfValidatorString(array('max_length' => 50, 'required' => true)));
     }
     
 }

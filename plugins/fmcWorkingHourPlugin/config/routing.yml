@@ -45,12 +45,23 @@ workingHourDay_approveday:
 
 # workingHourLeave
 
+workingHourLeave_newStandAlone:
+    url: /wh/leave/new/select
+    param:
+        module: workingHourLeave
+        action: newStandalone
+
 workingHourLeave_new:
-    url: /wh/leave/new/:date/:type_id
+    url: /wh/leave/new/:type_id
     param:
         module: workingHourLeave
         action: newRequest
 
+workingHourLeave_info:
+    url: /wh/leave/info/:leave_id
+    param:
+        module: workingHourLeave
+        action: showInfo
 
 
 

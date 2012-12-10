@@ -22,11 +22,11 @@ all:
                             route: @workingHourDay_check
                             requires_auth: true
                             credentials: ["Working Hours"]
-#                        12:
-#                            label: New Leave Request
-#                            route: @whuser_day_leaverequest_list
-#                            requires_auth: true
-#                            credentials: ["Working Hours"]
+                        12:
+                            label: New leave request
+                            route: @workingHourLeave_newStandAlone
+                            requires_auth: true
+                            credentials: ["Working Hours"]
                         90:
                             label: Settings
                             attributes:
