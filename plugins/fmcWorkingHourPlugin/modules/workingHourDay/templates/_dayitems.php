@@ -1,4 +1,4 @@
-<?php if (!count($day->getWorkingHourRecords())): ?>
+<?php if (!count($dayRecords)): ?>
 
     <p><strong>No records found.</strong></p>
     
@@ -15,30 +15,46 @@
             <th>Type of Work</th>
             <th>Comment</th>
             
-            <?php if ($day['status']=="Draft"): ?>
+            <?php if ($dayStatus=="Draft"): ?>
                 <th>Action</th>
             <?php endif; ?>
         </tr>
     </thead>
     
     <tbody>
-        <?php foreach ($day->getWorkingHourRecords() as $record): ?>
+        <?php foreach ($dayRecords as $record): ?>
         
             <?php $class = ($sf_user->getFlash('errorRow')==$record['id']) ? "error" : ""; ?>
             
             <tr class="<?php echo $class; ?>">
-                <td><?php echo $record['recordType']; ?></td>
-                <td><?php echo $record['start_Time']; ?></td>
-                <td><?php echo $record['end_Time']; ?></td>
-                <td><?php #echo $record->getProject(); ?></td>
-                <td><?php #echo $record->getWorkType(); ?></td>
-                <td><?php echo $record['comment']; ?></td>
+                <td>
+                    <?php echo $record['recordType']; ?>
+                </td>
+                <td>
+                    <?php echo $record['start_Time']; ?>
+                </td>
+                <td>
+                    <?php echo $record['end_Time']; ?>
+                </td>
+                <td>
+                    <?php if ($record['project_id']): ?>
+                        <?php echo $record['Project']['code']; ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($record['work_Type_id']): ?>
+                        <?php echo $record['WorkType']['name']; ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php echo $record['comment']; ?>
+                </td>
                 
-                <?php if ($day['status']=="Draft"): ?>
+                <?php if ($dayStatus=="Draft"): ?>
                     <td>
                         <?php include_partial ('fmcCore/confirmButton', array(
                             'url' => url_for('workingHourDay_deleteitem',array(
-                                'date'=>$day['date'],
+                                'date'=>$dayDate,
                                 'id'=>$record['id']
                             )),
                             'label' => 'Delete',

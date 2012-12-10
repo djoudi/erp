@@ -3,23 +3,35 @@
 abstract class PluginWorkingHourDay extends BaseWorkingHourDay
 {
     
+    public function getRecords ()
+    {
+        $q = Doctrine::getTable ('WorkingHourRecord')
+            ->createQuery ('r')
+            ->addWhere ('r.day_id = ?', $this->getId())
+            ->leftJoin ('r.Project p')
+            ->leftJoin ('r.WorkType w');
+        return $q->execute();
+    }
+    
+    
     public function getWorkRecords ()
     {
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            ->addWhere ('r.recordType = ?', 'Work')
-            ->orderBy ('r.start_Time ASC');
+            ->addWhere ('r.recordType = ?', 'Work');
+            #->orderBy ('r.start_Time ASC'); // is necessery?
         return $q->execute();
     }
+    
     
     public function getIORecords ()
     {
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            ->addWhere ('r.recordType <> ?', 'Work')
-            ->orderBy ('r.start_Time ASC');
+            ->addWhere ('r.recordType <> ?', 'Work');
+            #->orderBy ('r.start_Time ASC'); // is necessery?
         return $q->execute();
     }
     
@@ -29,22 +41,24 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            ->orderBy ('r.start_Time ASC')
+            #->orderBy ('r.start_Time ASC') // is necessery?
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
         return $q->fetchOne();
     }
+    
     
     public function getLast ($type = NULL)
     {
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            ->orderBy ('r.start_Time DESC')
+            #->orderBy ('r.start_Time ASC') // is necessery?
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
         return $q->fetchOne();
     }
+    
     
     public function calculateMultiplier()
     {

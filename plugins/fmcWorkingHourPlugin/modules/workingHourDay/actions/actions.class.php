@@ -48,9 +48,7 @@ class workingHourDayActions extends sfActions
         
         $this->forward404Unless ($this->day = Doctrine::getTable ('WorkingHourDay')->getActiveDate($this->date));
         
-        
-        
-        
+        $this->dayRecords = $this->day->getRecords()->toArray();
         
         $this->prepareWorkForms ($this->day);
         
@@ -65,7 +63,6 @@ class workingHourDayActions extends sfActions
         elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
         
         elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
-        
     }
     
     

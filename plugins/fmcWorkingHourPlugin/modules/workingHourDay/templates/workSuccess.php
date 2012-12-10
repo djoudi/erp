@@ -25,16 +25,16 @@
                 <tr>
                     <th>Office Entrance</th>
                     <td>
-                        <?php if ($day->getFirst("Entrance")): ?>
-                            <?php echo $day->getFirst("Entrance")->getStartTime(); ?>
+                        <?php if ($enter = $day->getFirst("Entrance")): ?>
+                            <?php echo $enter['start_Time']; ?>
                         <?php endif; ?>
                     </td>
                 </tr>
                 <tr>
                     <th>Office Exit</th>
                     <td>
-                        <?php if ($day->getLast("Exit")): ?>
-                            <?php echo $day->getLast("Exit")->getStartTime(); ?>
+                        <?php if ($exit = $day->getLast("Exit")): ?>
+                            <?php echo $exit['start_Time']; ?>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -72,7 +72,11 @@
     <div class="span9" style="padding-top: 20px">
         
         <?php if (isset($day) && $day): ?>
-            <?php include_partial ('dayitems', array('day'=>$day)); ?>
+            <?php include_partial ('dayitems', array(
+                'dayRecords'=>$dayRecords,
+                'dayStatus'=>$day['status'],
+                'dayDate'=>$day['date']
+            )); ?>
         <?php endif; ?>
         
         <div class="clearfix"></div>
