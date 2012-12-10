@@ -1,9 +1,10 @@
 <?php
     if (!isset($class)) $class = '';
-    if (!isset($text)) $text = 'Are you sure you want to delete?';
+    if (!isset($text)) $text = 'Are you sure you want to delete? <br />Warning! This operation is PERMANENT!';
     if (!isset($url)) $url = '';
     if (!isset($label)) $label = 'Delete';
     if (!isset($iconClass)) $iconClass = '';
+    if (!isset($iconOnly)) $iconOnly = false;
 ?>
 
 <?php if (!$url): ?>
@@ -22,7 +23,9 @@
             <i class="<?php echo $iconClass; ?>"></i>
         <?php endif; ?>
         
-        <?php echo $label; ?>
+        <?php if (!$iconOnly): ?>
+            <?php echo $label; ?>
+        <?php endif; ?>
     </a>
      
     <!-- Modal -->

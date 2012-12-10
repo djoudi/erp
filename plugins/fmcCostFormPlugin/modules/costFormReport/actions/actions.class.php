@@ -5,7 +5,7 @@ class costFormReportActions extends sfActions
     
     public function executeIndex (sfWebRequest $request)
     {
-        $this->resultlimit = 250;
+        $this->resultlimit = 100;
         
         // Edit these variables
     
