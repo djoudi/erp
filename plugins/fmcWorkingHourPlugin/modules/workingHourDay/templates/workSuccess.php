@@ -92,6 +92,6 @@
             <?php endif; ?>
         <?php endif; ?>
         
-    </div><!-- .span8 -->
+    </div><!-- .span9 -->
     
 </div><!-- .row -->

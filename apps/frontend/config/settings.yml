@@ -53,6 +53,7 @@ all:
       - vatManagement
       
       - workingHourDay
+      - workingHourLeave
       - workingHourLeaveLimit
       - workingHourLeaveType
       - workingHourParameter

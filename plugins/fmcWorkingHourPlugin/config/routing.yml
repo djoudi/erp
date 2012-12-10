@@ -42,6 +42,18 @@ workingHourDay_approveday:
         module: workingHourDay
         action: approveDay
 
+
+# workingHourLeave
+
+workingHourLeave_new:
+    url: /wh/leave/new/:date/:type_id
+    param:
+        module: workingHourLeave
+        action: newRequest
+
+
+
+
 # workingHourLeaveLimit
 
 workingHourLeaveLimit_list:
@@ -55,6 +67,7 @@ workingHourLeaveLimit_edit:
     param:
         module: workingHourLeaveLimit
         action: edit
+
 
 # workingHourLeaveType
 
@@ -76,6 +89,7 @@ workingHourLeaveType_edit:
         module: workingHourLeaveType
         action: edit
 
+
 # workingHourParameter
 
 workingHourParameter_list:
@@ -89,6 +103,7 @@ workingHourParameter_edit:
     param:
         module: workingHourParameter
         action: edit
+
 
 # workingHourWorkType
 

@@ -27,7 +27,7 @@
         
         <div class="tab-content">
             
-            <div class="tab-pane fade active in" id="normal">
+            <div class="tab-pane active in" id="normal">
                 
                 <p>To start a new day, please enter your <strong>office entrance</strong> date.</p>
                 
@@ -42,15 +42,15 @@
                 
             </div>
             
-            <div class="tab-pane fade" id="leave">
+            <div class="tab-pane" id="leave">
                 
-                <?php #include_component ('WHUser_Day', 'newLeaveRequest', array('date'=>$date)); ?>LATER!
+                <?php include_component ('workingHourLeave', 'newRequest', array('date'=>$date)); ?>
                                                 
             </div><!-- #leave -->
             
         </div><!-- .tab-content -->
     
     
-    </div><!-- .span8 -->
+    </div><!-- .span9 -->
 
 </div><!-- .row -->
