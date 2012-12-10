@@ -12,16 +12,42 @@
     
 <?php else: ?>
 
-        <a 
-        class='<?php echo $class; ?>'
-        onclick="if (confirm('<?php echo $text; ?>')) parent.location='<?php echo $url; ?>' "
-        >
-            <?php if ($iconClass): ?>
-                <i class="<?php echo $iconClass; ?>"></i>
-            <?php endif; ?>
+    <?php $id = str_replace(array('/','.'),"",$url); ?>
+
+    <!-- Button to trigger modal -->
+    
+    <a href="#<?php echo $id; ?>Modal" role="button" class="<?php echo $class; ?>" data-toggle="modal">
+        
+        <?php if ($iconClass): ?>
+            <i class="<?php echo $iconClass; ?>"></i>
+        <?php endif; ?>
+        
+        <?php echo $label; ?>
+    </a>
+     
+    <!-- Modal -->
+    
+    <div 
+        id="<?php echo $id; ?>Modal" 
+        class="modal hide" 
+        tabindex="-1" 
+        role="dialog" 
+        aria-labelledby="myModalLabel" 
+        aria-hidden="true"
+    >
+        <div class="modal-body">
+            <p><?php echo $text; ?></p>
+        </div>
+        
+        <div class="modal-footer">
             
-            <?php echo $label; ?>
+            <a class="btn btn-primary" href="<?php echo $url; ?>">
+                <?php echo $label; ?>
+            </a>
             
-        </a>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            
+        </div>
+    </div>
 
 <?php endif; ?>
