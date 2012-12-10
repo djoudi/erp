@@ -58,11 +58,22 @@ workingHourLeave_new:
         action: newRequest
 
 workingHourLeave_info:
-    url: /wh/leave/info/:leave_id
+    url: /wh/leave/:leave_id/info
     param:
         module: workingHourLeave
         action: showInfo
 
+workingHourLeave_cancel:
+    url: /wh/leave/:id/cancel
+    param:
+        module: workingHourLeave
+        action: cancel
+
+workingHourLeave_send:
+    url: /wh/leave/:id/send
+    param:
+        module: workingHourLeave
+        action: send
 
 
 # workingHourLeaveLimit

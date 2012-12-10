@@ -17,7 +17,9 @@ class workingHourLeaveActions extends sfActions
         if (!$err)
         {
             $values = $form->getValues();
+            
             $start = new DateTime ($values["start_Date"]);
+            
             $end = new DateTime ($values["end_Date"]);
             
             if ($start > $end)
@@ -84,8 +86,10 @@ class workingHourLeaveActions extends sfActions
             } while ( $day <= $end );
         }
         
+        $this->getUser()->setFlash('leaveRequestId', $leaveObject['id']);
         return $err;
     }
+    
     
     public function executeNewStandalone (sfWebRequest $request)
     {
@@ -133,6 +137,7 @@ class workingHourLeaveActions extends sfActions
         
         if ($request->isMethod('post'))
         {
+            $this->id = 0;
             if ($err = $this->processRequestForm ($request, $this->form))
             {
                 $this->getUser()->setFlash('error', $err);
@@ -140,7 +145,10 @@ class workingHourLeaveActions extends sfActions
             else
             {
                 $this->getUser()->setFlash('success', "Your leave request is created!");
-                $this->redirect ($this->getController()->genUrl('homepage')); //leaveinfo
+                
+                $id = $this->getUser()->getFlash('leaveRequestId');
+                
+                $this->redirect ($this->getController()->genUrl('@workingHourLeave_info?leave_id='.$id));
             }
         }
     }
@@ -148,9 +156,84 @@ class workingHourLeaveActions extends sfActions
     
     public function executeShowInfo (sfWebRequest $request)
     {
-        $this->leaveRequest = Doctrine::getTable ('LeaveRequest')->findOneById ($request->getParameter('leave_id'));
+        $id = $request->getParameter ('leave_id');
+        
+        $this->leaveRequest = Doctrine::getTable ('LeaveRequest')->getActiveLeave ($id);
         
         $this->forward404Unless ($this->leaveRequest);
+        
+        $this->date = $this->leaveRequest['start_Date'];
+    }
+    
+    
+    public function executeSend (sfWebRequest $request)
+    {
+        $id = $request->getParameter ('id');
+        
+        $leaveRequest = Doctrine::getTable ('LeaveRequest')->getDraftLeave ($id);
+        
+        $this->forward404Unless ($leaveRequest);
+        
+        $date = new DateTime ($leaveRequest["start_Date"]);
+        
+        $end = new DateTime ($leaveRequest["end_Date"]);
+        
+        do
+        {
+            $dayDate = $date->format('Y-m-d');
+            
+            $day = Doctrine::getTable('WorkingHourDay')->getDraftDate($dayDate);
+            
+            if ($day)
+            {
+                $day->setStatus('Pending');
+                
+                $day->save();
+            }
+            
+            $date->add(new DateInterval('P1D'));
+        }
+        while ( $date <= $end );
+        
+        $leaveRequest->setStatus('Pending');
+        
+        $leaveRequest->save();
+        
+        $this->getUser()->setFlash ('notice', 'Leave request with ID '.$id.' is sent for approval.');
+        
+        $this->redirect ($this->getController()->genUrl('@workingHourDay_check'));
+    }
+    
+    
+    public function executeCancel (sfWebRequest $request)
+    {
+        $id = $request->getParameter ('id');
+        
+        $leaveRequest = Doctrine::getTable ('LeaveRequest')->getDraftLeave ($id);
+        
+        $this->forward404Unless ($leaveRequest);
+        
+        $date = new DateTime ($leaveRequest["start_Date"]);
+        
+        $end = new DateTime ($leaveRequest["end_Date"]);
+        
+        do
+        {
+            $dayDate = $date->format('Y-m-d');
+            
+            $day = Doctrine::getTable('WorkingHourDay')->getDraftDate($dayDate);
+            
+            if ($day) $day->delete();
+            
+            $date->add(new DateInterval('P1D'));
+        }
+        while ( $date <= $end );
+        
+        $leaveRequest->delete();
+        
+        $this->getUser()->setFlash ('notice', 'Leave request with ID '.$id.' deleted.');
+        
+        $this->redirect ($this->getController()->genUrl('@workingHourDay_check'));
     }
     
 }

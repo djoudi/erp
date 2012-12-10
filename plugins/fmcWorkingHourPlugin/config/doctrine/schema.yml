@@ -248,13 +248,13 @@ LeaveRequest:
         end_Date:
             type: date
             notnull: true
-        comment:
-            type: string(250)
-            notnull: false
         day_Count:
             type: integer
             notnull: true
             default: 0
+        comment:
+            type: string(250)
+            notnull: false
         report_Date:
             type: date
             notnull: false
