@@ -93,6 +93,7 @@ class workingHourLeaveActions extends sfActions
     
     public function executeNewStandalone (sfWebRequest $request)
     {
+        $this->date = date ("Y-m-d");
     }
     
     
