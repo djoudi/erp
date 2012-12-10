@@ -14,7 +14,7 @@ tatiller için recurring olacak mı? eğer olursa:
     şemada recurring diye bir field
     list'de tüm kayıtlar için bu yıl'ı göster (default) veya tüm yılları göster diye seçenek olsun
     
-    
+What will happen about half-day vacations like religious holidays' arefe and 29-oct republic day
 
 
 ---------------
