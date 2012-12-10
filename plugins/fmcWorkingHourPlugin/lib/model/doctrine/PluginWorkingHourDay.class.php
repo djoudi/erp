@@ -20,7 +20,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
             ->addWhere ('r.recordType = ?', 'Work');
-            #->orderBy ('r.start_Time ASC'); // is necessery?
         return $q->execute();
     }
     
@@ -31,7 +30,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
             ->addWhere ('r.recordType <> ?', 'Work');
-            #->orderBy ('r.start_Time ASC'); // is necessery?
         return $q->execute();
     }
     
@@ -41,7 +39,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            #->orderBy ('r.start_Time ASC') // is necessery?
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
         return $q->fetchOne();
@@ -53,7 +50,6 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
         $q = Doctrine::getTable ('WorkingHourRecord')
             ->createQuery ('r')
             ->addWhere ('r.day_id = ?', $this->getId())
-            #->orderBy ('r.start_Time ASC') // is necessery?
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
         return $q->fetchOne();

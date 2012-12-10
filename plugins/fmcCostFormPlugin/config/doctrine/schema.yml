@@ -48,7 +48,7 @@ CostFormItem:
         SoftDelete: ~
         Versionable: ~
     options:
-        orderBy: costForm_id, cost_Date, currency_id ASC
+        orderBy: created_at DESC
     columns:
         costForm_id:
             type: integer

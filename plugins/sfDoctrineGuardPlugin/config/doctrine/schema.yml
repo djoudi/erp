@@ -1,6 +1,8 @@
 ######################################################
 
 sfGuardGroup:
+    options:
+        orderBy: name ASC
     actAs:
         Auditable: ~
         SoftDelete: ~

@@ -2,11 +2,15 @@ SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+
+UPDATE `cost_form_item` SET `invoice_date` = null WHERE `invoice_date` = "0000-00-00";
+UPDATE `cost_form_item` SET `invoice_no` = null WHERE  `invoice_no` =  "";
 
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 10;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 11;

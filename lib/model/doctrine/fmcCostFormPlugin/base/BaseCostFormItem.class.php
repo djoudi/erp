@@ -128,7 +128,7 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
              'default' => false,
              ));
 
-        $this->option('orderBy', 'costForm_id, cost_Date, currency_id ASC');
+        $this->option('orderBy', 'created_at DESC');
     }
 
     public function setUp()

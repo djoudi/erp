@@ -11,7 +11,7 @@ class PluginProjectTable extends Doctrine_Table
     public function getActive()
     {
         return $this->CreateQuery('p')
-            ->where('p.status = ?', 'Active')
+            ->addWhere('p.status = ?', 'Active')
             ->execute();
     }
     

@@ -16,7 +16,6 @@ class costFormReportActions extends sfActions
             ->leftJoin ('cf.Projects p')
             ->leftJoin ('cf.Users u')
             ->limit ($this->resultlimit)
-            ->orderBy ('cfi.created_at DESC')
             ->addWhere ('cf.issent = ?', true);
         
         $filterClass = new FmcFilter('filter_costFormItemReport_list');
