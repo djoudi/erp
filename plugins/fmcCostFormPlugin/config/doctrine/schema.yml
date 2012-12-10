@@ -13,6 +13,9 @@ CostForm:
             notnull: true
         advanceRecieved:
             type: decimal
+            scale:  2
+            notnull: false
+            default: NULL
         currency_id:
             type: integer
             notnull: true
@@ -61,6 +64,7 @@ CostFormItem:
             notnull: true
         amount:
             type: decimal
+            scale:  2
             notnull: true
         currency_id:
             type: integer

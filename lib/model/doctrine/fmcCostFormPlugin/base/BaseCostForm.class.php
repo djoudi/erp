@@ -53,6 +53,8 @@ abstract class BaseCostForm extends MyDoctrineRecord
              ));
         $this->hasColumn('advanceRecieved', 'decimal', null, array(
              'type' => 'decimal',
+             'scale' => 2,
+             'notnull' => false,
              ));
         $this->hasColumn('currency_id', 'integer', null, array(
              'type' => 'integer',

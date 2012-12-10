@@ -305,6 +305,8 @@ WorkingHourDay:
             default: NULL
         multiplier:
             type: decimal
+            scale:  4
+            type: decimal
             notnull: true
             default: 1
     relations:

@@ -80,6 +80,7 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
              ));
         $this->hasColumn('amount', 'decimal', null, array(
              'type' => 'decimal',
+             'scale' => 2,
              'notnull' => true,
              ));
         $this->hasColumn('currency_id', 'integer', null, array(

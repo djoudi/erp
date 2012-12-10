@@ -67,6 +67,7 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              ));
         $this->hasColumn('multiplier', 'decimal', null, array(
              'type' => 'decimal',
+             'scale' => 4,
              'notnull' => true,
              'default' => 1,
              ));
