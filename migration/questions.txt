@@ -9,6 +9,14 @@ kullanıcıların kendi bilgilerini değiştirebilecekleri bir ekran olsun mu? (
 bir kullanıcı bir işi girerken gelecek default worktype, departman varsayılanı mı olsun, yoksa son iş mi?
 ya da bunlardan birini seçebilsin mi kullanıcı?
 
+tatiller için recurring olacak mı? eğer olursa:
+    kayıtlar her yıl otomatik olarak 5 yıl için eğer yoksa oluşturulacak, task + cron ile?
+    şemada recurring diye bir field
+    list'de tüm kayıtlar için bu yıl'ı göster (default) veya tüm yılları göster diye seçenek olsun
+    
+    
+
+
 ---------------
 tekliften
 ---------------
