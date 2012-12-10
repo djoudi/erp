@@ -1,4 +1,4 @@
-<?php slot('title', 'New '.$leaveType ); ?>
+<?php slot('title', 'New '.$leaveType.' Request' ); ?>
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 

@@ -12,6 +12,7 @@ SET time_zone = "+00:00";
 UPDATE `cost_form_item` SET `invoice_date` = null WHERE `invoice_date` = "0000-00-00";
 UPDATE `cost_form_item` SET `invoice_no` = null WHERE  `invoice_no` =  "";
 
+
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 10;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 11;
 DELETE FROM `sf_guard_permission` WHERE `sf_guard_permission`.`id` = 12;
@@ -43,7 +44,7 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 
 
 INSERT IGNORE INTO `leave_type` (`id`, `name`, `default_limit`, `has_report`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-(1, 'Illness with Report', 0, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
+(1, 'Illness with Report', 3, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
 (2, 'Illness without Report', 3, 0, 23, 23, '2012-11-05 22:03:12', '2012-11-06 12:12:48', NULL, 1),
 (3, 'Paid Vacation', 0, 0, 23, 23, '2012-11-05 22:22:54', '2012-11-05 22:22:54', NULL, 1),
 (4, 'Unpaid Vacation', 0, 0, 23, 23, '2012-11-05 22:23:12', '2012-11-06 09:26:37', NULL, 1);
