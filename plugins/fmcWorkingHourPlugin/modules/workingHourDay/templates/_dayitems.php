@@ -30,8 +30,8 @@
                 <td><?php echo $record['recordType']; ?></td>
                 <td><?php echo $record['start_Time']; ?></td>
                 <td><?php echo $record['end_Time']; ?></td>
-                <td><?php echo $record->getProject(); ?></td>
-                <td><?php echo $record->getWorkType(); ?></td>
+                <td><?php #echo $record->getProject(); ?></td>
+                <td><?php #echo $record->getWorkType(); ?></td>
                 <td><?php echo $record['comment']; ?></td>
                 
                 <?php if ($day['status']=="Draft"): ?>

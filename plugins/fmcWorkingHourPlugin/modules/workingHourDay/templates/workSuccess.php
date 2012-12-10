@@ -6,40 +6,46 @@
 
     <div class="span3">
         
-        <h5><?php echo whDayInfo::getGoodDate ($date); ?></h5>
+        <?php if (isset($date) && $date): ?>
         
-        <?php include_partial ('datepicker', array('date'=>$date)); ?>
+            <h5><?php echo whDayInfo::getGoodDate ($date); ?></h5>
+            
+            <?php include_partial ('datepicker', array('date'=>$date)); ?>
+            
+        <?php endif; ?>
         
         <hr />
         
-        <table class="table table-bordered table-condensed table-hover">
-            <tr>
-                <th>Day Status</th>
-                <td><?php echo $day['status']; ?></td>
-            </tr>
-            <tr>
-                <th>Office Entrance</th>
-                <td>
-                    <?php if ($day->getFirst("Entrance")): ?>
-                        <?php echo $day->getFirst("Entrance")->getStartTime(); ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
-            <tr>
-                <th>Office Exit</th>
-                <td>
-                    <?php if ($day->getLast("Exit")): ?>
-                        <?php echo $day->getLast("Exit")->getStartTime(); ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
-            <tr>
-                <th>Day Multiplier</th>
-                <td><?php echo $day['multiplier']; ?></td>
-            </tr>
-        </table>
+        <?php if (isset($day) && $day): ?>
+            <table class="table table-bordered table-condensed table-hover">
+                <tr>
+                    <th>Day Status</th>
+                    <td><?php echo $day['status']; ?></td>
+                </tr>
+                <tr>
+                    <th>Office Entrance</th>
+                    <td>
+                        <?php if ($day->getFirst("Entrance")): ?>
+                            <?php echo $day->getFirst("Entrance")->getStartTime(); ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Office Exit</th>
+                    <td>
+                        <?php if ($day->getLast("Exit")): ?>
+                            <?php echo $day->getLast("Exit")->getStartTime(); ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Day Multiplier</th>
+                    <td><?php echo $day['multiplier']; ?></td>
+                </tr>
+            </table>
+        <?php endif; ?>
         
-        <?php if ($day['status']=="Draft"): ?>        
+        <?php if (isset($day) && $day['status']=="Draft"): ?>        
             <ul class="unstyled">
                 <p>
                     <?php include_partial ('fmcCore/confirmButton', array(
@@ -65,17 +71,21 @@
     
     <div class="span9" style="padding-top: 20px">
         
-        <?php include_partial ('dayitems', array('day'=>$day)); ?>
+        <?php if (isset($day) && $day): ?>
+            <?php include_partial ('dayitems', array('day'=>$day)); ?>
+        <?php endif; ?>
         
         <div class="clearfix"></div>
         
-        <?php if ($day['status']=="Draft"): ?>
-            <?php include_partial ('dayforms', array(
-                'day' => $day, 
-                'workForm' => $workForm, 
-                'entranceForm' => $entranceForm,
-                'exitForm' => $exitForm
-            )); ?>
+        <?php if (isset($day) && $day): ?>
+            <?php if ($day['status']=="Draft"): ?>
+                <?php include_partial ('dayforms', array(
+                    'day' => $day, 
+                    'workForm' => $workForm, 
+                    'entranceForm' => $entranceForm,
+                    'exitForm' => $exitForm
+                )); ?>
+            <?php endif; ?>
         <?php endif; ?>
         
     </div><!-- .span8 -->
