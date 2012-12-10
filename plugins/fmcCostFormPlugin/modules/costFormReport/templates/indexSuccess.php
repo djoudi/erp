@@ -38,7 +38,7 @@
                 <th>Description</th>
                 <th>Amount</th>
                 <th>Receipt No</th>
-                <th>Invoice Status</th>
+                <th>Invoice No</th>
         
                 <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
                     <th></th>

@@ -195,7 +195,12 @@ class costFormProcessActions extends sfActions
                             array_push($this->invoiced, $cfi);
                             
                             $cfi->invoice_No = $input['invoice_No'];
-                            $cfi->invoice_Date = $input['invoice_Date'];
+                            
+                            if ($input['invoice_Date'])
+                                $cfi->invoice_Date = $input['invoice_Date'];
+                            else
+                                $cfi->invoice_Date = NULL;
+                            
                             $cfi->is_Processed = true;
                             $cfi->save();
                         }
