@@ -1,10 +1,15 @@
 <?php slot ('title', "Employee List") ?>
 
+
 <?php slot ('activeClass', "#topmenu_settings"); ?>
 
-<a class="btn btn-primary pull-right" href="<?php echo url_for('employeeManagement_new'); ?>">
-    New Employee
-</a>
+
+<p>
+    <a class="btn btn-primary" href="<?php echo url_for('employeeManagement_new'); ?>">
+        New Employee
+    </a>
+</p>
+
 
 <?php if (!count($items)): ?>
 
