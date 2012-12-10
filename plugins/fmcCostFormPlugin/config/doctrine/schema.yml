@@ -81,8 +81,12 @@ CostFormItem:
             notnull: true
         invoice_No:
             type: string(50)
+            notnull: false
+            default: NULL
         invoice_Date:
             type: date
+            notnull: false
+            default: NULL
         dontInvoice:
             type: boolean
             notnull: false

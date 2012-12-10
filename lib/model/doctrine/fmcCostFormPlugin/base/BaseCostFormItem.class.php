@@ -111,10 +111,12 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
              ));
         $this->hasColumn('invoice_No', 'string', 50, array(
              'type' => 'string',
+             'notnull' => false,
              'length' => 50,
              ));
         $this->hasColumn('invoice_Date', 'date', null, array(
              'type' => 'date',
+             'notnull' => false,
              ));
         $this->hasColumn('dontInvoice', 'boolean', null, array(
              'type' => 'boolean',
