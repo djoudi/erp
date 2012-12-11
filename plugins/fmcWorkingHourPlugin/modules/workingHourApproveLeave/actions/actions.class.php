@@ -3,7 +3,31 @@
 class workingHourApproveLeaveActions extends sfActions
 {
     
-    public function executeApprove (sfWebRequest $request)
+    private function updateStatus ($item, $status)
+    {
+        $item->setStatus ($status);
+        $item->save();
+        
+        foreach ($item->getWorkingHourDay() as $day)
+        {
+            $day->setStatus ($status);
+            $day->save();
+            
+            if ($status == "Accepted")
+            {
+                $work = new WorkingHourRecord();
+                $work->setDay ($day);
+                $work->setRecordType ("Work");
+                $work->setStartTime ("09:00:00");
+                $work->setEndTime ("18:00:00");
+                $work->setProjectId (38); //fmconadmin
+                $work->setWorkTypeId (40); //s7-other
+                $work->save();
+            }
+        }
+    }
+    
+    private function getItem ($request)
     {
         $id = $request->getParameter ('id');
         
@@ -11,9 +35,18 @@ class workingHourApproveLeaveActions extends sfActions
         
         $this->forward404Unless ($item);
         
-        $item->setStatus ('Accepted');
+        return $item;
+    }
+    
+    
+    /* * * End of Private Functions * * */
+    
+    
+    public function executeApprove (sfWebRequest $request)
+    {
+        $item = $this->getItem ($request);
         
-        #$item->save();
+            $this->updateStatus ($item, "Accepted");
         
         $this->getUser()->setFlash ('notice', 'Day approved successfuly.');
         
@@ -23,15 +56,9 @@ class workingHourApproveLeaveActions extends sfActions
     
     public function executeDeny (sfWebRequest $request)
     {
-        $id = $request->getParameter ('id');
+        $item = $this->getItem ($request);
         
-        $item = Doctrine::getTable('LeaveRequest')->getWithIdAndStatus ($id, "Pending");
-        
-        $this->forward404Unless ($item);
-        
-        $item->setStatus ('Denied');
-        
-        #$item->save();
+            $this->updateStatus ($item, "Denied");
         
         $this->getUser()->setFlash ('notice', 'Day denied successfuly.');
         
