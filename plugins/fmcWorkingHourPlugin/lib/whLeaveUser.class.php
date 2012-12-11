@@ -28,10 +28,7 @@ class whLeaveUser
             ->addWhere ('q.user_id = ?', $user_id)
             ->addWhere ('q.leave_id IS NOT NULL')
             ->addWhere ('q.status <> ?', 'Denied');
-            
-            echo "<pre>";
-            print_r( $q->execute()->toArray());
-            echo "</pre>";
+
         return $q->count();
     }
     

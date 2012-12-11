@@ -88,8 +88,7 @@ class workingHourApproveLeaveActions extends sfActions
             ->addWhere ('l.status = ?', "Pending")
             ->limit ($this->resultLimit);
         
-        #$filterClass = new FmcFilter('whFilter_dayRequest');
-        $filterClass = new FmcFilter ('LeaveRequestFormFilter');
+        $filterClass = new FmcFilter ('whFilter_leaveRequest');
     
         $this->items = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
         

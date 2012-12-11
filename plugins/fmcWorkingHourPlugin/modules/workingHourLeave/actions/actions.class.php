@@ -57,14 +57,8 @@ class workingHourLeaveActions extends sfActions
         {
             if ($numdays==0) $err = "You have selected holidays only!";
             
-            /*$leftLimit = whLeaveUser::countAvailableLimit - whLeaveUser::
-            
-            elseif ($numdays > whLeaveUser::countAvailableLimit ($type_id)
-                $err = "You don't have 
-            */
-            $err = whLeaveUser::countUsedReservedLimit($type_id);
-            
-            if (!$err) $err = 11;
+            elseif ($numdays > whLeaveUser::countUsedReservedLimit($type_id))
+                $err = "You don't have enough limit for this leave type!";
         }
         
         if (!$err)
@@ -79,7 +73,6 @@ class workingHourLeaveActions extends sfActions
             
             do {
                 $dayDate = $day->format('Y-m-d');
-                var_dump( $dayDate );
                 
                 if ( ! whDayInfo::isHoliday ($dayDate) )
                 {
@@ -148,7 +141,7 @@ class workingHourLeaveActions extends sfActions
         
         if ($request->isMethod('post'))
         {
-            $this->id = 0;
+            //$this->id = 0; - whats this?
             if ($err = $this->processRequestForm ($request, $this->form, $type_id))
             {
                 $this->getUser()->setFlash('error', $err);
