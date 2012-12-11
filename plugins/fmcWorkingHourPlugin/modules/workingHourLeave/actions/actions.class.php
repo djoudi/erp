@@ -237,4 +237,11 @@ class workingHourLeaveActions extends sfActions
         $this->redirect ($this->getController()->genUrl('@workingHourDay_check'));
     }
     
+    public function executeMyRequests (sfWebRequest $request)
+    {
+        $this->leaveRequests = Doctrine::getTable ('LeaveRequest')->getRequestsForUser ();
+        
+        $this->date = date ("Y-m-d");
+    }
+    
 }

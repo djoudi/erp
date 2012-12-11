@@ -27,6 +27,11 @@ all:
                             route: @workingHourLeave_newStandAlone
                             requires_auth: true
                             credentials: ["Working Hours"]
+                        13:
+                            label: My requests
+                            route: @workingHourLeave_myRequests
+                            requires_auth: true
+                            credentials: ["Working Hours"]
                         90:
                             label: Settings
                             attributes:

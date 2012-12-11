@@ -77,26 +77,31 @@
 <?php endif; ?>
 
 
-<?php if ($leaveRequest['status']=="Draft"): ?>
-
     <div class="form-actions">
 
-        <?php include_partial ('fmcCore/confirmButton', array(
-            'class' => 'btn btn-danger btn-small',
-            'url' => url_for('workingHourLeave_cancel',array('id'=>$leaveRequest['id'])),
-            'label' => 'Cancel Request',
-            'text' => 'Are you sure you want to cancel this leave request?',
-            "iconClass" => 'icon-remove icon-white'
-        )); ?>
+        <?php $url = url_for('workingHourLeave_myRequests'); ?>
+        <a class="btn pull-left" href="<?php echo $url; ?>">Show My Requests</a>
+
+        <?php if ($leaveRequest['status']=="Draft"): ?>
         
-        <?php include_partial ('fmcCore/confirmButton', array(
-            'class' => 'btn btn-success btn-small',
-            'url' => url_for('workingHourLeave_send',array('id'=>$leaveRequest['id'])),
-            'label' => 'Send for Approve',
-            'text' => 'Are you sure you want to send this day for approval?',
-            "iconClass" => 'icon-ok icon-white'
-        )); ?>
+            <?php include_partial ('fmcCore/confirmButton', array(
+                'class' => 'btn btn-danger btn-small pull-right',
+                'url' => url_for('workingHourLeave_cancel',array('id'=>$leaveRequest['id'])),
+                'label' => 'Cancel Request',
+                'text' => 'Are you sure you want to cancel this leave request?',
+                "iconClass" => 'icon-remove icon-white'
+            )); ?>
+            
+            <?php include_partial ('fmcCore/confirmButton', array(
+                'class' => 'btn btn-success btn-small pull-right',
+                'url' => url_for('workingHourLeave_send',array('id'=>$leaveRequest['id'])),
+                'label' => 'Send for Approve',
+                'text' => 'Are you sure you want to send this day for approval?',
+                "iconClass" => 'icon-ok icon-white'
+            )); ?>
+
+        <?php endif; ?>
         
     </div>
 
-<?php endif; ?>
+

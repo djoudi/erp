@@ -75,6 +75,12 @@ workingHourLeave_send:
         module: workingHourLeave
         action: send
 
+workingHourLeave_myRequests:
+    url: /wh/leave/myrequests
+    param:
+        module: workingHourLeave
+        action: myRequests
+
 
 # workingHourLeaveLimit
 
