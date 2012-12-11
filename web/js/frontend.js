@@ -12,10 +12,14 @@ $(document).ready(function()
     
     /* Tablesorter */
         $(".tablesorter").tablesorter( {sortList: [[0,0]]} );
+        $(".tablesorter1a").tablesorter( {sortList: [[0,0]]} );
         $(".tablesorter1d").tablesorter( {sortList: [[0,1]]} );
         $(".tablesorter2a").tablesorter( {sortList: [[1,0]]} );
+        $(".tablesorter2d").tablesorter( {sortList: [[1,1]]} );
         $(".tablesorter3a").tablesorter( {sortList: [[2,0]]} );
+        $(".tablesorter3d").tablesorter( {sortList: [[2,1]]} );
         $(".tablesorter4a").tablesorter( {sortList: [[3,0]]} );
+        $(".tablesorter4d").tablesorter( {sortList: [[3,1]]} );
     /* End */
     
     

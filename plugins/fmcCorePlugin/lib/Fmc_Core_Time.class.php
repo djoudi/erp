@@ -17,4 +17,21 @@ class Fmc_Core_Time
         return $epoch ? $epoch : 0;
     }
     
+    public static function getTimeDifEasy ($end, $start)
+    {
+        $startTS = Fmc_Core_Time::TimeToStamp ($start);
+        
+        $endTS = Fmc_Core_Time::TimeToStamp ($end);
+        
+        $dif = $endTS - $startTS;
+        
+        $h = ( $dif - ($dif % 3600) ) / 3600;
+        
+        $dif -= $h*3600;
+        
+        $m = ( $dif - ($dif % 60) ) / 60;
+        
+        return $h."h ".$m."m";
+    }
+        
 }

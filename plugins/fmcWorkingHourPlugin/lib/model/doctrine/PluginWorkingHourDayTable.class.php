@@ -9,6 +9,18 @@ class PluginWorkingHourDayTable extends Doctrine_Table
     }
     
     
+    public function getWithIdAndStatus ($id, $status = NULL)
+    {
+        $q = $this->createQuery ('whd')
+            ->addWhere ('whd.id = ?', $id);
+        
+        if ($type) $q->addWhere ('whd.status')
+            ->addWhere ('whd.status = ?', $status);
+        
+        return $q->fetchOne();
+    }
+    
+    
     public function getDraftDate ($date, $user_id = NULL)
     {
         if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();

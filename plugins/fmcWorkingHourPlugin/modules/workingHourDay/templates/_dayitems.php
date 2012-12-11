@@ -4,7 +4,7 @@
     
 <?php else: ?>
 
-<table class="table table-bordered table-hover table-condensed pull-left">
+<table class="table table-bordered table-hover table-condensed">
     
     <thead>
         <tr>
@@ -69,3 +69,5 @@
 </table>
 
 <?php endif; ?>
+
+<div class="clearfix"></div>

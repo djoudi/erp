@@ -29,7 +29,13 @@
     
     
     <?php if ($count): ?>
+    
         <strong><?php echo $count; ?></strong> results found. &nbsp;
+        
+    <?php else: ?>
+    
+        No results found.
+        
     <?php endif; ?>
     
     
