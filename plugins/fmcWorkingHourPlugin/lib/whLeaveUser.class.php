@@ -2,6 +2,7 @@
 
 class whLeaveUser
 {
+    
     public static function countUsedLimit ($type_id, $user_id = NULL)
     {
         if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
@@ -15,6 +16,25 @@ class whLeaveUser
             ->addWhere ('q.status = ?', 'Accepted');
         return $q->count();
     }
+    
+    public static function countUsedReservedLimit ($type_id, $user_id = NULL)
+    {
+        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        
+        $q = Doctrine::getTable ('WorkingHourDay')
+            ->createQuery ('q')
+            ->leftJoin ('q.LeaveRequest l')
+            ->addWhere ('l.type_id = ?', $type_id)
+            ->addWhere ('q.user_id = ?', $user_id)
+            ->addWhere ('q.leave_id IS NOT NULL')
+            ->addWhere ('q.status <> ?', 'Denied');
+            
+            echo "<pre>";
+            print_r( $q->execute()->toArray());
+            echo "</pre>";
+        return $q->count();
+    }
+    
     
     public static function countAvailableLimit ($type_id, $user_id = NULL)
     {

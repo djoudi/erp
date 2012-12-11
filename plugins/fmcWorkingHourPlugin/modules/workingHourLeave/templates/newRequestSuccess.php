@@ -19,9 +19,9 @@
             </table>
             
             <div class="form-actions">
-                <a class="btn" href="<?php echo url_for('workingHourDay_check',array('date'=>$date)); ?>">
-                    Go Back
-                </a>
+                
+                <a class="btn" href="javascript:history.back()">Go Back</a>
+                
                 <input class="btn btn-primary" type="submit" value="Create Request" />
             </div>
             

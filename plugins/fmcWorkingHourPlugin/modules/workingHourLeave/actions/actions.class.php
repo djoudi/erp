@@ -3,7 +3,7 @@
 class workingHourLeaveActions extends sfActions
 {
     
-    public function processRequestForm ($request, $form)
+    public function processRequestForm ($request, $form, $type_id)
     {
         $user = sfContext::getInstance()->getUser();
         
@@ -56,6 +56,15 @@ class workingHourLeaveActions extends sfActions
         if (!$err)
         {
             if ($numdays==0) $err = "You have selected holidays only!";
+            
+            /*$leftLimit = whLeaveUser::countAvailableLimit - whLeaveUser::
+            
+            elseif ($numdays > whLeaveUser::countAvailableLimit ($type_id)
+                $err = "You don't have 
+            */
+            $err = whLeaveUser::countUsedReservedLimit($type_id);
+            
+            if (!$err) $err = 11;
         }
         
         if (!$err)
@@ -84,9 +93,10 @@ class workingHourLeaveActions extends sfActions
                 $day->add(new DateInterval('P1D'));
                 
             } while ( $day <= $end );
+            
+            $this->getUser()->setFlash('leaveRequestId', $leaveObject['id']);
         }
         
-        $this->getUser()->setFlash('leaveRequestId', $leaveObject['id']);
         return $err;
     }
     
@@ -139,7 +149,7 @@ class workingHourLeaveActions extends sfActions
         if ($request->isMethod('post'))
         {
             $this->id = 0;
-            if ($err = $this->processRequestForm ($request, $this->form))
+            if ($err = $this->processRequestForm ($request, $this->form, $type_id))
             {
                 $this->getUser()->setFlash('error', $err);
             }
@@ -236,6 +246,7 @@ class workingHourLeaveActions extends sfActions
         
         $this->redirect ($this->getController()->genUrl('@workingHourDay_check'));
     }
+    
     
     public function executeMyRequests (sfWebRequest $request)
     {
