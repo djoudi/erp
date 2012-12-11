@@ -239,7 +239,10 @@ class workingHourLeaveActions extends sfActions
     
     public function executeMyRequests (sfWebRequest $request)
     {
-        $this->leaveRequests = Doctrine::getTable ('LeaveRequest')->getRequestsForUser ();
+        $this->allRequests = Doctrine::getTable ('LeaveRequest')->getRequestsForUser ();
+        
+        $this->acceptedRequests = Doctrine::getTable ('LeaveRequest')
+            ->getRequestsForUser ("Accepted");
         
         $this->date = date ("Y-m-d");
     }

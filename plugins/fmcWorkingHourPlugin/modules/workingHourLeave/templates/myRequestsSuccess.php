@@ -11,69 +11,34 @@
     
     <div class="span9" style="padding-top: 20px">
         
-        <?php if (!count($leaveRequests)): ?>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#all" data-toggle="tab">
+                    All Requests
+                </a>
+            </li>
+            <li class="">
+                <a href="#accepted" data-toggle="tab">
+                    Accepted Requests
+                </a>
+            </li>
+        </ul>
         
-            <p>No requests found.</p>
-        
-        <?php else: ?>
-        
-            <table class="tablesorter3a table table-bordered table-condensed table-hover">
-                <thead>
-                    <th>Status</th>
-                    <th>Type</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Comment</th>
-                    <th>Report Date</th>
-                    <th>Report Number</th>
-                    <th></th>
-                </thead>
+        <div class="tab-content">
+            
+            <div class="tab-pane active in" id="all">
                 
-                <tbody>
-                    <?php foreach ($leaveRequests as $request): ?>
-                        <tr>
-                            <td>
-                                <?php echo $request['status']; ?>
-                            </td>
-                            <td>
-                                <?php echo $request->getLeaveType(); ?>
-                            </td>
-                            <td>
-                                <?php echo $request['start_Date']; ?>
-                            </td>
-                            <td>
-                                <?php echo $request['end_Date']; ?>
-                            </td>
-                            <td>
-                                <?php echo $request['comment']; ?>
-                            </td>
-                            
-                            <?php if ($request['LeaveType']['has_Report']): ?>
-                            
-                                <td>
-                                    <?php echo $request['report_Date']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $request['report_Number']; ?>
-                                </td>
-                                
-                            <?php else: ?>
-                                
-                                <td colspan="2"></td>
-                                
-                            <?php endif; ?>
-                            
-                            <td>
-                                <?php $url = url_for ('workingHourLeave_info',array('leave_id'=>$request['id'])); ?>
-                                <a href="<?php echo $url; ?>">View</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
+                <?php include_partial ('leaveRequestsInfo', array('leaveRequests'=>$allRequests)); ?>
+                
+            </div>
+            
+            <div class="tab-pane" id="accepted">
+                
+                <?php include_partial ('leaveRequestsInfo', array('leaveRequests'=>$acceptedRequests)); ?>
+                                                
+            </div>
         
-            </table>
-        
-        <?php endif; ?>
+        </div>
         
     </div><!-- .span9 -->
 

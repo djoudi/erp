@@ -32,12 +32,15 @@ class PluginLeaveRequestTable extends Doctrine_Table
         return $q->fetchOne();
     }
     
-    public function getRequestsForUser ($user_id = NULL)
+    public function getRequestsForUser ($status = NULL, $user_id = NULL)
     {
         if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
         $q = $this->createQuery ('l')
             ->addWhere ('l.user_id = ?', $user_id);
+        
+        if ($status)
+            $q->addWhere ('l.status = ?', $status);
         
         return $q->execute();
     }
