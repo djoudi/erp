@@ -11,6 +11,10 @@
     
     <div class="span9" style="padding-top: 20px">
 
+        <a class="btn btn-info pull-right" href="<?php echo url_for('workingHourLeave_myRequests'); ?>">
+            Show My Requests
+        </a>
+        
         <?php include_component ('workingHourLeave', 'newRequest'); ?>
 
     </div><!-- .span9 -->

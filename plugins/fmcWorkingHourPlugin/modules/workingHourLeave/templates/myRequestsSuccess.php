@@ -11,6 +11,10 @@
     
     <div class="span9" style="padding-top: 20px">
         
+        <a class="btn btn-success pull-right" href="<?php echo url_for('workingHourLeave_newStandAlone'); ?>">
+            New Leave Request
+        </a>
+        
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="#all" data-toggle="tab">
