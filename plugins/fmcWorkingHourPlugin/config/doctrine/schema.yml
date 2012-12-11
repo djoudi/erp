@@ -229,7 +229,7 @@ LeaveRequest:
         SoftDelete: ~
         Versionable: ~
     options:
-        orderBy: start_Date ASC
+        orderBy: start_Date DESC
     columns:
         user_id:
             type: integer
@@ -286,7 +286,7 @@ WorkingHourDay:
         SoftDelete: ~
         Versionable: ~
     options:
-        orderBy: date ASC
+        orderBy: date DESC
     columns:
         user_id:
             type: integer

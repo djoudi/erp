@@ -8,6 +8,19 @@ class PluginLeaveRequestTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginLeaveRequest');
     }
     
+    
+    public function getWithIdAndStatus ($id, $status = NULL)
+    {
+        $q = $this->createQuery ('l')
+            ->addWhere ('l.id = ?', $id);
+        
+        if ($status)
+            $q->addWhere ('l.status = ?', $status);
+        
+        return $q->fetchOne();
+    }
+    
+    
     public function getActiveLeave ($id, $user_id = NULL)
     {
         if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();

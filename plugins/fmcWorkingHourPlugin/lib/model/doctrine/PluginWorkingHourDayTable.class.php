@@ -14,8 +14,8 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         $q = $this->createQuery ('whd')
             ->addWhere ('whd.id = ?', $id);
         
-        if ($type) $q->addWhere ('whd.status')
-            ->addWhere ('whd.status = ?', $status);
+        if ($status)
+            $q->addWhere ('whd.status = ?', $status);
         
         return $q->fetchOne();
     }
