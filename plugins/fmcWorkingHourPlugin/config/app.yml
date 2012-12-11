@@ -28,7 +28,7 @@ all:
                             requires_auth: true
                             credentials: ["Working Hours"]
                         13:
-                            label: My requests
+                            label: My leave requests
                             route: @workingHourLeave_myRequests
                             requires_auth: true
                             credentials: ["Working Hours"]
