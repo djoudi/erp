@@ -14,7 +14,9 @@
 #leave_request_report_Date_day,
 #leave_request_report_Date_month,
 #leave_request_report_Received_day,
-#leave_request_report_Received_month
+#leave_request_report_Received_month,
+#working_hour_day_filters_date_day,
+#working_hour_day_filters_date_month
 {
     width: 50px;
 }
@@ -22,7 +24,8 @@
 #leave_request_start_Date_year,
 #leave_request_end_Date_year,
 #leave_request_report_Date_year,
-#leave_request_report_Received_year
+#leave_request_report_Received_year,
+#working_hour_day_filters_date_year
 {
     width: 70px;
 }

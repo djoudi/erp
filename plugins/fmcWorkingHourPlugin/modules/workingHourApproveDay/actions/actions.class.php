@@ -63,9 +63,7 @@ class workingHourApproveDayActions extends sfActions
             ->orderBy ('r.start_Time, recordType ASC')
             ->limit ($this->resultLimit);
         
-        #$filterClass = new FmcFilter('filter_costFormItemReport_list');
-        
-        $filterClass = new FmcFilter('WorkingHourDayFormFilter');
+        $filterClass = new FmcFilter('whFilter_dayRequest');
     
         $this->items = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
         
