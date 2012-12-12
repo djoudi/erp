@@ -4,6 +4,16 @@ workingHourLeave_exportExcel:
         module: workingHourLeave
         action: exportExcel
 
+
+workingHourReport_dailyExcel:
+    url: /wh/reports/daily/:date/excel
+    param:
+        module: workingHourReport
+        action: dailyExcel
+
+
+
+
 # workingHourReport
 
 workingHourReport_daily:
@@ -11,9 +21,6 @@ workingHourReport_daily:
     param:
         module: workingHourReport
         action: daily
-
-
-
 
 # workingHourDay
 

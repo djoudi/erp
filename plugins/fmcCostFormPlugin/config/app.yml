@@ -1,69 +1,63 @@
 all:
-  costForm:
-    status: 
-      NotSent: 'Not Sent'
-      Sent: 'Sent for Invoicing'
-      Processing: 'Partially Invoiced'
-      Processed: 'Invoiced'
-  
-  #ioMenuPlugin
-  menus:
-    topmenu:
-      children:
-        2:
-          label: Cost Forms
-          route: "#"
-          requires_auth: true
-          attributes:
-            class: "dropdown"
-            id: topmenu_costforms
-          credentials: [["Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management"]]
-          children:
-            01:
-              label: My Costs
-              attributes:
-                class: "nav-header"
-              requires_auth: true
-              credentials: [Cost Forms]
-            02:
-              label: New cost form
-              route: @costFormUser_new
-              requires_auth: true
-              credentials: ["Cost Forms"]
-            03:
-              label: List my costs
-              route: @costFormUser_list
-              requires_auth: true
-              credentials: ["Cost Forms"]
-
-            10:
-              attributes:
-                class: "divider"
-            11:
-              label: Employee Costs
-              attributes: { class: "nav-header" }
-              requires_auth: true
-              credentials: ["Cost Form Invoicing"]
-            12:
-              label: Start invoicing
-              route: @costFormProcess_filter
-              requires_auth: true
-              credentials: ["Cost Form Invoicing"]
-            13:
-              label: My last invoicing
-              route: @costFormProcess_report
-              requires_auth: true
-              credentials: ["Cost Form Invoicing"]
-            20:
-              attributes:
-                class: "divider"
-            21:
-              label: Cost Reports
-              attributes: { class: "nav-header" }
-              requires_auth: true
-              credentials: ["Cost Form Reports"]
-            22:
-              label: Cost Reports
-              route: @costFormReport_index
-              requires_auth: true
-              credentials: ["Cost Form Reports"]
+    costForm:
+        status: 
+            NotSent: 'Not Sent'
+            Sent: 'Sent for Invoicing'
+            Processing: 'Partially Invoiced'
+            Processed: 'Invoiced'
+    
+    #ioMenuPlugin
+    menus:
+        topmenu:
+            children:
+                2:
+                    label: Cost Forms
+                    route: "#"
+                    requires_auth: true
+                    attributes:
+                        class: "dropdown"
+                    id: topmenu_costforms
+                    credentials: [["Cost Forms", "Cost Form Invoicing", "Cost Form Reports", "Cost Form Management"]]
+                    children:
+                        01:
+                            label: My Costs
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: [Cost Forms]
+                        02:
+                            label: New cost form
+                            route: @costFormUser_new
+                            requires_auth: true
+                            credentials: ["Cost Forms"]
+                        03:
+                            label: List my costs
+                            route: @costFormUser_list
+                            requires_auth: true
+                            credentials: ["Cost Forms"]
+                        11:
+                            label: Employee Costs
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Cost Form Invoicing"]
+                        12:
+                            label: Start invoicing
+                            route: @costFormProcess_filter
+                            requires_auth: true
+                            credentials: ["Cost Form Invoicing"]
+                        13:
+                            label: My last invoicing
+                            route: @costFormProcess_report
+                            requires_auth: true
+                            credentials: ["Cost Form Invoicing"]
+                        21:
+                            label: Cost Reports
+                            attributes: { class: "nav-header" }
+                            requires_auth: true
+                            credentials: ["Cost Form Reports"]
+                        22:
+                            label: Cost Reports
+                            route: @costFormReport_index
+                            requires_auth: true
+                            credentials: ["Cost Form Reports"]

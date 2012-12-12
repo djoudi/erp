@@ -32,36 +32,41 @@
                             <?php echo $item['WorkingHourDay'][0]['status']; ?>
                         </td>
                         <td>
-                            <?php $status = $item['WorkingHourDay'][0]['leave_id'] ? "Leave" : "Work"; ?>
-                            <?php echo $status; ?>
+                            <?php $type = $item['WorkingHourDay'][0]['leave_id'] ? "Leave" : "Work"; ?>
+                            <?php echo $type; ?>
                         </td>
                         <td>
-                            <?php if ($status == "Leave"): ?>
+                            <?php if ($type == "Leave"): ?>
+                            
                                 <?php echo $item['WorkingHourDay'][0]['LeaveRequest']['LeaveType']['name']; ?>
+                                
                             <?php else: ?>
                             
                                 <?php $records = $item['WorkingHourDay'][0]['WorkingHourRecords']; ?>
                                 
+                                <?php echo whDayInfo::getDayIORegular ($records); ?>
                                 
-                                <?php foreach ($records as $index=>$record): ?>
-                                    
-                                    <?php if ($record['recordType']!="Work"): ?>
-                                    
-                                        <?php echo substr( $record['start_Time'] , 0 , 5 ); ?>
-                                        
-                                        <?php if ($record['recordType']=="Entrance") echo " - ";
-                                            elseif ( $index < (count($records)-1) ) echo ", "; ?>
-                                    
-                                    <?php endif; ?>
-                                    
-                                <?php endforeach; ?>
-                        
                             <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        
+        <div class="form-actions">
+            
+            <div class="pull-right">
+                
+                <?php $url = url_for('workingHourReport_dailyExcel',array('date'=>$date)); ?>
+                
+                <a class="btn btn-info" href="<?php echo $url; ?>">
+                    Export to Excel
+                </a>
+                
+            </div>
+        
+        </div>
+        
         
     </div><!-- .span9 -->
 

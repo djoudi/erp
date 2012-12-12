@@ -3,6 +3,29 @@
 class whDayInfo
 {
     
+    public static function getDayIORegular ($records)
+    {
+        $string = "";
+        foreach ($records as $index=>$record)
+        {
+            if ($record['recordType']!="Work")
+            {
+                $string .= substr( $record['start_Time'] , 0 , 5 );
+                
+                if ($record['recordType']=="Entrance")
+                {
+                    $string .= "-";
+                }
+                elseif ( $index < (count($records)-1) )
+                {
+                    $string .= ", ";
+                }
+            }
+        }
+        return $string;
+    }
+    
+    
     public static function isHoliday ($date)
     {
         $timestamp = strtotime($date);

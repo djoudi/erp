@@ -9,7 +9,7 @@ all:
                     attributes:
                         class: "dropdown"
                         id: topmenu_workinghours
-                    credentials: [["Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
+                    credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
                     children:
                         10:
                             label: My Working Hours
