@@ -79,9 +79,21 @@
 
     <div class="form-actions">
 
-        <?php $url = url_for('workingHourLeave_myRequests'); ?>
-        <a class="btn pull-left" href="<?php echo $url; ?>">Show My Requests</a>
-
+        <a class="btn pull-left" href="<?php echo url_for('workingHourLeave_myRequests'); ?>">
+            Show My Requests
+        </a>
+        
+        <?php if ($leaveRequest['status']=="Pending"): ?>
+        
+            <div class="pull-right">
+                <a class="btn btn-info" href="<?php echo url_for('workingHourLeave_exportExcel',array('id'=>$leaveRequest['id'])); ?>">
+                    Export to Excel
+                </a>
+            </div>
+        
+        <?php endif; ?>
+        
+        
         <?php if ($leaveRequest['status']=="Draft"): ?>
         
             <div class="pull-right">

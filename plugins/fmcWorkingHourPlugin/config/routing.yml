@@ -1,3 +1,11 @@
+workingHourLeave_exportExcel:
+    url: /wh/leave/:id/exportexcel
+    param:
+        module: workingHourLeave
+        action: exportExcel
+
+
+
 # workingHourDay
 
 workingHourDay_check:
