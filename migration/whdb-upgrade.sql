@@ -100,10 +100,12 @@ INSERT IGNORE INTO `working_hour_work_type` (`id`, `name`, `creater_id`, `update
 (38, 'S5 - Newsletter', 23, 23, '2012-11-07 12:11:40', '2012-11-07 12:11:40', NULL, 1),
 (39, 'S6 - Database management', 23, 23, '2012-11-07 12:11:47', '2012-11-07 12:11:47', NULL, 1),
 (40, 'S7 - Other', 23, 23, '2012-11-07 12:11:55', '2012-11-07 12:11:55', NULL, 1),
-(41, 'X0 - Illness', 23, 23, '2012-11-07 12:12:07', '2012-11-07 12:12:07', NULL, 1);
+(41, 'X0 - Illness', 23, 23, '2012-11-07 12:12:07', '2012-11-07 12:12:07', NULL, 1),
+(42, 'P9 - Other', 23, 23, '2012-11-07 12:10:23', '2012-11-07 12:10:23', NULL, 1);
 
 
-INSERT IGNORE INTO `working_hour_work_type_group` (`worktype_id`, `group_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+
+INSERT INTO `working_hour_work_type_group` (`worktype_id`, `group_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
 (1, 2, 23, 23, '2012-11-07 11:58:05', '2012-11-07 11:58:05', NULL, 1),
 (1, 3, 23, 23, '2012-11-07 11:58:05', '2012-11-07 11:58:05', NULL, 1),
 (1, 4, 23, 23, '2012-11-07 11:58:05', '2012-11-07 11:58:05', NULL, 1),

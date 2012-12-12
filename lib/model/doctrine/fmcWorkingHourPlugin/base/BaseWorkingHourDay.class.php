@@ -72,7 +72,7 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              'default' => 1,
              ));
 
-        $this->option('orderBy', 'date ASC');
+        $this->option('orderBy', 'date DESC');
     }
 
     public function setUp()
