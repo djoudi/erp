@@ -48,6 +48,17 @@ all:
                             route: @workingHourApproveLeave_list
                             requires_auth: true
                             credentials: ["Working Hours Leave Approve"]
+                        30:
+                            label: Reports
+                            attributes:
+                                class: "nav-header"
+                            requires_auth: true
+                            credentials: ["Working Hours Reports"]
+                        31:
+                            label: Daily report
+                            route: @workingHourReport_daily
+                            requires_auth: true
+                            credentials: ["Working Hours Reports"]                            
                         90:
                             label: Settings
                             attributes:

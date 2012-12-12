@@ -59,6 +59,7 @@ all:
       - workingHourLeaveLimit
       - workingHourLeaveType
       - workingHourParameter
+      - workingHourReport
       - workingHourWorkType
 
   # For Login  
