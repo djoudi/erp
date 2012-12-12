@@ -56,8 +56,14 @@ class workingHourLeaveActions extends sfActions
         if (!$err)
         {
             if ($numdays==0) $err = "You have selected holidays only!";
+        }
+        
+        if (!$err)
+        {
+            $used = whLeaveUser::countUsedReservedLimit ($type_id);
+            $available = whLeaveUser::countAvailableLimit ($type_id);
             
-            elseif ($numdays > whLeaveUser::countUsedReservedLimit($type_id))
+            if ($numdays > ($available-$used))
                 $err = "You don't have enough limit for this leave type!";
         }
         

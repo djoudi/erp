@@ -71,6 +71,10 @@ class workingHourApproveLeaveActions extends sfActions
         $this->item = Doctrine::getTable('LeaveRequest')->findOneById ($request->getParameter('id'));
         
         $this->forward404Unless ($this->item);
+        
+        $this->reportForm = new whForm_leaveRequestReport ($this->item);
+        
+        Fmc_Core_Form::Process ($this->reportForm, $request);
     }
     
     

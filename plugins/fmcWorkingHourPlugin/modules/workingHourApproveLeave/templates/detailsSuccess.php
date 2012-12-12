@@ -5,6 +5,7 @@
 
 <h4>Showing Leave Details</h4>
 
+
 <table class="table table-bordered table-condensed table-hover">
     <tr>
         <th>Request No</th>
@@ -46,28 +47,44 @@
 
 
 <?php if ($item['LeaveType']['has_Report']): ?>
-    <table class="table table-bordered table-condensed table-hover">
-        <tr>
-            <th>Report Date</th>
-            <td><?php echo $item['report_Date']; ?></td>
-        </tr>
-        
-        <tr>
-            <th>Report Number</th>
-            <td><?php echo $item['report_Number']; ?></td>
-        </tr>
-        
-        <tr>
-            <th>Report Receive Date</th>
-            <td>
-                <?php if ($item['report_Received']): ?>
-                    <?php echo $item['report_Received']; ?>
-                <?php else: ?>
-                    Not Received
-                <?php endif; ?>
-            </td>
-        </tr>
-    </table>
+
+    <?php if ($sf_user->hasCredential ('Working Hours Leave Approve')): ?>
+    
+        <form class="form-vertical" method="post">
+            <table class="table table-bordered table-condensed table-hover">
+                <?php echo $reportForm; ?>
+            </table>
+            <p>
+                <input class="btn" type="reset" value="Revert Values" />
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </p>
+        </form>
+
+    <?php else: ?>
+
+        <table class="table table-bordered table-condensed table-hover">
+            <tr>
+                <th>Report Date</th>
+                <td><?php echo $item['report_Date']; ?></td>
+            </tr>
+            <tr>
+                <th>Report Number</th>
+                <td><?php echo $item['report_Number']; ?></td>
+            </tr>
+            <tr>
+                <th>Report Receive Date</th>
+                <td>
+                    <?php if ($item['report_Received']): ?>
+                        <?php echo $item['report_Received']; ?>
+                    <?php else: ?>
+                        Not Received
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+    
+    <?php endif; ?>
+    
 <?php endif; ?>
 
 
