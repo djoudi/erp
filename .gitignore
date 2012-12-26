@@ -28,4 +28,5 @@
 .svn
 .lock.file
 *.lock.file
-
+Thumbs.db
+.DS_Store
