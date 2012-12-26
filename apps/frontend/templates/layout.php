@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="<?php echo $sf_user->getCulture() ?>">
+    
     <head>
         <?php include_http_metas() ?>
         <?php include_metas() ?>
@@ -8,6 +10,7 @@
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
     </head>
+    
     <body>
 
 
