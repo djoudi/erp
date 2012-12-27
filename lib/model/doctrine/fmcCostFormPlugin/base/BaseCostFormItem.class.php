@@ -16,8 +16,10 @@
  * @property boolean $is_Processed
  * @property string $invoice_No
  * @property date $invoice_Date
+ * @property integer $invoiced_By
  * @property boolean $dontInvoice
  * @property boolean $isPaid
+ * @property sfGuardUser $Invoicer
  * @property CostForm $CostForms
  * @property Vat $Vats
  * @property Currency $Currencies
@@ -33,8 +35,10 @@
  * @method boolean      getIsProcessed()  Returns the current record's "is_Processed" value
  * @method string       getInvoiceNo()    Returns the current record's "invoice_No" value
  * @method date         getInvoiceDate()  Returns the current record's "invoice_Date" value
+ * @method integer      getInvoicedBy()   Returns the current record's "invoiced_By" value
  * @method boolean      getDontInvoice()  Returns the current record's "dontInvoice" value
  * @method boolean      getIsPaid()       Returns the current record's "isPaid" value
+ * @method sfGuardUser  getInvoicer()     Returns the current record's "Invoicer" value
  * @method CostForm     getCostForms()    Returns the current record's "CostForms" value
  * @method Vat          getVats()         Returns the current record's "Vats" value
  * @method Currency     getCurrencies()   Returns the current record's "Currencies" value
@@ -49,8 +53,10 @@
  * @method CostFormItem setIsProcessed()  Sets the current record's "is_Processed" value
  * @method CostFormItem setInvoiceNo()    Sets the current record's "invoice_No" value
  * @method CostFormItem setInvoiceDate()  Sets the current record's "invoice_Date" value
+ * @method CostFormItem setInvoicedBy()   Sets the current record's "invoiced_By" value
  * @method CostFormItem setDontInvoice()  Sets the current record's "dontInvoice" value
  * @method CostFormItem setIsPaid()       Sets the current record's "isPaid" value
+ * @method CostFormItem setInvoicer()     Sets the current record's "Invoicer" value
  * @method CostFormItem setCostForms()    Sets the current record's "CostForms" value
  * @method CostFormItem setVats()         Sets the current record's "Vats" value
  * @method CostFormItem setCurrencies()   Sets the current record's "Currencies" value
@@ -119,6 +125,10 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
              'type' => 'date',
              'notnull' => false,
              ));
+        $this->hasColumn('invoiced_By', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
+             ));
         $this->hasColumn('dontInvoice', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => false,
@@ -135,6 +145,11 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('sfGuardUser as Invoicer', array(
+             'local' => 'invoiced_By',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasOne('CostForm as CostForms', array(
              'local' => 'costForm_id',
              'foreign' => 'id',

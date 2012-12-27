@@ -168,6 +168,8 @@ class costFormProcessActions extends sfActions
         
         $this->costFormItems = Doctrine::getTable('CostFormItem')->getActiveByProject($this->project->getId());
         
+        $myUser = $this->getUser()->getGuardUser();
+        
         if ($request->isMethod('post'))
         {
             $this->invoiced = array();
@@ -185,6 +187,7 @@ class costFormProcessActions extends sfActions
                             array_push($this->notInvoiced, $cfi);
                             $cfi->dontInvoice = true;
                             $cfi->is_Processed = true;
+                            $cfi->setInvoicedBy ($myUser);
                             $cfi->save();
                         }
                     }
@@ -202,6 +205,7 @@ class costFormProcessActions extends sfActions
                                 $cfi->invoice_Date = NULL;
                             
                             $cfi->is_Processed = true;
+                            $cfi->setInvoicedBy ($myUser);
                             $cfi->save();
                         }
                     }

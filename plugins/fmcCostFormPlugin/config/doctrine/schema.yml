@@ -91,6 +91,10 @@ CostFormItem:
             type: date
             notnull: false
             default: NULL
+        invoiced_By:
+            type: integer
+            notnull: false
+            default: NULL
         dontInvoice:
             type: boolean
             notnull: false
@@ -100,6 +104,12 @@ CostFormItem:
             notnull: false
             default: false
     relations:
+        Invoicer:
+            class: sfGuardUser
+            local: invoiced_By
+            foreign: id
+            foreignAlias: CostFormItems
+            onDelete: CASCADE
         CostForms:
             class: CostForm
             local: costForm_id
