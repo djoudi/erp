@@ -1,8 +1,8 @@
 <?php slot ('title', "Create new cost form") ?>
 
-<script type="text/javascript">
-    $("#topmenu_costforms").addClass("active");
-</script>
+
+<?php slot ('activeClass', "#topmenu_costforms"); ?>
+
 
 <form method="post">
 

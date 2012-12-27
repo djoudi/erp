@@ -1,6 +1,4 @@
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 
 <h4>Showing Leave Details</h4>

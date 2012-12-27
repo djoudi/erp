@@ -1,9 +1,7 @@
 <?php slot ('title', "Cost Reports") ?>
 
 
-<script type="text/javascript">
-    $("#topmenu_costforms").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_costforms"); ?>
 
 
 <?php if (isset($filter)): ?>

@@ -1,9 +1,7 @@
 <?php slot ('title', "Approve Working Hours") ?>
 
 
-<script type="text/javascript">
-    $("#topmenu_workinghours").addClass("active");
-</script>
+<?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 
 <?php if (isset($filter)): ?>

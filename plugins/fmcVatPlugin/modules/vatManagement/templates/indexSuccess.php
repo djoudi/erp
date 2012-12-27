@@ -1,8 +1,7 @@
 <?php slot ('title', "VAT Management") ?>
 
-<script type="text/javascript">
-    $("#topmenu_settings").addClass("active");
-</script>
+
+<?php slot ('activeClass', "#topmenu_settings"); ?>
 
 
 <?php if (!count ($list)): ?>

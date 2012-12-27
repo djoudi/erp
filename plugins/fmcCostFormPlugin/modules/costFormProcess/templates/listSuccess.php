@@ -1,11 +1,7 @@
 <?php slot ('title', "Invoicing Cost Forms") ?>
 
 
-
-<script type="text/javascript">
-    $("#topmenu_costforms").addClass("active");
-</script>
-
+<?php slot ('activeClass', "#topmenu_costforms"); ?>
 
 
 <?php if (isset($filter)): ?>
