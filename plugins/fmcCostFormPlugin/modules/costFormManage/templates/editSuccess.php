@@ -7,7 +7,7 @@
 
 <form action="" method="post">
 
-    <table class="table table-striped table-bordered table-condensed">
+    <table class="table table-hover table-bordered table-condensed">
         
         <?php echo $form; ?>
         
