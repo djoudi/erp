@@ -1,26 +1,29 @@
 <?php
 
-abstract class PluginCostFormItem extends BaseCostFormItem {
+abstract class PluginCostFormItem extends BaseCostFormItem
+{
     
-    public function getWithoutVat() {
-    
+    public function getWithoutVat()
+    {
         if ( !$this->amount or $this->amount==0 )
-            return 0;
+        {
+            $result = 0;
+        }
         elseif ( $this->Vats->rate == 0)
-            return $this->amount;
+        {
+            $result = $this->amount;
+        }
         else
-            return round( 100/(100+$this->Vats->rate)*$this->amount , 2);
-            
+        {
+            $result = round ( 100 / ( 100 + $this->Vats->rate ) * $this->amount , 2);
+        }
+        return $result;
     }
     
-    public function changePaidStatus () {
-    
-        $user = sfContext::getInstance()->getUser();
-        
+    public function changePaidStatus ()
+    {
         $this->setIsPaid ( ! $this->getIsPaid() );
-        #$this->setUpdatedBy ($user->getGuardUser()->getId());
         $this->save();
-        
     }
     
 }

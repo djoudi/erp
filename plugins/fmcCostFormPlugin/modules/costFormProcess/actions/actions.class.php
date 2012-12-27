@@ -161,19 +161,54 @@ class costFormProcessActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
-        
         $this->project = Doctrine::getTable('Project')->findOneById ($request->getParameter('id'));
         
         $this->forward404Unless ($this->project);
         
-        $this->costFormItems = Doctrine::getTable('CostFormItem')->getActiveByProject($this->project->getId());
         
-        $myUser = $this->getUser()->getGuardUser();
+        // Edit these variables
+        
+        $this->resultLimit = 100;
+        
+        $_q = Doctrine::getTable('CostFormItem')
+            ->createQuery('cfi')
+            ->innerJoin ('cfi.Vats v')
+            ->innerJoin ('cfi.Currencies c')
+            ->innerJoin('cfi.CostForms cf')
+            ->innerJoin ('cf.Users u')
+            ->where('cf.project_id = ?', $this->project->getId())
+            ->andWhere('cf.isSent = ?', true)
+            ->andWhere('cfi.is_processed = ?', false)
+            ->limit ($this->resultLimit)
+        ;
+        
+        $filterClass = new FmcFilter('filter_costFormItem_process');
+        
+        $this->costFormItems = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
+        
+        
+        // Do not touch here
+      
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        
+        $this->filtered = $filterClass->getFiltered();
+        
+        $this->resultslimited = false;
+    
+        if (count($this->costFormItems) == $this->resultlimit) $this->resultslimited = true;
+        
+        
+        // Processing POST
         
         if ($request->isMethod('post'))
         {
             $this->invoiced = array();
+            
             $this->notInvoiced = array();
+            
+            $myUser = $this->getUser()->getGuardUser();
             
             foreach ($this->costFormItems as $cfi)
             {

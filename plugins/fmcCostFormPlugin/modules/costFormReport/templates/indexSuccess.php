@@ -30,6 +30,7 @@
 <?php else: ?>
 
     <table class="tablesorter1d table table-hover table-bordered table-condensed">
+        
         <thead>
             <tr>
                 <th>Date</th>
@@ -50,22 +51,28 @@
             <?php foreach ($costFormItems as $cfi): ?>
       
                 <tr>
+                    
                     <td>
                         <?php echo $cfi["cost_Date"]; ?>
                     </td>
+                    
                     <td>
                         <?php echo $cfi["CostForms"]["Users"]["first_name"]; ?> 
                         <?php echo $cfi["CostForms"]["Users"]["last_name"]; ?>
                     </td>
+                    
                     <td>
                         <?php echo $cfi["CostForms"]["Projects"]["code"]; ?>
                     </td>
+                    
                     <td class="w250">
                         <?php echo $cfi["description"]; ?>
                     </td>
+                    
                     <td>
                         <?php echo $cfi["amount"]." ".$cfi["Currencies"]["code"]; ?>
                     </td>
+                    
                     <td>
                         <?php echo $cfi["receipt_No"]; ?>
                     </td>
@@ -103,9 +110,11 @@
                     <?php endif; ?>
                     
                 </tr>
+                
             <?php endforeach; ?>
 
         </tbody>
+        
     </table>
 
 <?php endif; ?>

@@ -1,123 +1,149 @@
 <?php slot ('title', "Invoicing Cost Forms") ?>
 
 
+
 <script type="text/javascript">
     $("#topmenu_costforms").addClass("active");
 </script>
 
 
-<a class="btn btn-primary pull-right" href="<?php echo url_for('costFormProcess_filter'); ?>">
-    Back to filter screen
-</a>
 
-
-<?php if (!count($costFormItems)): ?>
-
-    <p>No cost forms found in your selected criterias.</p>
-    <a class="btn btn-info" href="<?php echo url_for("@costFormProcess_filter"); ?>">Go back</a>
-
-<?php else: ?>
-
-
-    <table class="table table-bordered table-condensed">
-        <tr>
-            <th>Company</th>
-            <td><?php echo $project->Customers ?></td>
-        </tr>
-        <tr>
-            <th>Project</th>
-            <td><?php echo $project ?></td>
-        </tr>
-    </table>
-    
-    <p><strong><?php echo count($costFormItems); ?></strong> costs found.</p>
-    
-    <form method="post" class="form-inline">
-        
-        <table class="tablesorter table table-hover table-bordered table-condensed">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Employee</th>
-                    <th>Description</th>
-                    <th>Tax</th>
-                    <th>Excl VAT</th>
-                    <th>Incl VAT</th>
-                    <th>Invoice To</th>
-                    <th>Don't Invoice</th>
-                    <th>Invoice No</th>
-                    <th>Invoice Date</th>
-                </tr>
-            </thead>
-            <tbody>
-      
-                <?php foreach ($costFormItems as $cfi): ?>
-                    <tr>
-                        <td><?php echo $cfi->cost_Date ?></td>
-                        <td><?php echo $cfi->CostForms->Users ?></td>
-                        <td>
-                            <?php if (strlen($cfi->getDescription()) < 20): ?>
-                            
-                                <?php echo $cfi->getDescription(); ?>
-                                
-                            <?php else: ?>
-                            
-                                <a href="#" rel="tooltip" title="<?php echo $cfi->getDescription(); ?>" class="tooltips" >
-                                    <?php echo mb_substr($cfi->getDescription(), 0, 20, "UTF-8"); ?>...
-                                </a>
-                                
-                            <?php endif; ?>
-                        </td>
-                
-                        <td>%<?php echo $cfi->Vats ?></td>
-                        <td><?php echo $cfi->withoutVat ?> <?php echo $cfi->Currencies ?></td>
-                        <td><?php echo $cfi->amount ?> <?php echo $cfi->Currencies ?></td>
-                        <td><?php echo $cfi->invoice_To ?></td>
-                        <td>
-                            <label class="w100">
-                                <input class="tbi inline" type="checkbox" name="<?php echo $cfi->id ?>[toBeInvoiced]" value="dni" /> Don't Invoice
-                            </label>
-                        </td>
-                        <td>
-                            <input class="w75" name="<?php echo $cfi->id ?>[invoice_No]" type="text" />
-                        </td>
-                        <td>
-                            <input class="w75 datepick" name="<?php echo $cfi->getId(); ?>[invoice_Date]" type="text" />
-                        </td>
-                    
-                    </tr>
-      
-                <?php endforeach; ?>
-            
-            </tbody>
-        </table>
-        
-        <div class="form-actions">
-    
-            <input class="btn btn-success" type="submit" name="process" value="Process" />
-            
-        </div>
-  
-    </form>
-    
+<?php if (isset($filter)): ?>
+    <?php include_partial ('fmcCore/filterForm', array(
+        'filter'=>$filter, 
+        'filtered'=>$filtered, 
+        'count'=>count($costFormItems),
+        'new_url'=>url_for('@costFormProcess_filter'),
+        'new_text'=>"Back to Project Selection"
+    )); ?>
 <?php endif; ?>
 
-<script type="text/javascript">
+
+
+<?php include_partial ('fmcCore/limitedResults', array(
+    'itemCount' => count($costFormItems),
+    'limit' => $resultLimit
+)); ?>
+
+
+<table class="table table-bordered table-condensed table-hover">
+    <tr>
+        <th>Company</th>
+        <td><?php echo $project->Customers ?></td>
+    </tr>
+    <tr>
+        <th>Project</th>
+        <td><?php echo $project ?></td>
+    </tr>
+</table>
+
+
+
+<form method="post" class="form-inline">
     
-    $(".tbi").change(function(){
+    <table class="tablesorter table table-hover table-bordered table-condensed">
         
-        if ($(this).attr('checked')) {
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Employee</th>
+                <th>Description</th>
+                <th>Tax</th>
+                <th>Incl VAT</th>
+                <th>Invoice To</th>
+                <th>Don't Invoice</th>
+                <th>Invoice No</th>
+                <th>Invoice Date</th>
+            </tr>
+        </thead>
         
+        <tbody>
+  
+            <?php foreach ($costFormItems as $cfi): ?>
+                <tr>
+                    
+                    <td>
+                        <?php echo $cfi['cost_Date']; ?>
+                    </td>
+                    
+                    <td>
+                        <?php echo $cfi['CostForms']['Users']['first_name']; ?> 
+                        <?php echo $cfi['CostForms']['Users']['last_name']; ?>
+                    </td>
+                    
+                    <td class="w250">
+                        <?php echo $cfi['description']; ?>
+                    </td>
+            
+                    <td>
+                        %<?php echo $cfi['Vats']['rate']; ?>
+                    </td>
+                    
+                    <td>
+                        <?php echo $cfi['amount']; ?> <?php echo $cfi['Currencies']['code']; ?>
+                    </td>
+                    
+                    <td>
+                        <?php echo $cfi['invoice_To']; ?>
+                    </td>
+                    
+                    <td>
+                        <label class="w100">
+                            <input 
+                                class="tbi inline" 
+                                type="checkbox" 
+                                name="<?php echo $cfi['id']; ?>[toBeInvoiced]" 
+                                value="dni" 
+                            /> Don't Invoice
+                        </label>
+                    </td>
+                    
+                    <td>
+                        <input 
+                            class="w75" 
+                            name="<?php echo $cfi['id']; ?>[invoice_No]"
+                            type="text" 
+                        />
+                    </td>
+                    
+                    <td>
+                        <input 
+                            class="w75 datepick" 
+                            name="<?php echo $cfi['id']; ?>[invoice_Date]" 
+                            type="text" 
+                        />
+                    </td>
+                
+                </tr>
+  
+            <?php endforeach; ?>
+        
+        </tbody>
+    </table>
+    
+    <div class="form-actions">
+
+        <input class="btn btn-success" type="submit" name="process" value="Process" />
+        
+    </div>
+
+</form>
+
+
+
+<script type="text/javascript">
+    $(".tbi").change(function()
+    {
+        if ($(this).attr('checked'))
+        {
             $(this).parent().parent().next().children().attr('disabled', true);
             $(this).parent().parent().next().next().children().attr('disabled', true);
-            
-        } else {
-      
+        }
+        else
+        {
             $(this).parent().parent().next().children().attr('disabled', false);
             $(this).parent().parent().next().next().children().attr('disabled', false);
-            
         }
     });
-    
 </script>
 
