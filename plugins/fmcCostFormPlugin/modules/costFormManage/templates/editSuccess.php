@@ -18,6 +18,11 @@
         <a class="btn" href="<?php echo url_for('@costFormReport_index'); ?>">Go Back to Reporting</a>
         <input class="btn btn-success" type="submit" value="Save" />
         
+        <a 
+            class="btn btn-info pull-right" 
+            href="<?php echo url_for('costFormManage_costform',array('id'=>$cost['costForm_id'])); ?>"
+        >Show Cost Form</a>
+        
     </div>
 
 </form>

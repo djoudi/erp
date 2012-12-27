@@ -3,6 +3,28 @@
 class costFormManageActions extends sfActions
 {
     
+    public function executeCostformdelete (sfWebRequest $request)
+    {
+        $costform = Doctrine::getTable ('CostForm')->findOneById ($request->getParameter('id'));
+        
+        $this->forward404Unless ($costform);
+        
+        $costform->getCostFormItems()->delete();
+        
+        $costform->delete();
+        
+        $this->getUser()->setFlash ('notice', 'Cost Form Deleted!');
+        
+        $this->redirect($this->getController()->genUrl('@homepage'));
+    }
+    
+    public function executeCostform (sfWebRequest $request)
+    {
+        $this->costform = Doctrine::getTable ('CostForm')->findOneById ($request->getParameter('id'));
+        
+        $this->forward404Unless ($this->costform);
+    }
+    
     public function executeEdit (sfWebRequest $request)
     {
         $this->cost = Doctrine::getTable('CostFormItem')->findOneById($request->getParameter('cost_id'));

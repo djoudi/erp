@@ -1,75 +1,121 @@
 # user - cost form
 
 costFormUser_new:
-  url: /costform/user/new
-  param: { module: costFormUser, action: new }
+    url: /costform/user/new
+    param:
+        module: costFormUser
+        action: new
 
 costFormUser_edit:
-  url: /costform/user/edit/:id
-  param: { module: costFormUser, action: edit }
+    url: /costform/user/edit/:id
+    param:
+        module: costFormUser
+        action: edit
 
 costFormUser_deleteForm:
-  url: /costform/user/deleteform/:id
-  param: { module: costFormUser, action: deleteForm }
+    url: /costform/user/deleteform/:id
+    param:
+        module: costFormUser
+        action: deleteForm
 
 costFormUser_deleteItem:
-  url: /costform/user/deleteitem/:id
-  param: { module: costFormUser, action: deleteItem }
+    url: /costform/user/deleteitem/:id
+    param:
+        module: costFormUser
+        action: deleteItem
 
 costFormUser_editItem:
-  url: /costform/user/edititem/:id/:cfi_id
-  param: { module: costFormUser, action: edit }
+    url: /costform/user/edititem/:id/:cfi_id
+    param:
+        module: costFormUser
+        action: edit
+
 
 # user - my cost forms
 
 costFormUser_list:
-  url: /costform/user/list
-  param: { module: costFormUser, action: list }
+    url: /costform/user/list
+    param:
+        module: costFormUser
+        action: list
 
 costFormUser_send:
-  url: /costform/user/send/:id
-  param: { module: costFormUser, action: send }
+    url: /costform/user/send/:id
+    param:
+        module: costFormUser
+        action: send
 
 costFormUser_report:
-  url: /costform/user/report/:id
-  param: { module: costFormUser, action: report }
+    url: /costform/user/report/:id
+    param:
+        module: costFormUser
+        action: report
 
 costFormUser_changepaidstatus:
-  url: /costform/user/changepaidstatus/:id
-  param: { module: costFormUser, action: changepaidstatus }
+    url: /costform/user/changepaidstatus/:id
+    param:
+        module: costFormUser
+        action: changepaidstatus
+
 
 # process
 
 costFormProcess_filter:
-  url: /costform/process/filter
-  param: { module: costFormProcess, action: filter }
+    url: /costform/process/filter
+    param:
+        module: costFormProcess
+        action: filter
   
 costFormProcess_list:
-  url: /costform/process/list/:id
-  param: { module: costFormProcess, action: list }
+    url: /costform/process/list/:id
+    param:
+        module: costFormProcess
+        action: list
   
 costFormProcess_report:
-  url: /costform/process/report
-  param: { module: costFormProcess, action: report }
+    url: /costform/process/report
+    param:
+        module: costFormProcess
+        action: report
 
 costFormProcess_export:
-  url: /costform/process/export
-  param: { module: costFormProcess, action: export }
+    url: /costform/process/export
+    param:
+        module: costFormProcess
+        action: export
 
 
 #report
 
 costFormReport_index:
-  url: /costform/report/index
-  param: { module: costFormReport, action: index }
+    url: /costform/report/index
+    param:
+        module: costFormReport
+        action: index
+
 
 #manage
 
 costFormManage_edit:
-  url: /costform/management/edit/:cost_id
-  param: { module: costFormManage, action: edit }
+    url: /costform/management/edit/:cost_id
+    param:
+        module: costFormManage
+        action: edit
 
 costFormManage_delete:
-  url: /costform/management/delete/:cost_id
-  param: { module: costFormManage, action: delete }
-  
+    url: /costform/management/delete/:cost_id
+    param:
+        module: costFormManage
+        action: delete
+
+costFormManage_costform:
+    url: /costform/management/costform/:id
+    param:
+        module: costFormManage
+        action: costform
+
+costFormManage_costformdelete:
+    url: /costform/management/costform/:id/delete
+    param:
+        module: costFormManage
+        action: costformdelete
