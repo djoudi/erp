@@ -29,7 +29,7 @@
   
 <?php else: ?>
 
-    <table class="tablesorter1d table table-hover table-bordered table-condensed">
+    <table class="tablesorter table table-hover table-bordered table-condensed">
         
         <thead>
             <tr>
@@ -69,8 +69,10 @@
                         <?php echo $cfi["description"]; ?>
                     </td>
                     
-                    <td>
-                        <?php echo $cfi["amount"]." ".$cfi["Currencies"]["code"]; ?>
+                    <td data-value="<?php echo $cfi["amount"]; ?>">
+                        <?php echo $cfi["Currencies"]["code"]; ?> 
+                        <?php echo $cfi["amount"]; ?>
+                        
                     </td>
                     
                     <td>

@@ -11,7 +11,16 @@ $(document).ready(function()
     
     
     /* Tablesorter */
-        $(".tablesorter").tablesorter( {sortList: [[0,0]]} );
+        
+        $(".tablesorter").tablesorter( {
+            textExtraction: function(node)
+            {
+                var cell_value = $(node).text();
+                var sort_value = $(node).data('value');
+                return (sort_value != undefined) ? sort_value : cell_value;
+            }
+        } );
+        
         $(".tablesorter1a").tablesorter( {sortList: [[0,0]]} );
         $(".tablesorter1d").tablesorter( {sortList: [[0,1]]} );
         $(".tablesorter2a").tablesorter( {sortList: [[1,0]]} );

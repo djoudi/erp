@@ -79,8 +79,9 @@
                         %<?php echo $cfi['Vats']['rate']; ?>
                     </td>
                     
-                    <td>
-                        <?php echo $cfi['amount']; ?> <?php echo $cfi['Currencies']['code']; ?>
+                    <td data-value="<?php echo $cfi["amount"]; ?>">
+                        <?php echo $cfi["Currencies"]["code"]; ?> 
+                        <?php echo $cfi["amount"]; ?>
                     </td>
                     
                     <td>
