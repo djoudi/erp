@@ -13,45 +13,53 @@
         
         <p>You can find daily record of the employees <strong>who have entered for today.</strong></p>
         
-        <table class="table table-bordered table-condensed table-hover">
-            <thead>
-                <tr>
-                    <th>Employee</th>
-                    <th>Status</th>
-                    <th>Day Type</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($list as $item): ?>
+        <?php if (!count($list)): ?>
+        
+            <p><strong>No employees entered any records for today!</strong></p>
+        
+        <?php else: ?>
+        
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
                     <tr>
-                        <td>
-                            <?php echo $item['first_name']." ".$item['last_name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $item['WorkingHourDay'][0]['status']; ?>
-                        </td>
-                        <td>
-                            <?php $type = $item['WorkingHourDay'][0]['leave_id'] ? "Leave" : "Work"; ?>
-                            <?php echo $type; ?>
-                        </td>
-                        <td>
-                            <?php if ($type == "Leave"): ?>
-                            
-                                <?php echo $item['WorkingHourDay'][0]['LeaveRequest']['LeaveType']['name']; ?>
-                                
-                            <?php else: ?>
-                            
-                                <?php $records = $item['WorkingHourDay'][0]['WorkingHourRecords']; ?>
-                                
-                                <?php echo whDayInfo::getDayIORegular ($records); ?>
-                                
-                            <?php endif; ?>
-                        </td>
+                        <th>Employee</th>
+                        <th>Status</th>
+                        <th>Day Type</th>
+                        <th>Details</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($list as $item): ?>
+                        <tr>
+                            <td>
+                                <?php echo $item['first_name']." ".$item['last_name']; ?>
+                            </td>
+                            <td>
+                                <?php echo $item['WorkingHourDay'][0]['status']; ?>
+                            </td>
+                            <td>
+                                <?php $type = $item['WorkingHourDay'][0]['leave_id'] ? "Leave" : "Work"; ?>
+                                <?php echo $type; ?>
+                            </td>
+                            <td>
+                                <?php if ($type == "Leave"): ?>
+                                
+                                    <?php echo $item['WorkingHourDay'][0]['LeaveRequest']['LeaveType']['name']; ?>
+                                    
+                                <?php else: ?>
+                                
+                                    <?php $records = $item['WorkingHourDay'][0]['WorkingHourRecords']; ?>
+                                    
+                                    <?php echo whDayInfo::getDayIORegular ($records); ?>
+                                    
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        
+        <?php endif; ?>
         
         <div class="form-actions">
             
@@ -66,7 +74,6 @@
             </div>
         
         </div>
-        
         
     </div><!-- .span9 -->
 
