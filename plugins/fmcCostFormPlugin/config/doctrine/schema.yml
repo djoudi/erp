@@ -1,4 +1,7 @@
-# COST FORMS
+#CostForm:
+#CostFormItem:
+
+######################################################
 
 CostForm:
     actAs:
@@ -43,7 +46,7 @@ CostForm:
             foreignAlias: CostForms
             onDelete: CASCADE
 
-# COST FORM ITEMS
+######################################################
 
 CostFormItem:
     actAs:
