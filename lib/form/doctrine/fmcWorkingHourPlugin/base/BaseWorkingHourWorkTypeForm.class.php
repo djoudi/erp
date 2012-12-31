@@ -23,8 +23,8 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
       'updated_at'       => new sfWidgetFormDateTime(),
       'deleted_at'       => new sfWidgetFormDateTime(),
       'version'          => new sfWidgetFormInputText(),
-      'employees_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'departments_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
+      'employees_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
@@ -36,8 +36,8 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
       'deleted_at'       => new sfValidatorDateTime(array('required' => false)),
       'version'          => new sfValidatorInteger(array('required' => false)),
-      'employees_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'departments_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
+      'employees_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -62,62 +62,24 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['employees_list']))
-    {
-      $this->setDefault('employees_list', $this->object->Employees->getPrimaryKeys());
-    }
-
     if (isset($this->widgetSchema['departments_list']))
     {
       $this->setDefault('departments_list', $this->object->Departments->getPrimaryKeys());
+    }
+
+    if (isset($this->widgetSchema['employees_list']))
+    {
+      $this->setDefault('employees_list', $this->object->Employees->getPrimaryKeys());
     }
 
   }
 
   protected function doSave($con = null)
   {
-    $this->saveEmployeesList($con);
     $this->saveDepartmentsList($con);
+    $this->saveEmployeesList($con);
 
     parent::doSave($con);
-  }
-
-  public function saveEmployeesList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['employees_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Employees->getPrimaryKeys();
-    $values = $this->getValue('employees_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Employees', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Employees', array_values($link));
-    }
   }
 
   public function saveDepartmentsList($con = null)
@@ -155,6 +117,44 @@ abstract class BaseWorkingHourWorkTypeForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Departments', array_values($link));
+    }
+  }
+
+  public function saveEmployeesList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['employees_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Employees->getPrimaryKeys();
+    $values = $this->getValue('employees_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Employees', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Employees', array_values($link));
     }
   }
 

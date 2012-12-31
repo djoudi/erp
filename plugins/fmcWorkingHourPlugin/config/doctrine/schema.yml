@@ -104,18 +104,19 @@ WorkingHourWorkType:
             notnull: true
             unique: true
     relations:
-        Employees:
-            class: sfGuardUser
-            local: worktype_id
-            foreign: user_id
-            refClass: WorkingHourWorkTypeUser
-            foreignAlias: WorkTypes
         Departments:
             class: sfGuardGroup
             local: worktype_id
             foreign: group_id
             refClass: WorkingHourWorkTypeGroup
             foreignAlias: WorkTypes
+        Employees:
+            class: sfGuardUser
+            local: worktype_id
+            foreign: user_id
+            refClass: WorkingHourWorkTypeUser
+            foreignAlias: WorkTypes
+
 
 ######################################################
 
