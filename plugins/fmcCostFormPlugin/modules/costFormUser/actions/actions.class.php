@@ -5,7 +5,8 @@ class costFormUserActions extends sfActions
     
     public function executeChangepaidstatus (sfWebRequest $request)
     {
-        $cost = $this->getUser()->getMyCost($request->getParameter('id'));
+        #$cost = $this->getUser()->getMyCost($request->getParameter('id'));
+        $cost = Doctrine::getTable('CostFormItem')->getByIdUser ($cf_id);
         
         $this->forward404Unless ($cost);
     
@@ -59,7 +60,8 @@ class costFormUserActions extends sfActions
             $this->form = new form_costFormUser_newItem ($cfi);
         }
         
-        $this->costForm = $this->getUser()->getMyCostForm($cf_id);
+        #$this->costForm = $this->getUser()->getMyCostForm($cf_id);
+        $this->costForm = Doctrine::getTable('CostForm')->getByIdUser ($cf_id);
         
         $this->forward404Unless($this->costForm);
         
@@ -84,7 +86,8 @@ class costFormUserActions extends sfActions
     
     public function executeDeleteForm (sfWebRequest $request)
     {
-        $item = $this->getUser()->getMyCostForm($request->getParameter('id'));
+        #$item = $this->getUser()->getMyCostForm($request->getParameter('id'));
+        $item = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
         $this->forward404Unless($item);
         
@@ -99,7 +102,8 @@ class costFormUserActions extends sfActions
     
     public function executeDeleteItem (sfWebRequest $request)
     {
-        $item = $this->getUser()->getMyCost($request->getParameter('id'));
+        #$item = $this->getUser()->getMyCost($request->getParameter('id'));
+        $item = Doctrine::getTable('CostFormItem')->getByIdUser ($cf_id);
         
         $this->forward404Unless ($item);
         
@@ -150,7 +154,8 @@ class costFormUserActions extends sfActions
     
     public function executeSend (sfWebRequest $request)
     {
-        $item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
+        #$item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
+        $item = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
         $this->forward404Unless ($item);
     
@@ -178,7 +183,8 @@ class costFormUserActions extends sfActions
     
     public function executeReport (sfWebRequest $request)
     {
-        $item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
+        #$item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
+        $item = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
         $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/costform.xls";
         $objReader = PHPExcel_IOFactory::createReader('Excel5');

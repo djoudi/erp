@@ -8,44 +8,25 @@ class PluginCostFormTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginCostForm');
     }    
     
-    public static function ReportListEmployees ()
+    public function ReportListEmployees ()
     {
         return Doctrine::getTable ('sfGuardUser')->getActive();
     }
     
-    public static function ReportListProjects ()
+    public function ReportListProjects ()
     {
         return Doctrine::getTable ('Project')->getActive();
     }
     
-    public static function getByUser( $userId )
+    public function getByIdUser ($id, $user_id = NULL)
     {
-        $q = Doctrine_Query::create()
-            ->from('CostForm cf')
-            ->leftJoin('cf.CostFormItems cfi')
-            ->where('cf.status <> ?', 'Draft')
-            ->andWhere('cf.user_id = ?', $userId);
+        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
-        return $q->execute();
-    }
-    
-    public static function getById ( $id )
-    {
-        $q = Doctrine_Query::create()
-            ->from('CostForm cf')
-            ->leftJoin('cf.CostFormItems cfi')
-            ->where('cf.id = ?', $id);
+        $q = $this->createQuery ('cf')
+            ->addWhere ('cf.id = ?', $id)
+            ->addWhere ('cf.user_id = ?', $user_id);
         
         return $q->fetchOne();
-    }
-    
-    public static function getAll () {
-        
-        $q = Doctrine_Query::create()
-            ->from('CostForm cf')
-            ->where('cf.status <> ?', 'Draft');
-        
-        return $q->execute();
     }
     
 }
