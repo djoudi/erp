@@ -13,12 +13,10 @@
 <?php endif; ?>
 
 
-<?php if ($resultslimited): ?>
-    <div class="alert">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        More than <strong><?php echo $resultlimit; ?></strong> results found, showing first <strong><?php echo $resultlimit; ?></strong> results. Please filter your result.
-    </div>
-<?php endif; ?>
+<?php include_partial ('fmcCore/limitedResults', array(
+    'itemCount' => count($costFormItems),
+    'limit' => $resultLimit
+)); ?>
 
 
 <?php if (!count($costFormItems)): ?>

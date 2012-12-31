@@ -195,10 +195,6 @@ class costFormProcessActions extends sfActions
         
         $this->filtered = $filterClass->getFiltered();
         
-        $this->resultslimited = false;
-    
-        if (count($this->costFormItems) == $this->resultlimit) $this->resultslimited = true;
-        
         
         // Processing POST
         

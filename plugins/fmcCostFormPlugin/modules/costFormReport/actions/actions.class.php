@@ -29,10 +29,6 @@ class costFormReportActions extends sfActions
         $this->filter = $filterClass->getFilter();
         
         $this->filtered = $filterClass->getFiltered();
-        
-        $this->resultslimited = false;
-    
-        if (count($this->costFormItems) == $this->resultlimit) $this->resultslimited = true;
     }
     
 }
