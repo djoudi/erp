@@ -85,7 +85,11 @@ class workingHourReportActions extends sfActions
     public function executeDaily (sfWebRequest $request)
     {
         if ( ! ( $this->date = $request->getParameter('date') ) )
-            $this->date = date("Y-m-d");
+        {
+            $date = new DateTime();
+            $date->sub(new DateInterval('P1D'));
+            $this->date = $date->format('Y-m-d');
+        }
         
         $this->list = $this->PrepareQuery ($this->date);
         

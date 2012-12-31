@@ -11,11 +11,11 @@
     
     <div class="span9" style="padding-top: 20px">
         
-        <p>You can find daily record of the employees <strong>who have entered for today.</strong></p>
+        <p>You can find daily record of the employees <strong>who have entered for this day.</strong></p>
         
         <?php if (!count($list)): ?>
         
-            <p><strong>No employees entered any records for today!</strong></p>
+            <p><strong>No employees entered any records for selected day!</strong></p>
         
         <?php else: ?>
         
