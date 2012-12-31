@@ -23,8 +23,12 @@
     <tr>
         <th>Advance Received</th>
         <td>
-            <?php echo $costform->getCurrencies(); ?> 
-            <?php echo $costform['advanceReceived']; ?>
+            <?php if ($costform['advanceReceived']): ?>
+                <?php echo $costform->getCurrencies(); ?> 
+                <?php echo $costform['advanceReceived']; ?>
+            <?php else: ?>
+                -
+            <?php endif; ?>
         </td>
     </tr>
 

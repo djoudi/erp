@@ -4,6 +4,29 @@
 <?php slot ('activeClass', "#topmenu_costforms"); ?>
 
 
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>User</th>
+        <td><?php echo $cost->getCostForms()->getUsers(); ?></td>
+    </tr>
+    <tr>
+        <th>Project</th>
+        <td><?php echo $cost->getCostForms()->getProjects(); ?></td>
+    </tr>
+    <tr>
+        <th>Advance Received</th>
+        <td>
+            <?php if ($cost->getCostForms()->getAdvanceReceived()): ?>
+                <?php echo $cost->getCostForms()->getCurrencies(); ?> 
+                <?php echo $cost->getCostForms()->getAdvanceReceived(); ?>
+            <?php else: ?>
+                -
+            <?php endif; ?>
+        </td>
+    </tr>
+</table>
+
+
 <form action="" method="post">
 
     <table class="table table-hover table-bordered table-condensed">
