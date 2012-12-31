@@ -10,8 +10,8 @@
     <tr>
         <th>Received Advance</th>
         <td>
-            <?php if ($costForm->advanceRecieved): ?>
-                <?php echo $costForm->advanceRecieved." ".$costForm->Currencies; ?>
+            <?php if ($costForm->advanceReceived): ?>
+                <?php echo $costForm->advanceReceived." ".$costForm->Currencies; ?>
             <?php else: ?>
                 -
             <?php endif; ?>

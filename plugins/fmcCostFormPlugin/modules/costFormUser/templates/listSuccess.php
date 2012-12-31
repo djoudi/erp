@@ -37,7 +37,7 @@
         <tr>
            <td><?php echo $cf->id ?></td>
            <td><a href="<?php echo url_for("@costFormUser_edit?id=".$cf->id); ?>"><?php echo $cf->Projects ?></a></td>
-           <td><?php echo $cf->advanceRecieved ? $cf->advanceRecieved.' TL' : '-' ?></td>
+           <td><?php echo $cf->advanceReceived ? $cf->advanceReceived.' TL' : '-' ?></td>
            <td><?php echo date ("Y-m-d H:m", strtotime($cf->created_at)); ?></td>
            <td><?php echo $costFormStatus[$cf->totalStatus] ?></td>
         </tr>

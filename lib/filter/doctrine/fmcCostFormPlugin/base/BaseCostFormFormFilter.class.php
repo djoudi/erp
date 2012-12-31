@@ -15,7 +15,7 @@ abstract class BaseCostFormFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'add_empty' => true)),
       'project_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'), 'add_empty' => true)),
-      'advanceRecieved' => new sfWidgetFormFilterInput(),
+      'advanceReceived' => new sfWidgetFormFilterInput(),
       'currency_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'), 'add_empty' => true)),
       'isSent'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'creater_id'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -29,7 +29,7 @@ abstract class BaseCostFormFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Users'), 'column' => 'id')),
       'project_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Projects'), 'column' => 'id')),
-      'advanceRecieved' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'advanceReceived' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Currencies'), 'column' => 'id')),
       'isSent'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'creater_id'      => new sfValidatorPass(array('required' => false)),
@@ -60,7 +60,7 @@ abstract class BaseCostFormFormFilter extends BaseFormFilterDoctrine
       'id'              => 'Number',
       'user_id'         => 'ForeignKey',
       'project_id'      => 'ForeignKey',
-      'advanceRecieved' => 'Number',
+      'advanceReceived' => 'Number',
       'currency_id'     => 'ForeignKey',
       'isSent'          => 'Boolean',
       'creater_id'      => 'Text',

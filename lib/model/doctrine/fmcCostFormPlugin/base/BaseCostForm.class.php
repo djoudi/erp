@@ -7,7 +7,7 @@
  * 
  * @property integer $user_id
  * @property integer $project_id
- * @property decimal $advanceRecieved
+ * @property decimal $advanceReceived
  * @property integer $currency_id
  * @property boolean $isSent
  * @property sfGuardUser $Users
@@ -17,7 +17,7 @@
  * 
  * @method integer             getUserId()          Returns the current record's "user_id" value
  * @method integer             getProjectId()       Returns the current record's "project_id" value
- * @method decimal             getAdvanceRecieved() Returns the current record's "advanceRecieved" value
+ * @method decimal             getAdvanceReceived() Returns the current record's "advanceReceived" value
  * @method integer             getCurrencyId()      Returns the current record's "currency_id" value
  * @method boolean             getIsSent()          Returns the current record's "isSent" value
  * @method sfGuardUser         getUsers()           Returns the current record's "Users" value
@@ -26,7 +26,7 @@
  * @method Doctrine_Collection getCostFormItems()   Returns the current record's "CostFormItems" collection
  * @method CostForm            setUserId()          Sets the current record's "user_id" value
  * @method CostForm            setProjectId()       Sets the current record's "project_id" value
- * @method CostForm            setAdvanceRecieved() Sets the current record's "advanceRecieved" value
+ * @method CostForm            setAdvanceReceived() Sets the current record's "advanceReceived" value
  * @method CostForm            setCurrencyId()      Sets the current record's "currency_id" value
  * @method CostForm            setIsSent()          Sets the current record's "isSent" value
  * @method CostForm            setUsers()           Sets the current record's "Users" value
@@ -51,7 +51,7 @@ abstract class BaseCostForm extends MyDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('advanceRecieved', 'decimal', null, array(
+        $this->hasColumn('advanceReceived', 'decimal', null, array(
              'type' => 'decimal',
              'scale' => 2,
              'notnull' => false,

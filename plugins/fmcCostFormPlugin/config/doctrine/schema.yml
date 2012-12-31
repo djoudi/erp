@@ -14,7 +14,7 @@ CostForm:
         project_id:
             type: integer
             notnull: true
-        advanceRecieved:
+        advanceReceived:
             type: decimal
             scale:  2
             notnull: false

@@ -21,10 +21,10 @@
     </tr>
     
     <tr>
-        <th>Advance Recieved</th>
+        <th>Advance Received</th>
         <td>
             <?php echo $costform->getCurrencies(); ?> 
-            <?php echo $costform['advanceRecieved']; ?>
+            <?php echo $costform['advanceReceived']; ?>
         </td>
     </tr>
 

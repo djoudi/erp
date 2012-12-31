@@ -15,7 +15,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'user_id'         => new sfWidgetFormFilterInput(),
       'project_id'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'advanceRecieved' => new sfWidgetFormFilterInput(),
+      'advanceReceived' => new sfWidgetFormFilterInput(),
       'currency_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'isSent'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'creater_id'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -28,7 +28,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'user_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'project_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'advanceRecieved' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'advanceReceived' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'isSent'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'creater_id'      => new sfValidatorPass(array('required' => false)),
@@ -58,7 +58,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
       'id'              => 'Number',
       'user_id'         => 'Number',
       'project_id'      => 'Number',
-      'advanceRecieved' => 'Number',
+      'advanceReceived' => 'Number',
       'currency_id'     => 'Number',
       'isSent'          => 'Boolean',
       'creater_id'      => 'Text',

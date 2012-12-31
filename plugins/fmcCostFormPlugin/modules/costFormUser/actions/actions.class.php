@@ -194,7 +194,7 @@ class costFormUserActions extends sfActions
             ->setCellValue('E2', sfContext::getInstance()->getUser()->getGuardUser()->getName())
             ->setCellValue('E3', $form->Projects->code)
             ->setCellValue('L2', $form->id)
-            ->setCellValue('L3', $form->advanceRecieved);
+            ->setCellValue('L3', $form->advanceReceived);
         $row = 7;
         
         // Creating sub-array for each invoicing array

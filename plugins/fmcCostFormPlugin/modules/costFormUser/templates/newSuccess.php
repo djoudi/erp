@@ -16,7 +16,7 @@
     <tr>
       <th>Received Advance</th>
       <td>
-        <?php echo $form['advanceRecieved'] ?>
+        <?php echo $form['advanceReceived'] ?>
         <?php echo $form['currency_id'] ?>
       </td>
     </tr>
