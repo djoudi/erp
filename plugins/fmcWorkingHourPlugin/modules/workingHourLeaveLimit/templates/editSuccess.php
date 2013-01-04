@@ -14,6 +14,7 @@
                 <th>Limit</th>
                 <th>Default</th>
                 <th>Used</th>
+                <th>Pending</th>
             </tr>
         
         </thead>
@@ -36,7 +37,13 @@
                                 }
                             }
                         ?>
-                        <input type="text" name="<?php echo $type['id']; ?>" id="<?php echo $type['id']; ?>" value="<?php echo $value; ?>">
+                        <input 
+                            type="text" 
+                            name="<?php echo $type['id']; ?>" 
+                            id="<?php echo $type['id']; ?>" 
+                            value="<?php echo $value; ?>"
+                            class="w100"
+                        >
                     </td>
                     
                     <td>
@@ -45,6 +52,10 @@
                     
                     <td>
                         <?php echo whLeaveUser::countUsedLimit ($type['id'], $employee['id']); ?>
+                    </td>
+                    
+                    <td>
+                        <?php echo whLeaveUser::countUsedReservedLimit ($type['id'], $employee['id']); ?>
                     </td>
                     
                 </tr>
