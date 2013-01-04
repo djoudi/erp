@@ -44,7 +44,7 @@ LeaveRequestLimit:
         SoftDelete: ~
         Versionable: ~
     columns:
-        user_id:
+        employee_id:
             type: integer
             notnull: true
         type_id:
@@ -56,7 +56,7 @@ LeaveRequestLimit:
     relations:
         Employee:
             class: sfGuardUser
-            local: user_id
+            local: employee_id
             foreign: id
             foreignAlias: LeaveRequestLimit
             onDelete: CASCADE
@@ -113,7 +113,7 @@ WorkingHourWorkType:
         Employees:
             class: sfGuardUser
             local: worktype_id
-            foreign: user_id
+            foreign: employee_id
             refClass: WorkingHourWorkTypeUser
             foreignAlias: WorkTypes
 
@@ -133,7 +133,7 @@ WorkingHourWorkTypeUser:
         worktype_id:
             type: integer
             primary: true
-        user_id:
+        employee_id:
             type: integer
             primary: true
     relations:
@@ -143,7 +143,7 @@ WorkingHourWorkTypeUser:
             onDelete: CASCADE
         Employee:
             class: sfGuardUser
-            local: user_id
+            local: employee_id
             onDelete: CASCADE
 
 ######################################################
@@ -187,7 +187,7 @@ sfGuardUser:
     relations:
         WorkTypes:
             class: WorkingHourWorkType
-            local: user_id
+            local: employee_id
             foreign: worktype_id
             refClass: WorkingHourWorkTypeUser
             foreignAlias: Employees
@@ -232,7 +232,7 @@ LeaveRequest:
     options:
         orderBy: start_Date DESC
     columns:
-        user_id:
+        employee_id:
             type: integer
             notnull: true
         type_id:
@@ -268,7 +268,7 @@ LeaveRequest:
     relations:
         Employee:
             class: sfGuardUser
-            local: user_id
+            local: employee_id
             foreign: id
             foreignAlias: LeaveRequest
             onDelete: CASCADE
@@ -289,7 +289,7 @@ WorkingHourDay:
     options:
         orderBy: date DESC
     columns:
-        user_id:
+        employee_id:
             type: integer
             notnull: true
         date:
@@ -313,7 +313,7 @@ WorkingHourDay:
     relations:
         Employee:
             class: sfGuardUser
-            local: user_id
+            local: employee_id
             foreign: id
             foreignAlias: WorkingHourDay
             onDelete: CASCADE

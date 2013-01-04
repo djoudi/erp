@@ -34,10 +34,10 @@ class workingHourLeaveActions extends sfActions
             ->setcellValue ('C16', $item['comment']);
         
         $type_id = $item['LeaveType']['id'];
-        $user_id = $item['Employee']['id'];
-        $available = whLeaveUser::countAvailableLimit ($type_id, $user_id);
-        $used = whLeaveUser::countUsedLimit ($type_id, $user_id);
-        $reserved = whLeaveUser::countUsedReservedLimit ($type_id, $user_id);
+        $employee_id = $item['Employee']['id'];
+        $available = whLeaveUser::countAvailableLimit ($type_id, $employee_id);
+        $used = whLeaveUser::countUsedLimit ($type_id, $employee_id);
+        $reserved = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id);
         $pending = $reserved - $used;
         
         $objPHPExcel

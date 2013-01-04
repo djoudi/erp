@@ -9,7 +9,7 @@ CostForm:
         SoftDelete: ~
         Versionable: ~
     columns:
-        user_id:
+        employee_id:
             type: integer
         project_id:
             type: integer
@@ -29,7 +29,7 @@ CostForm:
     relations:
         Users:
             class: sfGuardUser
-            local: user_id
+            local: employee_id
             foreign: id
             foreignAlias: CostForms
             onDelete: CASCADE

@@ -77,7 +77,7 @@ abstract class BaseWorkingHourWorkTypeFormFilter extends BaseFormFilterDoctrine
 
     $query
       ->leftJoin($query->getRootAlias().'.WorkingHourWorkTypeUser WorkingHourWorkTypeUser')
-      ->andWhereIn('WorkingHourWorkTypeUser.user_id', $values)
+      ->andWhereIn('WorkingHourWorkTypeUser.employee_id', $values)
     ;
   }
 

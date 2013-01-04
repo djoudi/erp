@@ -49,7 +49,7 @@ class costFormUserActions extends sfActions
                 ->createQuery ('cfi')
                 ->leftJoin ('cfi.CostForms cf')
                 ->addWhere ('id = ?', $cfi_id)
-                ->addWhere ('cf.user_id = ?', $this->getUser()->getGuardUser()->getId())
+                ->addWhere ('cf.employee_id = ?', $this->getUser()->getGuardUser()->getId())
                 ->limit (1)
                 ->fetchOne();
             
@@ -133,7 +133,7 @@ class costFormUserActions extends sfActions
             ->from('CostForm cf')
             ->leftJoin('cf.Projects p')
             ->addWhere('p.status = ?', 'Active')
-            ->addWhere('cf.user_id = ?', $this->getUser()->getGuardUser()->getId());
+            ->addWhere('cf.employee_id = ?', $this->getUser()->getGuardUser()->getId());
         
         $filterClass = new FmcFilter('filter_costFormUser_list');
         

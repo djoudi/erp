@@ -16,7 +16,7 @@ abstract class BaseCostFormVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
-      'user_id'         => new sfWidgetFormInputText(),
+      'employee_id'     => new sfWidgetFormInputText(),
       'project_id'      => new sfWidgetFormInputText(),
       'advanceReceived' => new sfWidgetFormInputText(),
       'currency_id'     => new sfWidgetFormInputText(),
@@ -31,7 +31,7 @@ abstract class BaseCostFormVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'         => new sfValidatorInteger(array('required' => false)),
+      'employee_id'     => new sfValidatorInteger(array('required' => false)),
       'project_id'      => new sfValidatorInteger(),
       'advanceReceived' => new sfValidatorNumber(array('required' => false)),
       'currency_id'     => new sfValidatorInteger(),

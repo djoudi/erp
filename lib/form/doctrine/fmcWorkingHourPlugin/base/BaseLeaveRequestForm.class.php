@@ -16,7 +16,7 @@ abstract class BaseLeaveRequestForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
-      'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'), 'add_empty' => false)),
+      'employee_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'), 'add_empty' => false)),
       'type_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'), 'add_empty' => false)),
       'status'          => new sfWidgetFormChoice(array('choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfWidgetFormDate(),
@@ -36,7 +36,7 @@ abstract class BaseLeaveRequestForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'))),
+      'employee_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'))),
       'type_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'))),
       'status'          => new sfValidatorChoice(array('choices' => array(0 => 'Draft', 1 => 'Pending', 2 => 'Accepted', 3 => 'Denied'), 'required' => false)),
       'start_Date'      => new sfValidatorDate(),

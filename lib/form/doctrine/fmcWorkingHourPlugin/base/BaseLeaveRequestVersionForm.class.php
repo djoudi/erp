@@ -16,7 +16,7 @@ abstract class BaseLeaveRequestVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
-      'user_id'         => new sfWidgetFormInputText(),
+      'employee_id'     => new sfWidgetFormInputText(),
       'type_id'         => new sfWidgetFormInputText(),
       'status'          => new sfWidgetFormChoice(array('choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfWidgetFormDate(),
@@ -36,7 +36,7 @@ abstract class BaseLeaveRequestVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'         => new sfValidatorInteger(),
+      'employee_id'     => new sfValidatorInteger(),
       'type_id'         => new sfValidatorInteger(),
       'status'          => new sfValidatorChoice(array('choices' => array(0 => 'Draft', 1 => 'Pending', 2 => 'Accepted', 3 => 'Denied'), 'required' => false)),
       'start_Date'      => new sfValidatorDate(),

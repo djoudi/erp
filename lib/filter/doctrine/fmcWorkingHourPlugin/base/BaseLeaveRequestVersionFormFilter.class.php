@@ -13,7 +13,7 @@ abstract class BaseLeaveRequestVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'employee_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'type_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'status'          => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -31,7 +31,7 @@ abstract class BaseLeaveRequestVersionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'user_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'employee_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'type_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'status'          => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'start_Date'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
@@ -66,7 +66,7 @@ abstract class BaseLeaveRequestVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'              => 'Number',
-      'user_id'         => 'Number',
+      'employee_id'     => 'Number',
       'type_id'         => 'Number',
       'status'          => 'Enum',
       'start_Date'      => 'Date',

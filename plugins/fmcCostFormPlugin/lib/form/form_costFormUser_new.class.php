@@ -13,7 +13,7 @@ class form_costFormUser_new extends PluginCostFormForm
         
         $uid = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
-        $this->setWidget('user_id', new sfWidgetFormInputHidden(array(),array('value'=>$uid)));
+        $this->setWidget('employee_id', new sfWidgetFormInputHidden(array(),array('value'=>$uid)));
         
         $this->setWidget('project_id', new sfWidgetFormDoctrineChoice(array(
             'model' => $this->getRelatedModelName('Projects'),

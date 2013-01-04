@@ -8,7 +8,7 @@ class whForm_newLeaveWReport extends LeaveRequestForm
         parent::configure();
         
         unset(
-            $this['user_id'],
+            $this['employee_id'],
             $this['type_id'],
             $this['status'],
             $this['day_Count'],

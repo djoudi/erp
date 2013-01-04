@@ -16,7 +16,7 @@ abstract class BaseCostFormForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
-      'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'add_empty' => true)),
+      'employee_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'add_empty' => true)),
       'project_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'), 'add_empty' => false)),
       'advanceReceived' => new sfWidgetFormInputText(),
       'currency_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'), 'add_empty' => false)),
@@ -31,7 +31,7 @@ abstract class BaseCostFormForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'required' => false)),
+      'employee_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Users'), 'required' => false)),
       'project_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'))),
       'advanceReceived' => new sfValidatorNumber(array('required' => false)),
       'currency_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currencies'))),

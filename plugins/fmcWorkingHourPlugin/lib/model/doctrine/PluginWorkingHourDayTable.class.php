@@ -21,33 +21,33 @@ class PluginWorkingHourDayTable extends Doctrine_Table
     }
     
     
-    public function getDraftDate ($date, $user_id = NULL)
+    public function getDraftDate ($date, $employee_id = NULL)
     {
-        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        if (!$employee_id) $employee_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
         $q = $this->createQuery ('whd')
-            ->addWhere ('whd.user_id = ?', $user_id)
+            ->addWhere ('whd.employee_id = ?', $employee_id)
             ->addWhere ('whd.date = ?', $date)
             ->addWhere ('status = ?', 'Draft');
         return $q->fetchOne();
     }
     
     
-    public function getActiveDate ($date, $user_id = NULL)
+    public function getActiveDate ($date, $employee_id = NULL)
     {
-        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        if (!$employee_id) $employee_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
         $q = $this->createQuery ('whd')
-            ->addWhere ('whd.user_id = ?', $user_id)
+            ->addWhere ('whd.employee_id = ?', $employee_id)
             ->addWhere ('whd.date = ?', $date)
             ->addWhere ('status <> ?', 'Denied');
         return $q->fetchOne();
     }
     
     
-    public function getDateType ($date, $user_id = NULL)
+    public function getDateType ($date, $employee_id = NULL)
     {
-        if ( $whday = $this->getActiveDate ($date, $user_id) )
+        if ( $whday = $this->getActiveDate ($date, $employee_id) )
         {
             
             if ($whday['leave_id']) $status = "Leave";

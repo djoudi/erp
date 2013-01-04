@@ -79,7 +79,7 @@ class filter_costFormItemReport_list extends PluginCostFormItemFormFilter {
         
         if ($value) {
             
-            $query->andWhere('cf.user_id = ?', $value);
+            $query->andWhere('cf.employee_id = ?', $value);
         }
     }
     

@@ -18,13 +18,13 @@ class PluginCostFormTable extends Doctrine_Table
         return Doctrine::getTable ('Project')->getActive();
     }
     
-    public function getByIdUser ($id, $user_id = NULL)
+    public function getByIdUser ($id, $employee_id = NULL)
     {
-        if (!$user_id) $user_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+        if (!$employee_id) $employee_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
         $q = $this->createQuery ('cf')
             ->addWhere ('cf.id = ?', $id)
-            ->addWhere ('cf.user_id = ?', $user_id);
+            ->addWhere ('cf.employee_id = ?', $employee_id);
         
         return $q->fetchOne();
     }

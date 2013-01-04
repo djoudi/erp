@@ -58,13 +58,13 @@ class whDayInfo
         return $output;
     }
     
-    public static function routeDay ($date, $currentType = NULL, $user_id = NULL)
+    public static function routeDay ($date, $currentType = NULL, $employee_id = NULL)
     {
         $controller = sfContext::getInstance()->getController();
         
         if (!$date) $controller->redirect ($controller->genUrl('@homepage'));
         
-        $dayType = Doctrine::getTable('WorkingHourDay')->getDateType ($date, $user_id);
+        $dayType = Doctrine::getTable('WorkingHourDay')->getDateType ($date, $employee_id);
         
         $redirectUrl = "";
         
@@ -72,7 +72,7 @@ class whDayInfo
         {
             if ($currentType != "Leave") 
             {
-                $day = Doctrine::getTable('WorkingHourDay')->getActiveDate ($date, $user_id);
+                $day = Doctrine::getTable('WorkingHourDay')->getActiveDate ($date, $employee_id);
                 $redirectUrl = $controller->genUrl('@workingHourLeave_info?leave_id='.$day['leave_id']);
             }
         }

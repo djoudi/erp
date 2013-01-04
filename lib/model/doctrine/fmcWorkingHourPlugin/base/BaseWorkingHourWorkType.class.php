@@ -59,7 +59,7 @@ abstract class BaseWorkingHourWorkType extends MyDoctrineRecord
         $this->hasMany('sfGuardUser as Employees', array(
              'refClass' => 'WorkingHourWorkTypeUser',
              'local' => 'worktype_id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $this->hasMany('sfGuardGroup as Department', array(
              'local' => 'id',

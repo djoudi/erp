@@ -187,7 +187,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
 
         $this->hasMany('WorkingHourWorkType as WorkTypes', array(
              'refClass' => 'WorkingHourWorkTypeUser',
-             'local' => 'user_id',
+             'local' => 'employee_id',
              'foreign' => 'worktype_id'));
 
         $this->hasMany('sfGuardUserPermission', array(
@@ -208,7 +208,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
 
         $this->hasMany('CostForm as CostForms', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $this->hasMany('CostFormItem as CostFormItems', array(
              'local' => 'id',
@@ -216,19 +216,19 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
 
         $this->hasMany('LeaveRequestLimit', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $this->hasMany('WorkingHourWorkTypeUser', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $this->hasMany('LeaveRequest', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $this->hasMany('WorkingHourDay', array(
              'local' => 'id',
-             'foreign' => 'user_id'));
+             'foreign' => 'employee_id'));
 
         $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();

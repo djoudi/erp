@@ -13,7 +13,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'         => new sfWidgetFormFilterInput(),
+      'employee_id'     => new sfWidgetFormFilterInput(),
       'project_id'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'advanceReceived' => new sfWidgetFormFilterInput(),
       'currency_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -26,7 +26,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'user_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'employee_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'project_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'advanceReceived' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -56,7 +56,7 @@ abstract class BaseCostFormVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'              => 'Number',
-      'user_id'         => 'Number',
+      'employee_id'     => 'Number',
       'project_id'      => 'Number',
       'advanceReceived' => 'Number',
       'currency_id'     => 'Number',
