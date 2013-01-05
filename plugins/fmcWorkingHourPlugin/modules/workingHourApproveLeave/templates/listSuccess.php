@@ -51,7 +51,9 @@
                         <?php echo $item['Employee']['first_name']." ".$item['Employee']['last_name']; ?>
                     </td>
                     <td>
-                        <?php echo $item['LeaveType']['name']; ?>
+                        <a href="<?php echo url_for('workingHourApproveLeave_details',array('id'=>$item['id'])); ?>">
+                            <?php echo $item['LeaveType']['name']; ?>
+                        </a>
                     </td>
                     <td>
                         <?php echo $item['start_Date']; ?>

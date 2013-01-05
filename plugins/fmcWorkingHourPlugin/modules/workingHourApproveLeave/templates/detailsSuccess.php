@@ -1,3 +1,6 @@
+<?php slot ('title', "Approve Leave Request"); ?>
+
+
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 
