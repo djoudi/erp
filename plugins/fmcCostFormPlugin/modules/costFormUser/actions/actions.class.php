@@ -59,7 +59,6 @@ class costFormUserActions extends sfActions
             $this->form = new form_costFormUser_newItem ($cfi);
         }
         
-        #$this->costForm = $this->getUser()->getMyCostForm($cf_id);
         $this->costForm = Doctrine::getTable('CostForm')->getByIdUser ($cf_id);
         
         $this->forward404Unless($this->costForm);
@@ -85,7 +84,6 @@ class costFormUserActions extends sfActions
     
     public function executeDeleteForm (sfWebRequest $request)
     {
-        #$item = $this->getUser()->getMyCostForm($request->getParameter('id'));
         $item = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
         $this->forward404Unless($item);
@@ -101,7 +99,6 @@ class costFormUserActions extends sfActions
     
     public function executeDeleteItem (sfWebRequest $request)
     {
-        #$item = $this->getUser()->getMyCost($request->getParameter('id'));
         $item = Doctrine::getTable('CostFormItem')->getByIdUser ($request->getParameter('id'));
         
         $this->forward404Unless ($item);
@@ -112,7 +109,6 @@ class costFormUserActions extends sfActions
         }
         else
         {
-            $item->save();
             $item->delete();
         }
         
@@ -153,7 +149,6 @@ class costFormUserActions extends sfActions
     
     public function executeSend (sfWebRequest $request)
     {
-        #$item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
         $item = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
         $this->forward404Unless ($item);
@@ -182,25 +177,30 @@ class costFormUserActions extends sfActions
     
     public function executeReport (sfWebRequest $request)
     {
-        #$item = $this->getUser()->getMyCostForm ($request->getParameter('id'));
         $form = Doctrine::getTable('CostForm')->getByIdUser ($request->getParameter('id'));
         
-        #$form = Doctrine::getTable('costForm')->find($request->getParameter('id'));
-
+        // Loading excel file
         
-        $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/costform.xls";
-        $objReader = PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($xfile);
+            $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/costform.xls";
+            
+            $objReader = PHPExcel_IOFactory::createReader('Excel5');
+            
+            $objPHPExcel = $objReader->load($xfile);
         
-        $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('E2', sfContext::getInstance()->getUser()->getGuardUser()->getName())
-            ->setCellValue('E3', $form->Projects->code)
-            ->setCellValue('L2', $form->id)
-            ->setCellValue('L3', $form->advanceReceived);
-        $row = 7;
+        // Filling sheet values
+        
+            $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('E2', sfContext::getInstance()->getUser()->getGuardUser()->getName())
+                ->setCellValue('E3', $form->Projects->code)
+                ->setCellValue('L2', $form->id)
+                ->setCellValue('L3', $form->advanceReceived);
+            
+            $row = 7;
         
         // Creating sub-array for each invoicing array
+        
         $costs = array();
+        
         $currencies = Doctrine::getTable('Currency')->getActive();
       
         foreach ($currencies as $currency)
@@ -218,12 +218,14 @@ class costFormUserActions extends sfActions
                 foreach ($list as $index=>$cfi)
                 {
                     $sum += $cfi->amount;
+                    
                     $objPHPExcel->setActiveSheetIndex(0)
                         ->setCellValue('B'.$row, $cfi->cost_Date)
                         ->setCellValue('D'.$row, $cfi->description)
                         ->setCellValue('G'.$row, $cfi->amount.' '.$cfi->getCurrencies()->__toString(). ' (%'.$cfi->getVats()->__toString().')')
                         ->setCellValue('I'.$row, $cfi->receipt_No)
                         ->setCellValue('K'.$row, $cfi->invoice_To);
+                    
                     $row +=2;
                 }
                 $objPHPExcel->setActiveSheetIndex(0)
@@ -234,10 +236,15 @@ class costFormUserActions extends sfActions
         }
         
         $objPHPExcel->getActiveSheet()->setTitle('CostForm');
+        
         header('Content-Type: application/vnd.ms-excel');
+        
         header('Content-Disposition: attachment;filename="costform-'.$form->id.'.xls"');
+        
         header('Cache-Control: max-age=0');
+        
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        
         $objWriter->save('php://output');
         
         $this->redirect($request->getReferer());

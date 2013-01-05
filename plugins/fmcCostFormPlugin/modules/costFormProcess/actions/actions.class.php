@@ -244,10 +244,13 @@ class costFormProcessActions extends sfActions
             }
             
             $this->getUser()->setAttribute('costFormProcess_invoiced', $this->invoiced);
+            
             $this->getUser()->setAttribute('costFormProcess_notInvoiced', $this->notInvoiced);
+            
             $this->getUser()->setAttribute('costFormProcess_projectid', $this->project->getId());
             
             $this->getUser()->setFlash('success', 'Cost forms you have selected has been processed.');
+            
             $this->redirect($this->getController()->genUrl("@costFormProcess_report"));
         }
     }
