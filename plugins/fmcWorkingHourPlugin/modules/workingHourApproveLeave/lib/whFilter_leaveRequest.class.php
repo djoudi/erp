@@ -7,10 +7,6 @@ class whFilter_leaveRequest extends LeaveRequestFormFilter
     {
         parent::configure();
         
-        $this->widgetSchema['employee_id']->setLabel('Employee');
-        
-        $this->widgetSchema['employee_id']->setLabel('Leave Type');
-        
         unset(
             $this['status'],
             $this['start_Date'],

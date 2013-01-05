@@ -13,8 +13,6 @@ class whFilter_dayRequest extends WorkingHourDayFormFilter
             $this['multiplier']
         );
         
-        $this->widgetSchema['employee_id']->setLabel('Employee');
-        
         $this->setWidget('date', new sfWidgetFormJQueryDate(array(
             'date_widget' => new sfWidgetFormDate(array('format'=>'%day%%month%%year%')),
             'image' => '/img/calendar.png',
