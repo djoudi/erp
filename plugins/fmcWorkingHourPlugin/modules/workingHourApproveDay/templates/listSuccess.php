@@ -40,12 +40,16 @@
     <tbody>
         
         <?php foreach ($items as $item): ?>
+            <?php $url = url_for('workingHourApproveDay_details',array('id'=>$item['id'])); ?>
+        
             <tr>
                 <td>
                     <?php echo $item['Employee']['first_name']." ".$item['Employee']['last_name']; ?> 
                 </td>
                 <td>
-                    <?php echo whDayInfo::getGoodDate($item['date']); ?>
+                    <a href="<?php echo $url; ?>">
+                        <?php echo whDayInfo::getGoodDate($item['date']); ?>
+                    </a>
                 </td>
                 <td>
                     <?php echo $item['multiplier']; ?>
@@ -61,7 +65,7 @@
                     <?php echo Fmc_Core_Time::getTimeDifEasy ($end, $start); ?>
                 </td>
                 <td>
-                    <a href="<?php echo url_for('workingHourApproveDay_details',array('id'=>$item['id'])); ?>">
+                    <a href="<?php echo $url; ?>">
                         Show
                     </a>
                 </td>
