@@ -187,7 +187,7 @@ class workingHourLeaveActions extends sfActions
     
     public function executeNewRequest (sfWebRequest $request)
     {
-        if ($this->date = $request->getParameter ('date'))
+        if (!$this->date = $request->getParameter ('date'))
         {
             $this->date = date ("Y-m-d");
         }
