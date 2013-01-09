@@ -13,7 +13,7 @@
         
             <form class="pull-left" style="margin: 0 10px 0 0;" action="" method="post" <?php if (!$filtered): ?>style="display:none"<?php endif; ?>>
                 <?php echo $filter->renderHiddenFields(); ?>
-                <input class="btn btn-primary" type="submit" name="_reset" value="Show All Results" />
+                <input class="btn btn-primary" type="submit" name="_reset" value="Show All (Reset Filter)" />
             </form>
         
         <?php else: ?>
