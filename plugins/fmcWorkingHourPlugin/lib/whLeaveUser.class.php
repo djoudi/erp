@@ -52,7 +52,7 @@ class whLeaveUser
     
     public static function hasEnoughLimit ($type_id, $employee_id = NULL)
     {
-        $used = whLeaveUser::countUsedLimit ($type_id, $employee_id);
+        $used = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id);
         $available = whLeaveUser::countAvailableLimit ($type_id, $employee_id);
         return $available > $used;
     }
