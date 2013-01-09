@@ -47,17 +47,27 @@ class workingHourReportActions extends sfActions
         {
             $type = $item['WorkingHourDay'][0]['leave_id'] ? "Leave" : "Work";
             
+            // Calculating Day Hours
+            
+            $day = Doctrine::getTable('WorkingHourDay')->findOneById($item['WorkingHourDay'][0]['id']);
+            $hours = $day->calculateDayHours();
+            
+            // Calculating Details
+            
             if ($type == "Work")
                 $details = whDayInfo::getDayIORegular ($item['WorkingHourDay'][0]['WorkingHourRecords']);
             else
                 $details = $item['WorkingHourDay'][0]['LeaveRequest']['LeaveType']['name'];
+            
+            // Writing to File
             
             $objPHPExcel
                 ->setActiveSheetIndex(0)
                 ->setcellValue ("A".$row, $item['first_name']." ".$item['last_name'])
                 ->setcellValue ("C".$row, $item['WorkingHourDay'][0]['status'])
                 ->setcellValue ("D".$row, $type)
-                ->setcellValue ("E".$row, $details);
+                ->setcellValue ("E".$row, $hours)
+                ->setcellValue ("F".$row, $details);
             
             $row++;
         }

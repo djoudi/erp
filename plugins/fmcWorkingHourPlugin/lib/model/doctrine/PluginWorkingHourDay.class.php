@@ -3,6 +3,36 @@
 abstract class PluginWorkingHourDay extends BaseWorkingHourDay
 {
     
+    public function calculateDayHours ()
+    {
+        if ($this->getLeaveId())
+        {
+            $result = "9h";
+        }
+        else
+        {
+            $works = $this->getWorkRecords();
+            
+            $startSum = 0;
+            $endSum = 0;
+            
+            foreach ($works as $work)
+            {
+                $startSum += Fmc_Core_Time::TimeToStamp ($work['start_Time']);
+                $endSum += Fmc_Core_Time::TimeToStamp ($work['end_Time']);
+            }
+            
+            $minutes = ($endSum-$startSum) % 3600;
+            $hours = ( ($endSum-$startSum) - $minutes ) / 3600;
+            
+            $result = $hours."h ".$minutes."m";
+        }
+    
+        return $result;
+    }
+    
+    
+    
     public function getRecords ()
     {
         $q = Doctrine::getTable ('WorkingHourRecord')

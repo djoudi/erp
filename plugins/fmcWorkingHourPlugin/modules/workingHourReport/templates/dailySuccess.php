@@ -2,6 +2,7 @@
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
+
 <div class="row">
 
     <div class="span3">
@@ -53,6 +54,14 @@
                                     <?php echo whDayInfo::getDayIORegular ($records); ?>
                                     
                                 <?php endif; ?>
+                                
+                                (
+                                <?php
+                                    $day = Doctrine::getTable('WorkingHourDay')->findOneById($item['WorkingHourDay'][0]['id']);
+                                    echo $day->calculateDayHours();
+                                ?>
+                                )
+                                
                             </td>
                         </tr>
                     <?php endforeach; ?>
