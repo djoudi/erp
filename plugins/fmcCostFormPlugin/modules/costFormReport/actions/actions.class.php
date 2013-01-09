@@ -5,7 +5,7 @@ class costFormReportActions extends sfActions
     
     public function executeIndex (sfWebRequest $request)
     {
-        $this->resultlimit = 100;
+        $this->resultLimit = 100;
         
         // Edit these variables
     
@@ -15,7 +15,7 @@ class costFormReportActions extends sfActions
             ->leftJoin ('cfi.CostForms cf')
             ->leftJoin ('cf.Projects p')
             ->leftJoin ('cf.Users u')
-            ->limit ($this->resultlimit)
+            ->limit ($this->resultLimit)
             ->addWhere ('cf.issent = ?', true);
         
         $filterClass = new FmcFilter('filter_costFormItemReport_list');

@@ -10,16 +10,11 @@
         'filtered'=>$filtered, 
         'count'=>count($costFormItems),
         'new_url'=>url_for('@costFormProcess_filter'),
-        'new_text'=>"Back to Project Selection"
+        'new_text'=>"Back to Project Selection",
+        'limit'=>$resultLimit
     )); ?>
 <?php endif; ?>
 
-
-
-<?php include_partial ('fmcCore/limitedResults', array(
-    'itemCount' => count($costFormItems),
-    'limit' => $resultLimit
-)); ?>
 
 
 <table class="table table-bordered table-condensed table-hover">

@@ -8,15 +8,11 @@
     <?php include_partial ('fmcCore/filterForm', array(
         'filter'=>$filter, 
         'filtered'=>$filtered, 
-        'count'=>count($costFormItems)
+        'count'=>count($costFormItems),
+        'limit'=>$resultLimit
     )); ?>
 <?php endif; ?>
 
-
-<?php include_partial ('fmcCore/limitedResults', array(
-    'itemCount' => count($costFormItems),
-    'limit' => $resultLimit
-)); ?>
 
 
 <?php if (!count($costFormItems)): ?>
