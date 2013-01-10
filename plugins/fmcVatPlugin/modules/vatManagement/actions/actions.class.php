@@ -15,7 +15,9 @@ class vatManagementActions extends sfActions
     
     public function executeDisable (sfWebRequest $request)
     {
-        $this->forward404Unless ($object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id')));
+        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'))
+        
+        $this->forward404Unless ($object);
         
         if ($object->getIsDefault())
         {
@@ -35,9 +37,12 @@ class vatManagementActions extends sfActions
     
     public function executeEnable (sfWebRequest $request)
     {
-        $this->forward404Unless ($object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id')));
+        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'))
+        
+        $this->forward404Unless ($object);
         
         $object->setIsActive(true);
+        
         $object->save();
         
         $this->getUser()->setFlash("notice", sprintf("Vat %s is enabled!", $object->getRate()));
