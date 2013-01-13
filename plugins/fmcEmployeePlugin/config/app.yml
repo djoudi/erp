@@ -12,15 +12,12 @@ all:
                             label: Employees
                             attributes:
                                 class: "nav-header"
-                            requires_auth: true
                             credentials: ["Employee Management"]
                         22:
                             label: Employees
                             route: @employeeManagement
-                            requires_auth: true
                             credentials: ["Employee Management"]
                         23:
                             label: Departments
                             route: @departmentManagement_list
-                            requires_auth: true
                             credentials: ["Employee Management"]

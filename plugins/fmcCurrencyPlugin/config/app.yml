@@ -7,5 +7,4 @@ all:
                         12:
                            label: Currency
                            route: @currencyManagement_index
-                           requires_auth: true
                            credentials: ["Currency Management"]

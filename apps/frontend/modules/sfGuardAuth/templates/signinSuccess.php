@@ -15,6 +15,7 @@
         <?php endif; ?>
         
         <?php echo $form["username"]->render(array('placeholder' => 'Username','class'=>'input-block-level'))."\n"; ?>
+        
         <?php echo $form["password"]->render(array('placeholder' => 'Password','class'=>'input-block-level'))."\n"; ?>
         
         <button class="btn btn-primary" type="submit">Sign in</button>

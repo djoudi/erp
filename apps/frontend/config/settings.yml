@@ -1,70 +1,55 @@
 prod:
-  .settings:
-    no_script_name:         true
-    logging_enabled:        false
+    .settings:
+        no_script_name:         true
+        logging_enabled:        false
 
 dev:
-  .settings:
-    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              true
-    cache:                  false
-    no_script_name:         false
-    etag:                   false
-
-test:
-  .settings:
-    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  false
-    web_debug:              false
-    no_script_name:         false
-    etag:                   false
+    .settings:
+        error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+        web_debug:              true
+        cache:                  false
+        no_script_name:         false
+        etag:                   false
 
 all:
-  .settings:
-    # Form security secret (CSRF protection)
-    csrf_secret:            f199eca28a6c2e52efe982210b5dd9b84bf3966a
-
-    # Output escaping settings
-    escaping_strategy:      false
-    escaping_method:        ESC_SPECIALCHARS
-
-    # Enable the database manager
-    use_database:           true
-
-    # For Login
-    enabled_modules:
-      - default
-      - sfGuardAuth
-      
-      - fmcCore
-      - homepage
-      
-      - costFormUser
-      - costFormProcess
-      - costFormReport
-      - costFormManage
-      
-      - currencyManagement
-      - customerManagement
-      - departmentManagement
-      - employeeManagement
-      - holidayManagement
-      - projectManagement
-      - vatManagement
-      
-      - workingHourApproveDay
-      - workingHourApproveLeave
-      - workingHourDay
-      - workingHourLeave
-      - workingHourLeaveLimit
-      - workingHourLeaveType
-      - workingHourParameter
-      - workingHourReport
-      - workingHourWorkType
-
-  # For Login  
-  .actions:
-    login_module:    sfGuardAuth
-    login_action:    signin
-    secure_module:   sfGuardAuth
-    secure_action:   secure
+    .actions:
+        login_module:           sfGuardAuth
+        login_action:           signin
+        secure_module:          sfGuardAuth
+        secure_action:          secure
+    
+    .settings:
+        csrf_secret:            f199eca28a6c2e52efe982210b5dd9b84bf3966a
+        escaping_strategy:      false
+        escaping_method:        ESC_SPECIALCHARS
+        use_database:           true
+        
+        enabled_modules:
+            - default
+            - sfGuardAuth
+            
+            - fmcCore
+            - homepage
+            
+            - costFormUser
+            - costFormProcess
+            - costFormReport
+            - costFormManage
+            
+            - currencyManagement
+            - customerManagement
+            - departmentManagement
+            - employeeManagement
+            - holidayManagement
+            - projectManagement
+            - vatManagement
+            
+            - workingHourApproveDay
+            - workingHourApproveLeave
+            - workingHourDay
+            - workingHourLeave
+            - workingHourLeaveLimit
+            - workingHourLeaveType
+            - workingHourParameter
+            - workingHourReport
+            - workingHourWorkType

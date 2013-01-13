@@ -11,9 +11,11 @@
         <p>
             Your account does not have proper credentials to view this page.
         </p>
+        
         <p>
             If you think you have received this message by mistake, please logout and login again. 
         </p>
+        
         <p>
             If problem still exists, please contact your system administrator.
         </p>

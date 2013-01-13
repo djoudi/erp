@@ -1,22 +1,18 @@
 all:
     #iOMenuPlugin
-    menus:
-    
+    menus:    
         topmenu:
             name: Top Menu
             attributes:
                 id: layout_top_menu
                 class: "nav"
             children:
-                0:
+                0_welcome:
                     label: Welcome
                     route: @homepage
-                    requires_auth: true
-                    is_first: true
                 99_settings: 
                     label: Settings
                     route: "#"
-                    requires_auth: true                    
                     attributes:
                         id: topmenu_settings
                         class: "dropdown"

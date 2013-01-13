@@ -8,23 +8,19 @@ default:
         language:     en
     
     stylesheets:
-    
         - jquery-ui-1.9.2.custom.min.css
         - tablesorter-extra.css
         - bootstrap.min.css
-        
         - frontend-extra.css
         - frontend-forms.css
         
     javascripts:
-    
         - jquery-1.8.3.min.js
         - jquery-ui-1.9.2.custom.min.js
         - jquery-tablesorter.js
         - jquery.tablesorter.pager.js
         - bootstrap.min.js
-        - /sfFormExtraPlugin/js/double_list.js
-        
+        - /sfFormExtraPlugin/js/double_list.js        
         - frontend.js
         
     has_layout:     true

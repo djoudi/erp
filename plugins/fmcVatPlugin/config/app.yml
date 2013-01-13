@@ -7,5 +7,4 @@ all:
                         11:
                             label: VAT
                             route: @vatManagement_index
-                            requires_auth: true
                             credentials: ["VAT Management"]

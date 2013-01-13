@@ -12,10 +12,8 @@ all:
                             label: Projects
                             attributes:
                                 class: "nav-header"
-                            requires_auth: true
                             credentials: ["Project Management"]
                         42:
                             label: Projects
                             route: @projectManagement
-                            requires_auth: true
                             credentials: ["Project Management"]
