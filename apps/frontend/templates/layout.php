@@ -71,12 +71,12 @@
 
 
 
-<?php /*if ($sf_user->hasFlash('success')): ?>
+<?php if ($sf_user->hasFlash('success')): ?>
     <div class="alert alert-success fade in">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <?php echo $sf_user->getFlash('success') ?>
     </div>
-<?php endif*/ ?>
+<?php endif ?>
 
 <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="alert fade in">
