@@ -46,7 +46,7 @@ class workingHourDayActions extends sfActions
     {
         whDayInfo::routeDay ($this->date = $request->getParameter ('date'), "Work");
         
-        $this->day = Doctrine::getTable ('WorkingHourDay')->getActiveDate($this->date)
+        $this->day = Doctrine::getTable ('WorkingHourDay')->getActiveDate($this->date);
         
         $this->forward404Unless ($this->day);
         
@@ -84,7 +84,7 @@ class workingHourDayActions extends sfActions
     {
         whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
         
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date)
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date);
         
         $this->forward404Unless ($day);
         
@@ -102,7 +102,7 @@ class workingHourDayActions extends sfActions
     {
         whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
         
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date)
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date);
         
         $this->forward404Unless ($day);
                 
