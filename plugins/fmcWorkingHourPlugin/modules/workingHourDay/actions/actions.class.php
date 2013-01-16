@@ -112,7 +112,7 @@ class workingHourDayActions extends sfActions
         }
         else
         {
-            $day->setStatus ("Pending");
+            $day->setStatus ("Accepted");
             
             $day->setMultiplier ($day->calculateMultiplier());
             

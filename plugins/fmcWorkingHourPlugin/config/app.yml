@@ -33,10 +33,6 @@ all:
                                 class: "nav-header"
                             credentials: [["Working Hours Day Approve", "Working Hours Leave Approve"]]
                         21:
-                            label: Work Days
-                            route: @workingHourApproveDay_list
-                            credentials: ["Working Hours Day Approve"]
-                        22:
                             label: Leave Requests
                             route: @workingHourApproveLeave_list
                             credentials: ["Working Hours Leave Approve"]

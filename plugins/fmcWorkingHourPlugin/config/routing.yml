@@ -1,3 +1,5 @@
+# Excel Outputs
+
 workingHourLeave_exportExcel:
     url: /wh/leave/:id/exportexcel
     param:
@@ -12,8 +14,6 @@ workingHourReport_dailyExcel:
         action: dailyExcel
 
 
-
-
 # workingHourReport
 
 workingHourReport_daily:
@@ -21,6 +21,7 @@ workingHourReport_daily:
     param:
         module: workingHourReport
         action: daily
+
 
 # workingHourDay
 
@@ -104,33 +105,6 @@ workingHourLeave_myRequests:
     param:
         module: workingHourLeave
         action: myRequests
-
-
-# workingHourApproveDay
-
-workingHourApproveDay_list:
-    url: /wh/approve/day/list
-    param:
-        module: workingHourApproveDay
-        action: list
-
-workingHourApproveDay_details:
-    url: /wh/approve/day/details/:id
-    param:
-        module: workingHourApproveDay
-        action: details
-
-workingHourApproveDay_approve:
-    url: /wh/approve/day/:id/approve
-    param:
-        module: workingHourApproveDay
-        action: approve
-
-workingHourApproveDay_deny:
-    url: /wh/approve/day/:id/deny
-    param:
-        module: workingHourApproveDay
-        action: deny
 
 
 # workingHourApproveLeave
