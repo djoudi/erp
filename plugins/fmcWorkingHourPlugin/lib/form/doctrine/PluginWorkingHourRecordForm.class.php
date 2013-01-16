@@ -37,6 +37,10 @@ abstract class PluginWorkingHourRecordForm extends BaseWorkingHourRecordForm
             'model' => $this->getRelatedModelName('WorkType'),
             'required' => true
         ));
+        
+        $user = sfContext::getInstance()->getUser()->getGuardUser();
+        $defaultType = $user->getDepartment()->getDefault_Work_Type()->getId();
+        $this->setDefault('work_Type_id', $defaultType);
     }
     
 }

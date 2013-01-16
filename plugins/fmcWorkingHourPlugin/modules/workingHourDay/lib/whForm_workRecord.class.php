@@ -8,6 +8,8 @@ class whForm_workRecord extends WorkingHourRecordForm
         parent::configure();
         
         $this->validatorSchema ['end_Time'] = new sfValidatorTime(array('required' => true));
+        
+        $object = Doctrine::getTable('WorkingHourWorkType')->findOneById(5);
     }
     
 }
