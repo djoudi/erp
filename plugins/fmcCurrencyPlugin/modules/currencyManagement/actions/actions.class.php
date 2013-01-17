@@ -15,7 +15,7 @@ class currencyManagementActions extends sfActions
     
     public function executeDisable (sfWebRequest $request)
     {
-        $object = Doctrine::getTable('Currency')->findOneById($request->getParameter('id'))
+        $object = Doctrine::getTable('Currency')->findOneById($request->getParameter('id'));
         
         $this->forward404Unless ($object);
     
@@ -50,7 +50,7 @@ class currencyManagementActions extends sfActions
     
     public function executeMakeDefault (sfWebRequest $request)
     {
-        $object = Doctrine::getTable('Currency')->findOneById($request->getParameter('id'))
+        $object = Doctrine::getTable('Currency')->findOneById($request->getParameter('id'));
         
         $this->forward404Unless ($object);
         

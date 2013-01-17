@@ -30,6 +30,7 @@ class sendWeeklyTask extends sfBaseTask
         
         $this->configuration->loadHelpers('Partial');
         
+        
         // Starting task
         
         $employees = Doctrine::getTable('sfGuardUser')->getActive();
@@ -86,6 +87,7 @@ class sendWeeklyTask extends sfBaseTask
                     $message = $this->getMailer()->compose(
                         array('datamanagement@fmconsulting.info'=>'FMC Data Management'), 
                         $employee['email_address'], 
+                        #'datamanagement@fmconsulting.info', 
                         $subject
                     );
                     

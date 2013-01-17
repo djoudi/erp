@@ -8,6 +8,7 @@
 #  Symfony Configuration
 #
 /config/databases.yml
+/config/factories.yml
 /data/fixtures/
 #
 #  Symfony Project Links

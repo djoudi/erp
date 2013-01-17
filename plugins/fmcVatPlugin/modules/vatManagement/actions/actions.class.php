@@ -15,7 +15,7 @@ class vatManagementActions extends sfActions
     
     public function executeDisable (sfWebRequest $request)
     {
-        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'))
+        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'));
         
         $this->forward404Unless ($object);
         
@@ -37,7 +37,7 @@ class vatManagementActions extends sfActions
     
     public function executeEnable (sfWebRequest $request)
     {
-        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'))
+        $object = Doctrine::getTable('Vat')->findOneById($request->getParameter('id'));
         
         $this->forward404Unless ($object);
         
