@@ -11,7 +11,6 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     public function getActive ()
     {
         return $this->CreateQuery('u')
-            ->addWhere('u.username <> ?', 'yasin')
             ->addWhere('u.is_active = ?', true)
             ->execute();
     }

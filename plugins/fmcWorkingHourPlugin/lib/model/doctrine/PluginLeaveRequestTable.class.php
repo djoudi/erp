@@ -9,6 +9,16 @@ class PluginLeaveRequestTable extends Doctrine_Table
     }
     
     
+    public function getListForEmployee ($employee_id, $status)
+    {
+        $q = $this->createQuery ('l')
+            ->addWhere ('l.status = ?', $status)
+            ->addWhere ('l.employee_id = ?', $employee_id);
+        
+        return $q->execute();
+    }
+    
+    
     public function getWithIdAndStatus ($id, $status = NULL)
     {
         $q = $this->createQuery ('l')

@@ -184,6 +184,10 @@ sfGuardUser:
             type: integer
             notnull: true
             default: 0
+        send_Email:
+            type: boolean
+            notnull: true
+            default: false
     relations:
         WorkTypes:
             class: WorkingHourWorkType

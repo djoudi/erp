@@ -18,6 +18,7 @@
  * @property timestamp $last_login
  * @property integer $group_id
  * @property integer $monthly_Working_Hours
+ * @property boolean $send_Email
  * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
@@ -46,6 +47,7 @@
  * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
  * @method integer               getGroupId()                 Returns the current record's "group_id" value
  * @method integer               getMonthlyWorkingHours()     Returns the current record's "monthly_Working_Hours" value
+ * @method boolean               getSendEmail()               Returns the current record's "send_Email" value
  * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
@@ -73,6 +75,7 @@
  * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
  * @method sfGuardUser           setMonthlyWorkingHours()     Sets the current record's "monthly_Working_Hours" value
+ * @method sfGuardUser           setSendEmail()               Sets the current record's "send_Email" value
  * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
@@ -156,6 +159,11 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,
+             ));
+        $this->hasColumn('send_Email', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
 
 

@@ -23,7 +23,7 @@
                         <?php echo $request['status']; ?>
                     </td>
                     <td>
-                        <?php $url = url_for ('workingHourLeave_info',array('leave_id'=>$request['id'])); ?>
+                        <?php $url = url_for ('@workingHourLeave_info?leave_id='.$request['id'],true); ?>
                         <a href="<?php echo $url; ?>">
                             <?php echo $request->getLeaveType(); ?>
                         </a>
@@ -54,7 +54,7 @@
                     <?php endif; ?>
                     
                     <td>
-                        <?php $url = url_for ('workingHourLeave_info',array('leave_id'=>$request['id'])); ?>
+                        <?php $url = url_for ('@workingHourLeave_info?leave_id='.$request['id'],true); ?>
                         <a href="<?php echo $url; ?>">
                             View
                         </a>

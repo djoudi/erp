@@ -46,6 +46,7 @@ all:
             
             - workingHourApproveDay
             - workingHourApproveLeave
+            - workingHourCore
             - workingHourDay
             - workingHourLeave
             - workingHourLeaveLimit

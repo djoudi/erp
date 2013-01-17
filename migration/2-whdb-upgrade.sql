@@ -42,19 +42,19 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 
 
 INSERT IGNORE INTO `leave_type` (`id`, `name`, `default_limit`, `has_report`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-(1, 'Illness with Report', 3, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
+(1, 'Illness with Report', 9999, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
 (2, 'Illness without Report', 3, 0, 23, 23, '2012-11-05 22:03:12', '2012-11-06 12:12:48', NULL, 1),
 (3, 'Paid Vacation', 0, 0, 23, 23, '2012-11-05 22:22:54', '2012-11-05 22:22:54', NULL, 1),
 (4, 'Unpaid Vacation', 0, 0, 23, 23, '2012-11-05 22:23:12', '2012-11-06 09:26:37', NULL, 1);
 
 
 INSERT IGNORE INTO `holiday` (`id`, `day`, `name`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-(1, '2012-10-29', 'Cumhuriyet Bayramı', 23, 23, '2012-11-06 10:04:13', '2012-11-06 10:04:13', NULL, 1),
-(2, '2012-01-01', 'New Year', 23, 23, '2012-11-06 10:04:51', '2012-11-06 10:04:51', NULL, 1),
-(3, '2012-04-23', 'Ulusal Egemenlik ve Çocuk Bayramı', 23, 23, '2012-11-06 10:05:28', '2012-11-06 10:05:28', NULL, 1),
-(4, '2012-05-01', 'Emek ve Dayanışma Bayramı', 23, 23, '2012-11-06 10:05:43', '2012-11-06 10:05:43', NULL, 1),
-(5, '2012-05-19', 'Atatürkü Anma Gençlik ve Spor Bayramı', 23, 23, '2012-11-06 10:06:04', '2012-11-06 10:06:04', NULL, 1),
-(6, '2012-08-30', 'Zafer Bayramı', 23, 23, '2012-11-06 10:15:26', '2012-11-06 10:15:26', NULL, 1);
+(1, '2013-10-29', 'Cumhuriyet Bayramı', 23, 23, '2012-11-06 10:04:13', '2012-11-06 10:04:13', NULL, 1),
+(2, '2013-01-01', 'New Year', 23, 23, '2012-11-06 10:04:51', '2012-11-06 10:04:51', NULL, 1),
+(3, '2013-04-23', 'Ulusal Egemenlik ve Çocuk Bayramı', 23, 23, '2012-11-06 10:05:28', '2012-11-06 10:05:28', NULL, 1),
+(4, '2013-05-01', 'Emek ve Dayanışma Bayramı', 23, 23, '2012-11-06 10:05:43', '2012-11-06 10:05:43', NULL, 1),
+(5, '2013-05-19', 'Atatürkü Anma Gençlik ve Spor Bayramı', 23, 23, '2012-11-06 10:06:04', '2012-11-06 10:06:04', NULL, 1),
+(6, '2013-08-30', 'Zafer Bayramı', 23, 23, '2012-11-06 10:15:26', '2012-11-06 10:15:26', NULL, 1);
 
 
 INSERT IGNORE INTO `working_hour_work_type` (`id`, `name`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
