@@ -77,18 +77,20 @@ class sendWeeklyTask extends sfBaseTask
                 
                 // Sending Email
                 
+                // Thanks to: http://pookey.co.uk/wordpress/archives/91-sending-multipart-email-from-a-task-in-symfony-1-4
+                
                 if (count($draftLeaves)+count($pendingLeaves)+count($daysEmpty)+count($daysIncomplete))
                 {
                     $subject = "Weekly WHDB report for {$date}";
                     
                     $message = $this->getMailer()->compose(
                         array('datamanagement@fmconsulting.info'=>'FMC Data Management'), 
-                        'datamanagement@fmconsulting.info', 
+                        $employee['email_address'], 
                         $subject
                     );
                     
                     // generate HTML part
-                        /*
+                        
                         $context->getRequest()->setRequestFormat('html');
                         
                         $html = get_partial('workingHourCore/sendWeeklyHtml',array(
@@ -101,7 +103,7 @@ class sendWeeklyTask extends sfBaseTask
                         ));
                         
                         $message->setBody($html, 'text/html');
-                        */
+                        
                     // generate plain text part
                         
                         $context->getRequest()->setRequestFormat('txt');
@@ -115,8 +117,7 @@ class sendWeeklyTask extends sfBaseTask
                             'pendingLeaves' => $pendingLeaves, 
                         ));
                         
-                        #$message->addPart($plain, 'text/plain');
-                        $message->setBody($plain, 'text/plain');
+                        $message->addPart($plain, 'text/plain');
                     
                     // send the message
                     

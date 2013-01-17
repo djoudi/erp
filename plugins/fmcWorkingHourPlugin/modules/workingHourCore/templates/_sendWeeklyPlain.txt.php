@@ -4,53 +4,34 @@ You are receiving this e-mail because your account is configured to receive e-ma
 
 Below you can find your this week's WHDB status report.
 
-
 <?php if (count($daysEmpty)): ?>
-
 You haven't entered any records for these days:
-----------
-
+--------------------
 <?php foreach ($daysEmpty as $day): ?>
-<?php echo $day; ?>
+<?php echo $day."\n"; ?>
 <?php endforeach; ?>
-
 <?php endif; ?>
-        
-        
-        <?php if (count($daysIncomplete)): ?>
-        
-            <strong>Your incomplete days:</strong>
-            
-            <ul>
-                <?php foreach ($daysIncomplete as $day): ?>
-                    <li>
-                        <a href="<?php echo url_for('@workingHourDay_date?date='.$day, true); ?>">
-                            <?php echo $day; ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            
-        <?php endif; ?>
-        
-        
-        <?php if (count($draftLeaves)): ?>
-            <p>
-                <strong>Your unsent leave requests:</strong>
-            </p>
-            <?php include_partial ('workingHourLeave/leaveRequestsInfo', array('leaveRequests'=>$draftLeaves)); ?>
-        <?php endif; ?>
-        
-        
-        <?php if (count($pendingLeaves)): ?>
-            <p>
-                <strong>Your pending leave requests:</strong>
-            </p>
-            <?php include_partial ('workingHourLeave/leaveRequestsInfo', array('leaveRequests'=>$pendingLeaves)); ?>
-        <?php endif; ?>
-        
-        
-        <p>&nbsp;</p>
-        
-    </body>
-</html>
+
+<?php if (count($daysIncomplete)): ?>
+Your incomplete days:
+--------------------
+<?php foreach ($daysIncomplete as $day): ?>
+<?php echo $day."\n"; ?>
+<?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (count($draftLeaves)): ?>
+Your unsent leave requests:
+--------------------
+<?php foreach ($draftLeaves as $leave): ?>
+<?php echo $leave->getLeaveType()." - ".$leave['start_Date']." to ".$leave['end_Date']."\n"; ?>
+<?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (count($pendingLeaves)): ?>
+Your pending leave requests:
+--------------------
+<?php foreach ($pendingLeaves as $leave): ?>
+<?php echo $leave->getLeaveType()." - ".$leave['start_Date']." to ".$leave['end_Date']."\n"; ?>
+<?php endforeach; ?>
+<?php endif; ?>

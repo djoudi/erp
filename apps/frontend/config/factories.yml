@@ -5,18 +5,15 @@ prod:
             level:   err
             loggers: ~
 
-dev:
-    #mailer:
-        #param:
-            #delivery_strategy: none
-
 all:
     routing:
         class: sfPatternRouting
         param:
             generate_shortest_url:            true
             extra_parameters_as_query_string: true
-
+            context:
+                host: www.fmc.com
+    
     view_cache_manager:
         class: sfViewCacheManager
         param:
@@ -29,9 +26,6 @@ all:
             logging:           %SF_LOGGING_ENABLED%
             charset:           %SF_CHARSET%
             delivery_strategy: realtime
-            #delivery_strategy: spool
-            #spool_class:       Swift_FileSpool
-            #spool_arguments:   [/srv/fmcdata/spool]
             transport:
                 class: Swift_SmtpTransport
                 param:
