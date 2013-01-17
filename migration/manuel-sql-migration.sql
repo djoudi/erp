@@ -10,8 +10,10 @@ employee : elle send email seç (yasin ve yeşim için)
 frontend factories.yml > context host gir
 
 cron:
-* * * * * /usr/bin/php /srv/fmcdata/symfony workingHour:sendWeekly
+* * * * 0 /usr/bin/php /srv/fmcdata/symfony workingHour:sendWeekly
+* * * * * /usr/bin/php /www/fmcdemo.yasinaydin.net/symfony workingHour:sendWeekly
 
+* * * * 0 /www/fmcdemo.yasinaydin.net
 
 
 

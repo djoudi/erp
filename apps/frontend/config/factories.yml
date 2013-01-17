@@ -12,7 +12,7 @@ all:
             generate_shortest_url:            true
             extra_parameters_as_query_string: true
             context:
-                host: www.fmc.com
+                host: fmcserver.dyndns.org
     
     view_cache_manager:
         class: sfViewCacheManager
