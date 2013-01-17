@@ -290,7 +290,7 @@ class workingHourLeaveActions extends sfActions
         
         $this->getUser()->setFlash ('notice', 'Leave request with ID '.$id.' is sent for approval.');
         
-        $this->redirect ($this->getController()->genUrl('@workingHourDay_check'));
+        $this->redirect ($this->getController()->genUrl("@workingHourLeave_info?leave_id={$id}"));
     }
     
     
