@@ -14,7 +14,6 @@
 <?php endif; ?>
 
 
-
 <?php if (!count($costFormItems)): ?>
   
     <p>No costs found in your selected criterias.</p>

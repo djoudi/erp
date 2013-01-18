@@ -1,25 +1,30 @@
 <table class="tablesorter table table-striped table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Project</th>
-      <th>Employee</th>
-      <th>Description</th>
-      <th>VAT</th>
-      <th>excl VAT</th>
-      <th>incl VAT</th>
-      <?php if ($isinvoiced): ?>
-        <th>Invoice No</th>
-        <th>Invoice Date</th>
-      <?php else: ?>
-        <th colspan="2">Invoice Status</th>
-      <?php endif; ?>
-    </tr>
-  </thead>
-  <tbody>
+    
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Project</th>
+            <th>Employee</th>
+            <th>Description</th>
+            <th>VAT</th>
+            <th>excl VAT</th>
+            <th>incl VAT</th>
+            
+            <?php if ($isinvoiced): ?>
+                <th>Invoice No</th>
+                <th>Invoice Date</th>
+            <?php else: ?>
+                <th colspan="2">Invoice Status</th>
+            <?php endif; ?>
+        </tr>
+    </thead>
+    
+    <tbody>
+    
+    
     <?php $sumIncl = 0;?>
     <?php $sumExcl = 0;?>
-    <?php foreach ($list as $cfi): ?>
+    <?php foreach ($items as $cfi): ?>
       <?php $sumIncl += $cfi->getAmount(); ?>
       <?php $sumExcl += $cfi->getWithoutVat(); ?>
       <tr>

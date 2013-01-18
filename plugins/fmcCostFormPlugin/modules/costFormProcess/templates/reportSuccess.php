@@ -1,7 +1,11 @@
-<?php slot ('title', "Invoicing Report") ?>
+<?php #slot ('title', "Invoicing Report") ?>
 
 
-<?php slot ('activeClass', "#topmenu_costforms"); ?>
+<?php #slot ('activeClass', "#topmenu_costforms"); ?>
+
+<?php /*
+<?php $invoicedCount = count($invoiced); ?>
+<?php $notInvoicedCount = count($notInvoiced); ?>
 
 
 <?php if ($invoicedCount): ?>
@@ -9,16 +13,23 @@
     <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
     
 <?php endif; ?>
+*/?>
 
+<pre>
+<?php print_r($invoicedList->toArray()); ?>
+</pre>
+
+<?php /*
+<?php foreach ($invoiced as $item) echo $item['code'] ?>
 
 <table class="table table-striped table-bordered table-condensed">
     <tr>
         <th>Company</th>
-        <td><?php echo $project->Customers ?></td>
+        <td><?php #echo $project->Customers ?></td>
     </tr>
     <tr>
         <th>Project</th>
-        <td><?php echo $project ?></td>
+        <td><?php #echo $project ?></td>
     </tr>
 </table>
 
@@ -32,19 +43,49 @@
 
 
 <div class="tab-content">
-  
-  <?php if ($invoicedCount): ?>
-    <div class="tab-pane active" id="invoiced">
-      <h3>Costs selected to be invoiced</h3>      
-      <p><strong><?php echo $invoicedCount; ?></strong> costs selected to be invoiced.</p>
-      <?php foreach ($invoiced as $currency_id=>$list): ?>
-        <?php if (count($list)>0): ?>
-          <?php include_partial ('reportlist', array('list'=>$list, 'isinvoiced'=>true)); ?>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
-  <?php endif ;?>
 
+
+    <?php if ($invoicedCount): ?>
+    
+        <div class="tab-pane active" id="invoiced">
+            
+            <h4>Costs selected to be invoiced</h4>
+            
+            <p><strong><?php echo $invoicedCount; ?></strong> costs selected to be invoiced.</p>
+            
+            <?php foreach ($invoiced as $items): ?>
+            
+                <?php if (count($items)>0): ?>
+                    <?php include_partial ('reportlist', array('items'=>$items['CostFormItems'], 'isinvoiced'=>true)); ?>
+                <?php endif; ?>
+                
+            <?php endforeach; ?>
+        
+        </div>
+
+    <?php endif ;?>
+
+
+    <?php if ($notInvoicedCount): ?>
+    
+        <div class="tab-pane <?php if (!$invoicedCount): ?>active<?php endif; ?>" id="notInvoiced">
+            
+            <h4>Costs selected not to be invoiced</h4>
+            
+            <p><strong><?php echo $notInvoicedCount; ?></strong> costs selected NOT to be invoiced.</p>
+            
+            <?php foreach ($notInvoiced as $items): ?>
+            
+                <?php if (count($items)>0): ?>
+                    <?php include_partial ('reportlist', array('items'=>$items['CostFormItems'], 'isinvoiced'=>false)); ?>
+                <?php endif; ?>
+                
+            <?php endforeach; ?>
+        
+        </div>
+
+    <?php endif ;?>
+<?php /*
   <?php if ($notInvoicedCount): ?>
     <div class="tab-pane <?php if (!$invoicedCount): ?>active<?php endif; ?>" id="notInvoiced">
       <h3>Costs selected not to be invoiced</h3>
@@ -56,5 +97,7 @@
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
+
   
 </div>
+*/ ?>

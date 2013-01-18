@@ -28,7 +28,7 @@
     </tr>
 </table>
 
-
+<?php if (count($costFormItems)): ?>
 
 <form method="post" class="form-inline">
     
@@ -121,6 +121,12 @@
 
 </form>
 
+
+<?php else: ?>
+
+<p>No results fount. Please change your filter settings and try again.</p>
+
+<?php endif; ?>
 
 
 <script type="text/javascript">

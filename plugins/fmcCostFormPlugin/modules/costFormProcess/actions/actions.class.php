@@ -19,7 +19,13 @@ class costFormProcessActions extends sfActions
     
     ################################################################################################
     
+    private function getItemsOrdered ($invoicing)
+    {
+        $invoiced = $invoicing->getInvoiced();
+        $notInvoiced = $invoicing->getNotInvoiced();
+    }
     
+    /*
     private function getProcessVars (sfWebRequest $request)
     {
         
@@ -36,7 +42,7 @@ class costFormProcessActions extends sfActions
         
         // Trying to fetch the project information
         
-        $this->project = Doctrine::getTable('Project')->findOneById ($projectid);
+        $this->project = Doctrine::getTable('Project')->getActiveById ($projectid);
         
         $this->forward404Unless ($this->project);
         
@@ -70,20 +76,47 @@ class costFormProcessActions extends sfActions
         
         foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi->currency_id], $cfi);
     }
-    
+    */
     
     ################################################################################################
     
     
     public function executeReport (sfWebRequest $request)
     {
-        $this->getProcessVars($request);
+        $invoicing = Doctrine::getTable('CostFormInvoicing')->findOneById($request->getParameter('id'));
+        
+        $this->invoicedList = Doctrine::getTable('Currency')
+            ->createQuery ('cur')
+            ->addWhere ('cur.isActive = ?', '1')
+            ->innerJoin ('cur.CostFormItems cfitem')
+            ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
+            ->addWhere ('cfitem.dontInvoice = ?', '0')
+            ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
+            ->addWhere ('cfinvoice.id = ?', $invoicing['id'])
+            ->execute();
+        
+        $this->notInvoicedList = Doctrine::getTable('Currency')
+            ->createQuery ('cur')
+            ->addWhere ('cur.isActive = ?', '1')
+            ->innerJoin ('cur.CostFormItems cfitem')
+            ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
+            ->addWhere ('cfitem.dontInvoice = ?', '1')
+            ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
+            ->addWhere ('cfinvoice.id = ?', $invoicing['id'])
+            ->execute();
+        
+        
+        #$this->invoiced = $invoicing->getOrderedItems ($invoicing['id'], false);
+        #$this->notInvoiced = $invoicing->getOrderedItems ($invoicing['id'], true);
+        
+        /*$this->getProcessVars($request);
         
         if (!$this->invoicedCount and !$this->notInvoicedCount)
         {
             $this->getUser()->setFlash('notice', "No cost selected to be processed.");
             $this->redirect($request->getReferer());
         }
+        */
     }
     
     
@@ -161,7 +194,7 @@ class costFormProcessActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
-        $this->project = Doctrine::getTable('Project')->findOneById ($request->getParameter('id'));
+        $this->project = Doctrine::getTable('Project')->getActiveById ($request->getParameter('id'));
         
         $this->forward404Unless ($this->project);
         
@@ -170,29 +203,18 @@ class costFormProcessActions extends sfActions
         
         $this->resultLimit = 100;
         
-        $_q = Doctrine::getTable('CostFormItem')
-            ->createQuery('cfi')
-            ->innerJoin ('cfi.Vats v')
-            ->innerJoin ('cfi.Currencies c')
-            ->innerJoin('cfi.CostForms cf')
-            ->innerJoin ('cf.Users u')
-            ->where('cf.project_id = ?', $this->project->getId())
-            ->andWhere('cf.isSent = ?', true)
-            ->andWhere('cfi.is_processed = ?', false)
-            ->limit ($this->resultLimit)
-        ;
+        $q = Doctrine::getTable ('Project')
+            ->prepareInvoicingFilter ($this->project->getId(), $this->resultLimit);
         
         $filterClass = new FmcFilter('filter_costFormItem_process');
         
-        $this->costFormItems = $filterClass->initFilterForm($request, $_q)->execute()->toArray();
+        $this->costFormItems = $filterClass->initFilterForm($request, $q)->execute();
         
         
         // Do not touch here
       
         if ($request->hasParameter('_reset')) $filterClass->resetForm ();
-        
         $this->filter = $filterClass->getFilter();
-        
         $this->filtered = $filterClass->getFiltered();
         
         
@@ -200,11 +222,12 @@ class costFormProcessActions extends sfActions
         
         if ($request->isMethod('post'))
         {
-            $this->invoiced = array();
-            
-            $this->notInvoiced = array();
-            
             $myUser = $this->getUser()->getGuardUser();
+            
+            $invoicing = new CostFormInvoicing();
+            $invoicing->setEmployee ($myUser);
+            $invoicing->setInvoicingDate (date("Y-m-d"));
+            $invoicing->save();
             
             foreach ($this->costFormItems as $cfi)
             {
@@ -212,46 +235,50 @@ class costFormProcessActions extends sfActions
                 {
                     if (isset($input['toBeInvoiced']))
                     {
-                        # if it is do not invoice
+                        # if it is Do-Not-Invoice (DNI)
                         if ($input['toBeInvoiced']=='dni')
                         {
-                            array_push($this->notInvoiced, $cfi);
                             $cfi->dontInvoice = true;
                             $cfi->is_Processed = true;
                             $cfi->setInvoicedBy ($myUser);
                             $cfi->save();
+                            
+                            $invoiceItem = new CostFormInvoicingItem();
+                            $invoiceItem->setCostFormInvoicing ($invoicing);
+                            $invoiceItem->setCostItem ($cfi);
+                            $invoiceItem->save();
                         }
                     }
                     elseif (isset($input['invoice_No']))
                     {
                         if ($input['invoice_No'])
                         {
-                            array_push($this->invoiced, $cfi);
-                            
                             $cfi->invoice_No = $input['invoice_No'];
-                            
-                            if ($input['invoice_Date'])
-                                $cfi->invoice_Date = $input['invoice_Date'];
-                            else
-                                $cfi->invoice_Date = NULL;
-                            
+                            $cfi->invoice_Date = $input['invoice_Date'] ? $input['invoice_Date'] : NULL;
                             $cfi->is_Processed = true;
                             $cfi->setInvoicedBy ($myUser);
                             $cfi->save();
+                            
+                            $invoiceItem = new CostFormInvoicingItem();
+                            $invoiceItem->setCostFormInvoicing ($invoicing);
+                            $invoiceItem->setCostItem ($cfi);
+                            $invoiceItem->save();
                         }
                     }
                 }
             }
             
-            $this->getUser()->setAttribute('costFormProcess_invoiced', $this->invoiced);
+            if (count($invoicing->getCostFormInvoicingItems()))
+            {
+                $this->getUser()->setFlash('success', 'Cost forms you have selected has been processed.');
+                $this->redirect($this->getController()->genUrl("@costFormProcess_report?id=".$invoicing['id']));
+            }
+            else
+            {
+                $invoicing->delete();
+                $this->getUser()->setFlash('notice', "No cost selected to be processed.");
+            }
             
-            $this->getUser()->setAttribute('costFormProcess_notInvoiced', $this->notInvoiced);
-            
-            $this->getUser()->setAttribute('costFormProcess_projectid', $this->project->getId());
-            
-            #$this->getUser()->setFlash('success', 'Cost forms you have selected has been processed.');
-            
-            $this->redirect($this->getController()->genUrl("@costFormProcess_report"));
         }
     }
     
