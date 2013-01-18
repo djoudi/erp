@@ -23,43 +23,46 @@
  * @property CostForm $CostForms
  * @property Vat $Vats
  * @property Currency $Currencies
+ * @property Doctrine_Collection $CostFormInvoicingItems
  * 
- * @method integer      getCostFormId()   Returns the current record's "costForm_id" value
- * @method date         getCostDate()     Returns the current record's "cost_Date" value
- * @method string       getDescription()  Returns the current record's "description" value
- * @method decimal      getAmount()       Returns the current record's "amount" value
- * @method integer      getCurrencyId()   Returns the current record's "currency_id" value
- * @method string       getReceiptNo()    Returns the current record's "receipt_No" value
- * @method enum         getInvoiceTo()    Returns the current record's "invoice_To" value
- * @method integer      getVatId()        Returns the current record's "vat_id" value
- * @method boolean      getIsProcessed()  Returns the current record's "is_Processed" value
- * @method string       getInvoiceNo()    Returns the current record's "invoice_No" value
- * @method date         getInvoiceDate()  Returns the current record's "invoice_Date" value
- * @method integer      getInvoicedBy()   Returns the current record's "invoiced_By" value
- * @method boolean      getDontInvoice()  Returns the current record's "dontInvoice" value
- * @method boolean      getIsPaid()       Returns the current record's "isPaid" value
- * @method sfGuardUser  getInvoicer()     Returns the current record's "Invoicer" value
- * @method CostForm     getCostForms()    Returns the current record's "CostForms" value
- * @method Vat          getVats()         Returns the current record's "Vats" value
- * @method Currency     getCurrencies()   Returns the current record's "Currencies" value
- * @method CostFormItem setCostFormId()   Sets the current record's "costForm_id" value
- * @method CostFormItem setCostDate()     Sets the current record's "cost_Date" value
- * @method CostFormItem setDescription()  Sets the current record's "description" value
- * @method CostFormItem setAmount()       Sets the current record's "amount" value
- * @method CostFormItem setCurrencyId()   Sets the current record's "currency_id" value
- * @method CostFormItem setReceiptNo()    Sets the current record's "receipt_No" value
- * @method CostFormItem setInvoiceTo()    Sets the current record's "invoice_To" value
- * @method CostFormItem setVatId()        Sets the current record's "vat_id" value
- * @method CostFormItem setIsProcessed()  Sets the current record's "is_Processed" value
- * @method CostFormItem setInvoiceNo()    Sets the current record's "invoice_No" value
- * @method CostFormItem setInvoiceDate()  Sets the current record's "invoice_Date" value
- * @method CostFormItem setInvoicedBy()   Sets the current record's "invoiced_By" value
- * @method CostFormItem setDontInvoice()  Sets the current record's "dontInvoice" value
- * @method CostFormItem setIsPaid()       Sets the current record's "isPaid" value
- * @method CostFormItem setInvoicer()     Sets the current record's "Invoicer" value
- * @method CostFormItem setCostForms()    Sets the current record's "CostForms" value
- * @method CostFormItem setVats()         Sets the current record's "Vats" value
- * @method CostFormItem setCurrencies()   Sets the current record's "Currencies" value
+ * @method integer             getCostFormId()             Returns the current record's "costForm_id" value
+ * @method date                getCostDate()               Returns the current record's "cost_Date" value
+ * @method string              getDescription()            Returns the current record's "description" value
+ * @method decimal             getAmount()                 Returns the current record's "amount" value
+ * @method integer             getCurrencyId()             Returns the current record's "currency_id" value
+ * @method string              getReceiptNo()              Returns the current record's "receipt_No" value
+ * @method enum                getInvoiceTo()              Returns the current record's "invoice_To" value
+ * @method integer             getVatId()                  Returns the current record's "vat_id" value
+ * @method boolean             getIsProcessed()            Returns the current record's "is_Processed" value
+ * @method string              getInvoiceNo()              Returns the current record's "invoice_No" value
+ * @method date                getInvoiceDate()            Returns the current record's "invoice_Date" value
+ * @method integer             getInvoicedBy()             Returns the current record's "invoiced_By" value
+ * @method boolean             getDontInvoice()            Returns the current record's "dontInvoice" value
+ * @method boolean             getIsPaid()                 Returns the current record's "isPaid" value
+ * @method sfGuardUser         getInvoicer()               Returns the current record's "Invoicer" value
+ * @method CostForm            getCostForms()              Returns the current record's "CostForms" value
+ * @method Vat                 getVats()                   Returns the current record's "Vats" value
+ * @method Currency            getCurrencies()             Returns the current record's "Currencies" value
+ * @method Doctrine_Collection getCostFormInvoicingItems() Returns the current record's "CostFormInvoicingItems" collection
+ * @method CostFormItem        setCostFormId()             Sets the current record's "costForm_id" value
+ * @method CostFormItem        setCostDate()               Sets the current record's "cost_Date" value
+ * @method CostFormItem        setDescription()            Sets the current record's "description" value
+ * @method CostFormItem        setAmount()                 Sets the current record's "amount" value
+ * @method CostFormItem        setCurrencyId()             Sets the current record's "currency_id" value
+ * @method CostFormItem        setReceiptNo()              Sets the current record's "receipt_No" value
+ * @method CostFormItem        setInvoiceTo()              Sets the current record's "invoice_To" value
+ * @method CostFormItem        setVatId()                  Sets the current record's "vat_id" value
+ * @method CostFormItem        setIsProcessed()            Sets the current record's "is_Processed" value
+ * @method CostFormItem        setInvoiceNo()              Sets the current record's "invoice_No" value
+ * @method CostFormItem        setInvoiceDate()            Sets the current record's "invoice_Date" value
+ * @method CostFormItem        setInvoicedBy()             Sets the current record's "invoiced_By" value
+ * @method CostFormItem        setDontInvoice()            Sets the current record's "dontInvoice" value
+ * @method CostFormItem        setIsPaid()                 Sets the current record's "isPaid" value
+ * @method CostFormItem        setInvoicer()               Sets the current record's "Invoicer" value
+ * @method CostFormItem        setCostForms()              Sets the current record's "CostForms" value
+ * @method CostFormItem        setVats()                   Sets the current record's "Vats" value
+ * @method CostFormItem        setCurrencies()             Sets the current record's "Currencies" value
+ * @method CostFormItem        setCostFormInvoicingItems() Sets the current record's "CostFormInvoicingItems" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -164,6 +167,10 @@ abstract class BaseCostFormItem extends MyDoctrineRecord
              'local' => 'currency_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasMany('CostFormInvoicingItem as CostFormInvoicingItems', array(
+             'local' => 'id',
+             'foreign' => 'cost_id'));
 
         $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();

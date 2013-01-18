@@ -1,5 +1,57 @@
+#CostFormInvoicing:
+#CostFormInvoicingItem:
 #CostForm:
 #CostFormItem:
+
+######################################################
+
+CostFormInvoicing:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        employee_id:
+            type: integer
+            notnull: true
+        invoicing_Date:
+            type: date
+            notnull: true
+    relations:
+        Employee:
+            class: sfGuardUser
+            local: employee_id
+            foreign: id
+            foreignAlias: CostFormInvoicings
+            onDelete: CASCADE
+
+######################################################
+
+CostFormInvoicingItem:
+    actAs:
+        Auditable: ~
+        SoftDelete: ~
+        Versionable: ~
+    columns:
+        invoicing_id:
+            type: integer
+            notnull: true
+        cost_id:
+            type: integer
+            notnull: true
+    relations:
+        CostFormInvoicing:
+            class: CostFormInvoicing
+            local: invoicing_id
+            foreign: id
+            foreignAlias: CostFormInvoicingItems
+            onDelete: CASCADE
+        CostItem:
+            class: CostFormItem
+            local: cost_id
+            foreign: id
+            foreignAlias: CostFormInvoicingItems
+            onDelete: CASCADE
 
 ######################################################
 

@@ -27,6 +27,7 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
+ * @property Doctrine_Collection $CostFormInvoicings
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $CostFormItems
  * @property Doctrine_Collection $LeaveRequestLimit
@@ -56,6 +57,7 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()        Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()          Returns the current record's "ForgotPassword" value
+ * @method Doctrine_Collection   getCostFormInvoicings()      Returns the current record's "CostFormInvoicings" collection
  * @method Doctrine_Collection   getCostForms()               Returns the current record's "CostForms" collection
  * @method Doctrine_Collection   getCostFormItems()           Returns the current record's "CostFormItems" collection
  * @method Doctrine_Collection   getLeaveRequestLimit()       Returns the current record's "LeaveRequestLimit" collection
@@ -84,6 +86,7 @@
  * @method sfGuardUser           setSfGuardUserGroup()        Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()          Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setCostFormInvoicings()      Sets the current record's "CostFormInvoicings" collection
  * @method sfGuardUser           setCostForms()               Sets the current record's "CostForms" collection
  * @method sfGuardUser           setCostFormItems()           Sets the current record's "CostFormItems" collection
  * @method sfGuardUser           setLeaveRequestLimit()       Sets the current record's "LeaveRequestLimit" collection
@@ -213,6 +216,10 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('CostFormInvoicing as CostFormInvoicings', array(
+             'local' => 'id',
+             'foreign' => 'employee_id'));
 
         $this->hasMany('CostForm as CostForms', array(
              'local' => 'id',
