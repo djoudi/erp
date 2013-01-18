@@ -39,6 +39,11 @@ class workingHourDayActions extends sfActions
         $exitObject->setDay ($day);
         $exitObject->setRecordType ("Exit");
         $this->exitForm = new whForm_exitRecord ($exitObject);
+        
+        $this->dailyBreaksForm = new whForm_dailyBreaks ();
+        $this->dailyBreaksForm->setDefaults(array(
+            'total_Daily_Breaks' => $day['daily_Breaks']
+        ));
     }
     
     
@@ -65,6 +70,8 @@ class workingHourDayActions extends sfActions
         elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
         
         elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
+        
+        elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, $url);
     }
     
     

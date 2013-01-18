@@ -2,6 +2,7 @@
     <li class="active"><a href="#tab1" data-toggle="tab">New Work Record</a></li>
     <li class=""><a href="#tab2" data-toggle="tab">Exit</a></li>
     <li class=""><a href="#tab3" data-toggle="tab">Entrance</a></li>
+    <li class=""><a href="#tab4" data-toggle="tab">Daily Breaks</a></li>
 </ul>
 
 
@@ -55,6 +56,26 @@
             
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary" value="Add" />
+            </div>
+            
+        </form>
+
+    </div>
+    
+    <div class="tab-pane" id="tab4">
+        
+        <?php $actionUrl=url_for('workingHourDay_work',array('date'=>$day['date'],'form_id'=>4)); ?>
+        
+        <form method="post" action="<?php echo $actionUrl; ?>">
+        
+            <p>Enter your total daily breaks (in minutes):</p>
+        
+            <table class="table table-condensed table-bordered table-hover">
+                <?php echo $dailyBreaksForm; ?>
+            </table>
+            
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary" value="Save" />
             </div>
             
         </form>

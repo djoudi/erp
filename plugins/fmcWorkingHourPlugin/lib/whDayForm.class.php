@@ -2,6 +2,45 @@
 
 class whDayForm
 {
+    public static function processDailyBreaks ($form, $request, $redirectUrl = NULL)
+    {
+        if ($request->isMethod('post'))
+        {
+            if (!$redirectUrl) $redirectUrl = $request->getReferer();
+            $controller = sfContext::getInstance()->getController();
+            $user = sfContext::getInstance()->getUser();
+            $date = $request->getParameter ('date');
+            $err = "";
+            
+            $form->bind ($request->getParameter ($form->getName()));
+            
+            if (!$err)
+            {
+                if (!($form->isValid())) $err = "You have problems with your input.";
+            }
+            
+            if (!$err)
+            {
+                $values = $form->getValues();
+                
+                $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
+                
+                $day->setDailyBreaks ($values['total_Daily_Breaks']);
+                
+                $day->save();
+                #$form->save();
+                
+                $controller->redirect ($redirectUrl);
+                
+                $user->setFlash('success', "Daily breaks saved successfuly.");
+            }
+            else
+            {
+                $user->setFlash('error', $err);
+            }
+        }
+    }
+    
     
     public static function processNewWork ($form, $request, $redirectUrl = NULL)
     {        

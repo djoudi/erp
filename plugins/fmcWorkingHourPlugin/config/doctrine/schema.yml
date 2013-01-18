@@ -314,6 +314,10 @@ WorkingHourDay:
             type: decimal
             notnull: true
             default: 1
+        daily_Breaks:
+            type: integer
+            notnull: false
+            default: NULL
     relations:
         Employee:
             class: sfGuardUser

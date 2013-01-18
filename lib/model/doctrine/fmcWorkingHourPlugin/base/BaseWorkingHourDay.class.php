@@ -10,6 +10,7 @@
  * @property enum $status
  * @property integer $leave_id
  * @property decimal $multiplier
+ * @property integer $daily_Breaks
  * @property sfGuardUser $Employee
  * @property LeaveRequest $LeaveRequest
  * @property Doctrine_Collection $WorkingHourRecords
@@ -19,6 +20,7 @@
  * @method enum                getStatus()             Returns the current record's "status" value
  * @method integer             getLeaveId()            Returns the current record's "leave_id" value
  * @method decimal             getMultiplier()         Returns the current record's "multiplier" value
+ * @method integer             getDailyBreaks()        Returns the current record's "daily_Breaks" value
  * @method sfGuardUser         getEmployee()           Returns the current record's "Employee" value
  * @method LeaveRequest        getLeaveRequest()       Returns the current record's "LeaveRequest" value
  * @method Doctrine_Collection getWorkingHourRecords() Returns the current record's "WorkingHourRecords" collection
@@ -27,6 +29,7 @@
  * @method WorkingHourDay      setStatus()             Sets the current record's "status" value
  * @method WorkingHourDay      setLeaveId()            Sets the current record's "leave_id" value
  * @method WorkingHourDay      setMultiplier()         Sets the current record's "multiplier" value
+ * @method WorkingHourDay      setDailyBreaks()        Sets the current record's "daily_Breaks" value
  * @method WorkingHourDay      setEmployee()           Sets the current record's "Employee" value
  * @method WorkingHourDay      setLeaveRequest()       Sets the current record's "LeaveRequest" value
  * @method WorkingHourDay      setWorkingHourRecords() Sets the current record's "WorkingHourRecords" collection
@@ -70,6 +73,10 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              'scale' => 4,
              'notnull' => true,
              'default' => 1,
+             ));
+        $this->hasColumn('daily_Breaks', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
              ));
 
         $this->option('orderBy', 'date DESC');
