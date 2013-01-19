@@ -1,27 +1,18 @@
-<?php #slot ('title', "Invoicing Report") ?>
+<?php slot ('title', "Invoicing Report") ?>
 
 
-<?php #slot ('activeClass', "#topmenu_costforms"); ?>
-
-<?php /*
-<?php $invoicedCount = count($invoiced); ?>
-<?php $notInvoicedCount = count($notInvoiced); ?>
+<?php slot ('activeClass', "#topmenu_costforms"); ?>
 
 
 <?php if ($invoicedCount): ?>
-
     <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
-    
 <?php endif; ?>
-*/?>
 
 <pre>
-<?php print_r($invoicedList->toArray()); ?>
+<?php #print_r($invoiced); ?>
 </pre>
 
 <?php /*
-<?php foreach ($invoiced as $item) echo $item['code'] ?>
-
 <table class="table table-striped table-bordered table-condensed">
     <tr>
         <th>Company</th>
@@ -32,6 +23,7 @@
         <td><?php #echo $project ?></td>
     </tr>
 </table>
+*/ ?>
 
 
 <ul class="nav nav-tabs">
@@ -56,7 +48,7 @@
             <?php foreach ($invoiced as $items): ?>
             
                 <?php if (count($items)>0): ?>
-                    <?php include_partial ('reportlist', array('items'=>$items['CostFormItems'], 'isinvoiced'=>true)); ?>
+                    <?php include_partial ('reportlist', array('items'=>$items, 'isinvoiced'=>true)); ?>
                 <?php endif; ?>
                 
             <?php endforeach; ?>

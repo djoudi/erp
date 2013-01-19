@@ -83,28 +83,85 @@ class costFormProcessActions extends sfActions
     
     public function executeReport (sfWebRequest $request)
     {
-        $invoicing = Doctrine::getTable('CostFormInvoicing')->findOneById($request->getParameter('id'));
+        $this->invoicing = Doctrine::getTable('CostFormInvoicing')->findOneById($request->getParameter('id'));
         
-        $this->invoicedList = Doctrine::getTable('Currency')
-            ->createQuery ('cur')
+        
+        $this->invoiced = array();
+        $this->notInvoiced = array();
+        $currencies = Doctrine::getTable('Currency')->getActive();
+        foreach ($currencies as $currency)
+        {
+            $this->invoiced[$currency->id]= array();
+            $this->notInvoiced[$currency->id]= array();
+        }
+        
+        $invoiced = Doctrine::getTable ('CostFormItem')
+            ->createQuery ('cfi')
+            ->leftJoin ('cfi.Currencies cur')
+            ->leftJoin ('cfi.CostForms cf')
+            ->leftJoin ('cf.Projects p')
+            ->leftJoin ('cfi.CostFormInvoicingItems cfinvitem')
+            ->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
+            ->addWhere ('cfi.dontInvoice = ?', 0)
+            ->addWhere ('cfinv.id = ?', $this->invoicing->getId())
+            ->execute();
+            #->toArray();
+        $this->invoicedCount = count($invoiced);
+        
+        #$invoiced = Doctrine::getTable ('CostFormInvoicingItem')
+            #->createQuery ('cfinvitem')
+            #->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
+            #->leftJoin ('cfinvitem.CostItem cfi')
+            #->leftJoin ('cfi.Currencies cur')
+            #->addWhere ('cfinv.id = ?', $this->invoicing->getId())
+            #->addWhere ('cfi.dontInvoice = ?', 0)
+            #->execute();
+        
+        foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi['currency_id']], $cfi);
+        
+        
+        
+        $notInvoiced = Doctrine::getTable ('CostFormItem')
+            ->createQuery ('cfi')
+            ->leftJoin ('cfi.Currencies cur')
+            ->leftJoin ('cfi.CostFormInvoicingItems cfinvitem')
+            ->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
+            ->addWhere ('cfi.dontInvoice = ?', 1)
+            ->addWhere ('cfinv.id = ?', $this->invoicing->getId())
+            ->execute()
+            ->toArray();
+        
+        $this->notInvoicedCount = count($notInvoiced);
+        
+        foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi['currency_id']], $cfi);
+        
+        
+        
+        
+        
+        /*
+        $q1 = Doctrine_Query::create()
+            ->from ('Currency cur')
             ->addWhere ('cur.isActive = ?', '1')
             ->innerJoin ('cur.CostFormItems cfitem')
             ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
             ->addWhere ('cfitem.dontInvoice = ?', '0')
             ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
-            ->addWhere ('cfinvoice.id = ?', $invoicing['id'])
-            ->execute();
+            ->addWhere ('cfinvoice.id = ?', $id)
+            ;
+        $this->a = $q1->execute();
         
-        $this->notInvoicedList = Doctrine::getTable('Currency')
-            ->createQuery ('cur')
+        $q2 = Doctrine_Query::create()
+            ->from ('Currency cur')
             ->addWhere ('cur.isActive = ?', '1')
             ->innerJoin ('cur.CostFormItems cfitem')
             ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
             ->addWhere ('cfitem.dontInvoice = ?', '1')
             ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
-            ->addWhere ('cfinvoice.id = ?', $invoicing['id'])
-            ->execute();
-        
+            ->addWhere ('cfinvoice.id = ?', $id)
+            ;
+        $this->b = $q2->execute();
+        */
         
         #$this->invoiced = $invoicing->getOrderedItems ($invoicing['id'], false);
         #$this->notInvoiced = $invoicing->getOrderedItems ($invoicing['id'], true);

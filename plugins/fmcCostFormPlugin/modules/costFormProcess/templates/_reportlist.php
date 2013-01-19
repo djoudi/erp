@@ -25,11 +25,11 @@
     <?php $sumIncl = 0;?>
     <?php $sumExcl = 0;?>
     <?php foreach ($items as $cfi): ?>
-      <?php $sumIncl += $cfi->getAmount(); ?>
-      <?php $sumExcl += $cfi->getWithoutVat(); ?>
+      <?php $sumIncl += $cfi['amount']; ?>
+      <?php #$sumExcl += $cfi->getWithoutVat(); ?>
       <tr>
-        <td><?php echo $cfi->cost_Date ?></td>
-        <td><?php echo $cfi->CostForms->Projects ?></td>
+        <td><?php echo $cfi['cost_Date'] ?></td>
+        <td><?php #echo $cfi['CostForms']['Projects']['name'] ?></td>
         <td><?php echo $cfi->CostForms->Users ?></td>
         <td><?php echo $cfi->description ?></td>
         <td><?php echo $cfi->Vats ?></td>

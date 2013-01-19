@@ -45,12 +45,15 @@ CostFormInvoicingItem:
             local: invoicing_id
             foreign: id
             foreignAlias: CostFormInvoicingItems
+            #CostFormInvoicingItem
             onDelete: CASCADE
         CostItem:
+        #CostItems
             class: CostFormItem
             local: cost_id
             foreign: id
             foreignAlias: CostFormInvoicingItems
+            #CostFormInvoicingItem
             onDelete: CASCADE
 
 ######################################################
