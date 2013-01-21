@@ -43,7 +43,7 @@ class costFormProcessActions extends sfActions
         
         // Getting invoiced
         
-        $invoiced = Doctrine::getTable('CostFormItem')->prepareInvoicingQuery ($this->invoicing_id->getId(), 0);
+        $invoiced = Doctrine::getTable('CostFormItem')->prepareInvoicingQuery ($this->invoicing->getId(), 0);
         
         $this->invoicedCount = count($invoiced);
         
@@ -64,7 +64,15 @@ class costFormProcessActions extends sfActions
     
     public function executeReport (sfWebRequest $request)
     {
-        $this->getProcessVars($request);
+        if ($request->getParameter('id'))        
+        {
+            $this->getProcessVars($request);
+        }
+        else
+        {
+            $this->invoicings = Doctrine::getTable('CostFormInvoicing')->findAll();
+            $this->setTemplate ('invoicings');
+        }
     }
     
     

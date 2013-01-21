@@ -41,7 +41,7 @@ all:
                             route: @costFormProcess_filter
                             credentials: ["Cost Form Invoicing"]
                         13:
-                            label: My last invoicing
+                            label: Invoicings
                             route: @costFormProcess_report
                             credentials: ["Cost Form Invoicing"]
                         21:
