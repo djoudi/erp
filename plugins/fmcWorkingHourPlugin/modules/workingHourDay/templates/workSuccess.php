@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <th>Daily Breaks</th>
-                    <td><?php echo $day['daily_Breaks']; ?> min</td>
+                    <td><?php echo $day['daily_Breaks']; ?> min(s)</td>
                 </tr>
                 
             </table>
