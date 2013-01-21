@@ -42,6 +42,11 @@
                     <th>Day Multiplier</th>
                     <td><?php echo $day['multiplier']; ?></td>
                 </tr>
+                <tr>
+                    <th>Daily Breaks</th>
+                    <td><?php echo $day['daily_Breaks']; ?></td>
+                </tr>
+                
             </table>
         <?php endif; ?>
         
