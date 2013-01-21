@@ -16,8 +16,9 @@
 <?php endif; ?>
 
 
+<form method="post" class="form-inline">
 
-<table class="table table-bordered table-condensed table-hover">
+<table class="table table-bordered table-condensed table-hover pull-left">
     <tr>
         <th>Company</th>
         <td><?php echo $project->Customers ?></td>
@@ -30,7 +31,11 @@
 
 <?php if (count($costFormItems)): ?>
 
-<form method="post" class="form-inline">
+
+    
+    <input class="btn btn-success pull-right" type="submit" name="process" value="Process" />
+    
+    <div class="clearfix"></div>
     
     <table class="tablesorter table table-hover table-bordered table-condensed">
         
