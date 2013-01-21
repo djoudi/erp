@@ -20,4 +20,18 @@ class PluginCostFormItemTable extends Doctrine_Table
         return $q->fetchOne();
     }
     
+    public function prepareInvoicingQuery ($invoicing_id, $dni)
+    {
+        $q = $this->createQuery ('cfi')
+            ->leftJoin ('cfi.Currencies cur')
+            ->leftJoin ('cfi.CostForms cf')
+            ->leftJoin ('cf.Projects p')
+            ->leftJoin ('cfi.CostFormInvoicingItems cfinvitem')
+            ->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
+            ->addWhere ('cfi.dontInvoice = ?', $dni)
+            ->addWhere ('cfinv.id = ?', $invoicing_id);
+        
+        return $q->execute();
+    }
+    
 }

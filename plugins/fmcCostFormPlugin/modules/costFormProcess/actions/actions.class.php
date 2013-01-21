@@ -25,42 +25,13 @@ class costFormProcessActions extends sfActions
         $notInvoiced = $invoicing->getNotInvoiced();
     }
     
-    /*
-    private function getProcessVars (sfWebRequest $request)
-    {
-        
-        // Checking if the processing exists in the session
-        
-        $projectid = $this->getUser()->getAttribute('costFormProcess_projectid');
-        
-        if (!$projectid)
-        {
-            $this->getUser()->setFlash('notice', 'Your last invoicing could not be found.');
-            
-            $this->redirect($request->getReferer());
-        }
-        
-        // Trying to fetch the project information
-        
-        $this->project = Doctrine::getTable('Project')->getActiveById ($projectid);
-        
-        $this->forward404Unless ($this->project);
-        
-        // Fetching the cfi's from the session
-        
-        $invoiced = $this->getUser()->getAttribute('costFormProcess_invoiced');
-        
-        $notInvoiced = $this->getUser()->getAttribute('costFormProcess_notInvoiced');
-        
-        $this->invoicedCount = count($invoiced);
-        
-        $this->notInvoicedCount = count($notInvoiced);
     
-        // Creating sub-array for each invoicing array
-        
+    private function getProcessVars ($request)
+    {
         $this->invoiced = array();
-        
         $this->notInvoiced = array();
+        
+        $this->invoicing = Doctrine::getTable('CostFormInvoicing')->findOneById($request->getParameter('id'));
         
         $currencies = Doctrine::getTable('Currency')->getActive();
         
@@ -70,110 +41,30 @@ class costFormProcessActions extends sfActions
             $this->notInvoiced[$currency->id]= array();
         }
         
-        // Filling sub-arrays with related currency's cfi
+        // Getting invoiced
         
-        foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi->currency_id], $cfi);
+        $invoiced = Doctrine::getTable('CostFormItem')->prepareInvoicingQuery ($this->invoicing_id->getId(), 0);
         
-        foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi->currency_id], $cfi);
+        $this->invoicedCount = count($invoiced);
+        
+        foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi['currency_id']], $cfi);
+        
+        // Getting un-invoiced
+        
+        $notInvoiced = Doctrine::getTable('CostFormItem')->prepareInvoicingQuery ($this->invoicing->getId(), 1);
+        
+        $this->notInvoicedCount = count($notInvoiced);
+        
+        foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi['currency_id']], $cfi);
     }
-    */
+    
     
     ################################################################################################
     
     
     public function executeReport (sfWebRequest $request)
     {
-        $this->invoicing = Doctrine::getTable('CostFormInvoicing')->findOneById($request->getParameter('id'));
-        
-        
-        $this->invoiced = array();
-        $this->notInvoiced = array();
-        $currencies = Doctrine::getTable('Currency')->getActive();
-        foreach ($currencies as $currency)
-        {
-            $this->invoiced[$currency->id]= array();
-            $this->notInvoiced[$currency->id]= array();
-        }
-        
-        $invoiced = Doctrine::getTable ('CostFormItem')
-            ->createQuery ('cfi')
-            ->leftJoin ('cfi.Currencies cur')
-            ->leftJoin ('cfi.CostForms cf')
-            ->leftJoin ('cf.Projects p')
-            ->leftJoin ('cfi.CostFormInvoicingItems cfinvitem')
-            ->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
-            ->addWhere ('cfi.dontInvoice = ?', 0)
-            ->addWhere ('cfinv.id = ?', $this->invoicing->getId())
-            ->execute();
-            #->toArray();
-        $this->invoicedCount = count($invoiced);
-        
-        #$invoiced = Doctrine::getTable ('CostFormInvoicingItem')
-            #->createQuery ('cfinvitem')
-            #->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
-            #->leftJoin ('cfinvitem.CostItem cfi')
-            #->leftJoin ('cfi.Currencies cur')
-            #->addWhere ('cfinv.id = ?', $this->invoicing->getId())
-            #->addWhere ('cfi.dontInvoice = ?', 0)
-            #->execute();
-        
-        foreach ($invoiced as $cfi) array_push ($this->invoiced[$cfi['currency_id']], $cfi);
-        
-        
-        
-        $notInvoiced = Doctrine::getTable ('CostFormItem')
-            ->createQuery ('cfi')
-            ->leftJoin ('cfi.Currencies cur')
-            ->leftJoin ('cfi.CostFormInvoicingItems cfinvitem')
-            ->leftJoin ('cfinvitem.CostFormInvoicing cfinv')
-            ->addWhere ('cfi.dontInvoice = ?', 1)
-            ->addWhere ('cfinv.id = ?', $this->invoicing->getId())
-            ->execute()
-            ->toArray();
-        
-        $this->notInvoicedCount = count($notInvoiced);
-        
-        foreach ($notInvoiced as $cfi) array_push ($this->notInvoiced[$cfi['currency_id']], $cfi);
-        
-        
-        
-        
-        
-        /*
-        $q1 = Doctrine_Query::create()
-            ->from ('Currency cur')
-            ->addWhere ('cur.isActive = ?', '1')
-            ->innerJoin ('cur.CostFormItems cfitem')
-            ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
-            ->addWhere ('cfitem.dontInvoice = ?', '0')
-            ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
-            ->addWhere ('cfinvoice.id = ?', $id)
-            ;
-        $this->a = $q1->execute();
-        
-        $q2 = Doctrine_Query::create()
-            ->from ('Currency cur')
-            ->addWhere ('cur.isActive = ?', '1')
-            ->innerJoin ('cur.CostFormItems cfitem')
-            ->innerJoin ('cfitem.CostFormInvoicingItems cfinvitem')
-            ->addWhere ('cfitem.dontInvoice = ?', '1')
-            ->innerJoin ('cfinvitem.CostFormInvoicing cfinvoice')
-            ->addWhere ('cfinvoice.id = ?', $id)
-            ;
-        $this->b = $q2->execute();
-        */
-        
-        #$this->invoiced = $invoicing->getOrderedItems ($invoicing['id'], false);
-        #$this->notInvoiced = $invoicing->getOrderedItems ($invoicing['id'], true);
-        
-        /*$this->getProcessVars($request);
-        
-        if (!$this->invoicedCount and !$this->notInvoicedCount)
-        {
-            $this->getUser()->setFlash('notice', "No cost selected to be processed.");
-            $this->redirect($request->getReferer());
-        }
-        */
+        $this->getProcessVars($request);
     }
     
     
@@ -191,10 +82,9 @@ class costFormProcessActions extends sfActions
         $objPHPExcel = $objReader->load($xfile);
         
         $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('B1', $this->project->getCustomers()->__toString())
-            ->setCellValue('B2', $this->project->getCode())
-            ->setCellValue('B3', $this->getUser()->getGuardUser()->__toString())
-            ->setCellValue('B4', date("d-m-Y H:m"));
+            ->setCellValue ('A1', "Invoiced by {$this->invoicing->getEmployee()} on {$this->invoicing->invoicing_Date}")
+            ->setCellValue ('A2', "Printed by {$this->getUser()->getGuardUser()} on ".date('Y-m-d H:i:s'))
+            ->setcellValue ('A3', $_SERVER['HTTP_REFERER']);
         
         $row = 8;
         
@@ -213,30 +103,31 @@ class costFormProcessActions extends sfActions
                     $objPHPExcel->setActiveSheetIndex(0)
                         ->setCellValue("A$row", date ("d-m-Y", strtotime($item->cost_Date)) )
                         ->setCellValue("B$row", $item->getCostForms()->getUsers()->__toString())
-                        ->setCellValue("C$row", $item->getDescription())
-                        ->setCellValue("D$row", $item->getVats()->getRate())
-                        ->setCellValue("E$row", $item->getWithoutVat()." ".$item->getCurrencies()->__toString())
-                        ->setCellValue("F$row", $item->getAmount()." ".$item->getCurrencies()->__toString())
-                        ->setCellValue("G$row", $item->getReceiptNo())
-                        ->setCellValue("H$row", $item->getInvoiceTo())
-                        ->setCellValue("I$row", $item->getInvoiceNo())
-                        ->setCellValue("J$row", $item->getInvoiceDate());
+                        ->setCellValue("C$row", $item->getCostForms()->getProjects()->getCode())
+                        ->setCellValue("D$row", $item->getDescription())
+                        ->setCellValue("E$row", $item->getVats()->getRate())
+                        ->setCellValue("F$row", $item->getWithoutVat()." ".$item->getCurrencies()->__toString())
+                        ->setCellValue("G$row", $item->getAmount()." ".$item->getCurrencies()->__toString())
+                        ->setCellValue("H$row", $item->getReceiptNo())
+                        ->setCellValue("I$row", $item->getInvoiceTo())
+                        ->setCellValue("J$row", $item->getInvoiceNo())
+                        ->setCellValue("K$row", $item->getInvoiceDate());
                     $row++;
                 }
             
                 $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue("C$row", "Total")
-                    ->setCellValue("E$row", $sumexclvat." ".$item->getCurrencies()->__toString())
-                    ->setCellValue("F$row", $suminclvat." ".$item->getCurrencies()->__toString());
+                    ->setCellValue("D$row", "Total")
+                    ->setCellValue("F$row", $sumexclvat." ".$item->getCurrencies()->__toString())
+                    ->setCellValue("G$row", $suminclvat." ".$item->getCurrencies()->__toString());
                 
                 $row+=3;
             }
         }
         
-        $objPHPExcel->getActiveSheet()->setTitle('Cost Invoicing');
+        $objPHPExcel->getActiveSheet()->setTitle("Cost Invoicing - {$this->invoicing['id']}");
         
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="costinvoicing-'.$this->project->getCode().'.xls"');
+        header("Content-Disposition: attachment;filename='costinvoicing-{$this->invoicing['id']}.xls'");
         header('Cache-Control: max-age=0');
         
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');

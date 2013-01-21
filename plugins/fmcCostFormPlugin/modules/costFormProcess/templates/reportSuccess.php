@@ -4,26 +4,16 @@
 <?php slot ('activeClass', "#topmenu_costforms"); ?>
 
 
-<?php if ($invoicedCount): ?>
-    <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export"); ?>">Download Report</a>
-<?php endif; ?>
-
-<pre>
-<?php #print_r($invoiced); ?>
-</pre>
-
-<?php /*
 <table class="table table-striped table-bordered table-condensed">
     <tr>
-        <th>Company</th>
-        <td><?php #echo $project->Customers ?></td>
+        <th>Invoice Date</th>
+        <td><?php echo $invoicing->Employee ?></td>
     </tr>
     <tr>
-        <th>Project</th>
-        <td><?php #echo $project ?></td>
+        <th>Invoiced By</th>
+        <td><?php echo $invoicing->invoicing_Date ?></td>
     </tr>
 </table>
-*/ ?>
 
 
 <ul class="nav nav-tabs">
@@ -40,6 +30,8 @@
     <?php if ($invoicedCount): ?>
     
         <div class="tab-pane active" id="invoiced">
+            
+            <a class="btn btn-primary pull-right" href="<?php echo url_for("@costFormProcess_export?id=".$invoicing['id']); ?>">Download Report</a>
             
             <h4>Costs selected to be invoiced</h4>
             
@@ -69,7 +61,7 @@
             <?php foreach ($notInvoiced as $items): ?>
             
                 <?php if (count($items)>0): ?>
-                    <?php include_partial ('reportlist', array('items'=>$items['CostFormItems'], 'isinvoiced'=>false)); ?>
+                    <?php include_partial ('reportlist', array('items'=>$items, 'isinvoiced'=>false)); ?>
                 <?php endif; ?>
                 
             <?php endforeach; ?>
