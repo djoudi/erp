@@ -13,6 +13,7 @@
 #
 #  Symfony Project Links
 #
+/web/fmcCostFormPlugin
 /web/fmcWorkingHourPlugin
 /web/sfDoctrinePlugin
 /web/sfFormExtraPlugin

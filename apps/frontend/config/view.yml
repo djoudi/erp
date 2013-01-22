@@ -12,7 +12,8 @@ default:
         - tablesorter-extra.css
         - bootstrap.min.css
         - frontend-extra.css
-        - frontend-forms.css
+        - /fmcCostFormPlugin/css/style.css
+        - /fmcWorkingHourPlugin/css/style.css
         
     javascripts:
         - jquery-1.8.3.min.js
