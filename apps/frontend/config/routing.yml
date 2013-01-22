@@ -1,17 +1,3 @@
-# Main Pages
-
-homepage:
-    url: /
-    param:
-        module: homepage
-        action: index
-
-administration:
-    url: /home/administration
-    param:
-        module: homepage
-        action: administration
-
 # sfDoctrineGuard - Login/Logout Operations
 
 sf_guard_signin:
