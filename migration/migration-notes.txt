@@ -1,0 +1,29 @@
+DB de elle:
+    user_id > employee_id
+    (sfguard_ lar hariç)
+
+Arayüz: Departmanlar
+    default work type : elle gir
+
+Arayüz: Leave Types
+    Illnesswithreport : 9999 gir
+
+Arayüz: Çalışanlar
+    Her biri için Send Email seç
+
+Config/factories.yml
+    Context host gir
+    Mail server bilgilerini gir
+
+Sunucu - crontab -e
+    * * * * 0 /usr/bin/php /srv/fmcdata/symfony workingHour:sendWeekly
+
+
+
+###
+
+Her şey bitince Yasin'i sil:
+    DELETE FROM `sf_guard_user` WHERE `id` = 23;
+
+Yasin'i eklemek için:
+    INSERT IGNORE INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `title`, `email_address`, `username`, `algorithm`, `salt`, `password`, `is_active`, `is_super_admin`, `last_login`, `group_id`, `created_at`, `updated_at`, `version`) VALUES (23, 'Yasin', 'Aydın', '', 'yasin@yasinaydin.net', 'yasin', 'sha1', 'e12d942ac806eccc6125b473b7426125', '2465953bd5a76234c121f33d6c748f17ac405529', 1, 0, '2012-11-01 12:00:11', 7, '2012-01-11 18:21:30', '2012-11-01 12:00:11', 15);
