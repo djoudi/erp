@@ -22,7 +22,11 @@
 #working_hour_end,
 #working_hour_leave_report_date_day,
 #working_hour_leave_report_date_month,
-#working_hour_start
+#working_hour_start,
+#filter_wh_report_employee__date_from_day,
+#filter_wh_report_employee__date_from_month,
+#filter_wh_report_employee__date_to_day,
+#filter_wh_report_employee__date_to_month
 {
     width: 50px;
 }
@@ -33,7 +37,9 @@
 #leave_request_report_Date_year,
 #leave_request_report_Received_year,
 #working_hour_day_filters_date_year,
-#working_hour_leave_report_date_year
+#working_hour_leave_report_date_year,
+#filter_wh_report_employee__date_from_year,
+#filter_wh_report_employee__date_to_year
 {
     width: 70px;
 }

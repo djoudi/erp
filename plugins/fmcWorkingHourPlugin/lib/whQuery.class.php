@@ -18,4 +18,21 @@ class whQuery
         return $q->execute();
     }
     
+    public static function prepareReportEmployee ($from, $to, $emp)
+    {
+        $q = Doctrine::getTable ('WorkingHourRecord')
+            ->createQuery ('r')
+            ->leftJoin ('r.Day d')
+            ->leftJoin ('r.Project p')
+            ->leftJoin ('r.WorkType wt')
+            ->addWhere ('d.date > ?', $from)
+            ->addWhere ('d.date < ?', $to)
+            ->addWhere ('d.employee_id = ?', $emp)
+            ->addWhere ('d.status = ?', "Accepted")
+            ->addWhere ('r.recordType = ?', "Work")
+            ->orderBy ('d.DATE ASC, r.start_Time ASC');
+            
+        return $q->execute();
+    }
+    
 }

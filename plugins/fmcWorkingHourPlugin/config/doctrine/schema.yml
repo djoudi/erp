@@ -301,7 +301,7 @@ WorkingHourDay:
             notnull: true
         status:
             type: enum
-            values: ['Draft', 'Pending', 'Accepted', 'Denied']
+            values: ['Draft', 'Accepted', 'Denied']
             default: 'Draft'
             notnull: true
         leave_id:

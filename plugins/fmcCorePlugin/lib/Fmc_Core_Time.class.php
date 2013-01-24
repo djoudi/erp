@@ -17,21 +17,29 @@ class Fmc_Core_Time
         return $epoch ? $epoch : 0;
     }
     
-    public static function getTimeDifEasy ($end, $start)
+    public static function getTimeEasy ($time)
+    {
+        $min = $time % 3600;
+        
+        $hour = ($time-$min) / 3600;
+        
+        return "{$hour}h {$min}m";
+    }
+    
+    public static function getTimeDif ($end, $start)
     {
         $startTS = Fmc_Core_Time::TimeToStamp ($start);
         
         $endTS = Fmc_Core_Time::TimeToStamp ($end);
         
-        $dif = $endTS - $startTS;
+        return $endTS - $startTS;
+    }
+    
+    public static function getTimeDifEasy ($end, $start)
+    {
+        $dif = Fmc_Core_Time::getTimeDif ($end, $start);
         
-        $h = ( $dif - ($dif % 3600) ) / 3600;
-        
-        $dif -= $h*3600;
-        
-        $m = ( $dif - ($dif % 60) ) / 60;
-        
-        return $h."h ".$m."m";
+        return Fmc_Core_Time::getTimeEasy ($endTS - $startTS);
     }
         
 }
