@@ -14,7 +14,7 @@ class FmcFilter
     {
         $this->formName = $formname;
         $this->user = sfContext::getInstance()->getUser();
-        $this->controller = sfContext::getInstance()->getController();   
+        $this->controller = sfContext::getInstance()->getController();
     }
     
     

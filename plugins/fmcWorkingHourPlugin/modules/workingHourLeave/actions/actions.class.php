@@ -8,73 +8,50 @@ class workingHourLeaveActions extends sfActions
         
         $this->forward404Unless ($item);
         
-        // @TODO : move this to a (excel class perhaps)?
+        // Excel parameters
         
-        // Creating Excel File
+        $template = sfConfig::get('sf_upload_dir')."/excelTemplates/workingHourLeaveForm.xls";
+        $title = 'WHDB-LeaveForm';
+        $filename = "fmcdata-LeaveRequest-{$item['id']}.xls";
         
-        $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/workingHourLeaveForm.xls";
+        // Preparing values
         
-        $objReader = PHPExcel_IOFactory::createReader('Excel5');
+        $values = array();
         
-        $objPHPExcel = $objReader->load($xfile);
-        
-        // Writing Values
-        
-        $objPHPExcel
-            ->setActiveSheetIndex(0)
-            ->setCellValue ('A44', 'Printed by '.$this->getUser()->getGuardUser().' on '.date("Y-m-d H:i:s"))
-            ->setcellValue ('A45', $_SERVER['HTTP_REFERER'])
-            ->setcellValue ('C9', $item->getLeaveType()->getName())
-            ->setcellValue ('C10', $item['id'])
-            ->setcellValue ('C11', $item->getEmployee()->__toString())
-            ->setcellValue ('C12', $item['status'])
-            ->setcellValue ('C13', $item['start_Date'])
-            ->setcellValue ('C14', $item['end_Date'])
-            ->setcellValue ('C15', $item['day_Count'].' day(s)')
-            ->setcellValue ('C16', $item['comment']);
+        $values["C9"] = $item->getLeaveType()->getName();
+        $values["C10"] = $item['id'];
+        $values["C11"] = $item->getEmployee()->__toString();
+        $values["C12"] = $item['status'];
+        $values["C13"] = $item['start_Date'];
+        $values["C14"] = $item['end_Date'];
+        $values["C15"] = "{$item['day_Count']} day(s)";
+        $values["C16"] = $item['comment'];
         
         $type_id = $item['LeaveType']['id'];
         $employee_id = $item['Employee']['id'];
         $available = whLeaveUser::countAvailableLimit ($type_id, $employee_id);
         $used = whLeaveUser::countUsedLimit ($type_id, $employee_id);
         $reserved = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id);
-        $pending = $reserved - $used;
         
-        $objPHPExcel
-            ->setActiveSheetIndex(0)
-            ->setcellValue ('B24', $available )
-            ->setcellValue ('B25', $used )
-            ->setcellValue ('B26', $pending);
+        $values["B24"] = $available;
+        $values["B25"] = $used;
+        $values["B26"] = $reserved - $used;
         
         if ($item['LeaveType']['has_Report'])
         {
             $rStatus = $item['report_Received'] ? $item['report_Received'] : "Not received";
             
-            $objPHPExcel
-                ->setActiveSheetIndex(0)
-                ->setcellValue ('A18', "Report Date :")
-                ->setcellValue ('A19', "Report Number :")
-                ->setcellValue ('A20', "Report Received :")
-                ->setcellValue ('C18', $item['report_Date'])
-                ->setcellValue ('C19', $item['report_Number'])
-                ->setcellValue ('C20', $rStatus);
+            $values["A18"] = "Report Date :";
+            $values["A19"] = "Report Number :";
+            $values["A20"] = "Report Received :";
+            $values["C18"] = $item['report_Date'];
+            $values["C19"] = $item['report_Number'];
+            $values["C20"] = $rStatus;
         }
         
-        // Finalizing File
+        // Preparing output
         
-        $objPHPExcel->getActiveSheet()->setTitle('WHDB-LeaveForm');
-        
-        header('Content-Type: application/vnd.ms-excel');
-        
-        header('Content-Disposition: attachment;filename="fmcdata-LeaveRequest-'.$item['id'].'.xls"');
-        
-        header('Cache-Control: max-age=0');
-        
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        
-        $objWriter->save('php://output');
-        
-        // Redirecting Back
+        FmcExcel::prepare ($template, $title, $filename, $values, "A44", "A45");
         
         $this->redirect($request->getReferer());
     }

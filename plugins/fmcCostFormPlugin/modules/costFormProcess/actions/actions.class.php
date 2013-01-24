@@ -82,17 +82,17 @@ class costFormProcessActions extends sfActions
     public function executeExport (sfWebRequest $request)
     {
         $this->getProcessVars($request);
-    
-        $xfile = sfConfig::get('sf_upload_dir')."/excelTemplates/costform-invoicing.xls";
         
-        $objReader = PHPExcel_IOFactory::createReader('Excel5');
+        // Excel parameters
         
-        $objPHPExcel = $objReader->load($xfile);
+        $template = sfConfig::get('sf_upload_dir')."/excelTemplates/costform-invoicing.xls";
+        $title = "Cost Invoicing - {$this->invoicing['id']}";
+        $filename = "costinvoicing-{$this->invoicing['id']}.xls";
         
-        $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue ('A1', "Invoiced by {$this->invoicing->getEmployee()} on {$this->invoicing->invoicing_Date}")
-            ->setCellValue ('A2', "Printed by {$this->getUser()->getGuardUser()} on ".date('Y-m-d H:i:s'))
-            ->setcellValue ('A3', $_SERVER['HTTP_REFERER']);
+        // Preparing values
+        
+        $values = array();
+        $values["A1"] = "Invoiced by {$this->invoicing->getEmployee()} on {$this->invoicing->invoicing_Date}";
         
         $row = 8;
         
@@ -107,22 +107,24 @@ class costFormProcessActions extends sfActions
                 {
                     $sumexclvat += $item->withoutVat;
                     $suminclvat += $item->amount;
-            
-                    $objPHPExcel->setActiveSheetIndex(0)
-                        ->setCellValue("A$row", date ("d-m-Y", strtotime($item->cost_Date)) )
-                        ->setCellValue("B$row", $item->getCostForms()->getUsers()->__toString())
-                        ->setCellValue("C$row", $item->getCostForms()->getProjects()->getCode())
-                        ->setCellValue("D$row", $item->getDescription())
-                        ->setCellValue("E$row", $item->getVats()->getRate())
-                        ->setCellValue("F$row", $item->getWithoutVat()." ".$item->getCurrencies()->__toString())
-                        ->setCellValue("G$row", $item->getAmount()." ".$item->getCurrencies()->__toString())
-                        ->setCellValue("H$row", $item->getReceiptNo())
-                        ->setCellValue("I$row", $item->getInvoiceTo())
-                        ->setCellValue("J$row", $item->getInvoiceNo())
-                        ->setCellValue("K$row", $item->getInvoiceDate());
+                    
+                    $values["A{$row}"] = date ("d-m-Y", strtotime($item->cost_Date));
+                    $values["B{$row}"] = $item->getCostForms()->getUsers()->__toString();
+                    $values["C{$row}"] = $item->getCostForms()->getProjects()->getCode();
+                    $values["D{$row}"] = $item->getDescription();
+                    $values["E{$row}"] = $item->getVats()->getRate();
+                    $values["F{$row}"] = $item->getWithoutVat()." ".$item->getCurrencies()->__toString();
+                    $values["G{$row}"] = $item->getAmount()." ".$item->getCurrencies()->__toString()
+                    $values["H{$row}"] = $item->getReceiptNo();
+                    $values["I{$row}"] = $item->getInvoiceTo();
+                    $values["J{$row}"] = $item->getInvoiceNo();
+                    $values["K{$row}"] = $item->getInvoiceDate();
+                    
                     $row++;
                 }
-            
+                
+                $values["D{$row}"] = "Total";
+                
                 $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue("D$row", "Total")
                     ->setCellValue("F$row", $sumexclvat." ".$item->getCurrencies()->__toString())
@@ -132,16 +134,11 @@ class costFormProcessActions extends sfActions
             }
         }
         
-        $objPHPExcel->getActiveSheet()->setTitle("Cost Invoicing - {$this->invoicing['id']}");
+        // Preparing output
         
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition: attachment;filename='costinvoicing-{$this->invoicing['id']}.xls'");
-        header('Cache-Control: max-age=0');
+        FmcExcel::prepare ($template, $title, $filename, $values, "A2", "A3");
         
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        $objWriter->save('php://output');
-        
-        $this->$this->redirect($request->getReferer());
+        $this->redirect($request->getReferer());
     }
     
     
