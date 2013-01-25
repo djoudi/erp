@@ -28,11 +28,23 @@ workingHourReport_employee:
         module: workingHourReport
         action: employee
 
-workingHourReport_excel:
+workingHourReport_employee_excel:
     url: /wh/reports/employee/export
     param:
         module: workingHourReport
         action: employeeExcel
+
+workingHourReport_project:
+    url: /wh/reports/project
+    param:
+        module: workingHourReport
+        action: project
+
+workingHourReport_project_excel:
+    url: /wh/reports/project/export
+    param:
+        module: workingHourReport
+        action: projectExcel
 
 
 # workingHourDay

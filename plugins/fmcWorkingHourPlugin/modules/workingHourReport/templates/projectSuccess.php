@@ -1,4 +1,4 @@
-<?php slot('title', 'Employee Report' ); ?>
+<?php slot('title', 'Project Report' ); ?>
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
@@ -25,14 +25,14 @@
         
         <a 
             class="btn btn-success pull-right" 
-            href="<?php echo url_for("@workingHourReport_employee_excel?from={$from}&to={$to}&emp={$emp}"); ?>">
+            href="<?php echo url_for("@workingHourReport_project_excel?from={$from}&to={$to}&proj={$proj}"); ?>">
             Export to Excel
         </a>
     
         <table class="table table-bordered table-condensed table-hover">
             <tr>
                 <th>Work date</th>
-                <th>Project Name</th>
+                <th>Employee</th>
                 <th>Time</th>
                 <th>Work Type</th>
                 <th>Notes</th>
@@ -51,7 +51,7 @@
                         <?php echo $item['Day']['date']; ?>
                     </td>
                     <td>
-                        <?php echo $item['Project']['code']; ?>
+                        <?php echo $item['Day']['Employee']['first_name']." ".$item['Day']['Employee']['last_name']; ?>
                     </td>
                     <td>
                         <?php echo Fmc_Core_Time::getTimeEasy ($timeDif); ?>
