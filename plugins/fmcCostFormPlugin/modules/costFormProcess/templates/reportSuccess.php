@@ -69,19 +69,5 @@
         </div>
 
     <?php endif ;?>
-<?php /*
-  <?php if ($notInvoicedCount): ?>
-    <div class="tab-pane <?php if (!$invoicedCount): ?>active<?php endif; ?>" id="notInvoiced">
-      <h3>Costs selected not to be invoiced</h3>
-      <p><strong><?php echo $notInvoicedCount; ?></strong> costs selected NOT to be invoiced.</p>
-      <?php foreach ($notInvoiced as $currency_id=>$list): ?>
-        <?php if (count($list)>0): ?>
-          <?php include_partial ('reportlist', array('list'=>$list, 'isinvoiced'=>false)); ?>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
-  <?php endif; ?>
 
-  
 </div>
-*/ ?>

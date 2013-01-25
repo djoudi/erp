@@ -5,7 +5,7 @@
         <?php echo $form->renderHiddenFields()."\n"; ?>
         
         <div class="logo-wrapper">
-            <img id="LoginLogo" src="/img/logo.png"/>
+            <img alt="FMC Logo" id="LoginLogo" src="/img/logo.png"/>
         </div>
         
         <?php if ($form->hasErrors()): ?>

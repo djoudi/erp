@@ -35,7 +35,7 @@
         class="modal hide" 
         tabindex="-1" 
         role="dialog" 
-        aria-labelledby="myModalLabel" 
+        aria-labelledby="<?php echo $id; ?>Modal" 
         aria-hidden="true"
     >
         <div class="modal-body">

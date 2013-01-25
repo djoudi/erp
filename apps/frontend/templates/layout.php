@@ -4,7 +4,6 @@
     
     <head>
         <?php include_http_metas() ?>
-        <?php include_metas() ?>
         <?php include_title() ?>
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
@@ -32,7 +31,7 @@
         id="Layout_Toplogo" 
         href="<?php echo url_for("@homepage"); ?>"
     >
-        <img src="/img/logo.png" />
+        <img alt="FMC Logo" src="/img/logo.png" />
     </a>
 </div>
 

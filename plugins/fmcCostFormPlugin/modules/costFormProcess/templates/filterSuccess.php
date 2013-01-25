@@ -6,7 +6,7 @@
 
 <p>Please select a project to show the unprocessed costs</p>
 
-<form method="post" action="">
+<form method="post">
 
   <table class="table table-striped table-bordered table-condensed">
   

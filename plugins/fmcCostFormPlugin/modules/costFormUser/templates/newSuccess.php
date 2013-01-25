@@ -28,7 +28,7 @@
   
   <div class="form-actions">
     <a class="btn" href="javascript:history.back(1)" >Cancel</a>
-    <input type="submit" class="btn btn-success" value="Save and Continue"></input>
+    <input type="submit" class="btn btn-success" value="Save and Continue" />
   </div>
   
 </form>
