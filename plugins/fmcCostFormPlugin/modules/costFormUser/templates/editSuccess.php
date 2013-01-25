@@ -32,16 +32,24 @@
 <div class="form-actions">
 
   <?php if ( ! $costForm->isSent): ?>
-  
-    <a class="btn btn-primary" onclick="
-      if (confirm('Warning! If you continue, you will NOT be able to change cost form contents and this form will be sent to Finance Department. Continue?')) 
-        window.location='<?php echo url_for('@costFormUser_send?id='.$costForm->id) ?>'
-    ">Finish &amp; Send</a>
-  
-    <a class="btn btn-danger pull-right" onclick="
-      if (confirm('If you delete this form, all your unsaved information will be lost. Do you really want to delete your cost form?'))
-        parent.location='<?php echo url_for('@costFormUser_deleteForm?id='.$costForm->id) ?>'
-    ">Delete Cost Form</a>
+    
+    
+    
+    <?php include_partial ('fmcCore/confirmButton', array(
+        'class' => 'btn btn-primary',
+        'url' => url_for('costFormUser_send',array('id'=>$costForm['id'])),
+        'label' => 'Finish &amp; Send',
+        'text' => 'Warning! If you continue, you will NOT be able to change cost form contents and this form will be sent to Finance Department. Continue?',
+        #"iconClass" => 'icon-remove icon-white'
+    )); ?>
+    
+    <?php include_partial ('fmcCore/confirmButton', array(
+        'class' => 'btn btn-danger pull-right',
+        'url' => url_for('costFormUser_deleteForm',array('id'=>$costForm['id'])),
+        'label' => 'Delete Cost Form',
+        'text' => 'If you delete this form, all your unsaved information will be lost. Do you really want to delete your cost form?',
+        #"iconClass" => 'icon-remove icon-white'
+    )); ?>
     
     <a class="btn btn-success" href="<?php echo url_for('@costFormUser_list') ?>">Save</a>
     

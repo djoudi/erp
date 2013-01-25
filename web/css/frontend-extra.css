@@ -23,6 +23,7 @@
     }
     select, input[type="file"] { height: 26px; }
     select, textarea, input { margin-bottom: 0px;  }
+    input.btn { line-height: 20px !important; padding: 4px 12px !important; }
 
 
 /* #28 - ALWAYS SHOW SCROLLBAR */

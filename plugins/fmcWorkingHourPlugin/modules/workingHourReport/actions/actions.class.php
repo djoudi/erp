@@ -14,7 +14,7 @@ class workingHourReportActions extends sfActions
         $this->forward404Unless ($items);
         
         $empRecord = Doctrine::getTable('sfGuardUser')->findOneById ($emp);
-        $employee = $empRecord->__toString();
+        $employee = $empRecord['first_name']."_".$empRecord['last_name'];
         
         // Excel parameters
         

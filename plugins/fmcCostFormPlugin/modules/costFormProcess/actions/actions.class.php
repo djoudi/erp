@@ -114,7 +114,7 @@ class costFormProcessActions extends sfActions
                     $values["D{$row}"] = $item->getDescription();
                     $values["E{$row}"] = $item->getVats()->getRate();
                     $values["F{$row}"] = $item->getWithoutVat()." ".$item->getCurrencies()->__toString();
-                    $values["G{$row}"] = $item->getAmount()." ".$item->getCurrencies()->__toString()
+                    $values["G{$row}"] = $item->getAmount()." ".$item->getCurrencies()->__toString();
                     $values["H{$row}"] = $item->getReceiptNo();
                     $values["I{$row}"] = $item->getInvoiceTo();
                     $values["J{$row}"] = $item->getInvoiceNo();
@@ -124,11 +124,8 @@ class costFormProcessActions extends sfActions
                 }
                 
                 $values["D{$row}"] = "Total";
-                
-                $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue("D$row", "Total")
-                    ->setCellValue("F$row", $sumexclvat." ".$item->getCurrencies()->__toString())
-                    ->setCellValue("G$row", $suminclvat." ".$item->getCurrencies()->__toString());
+                $values["F{$row}"] = $sumexclvat." ".$item->getCurrencies()->__toString();
+                $values["G{$row}"] = $suminclvat." ".$item->getCurrencies()->__toString();
                 
                 $row+=3;
             }
