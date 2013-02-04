@@ -57,9 +57,8 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              'values' => 
              array(
               0 => 'Draft',
-              1 => 'Pending',
-              2 => 'Accepted',
-              3 => 'Denied',
+              1 => 'Accepted',
+              2 => 'Denied',
              ),
              'default' => 'Draft',
              'notnull' => true,

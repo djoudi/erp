@@ -15,7 +15,7 @@ abstract class BaseWorkingHourDayFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'employee_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'), 'add_empty' => true)),
       'date'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'status'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
+      'status'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'leave_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveRequest'), 'add_empty' => true)),
       'multiplier'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'daily_Breaks' => new sfWidgetFormFilterInput(),
@@ -30,7 +30,7 @@ abstract class BaseWorkingHourDayFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'employee_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Employee'), 'column' => 'id')),
       'date'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
+      'status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'leave_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('LeaveRequest'), 'column' => 'id')),
       'multiplier'   => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'daily_Breaks' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),

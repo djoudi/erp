@@ -15,7 +15,7 @@ abstract class BaseWorkingHourDayVersionFormFilter extends BaseFormFilterDoctrin
     $this->setWidgets(array(
       'employee_id'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'date'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'status'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
+      'status'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'leave_id'     => new sfWidgetFormFilterInput(),
       'multiplier'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'daily_Breaks' => new sfWidgetFormFilterInput(),
@@ -29,7 +29,7 @@ abstract class BaseWorkingHourDayVersionFormFilter extends BaseFormFilterDoctrin
     $this->setValidators(array(
       'employee_id'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Pending' => 'Pending', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
+      'status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('Draft' => 'Draft', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'leave_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'multiplier'   => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'daily_Breaks' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
