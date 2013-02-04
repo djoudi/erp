@@ -23,12 +23,14 @@ class whDayForm
             {
                 $values = $form->getValues();
                 
-                $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
-                
-                $day->setDailyBreaks ($values['total_Daily_Breaks']);
-                
-                $day->save();
-                #$form->save();
+                if ($values['total_Daily_Breaks'])
+                {
+                    $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
+                    
+                    $day->setDailyBreaks ($values['total_Daily_Breaks']);
+                    
+                    $day->save();
+                }
                 
                 $controller->redirect ($redirectUrl);
                 
