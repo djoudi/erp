@@ -145,17 +145,11 @@ workingHourApproveLeave_details:
         module: workingHourApproveLeave
         action: details
 
-workingHourApproveLeave_approve:
-    url: /wh/approve/leave/:id/approve
+workingHourApproveLeave_setstatus:
+    url: /wh/approve/leave/setstatus/:id/:status
     param:
         module: workingHourApproveLeave
-        action: approve
-
-workingHourApproveLeave_deny:
-    url: /wh/approve/leave/:id/deny
-    param:
-        module: workingHourApproveLeave
-        action: deny
+        action: setstatus
 
 
 # workingHourLeaveLimit

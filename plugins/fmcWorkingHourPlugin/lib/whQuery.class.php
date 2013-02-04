@@ -3,6 +3,20 @@
 class whQuery
 {
     
+    public static function prepareLeaveApproveQuery ($resultLimit)
+    {
+        $q = Doctrine_Query::create()
+            ->from ('LeaveRequest l')
+            ->leftJoin ('l.Employee e')
+            ->leftJoin ('l.LeaveType t')
+            ->innerJoin ('l.WorkingHourDay d')
+            ->addWhere ('l.status = ?', "Pending")
+            ->limit ($resultLimit);
+        
+        return $q;
+    }
+    
+    
     public static function prepareReportDaily ($date)
     {
         $q = Doctrine::getTable ('sfGuardUser')

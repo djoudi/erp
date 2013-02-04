@@ -99,7 +99,7 @@
     
             <?php include_partial ('fmcCore/confirmButton', array(
                 'class' => 'btn btn-danger btn-small',
-                'url' => url_for('workingHourApproveLeave_deny',array('id'=>$item['id'])),
+                'url' => url_for('workingHourApproveLeave_setstatus',array('id'=>$item['id'],'status'=>"Denied")),
                 'label' => 'Deny (Remove)',
                 'text' => 'Are you sure you want to deny and delete this leave?',
                 "iconClass" => 'icon-remove icon-white'
@@ -107,7 +107,7 @@
             
             <?php include_partial ('fmcCore/confirmButton', array(
                 'class' => 'btn btn-success btn-small',
-                'url' => url_for('workingHourApproveLeave_approve',array('id'=>$item['id'])),
+                'url' => url_for('workingHourApproveLeave_setstatus',array('id'=>$item['id'],'status'=>"Accepted")),
                 'label' => 'Approve',
                 'text' => 'Are you sure you want to approve this leave?',
                 "iconClass" => 'icon-ok icon-white'

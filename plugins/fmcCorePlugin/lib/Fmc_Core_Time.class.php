@@ -17,13 +17,15 @@ class Fmc_Core_Time
         return $epoch ? $epoch : 0;
     }
     
-    public static function getTimeEasy ($time)
+    public static function getTimeEasy ($timeInSeconds)
     {
-        $min = $time % 3600;
+        $seconds = $timeInSeconds % 60;
         
-        $hour = ($time-$min) / 3600;
+        $minutes = ( ($timeInSeconds - $seconds) % 3600) / 60;
         
-        return "{$hour}h {$min}m";
+        $hours = ( $timeInSeconds - ($seconds*3600) - ($minutes*60) ) / 3600;
+        
+        return "{$hours}h {$minutes}m";
     }
     
     public static function getTimeDif ($end, $start)
