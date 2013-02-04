@@ -39,10 +39,10 @@ class whQuery
             ->leftJoin ('r.Day d')
             ->leftJoin ('r.Project p')
             ->leftJoin ('r.WorkType wt')
-            ->addWhere ('d.date > ?', $from)
-            ->addWhere ('d.date < ?', $to)
+            ->addWhere ('d.date >= ?', $from)
+            ->addWhere ('d.date <= ?', $to)
             ->addWhere ('d.employee_id = ?', $emp)
-            ->addWhere ('d.status = ?', "Accepted")
+            ->addWhere ('d.status <> ?', "Denied")
             ->addWhere ('r.recordType = ?', "Work")
             ->orderBy ('d.DATE ASC, r.start_Time ASC');
             
@@ -56,9 +56,9 @@ class whQuery
             ->leftJoin ('r.Day d')
             ->leftJoin ('r.Project p')
             ->leftJoin ('r.WorkType wt')
-            ->addWhere ('d.date > ?', $from)
-            ->addWhere ('d.date < ?', $to)
-            ->addWhere ('d.status = ?', "Accepted")
+            ->addWhere ('d.date >= ?', $from)
+            ->addWhere ('d.date <= ?', $to)
+            ->addWhere ('d.status <> ?', "Denied")
             ->addWhere ('r.project_id = ?', $proj)
             ->addWhere ('r.recordType = ?', "Work")
             ->orderBy ('d.DATE ASC, r.start_Time ASC');
