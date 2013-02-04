@@ -2,9 +2,8 @@
 
 
 <input 
-    class="<?php echo $class; ?>"
+    class="<?php echo $class; ?> span3"
     type="text" 
-    class="span3" 
     data-provide="typeahead" 
     data-items="<?php echo $showItems; ?>"
 >

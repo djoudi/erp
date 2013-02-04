@@ -69,7 +69,7 @@
 <?php endif; ?>
 
 
-<form action="" method="post">
+<form method="post">
 
     <?php echo $form->renderHiddenFields(); ?>
     

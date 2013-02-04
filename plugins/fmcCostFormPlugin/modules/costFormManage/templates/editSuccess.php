@@ -27,7 +27,7 @@
 </table>
 
 
-<form action="" method="post">
+<form method="post">
 
     <table class="table table-hover table-bordered table-condensed">
         

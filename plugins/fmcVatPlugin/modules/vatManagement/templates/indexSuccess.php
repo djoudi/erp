@@ -62,7 +62,7 @@
 <?php endif; ?>
 
 
-<form action="" class="form-inline" method="post">
+<form class="form-inline" method="post">
     
     <?php echo $form->renderHiddenFields() ?>
     

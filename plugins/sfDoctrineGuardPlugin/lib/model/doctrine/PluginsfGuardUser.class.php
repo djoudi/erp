@@ -252,7 +252,7 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
         $this->_permissions[$permission->getName()] = $permission;
       }
     }
-    
+    /*
     if (!$this->_groups)
     {
       $groups = $this->getGroups();
@@ -261,6 +261,7 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
         $this->_groups[$group->getName()] = $group;
       }
     }
+    */
   }
 
   /**
