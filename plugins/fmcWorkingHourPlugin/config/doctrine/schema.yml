@@ -316,8 +316,8 @@ WorkingHourDay:
             default: 1
         daily_Breaks:
             type: integer
-            notnull: false
-            default: NULL
+            notnull: true
+            default: 0
     relations:
         Employee:
             class: sfGuardUser

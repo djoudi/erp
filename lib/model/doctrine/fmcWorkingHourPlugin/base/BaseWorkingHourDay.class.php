@@ -75,7 +75,8 @@ abstract class BaseWorkingHourDay extends MyDoctrineRecord
              ));
         $this->hasColumn('daily_Breaks', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => false,
+             'notnull' => true,
+             'default' => 0,
              ));
 
         $this->option('orderBy', 'date DESC');

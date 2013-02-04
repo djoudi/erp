@@ -140,10 +140,14 @@ class whDayForm
                 
                 if (!$err)
                 {
+                    $dailyBreaksParam = Doctrine::getTable ('WorkingHourParameter')->findOneByParam('DefaultDailyBreaks');
+                    $defaultDailyBreaks = $dailyBreaksParam['value'];
+                    
                     $dayObject = new WorkingHourDay ();
                     $dayObject->setEmployee ($user->getGuardUser());
                     $dayObject->setDate ($date);
                     $dayObject->setMultiplier ($dayObject->calculateMultiplier());
+                    $dayObject->setDailyBreaks ($defaultDailyBreaks);
                     $dayObject->save();
                     
                     $enterObject = new WorkingHourRecord ();

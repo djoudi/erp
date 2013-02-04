@@ -18,7 +18,7 @@ abstract class BaseWorkingHourDayFormFilter extends BaseFormFilterDoctrine
       'status'       => new sfWidgetFormChoice(array('choices' => array('' => '', 'Draft' => 'Draft', 'Accepted' => 'Accepted', 'Denied' => 'Denied'))),
       'leave_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveRequest'), 'add_empty' => true)),
       'multiplier'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'daily_Breaks' => new sfWidgetFormFilterInput(),
+      'daily_Breaks' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'creater_id'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'updater_id'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
