@@ -3,6 +3,8 @@
 
 <?php if (isset($activeClass)) slot('activeClass', $activeClass); ?>
 
+<a class="btn btn-info pull-right" href="<?php echo $back_url; ?>">Back to List</a>
+
 
 <form method="post">
 
