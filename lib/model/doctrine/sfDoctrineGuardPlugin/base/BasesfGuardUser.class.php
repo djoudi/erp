@@ -19,12 +19,10 @@
  * @property integer $group_id
  * @property integer $monthly_Working_Hours
  * @property boolean $send_Email
- * @property Doctrine_Collection $Groups
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $sfGuardUserPermission
- * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $CostFormInvoicings
@@ -49,12 +47,10 @@
  * @method integer               getGroupId()                 Returns the current record's "group_id" value
  * @method integer               getMonthlyWorkingHours()     Returns the current record's "monthly_Working_Hours" value
  * @method boolean               getSendEmail()               Returns the current record's "send_Email" value
- * @method Doctrine_Collection   getGroups()                  Returns the current record's "Groups" collection
  * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
  * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getSfGuardUserPermission()   Returns the current record's "sfGuardUserPermission" collection
- * @method Doctrine_Collection   getSfGuardUserGroup()        Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()          Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCostFormInvoicings()      Returns the current record's "CostFormInvoicings" collection
@@ -78,12 +74,10 @@
  * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
  * @method sfGuardUser           setMonthlyWorkingHours()     Sets the current record's "monthly_Working_Hours" value
  * @method sfGuardUser           setSendEmail()               Sets the current record's "send_Email" value
- * @method sfGuardUser           setGroups()                  Sets the current record's "Groups" collection
  * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
  * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setSfGuardUserPermission()   Sets the current record's "sfGuardUserPermission" collection
- * @method sfGuardUser           setSfGuardUserGroup()        Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()          Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCostFormInvoicings()      Sets the current record's "CostFormInvoicings" collection
@@ -182,11 +176,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('sfGuardGroup as Groups', array(
-             'refClass' => 'sfGuardUserGroup',
-             'local' => 'group_id',
-             'foreign' => 'sf_guard_group_id'));
-
         $this->hasOne('sfGuardGroup as Department', array(
              'local' => 'group_id',
              'foreign' => 'id'));
@@ -202,10 +191,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'foreign' => 'worktype_id'));
 
         $this->hasMany('sfGuardUserPermission', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('sfGuardUserGroup', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

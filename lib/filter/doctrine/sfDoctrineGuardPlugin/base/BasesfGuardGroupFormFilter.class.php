@@ -23,9 +23,7 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'deleted_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'version'             => new sfWidgetFormFilterInput(),
-      'permissions_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'work_types_list'     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType')),
-      'users_list'          => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
@@ -39,9 +37,7 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'deleted_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'version'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'permissions_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'work_types_list'     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType', 'required' => false)),
-      'users_list'          => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_group_filters[%s]');
@@ -51,24 +47,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
     $this->setupInheritance();
 
     parent::setup();
-  }
-
-  public function addPermissionsListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.sfGuardGroupPermission sfGuardGroupPermission')
-      ->andWhereIn('sfGuardGroupPermission.permission_id', $values)
-    ;
   }
 
   public function addWorkTypesListColumnQuery(Doctrine_Query $query, $field, $values)
@@ -86,24 +64,6 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
     $query
       ->leftJoin($query->getRootAlias().'.WorkingHourWorkTypeGroup WorkingHourWorkTypeGroup')
       ->andWhereIn('WorkingHourWorkTypeGroup.worktype_id', $values)
-    ;
-  }
-
-  public function addUsersListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.sfGuardUserGroup sfGuardUserGroup')
-      ->andWhereIn('sfGuardUserGroup.group_id', $values)
     ;
   }
 
@@ -126,9 +86,7 @@ abstract class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => 'Date',
       'deleted_at'          => 'Date',
       'version'             => 'Number',
-      'permissions_list'    => 'ManyKey',
       'work_types_list'     => 'ManyKey',
-      'users_list'          => 'ManyKey',
     );
   }
 }

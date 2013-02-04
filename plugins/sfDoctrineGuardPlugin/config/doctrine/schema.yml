@@ -22,12 +22,6 @@ sfGuardGroup:
             local: manager_id
             foreign: id
             foreignAlias: Department
-        Permissions:
-            class: sfGuardPermission
-            local: group_id
-            foreign: permission_id
-            refClass: sfGuardGroupPermission
-            foreignAlias: Groups
 
 ######################################################
 
@@ -42,34 +36,6 @@ sfGuardPermission:
             unique: true
         description:
             type: string(1000)
-
-######################################################
-
-sfGuardGroupPermission:
-    options:
-        symfony:
-            form:   false
-            filter: false
-    actAs:
-        Auditable: ~
-        SoftDelete: ~
-        Versionable: ~
-    columns:
-        group_id:
-            type: integer
-            primary: true
-        permission_id:
-            type: integer
-            primary: true
-    relations:
-        Group:
-            class: sfGuardGroup
-            local: group_id
-            onDelete: CASCADE
-        Permission:
-            class: sfGuardPermission
-            local: permission_id
-            onDelete: CASCADE
 
 ######################################################
 
@@ -119,11 +85,6 @@ sfGuardUser:
         is_active_idx:
             fields: [is_active]
     relations:
-        Groups:
-            class: sfGuardGroup
-            local: group_id
-            refClass: sfGuardUserGroup
-            foreignAlias: Users
         Department:
             class: sfGuardGroup
             local: group_id
@@ -162,34 +123,6 @@ sfGuardUserPermission:
         Permission:
             class: sfGuardPermission
             local: permission_id
-            onDelete: CASCADE
-
-######################################################
-
-sfGuardUserGroup:
-    options:
-        symfony:
-            form:   false
-            filter: false
-    actAs:
-        Auditable: ~
-        SoftDelete: ~
-        Versionable: ~
-    columns:
-        user_id:
-            type: integer
-            primary: true
-        group_id:
-            type: integer
-            primary: true
-    relations:
-        User:
-            class: sfGuardUser
-            local: user_id
-            onDelete: CASCADE
-        Group:
-            class: sfGuardGroup
-            local: group_id
             onDelete: CASCADE
 
 ######################################################

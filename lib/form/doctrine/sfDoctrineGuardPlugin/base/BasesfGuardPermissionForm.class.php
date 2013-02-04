@@ -24,7 +24,6 @@ abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
       'updated_at'  => new sfWidgetFormDateTime(),
       'deleted_at'  => new sfWidgetFormDateTime(),
       'version'     => new sfWidgetFormInputText(),
-      'groups_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'users_list'  => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
     ));
 
@@ -38,7 +37,6 @@ abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
       'updated_at'  => new sfValidatorDateTime(),
       'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
       'version'     => new sfValidatorInteger(array('required' => false)),
-      'groups_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'users_list'  => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
     ));
 
@@ -64,11 +62,6 @@ abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['groups_list']))
-    {
-      $this->setDefault('groups_list', $this->object->Groups->getPrimaryKeys());
-    }
-
     if (isset($this->widgetSchema['users_list']))
     {
       $this->setDefault('users_list', $this->object->Users->getPrimaryKeys());
@@ -78,48 +71,9 @@ abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    $this->saveGroupsList($con);
     $this->saveUsersList($con);
 
     parent::doSave($con);
-  }
-
-  public function saveGroupsList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['groups_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Groups->getPrimaryKeys();
-    $values = $this->getValue('groups_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Groups', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Groups', array_values($link));
-    }
   }
 
   public function saveUsersList($con = null)

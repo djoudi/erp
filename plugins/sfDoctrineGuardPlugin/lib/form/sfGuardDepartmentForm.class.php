@@ -9,7 +9,6 @@ class sfGuardDepartmentForm extends PluginsfGuardGroupForm
         parent::setupInheritance();
         
         unset(
-            $this['users_list'],
             $this['permissions_list'],
             $this['description']
         );
@@ -17,7 +16,6 @@ class sfGuardDepartmentForm extends PluginsfGuardGroupForm
         $this->widgetSchema['work_types_list'] = new sfWidgetFormSelectDoubleList(array(
             'choices' => $this->widgetSchema['work_types_list']->getChoices()
         ));
-        
     }
     
 }

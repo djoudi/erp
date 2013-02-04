@@ -22,7 +22,7 @@ abstract class PluginsfGuardGroupForm extends BasesfGuardGroupForm
       $this['updated_at']
     );
 
-    $this->widgetSchema['users_list']->setLabel('Users');
-    $this->widgetSchema['permissions_list']->setLabel('Permissions');
+    #$this->widgetSchema['users_list']->setLabel('Users');
+    #$this->widgetSchema['permissions_list']->setLabel('Permissions');
   }
 }

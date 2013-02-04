@@ -27,7 +27,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'is_active'             => new sfWidgetFormInputCheckbox(),
       'is_super_admin'        => new sfWidgetFormInputCheckbox(),
       'last_login'            => new sfWidgetFormDateTime(),
-      'group_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Groups'), 'add_empty' => true)),
+      'group_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Department'), 'add_empty' => true)),
       'monthly_Working_Hours' => new sfWidgetFormInputText(),
       'send_Email'            => new sfWidgetFormInputCheckbox(),
       'creater_id'            => new sfWidgetFormInputText(),
@@ -36,7 +36,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'            => new sfWidgetFormDateTime(),
       'deleted_at'            => new sfWidgetFormDateTime(),
       'version'               => new sfWidgetFormInputText(),
-      'groups_list'           => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'work_types_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType')),
     ));
@@ -54,7 +53,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'is_active'             => new sfValidatorBoolean(array('required' => false)),
       'is_super_admin'        => new sfValidatorBoolean(array('required' => false)),
       'last_login'            => new sfValidatorDateTime(array('required' => false)),
-      'group_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Groups'), 'required' => false)),
+      'group_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Department'), 'required' => false)),
       'monthly_Working_Hours' => new sfValidatorInteger(array('required' => false)),
       'send_Email'            => new sfValidatorBoolean(array('required' => false)),
       'creater_id'            => new sfValidatorPass(),
@@ -63,7 +62,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'            => new sfValidatorDateTime(),
       'deleted_at'            => new sfValidatorDateTime(array('required' => false)),
       'version'               => new sfValidatorInteger(array('required' => false)),
-      'groups_list'           => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'work_types_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'WorkingHourWorkType', 'required' => false)),
     ));
@@ -93,11 +91,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['groups_list']))
-    {
-      $this->setDefault('groups_list', $this->object->Groups->getPrimaryKeys());
-    }
-
     if (isset($this->widgetSchema['permissions_list']))
     {
       $this->setDefault('permissions_list', $this->object->Permissions->getPrimaryKeys());
@@ -112,49 +105,10 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
 
   protected function doSave($con = null)
   {
-    $this->saveGroupsList($con);
     $this->savePermissionsList($con);
     $this->saveWorkTypesList($con);
 
     parent::doSave($con);
-  }
-
-  public function saveGroupsList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['groups_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Groups->getPrimaryKeys();
-    $values = $this->getValue('groups_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Groups', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Groups', array_values($link));
-    }
   }
 
   public function savePermissionsList($con = null)
