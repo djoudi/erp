@@ -70,6 +70,9 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
             ->addWhere ('r.day_id = ?', $this->getId())
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
+        
+        $q->orderBy ('r.start_Time ASC');
+        
         return $q->fetchOne();
     }
     
@@ -81,6 +84,9 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
             ->addWhere ('r.day_id = ?', $this->getId())
             ->limit(1);
         if ($type) $q->addWhere ('r.recordType = ?', $type);
+        
+        $q->orderBy ('r.start_Time DESC');
+        
         return $q->fetchOne();
     }
     
