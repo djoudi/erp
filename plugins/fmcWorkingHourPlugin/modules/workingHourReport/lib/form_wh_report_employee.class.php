@@ -8,6 +8,7 @@ class form_wh_report_employee extends BaseFormDoctrine
         $this->setWidgets(array(
             'employee_id'  => new sfWidgetFormDoctrineChoice(array(
                 'model' => $this->getRelatedModelName('Employee'), 
+                'table_method' => 'getActive', 
                 'add_empty' => false
             )),
             'date'         => new sfWidgetFormFilterDate(array(
