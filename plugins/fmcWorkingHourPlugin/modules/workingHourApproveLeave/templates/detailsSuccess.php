@@ -93,10 +93,14 @@
 
     <a class="btn" href="javascript:history.back()">Go Back</a>
     
+    <a class="btn btn-info" href="<?php echo url_for('workingHourLeave_exportExcel',array('id'=>$item['id'])); ?>">
+        Export to Excel
+    </a>
+    
     <?php if ($sf_user->hasCredential ('Working Hours Leave Approve') && $item['status']=="Pending"): ?>
     
         <div class="pull-right">
-    
+            
             <?php include_partial ('fmcCore/confirmButton', array(
                 'class' => 'btn btn-danger btn-small',
                 'url' => url_for('workingHourApproveLeave_setstatus',array('id'=>$item['id'],'status'=>"Denied")),

@@ -83,20 +83,18 @@
             Show My Requests
         </a>
         
-        <?php if ($leaveRequest['status']=="Pending"): ?>
         
-            <div class="pull-right">
+        <div class="pull-right">
+        
+            <?php if ($leaveRequest['status']!="Draft"): ?>
+        
                 <a class="btn btn-info" href="<?php echo url_for('workingHourLeave_exportExcel',array('id'=>$leaveRequest['id'])); ?>">
                     Export to Excel
                 </a>
-            </div>
-        
-        <?php endif; ?>
-        
-        
-        <?php if ($leaveRequest['status']=="Draft"): ?>
-        
-            <div class="pull-right">
+            
+            <?php endif; ?>
+            
+            <?php if ($leaveRequest['status']=="Draft"): ?>
         
                 <?php include_partial ('fmcCore/confirmButton', array(
                     'class' => 'btn btn-danger btn-small',
@@ -114,10 +112,8 @@
                     "iconClass" => 'icon-ok icon-white'
                 )); ?>
             
-            </div>
+            <?php endif; ?>
             
-        <?php endif; ?>
+        </div>
         
     </div>
-
-
