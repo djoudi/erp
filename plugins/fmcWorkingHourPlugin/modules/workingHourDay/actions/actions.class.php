@@ -125,7 +125,7 @@ class workingHourDayActions extends sfActions
             
             $day->save();
             
-            $this->getUser()->setFlash('warning', "Your day is sent for approval.");
+            $this->getUser()->setFlash('success', "Your day is sent for approval.");
         }
                 
         $this->redirect ($request->getReferer());
