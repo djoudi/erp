@@ -9,6 +9,7 @@ class sendReportTask extends sfBaseTask
             new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name', 'frontend'),
             new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
             new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
+            new sfCommandOption('sendnow', null, sfCommandOption::PARAMETER_OPTIONAL, 'Send e-mails now', false),
         ));
         
         $this->namespace        = 'workingHour';
@@ -40,7 +41,7 @@ class sendReportTask extends sfBaseTask
             
         // Calculating if to send
             
-            $sendEmail = false;
+            $sendEmail = $options['sendnow'];
             
             if ($intervalDayCount % 7 == 0) // if weekly
             {
@@ -65,9 +66,8 @@ class sendReportTask extends sfBaseTask
         if ($sendEmail == true)
         {
             
-            echo "sending...";
-            
-            
+            echo "Sending e-mails...\n";
+                        
             $employees = Doctrine::getTable('sfGuardUser')->getActive();
             
             foreach ($employees as $employee)
