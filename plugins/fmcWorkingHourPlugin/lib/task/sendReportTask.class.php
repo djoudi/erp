@@ -115,52 +115,48 @@ class sendReportTask extends sfBaseTask
                     
                     // Thanks to: http://pookey.co.uk/wordpress/archives/91-sending-multipart-email-from-a-task-in-symfony-1-4
                     
-                    if (count($draftLeaves)+count($pendingLeaves)+count($daysEmpty)+count($daysIncomplete))
-                    {
-                        $subject = "Weekly WHDB report for {$date}";
+                    
+                    $subject = "Weekly WHDB report for {$date}";
+                    
+                    $message = $this->getMailer()->compose(
+                        array('datamanagement@fmconsulting.info'=>'FMC Data Management'), 
+                        $employee['email_address'], 
+                        $subject
+                    );
+                    
+                    // generate HTML part
                         
-                        $message = $this->getMailer()->compose(
-                            array('datamanagement@fmconsulting.info'=>'FMC Data Management'), 
-                            $employee['email_address'], 
-                            #'datamanagement@fmconsulting.info', 
-                            $subject
-                        );
+                        $context->getRequest()->setRequestFormat('html');
                         
-                        // generate HTML part
-                            
-                            $context->getRequest()->setRequestFormat('html');
-                            
-                            $html = get_partial('workingHourCore/sendWeeklyHtml',array(
-                                'subject' => $subject, 
-                                'employee' => $employee, 
-                                'daysEmpty' => $daysEmpty, 
-                                'daysIncomplete' => $daysIncomplete, 
-                                'draftLeaves' => $draftLeaves, 
-                                'pendingLeaves' => $pendingLeaves, 
-                            ));
-                            
-                            $message->setBody($html, 'text/html');
-                            
-                        // generate plain text part
-                            
-                            $context->getRequest()->setRequestFormat('txt');
-                            
-                            $plain = get_partial('workingHourCore/sendWeeklyPlain',array(
-                                'subject' => $subject, 
-                                'employee' => $employee, 
-                                'daysEmpty' => $daysEmpty, 
-                                'daysIncomplete' => $daysIncomplete, 
-                                'draftLeaves' => $draftLeaves, 
-                                'pendingLeaves' => $pendingLeaves, 
-                            ));
-                            
-                            $message->addPart($plain, 'text/plain');
+                        $html = get_partial('workingHourCore/sendReportHtml',array(
+                            'subject' => $subject, 
+                            'employee' => $employee, 
+                            'daysEmpty' => $daysEmpty, 
+                            'daysIncomplete' => $daysIncomplete, 
+                            'draftLeaves' => $draftLeaves, 
+                            'pendingLeaves' => $pendingLeaves, 
+                        ));
                         
-                        // send the message
+                        $message->setBody($html, 'text/html');
                         
-                            $this->getMailer()->send($message);
+                    // generate plain text part
                         
-                    }
+                        $context->getRequest()->setRequestFormat('txt');
+                        
+                        $plain = get_partial('workingHourCore/sendReportPlain',array(
+                            'subject' => $subject, 
+                            'employee' => $employee, 
+                            'daysEmpty' => $daysEmpty, 
+                            'daysIncomplete' => $daysIncomplete, 
+                            'draftLeaves' => $draftLeaves, 
+                            'pendingLeaves' => $pendingLeaves, 
+                        ));
+                        
+                        $message->addPart($plain, 'text/plain');
+                    
+                    // send the message
+                    
+                        $this->getMailer()->send($message);
                 }
             }
         

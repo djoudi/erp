@@ -70,6 +70,14 @@
         <?php endif; ?>
         
         
+        <?php if (count($daysEmpty) + count($daysIncomplete) + count($draftLeaves) + count($pendingLeaves) == 0): ?>
+        
+            <hr />
+        
+            <p>Congratulations! You have filled all your records! You are the best!</p>
+        
+        <?php endif; ?>
+        
         <p>&nbsp;</p>
         
     </body>

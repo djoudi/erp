@@ -35,3 +35,8 @@ Your pending leave requests:
 <?php echo $leave->getLeaveType()." - ".$leave['start_Date']." to ".$leave['end_Date']."\n"; ?>
 <?php endforeach; ?>
 <?php endif; ?>
+
+<?php if (count($daysEmpty) + count($daysIncomplete) + count($draftLeaves) + count($pendingLeaves) == 0): ?>
+--------------------
+Congratulations! You have filled all your records! You are the best!
+<?php endif; ?>
