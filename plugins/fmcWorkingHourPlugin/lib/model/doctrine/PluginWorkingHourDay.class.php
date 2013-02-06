@@ -95,7 +95,7 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
     {
         if ( whDayInfo::isHoliday ($this->date) )
         {
-            $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('WeekendMultiplier');
+            $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('HolidayMultiplier');
             $multiplier = $param['value'];
         }
         else $multiplier = 1;

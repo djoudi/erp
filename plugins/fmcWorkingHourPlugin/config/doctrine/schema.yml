@@ -75,17 +75,17 @@ WorkingHourParameter:
         SoftDelete: ~
         Versionable: ~
     options:
-        orderBy: param ASC
+        orderBy: description ASC
         symfony:
             filter: false
     columns:
         param:
             type: string(50)
             notnull: true
-        value:
+        description:
             type: string(50)
             notnull: true
-        description:
+        value:
             type: string(50)
             notnull: true
 

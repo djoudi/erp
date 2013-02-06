@@ -12,7 +12,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Value</th>
             </tr>
         </thead>
@@ -21,11 +20,8 @@
                 <tr>
                     <td>
                         <a href="<?php echo url_for('workingHourParameter_edit',array('id'=>$item['id'])); ?>">
-                            <?php echo $item['param']; ?>
+                            <?php echo $item['description']; ?>
                         </a>
-                    </td>
-                    <td>
-                        <?php echo $item['description']; ?>
                     </td>
                     <td>
                         <?php echo $item['value']; ?>
