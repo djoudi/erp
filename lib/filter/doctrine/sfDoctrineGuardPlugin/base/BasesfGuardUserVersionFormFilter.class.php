@@ -26,7 +26,7 @@ abstract class BasesfGuardUserVersionFormFilter extends BaseFormFilterDoctrine
       'last_login'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'group_id'              => new sfWidgetFormFilterInput(),
       'default_Work_Type_id'  => new sfWidgetFormFilterInput(),
-      'monthly_Working_Hours' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'monthly_Working_Hours' => new sfWidgetFormFilterInput(),
       'send_Email'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'creater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'updater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),

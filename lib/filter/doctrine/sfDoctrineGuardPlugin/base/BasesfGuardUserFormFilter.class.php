@@ -26,7 +26,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'last_login'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'group_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Department'), 'add_empty' => true)),
       'default_Work_Type_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DefaultWorkType'), 'add_empty' => true)),
-      'monthly_Working_Hours' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'monthly_Working_Hours' => new sfWidgetFormFilterInput(),
       'send_Email'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'creater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'updater_id'            => new sfWidgetFormFilterInput(array('with_empty' => false)),

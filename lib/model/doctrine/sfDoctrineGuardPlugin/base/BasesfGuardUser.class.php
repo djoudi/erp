@@ -164,8 +164,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              ));
         $this->hasColumn('monthly_Working_Hours', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => true,
-             'default' => 0,
+             'notnull' => false,
              ));
         $this->hasColumn('send_Email', 'boolean', null, array(
              'type' => 'boolean',
