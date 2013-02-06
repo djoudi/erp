@@ -3,7 +3,32 @@
 
 <?php if (isset($activeClass)) slot('activeClass', $activeClass); ?>
 
-<a class="btn btn-info pull-right" href="<?php echo $back_url; ?>">Back to List</a>
+
+<div class="pull-right">
+    
+    <a class="btn btn-info pull-right" href="<?php echo $back_url; ?>">Back to List</a>
+    
+    <br /><br />
+    
+    <table class="tablesorter table table-bordered table-condensed table-hover pull-right">
+        <thead>
+            <tr>
+                <th><?php echo $rightList_title; ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($rightList_items as $item): ?>
+                <tr>
+                    <td>
+                        <?php echo $item; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
+</div>
 
 
 <form method="post">

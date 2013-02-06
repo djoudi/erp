@@ -17,10 +17,12 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
+ * @property integer $default_Work_Type_id
  * @property integer $monthly_Working_Hours
  * @property boolean $send_Email
  * @property sfGuardGroup $Department
  * @property Doctrine_Collection $Permissions
+ * @property WorkingHourWorkType $DefaultWorkType
  * @property Doctrine_Collection $WorkTypes
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property sfGuardRememberKey $RememberKeys
@@ -45,10 +47,12 @@
  * @method boolean               getIsSuperAdmin()            Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
  * @method integer               getGroupId()                 Returns the current record's "group_id" value
+ * @method integer               getDefaultWorkTypeId()       Returns the current record's "default_Work_Type_id" value
  * @method integer               getMonthlyWorkingHours()     Returns the current record's "monthly_Working_Hours" value
  * @method boolean               getSendEmail()               Returns the current record's "send_Email" value
  * @method sfGuardGroup          getDepartment()              Returns the current record's "Department" value
  * @method Doctrine_Collection   getPermissions()             Returns the current record's "Permissions" collection
+ * @method WorkingHourWorkType   getDefaultWorkType()         Returns the current record's "DefaultWorkType" value
  * @method Doctrine_Collection   getWorkTypes()               Returns the current record's "WorkTypes" collection
  * @method Doctrine_Collection   getSfGuardUserPermission()   Returns the current record's "sfGuardUserPermission" collection
  * @method sfGuardRememberKey    getRememberKeys()            Returns the current record's "RememberKeys" value
@@ -72,10 +76,12 @@
  * @method sfGuardUser           setIsSuperAdmin()            Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
+ * @method sfGuardUser           setDefaultWorkTypeId()       Sets the current record's "default_Work_Type_id" value
  * @method sfGuardUser           setMonthlyWorkingHours()     Sets the current record's "monthly_Working_Hours" value
  * @method sfGuardUser           setSendEmail()               Sets the current record's "send_Email" value
  * @method sfGuardUser           setDepartment()              Sets the current record's "Department" value
  * @method sfGuardUser           setPermissions()             Sets the current record's "Permissions" collection
+ * @method sfGuardUser           setDefaultWorkType()         Sets the current record's "DefaultWorkType" value
  * @method sfGuardUser           setWorkTypes()               Sets the current record's "WorkTypes" collection
  * @method sfGuardUser           setSfGuardUserPermission()   Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser           setRememberKeys()            Sets the current record's "RememberKeys" value
@@ -152,6 +158,10 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('default_Work_Type_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
+             ));
         $this->hasColumn('monthly_Working_Hours', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
@@ -184,6 +194,11 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'refClass' => 'sfGuardUserPermission',
              'local' => 'user_id',
              'foreign' => 'permission_id'));
+
+        $this->hasOne('WorkingHourWorkType as DefaultWorkType', array(
+             'local' => 'default_Work_Type_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('WorkingHourWorkType as WorkTypes', array(
              'refClass' => 'WorkingHourWorkTypeUser',

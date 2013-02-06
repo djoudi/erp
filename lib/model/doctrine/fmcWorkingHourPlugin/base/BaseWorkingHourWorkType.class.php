@@ -9,6 +9,7 @@
  * @property Doctrine_Collection $Departments
  * @property Doctrine_Collection $Employees
  * @property Doctrine_Collection $Department
+ * @property Doctrine_Collection $DefaultWorkTypeEmployees
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $WorkingHourWorkTypeGroup
  * @property Doctrine_Collection $WorkingHourRecords
@@ -17,6 +18,7 @@
  * @method Doctrine_Collection getDepartments()              Returns the current record's "Departments" collection
  * @method Doctrine_Collection getEmployees()                Returns the current record's "Employees" collection
  * @method Doctrine_Collection getDepartment()               Returns the current record's "Department" collection
+ * @method Doctrine_Collection getDefaultWorkTypeEmployees() Returns the current record's "DefaultWorkTypeEmployees" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeUser()  Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection getWorkingHourWorkTypeGroup() Returns the current record's "WorkingHourWorkTypeGroup" collection
  * @method Doctrine_Collection getWorkingHourRecords()       Returns the current record's "WorkingHourRecords" collection
@@ -24,6 +26,7 @@
  * @method WorkingHourWorkType setDepartments()              Sets the current record's "Departments" collection
  * @method WorkingHourWorkType setEmployees()                Sets the current record's "Employees" collection
  * @method WorkingHourWorkType setDepartment()               Sets the current record's "Department" collection
+ * @method WorkingHourWorkType setDefaultWorkTypeEmployees() Sets the current record's "DefaultWorkTypeEmployees" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeUser()  Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method WorkingHourWorkType setWorkingHourWorkTypeGroup() Sets the current record's "WorkingHourWorkTypeGroup" collection
  * @method WorkingHourWorkType setWorkingHourRecords()       Sets the current record's "WorkingHourRecords" collection
@@ -64,6 +67,10 @@ abstract class BaseWorkingHourWorkType extends MyDoctrineRecord
         $this->hasMany('sfGuardGroup as Department', array(
              'local' => 'id',
              'foreign' => 'default_Worktype_id'));
+
+        $this->hasMany('sfGuardUser as DefaultWorkTypeEmployees', array(
+             'local' => 'id',
+             'foreign' => 'default_Work_Type_id'));
 
         $this->hasMany('WorkingHourWorkTypeUser', array(
              'local' => 'id',

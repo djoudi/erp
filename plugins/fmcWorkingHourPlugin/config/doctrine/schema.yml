@@ -180,6 +180,10 @@ sfGuardUser:
     options:
         orderBy: first_name ASC, last_name ASC
     columns:
+        default_Work_Type_id:
+            type: integer
+            notnull: false
+            default: NULL
         monthly_Working_Hours:
             type: integer
             notnull: true
@@ -189,6 +193,12 @@ sfGuardUser:
             notnull: true
             default: false
     relations:
+        DefaultWorkType:
+            class: WorkingHourWorkType
+            local: default_Work_Type_id
+            foreign: id
+            foreignAlias: DefaultWorkTypeEmployees
+            onDelete: CASCADE
         WorkTypes:
             class: WorkingHourWorkType
             local: employee_id
