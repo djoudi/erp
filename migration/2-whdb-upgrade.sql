@@ -21,6 +21,7 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 (7, 'OfficeDayExitEarliest', '17:00', 'Office day earliest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
 (8, 'OfficeDayExitLatest', '19:00', 'Office day latest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1);
 
+
 UPDATE `sf_guard_user` SET `monthly_working_hours`=NULL WHERE 1;
 
 

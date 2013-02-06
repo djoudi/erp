@@ -8,25 +8,28 @@
     
     <a class="btn btn-info pull-right" href="<?php echo $back_url; ?>">Back to List</a>
     
-    <br /><br />
+    <?php if ( isset($rightList_title) && isset($rightList_items) ): ?>
     
-    <table class="tablesorter table table-bordered table-condensed table-hover pull-right">
-        <thead>
-            <tr>
-                <th><?php echo $rightList_title; ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($rightList_items as $item): ?>
+        <br /><br />
+        
+        <table class="tablesorter table table-bordered table-condensed table-hover pull-right">
+            <thead>
                 <tr>
-                    <td>
-                        <?php echo $item; ?>
-                    </td>
+                    <th><?php echo $rightList_title; ?></th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                <?php foreach ($rightList_items as $item): ?>
+                    <tr>
+                        <td>
+                            <?php echo $item; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    
+    <?php endif; ?>
 
 </div>
 
