@@ -13,6 +13,10 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 (3, 'DefaultDailyBreaks', '30', 'Default daily breaks (in minutes)', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
 (4, 'ReportEmailFrequency', '7', 'Weekly WHDB report frequency (in days)', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1);
 
+
+UPDATE `sf_guard_user` SET `monthly_working_hours`=NULL WHERE 1;
+
+
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

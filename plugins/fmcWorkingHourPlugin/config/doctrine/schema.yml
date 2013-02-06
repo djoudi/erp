@@ -375,6 +375,11 @@ WorkingHourRecord:
         comment:
             type: string(50)
             notnull: false
+            default: NULL
+        details:
+            type: blob
+            notnull: false
+            default: NULL
     relations:
         Day:
             class: WorkingHourDay

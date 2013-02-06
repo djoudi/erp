@@ -12,6 +12,7 @@
  * @property integer $project_id
  * @property integer $work_Type_id
  * @property string $comment
+ * @property blob $details
  * @property WorkingHourDay $Day
  * @property Project $Project
  * @property WorkingHourWorkType $WorkType
@@ -23,6 +24,7 @@
  * @method integer             getProjectId()    Returns the current record's "project_id" value
  * @method integer             getWorkTypeId()   Returns the current record's "work_Type_id" value
  * @method string              getComment()      Returns the current record's "comment" value
+ * @method blob                getDetails()      Returns the current record's "details" value
  * @method WorkingHourDay      getDay()          Returns the current record's "Day" value
  * @method Project             getProject()      Returns the current record's "Project" value
  * @method WorkingHourWorkType getWorkType()     Returns the current record's "WorkType" value
@@ -33,6 +35,7 @@
  * @method WorkingHourRecord   setProjectId()    Sets the current record's "project_id" value
  * @method WorkingHourRecord   setWorkTypeId()   Sets the current record's "work_Type_id" value
  * @method WorkingHourRecord   setComment()      Sets the current record's "comment" value
+ * @method WorkingHourRecord   setDetails()      Sets the current record's "details" value
  * @method WorkingHourRecord   setDay()          Sets the current record's "Day" value
  * @method WorkingHourRecord   setProject()      Sets the current record's "Project" value
  * @method WorkingHourRecord   setWorkType()     Sets the current record's "WorkType" value
@@ -82,6 +85,10 @@ abstract class BaseWorkingHourRecord extends MyDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 50,
+             ));
+        $this->hasColumn('details', 'blob', null, array(
+             'type' => 'blob',
+             'notnull' => false,
              ));
 
         $this->option('orderBy', 'day_id, start_Time, end_Time ASC');
