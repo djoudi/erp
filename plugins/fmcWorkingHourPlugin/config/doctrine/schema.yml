@@ -180,6 +180,14 @@ sfGuardUser:
     options:
         orderBy: first_name ASC, last_name ASC
     columns:
+        office_Entrance:
+            type: time
+            notnull: false
+            default: NULL
+        office_Exit:
+            type: time
+            notnull: false
+            default: NULL
         default_Work_Type_id:
             type: integer
             notnull: false

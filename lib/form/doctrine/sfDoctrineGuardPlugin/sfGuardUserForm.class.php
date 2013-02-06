@@ -15,6 +15,12 @@ class sfGuardUserForm extends PluginsfGuardUserForm
             $this['groups_list']
         );
         
+        // Office Entrance and Exit
+        
+            $this->widgetSchema['office_Entrance'] = new sfWidgetFormInputText();
+            
+            $this->widgetSchema['office_Exit'] = new sfWidgetFormInputText();
+        
         
         // Department - Refs #51
         
@@ -44,6 +50,15 @@ class sfGuardUserForm extends PluginsfGuardUserForm
             ));
             
             $this->widgetSchema['work_types_list']->setLabel('Work Types');
+        
+        // Putting in order
+            
+            $this->widgetSchema->moveField ('is_active', sfWidgetFormSchema::BEFORE, 'first_name');
+            
+            $this->widgetSchema->moveField ('send_Email', sfWidgetFormSchema::AFTER, 'email_address');
+            
+            $this->widgetSchema->moveField ('default_Work_Type_id', sfWidgetFormSchema::BEFORE, 'work_types_list');
+
     }
     
 }

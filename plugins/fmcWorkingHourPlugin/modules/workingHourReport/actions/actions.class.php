@@ -2,6 +2,14 @@
 
 class workingHourReportActions extends sfActions
 {
+    public function executeEmployeeio (sfWebRequest $request)
+    {
+        $this->employees = Doctrine::getTable ('sfGuardUser')->getActive();
+        
+        
+    }
+    
+    
     
     public function executeEmployeeExcel (sfWebRequest $request)
     {

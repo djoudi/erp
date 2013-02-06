@@ -53,6 +53,10 @@ all:
                             label: Per Project
                             route: @workingHourReport_project
                             credentials: ["Working Hours Reports"]
+                        34:
+                            label: Employee Entrance/Exit
+                            route: @workingHourReport_employeeio
+                            credentials: ["Working Hours Reports"]
                         90:
                             label: Settings
                             attributes:

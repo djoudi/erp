@@ -17,6 +17,8 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
+ * @property time $office_Entrance
+ * @property time $office_Exit
  * @property integer $default_Work_Type_id
  * @property integer $monthly_Working_Hours
  * @property boolean $send_Email
@@ -47,6 +49,8 @@
  * @method boolean               getIsSuperAdmin()            Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()               Returns the current record's "last_login" value
  * @method integer               getGroupId()                 Returns the current record's "group_id" value
+ * @method time                  getOfficeEntrance()          Returns the current record's "office_Entrance" value
+ * @method time                  getOfficeExit()              Returns the current record's "office_Exit" value
  * @method integer               getDefaultWorkTypeId()       Returns the current record's "default_Work_Type_id" value
  * @method integer               getMonthlyWorkingHours()     Returns the current record's "monthly_Working_Hours" value
  * @method boolean               getSendEmail()               Returns the current record's "send_Email" value
@@ -76,6 +80,8 @@
  * @method sfGuardUser           setIsSuperAdmin()            Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()               Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()                 Sets the current record's "group_id" value
+ * @method sfGuardUser           setOfficeEntrance()          Sets the current record's "office_Entrance" value
+ * @method sfGuardUser           setOfficeExit()              Sets the current record's "office_Exit" value
  * @method sfGuardUser           setDefaultWorkTypeId()       Sets the current record's "default_Work_Type_id" value
  * @method sfGuardUser           setMonthlyWorkingHours()     Sets the current record's "monthly_Working_Hours" value
  * @method sfGuardUser           setSendEmail()               Sets the current record's "send_Email" value
@@ -157,6 +163,14 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              ));
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('office_Entrance', 'time', null, array(
+             'type' => 'time',
+             'notnull' => false,
+             ));
+        $this->hasColumn('office_Exit', 'time', null, array(
+             'type' => 'time',
+             'notnull' => false,
              ));
         $this->hasColumn('default_Work_Type_id', 'integer', null, array(
              'type' => 'integer',

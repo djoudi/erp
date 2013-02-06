@@ -1,5 +1,6 @@
 <?php slot('title', 'Daily Entrance/Exit Report' ); ?>
 
+
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
 

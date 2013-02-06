@@ -46,6 +46,12 @@ workingHourReport_project_excel:
         module: workingHourReport
         action: projectExcel
 
+workingHourReport_employeeio:
+    url: /wh/reports/employeeio
+    param:
+        module: workingHourReport
+        action: employeeio
+
 
 # workingHourDay
 

@@ -1,6 +1,8 @@
 <?php slot('title', 'Employee Report' ); ?>
 
+
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
+
 
 <form method="post">
     <table class="table table-bordered table-condensed table-hover">
@@ -10,6 +12,7 @@
     <input class="btn btn-primary" type="submit" value="Get Results" />
     
 </form>
+
 
 <?php if (!$items): ?>
     
