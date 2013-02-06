@@ -26,23 +26,29 @@ class whDayInfo
     }
     
     
-    public static function isHoliday ($date)
+    public static function isVacation ($date)
+    {
+        $result = (whDayInfo::isWeekend($date)) || (whDayInfo::isHoliday($date)) ? true : false;
+        
+        return $result;
+    }
+    
+    
+    
+    public static function isWeekend ($date)
     {
         $timestamp = strtotime($date);
         $dayoftheweek = date ("N", $timestamp);
-        $result = true;
         
-        if ($dayoftheweek > 5) // if weekend
-        {
-            $result = true;
-        }
-        elseif (Doctrine::getTable('Holiday')->findOneByDay($date)) // if holiday
-        {
-            $result = true;
-        }
-        else $result = false; // not holiday
+        $result = ($dayoftheweek > 5) ? true : false;
         
         return $result;
+    }
+    
+    
+    public static function isHoliday ($date)
+    {
+        $result = Doctrine::getTable('Holiday')->findOneByDay($date) ? true : false;
     }
     
     

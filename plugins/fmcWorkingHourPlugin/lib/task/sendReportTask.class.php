@@ -93,7 +93,7 @@ class sendReportTask extends sfBaseTask
                     {
                         $date = $startDate->format('Y-m-d');
                         
-                        if (!whDayInfo::isHoliday($date))
+                        if (!whDayInfo::isVacation($date))
                         {
                             $day = Doctrine::getTable('WorkingHourDay')->getActiveDate ($date, $employee['id']);
                             

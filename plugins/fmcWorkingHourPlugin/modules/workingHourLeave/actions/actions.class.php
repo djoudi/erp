@@ -102,7 +102,7 @@ class workingHourLeaveActions extends sfActions
                 
                 // Count number of valid days
                 
-                if ( ! whDayInfo::isHoliday ($dayDate) ) $numdays++;
+                if ( ! whDayInfo::isVacation ($dayDate) ) $numdays++;
                 
                 $day->add(new DateInterval('P1D'));
             }
@@ -136,7 +136,7 @@ class workingHourLeaveActions extends sfActions
             do {
                 $dayDate = $day->format('Y-m-d');
                 
-                if ( ! whDayInfo::isHoliday ($dayDate) )
+                if ( ! whDayInfo::isVacation ($dayDate) )
                 {
                     $saveDay = new WorkingHourDay();
                     $saveDay->setEmployee ($user->getGuardUser());
