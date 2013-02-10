@@ -15,6 +15,7 @@
             <tr>
                 <th>Day</th>
                 <th>Name</th>
+                <th>Type</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,10 @@
                         <a href="<?php echo url_for('holidayManagement_edit',array('id'=>$item['id'])); ?>">
                             <?php echo $item['name']; ?>
                         </a>
-                    </td>                
+                    </td>
+                    <td>
+                        <?php echo $item->getHolidayType(); ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
