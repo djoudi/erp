@@ -48,7 +48,13 @@ class whDayInfo
     
     public static function isHoliday ($date)
     {
-        $result = Doctrine::getTable('Holiday')->findOneByDay($date) ? true : false;
+        $result = Doctrine::getTable('Holiday')
+            ->createQuery ('h')
+            ->addWhere ('h.day = ?', $date)
+            ->addWhere ('h.holiday_type = ?', "Full-day")
+            ->fetchOne();
+        
+        return $result ? true : false; 
     }
     
     

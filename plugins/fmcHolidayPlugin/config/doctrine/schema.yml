@@ -19,4 +19,8 @@ Holiday:
         name:
             type: string(50)
             notnull: true
-            unique: true
+        holiday_type:
+            type: enum
+            values: ['Half-day', 'Full-day']
+            default: 'Full-day'
+            notnull: true

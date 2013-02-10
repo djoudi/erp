@@ -22,6 +22,19 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 (8, 'OfficeDayExitLatest', '19:00', 'Office day latest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1);
 
 
+INSERT IGNORE INTO `holiday` (`day`, `name`, `holiday_type`,  `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+('2013-08-07', 'Ramazan Bayramı Arifesi', 'Half-day', 23, 23, '2013-02-06 19:21:47', '2013-02-06 19:21:47', NULL, 1),
+('2013-08-08', 'Ramazan Bayramı 1. Gün', 'Full-day', 23, 23, '2013-02-06 19:10:03', '2013-02-06 19:10:11', NULL, 1),
+('2013-08-09', 'Ramazan Bayramı 2. Gün', 'Full-day', 23, 23, '2013-02-06 19:10:24', '2013-02-06 19:10:24', NULL, 1),
+('2013-08-10', 'Ramazan Bayramı 3. Gün', 'Full-day', 23, 23, '2013-02-06 19:10:32', '2013-02-06 19:10:32', NULL, 1),
+('2013-10-15', 'Kurban Bayramı 1. Gün', 'Full-day', 23, 23, '2013-02-06 19:11:02', '2013-02-06 19:11:02', NULL, 1),
+('2013-10-16', 'Kurban Bayramı 2. Gün', 'Full-day', 23, 23, '2013-02-06 19:11:10', '2013-02-06 19:11:10', NULL, 1),
+('2013-10-17', 'Kurban Bayramı 3. Gün', 'Full-day', 23, 23, '2013-02-06 19:11:16', '2013-02-06 19:11:16', NULL, 1),
+('2013-10-18', 'Kurban Bayramı 4. Gün', 'Full-day', 23, 23, '2013-02-06 19:11:22', '2013-02-06 19:11:22', NULL, 1),
+('2013-10-14', 'Kurban Bayramı Arifesi', 'Half-day', 23, 23, '2013-02-06 19:21:47', '2013-02-06 19:21:47', NULL, 1),
+('2013-10-28', 'Cumhuriyet Bayramı', 'Half-day', 23, 23, '2013-02-06 19:24:21', '2013-02-06 19:24:21', NULL, 1);
+
+
 UPDATE `sf_guard_user` SET `monthly_working_hours`=NULL WHERE 1;
 
 

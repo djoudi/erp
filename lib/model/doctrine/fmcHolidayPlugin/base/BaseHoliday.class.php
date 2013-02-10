@@ -7,11 +7,14 @@
  * 
  * @property date $day
  * @property string $name
+ * @property enum $holiday_type
  * 
- * @method date    getDay()  Returns the current record's "day" value
- * @method string  getName() Returns the current record's "name" value
- * @method Holiday setDay()  Sets the current record's "day" value
- * @method Holiday setName() Sets the current record's "name" value
+ * @method date    getDay()          Returns the current record's "day" value
+ * @method string  getName()         Returns the current record's "name" value
+ * @method enum    getHolidayType()  Returns the current record's "holiday_type" value
+ * @method Holiday setDay()          Sets the current record's "day" value
+ * @method Holiday setName()         Sets the current record's "name" value
+ * @method Holiday setHolidayType()  Sets the current record's "holiday_type" value
  * 
  * @package    fmc
  * @subpackage model
@@ -31,8 +34,17 @@ abstract class BaseHoliday extends MyDoctrineRecord
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
              'notnull' => true,
-             'unique' => true,
              'length' => 50,
+             ));
+        $this->hasColumn('holiday_type', 'enum', null, array(
+             'type' => 'enum',
+             'values' => 
+             array(
+              0 => 'Half-day',
+              1 => 'Full-day',
+             ),
+             'default' => 'Full-day',
+             'notnull' => true,
              ));
 
         $this->option('orderBy', 'day ASC');
