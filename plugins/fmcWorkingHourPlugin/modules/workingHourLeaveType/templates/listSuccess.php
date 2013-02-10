@@ -14,8 +14,9 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Has Report</th>
-                <th>Default Limit</th>
+                <th>Default limit</th>
+                <th>Has report</th>
+                <th>Will be paid</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,9 @@
                         </a>
                     </td>                
                     <td>
+                        <?php echo $item['default_Limit']; ?>
+                    </td>
+                    <td>
                         <?php if ($item['has_Report']): ?>
                             <i class="icon-ok"></i>
                         <?php else: ?>
@@ -34,7 +38,11 @@
                         <?php endif; ?>
                     </td>
                     <td>
-                        <?php echo $item['default_Limit']; ?>
+                        <?php if ($item['will_be_paid']): ?>
+                            <i class="icon-ok"></i>
+                        <?php else: ?>
+                            <i class="icon-remove"></i>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
