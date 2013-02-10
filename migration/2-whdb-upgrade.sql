@@ -38,6 +38,9 @@ INSERT IGNORE INTO `holiday` (`day`, `name`, `holiday_type`,  `creater_id`, `upd
 UPDATE `sf_guard_user` SET `monthly_working_hours`=NULL WHERE 1;
 
 
+UPDATE `leave_type` SET `will_be_paid`=NULL WHERE `id`=4;
+
+
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

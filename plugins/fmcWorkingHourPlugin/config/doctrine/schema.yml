@@ -35,6 +35,10 @@ LeaveType:
             type: boolean
             notnull: true
             default: false
+        will_be_paid:
+            type: boolean
+            notnull: true
+            default: true
 
 ######################################################
 
