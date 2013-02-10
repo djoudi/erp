@@ -22,7 +22,12 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 (8, 'OfficeDayExitLatest', '19:00', 'Office day latest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1);
 
 
-INSERT IGNORE INTO `holiday` (`day`, `name`, `holiday_type`,  `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+INSERT INTO `leave_type` (`name`, `default_limit`, `has_report`, `will_be_paid`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+('Marriage Leave', 0, 0, 0, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
+('Maternity/Parental Leave', 0, 0, 0, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1);
+
+
+INSERT IGNORE INTO `holiday` (`day`, `name`, `holiday_type`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
 ('2013-08-07', 'Ramazan Bayramı Arifesi', 'Half-day', 23, 23, '2013-02-06 19:21:47', '2013-02-06 19:21:47', NULL, 1),
 ('2013-08-08', 'Ramazan Bayramı 1. Gün', 'Full-day', 23, 23, '2013-02-06 19:10:03', '2013-02-06 19:10:11', NULL, 1),
 ('2013-08-09', 'Ramazan Bayramı 2. Gün', 'Full-day', 23, 23, '2013-02-06 19:10:24', '2013-02-06 19:10:24', NULL, 1),
