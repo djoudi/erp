@@ -86,9 +86,6 @@
                     
                     <?php if ($sf_user->hasPermission('Cost Form Management')): ?>
                         <td>
-                            <?php
-                                $deleteurl = url_for('@costFormManage_delete?cost_id='.$cfi["id"]);
-                            ?>
                             <a href="<?php echo url_for('costFormManage_edit',array('cost_id'=>$cfi["id"])); ?>">
                                 <i class="icon-pencil"></i>
                             </a> 

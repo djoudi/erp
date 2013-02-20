@@ -51,6 +51,7 @@ all:
             - workingHourLeave
             - workingHourLeaveLimit
             - workingHourLeaveType
+            - workingHourManagement
             - workingHourParameter
             - workingHourReport
             - workingHourWorkType

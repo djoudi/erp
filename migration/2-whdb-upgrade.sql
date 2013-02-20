@@ -46,6 +46,15 @@ UPDATE `sf_guard_user` SET `monthly_working_hours`=NULL WHERE 1;
 UPDATE `leave_type` SET `will_be_paid`=NULL WHERE `id`=4;
 
 
+INSERT INTO `sf_guard_permission` (`name`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+('Working Hours Management', NULL, 0, 0, '2012-01-11 18:21:29', '2012-01-11 18:21:29', NULL, NULL);
+
+
+INSERT INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+(22, 16, 23, 23, '2013-02-12 16:24:30', '2013-02-12 16:24:30', NULL, 1),
+(23, 16, 23, 23, '2013-02-12 16:24:30', '2013-02-12 16:24:30', NULL, 1);
+
+
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

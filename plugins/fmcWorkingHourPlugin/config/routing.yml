@@ -228,3 +228,30 @@ workingHourWorkType_edit:
     param:
         module: workingHourWorkType
         action: edit
+
+
+# workingHourManagement
+
+workingHoursManagement_addhours:
+    url: /wh/management/addhours
+    param:
+        module: workingHourManagement
+        action: addhours
+
+workingHoursManagement_addhours_new:
+    url: /wh/management/addhours/new
+    param:
+        module: workingHourManagement
+        action: addhoursNew
+
+workingHoursManagement_addhours_edit:
+    url: /wh/management/addhours/edit/:id
+    param:
+        module: workingHourManagement
+        action: addhoursEdit
+
+workingHoursManagement_addhours_delete:
+    url: /wh/management/addhours/delete/:id
+    param:
+        module: workingHourManagement
+        action: addhoursDelete

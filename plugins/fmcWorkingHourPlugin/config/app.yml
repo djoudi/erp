@@ -8,7 +8,7 @@ all:
                     attributes:
                         class: "dropdown"
                         id: topmenu_workinghours
-                    credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports"]]
+                    credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports", "Working Hours Management"]]
                     children:
                         10:
                             label: My Working Hours
@@ -37,23 +37,32 @@ all:
                             route: @workingHourApproveLeave_list
                             credentials: ["Working Hours Leave Approve"]
                         30:
+                            label: Management
+                            attributes:
+                                class: "nav-header"
+                            credentials: ["Working Hours Management"]
+                        31:
+                            label: Add Custom Hours
+                            route: @workingHoursManagement_addhours
+                            credentials: ["Working Hours Management"]
+                        50:
                             label: Reports
                             attributes:
                                 class: "nav-header"
                             credentials: ["Working Hours Reports"]
-                        31:
+                        51:
                             label: Daily report
                             route: @workingHourReport_daily
                             credentials: ["Working Hours Reports"]
-                        32:
+                        52:
                             label: Per Employee
                             route: @workingHourReport_employee
                             credentials: ["Working Hours Reports"]
-                        33:
+                        53:
                             label: Per Project
                             route: @workingHourReport_project
                             credentials: ["Working Hours Reports"]
-                        34:
+                        54:
                             label: Employee Entrance/Exit
                             route: @workingHourReport_employeeio
                             credentials: ["Working Hours Reports"]
