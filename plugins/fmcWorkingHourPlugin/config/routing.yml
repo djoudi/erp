@@ -263,3 +263,15 @@ workingHoursManagement_day_list:
     param:
         module: workingHourManagement
         action: dayList
+
+workingHoursManagement_day_makedraft:
+    url: /wh/management/day/makedraft/:id
+    param:
+        module: workingHourManagement
+        action: dayMakeDraft
+
+workingHoursManagement_day_edit:
+    url: /wh/management/day/edit/:id
+    param:
+        module: workingHourManagement
+        action: dayEdit

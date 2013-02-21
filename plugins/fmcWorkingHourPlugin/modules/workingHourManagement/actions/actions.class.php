@@ -23,6 +23,41 @@ class workingHourManagementActions extends sfActions
         $this->filtered = $filterClass->getFiltered();
     }
     
+    public function executeDayMakeDraft (sfWebRequest $request)
+    {
+        $item = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
+        
+        $this->forward404Unless ($item);
+        
+        if ($item["status"] != "Accepted")
+        {
+            $this->getUser()->setFlash("error", "Only accepted days can be changed to draft!");
+        }
+        else
+        {
+            $item->setStatus ("Draft");
+            $item->save();
+            $this->getUser()->setFlash("success", "Day <strong>{$item["date"]}</strong> of employee <strong>{$item->getEmployee()}</strong> changed to draft!");
+        }
+        
+        $this->redirect ($request->getReferer());
+    }
+    
+    public function executeDayEdit (sfWebRequest $request)
+    {
+        $item = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
+        
+        $this->forward404Unless ($item);
+        
+        if ($item["status"] != "Draft")
+        {
+            $this->getUser()->setFlash("error", "Only draft days can be edited!");
+        }
+        else
+        {
+            
+        }
+    }
     
     public function executeAddhours (sfWebRequest $request)
     {

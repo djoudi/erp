@@ -23,7 +23,6 @@
                 <th>Employee</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th>Multiplier</th>
                 <th>Daily Breaks</th>
                 <th>Actions</th>
             </tr>
@@ -41,13 +40,20 @@
                         <?php echo $item["status"]; ?>
                     </td>
                     <td>
-                        <?php echo $item["multiplier"]; ?>
-                    </td>
-                    <td>
                         <?php echo $item["daily_Breaks"]; ?>
                     </td>
                     <td>
-                        Actions
+                        <?php if ($item["status"]=="Accepted"): ?>
+                            <a 
+                                href="<?php echo url_for("workingHoursManagement_day_makedraft",array("id"=>$item["id"])); ?>">
+                                Change to Draft
+                            </a>
+                        <?php else: ?>
+                            <a 
+                                href="<?php echo url_for("workingHoursManagement_day_edit",array("id"=>$item["id"])); ?>">
+                                Edit Day
+                            </a>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
