@@ -2,11 +2,31 @@
 
 class workingHourManagementActions extends sfActions
 {
-    public function executeAddhours (sfWebRequest $request)
+    public function executeDayList (sfWebRequest $request)
     {
         $this->resultLimit = 50;
         
-        // Edit these variables
+        $q = Doctrine::getTable("WorkingHourDay")
+            ->createQuery ('whd')
+            ->leftJoin ('whd.Employee e')
+            ->leftJoin ('whd.LeaveRequest lr')
+            ->addWhere ('whd.leave_id IS NULL')
+            ->limit ($this->resultLimit);
+        
+        $filterClass = new FmcFilter('whFilter_manageday');
+    
+        $this->items = $filterClass->initFilterForm($request, $q)->execute();
+        
+        if ($request->hasParameter('_reset')) $filterClass->resetForm ();
+        
+        $this->filter = $filterClass->getFilter();
+        $this->filtered = $filterClass->getFiltered();
+    }
+    
+    
+    public function executeAddhours (sfWebRequest $request)
+    {
+        $this->resultLimit = 50;
         
         $q = Doctrine::getTable("CustomWorkingHour")
             ->createQuery('cwh')
@@ -14,17 +34,13 @@ class workingHourManagementActions extends sfActions
             ->leftJoin('cwh.Adder a')
             ->limit ($this->resultLimit);
         
-        #$filterClass = new FmcFilter('filter_costFormItemReport_list');
         $filterClass = new FmcFilter('whFilter_addhours');
     
         $this->items = $filterClass->initFilterForm($request, $q)->execute();
         
-        // Do not touch here
-      
         if ($request->hasParameter('_reset')) $filterClass->resetForm ();
         
         $this->filter = $filterClass->getFilter();
-        
         $this->filtered = $filterClass->getFiltered();
     }
     

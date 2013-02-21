@@ -1,8 +1,6 @@
 <?php slot ('title', "Add Custom Working Hours") ?>
 
-
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
-
 
 <?php if (isset($filter)): ?>
     <?php include_partial ('fmcCore/filterForm', array(

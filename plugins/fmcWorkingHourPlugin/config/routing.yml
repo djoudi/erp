@@ -230,7 +230,7 @@ workingHourWorkType_edit:
         action: edit
 
 
-# workingHourManagement
+# workingHourManagement - Add custom hours
 
 workingHoursManagement_addhours:
     url: /wh/management/addhours
@@ -255,3 +255,11 @@ workingHoursManagement_addhours_delete:
     param:
         module: workingHourManagement
         action: addhoursDelete
+
+# workingHourManagement - Day mgmt
+
+workingHoursManagement_day_list:
+    url: /wh/management/day/list
+    param:
+        module: workingHourManagement
+        action: dayList

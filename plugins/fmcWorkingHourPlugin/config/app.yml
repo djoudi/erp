@@ -45,6 +45,10 @@ all:
                             label: Add Custom Hours
                             route: @workingHoursManagement_addhours
                             credentials: ["Working Hours Management"]
+                        32:
+                            label: Manage Working Hours
+                            route: @workingHoursManagement_day_list
+                            credentials: ["Working Hours Management"]
                         50:
                             label: Reports
                             attributes:
