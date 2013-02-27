@@ -1,3 +1,5 @@
+<?php if (!isset($admin)) $admin = 0; else if (!$admin) $admin = 1; ?>
+
 <?php if (!count($dayRecords)): ?>
 
     <p><strong>No records found.</strong></p>
@@ -55,7 +57,8 @@
                         <?php include_partial ('fmcCore/confirmButton', array(
                             'url' => url_for('workingHourDay_deleteitem',array(
                                 'date'=>$dayDate,
-                                'id'=>$record['id']
+                                'id'=>$record['id'],
+                                'admin'=>$admin
                             )),
                             'label' => 'Delete',
                         )); ?>

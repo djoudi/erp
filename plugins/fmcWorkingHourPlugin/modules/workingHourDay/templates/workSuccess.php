@@ -7,11 +7,8 @@
     <div class="span3">
         
         <?php if (isset($date) && $date): ?>
-        
             <h5><?php echo whDayInfo::getGoodDate ($date); ?></h5>
-            
             <?php include_partial ('datepicker', array('date'=>$date)); ?>
-            
         <?php endif; ?>
         
         <hr />
@@ -64,7 +61,7 @@
                 <p>
                     <?php include_partial ('fmcCore/confirmButton', array(
                         'class' => 'btn btn-danger btn-small',
-                        'url' => url_for('workingHourDay_deleteday',array('date'=>$day['date'])),
+                        'url' => url_for('workingHourDay_deleteday',array('id'=>$day['id'])),
                         'label' => 'Cancel Day',
                         "iconClass" => 'icon-remove icon-white'
                     )); ?>

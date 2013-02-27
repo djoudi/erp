@@ -80,13 +80,13 @@ workingHourDay_work:
         action: work
 
 workingHourDay_deleteitem:
-    url: /wh/day/:date/deleteitem/:id
+    url: /wh/day/:date/deleteitem/:id/:admin
     param:
         module: workingHourDay
         action: deleteItem
 
 workingHourDay_deleteday:
-    url: /wh/day/:date/deleteday
+    url: /wh/day/deleteday/:id/:admin
     param:
         module: workingHourDay
         action: deleteDay

@@ -43,20 +43,65 @@ class workingHourManagementActions extends sfActions
         $this->redirect ($request->getReferer());
     }
     
+    public function prepareWorkForms ($day)
+    {
+        $workObject = new WorkingHourRecord ();
+        $workObject->setDay ($day);
+        $workObject->setRecordType ("Work");
+        $this->workForm = new whForm_workRecord ($workObject);
+        
+        $entranceObject = new WorkingHourRecord ();
+        $entranceObject->setDay ($day);
+        $entranceObject->setRecordType ("Entrance");
+        $this->entranceForm = new whForm_entranceRecord ($entranceObject);
+        
+        $exitObject = new WorkingHourRecord ();
+        $exitObject->setDay ($day);
+        $exitObject->setRecordType ("Exit");
+        $this->exitForm = new whForm_exitRecord ($exitObject);
+        
+        $this->dailyBreaksForm = new whForm_dailyBreaks ();
+        $this->dailyBreaksForm->setDefaults(array(
+            'total_Daily_Breaks' => $day['daily_Breaks']
+        ));
+    }
+    
     public function executeDayEdit (sfWebRequest $request)
     {
-        $item = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
+        $this->admin = 1;
         
-        $this->forward404Unless ($item);
+        $this->day = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
         
-        if ($item["status"] != "Draft")
+        $this->forward404Unless ($this->day);
+        
+        $this->date = $this->day->getDate();
+        
+        if ($this->day->getStatus() != "Draft")
         {
             $this->getUser()->setFlash("error", "Only draft days can be edited!");
         }
         else
         {
+            $this->dayRecords = $this->day->getRecords()->toArray();
+        
+            $this->prepareWorkForms ($this->day);
             
+            // Processing Forms
+            
+            $form_id = $request->getParameter('form_id');
+            
+            $url = $this->getController()->genUrl('@workingHoursManagement_day_edit?id='.$this->day->getId());
+            
+            if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, $url);
+            
+            elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
+            
+            elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
+            
+            elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, $url);
         }
+        
+        $this->setTemplate('work','../workingHourDay');
     }
     
     public function executeAddhours (sfWebRequest $request)

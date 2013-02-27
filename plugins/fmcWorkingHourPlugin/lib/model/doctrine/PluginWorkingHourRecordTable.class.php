@@ -2,7 +2,6 @@
 
 class PluginWorkingHourRecordTable extends Doctrine_Table
 {
-    
     public static function getInstance()
     {
         return Doctrine_Core::getTable('PluginWorkingHourRecord');
@@ -17,6 +16,18 @@ class PluginWorkingHourRecordTable extends Doctrine_Table
             ->addWhere ('r.id = ?', $id)
             ->addWhere ('d.date = ?', $date)
             ->addWhere ('d.employee_id = ?', $employee_id)
+            ->addWhere ('d.status = ?', "Draft")
+            ->fetchOne();
+        
+        if ($object) $object->delete();
+    }
+    
+    public function deleteDraftItemAdmin ($date, $id)
+    {
+        $object = $this->createQuery ('r')
+            ->leftJoin ('r.Day d')
+            ->addWhere ('r.id = ?', $id)
+            ->addWhere ('d.date = ?', $date)
             ->addWhere ('d.status = ?', "Draft")
             ->fetchOne();
         

@@ -51,6 +51,8 @@ class workingHourDayActions extends sfActions
     {
         whDayInfo::routeDay ($this->date = $request->getParameter ('date'), "Work");
         
+        $this->admin = 0;
+        
         $this->day = Doctrine::getTable ('WorkingHourDay')->getActiveDate($this->date);
         
         $this->forward404Unless ($this->day);
@@ -77,13 +79,21 @@ class workingHourDayActions extends sfActions
     
     public function executeDeleteItem (sfWebRequest $request)
     {
-        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
-                
-        $id = $request->getParameter ('id');
+        $date = $request->getParameter ('date');
+        $id = $request->getParameter('id');
         
-        Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
+        if ($request->getParameter('admin') && $this->getUser()->hasCredential("Working Hours Management"))
+        {
+            Doctrine::getTable ('WorkingHourRecord')->deleteDraftItemAdmin ($date, $id);
+        }
+        else
+        {
+            whDayInfo::routeDay ($date, "Work");
+            
+            Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
+        }
         
-        $this->redirect ($this->getController()->genUrl('@workingHourDay_check?date='.$date));
+        $this->redirect ($request->getReferer());
     }
     
     
