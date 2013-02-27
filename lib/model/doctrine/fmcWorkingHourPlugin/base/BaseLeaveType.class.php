@@ -79,7 +79,7 @@ abstract class BaseLeaveType extends MyDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('LeaveRequestLimit', array(
+        $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestLimit', array(
              'local' => 'id',
              'foreign' => 'type_id'));
 

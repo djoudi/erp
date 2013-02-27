@@ -6,9 +6,44 @@ class workingHourLeaveLimitActions extends sfActions
     public function executeList (sfWebRequest $request)
     {
         $this->employees = Doctrine::getTable ('sfGuardUser')->findAll();
+    }
+    
+    public function executeDetails (sfWebRequest $request)
+    {
+        $this->employee = Doctrine::getTable('sfGuardUser')->findOneById ($request->getParameter('id'));
+        
+        $this->forward404Unless ($this->employee);
+        
+        $this->previous = Doctrine::getTable("LeaveRequestEmployeeLimit")
+            ->createQuery('l')
+            ->leftJoin('l.LeaveType lt')
+            ->addWhere('l.employee_id = ?', $this->employee->getId())
+            ->execute();
         
         $this->leaveTypes = Doctrine::getTable ('LeaveType')->findAll();
+        
+        $formObject = new LeaveRequestEmployeeLimit();
+        $formObject->setEmployee ($this->getUser()->getGuardUser());
+        $formObject->setAdder ($this->getUser()->getGuardUser());
+        $this->form = new whForm_addleaveemployee ($formObject);
+        
+        Fmc_Core_Form::Process ($this->form, $request);
     }
+    
+    public function executeDelete (sfWebRequest $request)
+    {
+        $item = Doctrine::getTable("LeaveRequestEmployeeLimit")->findOneById($request->getParameter("id"));
+        
+        $this->forward404Unless ($item);
+        
+        $item->delete();
+        
+        $this->getUser()->setFlash("notice", "Leave limit deleted.");
+        
+        $this->redirect ($request->getReferer());
+    }
+    
+    
     
     public function executeEdit (sfWebRequest $request)
     {

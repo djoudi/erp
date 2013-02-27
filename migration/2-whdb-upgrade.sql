@@ -55,6 +55,10 @@ INSERT INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`
 (23, 16, 23, 23, '2013-02-12 16:24:30', '2013-02-12 16:24:30', NULL, 1);
 
 
+DROP TABLE leave_request_limit;
+DROP TABLE leave_request_limit_version;
+
+
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,6 @@
 # CustomWorkingHour
 # LeaveType
-# LeaveRequestLimit
+# LeaveRequestEmployeeLimit
 # WorkingHourParameter
 # WorkingHourWorkType
 # WorkingHourWorkTypeUser
@@ -87,11 +87,12 @@ LeaveType:
 
 ######################################################
 
-LeaveRequestLimit:
+LeaveRequestEmployeeLimit:
     actAs:
         Auditable: ~
-        SoftDelete: ~
         Versionable: ~
+    options:
+        orderBy: created_at DESC
     columns:
         employee_id:
             type: integer
@@ -99,9 +100,15 @@ LeaveRequestLimit:
         type_id:
             type: integer
             notnull: true
-        leaveLimit:
+        leave_Limit:
             type: integer
             notnull: true
+        added_by:
+            type: integer
+            notnull: true
+        comment:
+            type: string(255)
+            notnull: false
     relations:
         Employee:
             class: sfGuardUser
@@ -112,6 +119,12 @@ LeaveRequestLimit:
         LeaveType:
             class: LeaveType
             local: type_id
+            foreign: id
+            foreignAlias: LeaveRequestLimit
+            onDelete: CASCADE
+        Adder:
+            class: sfGuardUser
+            local: added_by
             foreign: id
             foreignAlias: LeaveRequestLimit
             onDelete: CASCADE

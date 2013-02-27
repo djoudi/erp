@@ -1,16 +1,16 @@
 <?php
 
 /**
- * LeaveRequestLimit form base class.
+ * LeaveRequestEmployeeLimit form base class.
  *
- * @method LeaveRequestLimit getObject() Returns the current form's model object
+ * @method LeaveRequestEmployeeLimit getObject() Returns the current form's model object
  *
  * @package    fmc
  * @subpackage form
  * @author     Yasin Aydin (yasin@yasinaydin.net)
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseLeaveRequestLimitForm extends BaseFormDoctrine
+abstract class BaseLeaveRequestEmployeeLimitForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -18,12 +18,13 @@ abstract class BaseLeaveRequestLimitForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'employee_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'), 'add_empty' => false)),
       'type_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'), 'add_empty' => false)),
-      'leaveLimit'  => new sfWidgetFormInputText(),
+      'leave_Limit' => new sfWidgetFormInputText(),
+      'added_by'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Adder'), 'add_empty' => false)),
+      'comment'     => new sfWidgetFormInputText(),
       'creater_id'  => new sfWidgetFormInputText(),
       'updater_id'  => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
-      'deleted_at'  => new sfWidgetFormDateTime(),
       'version'     => new sfWidgetFormInputText(),
     ));
 
@@ -31,16 +32,17 @@ abstract class BaseLeaveRequestLimitForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'employee_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'))),
       'type_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'))),
-      'leaveLimit'  => new sfValidatorInteger(),
+      'leave_Limit' => new sfValidatorInteger(),
+      'added_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Adder'))),
+      'comment'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'creater_id'  => new sfValidatorPass(),
       'updater_id'  => new sfValidatorPass(),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
-      'deleted_at'  => new sfValidatorDateTime(array('required' => false)),
       'version'     => new sfValidatorInteger(array('required' => false)),
     ));
 
-    $this->widgetSchema->setNameFormat('leave_request_limit[%s]');
+    $this->widgetSchema->setNameFormat('leave_request_employee_limit[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -51,7 +53,7 @@ abstract class BaseLeaveRequestLimitForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'LeaveRequestLimit';
+    return 'LeaveRequestEmployeeLimit';
   }
 
 }

@@ -256,7 +256,7 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              'local' => 'id',
              'foreign' => 'added_by'));
 
-        $this->hasMany('LeaveRequestLimit', array(
+        $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestLimit', array(
              'local' => 'id',
              'foreign' => 'employee_id'));
 

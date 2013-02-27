@@ -1,6 +1,23 @@
 <?php
 
-class sfGuardUser extends PluginsfGuardUser {
+class sfGuardUser extends PluginsfGuardUser
+{
+    
+    /* ---------------------------------------------------------------*/
+    
+    
+    public function getLeaveLimitSum ($type_id)
+    {
+        $query = Doctrine_Query::create()
+            ->select ('sum(leave_Limit)')
+            ->from ('LeaveRequestEmployeeLimit l')
+            ->addWhere ('l.employee_id = ?', $this->getId())
+            ->addWhere ('l.type_id = ?', $type_id);
+        
+        $sum = $query->fetchOne();
+        
+        return $sum["sum"] ? $sum["sum"] : 0;
+    }
     
     
     /* ---------------------------------------------------------------*/

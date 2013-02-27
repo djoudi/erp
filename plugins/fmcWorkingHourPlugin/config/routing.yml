@@ -166,11 +166,17 @@ workingHourLeaveLimit_list:
         module: workingHourLeaveLimit
         action: list
 
-workingHourLeaveLimit_edit:
-    url: /wh/leavelimits/edit/:id
+workingHourLeaveLimit_details:
+    url: /wh/leavelimits/details/:id
     param:
         module: workingHourLeaveLimit
-        action: edit
+        action: details
+
+workingHourLeaveLimit_delete:
+    url: /wh/leavelimits/delete/:id
+    param:
+        module: workingHourLeaveLimit
+        action: delete
 
 
 # workingHourLeaveType
