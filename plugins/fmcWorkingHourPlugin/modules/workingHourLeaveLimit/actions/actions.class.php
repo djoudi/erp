@@ -8,27 +8,36 @@ class workingHourLeaveLimitActions extends sfActions
         $this->employees = Doctrine::getTable ('sfGuardUser')->findAll();
     }
     
+    
+    
     public function executeDetails (sfWebRequest $request)
     {
+        // Fetching employee
+        
         $this->employee = Doctrine::getTable('sfGuardUser')->findOneById ($request->getParameter('id'));
+        
+        // 404 if employee not found
         
         $this->forward404Unless ($this->employee);
         
-        $this->previous = Doctrine::getTable("LeaveRequestEmployeeLimit")
-            ->createQuery('l')
-            ->leftJoin('l.LeaveType lt')
-            ->addWhere('l.employee_id = ?', $this->employee->getId())
-            ->execute();
+        // Fetching previous records
+        
+        $this->previous = Doctrine::getTable("LeaveRequestEmployeeLimit")->findByEmployeeId ($this->employee->getId());
+        
+        // Fetching leave types
         
         $this->leaveTypes = Doctrine::getTable ('LeaveType')->findAll();
         
-        $formObject = new LeaveRequestEmployeeLimit();
-        $formObject->setEmployee ($this->getUser()->getGuardUser());
-        $formObject->setAdder ($this->getUser()->getGuardUser());
-        $this->form = new whForm_addleaveemployee ($formObject);
+        // Creating form
+        
+        $this->form = new whForm_addleaveemployee (array(), array('employee_id' => $this->employee->getId()));
+        
+        // Processing form
         
         Fmc_Core_Form::Process ($this->form, $request);
     }
+    
+    
     
     public function executeDelete (sfWebRequest $request)
     {
@@ -43,54 +52,5 @@ class workingHourLeaveLimitActions extends sfActions
         $this->redirect ($request->getReferer());
     }
     
-    
-    
-    public function executeEdit (sfWebRequest $request)
-    {
-        $this->employee = Doctrine::getTable('sfGuardUser')->findOneById($request->getParameter('id'));
-        
-        $this->forward404Unless ($this->employee);
-        
-        $this->limits = $this->employee->getLeaveRequestLimit()->toArray();
-        
-        $this->leaveTypes = Doctrine::getTable('LeaveType')->findAll()->toArray();
-        
-        if ($request->isMethod('post'))
-        {
-            foreach ($this->leaveTypes as $type)
-            {
-                    $currentRecord = Doctrine::getTable ('LeaveRequestLimit')
-                        ->getForUserType($this->employee->getId(), $type['id']);
-                
-                if ($currentRecord['id'])
-                {
-                    if (!$request->getParameter($type['id']))
-                    {
-                        $currentRecord->delete();
-                    }
-                    else
-                    {
-                        $currentRecord->setLeaveLimit($request->getParameter($type['id']));
-                        $currentRecord->save();
-                    }
-                }
-                elseif ($request->getParameter($type['id']))
-                {
-                    $newRecord = new LeaveRequestLimit();
-                    $newRecord->setEmployeeId ($this->employee->getId());
-                    $newRecord->setTypeId ($type['id']);
-                    $newRecord->setLeaveLimit ($request->getParameter($type['id']));
-                    $newRecord->save();
-                }
-            }
-            
-            $this->getUser()->setFlash('success', 'Changes saved successfully.');
-            
-            $this->redirect ($request->getReferer());
-            
-            #$this->redirect($redirectUrl);
-            
-        }
-    }
     
 }
