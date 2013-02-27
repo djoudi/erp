@@ -5,14 +5,18 @@ class whForm_addleaveemployee extends LeaveRequestEmployeeLimitForm
     
     public function configure()
     {
+        // Inheriting parent configuration
+        
         parent::configure();
         
-        $user = sfContext::getInstance()->getUser();
+        // Setting defaults
         
         $this->setDefaults(array(
-            'added_by' => $user->getGuardUser()->getId(), 
+            'added_by' => sfContext::getInstance()->getUser()->getGuardUser()->getId(), 
             'employee_id' => $this->getOption('employee_id')
         ));
+        
+        // Unsetting fields
         
         unset(
             $this['employee_id'],

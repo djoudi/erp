@@ -5,7 +5,7 @@ class workingHourLeaveLimitActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
-        // Fetcinh all employees
+        // Fetcing all employees
         
         $this->employees = Doctrine::getTable ('sfGuardUser')->findAll();
     }
