@@ -246,3 +246,9 @@
     {
         width: 15em !important;
     }
+
+    #working_hour_day_filters_employee_id,
+    #working_hour_day_filters_status
+    {
+        width: auto !important;
+    }
