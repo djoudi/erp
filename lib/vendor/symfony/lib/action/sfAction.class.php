@@ -427,7 +427,12 @@ abstract class sfAction extends sfComponent
    * @param string $name    Template name
    * @param string $module  The module (current if null)
    */
-  public function setTemplate($name, $module = null)
+   
+  /* http://trac.symfony-project.org/attachment/ticket/8492/mypatch.diff */
+  
+  #public function setTemplate($name, $module = null)
+  public function setTemplate($name, $module = null, $plugin = null) 
+
   {
     if (sfConfig::get('sf_logging_enabled'))
     {
@@ -436,7 +441,20 @@ abstract class sfAction extends sfComponent
 
     if (null !== $module)
     {
-      $name = sfConfig::get('sf_app_dir').'/modules/'.$module.'/templates/'.$name;
+      #$name = sfConfig::get('sf_app_dir').'/modules/'.$module.'/templates/'.$name;
+      if (null !== $plugin)
+      {
+        // for security check
+        if (in_array($module, sfConfig::get('sf_enabled_modules')))
+        {
+          $name = sfConfig::get('sf_plugins_dir').'/'.$plugin.'/modules/'.$module.'/templates/'.$name;
+        }
+      }
+      else
+      {
+        $name = sfConfig::get('sf_app_dir').'/modules/'.$module.'/templates/'.$name;
+      }
+
     }
 
     sfConfig::set('symfony.view.'.$this->getModuleName().'_'.$this->getActionName().'_template', $name);

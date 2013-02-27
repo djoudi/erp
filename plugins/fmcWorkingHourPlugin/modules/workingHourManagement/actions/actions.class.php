@@ -101,7 +101,7 @@ class workingHourManagementActions extends sfActions
             elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, $url);
         }
         
-        $this->setTemplate('work','../workingHourDay');
+        $this->setTemplate('work','workingHourDay','fmcWorkingHourPlugin');
     }
     
     public function executeAddhours (sfWebRequest $request)
