@@ -269,9 +269,3 @@ workingHoursManagement_day_makedraft:
     param:
         module: workingHourManagement
         action: dayMakeDraft
-
-workingHoursManagement_day_edit:
-    url: /wh/management/day/edit/:id
-    param:
-        module: workingHourManagement
-        action: dayEdit

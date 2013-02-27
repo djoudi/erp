@@ -90,6 +90,14 @@
             </ul>
         <?php endif; ?>    
         
+        <?php if ($admin): ?>
+            <p>
+                <a class="btn" href="<?php echo url_for("workingHoursManagement_day_list"); ?>">
+                    Back to Management
+                </a>
+            </p>
+        <?php endif; ?>
+        
     </div>
     
     <div class="span9" style="padding-top: 20px">
