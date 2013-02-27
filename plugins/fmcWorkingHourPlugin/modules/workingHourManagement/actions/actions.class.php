@@ -70,6 +70,8 @@ class workingHourManagementActions extends sfActions
     {
         $this->admin = 1;
         
+        // Same as workingHourDay-Work
+        
         $this->day = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
         
         $this->forward404Unless ($this->day);
@@ -79,6 +81,7 @@ class workingHourManagementActions extends sfActions
         if ($this->day->getStatus() != "Draft")
         {
             $this->getUser()->setFlash("error", "Only draft days can be edited!");
+            $this->redirect ($this->getController()->genUrl("@workingHoursManagement_day_list"));
         }
         else
         {
@@ -90,15 +93,13 @@ class workingHourManagementActions extends sfActions
             
             $form_id = $request->getParameter('form_id');
             
-            $url = $this->getController()->genUrl('@workingHoursManagement_day_edit?id='.$this->day->getId());
+            if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, NULL);
             
-            if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, $url);
+            elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, NULL);
             
-            elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
+            elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, NULL);
             
-            elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
-            
-            elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, $url);
+            elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, NULL);
         }
         
         $this->setTemplate('work','workingHourDay','fmcWorkingHourPlugin');

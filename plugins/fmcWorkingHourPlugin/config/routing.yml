@@ -86,13 +86,13 @@ workingHourDay_deleteitem:
         action: deleteItem
 
 workingHourDay_deleteday:
-    url: /wh/day/deleteday/:id/:admin
+    url: /wh/day/deleteday/:date/:id/:admin
     param:
         module: workingHourDay
         action: deleteDay
 
 workingHourDay_approveday:
-    url: /wh/day/:date/approve
+    url: /wh/day/approveday/:date/:id/:admin
     param:
         module: workingHourDay
         action: approveDay

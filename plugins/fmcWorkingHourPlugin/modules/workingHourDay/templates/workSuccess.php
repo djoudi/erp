@@ -1,4 +1,6 @@
-<?php slot('title', 'Work Day'); ?>
+<?php $title = $admin ? "Work Day Management" : "Work Day"; ?>
+
+<?php slot('title', $title); ?>
 
 <?php slot ('activeClass', "#topmenu_workinghours"); ?>
 
@@ -7,8 +9,19 @@
     <div class="span3">
         
         <?php if (isset($date) && $date): ?>
+        
             <h5><?php echo whDayInfo::getGoodDate ($date); ?></h5>
-            <?php include_partial ('datepicker', array('date'=>$date)); ?>
+            
+            <?php if ($admin): ?>
+                
+                <h5><?php echo $day->getEmployee(); ?></h5>
+                
+            <?php else: ?>
+            
+                <?php include_partial ('workingHourDay/datepicker', array('date'=>$date)); ?>
+                
+            <?php endif; ?>
+            
         <?php endif; ?>
         
         <hr />
@@ -52,7 +65,11 @@
                 <p>
                     <?php include_partial ('fmcCore/confirmButton', array(
                         'class' => 'btn btn-success btn-small',
-                        'url' => url_for('workingHourDay_approveday',array('date'=>$day['date'])),
+                        'url' => url_for('workingHourDay_approveday',array(
+                            'id'=>$day['id'],
+                            'admin'=>$admin,
+                            'date'=>$day['date']
+                        )),
                         'label' => 'Send',
                         'text' => 'Are you sure you want to save this day? Warning! You cannot change this send this day again!',
                         "iconClass" => 'icon-ok icon-white'
@@ -61,7 +78,11 @@
                 <p>
                     <?php include_partial ('fmcCore/confirmButton', array(
                         'class' => 'btn btn-danger btn-small',
-                        'url' => url_for('workingHourDay_deleteday',array('id'=>$day['id'])),
+                        'url' => url_for('workingHourDay_deleteday',array(
+                            'id'=>$day['id'],
+                            'date'=>$day['date'],
+                            'admin'=>$admin
+                        )),
                         'label' => 'Cancel Day',
                         "iconClass" => 'icon-remove icon-white'
                     )); ?>
@@ -74,7 +95,7 @@
     <div class="span9" style="padding-top: 20px">
         
         <?php if (isset($day) && $day): ?>
-            <?php include_partial ('dayitems', array(
+            <?php include_partial ('workingHourDay/dayitems', array(
                 'dayRecords'=>$dayRecords,
                 'dayStatus'=>$day['status'],
                 'dayDate'=>$day['date']
@@ -85,7 +106,7 @@
         
         <?php if (isset($day) && $day): ?>
             <?php if ($day['status']=="Draft"): ?>
-                <?php include_partial ('dayforms', array(
+                <?php include_partial ('workingHourDay/dayforms', array(
                     'day' => $day, 
                     'workForm' => $workForm, 
                     'entranceForm' => $entranceForm, 

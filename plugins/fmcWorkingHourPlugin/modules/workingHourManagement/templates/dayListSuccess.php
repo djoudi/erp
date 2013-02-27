@@ -22,8 +22,8 @@
             <tr>
                 <th>Employee</th>
                 <th>Date</th>
-                <th>Status</th>
                 <th>Daily Breaks</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,10 +37,10 @@
                         <?php echo $item["date"]; ?>
                     </td>
                     <td>
-                        <?php echo $item["status"]; ?>
+                        <?php echo $item["daily_Breaks"]; ?>
                     </td>
                     <td>
-                        <?php echo $item["daily_Breaks"]; ?>
+                        <?php echo $item["status"]; ?>
                     </td>
                     <td>
                         <?php if ($item["status"]=="Accepted"): ?>

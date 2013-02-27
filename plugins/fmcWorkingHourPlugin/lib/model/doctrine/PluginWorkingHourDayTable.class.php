@@ -20,18 +20,18 @@ class PluginWorkingHourDayTable extends Doctrine_Table
         return $q->fetchOne();
     }
     
-    
-    public function getDraftDate ($date, $employee_id = NULL)
+    public function getDraftDate ($date, $employee_id = NULL, $admin = false)
     {
         if (!$employee_id) $employee_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
         $q = $this->createQuery ('whd')
-            ->addWhere ('whd.employee_id = ?', $employee_id)
-            ->addWhere ('whd.date = ?', $date)
-            ->addWhere ('status = ?', 'Draft');
+            ->addWhere ('status = ?', 'Draft')
+            ->addWhere ('whd.date = ?', $date);
+        
+        if (!$admin) $q->addWhere ('whd.employee_id = ?', $employee_id);
+        
         return $q->fetchOne();
     }
-    
     
     public function getActiveDate ($date, $employee_id = NULL)
     {

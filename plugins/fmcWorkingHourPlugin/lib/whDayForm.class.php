@@ -10,6 +10,10 @@ class whDayForm
             $controller = sfContext::getInstance()->getController();
             $user = sfContext::getInstance()->getUser();
             $date = $request->getParameter ('date');
+            
+            $admin = $request->getParameter ('admin');
+            $isAdmin = $admin && $user->hasCredential("Working Hours Management") ? 1 : 0;
+            
             $err = "";
             
             $form->bind ($request->getParameter ($form->getName()));
@@ -25,7 +29,7 @@ class whDayForm
                 
                 if ($values['total_Daily_Breaks'])
                 {
-                    $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date);
+                    $day = Doctrine::getTable('WorkingHourDay')->getDraftDate ($date, NULL, $isAdmin);
                     
                     $day->setDailyBreaks ($values['total_Daily_Breaks']);
                     

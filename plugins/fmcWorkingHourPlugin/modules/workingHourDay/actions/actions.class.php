@@ -65,33 +65,24 @@ class workingHourDayActions extends sfActions
         
         $form_id = $request->getParameter('form_id');
         
-        $url = $this->getController()->genUrl('@workingHourDay_work?date='.$this->date);
+        if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, NULL);
         
-        if ($form_id == 1) whDayForm::processNewWork ($this->workForm, $request, $url);
+        elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, NULL);
         
-        elseif ($form_id == 2) whDayForm::processNewWork ($this->exitForm, $request, $url);
+        elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, NULL);
         
-        elseif ($form_id == 3) whDayForm::processNewWork ($this->entranceForm, $request, $url);
-        
-        elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, $url);
+        elseif ($form_id == 4) whDayForm::processDailyBreaks ($this->dailyBreaksForm, $request, NULL);
     }
     
     
     public function executeDeleteItem (sfWebRequest $request)
     {
         $date = $request->getParameter ('date');
-        $id = $request->getParameter('id');
+        $id = $request->getParameter ('id');
+        $admin = $request->getParameter ('admin');
+        $isAdmin = $admin && $this->getUser()->hasCredential("Working Hours Management") ? 1 : 0;
         
-        if ($request->getParameter('admin') && $this->getUser()->hasCredential("Working Hours Management"))
-        {
-            Doctrine::getTable ('WorkingHourRecord')->deleteDraftItemAdmin ($date, $id);
-        }
-        else
-        {
-            whDayInfo::routeDay ($date, "Work");
-            
-            Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id);
-        }
+        Doctrine::getTable ('WorkingHourRecord')->deleteDraftItem ($date, $id, NULL, $isAdmin);
         
         $this->redirect ($request->getReferer());
     }
@@ -99,46 +90,61 @@ class workingHourDayActions extends sfActions
     
     public function executeDeleteDay (sfWebRequest $request)
     {
-        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
+        $date = $request->getParameter ('date');
+        $id = $request->getParameter ('id');
+        $admin = $request->getParameter ('admin');
+        $isAdmin = $admin && $this->getUser()->hasCredential("Working Hours Management") ? 1 : 0;
         
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date);
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date, NULL, $isAdmin);
         
         $this->forward404Unless ($day);
         
+        if (!$isAdmin)
+        {
+            whDayInfo::routeDay ($date, "Work");
+        }
+        
         $day->getWorkingHourRecords()->delete();
-        
         $day->delete();
+        $this->getUser()->setFlash('error','Day deleted!');
         
-        $this->getUser()->setFlash('notice','Day deleted.');
-        
-        $this->redirect ($request->getReferer());
+        if ($isAdmin) $this->redirect ($this->getController()->genUrl("@workingHoursManagement_day_list"));
+        else $this->redirect ($request->getReferer());
     }
     
     
     public function executeApproveDay (sfWebRequest $request)
     {
-        whDayInfo::routeDay ($date = $request->getParameter ('date'), "Work");
+        $date = $request->getParameter ('date');
+        $id = $request->getParameter ('id');
+        $admin = $request->getParameter ('admin');
+        $isAdmin = $admin && $this->getUser()->hasCredential("Working Hours Management") ? 1 : 0;
         
-        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date);
+        $day = Doctrine::getTable ('WorkingHourDay')->getDraftDate($date, NULL, $isAdmin);
         
         $this->forward404Unless ($day);
+        
+        if (!$isAdmin)
+        {
+            whDayInfo::routeDay ($date, "Work");
+        }
                 
         if ($error = $day->verifyRecords())
         {
             $this->getUser()->setFlash('error', $error);
+            $this->redirect ($request->getReferer());
         }
         else
         {
             $day->setStatus ("Accepted");
-            
             $day->setMultiplier ($day->calculateMultiplier());
-            
             $day->save();
             
-            $this->getUser()->setFlash('success', "Your day is sent for approval.");
+            $this->getUser()->setFlash('success', "Day is sent for approval.");
+            
+            if ($isAdmin) $this->redirect ($this->getController()->genUrl("@workingHoursManagement_day_list"));
+            else $this->redirect ($request->getReferer());
         }
-                
-        $this->redirect ($request->getReferer());
     }
     
 }
