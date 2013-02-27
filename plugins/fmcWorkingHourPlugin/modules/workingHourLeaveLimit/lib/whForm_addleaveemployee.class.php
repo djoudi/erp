@@ -2,6 +2,7 @@
 
 class whForm_addleaveemployee extends LeaveRequestEmployeeLimitForm
 {
+    
     public function configure()
     {
         parent::configure();
@@ -13,20 +14,10 @@ class whForm_addleaveemployee extends LeaveRequestEmployeeLimitForm
             'employee_id' => $this->getOption('employee_id')
         ));
         
-        #echo ;
-        
-        #$this->setWidgets(array(
-          // widgets
-          #'employee_id' => new sfWidgetFormTextArea(array('default' => $text)),
-          // widgets
-        #));
-        
-        
-        
         unset(
             $this['employee_id'],
             $this['added_by']
-        );
-        
+        );    
     }
+    
 }

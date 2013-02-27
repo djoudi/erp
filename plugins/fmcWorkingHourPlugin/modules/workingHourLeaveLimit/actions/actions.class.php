@@ -5,6 +5,8 @@ class workingHourLeaveLimitActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
+        // Fetcinh all employees
+        
         $this->employees = Doctrine::getTable ('sfGuardUser')->findAll();
     }
     
@@ -41,16 +43,25 @@ class workingHourLeaveLimitActions extends sfActions
     
     public function executeDelete (sfWebRequest $request)
     {
+        // Fetcing record
+        
         $item = Doctrine::getTable("LeaveRequestEmployeeLimit")->findOneById($request->getParameter("id"));
+        
+        // 404 if record not found
         
         $this->forward404Unless ($item);
         
+        // Deleting record
+        
         $item->delete();
+        
+        // Setting status message
         
         $this->getUser()->setFlash("notice", "Leave limit deleted.");
         
+        // Redirecting to last page
+        
         $this->redirect ($request->getReferer());
     }
-    
     
 }
