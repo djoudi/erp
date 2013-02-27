@@ -269,3 +269,23 @@ workingHoursManagement_day_makedraft:
     param:
         module: workingHourManagement
         action: dayMakeDraft
+
+workingHoursManagement_day_edit:
+    url: /wh/management/day/edit/:id
+    param:
+        module: workingHourManagement
+        action: dayEdit
+
+# workingHourLeaveManagement
+
+workingHoursLeaveManagement_list:
+    url: /wh/leavemanagement/list
+    param:
+        module: workingHourLeaveManagement
+        action: list
+
+workingHoursLeaveManagement_makedraft:
+    url: /wh/leavemanagement/makedraft/:id
+    param:
+        module: workingHourLeaveManagement
+        action: makedraft

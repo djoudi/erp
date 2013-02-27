@@ -230,6 +230,8 @@ class workingHourLeaveActions extends sfActions
     
     public function executeShowInfo (sfWebRequest $request)
     {
+        $this->admin = 0;
+        
         $id = $request->getParameter ('leave_id');
         
         $this->leaveRequest = Doctrine::getTable ('LeaveRequest')->getActiveLeave ($id);

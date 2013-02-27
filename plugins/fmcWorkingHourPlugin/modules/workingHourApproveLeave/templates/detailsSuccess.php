@@ -39,6 +39,12 @@
         </td>
     </tr>
     <tr>
+        <th>Comment</th>
+        <td>
+            <?php echo $item['comment']; ?>
+        </td>
+    </tr>
+    <tr>
         <th>Number of days</th>
         <td>
             <?php echo $item['day_Count']; ?>

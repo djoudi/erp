@@ -50,6 +50,7 @@ all:
             - workingHourDay
             - workingHourLeave
             - workingHourLeaveLimit
+            - workingHourLeaveManagement
             - workingHourLeaveType
             - workingHourManagement
             - workingHourParameter

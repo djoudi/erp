@@ -46,6 +46,10 @@ all:
                             route: @workingHoursManagement_addhours
                             credentials: ["Working Hours Management"]
                         32:
+                            label: Manage Leave Requests
+                            route: @workingHoursLeaveManagement_list
+                            credentials: ["Working Hours Management"]
+                        33:
                             label: Manage Working Hours
                             route: @workingHoursManagement_day_list
                             credentials: ["Working Hours Management"]

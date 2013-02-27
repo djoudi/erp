@@ -24,13 +24,11 @@
     <table class="table table-hover table-bordered table-condensed">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Employee</th>
                 <th>Type</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th># of Days</th>
-                <th>Comment</th>
                 <th>Report Date</th>
                 <th>Report Number</th>
                 <th>Report Receive Date</th>
@@ -40,9 +38,6 @@
         <tbody>
             <?php foreach ($items as $item): ?>
                 <tr>
-                    <td>
-                        <?php echo $item['id']; ?>
-                    </td>
                     <td>
                         <?php echo $item['Employee']['first_name']." ".$item['Employee']['last_name']; ?>
                     </td>
@@ -59,9 +54,6 @@
                     </td>
                     <td>
                         <?php echo $item['day_Count']; ?>
-                    </td>
-                    <td>
-                        <?php echo $item['comment']; ?>
                     </td>
                     <td>
                         <?php echo $item['report_Date']; ?>
