@@ -4,7 +4,7 @@
 
 <p>Here you can see and add leave limits to employees.</p>
 
-<table class="table table-striped table-bordered table-condensed">
+<table class="table table-bordered table-condensed table-hover">
     <tr>
         
         <?php $col = 6; ?>

@@ -114,19 +114,19 @@ LeaveRequestEmployeeLimit:
             class: sfGuardUser
             local: employee_id
             foreign: id
-            foreignAlias: LeaveRequestLimit
+            foreignAlias: LeaveRequestEmployeeLimits
             onDelete: CASCADE
         LeaveType:
             class: LeaveType
             local: type_id
             foreign: id
-            foreignAlias: LeaveRequestLimit
+            foreignAlias: LeaveRequestEmployeeLimits
             onDelete: CASCADE
         Adder:
             class: sfGuardUser
             local: added_by
             foreign: id
-            foreignAlias: LeaveRequestLimit
+            foreignAlias: LeaveRequestEmployeeLimits
             onDelete: CASCADE
 
 ######################################################

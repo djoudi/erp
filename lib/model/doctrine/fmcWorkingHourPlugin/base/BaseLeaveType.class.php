@@ -11,32 +11,32 @@
  * @property boolean $will_be_paid
  * @property Doctrine_Collection $LeaveRequest
  * 
- * @method string              getName()              Returns the current record's "name" value
- * @method integer             getDefaultLimit()      Returns the current record's "default_Limit" value
- * @method boolean             getHasReport()         Returns the current record's "has_Report" value
- * @method boolean             getWillBePaid()        Returns the current record's "will_be_paid" value
- * @method Doctrine_Collection getLeaveRequestLimit() Returns the current record's "LeaveRequestLimit" collection
- * @method Doctrine_Collection getLeaveRequest()      Returns the current record's "LeaveRequest" collection
- * @method LeaveType           setName()              Sets the current record's "name" value
- * @method LeaveType           setDefaultLimit()      Sets the current record's "default_Limit" value
- * @method LeaveType           setHasReport()         Sets the current record's "has_Report" value
- * @method LeaveType           setWillBePaid()        Sets the current record's "will_be_paid" value
- * @method LeaveType           setLeaveRequestLimit() Sets the current record's "LeaveRequestLimit" collection
- * @method LeaveType           setLeaveRequest()      Sets the current record's "LeaveRequest" collectionLimit
+ * @method string              getName()                       Returns the current record's "name" value
+ * @method integer             getDefaultLimit()               Returns the current record's "default_Limit" value
+ * @method boolean             getHasReport()                  Returns the current record's "has_Report" value
+ * @method boolean             getWillBePaid()                 Returns the current record's "will_be_paid" value
+ * @method Doctrine_Collection getLeaveRequestEmployeeLimits() Returns the current record's "LeaveRequestEmployeeLimits" collection
+ * @method Doctrine_Collection getLeaveRequest()               Returns the current record's "LeaveRequest" collection
+ * @method LeaveType           setName()                       Sets the current record's "name" value
+ * @method LeaveType           setDefaultLimit()               Sets the current record's "default_Limit" value
+ * @method LeaveType           setHasReport()                  Sets the current record's "has_Report" value
+ * @method LeaveType           setWillBePaid()                 Sets the current record's "will_be_paid" value
+ * @method LeaveType           setLeaveRequestEmployeeLimits() Sets the current record's "LeaveRequestEmployeeLimits" collection
+ * @method LeaveType           setLeaveRequest()               Sets the current record's "LeaveRequest" collectionEmployeeLimits
  * @property Doctrine_Collection $LeaveRequest
  * 
- * @method string              getName()              Returns the current record's "name" value
- * @method integer             getDefaultLimit()      Returns the current record's "default_Limit" value
- * @method boolean             getHasReport()         Returns the current record's "has_Report" value
- * @method boolean             getWillBePaid()        Returns the current record's "will_be_paid" value
- * @method Doctrine_Collection getLeaveRequestLimit() Returns the current record's "LeaveRequestLimit" collection
- * @method Doctrine_Collection getLeaveRequest()      Returns the current record's "LeaveRequest" collection
- * @method LeaveType           setName()              Sets the current record's "name" value
- * @method LeaveType           setDefaultLimit()      Sets the current record's "default_Limit" value
- * @method LeaveType           setHasReport()         Sets the current record's "has_Report" value
- * @method LeaveType           setWillBePaid()        Sets the current record's "will_be_paid" value
- * @method LeaveType           setLeaveRequestLimit() Sets the current record's "LeaveRequestLimit" collection
- * @method LeaveType           setLeaveRequest()      Sets the current record's "LeaveRequest" collection
+ * @method string              getName()                       Returns the current record's "name" value
+ * @method integer             getDefaultLimit()               Returns the current record's "default_Limit" value
+ * @method boolean             getHasReport()                  Returns the current record's "has_Report" value
+ * @method boolean             getWillBePaid()                 Returns the current record's "will_be_paid" value
+ * @method Doctrine_Collection getLeaveRequestEmployeeLimits() Returns the current record's "LeaveRequestEmployeeLimits" collection
+ * @method Doctrine_Collection getLeaveRequest()               Returns the current record's "LeaveRequest" collection
+ * @method LeaveType           setName()                       Sets the current record's "name" value
+ * @method LeaveType           setDefaultLimit()               Sets the current record's "default_Limit" value
+ * @method LeaveType           setHasReport()                  Sets the current record's "has_Report" value
+ * @method LeaveType           setWillBePaid()                 Sets the current record's "will_be_paid" value
+ * @method LeaveType           setLeaveRequestEmployeeLimits() Sets the current record's "LeaveRequestEmployeeLimits" collection
+ * @method LeaveType           setLeaveRequest()               Sets the current record's "LeaveRequest" collection
  * 
  * @package    fmc
  * @subpackage model
@@ -79,7 +79,7 @@ abstract class BaseLeaveType extends MyDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestLimit', array(
+        $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestEmployeeLimits', array(
              'local' => 'id',
              'foreign' => 'type_id'));
 

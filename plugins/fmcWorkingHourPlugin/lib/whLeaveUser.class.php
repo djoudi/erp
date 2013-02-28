@@ -14,8 +14,11 @@ class whLeaveUser
             ->addWhere ('q.employee_id = ?', $employee_id)
             ->addWhere ('q.leave_id IS NOT NULL')
             ->addWhere ('q.status = ?', 'Accepted');
+        
         return $q->count();
     }
+    
+    
     
     public static function countUsedReservedLimit ($type_id, $employee_id = NULL)
     {
@@ -33,27 +36,26 @@ class whLeaveUser
     }
     
     
+    
     public static function countAvailableLimit ($type_id, $employee_id = NULL)
     {
         if (!$employee_id) $employee_id = sfContext::getInstance()->getUser()->getGuardUser()->getId();
         
-        $limit = Doctrine::getTable ('LeaveRequestLimit')->getForUserType ($employee_id, $type_id);
+        $employee = Doctrine::getTable("sfGuardUser")->findOneById($employee_id);
         
-        if ($limit)
-            $result = $limit['leaveLimit'];
-        else
-        {
-            $type = Doctrine::getTable ('LeaveType')->findOneById ($type_id);
-            $result = $type['default_Limit'];
-        }
+        $limit = $employee->getLeaveLimitSum ($type_id);
         
-        return $result;
+        return $limit;
     }
+    
+    
     
     public static function hasEnoughLimit ($type_id, $employee_id = NULL)
     {
         $used = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id);
+        
         $available = whLeaveUser::countAvailableLimit ($type_id, $employee_id);
+        
         return $available > $used;
     }
     
