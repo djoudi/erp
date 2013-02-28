@@ -8,7 +8,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 
-DELETE FROM `fmc`.`working_hour_parameter` WHERE `working_hour_parameter`.`id` = 1;
+DELETE FROM `working_hour_parameter` WHERE `working_hour_parameter`.`id` = 1;
 
 
 INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
@@ -23,8 +23,8 @@ INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `descriptio
 
 
 INSERT INTO `leave_type` (`name`, `default_limit`, `has_report`, `will_be_paid`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-('Marriage Leave', 0, 0, 0, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
-('Maternity/Parental Leave', 0, 0, 0, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1);
+('Marriage Leave', 0, 0, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1),
+('Maternity/Parental Leave', 0, 0, 1, 23, 23, '2012-11-05 22:02:45', '2012-11-06 12:40:12', NULL, 1);
 
 
 INSERT IGNORE INTO `holiday` (`day`, `name`, `holiday_type`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
@@ -55,10 +55,9 @@ INSERT INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`
 (23, 16, 23, 23, '2013-02-12 16:24:30', '2013-02-12 16:24:30', NULL, 1);
 
 
-/*
 DROP TABLE leave_request_limit;
 DROP TABLE leave_request_limit_version;
-*/
+
 
 SET FOREIGN_KEY_CHECKS=1;
 
