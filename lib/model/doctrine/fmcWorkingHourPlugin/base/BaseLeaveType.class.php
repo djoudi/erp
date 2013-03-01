@@ -8,34 +8,34 @@
  * @property string $name
  * @property boolean $has_Report
  * @property boolean $will_be_paid
+ * @property decimal $yearly_Limit
  * @property Doctrine_Collection $LeaveRequest
  * 
  * @method string              getName()                       Returns the current record's "name" value
  * @method boolean             getHasReport()                  Returns the current record's "has_Report" value
  * @method boolean             getWillBePaid()                 Returns the current record's "will_be_paid" value
+ * @method decimal             getYearlyLimit()                Returns the current record's "yearly_Limit" value
  * @method Doctrine_Collection getLeaveRequestEmployeeLimits() Returns the current record's "LeaveRequestEmployeeLimits" collection
- * @method Doctrine_Collection getWorkingHourParameter()       Returns the current record's "WorkingHourParameter" collection
  * @method Doctrine_Collection getLeaveRequest()               Returns the current record's "LeaveRequest" collection
  * @method LeaveType           setName()                       Sets the current record's "name" value
  * @method LeaveType           setHasReport()                  Sets the current record's "has_Report" value
  * @method LeaveType           setWillBePaid()                 Sets the current record's "will_be_paid" value
+ * @method LeaveType           setYearlyLimit()                Sets the current record's "yearly_Limit" value
  * @method LeaveType           setLeaveRequestEmployeeLimits() Sets the current record's "LeaveRequestEmployeeLimits" collection
- * @method LeaveType           setWorkingHourParameter()       Sets the current record's "WorkingHourParameter" collection
  * @method LeaveType           setLeaveRequest()               Sets the current record's "LeaveRequest" collectionEmployeeLimits
- * @property Doctrine_Collection $WorkingHourParameter
  * @property Doctrine_Collection $LeaveRequest
  * 
  * @method string              getName()                       Returns the current record's "name" value
  * @method boolean             getHasReport()                  Returns the current record's "has_Report" value
  * @method boolean             getWillBePaid()                 Returns the current record's "will_be_paid" value
+ * @method decimal             getYearlyLimit()                Returns the current record's "yearly_Limit" value
  * @method Doctrine_Collection getLeaveRequestEmployeeLimits() Returns the current record's "LeaveRequestEmployeeLimits" collection
- * @method Doctrine_Collection getWorkingHourParameter()       Returns the current record's "WorkingHourParameter" collection
  * @method Doctrine_Collection getLeaveRequest()               Returns the current record's "LeaveRequest" collection
  * @method LeaveType           setName()                       Sets the current record's "name" value
  * @method LeaveType           setHasReport()                  Sets the current record's "has_Report" value
  * @method LeaveType           setWillBePaid()                 Sets the current record's "will_be_paid" value
+ * @method LeaveType           setYearlyLimit()                Sets the current record's "yearly_Limit" value
  * @method LeaveType           setLeaveRequestEmployeeLimits() Sets the current record's "LeaveRequestEmployeeLimits" collection
- * @method LeaveType           setWorkingHourParameter()       Sets the current record's "WorkingHourParameter" collection
  * @method LeaveType           setLeaveRequest()               Sets the current record's "LeaveRequest" collection
  * 
  * @package    fmc
@@ -64,6 +64,11 @@ abstract class BaseLeaveType extends MyDoctrineRecord
              'notnull' => true,
              'default' => true,
              ));
+        $this->hasColumn('yearly_Limit', 'decimal', null, array(
+             'type' => 'decimal',
+             'scale' => 1,
+             'notnull' => false,
+             ));
 
         $this->option('orderBy', 'name ASC');
         $this->option('symfony', array(
@@ -77,10 +82,6 @@ abstract class BaseLeaveType extends MyDoctrineRecord
         $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestEmployeeLimits', array(
              'local' => 'id',
              'foreign' => 'type_id'));
-
-        $this->hasMany('WorkingHourParameter', array(
-             'local' => 'id',
-             'foreign' => 'value_leavetype_id'));
 
         $this->hasMany('LeaveRequest', array(
              'local' => 'id',

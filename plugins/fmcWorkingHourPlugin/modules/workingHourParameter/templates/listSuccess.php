@@ -24,11 +24,7 @@
                         </a>
                     </td>
                     <td>
-                        <?php if ($item["value_leavetype_id"]): ?>
-                                <?php echo $item->getLeaveType(); ?>
-                        <?php else: ?>
-                            <?php echo $item['value']; ?>
-                        <?php endif; ?>
+                        <?php echo $item['value']; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

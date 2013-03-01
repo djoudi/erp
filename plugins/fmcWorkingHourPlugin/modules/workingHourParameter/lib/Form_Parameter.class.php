@@ -8,8 +8,7 @@ class Form_Parameter extends WorkingHourParameterForm
         parent::configure();
         
         unset(
-            $this['param'],
-            $this['value_leavetype_id']
+            $this['param']
         );
     }
     

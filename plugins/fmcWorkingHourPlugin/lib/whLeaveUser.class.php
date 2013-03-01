@@ -30,12 +30,11 @@ class whLeaveUser
             ->addWhere ('lr.employee_id = ?', $employee_id)
             ->addWhere ('lr.type_id = ?', $type_id);
         
-        $iwrLeave = Doctrine::getTable('WorkingHourParameter')
-            ->findOneByParam('IllnessWithoutReportsType');
-        
         $year = (substr($date,0,4));
         
-        if ($type_id == $iwrLeave["value_leavetype_id"])
+        $leaveType = Doctrine::getTable("LeaveType")->findOneById ($type_id);
+        
+        if ($leaveType["yearly_Limit"])
         {
             $query
                 ->addWhere ("lr.start_Date > ?", "{$year}-01-01")
@@ -51,15 +50,11 @@ class whLeaveUser
     
     public static function countAvailableLimit ($type_id, $employee_id = NULL)
     {
-        $iwrLeave = Doctrine::getTable('WorkingHourParameter')
-            ->findOneByParam('IllnessWithoutReportsType');
+        $leaveType = Doctrine::getTable("LeaveType")->findOneById ($type_id);
         
-        if ($type_id == $iwrLeave["value_leavetype_id"])
+        if ($yearlyLimit = $leaveType["yearly_Limit"])
         {
-            $iwrLeaveCount = Doctrine::getTable('WorkingHourParameter')
-                ->findOneByParam('IllnessWithoutReportsYearlyLimit');
-            
-            $limit = $iwrLeaveCount["value"];
+            $limit = $yearlyLimit;
         }
         else
         {

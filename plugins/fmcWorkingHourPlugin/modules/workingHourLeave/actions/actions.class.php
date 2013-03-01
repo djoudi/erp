@@ -36,6 +36,7 @@ class workingHourLeaveActions extends sfActions
         $values["B24"] = $available;
         $values["B25"] = $used;
         $values["B26"] = $reserved - $used;
+        $values["B27"] = $available-$reserved;
         
         if ($item['LeaveType']['has_Report'])
         {

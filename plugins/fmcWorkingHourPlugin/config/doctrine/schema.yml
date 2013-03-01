@@ -80,6 +80,11 @@ LeaveType:
             type: boolean
             notnull: true
             default: true
+        yearly_Limit:
+            type: decimal
+            scale: 1
+            notnull: false
+            default: NULL
 
 ######################################################
 
@@ -148,17 +153,6 @@ WorkingHourParameter:
             type: string(50)
             notnull: false
             default: NULL
-        value_leavetype_id:
-            type: integer
-            notnull: false
-            default: NULL
-    relations:
-        LeaveType:
-            class: LeaveType
-            local: value_leavetype_id
-            foreign: id
-            foreignAlias: WorkingHourParameter
-            onDelete: CASCADE
 
 ######################################################
 
