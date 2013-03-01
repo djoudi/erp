@@ -41,7 +41,11 @@
                         <?php echo $leaveType; ?>
                     </td>
                     <td>
-                        <?php echo $employee->getLeaveLimitSum($leaveType["id"]); ?>
+                        <?php if ($leaveType["id"]==$iwrLeave["value_leavetype_id"]): ?>
+                            <?php echo $iwrLeaveCount["value"]; ?> / year
+                        <?php else: ?>
+                            <?php echo $employee->getLeaveLimitSum($leaveType["id"]); ?>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

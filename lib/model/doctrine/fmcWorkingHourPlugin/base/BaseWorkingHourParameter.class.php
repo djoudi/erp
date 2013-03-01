@@ -8,13 +8,19 @@
  * @property string $param
  * @property string $description
  * @property string $value
+ * @property integer $value_leavetype_id
+ * @property LeaveType $LeaveType
  * 
- * @method string               getParam()       Returns the current record's "param" value
- * @method string               getDescription() Returns the current record's "description" value
- * @method string               getValue()       Returns the current record's "value" value
- * @method WorkingHourParameter setParam()       Sets the current record's "param" value
- * @method WorkingHourParameter setDescription() Sets the current record's "description" value
- * @method WorkingHourParameter setValue()       Sets the current record's "value" value
+ * @method string               getParam()              Returns the current record's "param" value
+ * @method string               getDescription()        Returns the current record's "description" value
+ * @method string               getValue()              Returns the current record's "value" value
+ * @method integer              getValueLeavetypeId()   Returns the current record's "value_leavetype_id" value
+ * @method LeaveType            getLeaveType()          Returns the current record's "LeaveType" value
+ * @method WorkingHourParameter setParam()              Sets the current record's "param" value
+ * @method WorkingHourParameter setDescription()        Sets the current record's "description" value
+ * @method WorkingHourParameter setValue()              Sets the current record's "value" value
+ * @method WorkingHourParameter setValueLeavetypeId()   Sets the current record's "value_leavetype_id" value
+ * @method WorkingHourParameter setLeaveType()          Sets the current record's "LeaveType" value
  * 
  * @package    fmc
  * @subpackage model
@@ -38,8 +44,12 @@ abstract class BaseWorkingHourParameter extends MyDoctrineRecord
              ));
         $this->hasColumn('value', 'string', 50, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 50,
+             ));
+        $this->hasColumn('value_leavetype_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => false,
              ));
 
         $this->option('orderBy', 'description ASC');
@@ -51,6 +61,11 @@ abstract class BaseWorkingHourParameter extends MyDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('LeaveType', array(
+             'local' => 'value_leavetype_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $auditable0 = new Doctrine_Template_Auditable();
         $softdelete0 = new Doctrine_Template_SoftDelete();
         $versionable0 = new Doctrine_Template_Versionable();

@@ -11,15 +11,17 @@ SET time_zone = "+00:00";
 DELETE FROM `working_hour_parameter` WHERE `working_hour_parameter`.`id` = 1;
 
 
-INSERT IGNORE INTO `working_hour_parameter` (`id`, `param`, `value`, `description`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
-(1, 'HolidayMultiplier', '1.5', 'Multiplier for holiday works', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(2, 'DailyWorkHours', '540', 'Daily work hours (in minutes)', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(3, 'DefaultDailyBreaks', '30', 'Default daily breaks (in minutes)', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(4, 'ReportEmailFrequency', '7', 'Weekly WHDB report frequency (in days)', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(5, 'OfficeDayEntranceEarliest', '08:00', 'Office day earliest entrance', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(6, 'OfficeDayEntranceLatest', '09:30', 'Office day latest entrance', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(7, 'OfficeDayExitEarliest', '17:00', 'Office day earliest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
-(8, 'OfficeDayExitLatest', '19:00', 'Office day latest exit', 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1);
+INSERT INTO `working_hour_parameter` (`id`, `param`, `description`, `value`, `value_leavetype_id`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
+(1, 'HolidayMultiplier', 'Multiplier for holiday works', '1.5', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(2, 'DailyWorkHours', 'Daily work hours (in minutes)', '540', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(3, 'DefaultDailyBreaks', 'Default daily breaks (in minutes)', '30', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(4, 'ReportEmailFrequency', 'Weekly WHDB report frequency (in days)', '7', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(5, 'OfficeDayEntranceEarliest', 'Office day earliest entrance', '08:00', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(6, 'OfficeDayEntranceLatest', 'Office day latest entrance', '09:30', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(7, 'OfficeDayExitEarliest', 'Office day earliest exit', '17:00', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(8, 'OfficeDayExitLatest', 'Office day latest exit', '19:00', NULL, 23, 23, '2012-11-05 10:17:57', '2012-11-05 10:24:16', NULL, 1),
+(9, 'IllnessWithoutReportsYearlyLimit', 'Illness without report: yearly limit', '3', NULL, 23, 23, '2012-11-05 10:17:57', '2013-03-01 13:54:42', NULL, 2),
+(10, 'IllnessWithoutReportsType', 'Illness without report: leave type', '', 2, 23, 23, '2012-11-05 10:17:57', '2013-03-01 13:47:04', NULL, 1);
 
 
 INSERT INTO `leave_type` (`name`, `default_limit`, `has_report`, `will_be_paid`, `creater_id`, `updater_id`, `created_at`, `updated_at`, `deleted_at`, `version`) VALUES
@@ -57,6 +59,10 @@ INSERT INTO `sf_guard_user_permission` (`user_id`, `permission_id`, `creater_id`
 
 DROP TABLE leave_request_limit;
 DROP TABLE leave_request_limit_version;
+
+
+ALTER TABLE `leave_type` DROP `default_limit`;
+ALTER TABLE `leave_type_version` DROP `default_limit`;
 
 
 SET FOREIGN_KEY_CHECKS=1;

@@ -7,7 +7,7 @@
     <p class="text-info">
         
         <?php
-            $used = whLeaveUser::countUsedReservedLimit ($type['id']);
+            $used = whLeaveUser::countUsedReservedLimit ($type['id'], NULL, $date);
             $available = whLeaveUser::countAvailableLimit ($type['id']);
             $isDisabled = $available > $used ? false : true;
             

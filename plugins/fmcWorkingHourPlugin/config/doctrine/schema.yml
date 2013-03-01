@@ -72,10 +72,6 @@ LeaveType:
             type: string(50)
             notnull: true
             unique: true
-        default_Limit:
-            type: integer
-            notnull: true
-            default: 0
         has_Report:
             type: boolean
             notnull: true
@@ -150,7 +146,19 @@ WorkingHourParameter:
             notnull: true
         value:
             type: string(50)
-            notnull: true
+            notnull: false
+            default: NULL
+        value_leavetype_id:
+            type: integer
+            notnull: false
+            default: NULL
+    relations:
+        LeaveType:
+            class: LeaveType
+            local: value_leavetype_id
+            foreign: id
+            foreignAlias: WorkingHourParameter
+            onDelete: CASCADE
 
 ######################################################
 

@@ -14,7 +14,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Default limit</th>
                 <th>Has report</th>
                 <th>Will be paid</th>
             </tr>
@@ -27,9 +26,6 @@
                             <?php echo $item['name']; ?>
                         </a>
                     </td>                
-                    <td>
-                        <?php echo $item['default_Limit']; ?>
-                    </td>
                     <td>
                         <?php if ($item['has_Report']): ?>
                             <i class="icon-ok"></i>

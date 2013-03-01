@@ -16,6 +16,12 @@ class workingHourLeaveLimitActions extends sfActions
         
         $this->forward404Unless ($this->employee);
         
+        $this->iwrLeave = Doctrine::getTable('WorkingHourParameter')
+            ->findOneByParam('IllnessWithoutReportsType');
+        
+        $this->iwrLeaveCount = Doctrine::getTable('WorkingHourParameter')
+            ->findOneByParam('IllnessWithoutReportsYearlyLimit');
+        
         $object = new LeaveRequestEmployeeLimit();
         
         $object->setEmployee ($this->employee);

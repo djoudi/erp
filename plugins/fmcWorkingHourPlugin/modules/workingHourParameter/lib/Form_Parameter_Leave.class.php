@@ -1,6 +1,6 @@
 <?php
 
-class Form_Parameter extends WorkingHourParameterForm
+class Form_Parameter_Leave extends WorkingHourParameterForm
 {
     
     public function configure()
@@ -9,7 +9,7 @@ class Form_Parameter extends WorkingHourParameterForm
         
         unset(
             $this['param'],
-            $this['value_leavetype_id']
+            $this['value']
         );
     }
     
