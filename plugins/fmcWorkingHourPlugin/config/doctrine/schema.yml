@@ -101,7 +101,8 @@ LeaveRequestEmployeeLimit:
             type: integer
             notnull: true
         leave_Limit:
-            type: integer
+            type: decimal
+            scale: 1
             notnull: true
         added_by:
             type: integer
@@ -333,8 +334,13 @@ LeaveRequest:
         end_Date:
             type: date
             notnull: true
+        is_half_day:
+            type: boolean
+            default: false
+            notnull: true
         day_Count:
-            type: integer
+            type: decimal
+            scale: 1
             notnull: true
             default: 0
         comment:

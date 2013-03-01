@@ -22,10 +22,10 @@
         
         <a href="<?php echo $href; ?>" class="btn <?php echo $class; ?>">
             <?php echo $type; ?>
-        </a>    
-        
-        ( <?php echo $used; ?> of 
-        <?php echo $available; ?> used. )
+        </a> 
+         
+        (<?php echo $used; ?> of 
+        <?php echo $available; ?> used)
     </p>
     
 <?php endforeach; ?>

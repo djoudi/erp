@@ -111,6 +111,21 @@ class workingHourLeaveActions extends sfActions
         
         if (!$err)
         {
+            if ($values["is_half_day"])
+            {
+                if ($start != $end)
+                {
+                    $err = "You can only create half-day request only for one day at a time!";
+                }
+                else
+                {
+                    $numdays = "0.5";
+                }
+            }
+        }
+        
+        if (!$err)
+        {
             if ($numdays==0) $err = "You have selected holidays only!";
         }
         

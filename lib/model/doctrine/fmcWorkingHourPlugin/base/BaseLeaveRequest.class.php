@@ -10,7 +10,8 @@
  * @property enum $status
  * @property date $start_Date
  * @property date $end_Date
- * @property integer $day_Count
+ * @property boolean $is_half_day
+ * @property decimal $day_Count
  * @property string $comment
  * @property date $report_Date
  * @property string $report_Number
@@ -24,7 +25,8 @@
  * @method enum                getStatus()          Returns the current record's "status" value
  * @method date                getStartDate()       Returns the current record's "start_Date" value
  * @method date                getEndDate()         Returns the current record's "end_Date" value
- * @method integer             getDayCount()        Returns the current record's "day_Count" value
+ * @method boolean             getIsHalfDay()       Returns the current record's "is_half_day" value
+ * @method decimal             getDayCount()        Returns the current record's "day_Count" value
  * @method string              getComment()         Returns the current record's "comment" value
  * @method date                getReportDate()      Returns the current record's "report_Date" value
  * @method string              getReportNumber()    Returns the current record's "report_Number" value
@@ -37,6 +39,7 @@
  * @method LeaveRequest        setStatus()          Sets the current record's "status" value
  * @method LeaveRequest        setStartDate()       Sets the current record's "start_Date" value
  * @method LeaveRequest        setEndDate()         Sets the current record's "end_Date" value
+ * @method LeaveRequest        setIsHalfDay()       Sets the current record's "is_half_day" value
  * @method LeaveRequest        setDayCount()        Sets the current record's "day_Count" value
  * @method LeaveRequest        setComment()         Sets the current record's "comment" value
  * @method LeaveRequest        setReportDate()      Sets the current record's "report_Date" value
@@ -84,8 +87,14 @@ abstract class BaseLeaveRequest extends MyDoctrineRecord
              'type' => 'date',
              'notnull' => true,
              ));
-        $this->hasColumn('day_Count', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('is_half_day', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             'notnull' => true,
+             ));
+        $this->hasColumn('day_Count', 'decimal', null, array(
+             'type' => 'decimal',
+             'scale' => 1,
              'notnull' => true,
              'default' => 0,
              ));

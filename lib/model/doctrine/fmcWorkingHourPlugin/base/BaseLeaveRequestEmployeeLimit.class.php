@@ -7,7 +7,7 @@
  * 
  * @property integer $employee_id
  * @property integer $type_id
- * @property integer $leave_Limit
+ * @property decimal $leave_Limit
  * @property integer $added_by
  * @property string $comment
  * @property sfGuardUser $Employee
@@ -16,7 +16,7 @@
  * 
  * @method integer                   getEmployeeId()  Returns the current record's "employee_id" value
  * @method integer                   getTypeId()      Returns the current record's "type_id" value
- * @method integer                   getLeaveLimit()  Returns the current record's "leave_Limit" value
+ * @method decimal                   getLeaveLimit()  Returns the current record's "leave_Limit" value
  * @method integer                   getAddedBy()     Returns the current record's "added_by" value
  * @method string                    getComment()     Returns the current record's "comment" value
  * @method sfGuardUser               getEmployee()    Returns the current record's "Employee" value
@@ -49,8 +49,9 @@ abstract class BaseLeaveRequestEmployeeLimit extends MyDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('leave_Limit', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('leave_Limit', 'decimal', null, array(
+             'type' => 'decimal',
+             'scale' => 1,
              'notnull' => true,
              ));
         $this->hasColumn('added_by', 'integer', null, array(

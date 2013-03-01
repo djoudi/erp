@@ -27,7 +27,7 @@ abstract class BaseLeaveRequestEmployeeLimitVersionFormFilter extends BaseFormFi
     $this->setValidators(array(
       'employee_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'type_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'leave_Limit' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'leave_Limit' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'added_by'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'comment'     => new sfValidatorPass(array('required' => false)),
       'creater_id'  => new sfValidatorPass(array('required' => false)),

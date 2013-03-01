@@ -32,7 +32,7 @@ abstract class BaseLeaveRequestEmployeeLimitForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'employee_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Employee'))),
       'type_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('LeaveType'))),
-      'leave_Limit' => new sfValidatorInteger(),
+      'leave_Limit' => new sfValidatorNumber(),
       'added_by'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Adder'))),
       'comment'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'creater_id'  => new sfValidatorPass(),
