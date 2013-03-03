@@ -127,7 +127,7 @@ class workingHourLeaveActions extends sfActions
         
         if (!$err)
         {
-            if ($numdays==0) $err = "You have selected holidays only!";
+            if ($numdays==0) $err = "You have selected vacations only!";
         }
         
         if (!$err)
