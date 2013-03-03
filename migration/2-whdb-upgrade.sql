@@ -69,6 +69,9 @@ ALTER TABLE  `leave_type_version` ADD  `yearly_limit` DECIMAL( 18, 1 ) NULL DEFA
 
 UPDATE  `leave_type` SET  `yearly_limit` =  '3' WHERE  `leave_type`.`id` =2;
 
+/* #138 */
+UPDATE `working_hour_day` SET `daily_breaks`=30 WHERE `working_hour_day`.`daily_breaks`=0;
+
 
 SET FOREIGN_KEY_CHECKS=1;
 
