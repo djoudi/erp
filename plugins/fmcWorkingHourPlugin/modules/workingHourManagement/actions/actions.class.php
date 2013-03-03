@@ -2,6 +2,7 @@
 
 class workingHourManagementActions extends sfActions
 {
+    
     public function executeDayList (sfWebRequest $request)
     {
         $this->resultLimit = 50;
@@ -23,6 +24,8 @@ class workingHourManagementActions extends sfActions
         $this->filtered = $filterClass->getFiltered();
     }
     
+    
+    
     public function executeDayMakeDraft (sfWebRequest $request)
     {
         $item = Doctrine::getTable("WorkingHourDay")->findOneById($request->getParameter("id"));
@@ -42,6 +45,8 @@ class workingHourManagementActions extends sfActions
         
         $this->redirect ($request->getReferer());
     }
+    
+    
     
     public function prepareWorkForms ($day)
     {
@@ -65,6 +70,8 @@ class workingHourManagementActions extends sfActions
             'total_Daily_Breaks' => $day['daily_Breaks']
         ));
     }
+    
+    
     
     public function executeDayEdit (sfWebRequest $request)
     {
@@ -105,6 +112,8 @@ class workingHourManagementActions extends sfActions
         $this->setTemplate('work','workingHourDay','fmcWorkingHourPlugin');
     }
     
+    
+    
     public function executeAddhours (sfWebRequest $request)
     {
         $this->resultLimit = 50;
@@ -125,18 +134,29 @@ class workingHourManagementActions extends sfActions
         $this->filtered = $filterClass->getFiltered();
     }
     
+    
+    
     public function executeAddhoursNew (sfWebRequest $request)
     {
+        $this->leaveList = Doctrine::getTable("WorkingHourDay")
+            ->createQuery ("l")
+            ->addWhere ("l.leave_id IS NOT NULL")
+            ->execute();
+        
+        
         $object = new CustomWorkingHour();
         $object->setAdder ($this->getUser()->getGuardUser());
         $object->setDate (date("Y-m-d"));
         
-        $this->form = new whForm_addhours_new ($object);
+        #$this->form = new whForm_addhours_new ($object);
+        $this->form = new WorkingHourRecordForm ();
         
         $returnUrl = $this->getController()->genUrl('@workingHoursManagement_addhours');
         
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
+    
+    
     
     public function executeAddhoursEdit (sfWebRequest $request)
     {
@@ -148,6 +168,8 @@ class workingHourManagementActions extends sfActions
         
         Fmc_Core_Form::Process ($this->form, $request);
     }
+    
+    
     
     public function executeAddhoursDelete (sfWebRequest $request)
     {

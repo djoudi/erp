@@ -432,7 +432,8 @@ WorkingHourRecord:
     columns:
         day_id:
             type: integer
-            notnull: true
+            notnull: false
+            default: NULL
         recordType:
             type: enum
             values: ['Work', 'Entrance', 'Exit']

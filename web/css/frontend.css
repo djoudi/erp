@@ -246,9 +246,8 @@
     {
         width: 15em !important;
     }
-
-    #working_hour_day_filters_employee_id,
-    #working_hour_day_filters_status
+    
+    *[id*='working_hour_day_']
     {
         width: auto !important;
     }
