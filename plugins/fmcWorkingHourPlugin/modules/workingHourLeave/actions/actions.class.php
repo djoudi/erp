@@ -31,11 +31,12 @@ class workingHourLeaveActions extends sfActions
         $employee_id = $item['Employee']['id'];
         $available = whLeaveUser::countAvailableLimit ($type_id, $employee_id);
         $used = whLeaveUser::countUsedLimit ($type_id, $employee_id);
-        $reserved = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id);
+        $reserved = whLeaveUser::countUsedReservedLimit ($type_id, $employee_id, date("Y-m-d"));
         
         $values["B24"] = $available;
         $values["B25"] = $used;
         $values["B26"] = $reserved - $used;
+        $values["B27"] = $available-$reserved;
         
         if ($item['LeaveType']['has_Report'])
         {
@@ -126,12 +127,12 @@ class workingHourLeaveActions extends sfActions
         
         if (!$err)
         {
-            if ($numdays==0) $err = "You have selected holidays only!";
+            if ($numdays==0) $err = "You have selected vacations only!";
         }
         
         if (!$err)
         {
-            $used = whLeaveUser::countUsedReservedLimit ($type_id);
+            $used = whLeaveUser::countUsedReservedLimit ($type_id, NULL, $values["start_Date"]);
             $available = whLeaveUser::countAvailableLimit ($type_id);
             
             if ($numdays > ($available-$used))

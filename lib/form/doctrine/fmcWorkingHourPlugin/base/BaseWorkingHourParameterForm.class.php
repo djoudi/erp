@@ -31,7 +31,7 @@ abstract class BaseWorkingHourParameterForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'param'       => new sfValidatorString(array('max_length' => 50)),
       'description' => new sfValidatorString(array('max_length' => 50)),
-      'value'       => new sfValidatorString(array('max_length' => 50)),
+      'value'       => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'creater_id'  => new sfValidatorPass(),
       'updater_id'  => new sfValidatorPass(),
       'created_at'  => new sfValidatorDateTime(),

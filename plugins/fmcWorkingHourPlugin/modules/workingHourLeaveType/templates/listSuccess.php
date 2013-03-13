@@ -14,9 +14,9 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Default limit</th>
                 <th>Has report</th>
                 <th>Will be paid</th>
+                <th>Yearly limit</th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +27,6 @@
                             <?php echo $item['name']; ?>
                         </a>
                     </td>                
-                    <td>
-                        <?php echo $item['default_Limit']; ?>
-                    </td>
                     <td>
                         <?php if ($item['has_Report']): ?>
                             <i class="icon-ok"></i>
@@ -42,6 +39,13 @@
                             <i class="icon-ok"></i>
                         <?php else: ?>
                             <i class="icon-remove"></i>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($item["yearly_Limit"]): ?>
+                            <?php echo $item["yearly_Limit"]; ?> days
+                        <?php else: ?>
+                            N/A
                         <?php endif; ?>
                     </td>
                 </tr>

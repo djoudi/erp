@@ -10,7 +10,13 @@ class whForm_addleaveemployee extends LeaveRequestEmployeeLimitForm
         unset(
             $this['employee_id'],
             $this['added_by']
-        );    
+        );
+        
+        $this->widgetSchema['type_id'] = new sfWidgetFormDoctrineChoice(array(
+            'model' => $this->getRelatedModelName('LeaveType'), 
+            'table_method' => 'getNotYearly', 
+            'add_empty' => false
+        ));
     }
     
 }

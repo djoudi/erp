@@ -13,7 +13,7 @@ abstract class BaseWorkingHourRecordVersionFormFilter extends BaseFormFilterDoct
   public function setup()
   {
     $this->setWidgets(array(
-      'day_id'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'day_id'       => new sfWidgetFormFilterInput(),
       'recordType'   => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
       'start_Time'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'end_Time'     => new sfWidgetFormFilterInput(),

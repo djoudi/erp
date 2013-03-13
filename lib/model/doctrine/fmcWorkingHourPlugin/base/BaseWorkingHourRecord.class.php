@@ -52,7 +52,7 @@ abstract class BaseWorkingHourRecord extends MyDoctrineRecord
         $this->setTableName('working_hour_record');
         $this->hasColumn('day_id', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => true,
+             'notnull' => false,
              ));
         $this->hasColumn('recordType', 'enum', null, array(
              'type' => 'enum',

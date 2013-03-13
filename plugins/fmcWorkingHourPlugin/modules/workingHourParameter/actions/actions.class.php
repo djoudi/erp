@@ -8,6 +8,8 @@ class workingHourParameterActions extends sfActions
         $this->items = Doctrine::getTable ('WorkingHourParameter')->findAll();
     }
     
+    
+    
     public function executeEdit (sfWebRequest $request)
     {
         $this->object = Doctrine::getTable('WorkingHourParameter')->findOneById($request->getParameter('id'));

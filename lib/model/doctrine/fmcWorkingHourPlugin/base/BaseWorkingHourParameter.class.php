@@ -38,7 +38,7 @@ abstract class BaseWorkingHourParameter extends MyDoctrineRecord
              ));
         $this->hasColumn('value', 'string', 50, array(
              'type' => 'string',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 50,
              ));
 

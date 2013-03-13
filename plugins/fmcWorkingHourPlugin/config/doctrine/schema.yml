@@ -72,10 +72,6 @@ LeaveType:
             type: string(50)
             notnull: true
             unique: true
-        default_Limit:
-            type: integer
-            notnull: true
-            default: 0
         has_Report:
             type: boolean
             notnull: true
@@ -84,6 +80,11 @@ LeaveType:
             type: boolean
             notnull: true
             default: true
+        yearly_Limit:
+            type: decimal
+            scale: 1
+            notnull: false
+            default: NULL
 
 ######################################################
 
@@ -150,7 +151,8 @@ WorkingHourParameter:
             notnull: true
         value:
             type: string(50)
-            notnull: true
+            notnull: false
+            default: NULL
 
 ######################################################
 
@@ -430,7 +432,8 @@ WorkingHourRecord:
     columns:
         day_id:
             type: integer
-            notnull: true
+            notnull: false
+            default: NULL
         recordType:
             type: enum
             values: ['Work', 'Entrance', 'Exit']
