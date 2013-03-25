@@ -33,9 +33,7 @@
     </tr>
 </table>
 
-
 <?php if ($leaveRequest['LeaveType']['has_Report']): ?>
-
 
     <table class="table table-bordered table-condensed table-hover">
         
