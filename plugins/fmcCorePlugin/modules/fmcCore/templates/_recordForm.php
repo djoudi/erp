@@ -42,7 +42,9 @@
         
     </table>
 
-    <div class="form-actions">
+    <div class="clearfix"></div>
+
+    <div class="form-actions clearfix">
         
         <a class="btn" href="<?php echo $back_url; ?>">Back to List</a>
         
