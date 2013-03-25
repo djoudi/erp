@@ -1,50 +1,36 @@
 <table class="table table-bordered table-condensed table-hover">
-    
     <tr>
         <th>Request Type</th>
         <td><?php echo $leaveRequest->getLeaveType(); ?></td>
     </tr>
-    
     <tr>
         <th>Request No</th>
         <td><?php echo $leaveRequest['id']; ?></td>
     </tr>
-    
     <tr>
         <th>Employee</th>
         <td><?php echo $leaveRequest->getEmployee(); ?></td>
     </tr>
-    
     <tr>
         <th>Status</th>
         <td><?php echo $leaveRequest['status']; ?></td>
     </tr>
-    
     <tr>
         <th>Start Date</th>
         <td><?php echo $leaveRequest['start_Date']; ?></td>
     </tr>
-    
     <tr>
         <th>End Date</th>
         <td><?php echo $leaveRequest['end_Date']; ?></td>
     </tr>
-    
     <tr>
         <th>Number of Days</th>
         <td><?php echo $leaveRequest['day_Count']; ?> day(s)</td>
     </tr>
-    
     <tr>
         <th>Comment</th>
         <td><?php echo $leaveRequest['comment']; ?></td>
     </tr>
-    
-    <tr>
-        <th>End Date</th>
-        <td><?php echo $leaveRequest['end_Date']; ?></td>
-    </tr>
-
 </table>
 
 <?php if ($leaveRequest['LeaveType']['has_Report']): ?>
