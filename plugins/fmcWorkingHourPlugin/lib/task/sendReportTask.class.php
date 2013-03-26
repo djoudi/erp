@@ -157,6 +157,11 @@ class sendReportTask extends sfBaseTask
                     // send the message
                     
                         $this->getMailer()->send($message);
+                    
+                    // Printing output
+                    
+                        echo "Sent to: {$employee['email_address']}\n";
+                    
                 }
             }
         
