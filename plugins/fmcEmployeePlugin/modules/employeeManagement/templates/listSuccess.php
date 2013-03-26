@@ -25,17 +25,17 @@
 </div>
 
 
-<ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#home" data-toggle="tab">Active Employees</a></li>
-    <li><a href="#profile" data-toggle="tab">Inactive Employees</a></li>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#active" data-toggle="tab">Active Employees</a></li>
+    <li><a href="#inactive" data-toggle="tab">Inactive Employees</a></li>
 </ul>
 
 
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane in active" id="home">
+<div class="tab-content">
+    <div class="tab-pane in active" id="active">
         <?php include_partial ("list", array("items"=>$activeEmployees)); ?>
     </div>
-    <div class="tab-pane" id="profile">
+    <div class="tab-pane" id="inactive">
         <?php include_partial ("list", array("items"=>$inactiveEmployees)); ?>
     </div>
 </div>
