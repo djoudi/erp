@@ -18,14 +18,6 @@ class employeeManagementActions extends sfActions
         $this->allEmployees = Doctrine_Query::create()
             ->from ('sfGuardUser u')
             ->execute();
-            #->innerJoin('u.Department d');
-        /*    
-        $query = Doctrine_Query::create()
-            ->from('sfGuardUser u')
-            ->innerJoin('u.Department d');
-            
-        $this->items = $query->execute();
-        */
     }
     
     public function executeNew (sfWebRequest $request)
