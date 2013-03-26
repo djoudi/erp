@@ -33,7 +33,7 @@
 
 <div class="tab-content">
     <div class="tab-pane in active" id="active">
-        <?php include_partial ("list", array("items"=>$activeEmployees)); ?>
+        <?php include_partial ("list", array("items"=>$activeEmployees, "is_inactive"=>false)); ?>
     </div>
     <div class="tab-pane" id="inactive">
         <?php include_partial ("list", array("items"=>$inactiveEmployees)); ?>
