@@ -5,11 +5,27 @@ class employeeManagementActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
+        $this->activeEmployees = Doctrine_Query::create()
+            ->from ('sfGuardUser u')
+            ->addWhere ('u.is_active = ?', true)
+            ->execute();
+        
+        $this->inactiveEmployees = Doctrine_Query::create()
+            ->from ('sfGuardUser u')
+            ->addWhere ('u.is_active = ?', false)
+            ->execute();
+        
+        $this->allEmployees = Doctrine_Query::create()
+            ->from ('sfGuardUser u')
+            ->execute();
+            #->innerJoin('u.Department d');
+        /*    
         $query = Doctrine_Query::create()
             ->from('sfGuardUser u')
             ->innerJoin('u.Department d');
             
         $this->items = $query->execute();
+        */
     }
     
     public function executeNew (sfWebRequest $request)
