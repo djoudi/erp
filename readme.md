@@ -2,8 +2,6 @@ Install notes:
 --------------
 <to be filled>
 
----
-
 Usage notes:
 ------------
 To start WHDB weekly report e-mail task:
@@ -11,8 +9,6 @@ To start WHDB weekly report e-mail task:
 
 To start the e-mail task daily, with CRON
 > 0 0 * * * /usr/bin/php /var/www/erp/symfony workingHour:sendReport
-
----
 
 Developer notes (Use with precaution):
 --------------------------------------
