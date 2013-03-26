@@ -41,18 +41,29 @@ Clear symfony cache:
 Apache settings:
 ----------------
 Put these settings on your Apache host/vhost file to access to the program:
-><VirtualHost *:80>
->
+> &lt;VirtualHost *:80&gt;
+
+> 
+
 >    ServerName  cms.local
+
 >    DirectoryIndex index.php
+
 >    DocumentRoot /var/www/erp/web/
->
->    <Directory "/var/www/erp/web/">
+
+> 
+
+>    &lt;Directory "/var/www/erp/web/"&gt;
+
 >        AllowOverride All
+
 >        Allow from All
->    </Directory>
->
-></VirtualHost>
+
+>    &lt;/Directory&gt;
+
+> 
+
+> &lt;/VirtualHost&gt;
 
 
 Extra settings:
