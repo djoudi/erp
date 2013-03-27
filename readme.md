@@ -43,7 +43,7 @@ Apache settings:
 Put these settings on your Apache host/vhost file to access to the program:
 > &lt;VirtualHost *:80&gt;  
 >   
-> ServerName  cms.local  
+> ServerName  erp.local  
 > DirectoryIndex index.php  
 > DocumentRoot /var/www/erp/web/  
 >   
