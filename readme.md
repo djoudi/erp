@@ -17,7 +17,7 @@ Go to project folder:
 > cd erp
 
 Create required symfony cache and log folders:
-> mkdir -p cache log web/uploads/images
+> mkdir -p cache log web/uploads
 
 Update required permissions:
 > ./symfony project:permissions
