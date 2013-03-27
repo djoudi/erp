@@ -11,7 +11,7 @@ Change to your web directory:
 > cd /var/www/
 
 Clone project:
-> git://github.com/yasinaydin/erp.git
+> git clone git://github.com/yasinaydin/erp.git
 
 Go to project folder:
 > cd erp
