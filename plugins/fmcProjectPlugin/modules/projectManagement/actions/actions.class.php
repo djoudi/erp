@@ -28,6 +28,12 @@ class projectManagementActions extends sfActions
         
         $url = $this->getController()->genUrl('@projectManagement');
         
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@projectManagement");
+        $this->title = "New Project";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request, $url);
     }
     
@@ -37,6 +43,12 @@ class projectManagementActions extends sfActions
         $this->forward404Unless($this->item = Doctrine::getTable('Project')->findOneById ($request->getParameter("id")));
         
         $this->form = new projectForm ($this->item);
+        
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@projectManagement");
+        $this->title = "Project: {$this->item}";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }

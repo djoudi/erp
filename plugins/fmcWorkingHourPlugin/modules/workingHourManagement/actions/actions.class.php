@@ -143,13 +143,17 @@ class workingHourManagementActions extends sfActions
             ->addWhere ("l.leave_id IS NOT NULL")
             ->execute();
         
-        
         $object = new CustomWorkingHour();
         $object->setAdder ($this->getUser()->getGuardUser());
         $object->setDate (date("Y-m-d"));
         
-        #$this->form = new whForm_addhours_new ($object);
         $this->form = new WorkingHourRecordForm ();
+        
+        $this->activeClass = "#topmenu_workinghours";
+        $this->back_url = $this->getController()->genUrl("@workingHoursManagement_addhours");
+        $this->title = "Add New Custom Working Hours";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         $returnUrl = $this->getController()->genUrl('@workingHoursManagement_addhours');
         
@@ -165,6 +169,12 @@ class workingHourManagementActions extends sfActions
         $this->forward404Unless ($this->item);
         
         $this->form = new whForm_addhours_new ($this->item);
+        
+        $this->activeClass = "#topmenu_workinghours";
+        $this->back_url = $this->getController()->genUrl("@workingHoursManagement_addhours");
+        $this->title = "Edit Custom Working Hour";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }

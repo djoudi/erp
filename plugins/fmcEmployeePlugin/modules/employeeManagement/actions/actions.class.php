@@ -26,6 +26,12 @@ class employeeManagementActions extends sfActions
         
         $returnUrl = $this->getController()->genUrl('@employeeManagement');
         
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@employeeManagement");
+        $this->title = "New Employee";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
     
@@ -37,6 +43,14 @@ class employeeManagementActions extends sfActions
         $this->forward404Unless ($this->item);
         
         $this->form = new form_plugin_sfguarduser ($this->item);
+        
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@employeeManagement");
+        $this->title = "Employee: {$this->item->getName()}";
+        $this->rightList_title = "Worktypes of this user's department";
+        $this->rightList_items = $this->item->getDepartment()->getWorkTypes();
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }

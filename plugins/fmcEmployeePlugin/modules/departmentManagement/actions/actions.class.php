@@ -18,6 +18,12 @@ class departmentManagementActions extends sfActions
         
         $returnUrl = $this->getController()->genUrl('@departmentManagement_list');
         
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@departmentManagement_list");
+        $this->title = "New Department";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
     
@@ -28,6 +34,14 @@ class departmentManagementActions extends sfActions
         $this->forward404Unless ($this->item);
         
         $this->form = new sfGuardDepartmentForm ($this->item);
+        
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@departmentManagement_list");
+        $this->title = "Department: {$this->item}";
+        $this->rightList_title = "Employees of this department";
+        $this->rightList_items = $this->item->getUsers();
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }
