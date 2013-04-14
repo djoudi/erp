@@ -31,6 +31,12 @@ class customerManagementActions extends sfActions
         
         $this->form = new customerForm ($this->item);
         
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@customerManagement");
+        $this->title = "Customer {$this->item['name']}";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request);
     }
     
@@ -40,6 +46,12 @@ class customerManagementActions extends sfActions
         $this->form = new customerForm();
         
         $url = $this->getController()->genUrl('@customerManagement');
+        
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@customerManagement");
+        $this->title = "New Customer";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request, $url);
     }

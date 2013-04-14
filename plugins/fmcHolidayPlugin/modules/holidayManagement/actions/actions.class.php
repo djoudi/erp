@@ -18,16 +18,28 @@ class holidayManagementActions extends sfActions
         
         $returnUrl = $this->getController()->genUrl('@holidayManagement_list');
         
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@holidayManagement_list");
+        $this->title = "New Holiday";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
     
     public function executeEdit (sfWebRequest $request)
     {
-        $this->object = Doctrine::getTable('Holiday')->findOneById($request->getParameter('id'));
+        $this->item = Doctrine::getTable('Holiday')->findOneById($request->getParameter('id'));
         
-        $this->forward404Unless ($this->object);
+        $this->forward404Unless ($this->item);
         
-        $this->form = new Form_Holiday ($this->object);
+        $this->form = new Form_Holiday ($this->item);
+        
+        $this->activeClass = "#topmenu_settings";
+        $this->back_url = $this->getController()->genUrl("@holidayManagement_list");
+        $this->title = "Holiday: {$this->item->getName()}";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }

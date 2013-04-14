@@ -14,16 +14,28 @@ class workingHourWorkTypeActions extends sfActions
         
         $returnUrl = $this->getController()->genUrl('@workingHourWorkType_list');
         
+        $this->activeClass = "#topmenu_workinghours";
+        $this->back_url = $this->getController()->genUrl("@workingHourWorkType_list");
+        $this->title = "New Work Type";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
+        
         Fmc_Core_Form::Process ($this->form, $request, $returnUrl);
     }
     
     public function executeEdit (sfWebRequest $request)
     {
-        $this->object = Doctrine::getTable('WorkingHourWorkType')->findOneById($request->getParameter('id'));
+        $this->item = Doctrine::getTable('WorkingHourWorkType')->findOneById($request->getParameter('id'));
         
-        $this->forward404Unless ($this->object);
+        $this->forward404Unless ($this->item);
         
-        $this->form = new Form_WorkType ($this->object);
+        $this->form = new Form_WorkType ($this->item);
+        
+        $this->activeClass = "#topmenu_workinghours";
+        $this->back_url = $this->getController()->genUrl("@workingHourWorkType_list");
+        $this->title = "Worktype: {$this->item}";
+        
+        $this->setTemplate('record','fmcCore','fmcCorePlugin');
         
         Fmc_Core_Form::Process ($this->form, $request);
     }
