@@ -26,9 +26,16 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
+            
+                <?php if (!count($rightList_items)): ?>
+                    <tr>
+                        <td>(None)</td>
+                    </tr>
+                <?php endif; ?>
+                
             </tbody>
         </table>
-    
+        
     <?php endif; ?>
 
 </div>
