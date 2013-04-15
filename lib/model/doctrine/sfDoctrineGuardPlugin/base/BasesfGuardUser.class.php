@@ -32,8 +32,6 @@
  * @property Doctrine_Collection $CostFormInvoicings
  * @property Doctrine_Collection $CostForms
  * @property Doctrine_Collection $CostFormItems
- * @property Doctrine_Collection $CustomWorkingHoursOwned
- * @property Doctrine_Collection $CustomWorkingHoursAdded
  * @property Doctrine_Collection $LeaveRequestEmployeeLimits
  * @property Doctrine_Collection $WorkingHourWorkTypeUser
  * @property Doctrine_Collection $LeaveRequest
@@ -66,8 +64,6 @@
  * @method Doctrine_Collection   getCostFormInvoicings()         Returns the current record's "CostFormInvoicings" collection
  * @method Doctrine_Collection   getCostForms()                  Returns the current record's "CostForms" collection
  * @method Doctrine_Collection   getCostFormItems()              Returns the current record's "CostFormItems" collection
- * @method Doctrine_Collection   getCustomWorkingHoursOwned()    Returns the current record's "CustomWorkingHoursOwned" collection
- * @method Doctrine_Collection   getCustomWorkingHoursAdded()    Returns the current record's "CustomWorkingHoursAdded" collection
  * @method Doctrine_Collection   getLeaveRequestEmployeeLimits() Returns the current record's "LeaveRequestEmployeeLimits" collection
  * @method Doctrine_Collection   getWorkingHourWorkTypeUser()    Returns the current record's "WorkingHourWorkTypeUser" collection
  * @method Doctrine_Collection   getLeaveRequest()               Returns the current record's "LeaveRequest" collection
@@ -99,8 +95,6 @@
  * @method sfGuardUser           setCostFormInvoicings()         Sets the current record's "CostFormInvoicings" collection
  * @method sfGuardUser           setCostForms()                  Sets the current record's "CostForms" collection
  * @method sfGuardUser           setCostFormItems()              Sets the current record's "CostFormItems" collection
- * @method sfGuardUser           setCustomWorkingHoursOwned()    Sets the current record's "CustomWorkingHoursOwned" collection
- * @method sfGuardUser           setCustomWorkingHoursAdded()    Sets the current record's "CustomWorkingHoursAdded" collection
  * @method sfGuardUser           setLeaveRequestEmployeeLimits() Sets the current record's "LeaveRequestEmployeeLimits" collection
  * @method sfGuardUser           setWorkingHourWorkTypeUser()    Sets the current record's "WorkingHourWorkTypeUser" collection
  * @method sfGuardUser           setLeaveRequest()               Sets the current record's "LeaveRequest" collection
@@ -247,14 +241,6 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
         $this->hasMany('CostFormItem as CostFormItems', array(
              'local' => 'id',
              'foreign' => 'invoiced_By'));
-
-        $this->hasMany('CustomWorkingHour as CustomWorkingHoursOwned', array(
-             'local' => 'id',
-             'foreign' => 'employee_id'));
-
-        $this->hasMany('CustomWorkingHour as CustomWorkingHoursAdded', array(
-             'local' => 'id',
-             'foreign' => 'added_by'));
 
         $this->hasMany('LeaveRequestEmployeeLimit as LeaveRequestEmployeeLimits', array(
              'local' => 'id',

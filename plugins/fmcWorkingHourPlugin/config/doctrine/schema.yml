@@ -1,4 +1,3 @@
-# CustomWorkingHour
 # LeaveType
 # LeaveRequestEmployeeLimit
 # WorkingHourParameter
@@ -11,50 +10,6 @@
 # LeaveRequest
 # WorkingHourDay
 # WorkingHourRecord
-
-######################################################
-
-CustomWorkingHour:
-    options:
-        orderBy: date DESC
-    actAs:
-        Auditable: ~
-        SoftDelete: ~
-        Versionable: ~
-    columns:
-        employee_id:
-            type: integer
-            notnull: true
-            default: NULL
-        date:
-            type: date
-            notnull: true
-            default: NULL
-        minutes:
-            type: integer
-            notnull: true
-            default: 0
-        comment:
-            type: string(255)
-            notnull: false
-            default: NULL
-        added_by:
-            type: integer
-            notnull: true
-            default: NULL
-    relations:
-        Employee:
-            class: sfGuardUser
-            local: employee_id
-            foreign: id
-            foreignAlias: CustomWorkingHoursOwned
-            onDelete: CASCADE
-        Adder:
-            class: sfGuardUser
-            local: added_by
-            foreign: id
-            foreignAlias: CustomWorkingHoursAdded
-            onDelete: CASCADE
 
 ######################################################
 

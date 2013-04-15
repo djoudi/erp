@@ -41,10 +41,6 @@ all:
                             attributes:
                                 class: "nav-header"
                             credentials: ["Working Hours Management"]
-                        #31:
-                            #label: Add Custom Hours
-                            #route: @workingHoursManagement_addhours
-                            #credentials: ["Working Hours Management"]
                         32:
                             label: Manage Leave Requests
                             route: @workingHoursLeaveManagement_list
