@@ -15,6 +15,12 @@ class whFilter_leaveRequest extends LeaveRequestFormFilter
             $this['report_Date'],
             $this['report_Received']
         );
+        
+        $this->setWidget('employee_id', new sfWidgetFormDoctrineChoice(array(
+            'model' => $this->getRelatedModelName('Employee'), 
+            'table_method' => 'getCurrentUsersDepartment', 
+            'add_empty' => true
+        )));
     }
     
 }

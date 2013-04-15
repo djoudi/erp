@@ -14,5 +14,16 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->addWhere('u.is_active = ?', true)
             ->execute();
     }
+    
+    public function getCurrentUsersDepartment ()
+    {
+        $loggedInUser = sfContext::getInstance()->getUser()->getGuardUser() ;
+        $department = $loggedInUser->getManagedDepartment();
         
+        return $this
+            ->createQuery ('u')
+            ->addWhere ('u.group_id = ?', $department->getId())
+            ->execute();
+    }
+    
 }

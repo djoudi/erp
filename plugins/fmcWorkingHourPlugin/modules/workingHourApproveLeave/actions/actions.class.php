@@ -3,14 +3,42 @@
 class workingHourApproveLeaveActions extends sfActions
 {
     
+    public function checkIfDepartmentManager ($request)
+    {
+        $this->department = $this->getUser()->getGuardUser()->getManagedDepartment();
+        
+        if ( !$this->department )
+        {
+            $this->getUser()->setFlash ("error", "You have to be a department manager to approve leave requests!");
+            $this->redirect ($this->redirect("@homepage"));
+        }
+    }
+    
+    public function checkIfOwnDepartmentsEmployee ($item)
+    {
+        if ($this->department->getId() != $item->getEmployee()->getDepartment()->getId())
+        {
+            $this->getUser()->setFlash ("error", "Selected employee is not working for your department!");
+            $this->redirect ($this->redirect("@homepage"));
+        }
+    }
+    
     
     public function executeSetstatus (sfWebRequest $request)
     {
+        // Checking if logged in user is a department manager
+            
+            $this->checkIfDepartmentManager ($request);
+        
         // Fetching item
         
             $item = Doctrine::getTable('LeaveRequest')->getWithIdAndStatus ($request->getParameter ('id'), "Pending");
             
             $this->forward404Unless ($item);
+        
+        // Checking if employee of leave request is under logged-in user's department
+        
+            $this->checkIfOwnDepartmentsEmployee ($item);
         
         // Setting and saving status
         
@@ -36,11 +64,19 @@ class workingHourApproveLeaveActions extends sfActions
     
     public function executeDetails (sfWebRequest $request)
     {
+        // Checking if logged in user is a department manager
+            
+            $this->checkIfDepartmentManager ($request);
+        
         // Fetching item
         
             $this->item = Doctrine::getTable('LeaveRequest')->findOneById ($request->getParameter('id'));
             
             $this->forward404Unless ($this->item);
+        
+        // Checking if employee of leave request is under logged-in user's department
+        
+            $this->checkIfOwnDepartmentsEmployee ($this->item);
         
         // Preparing form
         
@@ -55,11 +91,15 @@ class workingHourApproveLeaveActions extends sfActions
     
     public function executeList (sfWebRequest $request)
     {
+        // Checking if logged in user is a department manager
+            
+            $this->checkIfDepartmentManager ($request);
+        
         // Preparing Filter
         
             $this->resultLimit = 100;
             
-            $q = whQuery::prepareLeaveApproveQuery ($this->resultLimit);
+            $q = whQuery::prepareLeaveApproveQuery ($this->resultLimit, $this->department->getId());
             
             $filterClass = new FmcFilter ('whFilter_leaveRequest');
             

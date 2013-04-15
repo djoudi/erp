@@ -3,6 +3,18 @@
 class sfGuardUser extends PluginsfGuardUser
 {
     
+    public function getManagedDepartment ()
+    {
+        $query = Doctrine::getTable ('sfGuardGroup')
+            ->createQuery ('g')
+            ->addWhere ('manager_id = ?', $this->getId());
+        
+        $managedDepartment = $query->fetchOne();
+        
+        return $managedDepartment;
+    }
+    
+    
     /* ---------------------------------------------------------------*/
     
     

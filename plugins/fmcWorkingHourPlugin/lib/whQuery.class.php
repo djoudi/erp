@@ -3,7 +3,7 @@
 class whQuery
 {
     
-    public static function prepareLeaveApproveQuery ($resultLimit)
+    public static function prepareLeaveApproveQuery ($resultLimit, $department_id)
     {
         $q = Doctrine_Query::create()
             ->from ('LeaveRequest l')
@@ -11,6 +11,7 @@ class whQuery
             ->leftJoin ('l.LeaveType t')
             ->innerJoin ('l.WorkingHourDay d')
             ->addWhere ('l.status = ?', "Pending")
+            ->addWhere ('e.group_id = ?', $department_id)
             ->limit ($resultLimit);
         
         return $q;
