@@ -3,13 +3,18 @@
 abstract class PluginWorkingHourDay extends BaseWorkingHourDay
 {
     
-    public function calculateDayHours ()
+    
+    public function calculateDayHours ($formatted = true)
     {
         if ($this->getLeaveId()) // If day is a leave
-        {       
+        {
             $param = Doctrine::getTable('WorkingHourParameter')->findOneByParam('DailyWorkHours');
             
-            $result = Fmc_Core_Time::getTimeEasy ($param['value']*60);
+            $result = $param['value']*60;
+            
+            $leaveRequest = Doctrine::getTable ("LeaveRequest")->findOneById ($this->getLeaveId());
+            
+            if ($leaveRequest->getIsHalfDay()) $result /= 2;
         }
         else // If day is a work day
         {
@@ -24,7 +29,9 @@ abstract class PluginWorkingHourDay extends BaseWorkingHourDay
                 $endSum += Fmc_Core_Time::TimeToStamp ($work['end_Time']);
             }
             
-            $result = Fmc_Core_Time::getTimeEasy ($endSum - $startSum);
+            $result = $endSum - $startSum;
+            
+            if ($formatted) $result = Fmc_Core_Time::getTimeEasy ($result);
         }
     
         return $result;

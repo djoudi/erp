@@ -31,8 +31,10 @@ all:
                             label: Add custom working hours
                             route: @wh_user_addcustomhours_main
                             credentials: ["WorkingHours: Add My Hours"]
-                        
-                        
+                        15:
+                            label: My reports
+                            route: @wh_user_reports-bydate
+                            credentials: ["Working Hours"]
                         
                         20:
                             label: Review Requests

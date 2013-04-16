@@ -1,3 +1,12 @@
+# wh_user_reports
+
+wh_user_reports-bydate:
+    url: /wh/user/reports/bydate
+    param:
+        module: wh_user_reports
+        action: bydate
+
+
 # wh-user-addcustomhours
 
 wh_user_addcustomhours_main:

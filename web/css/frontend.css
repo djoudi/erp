@@ -257,3 +257,11 @@
     {
         width: 230px;
     }
+    table tr.weekend
+    {
+        background-color: #eee;
+    }
+    table tr.holiday
+    {
+        background-color: #ccc;
+    }

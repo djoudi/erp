@@ -58,3 +58,4 @@ all:
             - workingHourWorkType
             
             - wh_user_addcustomhours
+            - wh_user_reports
