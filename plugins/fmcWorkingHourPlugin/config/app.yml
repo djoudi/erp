@@ -8,7 +8,7 @@ all:
                     attributes:
                         class: "dropdown"
                         id: topmenu_workinghours
-                    credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports", "Working Hours Management"]]
+                    credentials: [["Working Hours", "Working Hours Leave Approve", "Working Hours Day Approve", "Working Hours Settings", "Working Hours Reports", "Working Hours Management", "WorkingHours: Add My Hours"]]
                     children:
                         10:
                             label: My Working Hours
@@ -27,6 +27,13 @@ all:
                             label: My leave requests
                             route: @workingHourLeave_myRequests
                             credentials: ["Working Hours"]
+                        14:
+                            label: Add custom working hours
+                            route: @wh_user_addcustomhours_main
+                            credentials: ["WorkingHours: Add My Hours"]
+                        
+                        
+                        
                         20:
                             label: Review Requests
                             attributes:
@@ -36,6 +43,9 @@ all:
                             label: Leave Requests
                             route: @workingHourApproveLeave_list
                             credentials: ["Working Hours Leave Approve"]
+                        
+                        
+                        
                         30:
                             label: Management
                             attributes:
@@ -49,6 +59,9 @@ all:
                             label: Manage Working Hours
                             route: @workingHoursManagement_day_list
                             credentials: ["Working Hours Management"]
+                        
+                        
+                        
                         50:
                             label: Reports
                             attributes:
@@ -70,6 +83,9 @@ all:
                             label: Employee Entrance/Exit
                             route: @workingHourReport_employeeio
                             credentials: ["Working Hours Reports"]
+                        
+                        
+                        
                         90:
                             label: Settings
                             attributes:

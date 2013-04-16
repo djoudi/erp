@@ -61,6 +61,7 @@ abstract class BaseWorkingHourRecord extends MyDoctrineRecord
               0 => 'Work',
               1 => 'Entrance',
               2 => 'Exit',
+              3 => 'CustomWork',
              ),
              'default' => 'Work',
              'notnull' => true,

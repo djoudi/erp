@@ -1,3 +1,13 @@
+# wh-user-addcustomhours
+
+wh_user_addcustomhours_main:
+    url: /wh/user/addcustomhours
+    param:
+        module: wh_user_addcustomhours
+        action: main
+
+
+
 # Excel Outputs
 
 workingHourLeave_exportExcel:

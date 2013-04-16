@@ -14,7 +14,7 @@ abstract class BaseWorkingHourRecordVersionFormFilter extends BaseFormFilterDoct
   {
     $this->setWidgets(array(
       'day_id'       => new sfWidgetFormFilterInput(),
-      'recordType'   => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
+      'recordType'   => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit', 'CustomWork' => 'CustomWork'))),
       'start_Time'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'end_Time'     => new sfWidgetFormFilterInput(),
       'project_id'   => new sfWidgetFormFilterInput(),
@@ -30,7 +30,7 @@ abstract class BaseWorkingHourRecordVersionFormFilter extends BaseFormFilterDoct
 
     $this->setValidators(array(
       'day_id'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'recordType'   => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
+      'recordType'   => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit', 'CustomWork' => 'CustomWork'))),
       'start_Time'   => new sfValidatorPass(array('required' => false)),
       'end_Time'     => new sfValidatorPass(array('required' => false)),
       'project_id'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),

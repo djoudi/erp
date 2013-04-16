@@ -251,3 +251,9 @@
     {
         width: auto !important;
     }
+
+    #unassociated_sf_guard_user_permissions_list, 
+    #sf_guard_user_permissions_list
+    {
+        width: 230px;
+    }

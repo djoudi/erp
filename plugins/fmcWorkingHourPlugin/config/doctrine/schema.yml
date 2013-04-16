@@ -391,7 +391,7 @@ WorkingHourRecord:
             default: NULL
         recordType:
             type: enum
-            values: ['Work', 'Entrance', 'Exit']
+            values: ['Work', 'Entrance', 'Exit', "CustomWork"]
             default: 'Work'
             notnull: true
         start_Time:

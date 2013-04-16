@@ -56,3 +56,5 @@ all:
             - workingHourParameter
             - workingHourReport
             - workingHourWorkType
+            
+            - wh_user_addcustomhours

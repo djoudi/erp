@@ -14,7 +14,7 @@ abstract class BaseWorkingHourRecordFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'day_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Day'), 'add_empty' => true)),
-      'recordType'   => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
+      'recordType'   => new sfWidgetFormChoice(array('choices' => array('' => '', 'Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit', 'CustomWork' => 'CustomWork'))),
       'start_Time'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'end_Time'     => new sfWidgetFormFilterInput(),
       'project_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
@@ -31,7 +31,7 @@ abstract class BaseWorkingHourRecordFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'day_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Day'), 'column' => 'id')),
-      'recordType'   => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
+      'recordType'   => new sfValidatorChoice(array('required' => false, 'choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit', 'CustomWork' => 'CustomWork'))),
       'start_Time'   => new sfValidatorPass(array('required' => false)),
       'end_Time'     => new sfValidatorPass(array('required' => false)),
       'project_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),

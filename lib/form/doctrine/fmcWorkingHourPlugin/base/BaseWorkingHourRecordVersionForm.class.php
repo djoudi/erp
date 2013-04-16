@@ -17,7 +17,7 @@ abstract class BaseWorkingHourRecordVersionForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
       'day_id'       => new sfWidgetFormInputText(),
-      'recordType'   => new sfWidgetFormChoice(array('choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit'))),
+      'recordType'   => new sfWidgetFormChoice(array('choices' => array('Work' => 'Work', 'Entrance' => 'Entrance', 'Exit' => 'Exit', 'CustomWork' => 'CustomWork'))),
       'start_Time'   => new sfWidgetFormTime(),
       'end_Time'     => new sfWidgetFormTime(),
       'project_id'   => new sfWidgetFormInputText(),
@@ -35,7 +35,7 @@ abstract class BaseWorkingHourRecordVersionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'day_id'       => new sfValidatorInteger(array('required' => false)),
-      'recordType'   => new sfValidatorChoice(array('choices' => array(0 => 'Work', 1 => 'Entrance', 2 => 'Exit'), 'required' => false)),
+      'recordType'   => new sfValidatorChoice(array('choices' => array(0 => 'Work', 1 => 'Entrance', 2 => 'Exit', 3 => 'CustomWork'), 'required' => false)),
       'start_Time'   => new sfValidatorTime(),
       'end_Time'     => new sfValidatorTime(array('required' => false)),
       'project_id'   => new sfValidatorInteger(array('required' => false)),
