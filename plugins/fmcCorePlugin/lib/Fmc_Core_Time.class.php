@@ -17,15 +17,24 @@ class Fmc_Core_Time
         return $epoch ? $epoch : 0;
     }
     
-    public static function getTimeEasy ($timeInSeconds)
+    public static function getTimeEasy ($timeInSeconds, $forced = false)
     {
         $seconds = $timeInSeconds % 60;
         
-        $minutes = ( ($timeInSeconds - $seconds) % 3600) / 60;
+        $minutes = round ( ( ( ($timeInSeconds-$seconds) % 3600) / 60), 2);
         
-        $hours = ( $timeInSeconds - ($seconds*3600) - ($minutes*60) ) / 3600;
+        $hours = round ( ( ( $timeInSeconds - ($seconds*3600) - ($minutes*60) ) / 3600), 0);
         
-        return "{$hours}h {$minutes}m";
+        if (!$forced)
+        {
+            $result = $hours ? "{$hours}h {$minutes}m" : "{$minutes}m";
+        }
+        else
+        {
+            $result = "{$hours}h {$minutes}m";
+        }
+        
+        return $result;
     }
     
     public static function getTimeDif ($end, $start)
