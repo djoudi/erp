@@ -7,7 +7,10 @@ class whReport
     {
         $this->prepareEnvironment ($user_id, $startDate, $endDate);
         
-        return $this->eachDayCalculations ($startDate, $endDate, true, $user_id);
+        $upToDayBalanceClass = new whReport();
+        $upToDayBalance = $upToDayBalanceClass->calculateEmployeeBalanceToDate ($user_id, $startDate);
+        
+        return $this->eachDayCalculations ($startDate, $endDate, true, $upToDayBalance);
     }
     
     
@@ -27,15 +30,13 @@ class whReport
     }
     
     
-    private function eachDayCalculations ($startDate, $endDate, $withResultsArray = false, $user_id = NULL)
+    private function eachDayCalculations ($startDate, $endDate, $withResultsArray = false, $totalUserBalance = 0)
     {
+        if ($withResultsArray) $results = array();
+        
         $dayCounterStart = new DateTime ($startDate);
             
         $dayCounterEnd = new DateTime ($endDate);
-        
-        $totalUserBalance = $withResultsArray ? $this->calculateEmployeeBalanceToDate ($user_id, $startDate) : 0;
-        
-        if ($withResultsArray) $results = array();
         
         while ($dayCounterStart <= $dayCounterEnd)
         {
@@ -112,14 +113,7 @@ class whReport
                 $dayCounterStart->add (new DateInterval('P1D'));
         }
         
-        if ($withResultsArray)
-        {
-            return $results;
-        }
-        else
-        {
-            return $totalUserBalance;
-        }
+        return $withResultsArray ? $results : $totalUserBalance;
     }
     
     
