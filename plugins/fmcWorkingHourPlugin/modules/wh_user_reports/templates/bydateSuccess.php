@@ -3,57 +3,100 @@
     slot ('activeClass', "#topmenu_workinghours");
 ?>
 
+
+<div class="alert alert-info">
+  
+  Balance before <strong><?php echo $startDate; ?> : </strong> 
+  <span class="label label-warning"><?php echo Fmc_Core_Time::getTimeEasy($lastBalance*60); ?></span>
+  
+</div>
+
+
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
             <th>Date</th>
-            <th>Day hours</th>
             <th>Type</th>
-            <th>Status</th>
-            <th>Worked</th>
-            <th>Breaks</th>
+            <th>Multiplier</th>
+            <th>Must work minutes</th>
+            <th>Worked minutes</th>
+            <th>Work balance</th>
+            <th>Used breaks</th>
+            <th>Breaks balance</th>
             <th>Day balance</th>
             <th>Total balance</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <th colspan="7">
-                Until <?php echo $results[0]["date"]; ?>
-            </th>
-            <th>
-                <?php echo $upToDayBalanceHuman; ?>
-            </th>
-        </tr>
-        <tr>
-            <?php foreach ($results as $day): ?>
-                <tr class='<?php echo $day["dayClass"]; ?>'>
+            <?php foreach ($results as $result): ?>
+                
+                <?php $dayObject = new DateTime ($result["date"]); ?>
+                
+                <?php if ($dayObject->format("j") == 1): ?>
+                    <tr>
+                        <th colspan="10" style="text-align: center;"><?php echo $dayObject->format("F"); ?></th>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                
                     <td>
-                        <?php echo $day["date"]; ?>, <?php echo $day["dayOfTheWeek"]; ?>
+                        <?php echo $result["date"]; ?>
                     </td>
+
                     <td>
-                        <?php echo $day["dayHoursHuman"]; ?>
+                        <?php echo $result["type"]; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["dayType"]=="Empty" ? "-" : $day["dayType"]; ?>
+                        <?php if ($result["type"]=="Work"): ?>
+                            <?php echo number_format($result["multiplier"], 2, '.', ''); ?>
+                        <?php endif; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["dayStatus"]; ?>
+                        <?php if ($result["minutesToWork"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["minutesToWork"]*60); ?>
+                        <?php endif; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["workedHoursHuman"]; ?>
-                        <?php if ($day["dayMultiplier"] > 1) echo " (x".round($day['dayMultiplier'],2).")"; ?>
+                        <?php if ($result["workedMinutes"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["workedMinutes"]*60); ?>
+                        <?php endif; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["dayBreaksHuman"]; ?>
+                        <?php if ($result["workBalance"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["workBalance"]*60); ?>
+                        <?php endif; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["dayBalanceHuman"]; ?>
+                        
+                        <?php if ($result["usedBreaks"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["usedBreaks"]*60); ?>
+                        <?php endif; ?>
                     </td>
+                    
                     <td>
-                        <?php echo $day["totalBalanceHuman"]; ?>
+                        <?php if ($result["breaksBalance"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["breaksBalance"]*60); ?>
+                        <?php endif; ?>
                     </td>
+                    
+                    <td>
+                        <?php if ($result["dayBalance"]): ?>
+                            <?php echo Fmc_Core_Time::getTimeEasy($result["dayBalance"]*60); ?>
+                        <?php endif; ?>
+                    </td>
+                    
+                    <td>
+                        <?php echo Fmc_Core_Time::getTimeEasy($result["balanceAfterThisday"]*60, false); ?>
+                    </td>
+                    
                 </tr>
+                
             <?php endforeach; ?>
         </tr>
     </tbody>

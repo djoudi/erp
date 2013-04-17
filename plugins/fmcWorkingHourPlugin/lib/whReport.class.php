@@ -2,24 +2,47 @@
 
 class whReport
 {
+    
+    public function BalanceResultsForDateInterval ($user_id, $startDate, $endDate)
+    {
+        $this->prepareEnvironment ($user_id, $startDate, $endDate);
+        
+        return $this->eachDayCalculations ($startDate, $endDate, true);
+    }
+    
+    
     public function calculateEmployeeBalanceToDate ($user_id, $endDate)
     {
-        $this->prepareDates ($user_id, $endDate);
+        $startDate = $this->calculateStartDate ($user_id);
         
-        $this->prepareDatabase ($user_id);
+        // Fixing endDate up-to-date
         
-        $dayCounterStart = new DateTime ($this->global_startDate);
+        $endDate = new DateTime ($endDate);
+        $endDate->sub (new DateInterval('P1D'));
+        $endDate = $endDate->format("Y-m-d");
         
-        $dayCounterEnd = new DateTime ($this->global_endDate);
+        $this->prepareEnvironment ($user_id, $startDate, $endDate);
         
-        $this->totalUserBalance = 0;
+        return $this->eachDayCalculations ($startDate, $endDate, false);
+    }
+    
+    
+    private function eachDayCalculations ($startDate, $endDate, $withResultsArray = false)
+    {
+        $dayCounterStart = new DateTime ($startDate);
+            
+        $dayCounterEnd = new DateTime ($endDate);
         
+        $totalUserBalance = 0;
+        
+        if ($withResultsArray) $results = array();
         
         while ($dayCounterStart <= $dayCounterEnd)
         {
             $date = $dayCounterStart->format('Y-m-d');
+            
             $workedMinutes = 0;
-            $workedMinutesWithMultiplier = 0;
+            
             $breaksBalance = 0;
             
             // Checking if user has day record
@@ -66,28 +89,47 @@ class whReport
                 
                 $dayBalance = $workBalance + $breaksBalance;
                 
-                $this->totalUserBalance += $dayBalance;
-                
-            // iteration
+                $totalUserBalance += $dayBalance;
+            
+            // 
+            
+                if ($withResultsArray)
+                {
+                    $results[$date]["date"] = $date;
+                    $results[$date]["type"] = ($dayKey === FALSE) ? "-" : (($this->db_employeedays[$dayKey]["leave_id"]) ? "Leave" : "Work");
+                    $results[$date]["multiplier"] = ($dayKey === FALSE) ? "-" : $this->db_employeedays[$dayKey]["multiplier"];
+                    $results[$date]["minutesToWork"] = $requiredMinutes;
+                    $results[$date]["workedMinutes"] = $workedMinutes;
+                    $results[$date]["workBalance"] = $workBalance;
+                    $results[$date]["usedBreaks"] = ($results[$date]["type"]=="Work") ? $this->db_employeedays[$dayKey]["daily_Breaks"] : "";
+                    $results[$date]["breaksBalance"] = ($results[$date]["type"]=="Work") ? $breaksBalance : "";
+                    $results[$date]["dayBalance"] = $dayBalance;
+                    $results[$date]["balanceAfterThisday"] = $totalUserBalance;
+                }
+            
+            // Iteration
                 
                 $dayCounterStart->add (new DateInterval('P1D'));
         }
         
-        return $this->totalUserBalance;
+        if ($withResultsArray)
+        {
+            return $results;
+        }
+        else
+        {
+            return $totalUserBalance;
+        }
     }
     
     
-    private function prepareDates ($user_id, $endDate)
+    private function calculateStartDate ($user_id) // DONE!
     {
-        $this->db_employee = Doctrine::getTable("sfGuardUser")->findOneById ($user_id);
-                
-        $this->global_startDate = "2013-01-01";  //@TODO: will be calculated after #17
-        
-        $this->global_endDate = $endDate;
+        return "2013-01-01"; //@TODO: will be calculated after #17
     }
     
     
-    private function prepareDatabase ($user_id)
+    private function prepareEnvironment ($user_id, $start_date, $end_date)
     {
         $this->db_holidays = Doctrine::getTable("Holiday")->findAll();
         
@@ -95,9 +137,9 @@ class whReport
         
         $this->db_employeedays = Doctrine::getTable("WorkingHourday")
             ->createQuery ("whd")
-            ->addWhere ("whd.employee_id = ?", $this->db_employee["id"])
-            ->addwhere ("whd.date >= ?", $this->global_startDate)
-            ->addWhere ("whd.date <= ?", $this->global_endDate)
+            ->addWhere ("whd.employee_id = ?", $user_id)
+            ->addwhere ("whd.date >= ?", $start_date)
+            ->addWhere ("whd.date <= ?", $end_date)
             ->leftJoin ("whd.LeaveRequest lr")
             ->leftJoin ("whd.WorkingHourRecords whr")
                 ->leftJoin ("whr.Project p")
@@ -106,13 +148,16 @@ class whReport
             ->execute();
         
         $this->search_holiday = array();
-        foreach ($this->db_holidays as $holiday) array_push ($this->search_holiday, $holiday["day"]);
+        
+            foreach ($this->db_holidays as $holiday) array_push ($this->search_holiday, $holiday["day"]);
         
         $this->search_days = array();
-        foreach (($this->db_employeedays) as $day) array_push ($this->search_days, $day["date"]);
+        
+            foreach (($this->db_employeedays) as $day) array_push ($this->search_days, $day["date"]);
         
         $this->parameters = array();
-        foreach (($this->db_parameters) as $parameter) $this->parameters[$parameter["param"]] = $parameter["value"];
+        
+            foreach (($this->db_parameters) as $parameter) $this->parameters[$parameter["param"]] = $parameter["value"];
     }
     
     
