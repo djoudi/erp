@@ -17,6 +17,8 @@
  * @property boolean $is_super_admin
  * @property timestamp $last_login
  * @property integer $group_id
+ * @property date $employment_start
+ * @property date $employment_end
  * @property time $office_Entrance
  * @property time $office_Exit
  * @property integer $default_Work_Type_id
@@ -49,6 +51,8 @@
  * @method boolean               getIsSuperAdmin()               Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()                  Returns the current record's "last_login" value
  * @method integer               getGroupId()                    Returns the current record's "group_id" value
+ * @method date                  getEmploymentStart()            Returns the current record's "employment_start" value
+ * @method date                  getEmploymentEnd()              Returns the current record's "employment_end" value
  * @method time                  getOfficeEntrance()             Returns the current record's "office_Entrance" value
  * @method time                  getOfficeExit()                 Returns the current record's "office_Exit" value
  * @method integer               getDefaultWorkTypeId()          Returns the current record's "default_Work_Type_id" value
@@ -80,6 +84,8 @@
  * @method sfGuardUser           setIsSuperAdmin()               Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()                  Sets the current record's "last_login" value
  * @method sfGuardUser           setGroupId()                    Sets the current record's "group_id" value
+ * @method sfGuardUser           setEmploymentStart()            Sets the current record's "employment_start" value
+ * @method sfGuardUser           setEmploymentEnd()              Sets the current record's "employment_end" value
  * @method sfGuardUser           setOfficeEntrance()             Sets the current record's "office_Entrance" value
  * @method sfGuardUser           setOfficeExit()                 Sets the current record's "office_Exit" value
  * @method sfGuardUser           setDefaultWorkTypeId()          Sets the current record's "default_Work_Type_id" value
@@ -163,6 +169,14 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              ));
         $this->hasColumn('group_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('employment_start', 'date', null, array(
+             'type' => 'date',
+             'notnull' => false,
+             ));
+        $this->hasColumn('employment_end', 'date', null, array(
+             'type' => 'date',
+             'notnull' => false,
              ));
         $this->hasColumn('office_Entrance', 'time', null, array(
              'type' => 'time',

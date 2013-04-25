@@ -200,6 +200,14 @@ sfGuardUser:
     options:
         orderBy: first_name ASC, last_name ASC
     columns:
+        employment_start:
+            type: date
+            notnull: false
+            default: NULL
+        employment_end:
+            type: date
+            notnull: false
+            default: NULL
         office_Entrance:
             type: time
             notnull: false
