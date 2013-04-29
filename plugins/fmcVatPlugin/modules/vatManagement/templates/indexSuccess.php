@@ -38,21 +38,29 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if ($vat->getIsActive()): ?>
-                        <a class="btn btn-mini" href="<?php echo url_for('@vatManagement_disable?id='.$vat['id']); ?>">
-                            Disable
-                        </a>
-                    <?php else: ?>
-                        <a class="btn btn-mini" href="<?php echo url_for('@vatManagement_enable?id='.$vat->getId()); ?>">
-                            Enable
-                        </a>
-                    <?php endif; ?>
                     
                     <?php if (!$vat->getIsDefault()): ?>
-                        <a class="btn btn-mini btn-success" href="<?php echo url_for('@vatManagement_makeDefault?id='.$vat->getId() ); ?>">
-                            Make Default
-                        </a>
+                    
+                        <?php if ($vat->getIsActive()): ?>
+                        
+                            <a class="btn btn-mini" href="<?php echo url_for('@vatManagement_disable?id='.$vat['id']); ?>">
+                                Disable
+                            </a>
+                            
+                            <a class="btn btn-mini btn-success" href="<?php echo url_for('@vatManagement_makeDefault?id='.$vat->getId() ); ?>">
+                                Make Default
+                            </a>
+                            
+                        <?php else: ?>
+                        
+                            <a class="btn btn-mini" href="<?php echo url_for('@vatManagement_enable?id='.$vat->getId()); ?>">
+                                Enable
+                            </a>
+                            
+                        <?php endif; ?>
+                        
                     <?php endif; ?>
+                    
                 </td>
             </tr>
         <?php endforeach; ?>

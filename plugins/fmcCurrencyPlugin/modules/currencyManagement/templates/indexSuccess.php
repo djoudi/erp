@@ -45,18 +45,22 @@
 
                     <?php if (!$currency->getIsDefault()): ?>
                     
-                        <a class="btn btn-mini btn-success" href="<?php echo url_for('@currencyManagement_makeDefault?id='.$currency->getId()); ?>">
-                            Make Default
-                        </a>
-                        
                         <?php if ($currency->getIsActive()): ?>
+                        
                             <a class="btn btn-mini" href="<?php echo url_for('@currencyManagement_disable?id='.$currency->getId()); ?>">
                                 Disable
                             </a>
+                            
+                            <a class="btn btn-mini btn-success" href="<?php echo url_for('@currencyManagement_makeDefault?id='.$currency->getId()); ?>">
+                                Make Default
+                            </a>
+                            
                         <?php else: ?>
+                        
                             <a class="btn btn-mini" href="<?php echo url_for('@currencyManagement_enable?id='.$currency->getId()); ?>">
                                 Enable
                             </a>
+                            
                         <?php endif; ?>
                         
                     <?php endif; ?>
