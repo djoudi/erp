@@ -13,6 +13,9 @@ Change to your web directory:
 Clone project:
 > git clone https://github.com/yasinaydin/erp.git
 
+Create required symfony cache and log folders:
+> mkdir -p erp/cache erp/log erp/web/uploads erp/lib/vendor
+
 Clone symony1 vendor:
 > git clone https://github.com/yasinaydin/symfony1.git
 
@@ -21,9 +24,6 @@ Create symbolic link for Symfony
 
 Go to project folder:
 > cd erp
-
-Create required symfony cache and log folders:
-> mkdir -p cache log web/uploads
 
 Update required permissions:
 > ./symfony project:permissions
