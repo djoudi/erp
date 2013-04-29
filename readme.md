@@ -11,7 +11,13 @@ Change to your web directory:
 > cd /var/www/
 
 Clone project:
-> git clone git://github.com/yasinaydin/erp.git
+> git clone https://github.com/yasinaydin/erp.git
+
+Clone symony1 vendor:
+> git clone https://github.com/yasinaydin/symfony1.git
+
+Create symbolic link for Symfony
+> ln -s $(pwd)/symfony1/ erp/lib/vendor/symfony
 
 Go to project folder:
 > cd erp

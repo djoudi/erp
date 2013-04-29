@@ -1,4 +1,8 @@
 #
+#  Symfony1 vendor
+#
+/lib/vendor/symfony
+#
 #  Symfony temporary files
 #
 /cache/
