@@ -21,6 +21,7 @@
  * @property integer $required_daily_break_minutes
  * @property date $employment_start
  * @property date $employment_end
+ * @property integer $wh_balance_before_2013
  * @property time $office_Entrance
  * @property time $office_Exit
  * @property integer $default_Work_Type_id
@@ -57,6 +58,7 @@
  * @method integer               getRequiredDailyBreakMinutes()    Returns the current record's "required_daily_break_minutes" value
  * @method date                  getEmploymentStart()              Returns the current record's "employment_start" value
  * @method date                  getEmploymentEnd()                Returns the current record's "employment_end" value
+ * @method integer               getWhBalanceBefore2013()          Returns the current record's "wh_balance_before_2013" value
  * @method time                  getOfficeEntrance()               Returns the current record's "office_Entrance" value
  * @method time                  getOfficeExit()                   Returns the current record's "office_Exit" value
  * @method integer               getDefaultWorkTypeId()            Returns the current record's "default_Work_Type_id" value
@@ -92,6 +94,7 @@
  * @method sfGuardUser           setRequiredDailyBreakMinutes()    Sets the current record's "required_daily_break_minutes" value
  * @method sfGuardUser           setEmploymentStart()              Sets the current record's "employment_start" value
  * @method sfGuardUser           setEmploymentEnd()                Sets the current record's "employment_end" value
+ * @method sfGuardUser           setWhBalanceBefore2013()          Sets the current record's "wh_balance_before_2013" value
  * @method sfGuardUser           setOfficeEntrance()               Sets the current record's "office_Entrance" value
  * @method sfGuardUser           setOfficeExit()                   Sets the current record's "office_Exit" value
  * @method sfGuardUser           setDefaultWorkTypeId()            Sets the current record's "default_Work_Type_id" value
@@ -190,6 +193,10 @@ abstract class BasesfGuardUser extends MyDoctrineRecord
              ));
         $this->hasColumn('employment_end', 'date', null, array(
              'type' => 'date',
+             'notnull' => false,
+             ));
+        $this->hasColumn('wh_balance_before_2013', 'integer', null, array(
+             'type' => 'integer',
              'notnull' => false,
              ));
         $this->hasColumn('office_Entrance', 'time', null, array(

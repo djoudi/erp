@@ -73,7 +73,9 @@ class whReport
         
         $this->getDaysFromDB ($startDate, $endDate);
         
-        return $this->eachDayCalculations ($startDate, $endDate);
+        
+        
+        return $this->db_employee->getWh_balance_before_2013() + $this->eachDayCalculations ($startDate, $endDate);
     }
     
     

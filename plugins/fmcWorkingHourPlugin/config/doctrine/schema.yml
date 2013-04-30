@@ -216,6 +216,10 @@ sfGuardUser:
             type: date
             notnull: false
             default: NULL
+        wh_balance_before_2013:
+            type: integer
+            notnull: false
+            default: NULL
         office_Entrance:
             type: time
             notnull: false
