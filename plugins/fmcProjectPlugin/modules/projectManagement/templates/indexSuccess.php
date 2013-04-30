@@ -32,33 +32,35 @@
 <?php endif; ?>
 
 
-<table class="tablesorter3a table table-hover table-bordered table-condensed">
-    <thead>
-        <tr>
-            <th>Status</th>
-            <th>Customer</th>
-            <th>Project Code</th>
-            <th>Project Title</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($items as $project): ?>
+<?php if (count($items)): ?>
+    <table class="tablesorter3a table table-hover table-bordered table-condensed">
+        <thead>
             <tr>
-                <td>
-                    <?php echo $project['status']; ?>
-                </td>
-                <td>
-                    <?php echo $project->getCustomers(); ?>
-                </td>
-                <td>
-                    <a href="<?php echo url_for("@projectManagement_edit?id=".$project['id']); ?>">
-                        <?php echo $project->getCode(); ?>
-                    </a>
-                </td>
-                <td>
-                    <?php echo $project['title']; ?>
-                </td>
+                <th>Status</th>
+                <th>Customer</th>
+                <th>Project Code</th>
+                <th>Project Title</th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($items as $project): ?>
+                <tr>
+                    <td>
+                        <?php echo $project['status']; ?>
+                    </td>
+                    <td>
+                        <?php echo $project->getCustomers(); ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo url_for("@projectManagement_edit?id=".$project['id']); ?>">
+                            <?php echo $project->getCode(); ?>
+                        </a>
+                    </td>
+                    <td>
+                        <?php echo $project['title']; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

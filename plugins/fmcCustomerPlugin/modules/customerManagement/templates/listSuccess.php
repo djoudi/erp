@@ -28,21 +28,23 @@
 <?php endif; ?>
 
 
-<table class="tablesorter tablesorterpager table table-hover table-bordered table-condensed">
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($customers as $item): ?>
+<?php if (count($customers)): ?>
+    <table class="tablesorter tablesorterpager table table-hover table-bordered table-condensed">
+        <thead>
             <tr>
-                <td>
-                    <a href="<?php echo url_for('@customerManagement_edit?id='.$item["id"]); ?>">
-                        <?php echo $item->getName(); ?>
-                    </a>
-                </td>
+                <th>Name</th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($customers as $item): ?>
+                <tr>
+                    <td>
+                        <a href="<?php echo url_for('@customerManagement_edit?id='.$item["id"]); ?>">
+                            <?php echo $item->getName(); ?>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
