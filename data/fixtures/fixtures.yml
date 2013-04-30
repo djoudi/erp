@@ -1,0 +1,8 @@
+sfGuardUser:
+    demo:
+        first_name:     Firstname
+        last_name:      Lastname
+        email_address:  demo@localhost
+        username:       demo
+        password:       demo
+        is_super_admin: true
