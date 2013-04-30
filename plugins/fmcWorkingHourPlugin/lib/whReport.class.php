@@ -3,28 +3,75 @@
 class whReport
 {
     
+    private function getDaysFromDB ($start_date, $end_date)
+    {
+        $this->db_employeedays = Doctrine::getTable("WorkingHourday")
+            ->createQuery ("whd")
+            ->addWhere ("whd.employee_id = ?", $this->db_employee->getId())
+            ->addwhere ("whd.date >= ?", $start_date)
+            ->addWhere ("whd.date <= ?", $end_date)
+            ->leftJoin ("whd.LeaveRequest lr")
+            ->leftJoin ("whd.WorkingHourRecords whr")
+                ->leftJoin ("whr.Project p")
+                ->leftJoin ("whr.WorkType w")
+            ->orderBy ("whd.date ASC, whr.start_Time ASC")
+            ->execute();
+        
+        $this->search_days = array();
+        foreach (($this->db_employeedays) as $day) array_push ($this->search_days, $day["date"]);
+    }
+    
+    
+    private function getGlobals ($user_id)
+    {
+        if (!isset($this->globalsAreSet))
+        {
+            $this->db_employee = Doctrine::getTable("sfGuardUser")->findOneById ($user_id);
+            
+            $this->db_holidays = Doctrine::getTable("Holiday")->findAll();
+            
+            $this->db_parameters = Doctrine::getTable("WorkingHourParameter")->findAll();
+            
+            $this->search_holiday = array();
+            foreach ($this->db_holidays as $holiday) array_push ($this->search_holiday, $holiday["day"]);
+            
+            $this->parameters = array();
+            foreach (($this->db_parameters) as $parameter) $this->parameters[$parameter["param"]] = $parameter["value"];
+            
+            $this->globalsAreSet = true;
+        }
+    }
+    
+    
+    public function getUpToDayBalance()
+    {
+        return $this->upToDayBalance;
+    }
+    
+    
     public function BalanceResultsForDateInterval ($user_id, $startDate, $endDate)
     {
-        $this->prepareEnvironment ($user_id, $startDate, $endDate);
+        $this->getGlobals ($user_id);
+        
+        $this->getDaysFromDB ($startDate, $endDate);
         
         $upToDayBalanceClass = new whReport();
-        $upToDayBalance = $upToDayBalanceClass->calculateEmployeeBalanceToDate ($user_id, $startDate);
+        $this->upToDayBalance = $upToDayBalanceClass->calculateEmployeeBalanceToDate ($user_id, $startDate);
         
-        return $this->eachDayCalculations ($startDate, $endDate, true, $upToDayBalance);
+        return $this->eachDayCalculations ($startDate, $endDate, true, $this->upToDayBalance);
     }
     
     
     public function calculateEmployeeBalanceToDate ($user_id, $endDate)
     {
-        $startDate = $this->calculateStartDate ($user_id);
+        $this->getGlobals ($user_id);
         
-        // Fixing endDate up-to-date
-        
+        $startDate = max (array("2013-01-01", $this->db_employee->getEmploymentStart()));
         $endDate = new DateTime ($endDate);
-        $endDate->sub (new DateInterval('P1D'));
+        $endDate->sub(new DateInterval('P1D'))->format("Y-m-d"); // One day before the given end date
         $endDate = $endDate->format("Y-m-d");
         
-        $this->prepareEnvironment ($user_id, $startDate, $endDate);
+        $this->getDaysFromDB ($startDate, $endDate);
         
         return $this->eachDayCalculations ($startDate, $endDate);
     }
@@ -117,60 +164,6 @@ class whReport
     }
     
     
-    private function calculateStartDate ($user_id) // DONE!
-    {
-        $employeeStart = Doctrine::getTable ("sfGuardUser")->findOneById ($user_id)->getEmploymentStart();
-        
-        $start = ($employeeStart && $employeeStart > "2013-01-01") ? $employeeStart : "2013-01-01";
-        
-        return $start;
-    }
-    
-    
-    private function prepareEnvironment ($user_id, $start_date, $end_date)
-    {
-        $this->db_holidays = Doctrine::getTable("Holiday")->findAll();
-        
-        $this->db_parameters = Doctrine::getTable("WorkingHourParameter")->findAll();
-        
-        $this->db_employeedays = Doctrine::getTable("WorkingHourday")
-            ->createQuery ("whd")
-            ->addWhere ("whd.employee_id = ?", $user_id)
-            ->addwhere ("whd.date >= ?", $start_date)
-            ->addWhere ("whd.date <= ?", $end_date)
-            ->leftJoin ("whd.LeaveRequest lr")
-            ->leftJoin ("whd.WorkingHourRecords whr")
-                ->leftJoin ("whr.Project p")
-                ->leftJoin ("whr.WorkType w")
-            ->orderBy ("whd.date ASC, whr.start_Time ASC")
-            ->execute();
-        
-        $this->search_holiday = array();
-        
-            foreach ($this->db_holidays as $holiday) array_push ($this->search_holiday, $holiday["day"]);
-        
-        $this->search_days = array();
-        
-            foreach (($this->db_employeedays) as $day) array_push ($this->search_days, $day["date"]);
-        
-        $this->parameters = array();
-        
-            foreach (($this->db_parameters) as $parameter) $this->parameters[$parameter["param"]] = $parameter["value"];
-    }
-    
-    
-    private function HolidayMultiplier ($date)
-    {
-        if (($holidayKey = array_search($date, $this->search_holiday)) !== FALSE) //if holiday
-        {
-            $result = ($this->db_holidays[$holidayKey]["holiday_type"]=="Full-day") ? 0 : 0.5;
-        }
-        else $result = 1;
-        
-        return $result;
-    }
-    
-    
     private function isWeekend ($dayObject)
     {
         return ($dayObject->format("N") > 5) ? 1 : 0;
@@ -179,13 +172,19 @@ class whReport
     
     private function calculateRequiredMinutesToWork ($dayObject, $date)
     {
+        if (($holidayKey = array_search($date, $this->search_holiday)) !== FALSE) //if holiday
+        {
+            $holidayMultiplier = ($this->db_holidays[$holidayKey]["holiday_type"]=="Full-day") ? 0 : 0.5;
+        }
+        else $holidayMultiplier = 1;
+                
         if ($this->isWeekend ($dayObject))
         {
             $result = 0;
         }
         else
         {
-            $result = $this->parameters["DailyWorkHours"] * $this->HolidayMultiplier($date);
+            $result = $this->parameters["DailyWorkHours"] * $holidayMultiplier;
         }
         
         return $result;
