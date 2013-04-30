@@ -200,6 +200,14 @@ sfGuardUser:
     options:
         orderBy: first_name ASC, last_name ASC
     columns:
+        required_daily_work_minutes:
+            type: integer
+            notnull: false
+            default: NULL
+        required_daily_break_minutes:
+            type: integer
+            notnull: false
+            default: NULL
         employment_start:
             type: date
             notnull: false

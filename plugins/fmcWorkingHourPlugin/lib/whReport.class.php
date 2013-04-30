@@ -101,11 +101,11 @@ class whReport
                     {
                         if ($this->db_employeedays[$dayKey]["LeaveRequest"]["is_half_day"]) //if leave is half day
                         {
-                            $workedMinutes += $this->parameters["DailyWorkHours"] / 2;
+                            $workedMinutes += $this->getEmployeeRequiredDailyHours() / 2;
                         }
                         else //if leave is full day
                         {
-                            $workedMinutes += $this->parameters["DailyWorkHours"];
+                            $workedMinutes += $this->getEmployeeRequiredDailyHours();
                         }
                     }
                     else //day is work
@@ -122,7 +122,7 @@ class whReport
                         
                         // calculating breaks
                         
-                            $breaksBalance = $this->parameters["DefaultDailyBreaks"] - $this->db_employeedays[$dayKey]["daily_Breaks"];
+                            $breaksBalance = $this->getEmployeeAvailableDailyBreaks() - $this->db_employeedays[$dayKey]["daily_Breaks"];
                     }
                     
                 }
@@ -170,6 +170,24 @@ class whReport
     }
     
     
+    private function getEmployeeRequiredDailyHours ()
+    {
+        if (!$value = $this->db_employee->getRequired_daily_work_minutes())
+            $value = $this->parameters["DailyWorkHours"];
+        
+        return $value;
+    }
+    
+    
+    private function getEmployeeAvailableDailyBreaks ()
+    {
+        if (!$value = $this->db_employee->getRequired_daily_break_minutes())
+            $value = $this->parameters["DefaultDailyBreaks"];
+        
+        return $value;
+    }
+    
+    
     private function calculateRequiredMinutesToWork ($dayObject, $date)
     {
         if (($holidayKey = array_search($date, $this->search_holiday)) !== FALSE) //if holiday
@@ -184,7 +202,7 @@ class whReport
         }
         else
         {
-            $result = $this->parameters["DailyWorkHours"] * $holidayMultiplier;
+            $result = $this->getEmployeeRequiredDailyHours() * $holidayMultiplier;
         }
         
         return $result;

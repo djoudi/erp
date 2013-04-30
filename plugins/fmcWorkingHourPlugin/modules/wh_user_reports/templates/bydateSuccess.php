@@ -18,8 +18,8 @@
             <th>Date</th>
             <th>Type</th>
             <th>Multiplier</th>
-            <th>Must work minutes</th>
-            <th>Worked minutes</th>
+            <th>Required</th>
+            <th>Worked</th>
             <th>Work balance</th>
             <th>Used breaks</th>
             <th>Breaks balance</th>
