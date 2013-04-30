@@ -119,7 +119,11 @@ class whReport
     
     private function calculateStartDate ($user_id) // DONE!
     {
-        return "2013-01-01"; //@TODO: will be calculated after #17
+        $employeeStart = Doctrine::getTable ("sfGuardUser")->findOneById ($user_id)->getEmploymentStart();
+        
+        $start = ($employeeStart && $employeeStart > "2013-01-01") ? $employeeStart : "2013-01-01";
+        
+        return $start;
     }
     
     
