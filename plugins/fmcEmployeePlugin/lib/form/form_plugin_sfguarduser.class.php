@@ -25,17 +25,14 @@ class form_plugin_sfguarduser extends sfGuardUserForm
             array('invalid' => 'The two passwords must be the same.'))
         );
         
-        $years = range(1990, round(date("Y")));
-        $years_list = array_combine($years, $years);
-        
         $this->setWidget('employment_start', new sfWidgetFormJQueryDate(array(
-            'date_widget' => new sfWidgetFormDate(array('format'=>'%year%%month%%day%', 'years'=>$years_list)),
+            'date_widget' => new sfWidgetFormDate(array('format'=>'%year%%month%%day%')),
             'image' => '/img/calendar.png',
             'config' => '{ changeMonth: true, changeYear: true, yearRange: "c-100:c" }'
         )));
         
         $this->setWidget('employment_end', new sfWidgetFormJQueryDate(array(
-            'date_widget' => new sfWidgetFormDate(array('format'=>'%year%%month%%day%', 'years'=>$years_list)),
+            'date_widget' => new sfWidgetFormDate(array('format'=>'%year%%month%%day%')),
             'image' => '/img/calendar.png',
             'config' => '{ changeMonth: true, changeYear: true, yearRange: "c-100:c" }'
         )));
