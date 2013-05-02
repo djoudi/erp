@@ -1,3 +1,12 @@
+# wh_reports
+
+wh_reports_balance:
+    url: /wh/reports/balance
+    param:
+        module: wh_reports
+        action: main
+
+
 # wh_user_reports
 
 wh_user_reports-bydate:

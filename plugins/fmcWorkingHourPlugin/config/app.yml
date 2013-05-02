@@ -82,6 +82,10 @@ all:
                             route: @workingHourReport_project
                             credentials: ["Working Hours Reports"]
                         54:
+                            label: Employee Balance
+                            route: @wh_reports_balance
+                            credentials: ["Working Hours Reports"]
+                        59:
                             label: Employee Entrance/Exit
                             route: @workingHourReport_employeeio
                             credentials: ["Working Hours Reports"]
