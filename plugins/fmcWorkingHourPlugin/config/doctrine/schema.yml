@@ -381,6 +381,10 @@ WorkingHourDay:
             type: integer
             notnull: true
             default: 0
+        balance:
+            type: integer
+            notnull: true
+            default: 0
     relations:
         Employee:
             class: sfGuardUser

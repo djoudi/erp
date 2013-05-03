@@ -3,6 +3,17 @@
 abstract class PluginWorkingHourDay extends BaseWorkingHourDay
 {
     
+    public function save (Doctrine_Connection $conn = null)
+    {
+        parent::save($conn);
+        
+        $day = Doctrine::getTable("workingHourDay")->getDraftDate($this["date"], $this["employee_id"]);
+        
+        if ($day) $this->setBalance (whDayUpdateSave::updateBalance($day));
+        
+        return parent::save($conn);
+    }
+    
     
     public function calculateDayHours ($formatted = true)
     {
