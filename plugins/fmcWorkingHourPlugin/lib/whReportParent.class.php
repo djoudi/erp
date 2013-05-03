@@ -24,7 +24,7 @@ class whReportParent
         {
             return $this->upToDayBalance;
         }
-            
+        
     
     // Help functions for calculating
         
@@ -67,7 +67,7 @@ class whReportParent
     
     // Calculating
     
-        private function calculateBalanceForDateIntervalAndEmployee (
+        public function calculateBalanceForDateIntervalAndEmployee (
             $from, $to, $employee, $days, $daySearch, $totalBalance = 0, $withArray = false
         )
         {

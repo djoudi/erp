@@ -4,49 +4,46 @@
 ?>
 
 
-<ul id="myTab" class="nav nav-tabs">
-    <li class="active">
-        <a href="#tab1" data-toggle="tab">
-            Work Records: This Week
+<div class="alert alert-info clearfix" style="text-align: center;">
+
+    <?php if ($prevMonth): ?>
+        <a href="<?php echo url_for("wh_user_reports-bydate")."?month={$prevMonth}"; ?>" class="btn pull-left">
+            <i class="icon-chevron-left"></i> <?php echo $prevMonth; ?>
         </a>
-    </li>
-    <li>
-        <a href="#tab2" data-toggle="tab">
-            Work Records: This Month
+    <?php endif; ?>
+
+    <?php if ($nextMonth): ?>
+        <a href="<?php echo url_for("wh_user_reports-bydate")."?month={$nextMonth}"; ?>" class="btn pull-right">
+            <i class="icon-chevron-right"></i> <?php echo $nextMonth; ?>
         </a>
-    </li>
-    <li>
-        <a href="#tab3" data-toggle="tab">
-            Work Records: All
-        </a>
-    </li>
-</ul>
+    <?php endif; ?>
+    
+    
+    
+    
+    Working Hour Records for: 
+        <span class="label label-success">
+            <strong><?php echo $employee; ?></strong>
+        </span>
+    <br />
+    
+    <span class="label label-info">
+        <?php echo $startDate; ?> - <?php  echo $endDate; ?>
+    </span>
+    <br />
+    
+    <span class="label label-warning"> Balance before <strong><?php echo $startDate; ?> : </strong> 
+    <?php echo Fmc_Core_Time::getTimeEasy($lastBalance*60); ?></span>
 
 
-<div id="myTabContent" class="tab-content">
     
-    <div class="tab-pane in active" id="tab1">
-        <?php include_partial ("workAll", array(
-            "startDate" => $weekWorkStartDate,
-            "lastBalance" => $weekWorkLastBalance,
-            "results" => $weekWork
-        )); ?>
-    </div>
-    
-    <div class="tab-pane" id="tab2">
-        <?php include_partial ("workAll", array(
-            "startDate" => $monthWorkStartDate,
-            "lastBalance" => $monthWorkLastBalance,
-            "results" => $monthWork
-        )); ?>
-    </div>
-    
-    <div class="tab-pane" id="tab3">
-        <?php include_partial ("workAll", array(
-            "startDate" => $allWorkStartDate,
-            "lastBalance" => $allWorkLastBalance,
-            "results" => $allWork
-        )); ?>
-    </div>
+    <div class="clearfix"></div>
     
 </div>
+
+
+<?php include_partial ("workAll", array(
+    "startDate" => $startDate,
+    "endDate" => $endDate,
+    "results" => $results
+)); ?>

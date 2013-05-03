@@ -3,49 +3,6 @@
 class whReport extends whReportParent
 {
     
-    public static function getLatestBalanceForEveryone ()
-    {
-        $employees = Doctrine::getTable ("sfGuardUser")->getActive();
-        
-        $employeeDays = Doctrine::getTable ("sfGuardUser")
-            ->createQuery ("e")
-            ->leftJoin ("e.WorkingHourDay whd")
-                #->addwhere ("whd.date >= ?", $start_date)
-                #->addWhere ("whd.date <= ?", $end_date)
-                ->leftJoin ("whd.LeaveRequest lr")
-                ->leftJoin ("whd.WorkingHourRecords whr")
-                    ->leftJoin ("whr.Project p")
-                    ->leftJoin ("whr.WorkType w")
-            ->orderBy ("whd.date ASC, whr.start_Time ASC")
-            ->fetchArray();
-        
-        /*
-        $employeeDays = Doctrine::getTable("WorkingHourday")
-            ->createQuery ("whd")
-            #->addWhere ("whd.employee_id = ?", $this->db_employee->getId())
-            #->addwhere ("whd.date >= ?", $start_date)
-            #->addWhere ("whd.date <= ?", $end_date)
-            ->leftJoin ("whd.LeaveRequest lr")
-            ->leftJoin ("whd.WorkingHourRecords whr")
-                ->leftJoin ("whr.Project p")
-                ->leftJoin ("whr.WorkType w")
-            ->orderBy ("whd.date ASC, whr.start_Time ASC")
-            #->groupBy ("whd.employee_id")
-            ->fetchArray();
-        */
-        /*
-        #Doctrine::getTable("WorkingHourday")
-            #->createQuery ("whd")
-            -#>addWhere ("whd.employee_id = ?", $this->db_employee->getId())
-        */
-        echo "<pre>";
-        print_r ($employeeDays);
-        echo "</pre>";
-        
-    }
-    
-    
-    
     private function getDaysFromDB ($start_date, $end_date)
     {
         $this->db_employeedays = Doctrine::getTable("WorkingHourday")
@@ -74,7 +31,7 @@ class whReport extends whReportParent
         $upToDayBalanceClass = new whReport();
         $this->upToDayBalance = $upToDayBalanceClass->calculateEmployeeBalanceToDate ($user_id, $startDate);
         
-        $this->calculateBalanceForDateIntervalAndEmployee (
+        $balance = $this->calculateBalanceForDateIntervalAndEmployee (
             $startDate, $endDate, $this->db_employee, $this->db_employeedays, $this->search_days, $this->upToDayBalance, true
         );
         

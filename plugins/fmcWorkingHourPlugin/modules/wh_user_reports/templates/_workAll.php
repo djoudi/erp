@@ -1,11 +1,3 @@
-<div class="alert alert-info">
-  
-  Balance before <strong><?php echo $startDate; ?> : </strong> 
-  <span class="label label-warning"><?php echo Fmc_Core_Time::getTimeEasy($lastBalance*60); ?></span>
-  
-</div>
-
-
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr>
